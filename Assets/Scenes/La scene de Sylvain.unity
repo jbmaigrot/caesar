@@ -214,6 +214,7 @@ GameObject:
   - component: {fileID: 28879984}
   - component: {fileID: 28879986}
   - component: {fileID: 28879985}
+  - component: {fileID: 28879987}
   m_Layer: 5
   m_Name: ChatBox
   m_TagString: Untagged
@@ -271,7 +272,7 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: New Text
 --- !u!222 &28879986
@@ -282,6 +283,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 28879983}
   m_CullTransparentMesh: 0
+--- !u!114 &28879987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28879983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41ec6340918cbf946a0f3e253dc2a1d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &220807137
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,6 +617,7 @@ GameObject:
   - component: {fileID: 1232468384}
   - component: {fileID: 1232468386}
   - component: {fileID: 1232468385}
+  - component: {fileID: 1232468387}
   m_Layer: 5
   m_Name: WritingPrompt
   m_TagString: Untagged
@@ -672,6 +686,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1232468383}
   m_CullTransparentMesh: 0
+--- !u!114 &1232468387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232468383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bbffbf6c5f77274f98be0185ef9e1ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1490615885
 GameObject:
   m_ObjectHideFlags: 0
