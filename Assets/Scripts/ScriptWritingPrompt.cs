@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ScriptWritingPrompt : MonoBehaviour
 {
     private string currentString;
+   
     // Start is called before the first frame update
     void Start()
     {
