@@ -66,6 +66,7 @@ public class HackingAssetEditor : EditorWindow
                 }
                 EditorGUILayout.EndHorizontal();
             }
+
             if(GUILayout.Button("Add Input", GUILayout.ExpandWidth(false)))
             {
                 InputCode interVar;
