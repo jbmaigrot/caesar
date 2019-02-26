@@ -1,60 +1,65 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-
-public enum Typeinput {OnHack, OnReadWord};
-
-public enum Typeoutput {Repeat, SendMessage, TurnLightOn, TurnLightOff};
-
-public struct Hackarrow
+public class arrow
 {
-    public int target;
-    public float waitTime;
+    public int input;
+    public int output;
+    public float transmitTime;
+    public List<float> timeBeforeTransmit;
 };
-
-public struct Hackinput
+public class InputHack
 {
-    public Typeinput typeOfInput;
-    public string parameter;
-    public List<Hackarrow> arrow;
-};
+    public string inputcode;
+    public int parameter_int;
+    public string parameter_string;
 
-public struct Hackoutput
+    public InputHack()
+    {
+        inputcode = "OnHack";
+        parameter_int = 0;
+        parameter_string = "";
+    }
+}
+
+public class OutputHack
 {
-    public Typeoutput typeOfOutput;
-    public string parameter;
-};
+    public string outputcode;
+    public int parameter_int;
+    public string parameter_string;
+
+    public OutputHack()
+    {
+        outputcode = "TurnLightOff";
+        parameter_int = 0;
+        parameter_string = "";
+    }
+}
 
 public class ProgrammableObjectsData : MonoBehaviour
 {
-    List<Hackinput> hackinput;
-    List<Hackoutput> hackoutput;
+    public HackingAssetScriptable HackingAsset;
+    public GameObject HackInterface;
+    public List<string> accessibleInputCode;
+    public List<string> accessibleOutputCode;
 
-    private void Start()
+    public List<InputHack> inputCodes=new List<InputHack>();
+    public List<OutputHack> outputCodes=new List<OutputHack>();
+    public List<arrow> graph= new List<arrow>();
+
+    void Start()
     {
-        Hackinput voiture;
-        voiture.typeOfInput = Typeinput.OnHack;
-        voiture.parameter = "";
-        voiture.arrow = null;
-        hackinput.Add(voiture);
-
-        Hackoutput velodrome;
-        velodrome.typeOfOutput = Typeoutput.TurnLightOn;
-        velodrome.parameter = "";
-
-        Hackoutput velodrome2;
-        velodrome2.typeOfOutput = Typeoutput.TurnLightOff;
-        velodrome2.parameter = "";
-
-        Hackoutput velodrome3;
-        velodrome3.typeOfOutput = Typeoutput.Repeat;
-        velodrome3.parameter = "";
-
+        foreach(arrow a in graph)
+        {
+            a.timeBeforeTransmit.Clear();
+        }
     }
 
-    private void Update()
+    void OnMouseDown()
     {
-
+        ExecuteEvents.Execute<ISelectObject>(HackInterface, null, (x, y) => x.SelectedProgrammableObject(this.gameObject));
     }
+
 }

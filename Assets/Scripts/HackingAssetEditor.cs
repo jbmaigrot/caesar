@@ -115,6 +115,7 @@ public class HackingAssetEditor : EditorWindow
 
 
         }
+        AssetDatabase.SaveAssets();
     }
 
     private void NewHackingAsset()

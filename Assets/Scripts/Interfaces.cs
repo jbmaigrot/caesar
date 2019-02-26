@@ -7,5 +7,10 @@ public interface IMessageReceiver : IEventSystemHandler
 {
     // functions that can be called via the messaging system
     void ChatInstruction(string instruction);
+    
+}
 
+public interface ISelectObject : IEventSystemHandler
+{
+    void SelectedProgrammableObject(GameObject SelectedObject);
 }
