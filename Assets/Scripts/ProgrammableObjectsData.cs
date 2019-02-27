@@ -7,8 +7,8 @@ public class arrow
 {
     public int input;
     public int output;
-    public float transmitTime;
-    public List<float> timeBeforeTransmit;
+    public float transmitTime=1f;
+    public List<float> timeBeforeTransmit=new List<float>();
 };
 public class InputHack
 {
@@ -16,12 +16,12 @@ public class InputHack
     public int parameter_int;
     public string parameter_string;
 
-    public InputHack()
+    /*public InputHack()
     {
         inputcode = "OnHack";
         parameter_int = 0;
         parameter_string = "";
-    }
+    }*/
 }
 
 public class OutputHack

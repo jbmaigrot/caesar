@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class HackInterface : MonoBehaviour, ISelectObject
 {
+    static public int SelectedInputButton=-1;
     
     static public GameObject SelectedGameObject;
     // Start is called before the first frame update
@@ -26,5 +27,6 @@ public class HackInterface : MonoBehaviour, ISelectObject
         SelectedGameObject = SelectedObject;
         this.gameObject.GetComponent<CanvasGroup>().alpha =1f;
         this.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        
     }
 }

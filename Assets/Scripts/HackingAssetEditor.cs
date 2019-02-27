@@ -47,6 +47,7 @@ public class HackingAssetEditor : EditorWindow
             GUILayout.Label("Input List of Asset :");
             for (int i = 0;i< HackingAsset.inputCodes.Count; i++)
             {
+                Debug.Log("j'arrive ici");
                 InputCode interVar;
                 EditorGUILayout.Space();
                 EditorGUILayout.BeginHorizontal();
@@ -102,7 +103,7 @@ public class HackingAssetEditor : EditorWindow
                 }
                 EditorGUILayout.EndHorizontal();
             }
-            if (GUILayout.Button("Add Input", GUILayout.ExpandWidth(false)))
+            if (GUILayout.Button("Add Output", GUILayout.ExpandWidth(false)))
             {
                 OutputCode interVar;
                 interVar.outputCode = "";
@@ -115,16 +116,17 @@ public class HackingAssetEditor : EditorWindow
 
 
         }
-        AssetDatabase.SaveAssets();
+        /*EditorUtility.SetDirty(HackingAsset);
+        AssetDatabase.SaveAssets();*/
     }
 
     private void NewHackingAsset()
     {
         HackingAsset = ScriptableObject.CreateInstance<HackingAssetScriptable>();
         AssetDatabase.CreateAsset(HackingAsset, AssetDatabase.GenerateUniqueAssetPath("Assets/HackingAsset.asset"));
+
+        EditorUtility.SetDirty(HackingAsset);
         AssetDatabase.SaveAssets();
-        HackingAsset.inputCodes = new List<InputCode>();
-        HackingAsset.outputCodes = new List<OutputCode>();
         if (HackingAsset)
         {
             hackPath = AssetDatabase.GetAssetPath(HackingAsset);

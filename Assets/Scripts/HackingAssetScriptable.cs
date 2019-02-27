@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+[System.Serializable]
 public struct InputCode
 {
     public string inputCode;
@@ -13,6 +13,7 @@ public struct InputCode
 
 }
 
+[System.Serializable]
 public struct OutputCode
 {
     public string outputCode;
@@ -25,8 +26,8 @@ public struct OutputCode
 
 public class HackingAssetScriptable : ScriptableObject
 {
-    public List<InputCode> inputCodes;
-    public List<OutputCode> outputCodes;
+    public List<InputCode> inputCodes = new List<InputCode>();
+    public List<OutputCode> outputCodes = new List<OutputCode>();
 
 
     public string DescribeInputCode(string code, bool with_parameter, int parameter_int = 0, string parameter_string = "")

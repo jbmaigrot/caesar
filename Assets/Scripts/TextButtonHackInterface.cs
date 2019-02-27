@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class TextButtonHackInterface : MonoBehaviour, IPointerDownHandler
+public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPointerUpHandler*/
 {
     public bool isInput;
     public int numero;
@@ -15,125 +15,103 @@ public class TextButtonHackInterface : MonoBehaviour, IPointerDownHandler
     {
         
     }
-
-    public void OnPointerDown(PointerEventData pointerEvent)
+    
+    public void OnClick(/*PointerEventData pointerEvent*/)
     {
-        if (isAWorkingNode)
+        if (isInput)
         {
-
+            HackInterface.SelectedInputButton = numero-1;
+  
         }
-        else
+        else if (HackInterface.SelectedInputButton > -1 && HackInterface.SelectedInputButton < HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes.Count && numero - 1 < HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().outputCodes.Count)
         {
-            if (isInput)
-            {
-                HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes.Add(new InputHack());
 
-            }
-            else
+            arrow NewArrow = new arrow();
+            NewArrow.input = HackInterface.SelectedInputButton;
+            HackInterface.SelectedInputButton = -1;
+            NewArrow.output = numero - 1;
+
+            bool isItReallyNew = true;
+            foreach (arrow a in HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().graph)
             {
-                HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().outputCodes.Add(new OutputHack());
+                if (a.input == NewArrow.input && a.output == NewArrow.output) isItReallyNew = false;
+            }
+            if (isItReallyNew)
+            {
+                HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().graph.Add(NewArrow);
+ 
             }
         }
     }
+    /*
+    public void OnPointerUp(PointerEventData pointerEvent)
+    {
+        
+    }*/
 
     // Update is called once per frame
     void Update()
     {
-        if (isInput)
+        if (HackInterface.SelectedGameObject != null)
         {
-            if (numero > HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes.Count)
+            if (isInput)
             {
-                this.GetComponentInChildren<Text>().text = "";
-                isAWorkingNode = false;
-                if(numero> HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes.Count + 1)
+                if (numero > HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes.Count)
                 {
-                    isVisible = false;
-                    this.GetComponent<CanvasGroup>().alpha = 0f;
-                    this.GetComponent<CanvasGroup>().blocksRaycasts = false;
+                    isAWorkingNode = false;
+                    if (numero > HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes.Count + 1)
+                    {
+                        isVisible = false;
+                        this.GetComponent<CanvasGroup>().alpha = 0f;
+                        this.GetComponent<CanvasGroup>().blocksRaycasts = false;
+                    }
+                    else
+                    {
+                        isVisible = true;
+                        this.GetComponent<CanvasGroup>().alpha = 1f;
+                        this.GetComponent<CanvasGroup>().blocksRaycasts = true;
+                    }
                 }
                 else
                 {
+                    isAWorkingNode = true;
+                    isVisible = true;
+                    this.GetComponent<CanvasGroup>().alpha = 1f;
+                    this.GetComponent<CanvasGroup>().blocksRaycasts = true;
+                    /*this.gameObject.GetComponent<Button>().onClick(){
+
+                    }*/
+                }
+            }
+            else
+            {
+                if (numero > HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().outputCodes.Count)
+                {
+                    isAWorkingNode = false;
+                    if (numero > HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().outputCodes.Count + 1)
+                    {
+                        isVisible = false;
+                        this.GetComponent<CanvasGroup>().alpha = 0f;
+                        this.GetComponent<CanvasGroup>().blocksRaycasts = false;
+                    }
+                    else
+                    {
+                        isVisible = true;
+                        this.GetComponent<CanvasGroup>().alpha = 1f;
+                        this.GetComponent<CanvasGroup>().blocksRaycasts = true;
+                    }
+                }
+                else
+                {
+                    isAWorkingNode = true;
                     isVisible = true;
                     this.GetComponent<CanvasGroup>().alpha = 1f;
                     this.GetComponent<CanvasGroup>().blocksRaycasts = true;
                 }
             }
-            else
-            {
-                this.GetComponentInChildren<Text>().text = HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes[numero - 1].inputcode;
-                isAWorkingNode = true;
-                isVisible = true;
-                this.GetComponent<CanvasGroup>().alpha = 1f;
-                this.GetComponent<CanvasGroup>().blocksRaycasts = true;
-            }
+
+
         }
-        else
-        {
-            if (numero > HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().outputCodes.Count)
-            {
-                this.GetComponentInChildren<Text>().text = "";
-                isAWorkingNode = false;
-                if (numero > HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().outputCodes.Count + 1)
-                {
-                    isVisible = false;
-                    this.GetComponent<CanvasGroup>().alpha = 0f;
-                    this.GetComponent<CanvasGroup>().blocksRaycasts = false;
-                }
-                else
-                {
-                    isVisible = true;
-                    this.GetComponent<CanvasGroup>().alpha = 1f;
-                    this.GetComponent<CanvasGroup>().blocksRaycasts = true;
-                }
-            }
-            else
-            {
-                this.GetComponentInChildren<Text>().text = HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().outputCodes[numero - 1].outputcode;
-                isAWorkingNode = true;
-                isVisible = true;
-                this.GetComponent<CanvasGroup>().alpha = 1f;
-                this.GetComponent<CanvasGroup>().blocksRaycasts = true;
-            }
-        }
-
-        if (isVisible)
-        {
-            this.GetComponentInChildren<Dropdown>().ClearOptions();
-            if (isAWorkingNode)
-            {
-                this.GetComponentInChildren<CanvasGroup>().alpha = 0f;
-            }
-            else
-            {
-                this.GetComponentInChildren<CanvasGroup>().alpha = 1f;
-                Dropdown.OptionData NewData;NewData=new Dropdown.OptionData();
-                List<Dropdown.OptionData> ListNewData= new List<Dropdown.OptionData>();
-                if (isInput)
-                {
-                    foreach (string ryan in HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().accessibleInputCode)
-                    {
-                        NewData = new Dropdown.OptionData();
-                        NewData.image = null;
-                        NewData.text = ryan;
-                        ListNewData.Add(NewData);
-
-                    }
-                }
-                else
-                {
-                    foreach (string ryan in HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().accessibleOutputCode)
-                    {
-                        NewData = new Dropdown.OptionData();
-                        NewData.image = null;
-                        NewData.text = ryan;
-                        ListNewData.Add(NewData);
-
-                    }
-                }
-                this.GetComponentInChildren<Dropdown>().AddOptions(ListNewData);
-
-            }
-           
-        }
+        
     }
 }
