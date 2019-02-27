@@ -8,7 +8,7 @@ public class testScriptLight : MonoBehaviour, IMessageReceiver
 {
     // Start is called before the first frame update
     public void ChatInstruction(string instruction)
-    {
+    {/*
         if (instruction == "light")
         {
             this.GetComponent<Light>().intensity = 100;
@@ -16,6 +16,6 @@ public class testScriptLight : MonoBehaviour, IMessageReceiver
         if (instruction == "dark")
         {
             this.GetComponent<Light>().intensity = 0;
-        }
+        }*/
     }
 }

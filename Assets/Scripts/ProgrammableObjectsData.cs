@@ -7,7 +7,7 @@ public class arrow
 {
     public int input;
     public int output;
-    public float transmitTime=1f;
+    public float transmitTime=0.2f;
     public List<float> timeBeforeTransmit=new List<float>();
 };
 public class InputHack
@@ -38,7 +38,7 @@ public class OutputHack
     }
 }
 
-public class ProgrammableObjectsData : MonoBehaviour
+public class ProgrammableObjectsData : MonoBehaviour, IMessageReceiver
 {
     public HackingAssetScriptable HackingAsset;
     public GameObject HackInterface;
@@ -48,6 +48,8 @@ public class ProgrammableObjectsData : MonoBehaviour
     public List<InputHack> inputCodes=new List<InputHack>();
     public List<OutputHack> outputCodes=new List<OutputHack>();
     public List<arrow> graph= new List<arrow>();
+
+    
 
     void Start()
     {
@@ -60,6 +62,76 @@ public class ProgrammableObjectsData : MonoBehaviour
     void OnMouseDown()
     {
         ExecuteEvents.Execute<ISelectObject>(HackInterface, null, (x, y) => x.SelectedProgrammableObject(this.gameObject));
+        OnInput("OnHack");
     }
 
+    public void ChatInstruction(string instruction)
+    {
+        OnInput("OnWord", instruction);
+    }
+
+    void OnInput(string codeinput, string parameter = "")
+    {
+        foreach(arrow ryan in graph)
+        {
+            if(inputCodes.Count>ryan.input && inputCodes[ryan.input].inputcode == codeinput)
+            {
+                foreach (InputCode reynolds in HackingAsset.inputCodes)
+                {
+                    if (reynolds.inputCode == codeinput && (!reynolds.parameter_string || inputCodes[ryan.input].parameter_string == parameter)) ryan.timeBeforeTransmit.Add(ryan.transmitTime);
+                }
+            }
+        }
+    }
+
+    void OnOutput(string codeoutput, string parameter = "")
+    {
+        if(codeoutput == "TurnOnLight")
+        {
+            this.GetComponentInChildren<Light>().intensity = 100;
+        }
+
+        if(codeoutput == "TurnOffLight")
+        {
+            this.GetComponentInChildren<Light>().intensity = 0;
+        }
+
+        if(codeoutput == "SendMessage")
+        {
+            ScriptChatBox.NewChatContent = parameter +"\n";
+        }
+    }
+
+    void Update()
+    {
+        for(int i = 0; i < graph.Count; i++)
+        {
+            for (int j = 0; j < graph[i].timeBeforeTransmit.Count; j++)
+            {
+                graph[i].timeBeforeTransmit[j] -= Time.deltaTime;
+                if (graph[i].timeBeforeTransmit[j] <= 0)
+                {
+                    if (outputCodes.Count > graph[i].output)
+                    {
+                        string outputcode = outputCodes[graph[i].output].outputcode;
+                        foreach(OutputCode ryan in HackingAsset.outputCodes)
+                        {
+                            if (ryan.outputCode == outputcode)
+                            {
+                                if (ryan.parameter_string)
+                                {
+                                    OnOutput(outputcode, outputCodes[graph[i].output].parameter_string);
+                                }
+                                else
+                                {
+                                    OnOutput(outputcode);
+                                }
+                            }
+                        }
+                    }
+                    graph[i].timeBeforeTransmit.RemoveAt(j);
+                }
+            }
+        }
+    }
 }

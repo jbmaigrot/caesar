@@ -32,14 +32,13 @@ public class ScriptChatBox : MonoBehaviour
             {
                 if ((c == '\n') || (c == '\r') || (c == ' '))
                 {
-                    if (WordsToLookFor.ContainsKey(justOneWord))
-                    {
+                    
                         for(int i = 0;i< target.Length; i++)
                         {
                             ExecuteEvents.Execute<IMessageReceiver>(target[i], null, (x, y) => x.ChatInstruction(justOneWord));
                         }
                         
-                    }
+                    
                     justOneWord = "";
                 }
                 else
