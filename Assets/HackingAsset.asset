@@ -23,6 +23,11 @@ MonoBehaviour:
     descriptionWithoutParameter: 
     parameter_int: 0
     parameter_string: 1
+  - inputCode: OnInteract
+    descriptionWithParameter: When I am touched gently
+    descriptionWithoutParameter: 
+    parameter_int: 0
+    parameter_string: 0
   outputCodes:
   - outputCode: TurnOnLight
     descriptionWithParameter: I turn the light on
@@ -39,3 +44,13 @@ MonoBehaviour:
     descriptionWithoutParameter: 
     parameter_int: 0
     parameter_string: 1
+  - outputCode: CloseDoor
+    descriptionWithParameter: I close
+    descriptionWithoutParameter: 
+    parameter_int: 0
+    parameter_string: 0
+  - outputCode: OpenDoor
+    descriptionWithParameter: I open
+    descriptionWithoutParameter: 
+    parameter_int: 0
+    parameter_string: 0

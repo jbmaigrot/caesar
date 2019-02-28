@@ -75,7 +75,7 @@ public class ProgrammableObjectsData : MonoBehaviour, IMessageReceiver
         OnInput("OnWord", instruction);
     }
 
-    void OnInput(string codeinput, string parameter = "")
+    public void OnInput(string codeinput, string parameter = "")
     {
         foreach(arrow ryan in graph)
         {
@@ -99,6 +99,17 @@ public class ProgrammableObjectsData : MonoBehaviour, IMessageReceiver
         if(codeoutput == "TurnOffLight")
         {
             this.GetComponentInChildren<Light>().intensity = 0;
+        }
+
+        if(codeoutput == "OpenDoor")
+        {
+            this.GetComponentInChildren<DoorScript>().OnOpen();
+
+        }
+
+        if(codeoutput == "CloseDoor")
+        {
+            this.GetComponentInChildren<DoorScript>().OnClose();
         }
 
         if(codeoutput == "SendMessage")
