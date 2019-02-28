@@ -61,8 +61,13 @@ public class ProgrammableObjectsData : MonoBehaviour, IMessageReceiver
 
     void OnMouseDown()
     {
-        ExecuteEvents.Execute<ISelectObject>(HackInterface, null, (x, y) => x.SelectedProgrammableObject(this.gameObject));
-        OnInput("OnHack");
+        if((this.transform.position - HackInterface.GetComponent<HackInterface>().bonhomme.transform.position).magnitude < 3)
+        {
+            HackInterface.GetComponent<HackInterface>().bonhomme.SetActive(false);
+            ExecuteEvents.Execute<ISelectObject>(HackInterface, null, (x, y) => x.SelectedProgrammableObject(this.gameObject));
+            OnInput("OnHack");
+        }
+        
     }
 
     public void ChatInstruction(string instruction)

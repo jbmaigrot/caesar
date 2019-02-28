@@ -12,3 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92e8434ed08ad0c4e92c1c376eac091b, type: 3}
   m_Name: HackingAsset
   m_EditorClassIdentifier: 
+  inputCodes:
+  - inputCode: OnHack
+    descriptionWithParameter: When I got hacked
+    descriptionWithoutParameter: 
+    parameter_int: 0
+    parameter_string: 0
+  - inputCode: OnWord
+    descriptionWithParameter: 'When I read the word '
+    descriptionWithoutParameter: 
+    parameter_int: 0
+    parameter_string: 1
+  outputCodes:
+  - outputCode: TurnOnLight
+    descriptionWithParameter: I turn the light on
+    descriptionWithoutParameter: 
+    parameter_int: 0
+    parameter_string: 0
+  - outputCode: TurnOffLight
+    descriptionWithParameter: I turn the light off
+    descriptionWithoutParameter: 
+    parameter_int: 0
+    parameter_string: 0
+  - outputCode: SendMessage
+    descriptionWithParameter: 'I send '
+    descriptionWithoutParameter: 
+    parameter_int: 0
+    parameter_string: 1

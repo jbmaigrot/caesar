@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class ScriptWritingPrompt : MonoBehaviour
 {
     private string currentString;
+    public GameObject HackInterface;
+    private bool isActive;
    
     // Start is called before the first frame update
     void Start()
@@ -13,32 +15,42 @@ public class ScriptWritingPrompt : MonoBehaviour
         currentString = "";
     }
 
+    public void OnMessageSend()
+    {
+
+        if (this.GetComponent<InputField>().text[this.GetComponent<InputField>().text.Length-1] == '\n')
+        {
+            ScriptChatBox.NewChatContent += this.GetComponent<InputField>().text;
+        }
+        else
+        {
+            ScriptChatBox.NewChatContent += this.GetComponent<InputField>().text+"\n";
+        }
+           
+            this.GetComponent<InputField>().text = "";
+        
+        
+    }
     // Update is called once per frame
     void Update()
     {
-        foreach (char c in Input.inputString)
+       if(this.GetComponent<InputField>().isFocused && Input.GetKeyDown(KeyCode.Return) && !Input.GetKey(KeyCode.RightShift) && !Input.GetKey(KeyCode.LeftShift))
         {
-            if (c == '\b') // has backspace/delete been pressed?
+            OnMessageSend();
+        }
+
+        if (this.GetComponent<InputField>().isFocused)
+        {
+            HackInterface.GetComponent<HackInterface>().bonhomme.SetActive(false);
+            isActive = true;
+        }
+        else
+        {
+            if (isActive)
             {
-                if (currentString.Length != 0)
-                {
-                    currentString = currentString.Substring(0, currentString.Length - 1);
-                }
-            }
-            else if ((c == '\n') || (c == '\r')) // enter/return
-            {
-                if (currentString != "")
-                {
-                    ScriptChatBox.NewChatContent += currentString + "\n";
-                    currentString = "";
-                }
-                               
-            }
-            else
-            {
-                currentString += c;
+                HackInterface.GetComponent<HackInterface>().bonhomme.SetActive(true);
+                isActive = false;
             }
         }
-        this.GetComponent<Text>().text  = currentString;
     }
 }
