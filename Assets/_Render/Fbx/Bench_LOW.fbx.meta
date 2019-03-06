@@ -185,7 +185,12 @@ ModelImporter:
     4300062: Ground_low
     4300064: Bench_low
     4300066: Coussin_low
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bench
+    second: {fileID: 2100000, guid: b15cb3ace64dbb748a501b3c8e317654, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
