@@ -8,7 +8,7 @@ using UdpCNetworkDriver = Unity.Networking.Transport.BasicNetworkDriver<Unity.Ne
 
 public class ClientBehaviour : MonoBehaviour
 {
-
+    public Transform player;
     public UdpCNetworkDriver m_Driver;
     public NetworkConnection m_Connection;
     public bool done;
@@ -35,7 +35,13 @@ public class ClientBehaviour : MonoBehaviour
         if (!m_Connection.IsCreated)
         {
             if (!done)
+            {
                 Debug.Log("Something went wrong during connect");
+
+                var endpoint = new IPEndPoint(IPAddress.Loopback, 9000);
+                m_Connection = m_Driver.Connect(endpoint);
+                Debug.Log("Connection reestablished");
+            }
             return;
         }
 
@@ -46,29 +52,38 @@ public class ClientBehaviour : MonoBehaviour
             if (cmd == NetworkEvent.Type.Connect)
             {
                 Debug.Log("We are now connected to the server");
-
-                var value = 1;
-                using (var writer = new DataStreamWriter(4, Allocator.Temp))
-                {
-                    writer.Write(value);
-                    m_Connection.Send(m_Driver, writer);
-                }
             }
 
             else if (cmd == NetworkEvent.Type.Data)
             {
                 var readerCtx = default(DataStreamReader.Context);
+                float x = stream.ReadFloat(ref readerCtx);
+                /*float y = stream.ReadFloat(ref readerCtx);
+                float z = stream.ReadFloat(ref readerCtx);*/
+                player.position = new Vector3(x, 0, 0);
+
+                /*var readerCtx = default(DataStreamReader.Context);
                 uint value = stream.ReadUInt(ref readerCtx);
                 Debug.Log("Got the value  = " + value + " back from the server");
                 done = true;
                 m_Connection.Disconnect(m_Driver);
-                m_Connection = default(NetworkConnection);
+                m_Connection = default(NetworkConnection);*/
             }
 
             else if (cmd == NetworkEvent.Type.Disconnect)
             {
                 Debug.Log("Client got disconnected for some reason");
                 m_Connection = default(NetworkConnection);
+            }
+        }
+
+        if (Input.GetKey(KeyCode.Q))
+        {
+            var value = 1;
+            using (var writer = new DataStreamWriter(4, Allocator.Temp))
+            {
+                writer.Write(value);
+                m_Connection.Send(m_Driver, writer);
             }
         }
     }

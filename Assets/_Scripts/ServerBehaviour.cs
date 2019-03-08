@@ -8,7 +8,7 @@ using UdpCNetworkDriver = Unity.Networking.Transport.BasicNetworkDriver<Unity.Ne
 
 public class ServerBehaviour : MonoBehaviour
 {
-
+    public Transform player;
     public UdpCNetworkDriver m_Driver;
     private NativeList<NetworkConnection> m_Connections;
 
@@ -65,15 +65,27 @@ public class ServerBehaviour : MonoBehaviour
                 {
                     var readerCtx = default(DataStreamReader.Context);
                     uint number = stream.ReadUInt(ref readerCtx);
-                    Debug.Log("Got " + number + " from the Client, adding + 2 to it.");
 
+                    if (number == 1)
+                    {
+                        using (var writer = new DataStreamWriter(4, Allocator.Temp))
+                        {
+                            writer.Write(player.position.x + Time.deltaTime);
+                            /*writer.Write(player.position.y);
+                            writer.Write(player.position.z);*/
+                            m_Driver.Send(m_Connections[i], writer);
+                        }
+                    }
+                    /*Debug.Log("Got " + number + " from the Client, adding + 2 to it.");
                     number += 2;
 
                     using (var writer = new DataStreamWriter(4, Allocator.Temp))
                     {
                         writer.Write(number);
                         m_Driver.Send(m_Connections[i], writer);
-                    }
+                    }*/
+
+                    
                 }
 
                 else if (cmd == NetworkEvent.Type.Disconnect)
