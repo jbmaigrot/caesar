@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class arrow
+public class Arrow
 {
     public int input;
     public int output;
-    public float transmitTime=0.2f;
+    public float transmitTime=0.5f;
     public List<float> timeBeforeTransmit=new List<float>();
 };
 public class InputHack
@@ -47,13 +47,13 @@ public class ProgrammableObjectsData : MonoBehaviour, IMessageReceiver
 
     public List<InputHack> inputCodes=new List<InputHack>();
     public List<OutputHack> outputCodes=new List<OutputHack>();
-    public List<arrow> graph= new List<arrow>();
+    public List<Arrow> graph= new List<Arrow>();
 
     
 
     void Start()
     {
-        foreach(arrow a in graph)
+        foreach(Arrow a in graph)
         {
             a.timeBeforeTransmit.Clear();
         }
@@ -77,7 +77,7 @@ public class ProgrammableObjectsData : MonoBehaviour, IMessageReceiver
 
     public void OnInput(string codeinput, string parameter = "")
     {
-        foreach(arrow ryan in graph)
+        foreach(Arrow ryan in graph)
         {
             if(inputCodes.Count>ryan.input && inputCodes[ryan.input].inputcode == codeinput)
             {

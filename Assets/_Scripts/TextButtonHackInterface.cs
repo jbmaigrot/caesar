@@ -26,13 +26,13 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
         else if (HackInterface.SelectedInputButton > -1 && HackInterface.SelectedInputButton < HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes.Count && numero - 1 < HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().outputCodes.Count)
         {
 
-            arrow NewArrow = new arrow();
+            Arrow NewArrow = new Arrow();
             NewArrow.input = HackInterface.SelectedInputButton;
             HackInterface.SelectedInputButton = -1;
             NewArrow.output = numero - 1;
 
             bool isItReallyNew = true;
-            foreach (arrow a in HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().graph)
+            foreach (Arrow a in HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().graph)
             {
                 if (a.input == NewArrow.input && a.output == NewArrow.output) isItReallyNew = false;
             }
