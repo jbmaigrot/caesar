@@ -60,7 +60,7 @@ public class ClientBehaviour : MonoBehaviour
                 float x = stream.ReadFloat(ref readerCtx);
                 /*float y = stream.ReadFloat(ref readerCtx);
                 float z = stream.ReadFloat(ref readerCtx);*/
-                player.position = new Vector3(x, 0, 0);
+                player.position = new Vector3(x, player.position.y, player.position.z);
 
                 /*var readerCtx = default(DataStreamReader.Context);
                 uint value = stream.ReadUInt(ref readerCtx);
