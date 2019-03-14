@@ -57,6 +57,7 @@ public class ClientBehaviour : MonoBehaviour
             else if (cmd == NetworkEvent.Type.Data)
             {
                 var readerCtx = default(DataStreamReader.Context);
+                //stream.read
                 float x = stream.ReadFloat(ref readerCtx);
                 /*float y = stream.ReadFloat(ref readerCtx);
                 float z = stream.ReadFloat(ref readerCtx);*/

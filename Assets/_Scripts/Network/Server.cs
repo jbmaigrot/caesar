@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 
 using Unity.Networking.Transport;
@@ -6,9 +8,9 @@ using Unity.Collections;
 
 using UdpCNetworkDriver = Unity.Networking.Transport.BasicNetworkDriver<Unity.Networking.Transport.IPv4UDPSocket>;
 
-public class ServerBehaviour : MonoBehaviour
+public class Server : MonoBehaviour
 {
-    public Transform player;
+    public Transform[] players = new Transform[2];
     public UdpCNetworkDriver m_Driver;
     private NativeList<NetworkConnection> m_Connections;
 
@@ -64,30 +66,38 @@ public class ServerBehaviour : MonoBehaviour
                 if (cmd == NetworkEvent.Type.Data)
                 {
                     var readerCtx = default(DataStreamReader.Context);
-                    uint number = stream.ReadUInt(ref readerCtx);
+                    uint action = stream.ReadUInt(ref readerCtx);
 
-                    if (number == 1)
+                    using (var writer = new DataStreamWriter(32, Allocator.Temp))
                     {
-                        using (var writer = new DataStreamWriter(4, Allocator.Temp))
+                        writer.Write(42);
+                        switch (action)
                         {
-                            writer.Write(player.position.x + Time.deltaTime);
-                            /*writer.Write(player.position.y);
-                            writer.Write(player.position.z);*/
-                            m_Driver.Send(m_Connections[i], writer);
+                            case 1:
+                                players[i].position = new Vector3(players[i].position.x + Time.deltaTime, players[i].position.y, players[i].position.z);
+                                break;
+
+                            case 2:
+                                players[i].position = new Vector3(players[i].position.x, players[i].position.y, players[i].position.z + Time.deltaTime);
+                                break;
+
+                            case 3:
+                                players[i].position = new Vector3(players[i].position.x - Time.deltaTime, players[i].position.y, players[i].position.z);
+                                break;
+
+                            case 4:
+                                players[i].position = new Vector3(players[i].position.x, players[i].position.y, players[i].position.z - Time.deltaTime);
+                                break;
+
+                            default:
+                                break;
                         }
-                    }
-                    /*Debug.Log("Got " + number + " from the Client, adding + 2 to it.");
-                    number += 2;
-
-                    using (var writer = new DataStreamWriter(4, Allocator.Temp))
-                    {
-                        writer.Write(number);
+                        writer.Write(players[i].position.x);
+                        writer.Write(players[i].position.y);
+                        writer.Write(players[i].position.z);
                         m_Driver.Send(m_Connections[i], writer);
-                    }*/
-
-                    
+                    }
                 }
-
                 else if (cmd == NetworkEvent.Type.Disconnect)
                 {
                     Debug.Log("Client disconnected from server");
