@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CameraBehaviour : MonoBehaviour
+public class CameraController : MonoBehaviour
 {
     private const int MODE_CHARA = 0;
     private const int MODE_FREE = 1;
