@@ -13,13 +13,17 @@ using Serialization = NetStack.Serialization;
 
 public class NetworkManager : MonoBehaviour
 {
-    public Transform player;
+    public Transform[] players = new Transform[2];
     public UdpCNetworkDriver m_Driver;
     public NetworkConnection m_Connection;
 
     public IPv4UDPSocket socket;
 
     public bool done;
+
+    private bool connected = false;
+    private bool player_is_created = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,19 +65,21 @@ public class NetworkManager : MonoBehaviour
                 if (cmd == NetworkEvent.Type.Connect)
                 {
                     Debug.Log("We are now connected to the server");
+                    connected = true;
                 }
 
                 else if (cmd == NetworkEvent.Type.Data)
                 {
                     var readerCtx = default(DataStreamReader.Context);
                     var type = stream.ReadUInt(ref readerCtx);
-                    //var buffer = new Serialization.BitBuffer(1024);
+                    var number = stream.ReadUInt(ref readerCtx);
+
                     if (type == 42)
                     {
                         float x = stream.ReadFloat(ref readerCtx);
                         float y = stream.ReadFloat(ref readerCtx);
                         float z = stream.ReadFloat(ref readerCtx);
-                        player.position = new Vector3(x, y, z);
+                        players[number].position = new Vector3(x, y, z);
                     }
 
                     /*var readerCtx = default(DataStreamReader.Context);
@@ -91,31 +97,47 @@ public class NetworkManager : MonoBehaviour
                 }
             }
 
-            int value = 0;
+            /*if (connected)
+            {
+                int value = 0;
 
-            if (Input.GetKey(KeyCode.D))
-            {
-                value = 1;
-            }
-            else if (Input.GetKey(KeyCode.Z))
-            {
-                value = 2;
-            }
-            else if (Input.GetKey(KeyCode.Q))
-            {
-                value = 3;
-            }
-            else if (Input.GetKey(KeyCode.S))
-            {
-                value = 4;
-            }
+                if (Input.GetKey(KeyCode.D))
+                {
+                    value = 11;
+                }
+                else if (Input.GetKey(KeyCode.Z))
+                {
+                    value = 12;
+                }
+                else if (Input.GetKey(KeyCode.Q))
+                {
+                    value = 13;
+                }
+                else if (Input.GetKey(KeyCode.S))
+                {
+                    value = 14;
+                }
 
-            using (var writer = new DataStreamWriter(4, Allocator.Temp))
-            {
-                writer.Write(value);
-                m_Connection.Send(m_Driver, writer);
+                using (var writer = new DataStreamWriter(4, Allocator.Temp))
+                {
+                    writer.Write(value);
+                    m_Connection.Send(m_Driver, writer);
+                }
+            }*/
+        }
+    }
 
-            }
+    
+    public void SetDestination(Vector3 destination)
+    {
+        using (var writer = new DataStreamWriter(32, Allocator.Temp))
+        {
+            writer.Write(1);
+            writer.Write(destination.x);
+            writer.Write(destination.y);
+            writer.Write(destination.z);
+
+            m_Connection.Send(m_Driver, writer);
         }
     }
 }

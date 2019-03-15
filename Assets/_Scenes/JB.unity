@@ -193,7 +193,6 @@ GameObject:
   - component: {fileID: 471995374}
   - component: {fileID: 471995373}
   - component: {fileID: 471995378}
-  - component: {fileID: 471995377}
   - component: {fileID: 471995376}
   m_Layer: 0
   m_Name: Network testing
@@ -255,21 +254,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43513f9c3f8fb5945bb092a8f090efa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2103298355}
-  done: 0
---- !u!114 &471995377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 471995372}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43513f9c3f8fb5945bb092a8f090efa0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 604561491494278380}
+  players:
+  - {fileID: 604561491494278380}
+  - {fileID: 2103298355}
   done: 0
 --- !u!114 &471995378
 MonoBehaviour:
@@ -472,6 +459,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerJB (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 604561491494278374, guid: 4e3ef0688ebf1b14b83ee66db39ae943,
+        type: 3}
+      propertyPath: m_TagString
+      value: Network
+      objectReference: {fileID: 0}
     - target: {fileID: 604561491494278380, guid: 4e3ef0688ebf1b14b83ee66db39ae943,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -552,6 +544,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerJB
+      objectReference: {fileID: 0}
+    - target: {fileID: 604561491494278374, guid: 4e3ef0688ebf1b14b83ee66db39ae943,
+        type: 3}
+      propertyPath: m_TagString
+      value: Network
       objectReference: {fileID: 0}
     - target: {fileID: 604561491494278380, guid: 4e3ef0688ebf1b14b83ee66db39ae943,
         type: 3}

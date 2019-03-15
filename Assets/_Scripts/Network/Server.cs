@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
+using UnityEngine.AI;
 
 using Unity.Networking.Transport;
 using Unity.Collections;
@@ -10,7 +11,7 @@ using UdpCNetworkDriver = Unity.Networking.Transport.BasicNetworkDriver<Unity.Ne
 
 public class Server : MonoBehaviour
 {
-    public Transform[] players = new Transform[2];
+    public Transform[] players = new Transform[4];
     public UdpCNetworkDriver m_Driver;
     private NativeList<NetworkConnection> m_Connections;
 
@@ -58,8 +59,8 @@ public class Server : MonoBehaviour
         DataStreamReader stream;
         for (int i = 0; i < m_Connections.Length; i++)
         {
-            if (!m_Connections[i].IsCreated)
-                continue;
+            if (!m_Connections[i].IsCreated) continue;
+
             NetworkEvent.Type cmd;
             while ((cmd = m_Driver.PopEventForConnection(m_Connections[i], out stream)) != NetworkEvent.Type.Empty)
             {
@@ -71,21 +72,29 @@ public class Server : MonoBehaviour
                     using (var writer = new DataStreamWriter(32, Allocator.Temp))
                     {
                         writer.Write(42);
+                        writer.Write(i);
                         switch (action)
                         {
                             case 1:
+                                float dest_x = stream.ReadFloat(ref readerCtx);
+                                float dest_y = stream.ReadFloat(ref readerCtx);
+                                float dest_z = stream.ReadFloat(ref readerCtx);
+                                players[i].gameObject.GetComponent<NavMeshAgent>().SetDestination(new Vector3(dest_x, dest_y, dest_z));
+                                break;
+
+                            case 11:
                                 players[i].position = new Vector3(players[i].position.x + Time.deltaTime, players[i].position.y, players[i].position.z);
                                 break;
 
-                            case 2:
+                            case 12:
                                 players[i].position = new Vector3(players[i].position.x, players[i].position.y, players[i].position.z + Time.deltaTime);
                                 break;
 
-                            case 3:
+                            case 13:
                                 players[i].position = new Vector3(players[i].position.x - Time.deltaTime, players[i].position.y, players[i].position.z);
                                 break;
 
-                            case 4:
+                            case 14:
                                 players[i].position = new Vector3(players[i].position.x, players[i].position.y, players[i].position.z - Time.deltaTime);
                                 break;
 
@@ -95,7 +104,11 @@ public class Server : MonoBehaviour
                         writer.Write(players[i].position.x);
                         writer.Write(players[i].position.y);
                         writer.Write(players[i].position.z);
-                        m_Driver.Send(m_Connections[i], writer);
+
+                        for (int k = 0; k < m_Connections.Length; k++)
+                        {
+                            m_Driver.Send(m_Connections[k], writer);
+                        }
                     }
                 }
                 else if (cmd == NetworkEvent.Type.Disconnect)
