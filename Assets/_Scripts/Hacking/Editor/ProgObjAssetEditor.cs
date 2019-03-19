@@ -27,6 +27,11 @@ public class ProgObjAssetEditor : EditorWindow
         {
             OpenProgObjAsset();
         }
+        if (GUILayout.Button("Save", GUILayout.ExpandWidth(false)))
+        {
+            AssetDatabase.SaveAssets();
+        }
+        
         hackPath = EditorGUILayout.TextField(hackPath, GUILayout.ExpandWidth(false));
         if (GUILayout.Button("Rename", GUILayout.ExpandWidth(false)) && hackPath != AssetDatabase.GetAssetPath(ProgObjAsset))
         {

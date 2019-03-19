@@ -15,4 +15,35 @@ MonoBehaviour:
   accessibleInputCode:
   - OnWord
   accessibleOutputCode:
-  - OnSend
+  - SendMessage
+  inputCodes:
+  - inputcode: OnHack
+    parameter_int: 0
+    parameter_string: 
+    is_fixed: 1
+  - inputcode: OnInteract
+    parameter_int: 0
+    parameter_string: 
+    is_fixed: 1
+  - inputcode: OnPassInside
+    parameter_int: 0
+    parameter_string: 
+    is_fixed: 1
+  outputCodes:
+  - outputcode: OpenDoor
+    parameter_int: 0
+    parameter_string: 
+    is_fixed: 1
+  - outputcode: CloseDoor
+    parameter_int: 0
+    parameter_string: 
+    is_fixed: 1
+  graph:
+  - input: 1
+    output: 0
+    transmitTime: 0.2
+    timeBeforeTransmit: []
+  - input: 2
+    output: 1
+    transmitTime: 0.2
+    timeBeforeTransmit: []

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+[System.Serializable]
 public class Arrow
 {
     public int input;
@@ -10,6 +11,8 @@ public class Arrow
     public float transmitTime=0.2f;
     public List<float> timeBeforeTransmit=new List<float>();
 };
+
+[System.Serializable]
 public class InputHack
 {
     public string inputcode;
@@ -24,6 +27,7 @@ public class InputHack
     }
 }
 
+[System.Serializable]
 public class OutputHack
 {
     public string outputcode;
@@ -56,11 +60,11 @@ public class ProgrammableObjectsData : MonoBehaviour, IMessageReceiver
 
     void Start()
     {
-        accessibleInputCode = Initiator.accessibleInputCode;
-        accessibleOutputCode = Initiator.accessibleOutputCode;
-        inputCodes = Initiator.inputCodes;
-        outputCodes = Initiator.outputCodes;
-        graph = Initiator.graph;
+        accessibleInputCode = new List<string>(Initiator.accessibleInputCode);
+        accessibleOutputCode = new List<string>(Initiator.accessibleOutputCode);
+        inputCodes = new List<InputHack>(Initiator.inputCodes);
+        outputCodes = new List<OutputHack>(Initiator.outputCodes);
+        graph = new List<Arrow>(Initiator.graph);
 
         foreach(Arrow a in graph)
         {

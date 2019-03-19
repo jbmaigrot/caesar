@@ -15,7 +15,7 @@ public class DropdownHackInterface : MonoBehaviour
         SelectedGameObject = HackInterface.SelectedGameObject;
     }
 
-    
+
     void UpdateOptions()
     {
         this.GetComponent<Dropdown>().ClearOptions();
@@ -23,47 +23,90 @@ public class DropdownHackInterface : MonoBehaviour
         Dropdown.OptionData NewData; NewData = new Dropdown.OptionData();
         List<Dropdown.OptionData> ListNewData = new List<Dropdown.OptionData>();
 
-        NewData.image = null;
-        NewData.text = "";
-        ListNewData.Add(NewData);
+
 
         if (HackInterface.SelectedGameObject != null)
         {
             if (this.GetComponentInParent<TextButtonHackInterface>().isInput)
             {
-                foreach (string ryan in HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().accessibleInputCode)
+                if (this.GetComponentInParent<TextButtonHackInterface>().numero <= HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes.Count && HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].is_fixed)
                 {
                     NewData = new Dropdown.OptionData();
                     NewData.image = null;
                     foreach (InputCode reynolds in HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().HackingAsset.inputCodes)
                     {
-                        if (ryan == reynolds.inputCode)
+                        if (HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].inputcode == reynolds.inputCode)
                         {
                             NewData.text = reynolds.descriptionWithParameter;
                         }
                     }
 
                     ListNewData.Add(NewData);
-
                 }
+                else
+                {
+                    NewData.image = null;
+
+                    NewData.text = "";
+                    ListNewData.Add(NewData);
+                    foreach (string ryan in HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().accessibleInputCode)
+                    {
+                        NewData = new Dropdown.OptionData();
+                        NewData.image = null;
+                        foreach (InputCode reynolds in HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().HackingAsset.inputCodes)
+                        {
+                            if (ryan == reynolds.inputCode)
+                            {
+                                NewData.text = reynolds.descriptionWithParameter;
+                            }
+                        }
+
+                        ListNewData.Add(NewData);
+
+                    }
+                }
+
             }
             else
             {
-                foreach (string ryan in HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().accessibleOutputCode)
+                if (this.GetComponentInParent<TextButtonHackInterface>().numero <= HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().outputCodes.Count && HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().outputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].is_fixed)
                 {
                     NewData = new Dropdown.OptionData();
                     NewData.image = null;
                     foreach (OutputCode reynolds in HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().HackingAsset.outputCodes)
                     {
-                        if (ryan == reynolds.outputCode)
+                        if (HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().outputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].outputcode == reynolds.outputCode)
                         {
                             NewData.text = reynolds.descriptionWithParameter;
                         }
                     }
 
                     ListNewData.Add(NewData);
-
                 }
+                else
+                {
+                    NewData.image = null;
+
+                    NewData.text = "";
+                    ListNewData.Add(NewData);
+                    foreach (string ryan in HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().accessibleOutputCode)
+                    {
+                        NewData = new Dropdown.OptionData();
+                        NewData.image = null;
+                        foreach (OutputCode reynolds in HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().HackingAsset.outputCodes)
+                        {
+                            if (ryan == reynolds.outputCode)
+                            {
+                                NewData.text = reynolds.descriptionWithParameter;
+                            }
+                        }
+
+                        ListNewData.Add(NewData);
+
+                    }
+                }
+
+
             }
             this.GetComponent<Dropdown>().AddOptions(ListNewData);
 
@@ -76,14 +119,14 @@ public class DropdownHackInterface : MonoBehaviour
                 }
                 else
                 {
-                    for(int i=0;i< HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().accessibleInputCode.Count; i++)
+                    for (int i = 0; i < HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().accessibleInputCode.Count; i++)
                     {
-                        if(HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().accessibleInputCode[i]== HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].inputcode)
+                        if (HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().accessibleInputCode[i] == HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].inputcode)
                         {
-                            this.GetComponent<Dropdown>().value = i+1;
+                            this.GetComponent<Dropdown>().value = i + 1;
                         }
                     }
-                    
+
                 }
             }
             else
@@ -152,7 +195,7 @@ public class DropdownHackInterface : MonoBehaviour
                 {
                     HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().outputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].outputcode = HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().accessibleOutputCode[this.GetComponent<Dropdown>().value - 1];
                 }
-            }            
+            }
         }
 
         UpdateOptions();
@@ -172,11 +215,11 @@ public class DropdownHackInterface : MonoBehaviour
 
         if (this.GetComponent<Dropdown>().value != previousValue)
         {
-            
+
             UpdateHackingGraph();
-            
+
         }
     }
 
-    
+
 }
