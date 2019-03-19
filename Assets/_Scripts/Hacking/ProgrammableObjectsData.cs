@@ -7,7 +7,7 @@ public class Arrow
 {
     public int input;
     public int output;
-    public float transmitTime=0.5f;
+    public float transmitTime=0.2f;
     public List<float> timeBeforeTransmit=new List<float>();
 };
 public class InputHack
@@ -15,13 +15,13 @@ public class InputHack
     public string inputcode;
     public int parameter_int;
     public string parameter_string;
-
-    /*public InputHack()
+    public bool is_fixed;
+    public InputHack()
     {
         inputcode = "OnHack";
         parameter_int = 0;
         parameter_string = "";
-    }*/
+    }
 }
 
 public class OutputHack
@@ -29,6 +29,7 @@ public class OutputHack
     public string outputcode;
     public int parameter_int;
     public string parameter_string;
+    public bool is_fixed;
 
     public OutputHack()
     {
@@ -42,6 +43,7 @@ public class ProgrammableObjectsData : MonoBehaviour, IMessageReceiver
 {
     public HackingAssetScriptable HackingAsset;
     public GameObject HackInterface;
+
     public List<string> accessibleInputCode;
     public List<string> accessibleOutputCode;
 
@@ -49,10 +51,17 @@ public class ProgrammableObjectsData : MonoBehaviour, IMessageReceiver
     public List<OutputHack> outputCodes=new List<OutputHack>();
     public List<Arrow> graph= new List<Arrow>();
 
+    public ProgrammableObjectsScriptable Initiator;
     
 
     void Start()
     {
+        accessibleInputCode = Initiator.accessibleInputCode;
+        accessibleOutputCode = Initiator.accessibleOutputCode;
+        inputCodes = Initiator.inputCodes;
+        outputCodes = Initiator.outputCodes;
+        graph = Initiator.graph;
+
         foreach(Arrow a in graph)
         {
             a.timeBeforeTransmit.Clear();
