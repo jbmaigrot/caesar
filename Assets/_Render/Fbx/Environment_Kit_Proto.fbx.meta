@@ -24,6 +24,19 @@ ModelImporter:
     100036: Wall_Straight_4
     100038: Wall_Straight_4_Bottom
     100040: Wall_Straight_4_Top
+    100042: Floor
+    100044: Floor_45
+    100046: Floor_90
+    100048: Floor_Diag
+    100050: Wall_Curve_45
+    100052: Wall_Curve_45_Bottom
+    100054: Wall_Curve_45_Top
+    100056: Wall_Curve_90
+    100058: Wall_Curve_90_Bottom
+    100060: Wall_Curve_90_Top
+    100062: Wall_Diag
+    100064: Wall_Diag_Bottom
+    100066: Wall_Diag_Top
     400000: //RootNode
     400002: Floor_2
     400004: Floor_4
@@ -45,6 +58,19 @@ ModelImporter:
     400036: Wall_Straight_4
     400038: Wall_Straight_4_Bottom
     400040: Wall_Straight_4_Top
+    400042: Floor
+    400044: Floor_45
+    400046: Floor_90
+    400048: Floor_Diag
+    400050: Wall_Curve_45
+    400052: Wall_Curve_45_Bottom
+    400054: Wall_Curve_45_Top
+    400056: Wall_Curve_90
+    400058: Wall_Curve_90_Bottom
+    400060: Wall_Curve_90_Top
+    400062: Wall_Diag
+    400064: Wall_Diag_Bottom
+    400066: Wall_Diag_Top
     2100000: lambert1
     2300000: Floor_2
     2300002: Floor_4
@@ -60,6 +86,16 @@ ModelImporter:
     2300022: Wall_Straight_2_Top
     2300024: Wall_Straight_4_Bottom
     2300026: Wall_Straight_4_Top
+    2300028: Floor
+    2300030: Floor_45
+    2300032: Floor_90
+    2300034: Floor_Diag
+    2300036: Wall_Curve_45_Bottom
+    2300038: Wall_Curve_45_Top
+    2300040: Wall_Curve_90_Bottom
+    2300042: Wall_Curve_90_Top
+    2300044: Wall_Diag_Bottom
+    2300046: Wall_Diag_Top
     3300000: Floor_2
     3300002: Floor_4
     3300004: Wall_Concave_45_Bottom
@@ -74,6 +110,16 @@ ModelImporter:
     3300022: Wall_Straight_2_Top
     3300024: Wall_Straight_4_Bottom
     3300026: Wall_Straight_4_Top
+    3300028: Floor
+    3300030: Floor_45
+    3300032: Floor_90
+    3300034: Floor_Diag
+    3300036: Wall_Curve_45_Bottom
+    3300038: Wall_Curve_45_Top
+    3300040: Wall_Curve_90_Bottom
+    3300042: Wall_Curve_90_Top
+    3300044: Wall_Diag_Bottom
+    3300046: Wall_Diag_Top
     4300000: Wall_Straight_4_Top
     4300002: Wall_Straight_4_Bottom
     4300004: Wall_Straight_2_Top
@@ -88,7 +134,22 @@ ModelImporter:
     4300022: Wall_Concave_90_Bottom
     4300024: Floor_4
     4300026: Floor_2
-  externalObjects: {}
+    4300028: Wall_Diag_Top
+    4300030: Wall_Diag_Bottom
+    4300032: Wall_Curve_45_Top
+    4300034: Wall_Curve_45_Bottom
+    4300036: Wall_Curve_90_Top
+    4300038: Wall_Curve_90_Bottom
+    4300040: Floor
+    4300042: Floor_Diag
+    4300044: Floor_45
+    4300046: Floor_90
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 245bbd23daed10f4993b8fdf71981576, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
