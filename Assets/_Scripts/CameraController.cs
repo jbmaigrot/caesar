@@ -104,9 +104,7 @@ public class CameraController : MonoBehaviour
     bool IsInsideFreeModeBorder(Vector2 mousePosition, Rect screen, float freeModeBorder)
     {
         Rect innerBorder = new Rect(screen.width * freeModeBorder / 2, screen.height * freeModeBorder / 2, screen.width * (1 - freeModeBorder), screen.height * (1 - freeModeBorder));
-        Debug.Log(innerBorder);
-        Debug.Log(screen);
-        Debug.Log(mousePosition);
+
         if (!innerBorder.Contains(mousePosition) && screen.Contains(mousePosition))
         {
             return true;
