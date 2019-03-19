@@ -1,8 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Networking;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class GameCreator : MonoBehaviour
 {
@@ -10,6 +13,7 @@ public class GameCreator : MonoBehaviour
     public int NbPnj;
     public Button ResetButton;
     public Button MoveButton;
+    public Text ChanText;
 
     public GameObject Player;
 
@@ -19,6 +23,11 @@ public class GameCreator : MonoBehaviour
     private GameObject _container;
 
     private List<ZoneClass> _listZone = new List<ZoneClass>();
+
+    private bool tweetIsWaiting;
+    private TweetList _tweets = new TweetList();
+
+
 
 
 
@@ -42,26 +51,106 @@ public class GameCreator : MonoBehaviour
         ResetCrowd();
         ResetButton.onClick.AddListener(ResetCrowd);
         MoveButton.onClick.AddListener(MovePnj);
+
+        StartCoroutine(GetTextTwitter());
     }
-    
+
+    IEnumerator GetTextTwitter()
+    {
+        UnityWebRequest www = UnityWebRequest.Get("http://www.nadege-bourguignon.com/PROJETS/CAESAR/tweet.json");
+        yield return www.SendWebRequest();
+
+        if (www.isNetworkError || www.isHttpError)
+        {
+            Debug.Log(www.error);
+        }
+        else
+        {
+            // Show results as text
+           // Debug.Log(www.downloadHandler.text);
+            string text = www.downloadHandler.text;
+            string[] tweets = www.downloadHandler.text.Split(char.Parse(","));
+
+
+            TweetList loadedData = JsonUtility.FromJson<TweetList>(text);
+            foreach (Tweet tweet in loadedData.tweets)
+            {
+                //Debug.Log(tweet.tweet);
+                //ChanText.text += tweet.tweet;
+                //ChanText.text += "\n";
+            }
+            _tweets = loadedData;
+        }
+
+    }
+
     void Update()
     {
-        /*foreach (Transform child in _container.transform)
-        {
-            child.Translate(0.5f * Time.deltaTime,0,0);
-            child.Rotate(new Vector3(0, 0.5f * Time.deltaTime));
-        }*/
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        /*Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         if (Input.GetMouseButtonDown(1))
         {
-            Debug.Log("test");
-            if (Physics.Raycast(ray, out hit, 100))
+            Debug.Log("clic");
+            if (Physics.Raycast(ray, out hit, 200))
             {
                 Player.GetComponent<NavMeshAgent>().destination = hit.point;
             }
+        }*/
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+                if (Physics.Raycast(ray, out hit, 200))
+                {
+                Player.GetComponent<NavMeshAgent>().destination = hit.point;
+            }
         }
+
+        foreach (PnjClass pnj in _listPnj)
+        {
+            NavMeshAgent agent = pnj.PrefabPnj.GetComponent<NavMeshAgent>();
+            if (agent.remainingDistance <= agent.stoppingDistance )
+            {
+
+                if (!agent.hasPath || Mathf.Abs(agent.velocity.sqrMagnitude) < float.Epsilon)
+                {
+                    Vector3 targetDir = pnj.DestinationGameObject.transform.position - pnj.PrefabPnj.transform.position;
+                    float step = 2 * Time.deltaTime;
+                    Vector3 newDir = Vector3.RotateTowards(pnj.PrefabPnj.transform.forward, targetDir, step, 0.0f);
+                    pnj.PrefabPnj.transform.rotation =  Quaternion.LookRotation(newDir);
+                }
+
+                    
+
+            }
+            else
+            {
+            }
+
+        }
+
+
+        if (!tweetIsWaiting)
+        {
+            tweetIsWaiting = true;
+            StartCoroutine(WriteTweet());
+        }
+    }
+
+    IEnumerator WriteTweet()
+    {
+        float wait = Random.Range(1f, 10f);
+        yield return new WaitForSeconds(wait);
+        if (_tweets.tweets.Length > 0)
+        {
+            float index = Random.Range(0f, _tweets.tweets.Length - 1);
+            ChanText.text += _tweets.tweets[(int)index].tweet;
+            ChanText.text += "\n";
+            tweetIsWaiting = false;
+        }
+        
     }
 
     private void ResetCrowd()
@@ -84,27 +173,22 @@ public class GameCreator : MonoBehaviour
         for (int i = 0; i < NbPnj; i++)
         {
             PnjClass pnj = new PnjClass();
-            pnj.PrefabPnj = Instantiate(PnjPGameObject, _container.transform); //PnjPGameObject;
-            pnj.PrefabPnj.transform.position = new Vector3(Random.Range(-5f, 5f), 0.5f, Random.Range(-5f, 5f));
-            //pnj.PrefabPnj.transform.Rotate(new Vector3(0, Random.Range(-1f, 360f)));
-            pnj.Type = i.ToString();
-            _listPnj[i] = pnj;
-            //Instantiate(pnj.PrefabPnj,_container.transform);
+            pnj.PrefabPnj = Instantiate(PnjPGameObject, _container.transform); 
+
+            int rndZoneIndex = Random.Range(0, _listZone.Count);
+
+            SlotClass sc = _listZone[rndZoneIndex].GetFreeSlot();
+            if (sc != null && sc.SlotGameObject != null)
+            {
+                pnj.PrefabPnj.transform.position = sc.SlotGameObject.GetComponent<Renderer>().bounds.center;
+                pnj.DestinationGameObject = sc.ConnectedGameObject;
+            }
             
+            pnj.Name = i.ToString();
+            _listPnj[i] = pnj;
         }
 
-
-       /* foreach (Transform child in _container.transform)
-        {
-			int rndZoneIndex = Random.Range(0, _listZone.Count);
-			
-            SlotClass sc = _listZone[rndZoneIndex].GetFreeSlot();
-            if (sc != null)
-            {
-                child.gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().destination = sc.SlotGameObject.transform.position;
-            }
-			
-        }*/
+        
     }
 
     private void MovePnj()
@@ -118,23 +202,13 @@ public class GameCreator : MonoBehaviour
             int rndZoneIndex = Random.Range(0, _listZone.Count);
 
             SlotClass sc = _listZone[rndZoneIndex].GetFreeSlot();
-            if (sc != null)
+            if (sc != null && sc.SlotGameObject != null)
             {
                 pnj.PrefabPnj.GetComponent<NavMeshAgent>().destination = sc.SlotGameObject.transform.position;
+                pnj.DestinationGameObject = sc.ConnectedGameObject;
             }
 
         }
-        //foreach (Transform child in _container.transform)
-        //{
-        //    int rndZoneIndex = Random.Range(0, _listZone.Count);
-
-        //    SlotClass sc = _listZone[rndZoneIndex].GetFreeSlot();
-        //    if (sc != null)
-        //    {
-        //        child.gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().destination = sc.SlotGameObject.transform.position;
-        //    }
-
-        //}
     }
 
     
