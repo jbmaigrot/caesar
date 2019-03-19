@@ -13,7 +13,7 @@ using Serialization = NetStack.Serialization;
 
 public class NetworkManager : MonoBehaviour
 {
-    public Transform[] players = new Transform[2];
+    public Client_Character[] characters = new Client_Character[20];
     public UdpCNetworkDriver m_Driver;
     public NetworkConnection m_Connection;
 
@@ -40,7 +40,7 @@ public class NetworkManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         m_Driver.ScheduleUpdate().Complete();
 
@@ -48,11 +48,10 @@ public class NetworkManager : MonoBehaviour
         {
             if (!done)
             {
-                Debug.Log("Something went wrong during connect");
-
+                //Debug.Log("Something went wrong during connect");
                 var endpoint = new IPEndPoint(IPAddress.Loopback, 9000);
                 m_Connection = m_Driver.Connect(endpoint);
-                Debug.Log("Connection reestablished");
+                //Debug.Log("Connection reestablished");
             }
             return;
         }
@@ -60,11 +59,12 @@ public class NetworkManager : MonoBehaviour
         {
             DataStreamReader stream;
             NetworkEvent.Type cmd;
+
             while ((cmd = m_Connection.PopEvent(m_Driver, out stream)) != NetworkEvent.Type.Empty)
             {
                 if (cmd == NetworkEvent.Type.Connect)
                 {
-                    Debug.Log("We are now connected to the server");
+                    //Debug.Log("We are now connected to the server");
                     connected = true;
                 }
 
@@ -72,22 +72,23 @@ public class NetworkManager : MonoBehaviour
                 {
                     var readerCtx = default(DataStreamReader.Context);
                     var type = stream.ReadUInt(ref readerCtx);
-                    var number = stream.ReadUInt(ref readerCtx);
 
-                    if (type == 42)
+                    if (type == Constants.Server_Snapshot)
                     {
-                        float x = stream.ReadFloat(ref readerCtx);
-                        float y = stream.ReadFloat(ref readerCtx);
-                        float z = stream.ReadFloat(ref readerCtx);
-                        players[number].position = new Vector3(x, y, z);
-                    }
+                        type = stream.ReadUInt(ref readerCtx);
 
-                    /*var readerCtx = default(DataStreamReader.Context);
-                    uint value = stream.ReadUInt(ref readerCtx);
-                    Debug.Log("Got the value  = " + value + " back from the server");
-                    done = true;
-                    m_Connection.Disconnect(m_Driver);
-                    m_Connection = default(NetworkConnection);*/
+                        while (type != Constants.Server_SnapshotEnd)
+                        {
+                            uint j = stream.ReadUInt(ref readerCtx);
+                            float x = stream.ReadFloat(ref readerCtx);
+                            float z = stream.ReadFloat(ref readerCtx);
+                            characters[j].transform.position = new Vector3(x, characters[j].transform.position.y, z);
+                            characters[j].speed.x = stream.ReadFloat(ref readerCtx);
+                            characters[j].speed.z = stream.ReadFloat(ref readerCtx);
+
+                            type = stream.ReadUInt(ref readerCtx);
+                        }
+                    }
                 }
 
                 else if (cmd == NetworkEvent.Type.Disconnect)
@@ -96,34 +97,6 @@ public class NetworkManager : MonoBehaviour
                     m_Connection = default(NetworkConnection);
                 }
             }
-
-            /*if (connected)
-            {
-                int value = 0;
-
-                if (Input.GetKey(KeyCode.D))
-                {
-                    value = 11;
-                }
-                else if (Input.GetKey(KeyCode.Z))
-                {
-                    value = 12;
-                }
-                else if (Input.GetKey(KeyCode.Q))
-                {
-                    value = 13;
-                }
-                else if (Input.GetKey(KeyCode.S))
-                {
-                    value = 14;
-                }
-
-                using (var writer = new DataStreamWriter(4, Allocator.Temp))
-                {
-                    writer.Write(value);
-                    m_Connection.Send(m_Driver, writer);
-                }
-            }*/
         }
     }
 
@@ -132,12 +105,18 @@ public class NetworkManager : MonoBehaviour
     {
         using (var writer = new DataStreamWriter(32, Allocator.Temp))
         {
-            writer.Write(1);
+            writer.Write(Constants.Client_SetDestination);
             writer.Write(destination.x);
             writer.Write(destination.y);
             writer.Write(destination.z);
 
             m_Connection.Send(m_Driver, writer);
         }
+    }
+    
+
+    public void OnApplicationQuit()
+    {
+        m_Driver.Dispose();
     }
 }

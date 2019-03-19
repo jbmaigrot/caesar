@@ -11,16 +11,22 @@ using UdpCNetworkDriver = Unity.Networking.Transport.BasicNetworkDriver<Unity.Ne
 
 public class Server : MonoBehaviour
 {
-    public Transform[] players = new Transform[4];
     public UdpCNetworkDriver m_Driver;
+    public Transform[] players = new Transform[4];
+    public Transform[] characters = new Transform[20]; // Players + NPCs
+
     private NativeList<NetworkConnection> m_Connections;
 
     // Start is called before the first frame update
     void Start()
     {
+        Application.targetFrameRate = 58;
+
         m_Driver = new UdpCNetworkDriver(new INetworkParameter[0]);
+
         if (m_Driver.Bind(new IPEndPoint(IPAddress.Any, 9000)) != 0)
             Debug.Log("Failed to bind to port 9000");
+
         else
             m_Driver.Listen();
 
@@ -34,11 +40,11 @@ public class Server : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         m_Driver.ScheduleUpdate().Complete();
 
-        //Clean up connections
+        // Clean up connections
         for (int i = 0; i < m_Connections.Length; i++)
         {
             if (!m_Connections[i].IsCreated)
@@ -53,7 +59,7 @@ public class Server : MonoBehaviour
         while ((c = m_Driver.Accept()) != default(NetworkConnection))
         {
             m_Connections.Add(c);
-            Debug.Log("Accepted a connection");
+            //Debug.Log("Accepted a connection");
         }
 
         DataStreamReader stream;
@@ -69,52 +75,45 @@ public class Server : MonoBehaviour
                     var readerCtx = default(DataStreamReader.Context);
                     uint action = stream.ReadUInt(ref readerCtx);
 
-                    using (var writer = new DataStreamWriter(32, Allocator.Temp))
+                    switch (action)
                     {
-                        writer.Write(42);
-                        writer.Write(i);
-                        switch (action)
-                        {
-                            case 1:
-                                float dest_x = stream.ReadFloat(ref readerCtx);
-                                float dest_y = stream.ReadFloat(ref readerCtx);
-                                float dest_z = stream.ReadFloat(ref readerCtx);
-                                players[i].gameObject.GetComponent<NavMeshAgent>().SetDestination(new Vector3(dest_x, dest_y, dest_z));
-                                break;
+                        case Constants.Client_SetDestination:
+                            float dest_x = stream.ReadFloat(ref readerCtx);
+                            float dest_y = stream.ReadFloat(ref readerCtx);
+                            float dest_z = stream.ReadFloat(ref readerCtx);
+                            players[i].gameObject.GetComponent<NavMeshAgent>().SetDestination(new Vector3(dest_x, dest_y, dest_z));
+                            break;
 
-                            case 11:
-                                players[i].position = new Vector3(players[i].position.x + Time.deltaTime, players[i].position.y, players[i].position.z);
-                                break;
-
-                            case 12:
-                                players[i].position = new Vector3(players[i].position.x, players[i].position.y, players[i].position.z + Time.deltaTime);
-                                break;
-
-                            case 13:
-                                players[i].position = new Vector3(players[i].position.x - Time.deltaTime, players[i].position.y, players[i].position.z);
-                                break;
-
-                            case 14:
-                                players[i].position = new Vector3(players[i].position.x, players[i].position.y, players[i].position.z - Time.deltaTime);
-                                break;
-
-                            default:
-                                break;
-                        }
-                        writer.Write(players[i].position.x);
-                        writer.Write(players[i].position.y);
-                        writer.Write(players[i].position.z);
-
-                        for (int k = 0; k < m_Connections.Length; k++)
-                        {
-                            m_Driver.Send(m_Connections[k], writer);
-                        }
+                        default:
+                            break;
                     }
                 }
                 else if (cmd == NetworkEvent.Type.Disconnect)
                 {
-                    Debug.Log("Client disconnected from server");
+                    //Debug.Log("Client disconnected from server");
                     m_Connections[i] = default(NetworkConnection);
+                }
+            }
+
+            // Send snapshot (world state)
+            using (var writer = new DataStreamWriter(1024, Allocator.Temp))
+            {
+                writer.Write(Constants.Server_Snapshot);
+                for (int j = 0; j < characters.Length; j++)
+                {
+                    writer.Write(Constants.Type_Character);
+                    writer.Write(j);
+                    writer.Write(characters[j].position.x);
+                    writer.Write(characters[j].position.z);
+                    writer.Write(characters[j].GetComponent<NavMeshAgent>().velocity.x);
+                    writer.Write(characters[j].GetComponent<NavMeshAgent>().velocity.z);
+                }
+                
+                writer.Write(Constants.Server_SnapshotEnd);
+
+                for (int k = 0; k < m_Connections.Length; k++)
+                {
+                    m_Driver.Send(m_Connections[k], writer);
                 }
             }
         }
