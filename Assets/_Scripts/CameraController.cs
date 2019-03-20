@@ -15,7 +15,7 @@ public class CameraController : MonoBehaviour
     public int cameraMode;
 
     [Header("Default value are X = 28, Y = 50, Z = 27.5.")]
-    public Vector3 characterOffset;
+    public Vector3 characterOffset = new Vector3(28.0f, 50.0f, 27.5f);
 
     [Header("Default value are X = 50, Y = 225, Z = 0.")]
     public Vector3 defaultCameraRotation = new Vector3(50.0f, 225.0f, 0.0f);
@@ -52,6 +52,8 @@ public class CameraController : MonoBehaviour
         }
 
         floorPlane = new Plane(Vector3.up, new Vector3(0, 0, 0));
+
+        transform.rotation = Quaternion.Euler(defaultCameraRotation);
     }
 
     // LateUpdate for the movement to happen after all updates
