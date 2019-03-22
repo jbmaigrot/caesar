@@ -19,7 +19,7 @@ public class InputFieldHackerInterface : MonoBehaviour
     }
 
 
-    void UpdateOptions()
+    public void UpdateOptions()
     {
         if (HackInterface.SelectedGameObject != null)
         {
@@ -48,14 +48,14 @@ public class InputFieldHackerInterface : MonoBehaviour
             {
                 for (int i = 0; i < HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().HackingAsset.inputCodes.Count; i++)
                 {
-                    if (HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().HackingAsset.inputCodes[i].inputCode == DropdownCode) indiceHackingAsset = i;
+                    if (HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().HackingAsset.inputCodes[i].code == DropdownCode) indiceHackingAsset = i;
                 }
             }
             else
             {
                 for (int i = 0; i < HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().HackingAsset.outputCodes.Count; i++)
                 {
-                    if (HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().HackingAsset.outputCodes[i].outputCode == DropdownCode) indiceHackingAsset = i;
+                    if (HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().HackingAsset.outputCodes[i].code == DropdownCode) indiceHackingAsset = i;
                 }
             }
 

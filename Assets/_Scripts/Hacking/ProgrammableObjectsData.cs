@@ -13,31 +13,15 @@ public class Arrow
 };
 
 [System.Serializable]
-public class InputHack
+public class InOutVignette
 {
-    public string inputcode;
+    public string code;
     public int parameter_int;
     public string parameter_string;
     public bool is_fixed;
-    public InputHack()
+    public InOutVignette()
     {
-        inputcode = "OnHack";
-        parameter_int = 0;
-        parameter_string = "";
-    }
-}
-
-[System.Serializable]
-public class OutputHack
-{
-    public string outputcode;
-    public int parameter_int;
-    public string parameter_string;
-    public bool is_fixed;
-
-    public OutputHack()
-    {
-        outputcode = "TurnLightOff";
+        code = "Default";
         parameter_int = 0;
         parameter_string = "";
     }
@@ -51,8 +35,8 @@ public class ProgrammableObjectsData : MonoBehaviour, IMessageReceiver
     public List<string> accessibleInputCode;
     public List<string> accessibleOutputCode;
 
-    public List<InputHack> inputCodes=new List<InputHack>();
-    public List<OutputHack> outputCodes=new List<OutputHack>();
+    public List<InOutVignette> inputCodes=new List<InOutVignette>();
+    public List<InOutVignette> outputCodes=new List<InOutVignette>();
     public List<Arrow> graph= new List<Arrow>();
 
     public ProgrammableObjectsScriptable Initiator;
@@ -62,8 +46,8 @@ public class ProgrammableObjectsData : MonoBehaviour, IMessageReceiver
     {
         accessibleInputCode = new List<string>(Initiator.accessibleInputCode);
         accessibleOutputCode = new List<string>(Initiator.accessibleOutputCode);
-        inputCodes = new List<InputHack>(Initiator.inputCodes);
-        outputCodes = new List<OutputHack>(Initiator.outputCodes);
+        inputCodes = new List<InOutVignette>(Initiator.inputCodes);
+        outputCodes = new List<InOutVignette>(Initiator.outputCodes);
         graph = new List<Arrow>(Initiator.graph);
 
         foreach(Arrow a in graph)
@@ -92,11 +76,11 @@ public class ProgrammableObjectsData : MonoBehaviour, IMessageReceiver
     {
         foreach(Arrow ryan in graph)
         {
-            if(inputCodes.Count>ryan.input && inputCodes[ryan.input].inputcode == codeinput)
+            if(inputCodes.Count>ryan.input && inputCodes[ryan.input].code == codeinput)
             {
-                foreach (InputCode reynolds in HackingAsset.inputCodes)
+                foreach (InOutCode reynolds in HackingAsset.inputCodes)
                 {
-                    if (reynolds.inputCode == codeinput && (!reynolds.parameter_string || inputCodes[ryan.input].parameter_string == parameter)) ryan.timeBeforeTransmit.Add(ryan.transmitTime);
+                    if (reynolds.code == codeinput && (!reynolds.parameter_string || inputCodes[ryan.input].parameter_string == parameter)) ryan.timeBeforeTransmit.Add(ryan.transmitTime);
                 }
             }
         }
@@ -142,10 +126,10 @@ public class ProgrammableObjectsData : MonoBehaviour, IMessageReceiver
                 {
                     if (outputCodes.Count > graph[i].output)
                     {
-                        string outputcode = outputCodes[graph[i].output].outputcode;
-                        foreach(OutputCode ryan in HackingAsset.outputCodes)
+                        string outputcode = outputCodes[graph[i].output].code;
+                        foreach(InOutCode ryan in HackingAsset.outputCodes)
                         {
-                            if (ryan.outputCode == outputcode)
+                            if (ryan.code == outputcode)
                             {
                                 if (ryan.parameter_string)
                                 {

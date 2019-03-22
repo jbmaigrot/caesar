@@ -13,49 +13,49 @@ MonoBehaviour:
   m_Name: HackingAsset
   m_EditorClassIdentifier: 
   inputCodes:
-  - inputCode: OnHack
+  - code: OnHack
     descriptionWithParameter: When I got hacked
-    descriptionWithoutParameter: 
+    descriptionWithoutParameter: When I got hacked
     parameter_int: 0
     parameter_string: 0
-  - inputCode: OnWord
+  - code: OnWord
     descriptionWithParameter: 'When I read the word '
-    descriptionWithoutParameter: 
+    descriptionWithoutParameter: 'When I read the word '
     parameter_int: 0
     parameter_string: 1
-  - inputCode: OnInteract
+  - code: OnInteract
     descriptionWithParameter: When I am touched gently
-    descriptionWithoutParameter: 
+    descriptionWithoutParameter: When I am touched gently
     parameter_int: 0
     parameter_string: 0
-  - inputCode: OnPassInside
+  - code: OnPassInside
     descriptionWithParameter: When I am traversed by something
-    descriptionWithoutParameter: 
+    descriptionWithoutParameter: When I am traversed by something
     parameter_int: 0
     parameter_string: 0
   outputCodes:
-  - outputCode: TurnOnLight
+  - code: TurnOnLight
     descriptionWithParameter: I turn the light on
-    descriptionWithoutParameter: 
+    descriptionWithoutParameter: I turn the light on
     parameter_int: 0
     parameter_string: 0
-  - outputCode: TurnOffLight
+  - code: TurnOffLight
     descriptionWithParameter: I turn the light off
-    descriptionWithoutParameter: 
+    descriptionWithoutParameter: I turn the light off
     parameter_int: 0
     parameter_string: 0
-  - outputCode: SendMessage
+  - code: SendMessage
     descriptionWithParameter: 'I send '
-    descriptionWithoutParameter: 
+    descriptionWithoutParameter: 'I send '
     parameter_int: 0
     parameter_string: 1
-  - outputCode: CloseDoor
+  - code: CloseDoor
     descriptionWithParameter: I close
-    descriptionWithoutParameter: 
+    descriptionWithoutParameter: I close
     parameter_int: 0
     parameter_string: 0
-  - outputCode: OpenDoor
+  - code: OpenDoor
     descriptionWithParameter: I open
-    descriptionWithoutParameter: 
+    descriptionWithoutParameter: I open
     parameter_int: 0
     parameter_string: 0

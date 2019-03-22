@@ -52,11 +52,11 @@ public class ProgObjAssetEditor : EditorWindow
             GUILayout.Label("List of InputButton :");
             for (int i = 0; i < ProgObjAsset.inputCodes.Count; i++)
             {
-                InputHack interVar= new InputHack();
+                InOutVignette interVar = new InOutVignette();
                 EditorGUILayout.Space();
                 EditorGUILayout.BeginHorizontal();
                 GUILayout.Label("Code : ");
-                interVar.inputcode = EditorGUILayout.TextField(ProgObjAsset.inputCodes[i].inputcode, GUILayout.ExpandWidth(false), GUILayout.MinWidth(30));
+                interVar.code = EditorGUILayout.TextField(ProgObjAsset.inputCodes[i].code, GUILayout.ExpandWidth(false), GUILayout.MinWidth(30));
                 GUILayout.Label(" Description : ");
                 interVar.parameter_int = EditorGUILayout.IntField(ProgObjAsset.inputCodes[i].parameter_int, GUILayout.ExpandWidth(false), GUILayout.MinWidth(30));
                 interVar.parameter_string = EditorGUILayout.TextField(ProgObjAsset.inputCodes[i].parameter_string, GUILayout.ExpandWidth(false), GUILayout.MinWidth(30));
@@ -72,8 +72,8 @@ public class ProgObjAssetEditor : EditorWindow
 
             if (GUILayout.Button("Add Input", GUILayout.ExpandWidth(false)))
             {
-                InputHack interVar = new InputHack();
-                interVar.inputcode = "";
+                InOutVignette interVar = new InOutVignette();
+                interVar.code = "";
                 interVar.parameter_int = 0;
                 interVar.parameter_string = "";
                 interVar.is_fixed = false;
@@ -85,11 +85,11 @@ public class ProgObjAssetEditor : EditorWindow
             GUILayout.Label("List of OutputButton :");
             for (int i = 0; i < ProgObjAsset.outputCodes.Count; i++)
             {
-                OutputHack interVar = new OutputHack();
+                InOutVignette interVar = new InOutVignette();
                 EditorGUILayout.Space();
                 EditorGUILayout.BeginHorizontal();
                 GUILayout.Label("Code : ");
-                interVar.outputcode = EditorGUILayout.TextField(ProgObjAsset.outputCodes[i].outputcode, GUILayout.ExpandWidth(false), GUILayout.MinWidth(30));
+                interVar.code = EditorGUILayout.TextField(ProgObjAsset.outputCodes[i].code, GUILayout.ExpandWidth(false), GUILayout.MinWidth(30));
                 GUILayout.Label(" parametre : ");
                 interVar.parameter_int = EditorGUILayout.IntField(ProgObjAsset.outputCodes[i].parameter_int, GUILayout.ExpandWidth(false), GUILayout.MinWidth(30));
                 interVar.parameter_string = EditorGUILayout.TextField(ProgObjAsset.outputCodes[i].parameter_string, GUILayout.ExpandWidth(false), GUILayout.MinWidth(30));
@@ -105,8 +105,8 @@ public class ProgObjAssetEditor : EditorWindow
 
             if (GUILayout.Button("Add Output", GUILayout.ExpandWidth(false)))
             {
-                OutputHack interVar = new OutputHack();
-                interVar.outputcode = "";
+                InOutVignette interVar = new InOutVignette();
+                interVar.code = "";
                 interVar.parameter_int = 0;
                 interVar.parameter_string = "";
                 interVar.is_fixed = false;

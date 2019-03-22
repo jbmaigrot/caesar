@@ -9,8 +9,8 @@ public class ProgrammableObjectsScriptable : ScriptableObject
 
     public List<string> accessibleInputCode;
     public List<string> accessibleOutputCode;
-    public List<InputHack> inputCodes = new List<InputHack>();
-    public List<OutputHack> outputCodes = new List<OutputHack>();
+    public List<InOutVignette> inputCodes = new List<InOutVignette>();
+    public List<InOutVignette> outputCodes = new List<InOutVignette>();
     public List<Arrow> graph = new List<Arrow>();
     
 }

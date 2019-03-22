@@ -38,4 +38,16 @@ public class HackInterface : MonoBehaviour, ISelectObject
         this.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
         
     }
+
+    public void reloadInterface()
+    {
+        foreach (DropdownHackInterface ryan in this.GetComponentsInChildren<DropdownHackInterface>(false))
+        {
+            ryan.UpdateOptions();
+        }
+        foreach (InputFieldHackerInterface ryan in this.GetComponentsInChildren<InputFieldHackerInterface>(false))
+        {
+            ryan.UpdateOptions();
+        }
+    }
 }

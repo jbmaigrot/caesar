@@ -48,11 +48,11 @@ public class HackingAssetEditor : EditorWindow
             for (int i = 0;i< HackingAsset.inputCodes.Count; i++)
             {
                 Debug.Log("j'arrive ici");
-                InputCode interVar;
+                InOutCode interVar;
                 EditorGUILayout.Space();
                 EditorGUILayout.BeginHorizontal();
                 GUILayout.Label("Code : ");
-                interVar.inputCode= EditorGUILayout.TextField(HackingAsset.inputCodes[i].inputCode, GUILayout.ExpandWidth(false), GUILayout.MinWidth(30));
+                interVar.code= EditorGUILayout.TextField(HackingAsset.inputCodes[i].code, GUILayout.ExpandWidth(false), GUILayout.MinWidth(30));
                 GUILayout.Label(" Description : ");
                 interVar.descriptionWithParameter = EditorGUILayout.TextField(HackingAsset.inputCodes[i].descriptionWithParameter, GUILayout.ExpandWidth(false), GUILayout.MinWidth(30));
                 interVar.descriptionWithoutParameter = HackingAsset.inputCodes[i].descriptionWithParameter;
@@ -70,8 +70,8 @@ public class HackingAssetEditor : EditorWindow
 
             if(GUILayout.Button("Add Input", GUILayout.ExpandWidth(false)))
             {
-                InputCode interVar;
-                interVar.inputCode = "";
+                InOutCode interVar;
+                interVar.code = "";
                 interVar.descriptionWithParameter = "";
                 interVar.descriptionWithoutParameter = "";
                 interVar.parameter_int = false;
@@ -84,11 +84,11 @@ public class HackingAssetEditor : EditorWindow
             GUILayout.Label("Output List of Asset :");
             for (int i = 0; i < HackingAsset.outputCodes.Count; i++)
             {
-                OutputCode interVar;
+                InOutCode interVar;
                 EditorGUILayout.Space();
                 EditorGUILayout.BeginHorizontal();
                 GUILayout.Label("Code : ");
-                interVar.outputCode = EditorGUILayout.TextField(HackingAsset.outputCodes[i].outputCode, GUILayout.ExpandWidth(false), GUILayout.MinWidth(30));
+                interVar.code = EditorGUILayout.TextField(HackingAsset.outputCodes[i].code, GUILayout.ExpandWidth(false), GUILayout.MinWidth(30));
                 GUILayout.Label(" Description : ");
                 interVar.descriptionWithParameter = EditorGUILayout.TextField(HackingAsset.outputCodes[i].descriptionWithParameter, GUILayout.ExpandWidth(false), GUILayout.MinWidth(30));
                 interVar.descriptionWithoutParameter = HackingAsset.outputCodes[i].descriptionWithParameter;
@@ -105,8 +105,8 @@ public class HackingAssetEditor : EditorWindow
             }
             if (GUILayout.Button("Add Output", GUILayout.ExpandWidth(false)))
             {
-                OutputCode interVar;
-                interVar.outputCode = "";
+                InOutCode interVar;
+                interVar.code = "";
                 interVar.descriptionWithParameter = "";
                 interVar.descriptionWithoutParameter = "";
                 interVar.parameter_int = false;
