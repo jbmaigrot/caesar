@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class GameCreator1 : MonoBehaviour
+public class PlayerInput : MonoBehaviour
 {
     public NetworkManager networkManager;
     
