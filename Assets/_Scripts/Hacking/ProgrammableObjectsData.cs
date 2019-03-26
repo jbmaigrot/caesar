@@ -3,29 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-[System.Serializable]
-public class Arrow
-{
-    public int input;
-    public int output;
-    public float transmitTime=0.2f;
-    public List<float> timeBeforeTransmit=new List<float>();
-};
 
-[System.Serializable]
-public class InOutVignette
-{
-    public string code;
-    public int parameter_int;
-    public string parameter_string;
-    public bool is_fixed;
-    public InOutVignette()
-    {
-        code = "Default";
-        parameter_int = 0;
-        parameter_string = "";
-    }
-}
+
+
 
 public class ProgrammableObjectsData : MonoBehaviour, IMessageReceiver
 {
