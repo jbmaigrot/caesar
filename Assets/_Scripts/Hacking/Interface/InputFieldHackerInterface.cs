@@ -9,94 +9,17 @@ public class InputFieldHackerInterface : MonoBehaviour
     private GameObject SelectedGameObject;
     private string previousValue;
     private int previousValueDropdown;
+    private bool isOn;
     // Start is called before the first frame update
     void Start()
     {
-        UpdateOptions();
+        UpdateOff();
         SelectedGameObject = HackInterface.SelectedGameObject;
         previousValue = "";
-        previousValueDropdown = 0;
     }
 
 
-    public void UpdateOptions()
-    {
-        if (HackInterface.SelectedGameObject != null)
-        {
-            string DropdownCode;
-            int indiceHackingAsset = 0;
-            if (this.transform.parent.GetComponentInChildren<Dropdown>().value == 0)
-            {
-                DropdownCode = "";
-                this.GetComponent<CanvasGroup>().alpha = 0f;
-                this.GetComponent<CanvasGroup>().interactable = false;
-                this.GetComponent<CanvasGroup>().blocksRaycasts = false;
-            }
-            else
-            {
-                if (this.GetComponentInParent<TextButtonHackInterface>().isInput)
-                {
-                    DropdownCode = HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().accessibleInputCode[this.transform.parent.GetComponentInChildren<Dropdown>().value - 1];
-                }
-                else
-                {
-                    DropdownCode = HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().accessibleOutputCode[this.transform.parent.GetComponentInChildren<Dropdown>().value - 1];
-                }
-            }
-
-            if (this.GetComponentInParent<TextButtonHackInterface>().isInput)
-            {
-                for (int i = 0; i < HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().HackingAsset.inputCodes.Count; i++)
-                {
-                    if (HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().HackingAsset.inputCodes[i].code == DropdownCode) indiceHackingAsset = i;
-                }
-            }
-            else
-            {
-                for (int i = 0; i < HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().HackingAsset.outputCodes.Count; i++)
-                {
-                    if (HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().HackingAsset.outputCodes[i].code == DropdownCode) indiceHackingAsset = i;
-                }
-            }
-
-
-            if (this.GetComponentInParent<TextButtonHackInterface>().isInput)
-            {
-                if (this.GetComponentInParent<TextButtonHackInterface>().numero <= HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes.Count && HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().HackingAsset.inputCodes[indiceHackingAsset].parameter_string)
-                {
-                    this.GetComponent<InputField>().text = HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_string;
-                    this.GetComponent<CanvasGroup>().alpha = 1f;
-                    this.GetComponent<CanvasGroup>().interactable = true;
-                    this.GetComponent<CanvasGroup>().blocksRaycasts = true;
-                }
-                else
-                {
-                    this.GetComponent<InputField>().text = "";
-                    this.GetComponent<CanvasGroup>().alpha = 0f;
-                    this.GetComponent<CanvasGroup>().interactable = false;
-                    this.GetComponent<CanvasGroup>().blocksRaycasts = false;
-                }
-            }
-            else
-            {
-                if (this.GetComponentInParent<TextButtonHackInterface>().numero <= HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().outputCodes.Count && HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().HackingAsset.outputCodes[indiceHackingAsset].parameter_string)
-                {
-                    this.GetComponent<InputField>().text = HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().outputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_string;
-                    this.GetComponent<CanvasGroup>().alpha = 1f;
-                    this.GetComponent<CanvasGroup>().interactable = true;
-                    this.GetComponent<CanvasGroup>().blocksRaycasts = true;
-                }
-                else
-                {
-                    this.GetComponent<InputField>().text = "";
-                    this.GetComponent<CanvasGroup>().alpha = 0f;
-                    this.GetComponent<CanvasGroup>().interactable = false;
-                    this.GetComponent<CanvasGroup>().blocksRaycasts = false;
-                }
-            }
-        }
-            
-    }
+    
 
     void UpdateHackingGraph()
     {
@@ -117,20 +40,13 @@ public class InputFieldHackerInterface : MonoBehaviour
         
         
         previousValue = this.GetComponent<InputField>().text;
-        
+        this.GetComponentInParent<HackInterface>().reloadInterface();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (SelectedGameObject != HackInterface.SelectedGameObject || previousValueDropdown!=this.transform.parent.GetComponentInChildren<Dropdown>().value)
-        {
-            UpdateOptions();
-            SelectedGameObject = HackInterface.SelectedGameObject;
-            previousValue = this.GetComponent<InputField>().text;
-            previousValueDropdown = this.transform.parent.GetComponentInChildren<Dropdown>().value;
-        }
-
+        
         if (this.GetComponent<InputField>().text != previousValue)
         {
 
@@ -138,5 +54,66 @@ public class InputFieldHackerInterface : MonoBehaviour
 
         }
     }
-    
+
+    public void UpdateOff()
+    {
+        this.GetComponent<CanvasGroup>().alpha = 0f;
+        this.GetComponent<CanvasGroup>().interactable = false;
+        this.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        isOn = false;
+        this.GetComponent<InputField>().text = "";
+        previousValue = this.GetComponent<InputField>().text;
+    }
+
+    public void UpdateOn(bool isInput, bool isFixed, string code)
+    {
+        isOn = false;
+        if (isInput)
+        {
+            for (int i = 0; i < HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().HackingAsset.inputCodes.Count; i++)
+            {
+                if (HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().HackingAsset.inputCodes[i].code ==code && HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().HackingAsset.inputCodes[i].parameter_string) isOn=true;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().HackingAsset.outputCodes.Count; i++)
+            {
+                if (HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().HackingAsset.outputCodes[i].code == code && HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().HackingAsset.outputCodes[i].parameter_string) isOn = true;
+            }
+        }
+
+        if (isOn)
+        {
+            if (isInput)
+            {
+                this.GetComponent<InputField>().text = HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_string;
+                previousValue = this.GetComponent<InputField>().text;
+            }
+            else
+            {
+                this.GetComponent<InputField>().text = HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().outputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_string;
+                previousValue = this.GetComponent<InputField>().text;
+            }
+            this.GetComponent<CanvasGroup>().alpha = 1f;
+            if (isFixed)
+            {
+                this.GetComponent<CanvasGroup>().interactable =false;
+            }
+            else
+            {
+                this.GetComponent<CanvasGroup>().interactable = true;
+            }            
+            this.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        }
+        else
+        {
+            this.GetComponent<InputField>().text = "";
+            previousValue = this.GetComponent<InputField>().text;
+            this.GetComponent<CanvasGroup>().alpha = 0f;
+            this.GetComponent<CanvasGroup>().interactable = false;
+            this.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        }
+        
+    }
 }

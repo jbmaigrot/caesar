@@ -10,6 +10,8 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
     public int numero;
     private bool isAWorkingNode;
     private bool isVisible;
+    private bool isFixed;
+    private string code;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +41,7 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
             if (isItReallyNew)
             {
                 HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().graph.Add(NewArrow);
- 
+                this.GetComponentInParent<HackInterface>().reloadArrow();
             }
         }
     }
@@ -50,67 +52,65 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
     }*/
 
     // Update is called once per frame
-    void Update()
+    public void UpdateOptions(int inputCount, int outputCount)
     {
+        int countOfTheTable;
         if (HackInterface.SelectedGameObject != null)
         {
             if (isInput)
             {
-                if (numero > HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes.Count)
+                countOfTheTable = inputCount;
+            }
+            else
+            {
+                countOfTheTable = outputCount;
+            }
+            if (numero > countOfTheTable)
+            {
+                isAWorkingNode = false;
+                if (numero > countOfTheTable + 1)
                 {
-                    isAWorkingNode = false;
-                    if (numero > HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes.Count + 1)
-                    {
-                        isVisible = false;
-                        this.GetComponent<CanvasGroup>().alpha = 0f;
-                        this.GetComponent<CanvasGroup>().blocksRaycasts = false;
-                    }
-                    else
-                    {
-                        isVisible = true;
-                        this.GetComponent<CanvasGroup>().alpha = 1f;
-                        this.GetComponent<CanvasGroup>().blocksRaycasts = true;
-                    }
+                    /*Le bouton est invisible*/
+                    isVisible = false;
+                    this.GetComponent<CanvasGroup>().alpha = 0f;
+                    this.GetComponent<CanvasGroup>().blocksRaycasts = false;
+                    GetComponentInChildren<DropdownHackInterface>().UpdateOff();
+                    GetComponentInChildren<InputFieldHackerInterface>().UpdateOff();
+                    isFixed = false;
+                    code = "";
                 }
                 else
                 {
-                    isAWorkingNode = true;
+                    /*Le bouton est visible mais blank, et sert à ajouter une nouvelle vignette*/
                     isVisible = true;
                     this.GetComponent<CanvasGroup>().alpha = 1f;
                     this.GetComponent<CanvasGroup>().blocksRaycasts = true;
-                    /*this.gameObject.GetComponent<Button>().onClick(){
-
-                    }*/
+                    GetComponentInChildren<DropdownHackInterface>().UpdateBlank(isInput);
+                    GetComponentInChildren<InputFieldHackerInterface>().UpdateOff();
+                    isFixed = false;
+                    code = "";
                 }
             }
             else
             {
-                if (numero > HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().outputCodes.Count)
+                /*Le bouton est visible et représente une vignette*/
+                isAWorkingNode = true;
+                isVisible = true;
+                if (isInput)
                 {
-                    isAWorkingNode = false;
-                    if (numero > HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().outputCodes.Count + 1)
-                    {
-                        isVisible = false;
-                        this.GetComponent<CanvasGroup>().alpha = 0f;
-                        this.GetComponent<CanvasGroup>().blocksRaycasts = false;
-                    }
-                    else
-                    {
-                        isVisible = true;
-                        this.GetComponent<CanvasGroup>().alpha = 1f;
-                        this.GetComponent<CanvasGroup>().blocksRaycasts = true;
-                    }
+                    isFixed = HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes[numero - 1].is_fixed;
+                    code = HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes[numero - 1].code;
                 }
                 else
                 {
-                    isAWorkingNode = true;
-                    isVisible = true;
-                    this.GetComponent<CanvasGroup>().alpha = 1f;
-                    this.GetComponent<CanvasGroup>().blocksRaycasts = true;
+                    isFixed = HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().outputCodes[numero - 1].is_fixed;
+                    code = HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().outputCodes[numero - 1].code;
                 }
+                this.GetComponent<CanvasGroup>().alpha = 1f;
+                this.GetComponent<CanvasGroup>().blocksRaycasts = true;
+                GetComponentInChildren<DropdownHackInterface>().UpdateOn(isInput, isFixed, code);
+                GetComponentInChildren<InputFieldHackerInterface>().UpdateOn(isInput,isFixed,code);
             }
-
-
         }
         
     }
