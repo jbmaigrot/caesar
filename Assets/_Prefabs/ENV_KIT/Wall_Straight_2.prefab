@@ -163,9 +163,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6753320954618683736}
+  - component: {fileID: 4509134716744691198}
   m_Layer: 0
   m_Name: Wall_Straight_2
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -186,3 +187,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4509134716744691198
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6753320954618199416}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.0950313, y: 5.0664086, z: 0.59725904}
+  m_Center: {x: -0.99800754, y: 2.468809, z: -0.0023834705}

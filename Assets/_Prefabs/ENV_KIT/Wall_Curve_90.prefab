@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6187038256709875627}
   - component: {fileID: 6187038256707008477}
   - component: {fileID: 6187038256707974557}
+  - component: {fileID: 2119392707677963860}
   m_Layer: 0
   m_Name: Wall_Curve_90_Top
   m_TagString: Untagged
@@ -77,6 +78,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &2119392707677963860
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6187038256710167499}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300036, guid: cd2bd5e9064f4de4e8fc19a6bd9daaf9, type: 3}
 --- !u!1 &6187038256710167501
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,6 +103,7 @@ GameObject:
   - component: {fileID: 6187038256709875629}
   - component: {fileID: 6187038256707008479}
   - component: {fileID: 6187038256707974559}
+  - component: {fileID: 6904419906397904036}
   m_Layer: 0
   m_Name: Wall_Curve_90_Bottom
   m_TagString: Untagged
@@ -154,6 +170,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &6904419906397904036
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6187038256710167501}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300038, guid: cd2bd5e9064f4de4e8fc19a6bd9daaf9, type: 3}
 --- !u!1 &6187038256710167503
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,7 +195,7 @@ GameObject:
   - component: {fileID: 6187038256709875631}
   m_Layer: 0
   m_Name: Wall_Curve_90
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
