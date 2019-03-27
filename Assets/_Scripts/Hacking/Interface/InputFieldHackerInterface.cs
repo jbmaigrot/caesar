@@ -6,15 +6,14 @@ using UnityEngine.EventSystems;
 
 public class InputFieldHackerInterface : MonoBehaviour
 {
-    private GameObject SelectedGameObject;
     private string previousValue;
-    private int previousValueDropdown;
     private bool isOn;
+
+    private HackingAssetScriptable HackingAsset;
     // Start is called before the first frame update
     void Start()
     {
         UpdateOff();
-        SelectedGameObject = HackInterface.SelectedGameObject;
         previousValue = "";
     }
 
@@ -27,13 +26,13 @@ public class InputFieldHackerInterface : MonoBehaviour
         {
             if (this.GetComponentInParent<TextButtonHackInterface>().isInput)
             {
-                if (this.GetComponentInParent<TextButtonHackInterface>().numero <= HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes.Count)
-                    HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_string = this.GetComponent<InputField>().text;
+                if (this.GetComponentInParent<TextButtonHackInterface>().numero <= HackInterface.inputCodes.Count)
+                    HackInterface.inputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_string = this.GetComponent<InputField>().text;
             }
             else
             {
-                if (this.GetComponentInParent<TextButtonHackInterface>().numero <= HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().outputCodes.Count)
-                    HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().outputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_string = this.GetComponent<InputField>().text;
+                if (this.GetComponentInParent<TextButtonHackInterface>().numero <= HackInterface.outputCodes.Count)
+                    HackInterface.outputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_string = this.GetComponent<InputField>().text;
             }
         }
         
@@ -70,16 +69,16 @@ public class InputFieldHackerInterface : MonoBehaviour
         isOn = false;
         if (isInput)
         {
-            for (int i = 0; i < HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().HackingAsset.inputCodes.Count; i++)
+            for (int i = 0; i < HackingAsset.inputCodes.Count; i++) 
             {
-                if (HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().HackingAsset.inputCodes[i].code ==code && HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().HackingAsset.inputCodes[i].parameter_string) isOn=true;
+                if (HackingAsset.inputCodes[i].code ==code && HackingAsset.inputCodes[i].parameter_string) isOn=true;
             }
         }
         else
         {
-            for (int i = 0; i < HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().HackingAsset.outputCodes.Count; i++)
+            for (int i = 0; i < HackingAsset.outputCodes.Count; i++)
             {
-                if (HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().HackingAsset.outputCodes[i].code == code && HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().HackingAsset.outputCodes[i].parameter_string) isOn = true;
+                if (HackingAsset.outputCodes[i].code == code && HackingAsset.outputCodes[i].parameter_string) isOn = true;
             }
         }
 
@@ -87,12 +86,12 @@ public class InputFieldHackerInterface : MonoBehaviour
         {
             if (isInput)
             {
-                this.GetComponent<InputField>().text = HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_string;
+                this.GetComponent<InputField>().text = HackInterface.inputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_string;
                 previousValue = this.GetComponent<InputField>().text;
             }
             else
             {
-                this.GetComponent<InputField>().text = HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().outputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_string;
+                this.GetComponent<InputField>().text = HackInterface.outputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_string;
                 previousValue = this.GetComponent<InputField>().text;
             }
             this.GetComponent<CanvasGroup>().alpha = 1f;
@@ -115,5 +114,10 @@ public class InputFieldHackerInterface : MonoBehaviour
             this.GetComponent<CanvasGroup>().blocksRaycasts = false;
         }
         
+    }
+
+    public void GetHackingAsset(HackingAssetScriptable HackAss)
+    {
+        HackingAsset = HackAss;
     }
 }

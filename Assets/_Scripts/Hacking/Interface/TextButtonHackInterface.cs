@@ -8,16 +8,23 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
 {
     public bool isInput;
     public int numero;
-    private bool isAWorkingNode;
-    private bool isVisible;
     private bool isFixed;
     private string code;
+
+    private HackingAssetScriptable HackingAsset;
     // Start is called before the first frame update
     void Start()
     {
         
     }
     
+    public void GetHackingAsset(HackingAssetScriptable HackAss)
+    {
+        HackingAsset = HackAss;
+        GetComponentInChildren<DropdownHackInterface>().GetHackingAsset(HackAss);
+        GetComponentInChildren<InputFieldHackerInterface>().GetHackingAsset(HackAss);
+    }
+
     public void OnClick(/*PointerEventData pointerEvent*/)
     {
         if (isInput)
@@ -25,7 +32,7 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
             HackInterface.SelectedInputButton = numero-1;
   
         }
-        else if (HackInterface.SelectedInputButton > -1 && HackInterface.SelectedInputButton < HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes.Count && numero - 1 < HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().outputCodes.Count)
+        else if (HackInterface.SelectedInputButton > -1 && HackInterface.SelectedInputButton < HackInterface.inputCodes.Count && numero - 1 < HackInterface.outputCodes.Count)
         {
 
             Arrow NewArrow = new Arrow();
@@ -34,13 +41,13 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
             NewArrow.output = numero - 1;
 
             bool isItReallyNew = true;
-            foreach (Arrow a in HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().graph)
+            foreach (Arrow a in HackInterface.graph)
             {
                 if (a.input == NewArrow.input && a.output == NewArrow.output) isItReallyNew = false;
             }
             if (isItReallyNew)
             {
-                HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().graph.Add(NewArrow);
+                HackInterface.graph.Add(NewArrow);
                 this.GetComponentInParent<HackInterface>().reloadArrow();
             }
         }
@@ -67,11 +74,9 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
             }
             if (numero > countOfTheTable)
             {
-                isAWorkingNode = false;
                 if (numero > countOfTheTable + 1)
                 {
                     /*Le bouton est invisible*/
-                    isVisible = false;
                     this.GetComponent<CanvasGroup>().alpha = 0f;
                     this.GetComponent<CanvasGroup>().blocksRaycasts = false;
                     GetComponentInChildren<DropdownHackInterface>().UpdateOff();
@@ -82,7 +87,6 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
                 else
                 {
                     /*Le bouton est visible mais blank, et sert à ajouter une nouvelle vignette*/
-                    isVisible = true;
                     this.GetComponent<CanvasGroup>().alpha = 1f;
                     this.GetComponent<CanvasGroup>().blocksRaycasts = true;
                     GetComponentInChildren<DropdownHackInterface>().UpdateBlank(isInput);
@@ -94,22 +98,20 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
             else
             {
                 /*Le bouton est visible et représente une vignette*/
-                isAWorkingNode = true;
-                isVisible = true;
                 if (isInput)
                 {
-                    isFixed = HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes[numero - 1].is_fixed;
-                    code = HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes[numero - 1].code;
+                    isFixed = HackInterface.inputCodes[numero - 1].is_fixed;
+                    code = HackInterface.inputCodes[numero - 1].code;
                 }
                 else
                 {
-                    isFixed = HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().outputCodes[numero - 1].is_fixed;
-                    code = HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().outputCodes[numero - 1].code;
+                    isFixed = HackInterface.outputCodes[numero - 1].is_fixed;
+                    code = HackInterface.outputCodes[numero - 1].code;
                 }
                 this.GetComponent<CanvasGroup>().alpha = 1f;
                 this.GetComponent<CanvasGroup>().blocksRaycasts = true;
                 GetComponentInChildren<DropdownHackInterface>().UpdateOn(isInput, isFixed, code);
-                GetComponentInChildren<InputFieldHackerInterface>().UpdateOn(isInput,isFixed,code);
+                GetComponentInChildren<InputFieldHackerInterface>().UpdateOn(isInput, isFixed, code);
             }
         }
         

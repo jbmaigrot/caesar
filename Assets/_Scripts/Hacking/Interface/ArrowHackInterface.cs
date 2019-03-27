@@ -15,7 +15,7 @@ public class ArrowHackInterface : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData pointerEvent)
     {
-        HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().graph.RemoveAt(numero);
+        HackInterface.graph.RemoveAt(numero);
         this.GetComponentInParent<HackInterface>().reloadArrow();
     }
 
@@ -26,11 +26,11 @@ public class ArrowHackInterface : MonoBehaviour, IPointerDownHandler
     }
     public void UpdateArrow()
     {
-        if (HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().graph.Count > numero)
+        if (HackInterface.graph.Count > numero)
         {
             this.GetComponent<CanvasGroup>().alpha = 1f;
             this.GetComponent<CanvasGroup>().blocksRaycasts = true;
-            this.GetComponentInChildren<Text>().text = HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().graph[numero].input.ToString() + "   " + HackInterface.SelectedGameObject.GetComponent<ProgrammableObjectsData>().graph[numero].output.ToString();
+            this.GetComponentInChildren<Text>().text = HackInterface.graph[numero].input.ToString() + "   " + HackInterface.graph[numero].output.ToString();
         }
         else
         {
