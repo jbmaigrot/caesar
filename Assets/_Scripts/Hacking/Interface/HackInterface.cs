@@ -19,11 +19,15 @@ public class HackInterface : MonoBehaviour, ISelectObject
     static public List<InOutVignette> outputCodes = new List<InOutVignette>();
     static public List<Arrow> graph = new List<Arrow>();
 
+    private float timeBeforeClosing;
+    private bool isClosing;
+
     // Start is called before the first frame update
     void Start()
     {
         this.gameObject.GetComponent<CanvasGroup>().alpha=0f;
         this.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        isClosing = false;
         foreach (TextButtonHackInterface ryan in this.GetComponentsInChildren<TextButtonHackInterface>(false))
         {
             ryan.GetHackingAsset(HackingAsset);
@@ -33,19 +37,31 @@ public class HackInterface : MonoBehaviour, ISelectObject
     // Update is called once per frame
     void Update()
     {
-        
+        if (isClosing)
+        {
+            timeBeforeClosing -= Time.deltaTime;
+            if (timeBeforeClosing <= 0.0f)
+            {
+                isClosing = false;
+                bonhomme.SetActive(true);
+                SelectedGameObject = null;
+                this.gameObject.GetComponent<CanvasGroup>().alpha = 0f;
+                this.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            }
+        }
     }
 
     public void OnClose()
     {
-        bonhomme.SetActive(true);
+        timeBeforeClosing = 0.1f;
+        isClosing = true;
+
         SelectedInputButton = -1;
         SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes = inputCodes;
         SelectedGameObject.GetComponent<ProgrammableObjectsData>().outputCodes = outputCodes;
         SelectedGameObject.GetComponent<ProgrammableObjectsData>().graph = graph;
-        SelectedGameObject = null;
-        this.gameObject.GetComponent<CanvasGroup>().alpha = 0f;
-        this.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+
+               
     }
 
     public void SelectedProgrammableObject(GameObject SelectedObject)
@@ -58,6 +74,7 @@ public class HackInterface : MonoBehaviour, ISelectObject
         graph = new List<Arrow>(SelectedObject.GetComponent<ProgrammableObjectsData>().graph);
         reloadInterface();
         reloadArrow();
+        isClosing = false;
         this.gameObject.GetComponent<CanvasGroup>().alpha =1f;
         this.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
         
