@@ -10,16 +10,10 @@ public class InputFieldHackerInterface : MonoBehaviour
     private bool isOn;
 
     private HackingAssetScriptable HackingAsset;
-    // Start is called before the first frame update
-    void Start()
-    {
-        UpdateOff();
-        previousValue = "";
-    }
 
 
-    
 
+    /*Fonction pour modifier le parametre d'une vignette en fonction de l'input field*/
     void UpdateHackingGraph()
     {
         if (HackInterface.SelectedGameObject != null)
@@ -36,16 +30,14 @@ public class InputFieldHackerInterface : MonoBehaviour
             }
         }
         
-        
-        
+        /* On retient la nouvelle valeur de l'input field.*/
         previousValue = this.GetComponent<InputField>().text;
-        this.GetComponentInParent<HackInterface>().reloadInterface();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        /*Si le contenu de l'input field change, on modifie le graphe*/
         if (this.GetComponent<InputField>().text != previousValue)
         {
 
@@ -54,6 +46,7 @@ public class InputFieldHackerInterface : MonoBehaviour
         }
     }
 
+    /*Eteint l'inputfield car le bouton n'est pas une vignette.*/
     public void UpdateOff()
     {
         this.GetComponent<CanvasGroup>().alpha = 0f;
@@ -64,8 +57,10 @@ public class InputFieldHackerInterface : MonoBehaviour
         previousValue = this.GetComponent<InputField>().text;
     }
 
+    /*Ecris l'input field quand le bouton est une vignette.*/
     public void UpdateOn(bool isInput, bool isFixed, string code)
     {
+        /*Regarde avec le code de la vignette si le code requiert un input field*/
         isOn = false;
         if (isInput)
         {
@@ -82,6 +77,7 @@ public class InputFieldHackerInterface : MonoBehaviour
             }
         }
 
+        /*Si le code requiert un input field, on écrit le contenue tiré du graphe.*/
         if (isOn)
         {
             if (isInput)
@@ -95,6 +91,8 @@ public class InputFieldHackerInterface : MonoBehaviour
                 previousValue = this.GetComponent<InputField>().text;
             }
             this.GetComponent<CanvasGroup>().alpha = 1f;
+
+            /*Si la vignette est fixé dans le graphe, on empèche le joueur de changer le contenu de l'input field, sinon on le laisse faire.*/
             if (isFixed)
             {
                 this.GetComponent<CanvasGroup>().interactable =false;
@@ -105,6 +103,7 @@ public class InputFieldHackerInterface : MonoBehaviour
             }            
             this.GetComponent<CanvasGroup>().blocksRaycasts = true;
         }
+        /*Si le code ne requiert pas d'input field, on l'éteint*/
         else
         {
             this.GetComponent<InputField>().text = "";
@@ -116,6 +115,7 @@ public class InputFieldHackerInterface : MonoBehaviour
         
     }
 
+    /*Récupère HackingAsset du parent.*/
     public void GetHackingAsset(HackingAssetScriptable HackAss)
     {
         HackingAsset = HackAss;

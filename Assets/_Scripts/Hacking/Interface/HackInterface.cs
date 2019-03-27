@@ -6,21 +6,29 @@ using UnityEngine.Events;
 
 public class HackInterface : MonoBehaviour, ISelectObject
 {
+    /*Variable qui contient la vignette d'input selectionné comme début de flèche. Est modifié par le script TextButtonHackInterface.*/
     static public int SelectedInputButton=-1;
     
+    /*Variable qui contient l'objet connecté en cours de hacking. Est modifié par le script ProgrammableObjectsData lorsque un objet est hacké.*/
     static public GameObject SelectedGameObject;
+
+    /*Variable qui contient le PJ. Utilisé pour mesuré les distances. Pas terrible comme manière de faire.*/
     public GameObject bonhomme;
+
+    /*Variable qui contient le dictionnaire de mot-clefs, lié à leur description dans l'interface et à si la vignette a besoin de parametre. Sous forme de List.*/
     public HackingAssetScriptable HackingAsset;
 
+    /*Variables qui contient la copie du graphe de comportement de l'objet connecté en cours de hacking. Tous les éléments de l'interface ont besoin d'avoir accès à ces variables (en read only pour les deux premières).*/
     static public List<string> accessibleInputCode;
     static public List<string> accessibleOutputCode;
-
     static public List<InOutVignette> inputCodes = new List<InOutVignette>();
     static public List<InOutVignette> outputCodes = new List<InOutVignette>();
     static public List<Arrow> graph = new List<Arrow>();
 
+    /*Variables utilisées pour le délais de fermeture d'interface*/
     private float timeBeforeClosing;
     private bool isClosing;
+    const float TIMEFORCLOSING = 0.1f;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +45,7 @@ public class HackInterface : MonoBehaviour, ISelectObject
     // Update is called once per frame
     void Update()
     {
+        /*Gestion du délais de fermeture d'interface*/
         if (isClosing)
         {
             timeBeforeClosing -= Time.deltaTime;
@@ -51,36 +60,46 @@ public class HackInterface : MonoBehaviour, ISelectObject
         }
     }
 
+     /*Fonction appelé lorsque le joueur ferme l'interface*/
     public void OnClose()
     {
-        timeBeforeClosing = 0.1f;
+        /*Initiation du délais de fermeture*/
+        timeBeforeClosing = TIMEFORCLOSING;
         isClosing = true;
 
         SelectedInputButton = -1;
+
+        /*Le graphe de comportement de l'objet hacké est remplacé par les modifications effectués.*/
         SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes = inputCodes;
         SelectedGameObject.GetComponent<ProgrammableObjectsData>().outputCodes = outputCodes;
         SelectedGameObject.GetComponent<ProgrammableObjectsData>().graph = graph;
-
-               
+                      
     }
 
+    /*Fonction appelé lorsque un objet est hacké par le joueur */
     public void SelectedProgrammableObject(GameObject SelectedObject)
     {
+        /*Copie du graphe de comportement de l'objet*/
         SelectedGameObject = SelectedObject;
         accessibleInputCode = new List<string>(SelectedObject.GetComponent<ProgrammableObjectsData>().accessibleInputCode);
         accessibleOutputCode = new List<string>(SelectedObject.GetComponent<ProgrammableObjectsData>().accessibleOutputCode);
         inputCodes = new List<InOutVignette>(SelectedObject.GetComponent<ProgrammableObjectsData>().inputCodes);
         outputCodes = new List<InOutVignette>(SelectedObject.GetComponent<ProgrammableObjectsData>().outputCodes);
         graph = new List<Arrow>(SelectedObject.GetComponent<ProgrammableObjectsData>().graph);
+
+        /*Ecriture du contenu de l'interface*/
         reloadInterface();
         reloadArrow();
         isClosing = false;
+
+        /*Ouverture de l'interface*/
         this.gameObject.GetComponent<CanvasGroup>().alpha =1f;
         this.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
         
         
     }
 
+    /*Ecriture des vignettes de l'interface*/
     public void reloadInterface()
     {
         foreach (TextButtonHackInterface ryan in this.GetComponentsInChildren<TextButtonHackInterface>(false))
@@ -89,6 +108,7 @@ public class HackInterface : MonoBehaviour, ISelectObject
         }        
     }
 
+    /*Ecriture des fleches de l'interface*/
     public void reloadArrow()
     {
         foreach (ArrowHackInterface ryan in this.GetComponentsInChildren<ArrowHackInterface>(false))

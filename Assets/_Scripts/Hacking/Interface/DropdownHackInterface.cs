@@ -12,9 +12,10 @@ public class DropdownHackInterface : MonoBehaviour
     private HackingAssetScriptable HackingAsset;
 
 
-
+    /*Fonction pour modifier le code d'une vignette en fonction du dropdown*/
     void UpdateHackingGraph()
     {
+        /*Si le Dropdown est placé sur blank, on supprime la vignette*/
         if (this.GetComponent<Dropdown>().value == 0)
         {
             if (this.GetComponentInParent<TextButtonHackInterface>().isInput)
@@ -33,7 +34,8 @@ public class DropdownHackInterface : MonoBehaviour
             }
         }
         else
-        {
+        {   
+            /*Si le Dropdown était placé sur blank mais a été changé, on crée une nouvelle vignette. Cela ne peut arriver que sur le dernier bouton actif, car c'est le seul qui est blank.*/
             if (previousValue == 0)
             {
                 if (this.GetComponentInParent<TextButtonHackInterface>().isInput)
@@ -49,6 +51,7 @@ public class DropdownHackInterface : MonoBehaviour
                     HackInterface.outputCodes.Add(NewOutputHack);
                 }
             }
+            /*Si le Dropdown a été changé entre deux valeurs non-blank, on change le graphe en conséquence.*/
             else
             {
                 if (this.GetComponentInParent<TextButtonHackInterface>().isInput)
@@ -61,7 +64,10 @@ public class DropdownHackInterface : MonoBehaviour
                 }
             }
         }
+        /*On réecris le contenu de tous les boutons. C'est nécessaire car il peut y avoir eu suppression ou ajout de vignette et donc décalage de certaines vignettes*/
         this.GetComponentInParent<HackInterface>().reloadInterface();
+
+        /*On retiens la nouvelle valeur du dropdown*/
         previousValue = this.GetComponent<Dropdown>().value;
 
     }
@@ -69,7 +75,7 @@ public class DropdownHackInterface : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        /*Si la valeur du dropdown a été changé par le joueur, on modifie le graphe en conséquence*/
         if (this.GetComponent<Dropdown>().value != previousValue)
         {
             UpdateHackingGraph();
@@ -77,12 +83,14 @@ public class DropdownHackInterface : MonoBehaviour
         }
     }
 
+    /*Eteint le bouton*/
     public void UpdateOff()
     {
         this.GetComponent<Dropdown>().value = 0;
         previousValue = 0;
     }
 
+    /*Ecris le bouton en blank. Ne sera utilisé que sur le dernier bouton actif*/
     public void UpdateBlank(bool isInput)
     {
         UpdateOptions(isInput);
@@ -90,8 +98,10 @@ public class DropdownHackInterface : MonoBehaviour
         previousValue = 0;
     }
 
+    /*Ecris le bouton avec le contenu de la vignette correspondante, en connaissant le code actif et si c'est un élément fixe du graphe.*/
     public void UpdateOn(bool isInput, bool isFixed, string code)
     {
+        /*Si la vignette est un élement fixe du graphe, le dropdown contient seulement le code actif*/
         if (isFixed)
         {
             this.GetComponent<Dropdown>().ClearOptions();
@@ -112,6 +122,7 @@ public class DropdownHackInterface : MonoBehaviour
             this.GetComponent<Dropdown>().value = 0;
             previousValue = 0;
         }
+        /*Si la vignette n'est pas un element fixe, on appelle UpdateOptions pour ecrire la liste des options, et on place le dropdown sur la valeur active.*/
         else
         {
             this.GetComponent<Dropdown>().value = UpdateOptions(isInput, code);
@@ -119,6 +130,7 @@ public class DropdownHackInterface : MonoBehaviour
         }
     }
 
+    /*Ecrit les differentes options du dropdown et renvoie le numéro correspondant au code envoyer en parametre*/
     private int UpdateOptions(bool isInput, string code = "")
     {
         this.GetComponent<Dropdown>().ClearOptions();
@@ -178,6 +190,7 @@ public class DropdownHackInterface : MonoBehaviour
         return retour;
     }
 
+    /*Récupère HackingAsset du parent.*/
     public void GetHackingAsset(HackingAssetScriptable HackAss)
     {
         HackingAsset = HackAss;
