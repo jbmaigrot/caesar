@@ -108,6 +108,14 @@ public class InputFieldHackerInterface : MonoBehaviour
         {
             this.GetComponent<InputField>().text = "";
             previousValue = this.GetComponent<InputField>().text;
+            if (isInput)
+            {
+                HackInterface.inputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_string = "";
+            }
+            else
+            {
+                HackInterface.outputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_string = "";
+            }            
             this.GetComponent<CanvasGroup>().alpha = 0f;
             this.GetComponent<CanvasGroup>().interactable = false;
             this.GetComponent<CanvasGroup>().blocksRaycasts = false;

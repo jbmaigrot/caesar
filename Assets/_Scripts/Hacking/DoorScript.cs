@@ -7,11 +7,7 @@ public class DoorScript : MonoBehaviour
 {
     bool isClosing=false;
     bool isOccupied=false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
 
     public void OnOpen()
     {
@@ -64,9 +60,5 @@ public class DoorScript : MonoBehaviour
         }
         
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }
