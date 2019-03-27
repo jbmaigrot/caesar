@@ -60,7 +60,7 @@ public class HackInterface : MonoBehaviour, ISelectObject
         }
     }
 
-     /*Fonction appelé lorsque le joueur ferme l'interface*/
+     /*Fonction appelé lorsque le joueur ferme l'interface. A adapter pour le réseau.*/
     public void OnClose()
     {
         /*Initiation du délais de fermeture*/
@@ -76,7 +76,7 @@ public class HackInterface : MonoBehaviour, ISelectObject
                       
     }
 
-    /*Fonction appelé lorsque un objet est hacké par le joueur */
+    /*Fonction appelé lorsque un objet est hacké par le joueur. A adapter pour le réseau*/
     public void SelectedProgrammableObject(GameObject SelectedObject)
     {
         /*Copie du graphe de comportement de l'objet*/

@@ -42,7 +42,7 @@ public class ProgrammableObjectsData : MonoBehaviour, IMessageReceiver
         
     }
 
-    /*Quand le mot en parametre apparait dans le chat, active la vignette OnWord correspondant*/
+    /*Quand le mot en parametre apparait dans le chat, active la vignette OnWord correspondant. Potentielement à adapter un petit peu pour le chat.*/
     public void ChatInstruction(string instruction)
     {
         OnInput("OnWord", instruction);
@@ -84,7 +84,7 @@ public class ProgrammableObjectsData : MonoBehaviour, IMessageReceiver
             this.GetComponentInChildren<DoorScript>().OnClose();
         }
 
-        if(codeoutput == "SendMessage")
+        if(codeoutput == "SendMessage")/*A adapter pour le chat*/
         {
             ScriptChatBox.NewChatContent = parameter +"\n";
         }
