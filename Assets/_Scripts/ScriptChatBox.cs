@@ -7,8 +7,7 @@ using UnityEngine.EventSystems;
 
 public class ScriptChatBox : MonoBehaviour
 {
-    static public Hashtable WordsToLookFor = new Hashtable();
-    public GameObject[] target;
+    public GameObject target;
     static public string NewChatContent;
     private string ChatContent;
     private string justOneWord;
@@ -17,8 +16,6 @@ public class ScriptChatBox : MonoBehaviour
     {
         NewChatContent = "";
         ChatContent = "\n";
-        WordsToLookFor.Add("light", 1);
-        WordsToLookFor.Add("dark", 1);
 
     }
 
@@ -32,12 +29,8 @@ public class ScriptChatBox : MonoBehaviour
             {
                 if ((c == '\n') || (c == '\r') || (c == ' '))
                 {
-                    
-                        for(int i = 0;i< target.Length; i++)
-                        {
-                            ExecuteEvents.Execute<IMessageReceiver>(target[i], null, (x, y) => x.ChatInstruction(justOneWord));
-                        }
-                        
+                    ExecuteEvents.Execute<IMessageReceiver>(target, null, (x, y) => x.ChatInstruction(justOneWord));
+                                         
                     
                     justOneWord = "";
                 }

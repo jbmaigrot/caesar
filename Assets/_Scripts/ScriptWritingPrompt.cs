@@ -8,7 +8,7 @@ public class ScriptWritingPrompt : MonoBehaviour
     private string currentString;
     public GameObject HackInterface;
     private bool isActive;
-   
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,23 +18,23 @@ public class ScriptWritingPrompt : MonoBehaviour
     public void OnMessageSend()
     {
 
-        if (this.GetComponent<InputField>().text[this.GetComponent<InputField>().text.Length-1] == '\n')
+        if (this.GetComponent<InputField>().text[this.GetComponent<InputField>().text.Length - 1] == '\n')
         {
             ScriptChatBox.NewChatContent += this.GetComponent<InputField>().text;
         }
         else
         {
-            ScriptChatBox.NewChatContent += this.GetComponent<InputField>().text+"\n";
+            ScriptChatBox.NewChatContent += this.GetComponent<InputField>().text + "\n";
         }
-           
-            this.GetComponent<InputField>().text = "";
-        
-        
+
+        this.GetComponent<InputField>().text = "";
+
+
     }
     // Update is called once per frame
     void Update()
     {
-       if(this.GetComponent<InputField>().isFocused && Input.GetKeyDown(KeyCode.Return) && !Input.GetKey(KeyCode.RightShift) && !Input.GetKey(KeyCode.LeftShift))
+        if (this.GetComponent<InputField>().isFocused && Input.GetKeyDown(KeyCode.Return) && !Input.GetKey(KeyCode.RightShift) && !Input.GetKey(KeyCode.LeftShift))
         {
             OnMessageSend();
         }

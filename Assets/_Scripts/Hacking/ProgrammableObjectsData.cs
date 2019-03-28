@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ProgrammableObjectsData : MonoBehaviour, IMessageReceiver
+public class ProgrammableObjectsData : MonoBehaviour
 {
     /*Interface de Hack. Utilisé pour envoyer les infos quand l'objets est hacké.*/
     public GameObject HackInterface;
