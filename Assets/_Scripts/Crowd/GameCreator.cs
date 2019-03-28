@@ -15,12 +15,16 @@ public class GameCreator : MonoBehaviour
     public Button MoveButton;
     public Text ChanText;
 
+    public GameObject ScrollPanel;
+    public GameObject ClickableTweet;
+
     public GameObject Player;
 
     public GameObject[] ListZone;
 
     private PnjClass[] _listPnj;
     private GameObject _container;
+    private GameObject _tweetContainer;
 
     private List<ZoneClass> _listZone = new List<ZoneClass>();
 
@@ -34,6 +38,7 @@ public class GameCreator : MonoBehaviour
     void Start()
     {
         _container = GameObject.Find("Crowd");
+        _tweetContainer = GameObject.Find("Content");
         foreach (GameObject zone in ListZone)
         {
             ZoneClass zc = new ZoneClass();
@@ -146,11 +151,28 @@ public class GameCreator : MonoBehaviour
         if (_tweets.tweets.Length > 0)
         {
             float index = Random.Range(0f, _tweets.tweets.Length - 1);
-            ChanText.text += _tweets.tweets[(int)index].tweet;
-            ChanText.text += "\n";
+            //ChanText.text += _tweets.tweets[(int)index].tweet;
+            //ChanText.text += "\n";
             tweetIsWaiting = false;
+
+            Tweet tw = new Tweet();
+            tw.tweet = _tweets.tweets[(int)index].tweet;
+            tw.TweetGameObject = Instantiate(ClickableTweet, ScrollPanel.transform);
+            tw.pnj = _listPnj[Random.Range(0, _listPnj.Length - 1)];
+            tw.TweetGameObject.GetComponentInChildren<Text>().text = tw.tweet;
+            tw.TweetGameObject.GetComponentInChildren<Button>().onClick.AddListener(delegate { ClickOnTweet(tw); });
+
+
+            
+
         }
         
+    }
+
+    void ClickOnTweet(Tweet tw)
+    {
+        //Output this to console when the Button2 is clicked
+        Debug.Log(tw.pnj.Name + " : " +tw.tweet);
     }
 
     private void ResetCrowd()

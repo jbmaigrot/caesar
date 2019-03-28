@@ -6,8 +6,10 @@ using UnityEngine;
 [Serializable]
 public class Tweet
 {
-    //public GameObject TweetGameObject;
+    public GameObject TweetGameObject;
     public string tweet;
+    public PnjClass pnj;
+    public string IdNPC;
     //public bool IsUsed;
 }
 
@@ -15,4 +17,6 @@ public class Tweet
 public class TweetList
 {
     public Tweet[] tweets;
+
+    
 }

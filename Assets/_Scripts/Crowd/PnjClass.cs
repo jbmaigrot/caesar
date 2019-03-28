@@ -11,4 +11,6 @@ public class PnjClass
 	public bool isMoving;
     public GameObject DestinationGameObject;
 
+    
+
 }
