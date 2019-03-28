@@ -33,6 +33,11 @@ MonoBehaviour:
     descriptionWithoutParameter: When I am traversed by something
     parameter_int: 0
     parameter_string: 0
+  - code: OnPress
+    descriptionWithParameter: When I am passed over
+    descriptionWithoutParameter: When I am passed over
+    parameter_int: 0
+    parameter_string: 0
   outputCodes:
   - code: TurnOnLight
     descriptionWithParameter: I turn the light on
@@ -57,5 +62,15 @@ MonoBehaviour:
   - code: OpenDoor
     descriptionWithParameter: I open
     descriptionWithoutParameter: I open
+    parameter_int: 0
+    parameter_string: 0
+  - code: TestInt
+    descriptionWithParameter: I test my int parameter
+    descriptionWithoutParameter: I test my int parameter
+    parameter_int: 1
+    parameter_string: 0
+  - code: Ring
+    descriptionWithParameter: I ring my bell
+    descriptionWithoutParameter: I ring my bell
     parameter_int: 0
     parameter_string: 0
