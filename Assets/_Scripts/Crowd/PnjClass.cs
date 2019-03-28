@@ -10,7 +10,8 @@ public class PnjClass
     public float Speed;
 	public bool isMoving;
     public GameObject DestinationGameObject;
+    public float Time;
+    public float MovingTime;
 
-    
 
 }

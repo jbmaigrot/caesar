@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Collections;
@@ -29,6 +30,7 @@ public class NetworkManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //TODO error : A Native Collection has not been disposed, resulting in a memory leak
         m_Driver = new UdpCNetworkDriver(new INetworkParameter[0]);
         m_Connection = default(NetworkConnection);
 
@@ -39,7 +41,15 @@ public class NetworkManager : MonoBehaviour
 
     public void OnDestroy()
     {
-        m_Driver.Dispose();
+        try
+        {
+            m_Driver.Dispose();
+        }
+        catch (InvalidOperationException e)
+        {
+            Debug.Log(e.Message);
+        }
+       
     }
 
     // Update is called once per frame
@@ -94,9 +104,13 @@ public class NetworkManager : MonoBehaviour
                                     characters.Add(newCharacter.GetComponent<Client_Character>());
                                     //characters[j] = newCharacter.GetComponent<Client_Character>();
                                 }
-                                characters[j].transform.position = new Vector3(x, characters[j].transform.position.y, z);
-                                characters[j].speed.x = stream.ReadFloat(ref readerCtx);
-                                characters[j].speed.z = stream.ReadFloat(ref readerCtx);
+                                if (characters[j] != null)
+                                {
+                                    characters[j].transform.position = new Vector3(x, characters[j].transform.position.y, z);
+                                    characters[j].speed.x = stream.ReadFloat(ref readerCtx);
+                                    characters[j].speed.z = stream.ReadFloat(ref readerCtx);
+                                }
+                                
                                 break;
 
                             /*case Constants.Server_CreateCharacter:
@@ -140,7 +154,7 @@ public class NetworkManager : MonoBehaviour
                         }
                     }
                 }*/
-
+                //TODO error : deconnecte sans raison apparente
                 else if (cmd == NetworkEvent.Type.Disconnect)
                 {
                     Debug.Log("Client got disconnected for some reason");

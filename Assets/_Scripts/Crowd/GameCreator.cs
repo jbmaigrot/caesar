@@ -71,8 +71,6 @@ public class GameCreator : MonoBehaviour
         }
         else
         {
-            // Show results as text
-           // Debug.Log(www.downloadHandler.text);
             string text = www.downloadHandler.text;
             string[] tweets = www.downloadHandler.text.Split(char.Parse(","));
 
@@ -91,17 +89,6 @@ public class GameCreator : MonoBehaviour
 
     void Update()
     {
-        /*Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            Debug.Log("clic");
-            if (Physics.Raycast(ray, out hit, 200))
-            {
-                Player.GetComponent<NavMeshAgent>().destination = hit.point;
-            }
-        }*/
 
         if (Input.GetMouseButtonDown(1))
         {
@@ -113,6 +100,8 @@ public class GameCreator : MonoBehaviour
             }
         }
 
+
+        //FACE A L'OBJET
         foreach (PnjClass pnj in _listPnj)
         {
             NavMeshAgent agent = pnj.PrefabPnj.GetComponent<NavMeshAgent>();
@@ -129,9 +118,6 @@ public class GameCreator : MonoBehaviour
 
                     
 
-            }
-            else
-            {
             }
 
         }
@@ -171,7 +157,6 @@ public class GameCreator : MonoBehaviour
 
     void ClickOnTweet(Tweet tw)
     {
-        //Output this to console when the Button2 is clicked
         Debug.Log(tw.pnj.Name + " : " +tw.tweet);
     }
 

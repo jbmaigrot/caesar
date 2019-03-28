@@ -18,7 +18,6 @@ public class ZoneClass
                 if (child.tag == "ConnectedObject")
                 {
                     bool test = child.gameObject != null;
-                    Debug.Log("ConnectedObject " + test);
                     ConnectedGameObject = child.gameObject;
                 }
 
@@ -44,13 +43,24 @@ public class ZoneClass
             slot.IsUsed = false;
         }
     }
+
+    public void EmptySlot(GameObject scGameObject)
+    {
+        SlotClass slotToEmpty = _listSlots.Find(x => x.SlotGameObject == scGameObject);
+        if (slotToEmpty != null)
+        {
+            slotToEmpty.PnjInSlot = null;
+            slotToEmpty.IsUsed = false;
+        }
+        
+    }
+    
 	
 	public SlotClass GetFreeSlot(){
 		foreach(SlotClass slot in _listSlots){
 			if(!slot.IsUsed){
 					slot.IsUsed = true;
 			    bool test = slot.ConnectedGameObject != null;
-			    Debug.Log("GetFreeSlot " + test);
                 return slot;
 			}
 		}
@@ -62,6 +72,7 @@ public class SlotClass
 {
     public GameObject SlotGameObject;
     public GameObject ConnectedGameObject;
+    public PnjClass PnjInSlot;
     public bool IsUsed = false;
 
 
