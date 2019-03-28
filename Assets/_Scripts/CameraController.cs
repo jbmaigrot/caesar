@@ -15,7 +15,7 @@ public class CameraController : MonoBehaviour
     public int cameraMode;
 
     [Header("Default value are X = 28, Y = 50, Z = 27.5.")]
-    public Vector3 characterOffset = new Vector3(28.0f, 50.0f, 27.5f);
+    public Vector3 characterOffset = new Vector3(28.0f, 20.0f, 27.5f);
 
     [Header("Default value are X = 50, Y = 225, Z = 0.")]
     public Vector3 defaultCameraRotation = new Vector3(50.0f, 225.0f, 0.0f);

@@ -28,6 +28,11 @@ public class ProgrammableObjectsData : MonoBehaviour
         {
             a.timeBeforeTransmit.Clear();
         }
+
+        foreach(InOutVignette ryan in Initiator.initialOutputActions)
+        {
+            OnOutput(ryan.code, ryan.parameter_string, ryan.parameter_int);
+        }
     }
 
     /*Si l'objet est cliqué à distance suffisament courte, ouvre l'interface de hack. Cette fonction doit être adapté pour le réseau.*/
@@ -42,6 +47,14 @@ public class ProgrammableObjectsData : MonoBehaviour
         
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other == HackInterface.GetComponent<HackInterface>().bonhomme.GetComponent<Collider>())
+        {
+            OnInput("OnPress");
+        }
+    }
+
     /*Quand le mot en parametre apparait dans le chat, active la vignette OnWord correspondant. Potentielement à adapter un petit peu pour le chat.*/
     public void ChatInstruction(string instruction)
     {
@@ -49,11 +62,11 @@ public class ProgrammableObjectsData : MonoBehaviour
     }
 
     /*Quand la vignette input désignée en paramêtre est activé, active toute les fléches qui y sont relié*/
-    public void OnInput(string codeinput, string parameter = "")
+    public void OnInput(string codeinput, string parameter_string = "", int parameter_int = 0)
     {
         foreach(Arrow ryan in graph)
         {
-            if(inputCodes.Count>ryan.input && inputCodes[ryan.input].code == codeinput && inputCodes[ryan.input].parameter_string == parameter)
+            if(inputCodes.Count>ryan.input && inputCodes[ryan.input].code == codeinput && inputCodes[ryan.input].parameter_string == parameter_string && inputCodes[ryan.input].parameter_int == parameter_int)
             {
                 ryan.timeBeforeTransmit.Add(ryan.transmitTime);
             }
@@ -61,7 +74,7 @@ public class ProgrammableObjectsData : MonoBehaviour
     }
 
     /*Quand la vignette output désigné est activé, fait l'effet correspondant*/
-    void OnOutput(string codeoutput, string parameter = "")
+    void OnOutput(string codeoutput, string parameter_string = "", int parameter_int = 0)
     {
         if(codeoutput == "TurnOnLight")
         {
@@ -86,7 +99,17 @@ public class ProgrammableObjectsData : MonoBehaviour
 
         if(codeoutput == "SendMessage")/*A adapter pour le chat*/
         {
-            ScriptChatBox.NewChatContent = parameter +"\n";
+            ScriptChatBox.NewChatContent = parameter_string +"\n";
+        }
+
+        if(codeoutput == "TestInt")
+        {
+            Debug.Log(parameter_int.ToString());
+        }
+
+        if(codeoutput == "Ring")
+        {
+            Debug.Log("ring-a-ling-a-ling, this is sound");
         }
     }
 
@@ -102,7 +125,7 @@ public class ProgrammableObjectsData : MonoBehaviour
                 {
                     if (outputCodes.Count > graph[i].output)
                     {
-                        OnOutput(outputCodes[graph[i].output].code, outputCodes[graph[i].output].parameter_string);
+                        OnOutput(outputCodes[graph[i].output].code, outputCodes[graph[i].output].parameter_string, outputCodes[graph[i].output].parameter_int);
                     }
                     graph[i].timeBeforeTransmit.RemoveAt(j);
                 }

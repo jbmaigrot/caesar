@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef64df2bda8287144916e51fd7115ea3, type: 3}
-  m_Name: DoorAsset
+  m_Name: PressurePlateAsset
   m_EditorClassIdentifier: 
   accessibleInputCode:
   - OnWord
@@ -21,20 +21,12 @@ MonoBehaviour:
     parameter_int: 0
     parameter_string: 
     is_fixed: 1
-  - code: OnInteract
-    parameter_int: 0
-    parameter_string: 
-    is_fixed: 1
-  - code: OnPassInside
+  - code: OnPress
     parameter_int: 0
     parameter_string: 
     is_fixed: 1
   outputCodes:
-  - code: OpenDoor
-    parameter_int: 0
-    parameter_string: 
-    is_fixed: 1
-  - code: CloseDoor
+  - code: Ring
     parameter_int: 0
     parameter_string: 
     is_fixed: 1
@@ -43,7 +35,4 @@ MonoBehaviour:
     output: 0
     transmitTime: 0.2
     timeBeforeTransmit: []
-  - input: 2
-    output: 1
-    transmitTime: 0.2
-    timeBeforeTransmit: []
+  initialOutputActions: []

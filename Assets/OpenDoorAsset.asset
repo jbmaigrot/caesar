@@ -10,41 +10,37 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef64df2bda8287144916e51fd7115ea3, type: 3}
-  m_Name: LightAsset
+  m_Name: OpenDoorAsset
   m_EditorClassIdentifier: 
   accessibleInputCode:
   - OnWord
   accessibleOutputCode:
   - SendMessage
   inputCodes:
-  - code: OnWord
+  - code: OnHack
     parameter_int: 0
-    parameter_string: lighton
-    is_fixed: 0
-  - code: OnWord
+    parameter_string: 
+    is_fixed: 1
+  - code: OnInteract
     parameter_int: 0
-    parameter_string: lightoff
-    is_fixed: 0
+    parameter_string: 
+    is_fixed: 1
+  - code: OnPassInside
+    parameter_int: 0
+    parameter_string: 
+    is_fixed: 1
   outputCodes:
-  - code: TurnOnLight
+  - code: OpenDoor
     parameter_int: 0
     parameter_string: 
     is_fixed: 1
-  - code: TurnOffLight
+  - code: CloseDoor
     parameter_int: 0
     parameter_string: 
     is_fixed: 1
-  graph:
-  - input: 0
-    output: 0
-    transmitTime: 0.2
-    timeBeforeTransmit: []
-  - input: 1
-    output: 1
-    transmitTime: 0.2
-    timeBeforeTransmit: []
+  graph: []
   initialOutputActions:
-  - code: TurnOnLight
+  - code: OpenDoor
     parameter_int: 0
     parameter_string: 
     is_fixed: 0

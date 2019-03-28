@@ -12,5 +12,7 @@ public class ProgrammableObjectsScriptable : ScriptableObject
     public List<InOutVignette> inputCodes = new List<InOutVignette>();
     public List<InOutVignette> outputCodes = new List<InOutVignette>();
     public List<Arrow> graph = new List<Arrow>();
-    
+
+    public List<InOutVignette> initialOutputActions = new List<InOutVignette>();
+
 }
