@@ -157,7 +157,6 @@ public class NetworkManager : MonoBehaviour
         {
             writer.Write(Constants.Client_SetDestination);
             writer.Write(destination.x);
-            writer.Write(destination.y);
             writer.Write(destination.z);
 
             m_Connection.Send(m_Driver, writer);
