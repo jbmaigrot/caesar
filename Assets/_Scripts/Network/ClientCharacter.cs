@@ -17,7 +17,6 @@ public class ClientCharacter : MonoBehaviour
 
     public void OnMouseOver()
     {
-        Debug.Log("voiture");
         if (Input.GetMouseButtonDown(1))
         {
             networkManager.Tacle(name);

@@ -122,11 +122,18 @@ public class NetworkManager : MonoBehaviour
                                 {
                                     if (isStunned==1)
                                     {
-                                        characters[j].gameObject.GetComponentInChildren<MeshRenderer>().material.color = Color.red;
+                                        foreach (MeshRenderer ryan in characters[j].gameObject.GetComponentsInChildren<MeshRenderer>())
+                                        {
+                                            ryan.material.color = Color.red;
+                                        }
+
                                     }
                                     else
                                     {
-                                        characters[j].gameObject.GetComponentInChildren<MeshRenderer>().material.color = Color.white;
+                                        foreach (MeshRenderer ryan in characters[j].gameObject.GetComponentsInChildren<MeshRenderer>())
+                                        {
+                                            ryan.material.color = Color.white;
+                                        }
                                     }
                                     characters[j].transform.SetPositionAndRotation(new Vector3(x, characters[j].transform.position.y, z), Quaternion.Euler(0, angle, 0));
                                     characters[j].speed.x = xSpeed;
