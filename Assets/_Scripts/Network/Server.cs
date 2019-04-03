@@ -86,6 +86,15 @@ public class Server : MonoBehaviour
                             players[i].gameObject.GetComponent<NavMeshAgent>().SetDestination(new Vector3(dest_x, 0, dest_z));
                             break;
 
+                        case Constants.Client_Tacle:
+                            int name = (int) stream.ReadUInt(ref readerCtx);
+                            if (players[i].GetComponent<ServerCharacter>().canStun && !players[i].GetComponent<ServerCharacter>().isStunned && name != i && Vector3.Distance(players[i].transform.position, players[name].transform.position) < 30 )
+                            {
+                                players[i].GetComponent<ServerCharacter>().doStun();
+                                players[name].GetComponent<ServerCharacter>().getStun();
+                            }                                
+                            break;
+
                         default:
                             break;
                     }
@@ -116,6 +125,7 @@ public class Server : MonoBehaviour
                     writer.Write(characters[j].rotation.eulerAngles.y);
                     writer.Write(characters[j].GetComponent<NavMeshAgent>().velocity.x);
                     writer.Write(characters[j].GetComponent<NavMeshAgent>().velocity.z);
+                    writer.Write(characters[j].gameObject.GetComponent<ServerCharacter>().isStunned?1:0);
                 }
 
                 //close snapshot

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8117373045777118716}
   - component: {fileID: 8117373045777118714}
   - component: {fileID: 8117373045777118717}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Conducteur_bas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 8117373045871018311}
   - component: {fileID: 8117373045871018309}
   - component: {fileID: 8117373045871018308}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Index1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8117373046184121179}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Corps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 8117373046193137025}
   - component: {fileID: 8117373046193137039}
   - component: {fileID: 8117373046193137038}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Visiere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 8117373046447073099}
   - component: {fileID: 8117373046447073097}
   - component: {fileID: 8117373046447073096}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Conducteur_bas1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -351,7 +351,7 @@ GameObject:
   - component: {fileID: 8117373046713889988}
   - component: {fileID: 8117373046713889986}
   - component: {fileID: 8117373046713889989}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -426,7 +426,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8117373046797846832}
-  - component: {fileID: 8117373046797846844}
   - component: {fileID: 8117373046797846847}
   - component: {fileID: 8117373046797846846}
   m_Layer: 0
@@ -457,28 +456,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!195 &8117373046797846844
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8117373046797846833}
-  m_Enabled: 0
-  m_AgentTypeID: 0
-  m_Radius: 0.006
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 1
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!136 &8117373046797846847
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -488,11 +465,11 @@ CapsuleCollider:
   m_GameObject: {fileID: 8117373046797846833}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.0077157724
-  m_Height: 1
+  m_Enabled: 1
+  m_Radius: 0.006
+  m_Height: 0.03
   m_Direction: 1
-  m_Center: {x: -0.00015522956, y: 0, z: -0.0010082185}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8117373046797846846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -506,6 +483,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: {x: 0, y: 0, z: 0}
+  name: 0
+  networkManager: {fileID: 0}
 --- !u!1 &8117373046909238050
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,7 +496,7 @@ GameObject:
   - component: {fileID: 8117373046909238051}
   - component: {fileID: 8117373046909238049}
   - component: {fileID: 8117373046909238048}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -594,7 +573,7 @@ GameObject:
   - component: {fileID: 8117373046969307799}
   - component: {fileID: 8117373046969307797}
   - component: {fileID: 8117373046969307796}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Baton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -669,7 +648,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8117373047026143570}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Doigts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -704,7 +683,7 @@ GameObject:
   - component: {fileID: 8117373047282884623}
   - component: {fileID: 8117373047282884621}
   - component: {fileID: 8117373047282884620}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Index
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -781,7 +760,7 @@ GameObject:
   - component: {fileID: 8117373047364299221}
   - component: {fileID: 8117373047364299219}
   - component: {fileID: 8117373047364299218}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Pouce
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -858,7 +837,7 @@ GameObject:
   - component: {fileID: 8117373047710851875}
   - component: {fileID: 8117373047710851873}
   - component: {fileID: 8117373047710851872}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Conducteur_haut
   m_TagString: Untagged
   m_Icon: {fileID: 0}

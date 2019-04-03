@@ -107,19 +107,30 @@ public class NetworkManager : MonoBehaviour
                                 float angle = stream.ReadFloat(ref readerCtx);
                                 float xSpeed = stream.ReadFloat(ref readerCtx);
                                 float zSpeed = stream.ReadFloat(ref readerCtx);
+                                int isStunned = (int)stream.ReadUInt(ref readerCtx);
 
                                 if (j >= characters.Count)
                                 {
                                     GameObject newCharacter = Instantiate(characterPrefab);
-                                    characters.Add(newCharacter.GetComponent<Client_Character>());
+                                    newCharacter.GetComponent<Client_Character>().name = j;
+                                    newCharacter.GetComponent<Client_Character>().networkManager = this;
+                                   characters.Add(newCharacter.GetComponent<Client_Character>());
+
                                     //characters[j] = newCharacter.GetComponent<Client_Character>();
                                 }
                                 if (characters[j] != null)
                                 {
-                                    //characters[j].transform.position = new Vector3(x, characters[j].transform.position.y, z);
+                                    if (isStunned==1)
+                                    {
+                                        characters[j].gameObject.GetComponentInChildren<MeshRenderer>().material.color = Color.red;
+                                    }
+                                    else
+                                    {
+                                        characters[j].gameObject.GetComponentInChildren<MeshRenderer>().material.color = Color.white;
+                                    }
                                     characters[j].transform.SetPositionAndRotation(new Vector3(x, characters[j].transform.position.y, z), Quaternion.Euler(0, angle, 0));
                                     characters[j].speed.x = xSpeed;
-                                    characters[j].speed.z = zSpeed;
+                                    characters[j].speed.z = zSpeed;                                                                     
                                 }
                                 break;
 
@@ -153,7 +164,18 @@ public class NetworkManager : MonoBehaviour
             m_Connection.Send(m_Driver, writer);
         }
     }
-    
+
+    public void Tacle(int name)
+    {
+        using (var writer = new DataStreamWriter(32, Allocator.Temp))
+        {
+            writer.Write(Constants.Client_Tacle);
+            writer.Write(name);
+
+            m_Connection.Send(m_Driver, writer);
+        }
+    }
+
 
     public void OnApplicationQuit()
     {

@@ -198,6 +198,7 @@ GameObject:
   - component: {fileID: 866463001}
   - component: {fileID: 866463000}
   - component: {fileID: 8375677160009263585}
+  - component: {fileID: 4394115987652951431}
   m_Layer: 0
   m_Name: Drone_Proto
   m_TagString: PNJ
@@ -257,11 +258,25 @@ CapsuleCollider:
   m_GameObject: {fileID: 866462999}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.0077157724
-  m_Height: 1
+  m_Height: 0.03
   m_Direction: 1
   m_Center: {x: -0.00015522956, y: 0, z: -0.0010082185}
+--- !u!114 &4394115987652951431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866462999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58279579c7fc0c345a9bf60c1d34979c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isStunned: 0
+  canStun: 0
 --- !u!1 &904627408
 GameObject:
   m_ObjectHideFlags: 0

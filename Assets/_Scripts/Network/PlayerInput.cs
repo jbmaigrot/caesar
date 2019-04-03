@@ -30,6 +30,8 @@ public class PlayerInput : MonoBehaviour
                     networkManager.SetDestination(hit.point);
                 }
             }
+
+            
         }
     }
 }
