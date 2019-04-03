@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Client_Character : MonoBehaviour
+public class ClientCharacter : MonoBehaviour
 {
     public Vector3 speed = new Vector3(0, 0, 0);
     public int name;
@@ -11,10 +11,11 @@ public class Client_Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         transform.position = transform.position + speed * Time.deltaTime;
     }
 
-    void OnMouseOver()
+    public void OnMouseOver()
     {
         Debug.Log("voiture");
         if (Input.GetMouseButtonDown(1))

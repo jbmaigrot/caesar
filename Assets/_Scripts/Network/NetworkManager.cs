@@ -20,7 +20,7 @@ public class NetworkManager : MonoBehaviour
     public IPv4UDPSocket socket;
 
     public CameraController cameraController;
-    public List<Client_Character> characters;
+    public List<ClientCharacter> characters;
     public GameObject characterPrefab;
 
     public bool done;
@@ -112,9 +112,9 @@ public class NetworkManager : MonoBehaviour
                                 if (j >= characters.Count)
                                 {
                                     GameObject newCharacter = Instantiate(characterPrefab);
-                                    newCharacter.GetComponent<Client_Character>().name = j;
-                                    newCharacter.GetComponent<Client_Character>().networkManager = this;
-                                   characters.Add(newCharacter.GetComponent<Client_Character>());
+                                    newCharacter.GetComponent<ClientCharacter>().name = j;
+                                    newCharacter.GetComponent<ClientCharacter>().networkManager = this;
+                                   characters.Add(newCharacter.GetComponent<ClientCharacter>());
 
                                     //characters[j] = newCharacter.GetComponent<Client_Character>();
                                 }
