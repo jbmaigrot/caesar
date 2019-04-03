@@ -14,11 +14,12 @@ using Serialization = NetStack.Serialization;
 
 public class NetworkManager : MonoBehaviour
 {
-    public string ServerIP = "localhost";
+    public string ServerIP = "127.0.0.1"; //localhost by default
     public UdpCNetworkDriver m_Driver;
     public NetworkConnection m_Connection;
     public IPv4UDPSocket socket;
 
+    public CameraController cameraController;
     public List<Client_Character> characters;
     public GameObject characterPrefab;
 
@@ -92,12 +93,21 @@ public class NetworkManager : MonoBehaviour
                         switch (type)
                         {
                             case Constants.Server_Snapshot:
+                                int k = (int)stream.ReadUInt(ref readerCtx);
+                                if (k < characters.Count)
+                                {
+                                    cameraController.characterToFollow = characters[k].gameObject;
+                                }
                                 break;
 
                             case Constants.Server_MoveCharacter:
                                 int j = (int)stream.ReadUInt(ref readerCtx);
                                 float x = stream.ReadFloat(ref readerCtx);
                                 float z = stream.ReadFloat(ref readerCtx);
+                                float angle = stream.ReadFloat(ref readerCtx);
+                                float xSpeed = stream.ReadFloat(ref readerCtx);
+                                float zSpeed = stream.ReadFloat(ref readerCtx);
+
                                 if (j >= characters.Count)
                                 {
                                     GameObject newCharacter = Instantiate(characterPrefab);
@@ -106,23 +116,12 @@ public class NetworkManager : MonoBehaviour
                                 }
                                 if (characters[j] != null)
                                 {
-                                    characters[j].transform.position = new Vector3(x, characters[j].transform.position.y, z);
-                                    characters[j].speed.x = stream.ReadFloat(ref readerCtx);
-                                    characters[j].speed.z = stream.ReadFloat(ref readerCtx);
+                                    //characters[j].transform.position = new Vector3(x, characters[j].transform.position.y, z);
+                                    characters[j].transform.SetPositionAndRotation(new Vector3(x, characters[j].transform.position.y, z), Quaternion.Euler(0, angle, 0));
+                                    characters[j].speed.x = xSpeed;
+                                    characters[j].speed.z = zSpeed;
                                 }
-                                
                                 break;
-
-                            /*case Constants.Server_CreateCharacter:
-                                int j1 = (int)stream.ReadUInt(ref readerCtx);
-                                float x1 = stream.ReadFloat(ref readerCtx);
-                                float z1 = stream.ReadFloat(ref readerCtx);
-                                GameObject newCharacter = Instantiate(characterPrefab);
-                                characters[j1] = newCharacter.GetComponent<Client_Character>();
-                                characters[j1].transform.position = new Vector3(x1, characters[j1].transform.position.y, z1);
-                                characters[j1].speed.x = stream.ReadFloat(ref readerCtx);
-                                characters[j1].speed.z = stream.ReadFloat(ref readerCtx);
-                                break;*/
 
                             default:
                                 break;
@@ -132,28 +131,6 @@ public class NetworkManager : MonoBehaviour
                     }
                 }
 
-                /*else if (cmd == NetworkEvent.Type.Data)
-                {
-                    var readerCtx = default(DataStreamReader.Context);
-                    var type = stream.ReadUInt(ref readerCtx);
-
-                    if (type == Constants.Server_Snapshot)
-                    {
-                        type = stream.ReadUInt(ref readerCtx);
-
-                        while (type != Constants.Server_SnapshotEnd)
-                        {
-                            uint j = stream.ReadUInt(ref readerCtx);
-                            float x = stream.ReadFloat(ref readerCtx);
-                            float z = stream.ReadFloat(ref readerCtx);
-                            characters[j].transform.position = new Vector3(x, characters[j].transform.position.y, z);
-                            characters[j].speed.x = stream.ReadFloat(ref readerCtx);
-                            characters[j].speed.z = stream.ReadFloat(ref readerCtx);
-
-                            type = stream.ReadUInt(ref readerCtx);
-                        }
-                    }
-                }*/
                 //TODO error : deconnecte sans raison apparente
                 else if (cmd == NetworkEvent.Type.Disconnect)
                 {

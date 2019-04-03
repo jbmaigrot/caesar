@@ -43,7 +43,7 @@ public class Server : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log(Mathf.Round(1f / Time.deltaTime));
+        //Debug.Log(Mathf.Round(1f / Time.deltaTime)); //Framerate
 
         m_Driver.ScheduleUpdate().Complete();
 
@@ -102,6 +102,7 @@ public class Server : MonoBehaviour
             {
                 //snapshot start
                 writer.Write(Constants.Server_Snapshot);
+                writer.Write(0); // (Temp 0) character to follow 
 
                 var n = characters.Count;
 
@@ -112,20 +113,10 @@ public class Server : MonoBehaviour
                     writer.Write(j);
                     writer.Write(characters[j].position.x);
                     writer.Write(characters[j].position.z);
+                    writer.Write(characters[j].rotation.eulerAngles.y);
                     writer.Write(characters[j].GetComponent<NavMeshAgent>().velocity.x);
                     writer.Write(characters[j].GetComponent<NavMeshAgent>().velocity.z);
                 }
-
-                //send new characters USELESS?
-                /*for (int j = n; j < n + newCharacters.Count; j++)
-                {
-                    writer.Write(Constants.Server_CreateCharacter);
-                    writer.Write(j);
-                    writer.Write(characters[j].position.x);
-                    writer.Write(characters[j].position.z);
-                    writer.Write(characters[j].GetComponent<NavMeshAgent>().velocity.x);
-                    writer.Write(characters[j].GetComponent<NavMeshAgent>().velocity.z);
-                }*/
 
                 //close snapshot
                 writer.Write(Constants.Server_SnapshotEnd);
@@ -136,16 +127,7 @@ public class Server : MonoBehaviour
                 {
                     m_Driver.Send(m_Connections[k], writer);
                 }
-
-                //remove characters, which were sent USELESS?
-                //newCharacters.Clear();
             }
         }
     }
-
-    // Add a character (queue for sending it to clients) USELESS?
-    /*public void AddCharacter(Transform newCharacter)
-    {
-        newCharacters.Add(newCharacter);
-    }*/
 }
