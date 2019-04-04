@@ -91,13 +91,13 @@ public class ProgrammableObjectsData : MonoBehaviour
 
         if(codeoutput == "OpenDoor")
         {
-            this.GetComponentInParent<Transform>().GetComponentInChildren<DoorScript>().OnOpen();
+            this.GetComponentInChildren<DoorScript>().OnOpen();
 
         }
 
         if(codeoutput == "CloseDoor")
         {
-            this.GetComponentInParent<Transform>().GetComponentInChildren<DoorScript>().OnClose();
+            this.GetComponentInChildren<DoorScript>().OnClose();
         }
 
         if(codeoutput == "SendMessage")/*A adapter pour le chat*/
