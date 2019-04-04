@@ -5,8 +5,11 @@ using UnityEngine.EventSystems;
 
 public class ProgrammableObjectsData : MonoBehaviour
 {
-    /*Interface de Hack. Utilisé pour envoyer les infos quand l'objets est hacké.*/
+    /*Interface de Hack. Utilisé pour envoyer les infos quand l'objets est hacké. Seulement coté client.*/
     public GameObject HackInterface;
+
+    /*Server. Seulement coté serveur*/
+    public GameObject Server;
 
     /*Variables contenant le graphe de comportement de l'objet*/
     public List<InOutVignette> inputCodes=new List<InOutVignette>();
@@ -110,6 +113,17 @@ public class ProgrammableObjectsData : MonoBehaviour
         if(codeoutput == "Ring")
         {
             Debug.Log("ring-a-ling-a-ling, this is sound");
+        }
+
+        if(codeoutput == "Stun")
+        {
+            foreach (Transform ryan in Server.GetComponent<Server>().characters)
+            {
+                if (((int) Vector3.Distance(ryan.position, this.transform.position)) < parameter_int)
+                {
+                    ryan.GetComponent<ServerCharacter>().getStun();
+                }
+            }
         }
     }
 

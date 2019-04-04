@@ -99,6 +99,14 @@ public class Server : MonoBehaviour
                             //TO DO
                             break;
 
+                        case Constants.Client_GetHack:
+                            //TO DO
+                            break;
+
+                        case Constants.Client_SetHack:
+                            //TO DO
+                            break;
+
                         default:
                             break;
                     }

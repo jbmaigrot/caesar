@@ -140,6 +140,10 @@ public class NetworkManager : MonoBehaviour
                                 chat.AddMessage("");
                                 break;
 
+                            case Constants.Server_GetHack:
+                                //TO DO
+                                break;
+
                             default:
                                 break;
                         }
@@ -195,6 +199,16 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
+    public void GetHackStatus(int hackableId)
+    {
+        using (var writer = new DataStreamWriter(32, Allocator.Temp))
+        {
+            writer.Write(Constants.Client_GetHack);
+            writer.Write(hackableId);
+
+            m_Connection.Send(m_Driver, writer);
+        }
+    }
 
     public void OnApplicationQuit()
     {
