@@ -21,10 +21,17 @@ public class CameraController : MonoBehaviour
     [Header("Default value is 50. Apply to the camera itself.")]
     public float defaultCameraXRotation = 50.0f;
 
-    public float smoothTime = 0.6F;
+    public float smoothTime = 0.6f;
     public float keyboardSpeed = 10.0f;
     private Vector3 velocity = Vector3.zero;
     private Camera cam;
+
+    public float zoomFactor = 0.8f; //goes from 0 to 1
+    private float targetZoomFactor;
+    public float zoomSpeed = 0.5f;
+    private float zoomVelocity = 0.0f;
+    private float zoomSmoothTime = 0.2f;
+    public Vector3 zoomMaxPosition;
 
     public Plane floorPlane;
 
@@ -53,6 +60,9 @@ public class CameraController : MonoBehaviour
         }
 
         floorPlane = new Plane(Vector3.up, new Vector3(0, 0, 0));
+
+        zoomMaxPosition = transform.localPosition / zoomFactor;
+        targetZoomFactor = zoomFactor;
 
         cameraParent.transform.rotation = Quaternion.Euler(new Vector3(0.0f, defaultCameraYRotation, 0.0f));
         transform.localRotation = Quaternion.Euler(new Vector3(defaultCameraXRotation, 0.0f, 0.0f));
@@ -107,6 +117,14 @@ public class CameraController : MonoBehaviour
         }
         
         cameraParent.transform.position = Vector3.SmoothDamp(cameraParent.transform.position, parentTargetPosition, ref velocity, smoothTime);
+
+        targetZoomFactor -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
+        targetZoomFactor = Mathf.Clamp(targetZoomFactor, 0.05f, 1.0f);
+
+        zoomFactor = Mathf.SmoothDamp(zoomFactor, targetZoomFactor, ref zoomVelocity, zoomSmoothTime);
+        transform.localPosition = zoomMaxPosition * zoomFactor;
+
+
     }
 
     void CameraModeButtonOnClick()
