@@ -10,18 +10,19 @@ public class CameraController : MonoBehaviour
 
     public Button cameraModeButton;
     public GameObject characterToFollow;
+    public GameObject cameraParent;
 
     [Header("0 : character, 1 : free")]
     public int cameraMode;
 
-    [Header("Default value are X = 28, Y = 50, Z = 27.5.")]
-    public Vector3 characterOffset = new Vector3(28.0f, 20.0f, 27.5f);
+    [Header("Default value is 225. Apply to the camera's parent.")]
+    public float defaultCameraYRotation = 225.0f;
 
-    [Header("Default value are X = 50, Y = 225, Z = 0.")]
-    public Vector3 defaultCameraRotation = new Vector3(50.0f, 225.0f, 0.0f);
-    
+    [Header("Default value is 50. Apply to the camera itself.")]
+    public float defaultCameraXRotation = 50.0f;
 
     public float smoothTime = 0.6F;
+    public float keyboardSpeed = 10.0f;
     private Vector3 velocity = Vector3.zero;
     private Camera cam;
 
@@ -53,14 +54,15 @@ public class CameraController : MonoBehaviour
 
         floorPlane = new Plane(Vector3.up, new Vector3(0, 0, 0));
 
-        transform.rotation = Quaternion.Euler(defaultCameraRotation);
+        cameraParent.transform.rotation = Quaternion.Euler(new Vector3(0.0f, defaultCameraYRotation, 0.0f));
+        transform.localRotation = Quaternion.Euler(new Vector3(defaultCameraXRotation, 0.0f, 0.0f));
     }
 
-    // LateUpdate for the movement to happen after all updates
     void Update()
     {
-        Vector3 targetPosition = transform.position;
+        Vector3 parentTargetPosition = cameraParent.transform.position;
 
+        //Check if we are in the borders
         Vector3 mousePosition = Input.mousePosition;
         bool isInsideFreeModeBorder;
 
@@ -74,9 +76,16 @@ public class CameraController : MonoBehaviour
             isInsideFreeModeBorder = false;
         }
 
+        //Check if we have keyboard input
+        Vector2 axesInput = ReadKeyboardInput();
+        if (axesInput != Vector2.zero)
+        {
+            cameraMode = MODE_FREE;
+        }
+
         switch (cameraMode) {
             case MODE_CHARA:
-                targetPosition = characterToFollow.transform.position + characterOffset;
+                parentTargetPosition = characterToFollow.transform.position;
                 break;
             case MODE_FREE:
 
@@ -86,16 +95,18 @@ public class CameraController : MonoBehaviour
                     float enter = 0.0f;
                     if (floorPlane.Raycast(ray, out enter))
                     {
-                        targetPosition = ray.GetPoint(enter) + characterOffset;
+                        parentTargetPosition = ray.GetPoint(enter);
                     }
                 }
+
+                parentTargetPosition = TargetPositionFromKeyboardInput(axesInput, parentTargetPosition);
                 break;
             default:
                 //
                 break;
         }
-
-        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
+        
+        cameraParent.transform.position = Vector3.SmoothDamp(cameraParent.transform.position, parentTargetPosition, ref velocity, smoothTime);
     }
 
     void CameraModeButtonOnClick()
@@ -114,5 +125,21 @@ public class CameraController : MonoBehaviour
         {
             return false;
         }
+    }
+
+    Vector2 ReadKeyboardInput ()
+    {
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
+        Vector2 axesInput = new Vector2(h, v);
+        return axesInput;
+    }
+
+    Vector3 TargetPositionFromKeyboardInput(Vector2 axesInput, Vector3 curPosition)
+    {
+        Vector3 targetPosition = curPosition 
+            + (axesInput.x * cameraParent.transform.right + axesInput.y * cameraParent.transform.forward) * keyboardSpeed;
+        
+        return targetPosition;
     }
 }
