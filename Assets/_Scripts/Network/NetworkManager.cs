@@ -184,10 +184,12 @@ public class NetworkManager : MonoBehaviour
 
     public void Message(string message)
     {
-        using (var writer = new DataStreamWriter(32, Allocator.Temp))
+        using (var writer = new DataStreamWriter(256, Allocator.Temp))
         {
             writer.Write(Constants.Client_Message);
             char[] chars = new char[message.Length + 1];
+            message.ToCharArray().CopyTo(chars, 0);
+            chars[message.Length] = '\0';
             // message.ToCharArray()
             m_Connection.Send(m_Driver, writer);
         }

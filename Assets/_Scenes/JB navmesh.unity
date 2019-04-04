@@ -447,10 +447,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraModeButton: {fileID: 1682416843}
   characterToFollow: {fileID: 0}
+  cameraParent: {fileID: 0}
   cameraMode: 0
-  characterOffset: {x: 28, y: 50, z: 27.5}
-  defaultCameraRotation: {x: 50, y: 225, z: 0}
+  defaultCameraYRotation: 225
+  defaultCameraXRotation: 50
   smoothTime: 0.6
+  keyboardSpeed: 10
+  zoomFactor: 0.8
+  zoomSpeed: 0.5
+  zoomMaxPosition: {x: 0, y: 0, z: 0}
   freeModeBorder: 0.1
 --- !u!81 &85727975
 AudioListener:
@@ -673,7 +678,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2100442942}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.9999999
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -758,6 +763,7 @@ MonoBehaviour:
   characters: []
   characterPrefab: {fileID: 8117373046797846833, guid: 3a5aa8b93c4f72d43a163eea5952eebd,
     type: 3}
+  chat: {fileID: 0}
   done: 0
 --- !u!4 &244240629
 Transform:
@@ -940,6 +946,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c749c4713c283f143bdf32256d50e2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  networkManager: {fileID: 0}
+  chatBox: {fileID: 0}
 --- !u!1 &334801179
 GameObject:
   m_ObjectHideFlags: 0
@@ -1741,6 +1749,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722965817142793980, guid: 2eb37019bedf04e4da03c14045794e29,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722965817142793980, guid: 2eb37019bedf04e4da03c14045794e29,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2eb37019bedf04e4da03c14045794e29, type: 3}
@@ -46553,7 +46571,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000050939278, y: -0.000053301363}
+  m_AnchoredPosition: {x: 0.000050939278, y: 0.000041692187}
   m_SizeDelta: {x: 0, y: 415.9}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &2066937572
