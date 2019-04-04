@@ -95,6 +95,10 @@ public class Server : MonoBehaviour
                             }                                
                             break;
 
+                        case Constants.Client_Message:
+                            //TO DO
+                            break;
+
                         default:
                             break;
                     }

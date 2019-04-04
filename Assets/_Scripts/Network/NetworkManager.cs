@@ -22,6 +22,7 @@ public class NetworkManager : MonoBehaviour
     public CameraController cameraController;
     public List<ClientCharacter> characters;
     public GameObject characterPrefab;
+    public ClientChatInput chat;
 
     public bool done;
 
@@ -134,6 +135,11 @@ public class NetworkManager : MonoBehaviour
                                 }
                                 break;
 
+                            case Constants.Server_Message:
+                                //TO DO
+                                chat.AddMessage("");
+                                break;
+
                             default:
                                 break;
                         }
@@ -172,6 +178,17 @@ public class NetworkManager : MonoBehaviour
             writer.Write(Constants.Client_Tacle);
             writer.Write(number);
 
+            m_Connection.Send(m_Driver, writer);
+        }
+    }
+
+    public void Message(string message)
+    {
+        using (var writer = new DataStreamWriter(32, Allocator.Temp))
+        {
+            writer.Write(Constants.Client_Message);
+            char[] chars = new char[message.Length + 1];
+            // message.ToCharArray()
             m_Connection.Send(m_Driver, writer);
         }
     }
