@@ -5648,8 +5648,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3046612099760645165}
+  - component: {fileID: 2100283392616549104}
   m_Layer: 0
-  m_Name: Bench
+  m_Name: Bench_OLD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5671,6 +5672,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2100283392616549104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8027199800580184866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15a66bf76cc67b949aaa75c4bfb2f7ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HackInterface: {fileID: 0}
+  Server: {fileID: 0}
+  inputCodes: []
+  outputCodes: []
+  graph: []
+  Initiator: {fileID: 11400000, guid: 92a96582a234e804baf5198308090606, type: 2}
 --- !u!1 &8312451114987354624
 GameObject:
   m_ObjectHideFlags: 0
