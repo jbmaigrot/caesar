@@ -87,11 +87,11 @@ public class Server : MonoBehaviour
                             break;
 
                         case Constants.Client_Tacle:
-                            int name = (int) stream.ReadUInt(ref readerCtx);
-                            if (players[i].GetComponent<ServerCharacter>().canStun && !players[i].GetComponent<ServerCharacter>().isStunned && name != i /*&& Vector3.Distance(players[i].transform.position, characters[name].transform.position) < 30 */)
+                            int number = (int) stream.ReadUInt(ref readerCtx);
+                            if (players[i].GetComponent<ServerCharacter>().canStun && !players[i].GetComponent<ServerCharacter>().isStunned && number != i /*&& Vector3.Distance(players[i].transform.position, characters[name].transform.position) < 30 */)
                             {
                                 players[i].GetComponent<ServerCharacter>().doStun();
-                                characters[name].GetComponent<ServerCharacter>().getStun();
+                                characters[number].GetComponent<ServerCharacter>().getStun();
                             }                                
                             break;
 

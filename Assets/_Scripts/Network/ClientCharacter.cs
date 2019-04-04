@@ -5,7 +5,7 @@ using UnityEngine;
 public class ClientCharacter : MonoBehaviour
 {
     public Vector3 speed = new Vector3(0, 0, 0);
-    public int name;
+    public int number;
     public NetworkManager networkManager;
 
     // Update is called once per frame
@@ -19,7 +19,7 @@ public class ClientCharacter : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            networkManager.Tacle(name);
+            networkManager.Tacle(number);
         }
     }
 }

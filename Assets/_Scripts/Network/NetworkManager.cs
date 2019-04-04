@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Collections;
-using Unity.Collections.LowLevel.Unsafe;
+//using Unity.Collections.LowLevel.Unsafe;
 
 using System.Net;
 using Unity.Networking.Transport;
 using UdpCNetworkDriver = Unity.Networking.Transport.BasicNetworkDriver<Unity.Networking.Transport.IPv4UDPSocket>;
 
-using Buffers = NetStack.Buffers;
-using Serialization = NetStack.Serialization;
+//using Buffers = NetStack.Buffers;
+//using Serialization = NetStack.Serialization;
 
 public class NetworkManager : MonoBehaviour
 {
@@ -24,9 +24,6 @@ public class NetworkManager : MonoBehaviour
     public GameObject characterPrefab;
 
     public bool done;
-
-    private bool connected = false;
-    private bool player_is_created = false;
 
     // Start is called before the first frame update
     void Start()
@@ -80,7 +77,6 @@ public class NetworkManager : MonoBehaviour
                 if (cmd == NetworkEvent.Type.Connect)
                 {
                     //Debug.Log("We are now connected to the server");
-                    connected = true;
                 }
 
                 else if (cmd == NetworkEvent.Type.Data)
@@ -112,11 +108,9 @@ public class NetworkManager : MonoBehaviour
                                 if (j >= characters.Count)
                                 {
                                     GameObject newCharacter = Instantiate(characterPrefab);
-                                    newCharacter.GetComponent<ClientCharacter>().name = j;
+                                    newCharacter.GetComponent<ClientCharacter>().number = j;
                                     newCharacter.GetComponent<ClientCharacter>().networkManager = this;
-                                   characters.Add(newCharacter.GetComponent<ClientCharacter>());
-
-                                    //characters[j] = newCharacter.GetComponent<Client_Character>();
+                                    characters.Add(newCharacter.GetComponent<ClientCharacter>());
                                 }
                                 if (characters[j] != null)
                                 {
@@ -126,7 +120,6 @@ public class NetworkManager : MonoBehaviour
                                         {
                                             ryan.material.color = Color.red;
                                         }
-
                                     }
                                     else
                                     {
@@ -172,12 +165,12 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
-    public void Tacle(int name)
+    public void Tacle(int number)
     {
         using (var writer = new DataStreamWriter(32, Allocator.Temp))
         {
             writer.Write(Constants.Client_Tacle);
-            writer.Write(name);
+            writer.Write(number);
 
             m_Connection.Send(m_Driver, writer);
         }
