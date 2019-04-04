@@ -37,13 +37,9 @@ public class DoorScript : MonoBehaviour
 
     
 
-    void OnMouseDown()
+    void OnCollisionEnter()
     {
-        if((this.transform.position - this.GetComponentInParent<ProgrammableObjectsData>().HackInterface.GetComponent<HackInterface>().bonhomme.transform.position).magnitude < 1)
-        {
-            this.GetComponentInParent<ProgrammableObjectsData>().OnInput("OnInteract");
-        }
-        
+        this.GetComponentInParent<ProgrammableObjectsData>().OnInput("OnInteract");
     }
     
 }
