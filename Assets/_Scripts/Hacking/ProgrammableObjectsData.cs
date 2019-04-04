@@ -111,6 +111,17 @@ public class ProgrammableObjectsData : MonoBehaviour
         {
             Debug.Log("ring-a-ling-a-ling, this is sound");
         }
+
+        if(codeoutput == "Stun")
+        {
+            foreach (Transform ryan in Server.characters)
+            {
+                if (Vector3.distance(ryan, this.transform))
+                {
+                    ryan.GetComponent<ServerCharacter>().getStun();
+                }
+            }
+        }
     }
 
     /*A chaque frame, le signal se déplace dans les flèches du graphe*/
