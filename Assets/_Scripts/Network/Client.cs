@@ -151,7 +151,7 @@ public class Client : MonoBehaviour
 
                             case Constants.Server_Message:
                                 int length = (int)stream.ReadUInt(ref readerCtx);
-                                Debug.Log(length);
+                                //Debug.Log(length);
                                 byte[] buffer = stream.ReadBytesAsArray(ref readerCtx, length);
                                 char[] chars = new char[length];
                                 for (int n = 0; n < length; n++)

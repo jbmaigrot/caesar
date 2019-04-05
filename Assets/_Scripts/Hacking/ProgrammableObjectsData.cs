@@ -23,16 +23,16 @@ public class ProgrammableObjectsData : MonoBehaviour
 
     /*Variable servant à initié le graphe de comportement et à définir les input et output autorisées*/
     public ProgrammableObjectsScriptable Initiator;
-    
 
     void Start()
     {
         NavMeshSurface = FindObjectOfType<NavMeshSurface>();
         server = FindObjectOfType<Server>();
         /*Initie le graphe de comportement*/
-        inputCodes = new List<InOutVignette>(Initiator.inputCodes);
-        outputCodes = new List<InOutVignette>(Initiator.outputCodes);
-        graph = new List<Arrow>(Initiator.graph);
+        ProgrammableObjectsScriptable InitiatorClone = Instantiate(Initiator);
+        inputCodes = new List<InOutVignette>(InitiatorClone.inputCodes);
+        outputCodes = new List<InOutVignette>(InitiatorClone.outputCodes);
+        graph = new List<Arrow>(InitiatorClone.graph);
 
         foreach(Arrow a in graph)
         {
@@ -91,12 +91,12 @@ public class ProgrammableObjectsData : MonoBehaviour
     {
         if(codeoutput == "TurnOnLight")
         {
-            this.GetComponentInChildren<Light>().intensity = 100;
+            GetComponentInChildren<Light>().enabled = true;
         }
 
         if(codeoutput == "TurnOffLight")
         {
-            this.GetComponentInChildren<Light>().intensity = 0;
+            GetComponentInChildren<Light>().enabled = false;
         }
 
         if(codeoutput == "OpenDoor")
@@ -152,7 +152,7 @@ public class ProgrammableObjectsData : MonoBehaviour
                     {
                         OnOutput(outputCodes[graph[i].output].code, outputCodes[graph[i].output].parameter_string, outputCodes[graph[i].output].parameter_int);
                     }
-                    graph[i].timeBeforeTransmit.RemoveAt(j);
+                    graph[i].timeBeforeTransmit[j] = 5000;//.RemoveAt(j);
                 }
             }
         }

@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class ProgrammableObjectsContainer : MonoBehaviour, IMessageReceiver
 {
+    private List<ProgrammableObjectsData> objectsData;
+
+    private void Start()
+    {
+        objectsData = new List<ProgrammableObjectsData>(GetComponentsInChildren<ProgrammableObjectsData>());
+    }
+
     public void ChatInstruction(string instruction)
     {
-        foreach (ProgrammableObjectsData ryan in this.GetComponentsInChildren<ProgrammableObjectsData>())
+        for(int i = 0; i < objectsData.Count; i++)
         {
-            ryan.ChatInstruction(instruction);
+            objectsData[i].ChatInstruction(instruction);
         }
     }
 }
