@@ -12,9 +12,6 @@ public class HackInterface : MonoBehaviour, ISelectObject
     /*Variable qui contient l'objet connecté en cours de hacking. Est modifié par le script ProgrammableObjectsData lorsque un objet est hacké.*/
     static public GameObject SelectedGameObject;
 
-    /*Variable qui contient le PJ. Utilisé pour mesuré les distances. Pas terrible comme manière de faire.*/
-    public GameObject bonhomme;
-
     /*Variable qui contient le dictionnaire de mot-clefs, lié à leur description dans l'interface et à si la vignette a besoin de parametre. Sous forme de List.*/
     public HackingAssetScriptable HackingAsset;
 
@@ -52,7 +49,6 @@ public class HackInterface : MonoBehaviour, ISelectObject
             if (timeBeforeClosing <= 0.0f)
             {
                 isClosing = false;
-                bonhomme.SetActive(true);
                 SelectedGameObject = null;
                 this.gameObject.GetComponent<CanvasGroup>().alpha = 0f;
                 this.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;

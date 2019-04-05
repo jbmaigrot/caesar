@@ -44,7 +44,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -89,7 +89,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1024,18 +1024,6 @@ Transform:
   m_Father: {fileID: 1911460465}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &85727974 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3225280714289506665, guid: 9e0d65387e14f3446aec4a044f2f1b10,
-    type: 3}
-  m_PrefabInstance: {fileID: 3225280714240488335}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22c1a2b114e53b146bdc62340a832f52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &91090685 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3225280714292665714, guid: 9e0d65387e14f3446aec4a044f2f1b10,
@@ -1071,6 +1059,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd7ea78841ac80e4085289672a729d22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  client: {fileID: 0}
+  hackInterface: {fileID: 0}
+  objectList: []
 --- !u!4 &123398639
 Transform:
   m_ObjectHideFlags: 0
@@ -1319,7 +1310,7 @@ GameObject:
   - component: {fileID: 244240630}
   - component: {fileID: 244240628}
   m_Layer: 0
-  m_Name: Network Manager
+  m_Name: Client
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1338,11 +1329,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ServerIP: 127.0.0.1
-  cameraController: {fileID: 85727974}
   characters: []
   characterPrefab: {fileID: 8117373046797846833, guid: 3a5aa8b93c4f72d43a163eea5952eebd,
     type: 3}
-  chat: {fileID: 0}
   done: 0
 --- !u!4 &244240629
 Transform:
@@ -1370,7 +1359,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34159e3e7a7be3e42a52278e4b7fabde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  networkManager: {fileID: 244240628}
 --- !u!1 &266541096
 GameObject:
   m_ObjectHideFlags: 0
@@ -46721,6 +46709,9 @@ MonoBehaviour:
   - {fileID: 1838734673}
   - {fileID: 398865359}
   - {fileID: 198322817}
+  ChanceToGoToObject: 60
+  MinTimeMoving: 4
+  MaxTimeMoving: 16
 --- !u!114 &1915296896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46739,6 +46730,8 @@ MonoBehaviour:
   characters:
   - {fileID: 49925876}
   - {fileID: 1612854935}
+  messages: []
+  programmableObjects: {fileID: 0}
 --- !u!4 &1915296897
 Transform:
   m_ObjectHideFlags: 0
@@ -47191,16 +47184,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraParent
       objectReference: {fileID: 0}
-    - target: {fileID: 3225280714289506665, guid: 9e0d65387e14f3446aec4a044f2f1b10,
-        type: 3}
-      propertyPath: cameraModeButton
-      value: 
-      objectReference: {fileID: 1227551514}
-    - target: {fileID: 3225280714289506665, guid: 9e0d65387e14f3446aec4a044f2f1b10,
-        type: 3}
-      propertyPath: characterToFollow
-      value: 
-      objectReference: {fileID: 49925871}
     - target: {fileID: 3225280714292665714, guid: 9e0d65387e14f3446aec4a044f2f1b10,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -47256,6 +47239,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3225280714289506665, guid: 9e0d65387e14f3446aec4a044f2f1b10,
+        type: 3}
+      propertyPath: cameraModeButton
+      value: 
+      objectReference: {fileID: 1227551514}
+    - target: {fileID: 3225280714289506665, guid: 9e0d65387e14f3446aec4a044f2f1b10,
+        type: 3}
+      propertyPath: characterToFollow
+      value: 
+      objectReference: {fileID: 49925871}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e0d65387e14f3446aec4a044f2f1b10, type: 3}
 --- !u!4 &4284710729618229212
@@ -48512,5 +48505,10 @@ PrefabInstance:
       propertyPath: HackInterface
       value: 
       objectReference: {fileID: 771040513}
+    - target: {fileID: 2100283392616549104, guid: 6002f853a5f526149a64b17c28dce2b3,
+        type: 3}
+      propertyPath: client
+      value: 
+      objectReference: {fileID: 244240628}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6002f853a5f526149a64b17c28dce2b3, type: 3}

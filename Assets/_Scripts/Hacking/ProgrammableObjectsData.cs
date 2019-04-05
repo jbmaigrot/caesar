@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class ProgrammableObjectsData : MonoBehaviour
 {
     /*Interface de Hack. Utilisé pour envoyer les infos quand l'objets est hacké. Seulement coté client.*/
-    public GameObject HackInterface;
+    public HackInterface hackInterface;
 
     /*Server. Seulement coté serveur*/
     private Server server;
@@ -23,11 +23,15 @@ public class ProgrammableObjectsData : MonoBehaviour
 
     /*Variable servant à initié le graphe de comportement et à définir les input et output autorisées*/
     public ProgrammableObjectsScriptable Initiator;
-    
+
+    private ProgrammableObjectsContainer objectsContainer;
 
     void Start()
     {
+        NavMeshSurface = FindObjectOfType<NavMeshSurface>();
+
         server = FindObjectOfType<Server>();
+        objectsContainer = FindObjectOfType<ProgrammableObjectsContainer>();
         /*Initie le graphe de comportement*/
         inputCodes = new List<InOutVignette>(Initiator.inputCodes);
         outputCodes = new List<InOutVignette>(Initiator.outputCodes);
@@ -43,7 +47,6 @@ public class ProgrammableObjectsData : MonoBehaviour
             OnOutput(ryan.code, ryan.parameter_string, ryan.parameter_int);
         }
 
-        NavMeshSurface = FindObjectOfType<NavMeshSurface>();
     }
 
     /*Si l'objet est cliqué à distance suffisament courte, ouvre l'interface de hack. Cette fonction doit être adapté pour le réseau.*/
@@ -52,7 +55,7 @@ public class ProgrammableObjectsData : MonoBehaviour
         //if((this.transform.position - HackInterface.GetComponent<HackInterface>().bonhomme.transform.position).magnitude < 3)
         if (true)
         {
-            client.RequestHackState(transform.GetSiblingIndex());
+            client.RequestHackState(objectsContainer.GetObjectIndex(this));
             //ExecuteEvents.Execute<ISelectObject>(HackInterface, null, (x, y) => x.SelectedProgrammableObject(this.gameObject));
             //OnInput("OnHack");
         }
@@ -61,10 +64,7 @@ public class ProgrammableObjectsData : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other == HackInterface.GetComponent<HackInterface>().bonhomme.GetComponent<Collider>())
-        {
-            OnInput("OnPress");
-        }
+        OnInput("OnPress");
     }
 
     /*Quand le mot en parametre apparait dans le chat, active la vignette OnWord correspondant. Potentielement à adapter un petit peu pour le chat.*/

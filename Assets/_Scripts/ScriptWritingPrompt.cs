@@ -41,14 +41,12 @@ public class ScriptWritingPrompt : MonoBehaviour
 
         if (this.GetComponent<InputField>().isFocused)
         {
-            HackInterface.GetComponent<HackInterface>().bonhomme.SetActive(false);
             isActive = true;
         }
         else
         {
             if (isActive)
             {
-                HackInterface.GetComponent<HackInterface>().bonhomme.SetActive(true);
                 isActive = false;
             }
         }
