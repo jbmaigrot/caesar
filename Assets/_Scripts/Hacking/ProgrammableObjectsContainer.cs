@@ -24,9 +24,9 @@ public class ProgrammableObjectsContainer : MonoBehaviour, IMessageReceiver
 
     public void ChatInstruction(string instruction)
     {
-        for(int i = 0; i < objectsData.Count; i++)
+        for(int i = 0; i < objectList.Count; i++)
         {
-            objectsData[i].ChatInstruction(instruction);
+            objectList[i].ChatInstruction(instruction);
         }
     }
 
