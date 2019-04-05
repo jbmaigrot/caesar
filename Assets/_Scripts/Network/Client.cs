@@ -163,7 +163,7 @@ public class Client : MonoBehaviour
                                 break;
 
                             case Constants.Server_GetHack:
-                                GetHackState(stream, readerCtx);
+                                GetHackState(stream, ref readerCtx);
                                 break;
 
                             default:
@@ -237,7 +237,7 @@ public class Client : MonoBehaviour
         }
     }
 
-    public void GetHackState(DataStreamReader stream, DataStreamReader.Context readerCtx)
+    public void GetHackState(DataStreamReader stream, ref DataStreamReader.Context readerCtx)
     {
         int objectId = (int)stream.ReadUInt(ref readerCtx);
         List<InOutVignette> inputCodes = new List<InOutVignette>();
@@ -270,11 +270,7 @@ public class Client : MonoBehaviour
 
             InOutVignette vignette = new InOutVignette(code, parameter_int, parameter_string, is_fixed);
             inputCodes.Add(vignette);
-
-            Debug.Log(code);
-            Debug.Log(parameter_int);
-            Debug.Log(parameter_string);
-            Debug.Log(is_fixed);
+            
             
         }
 
@@ -304,11 +300,6 @@ public class Client : MonoBehaviour
             InOutVignette vignette = new InOutVignette(code, parameter_int, parameter_string, is_fixed);
             outputCodes.Add(vignette);
 
-            Debug.Log(code);
-            Debug.Log(parameter_int);
-            Debug.Log(parameter_string);
-            Debug.Log(is_fixed);
-
         }
 
         int arrowCount = (int)stream.ReadUInt(ref readerCtx);
@@ -322,19 +313,92 @@ public class Client : MonoBehaviour
             int timeBeforeTransmitCount = (int)stream.ReadUInt(ref readerCtx);
             for (int j = 0; j < timeBeforeTransmitCount; j++)
             {
-                timeBeforeTransmit.Add(stream.ReadFloat(ref readerCtx));
+                float timeBeforeTransmitElement = stream.ReadFloat(ref readerCtx);
+                timeBeforeTransmit.Add(timeBeforeTransmitElement);
             }
 
             Arrow arrow = new Arrow(input, output, transmitTime, timeBeforeTransmit);
             graph.Add(arrow);
-
-            Debug.Log("Arrow from input " + input + " and output " + output);
         }
 
-        GameObject selectedGameObject = programmableObjectsContainer.transform.GetChild(objectId).gameObject;
+        GameObject selectedGameObject = programmableObjectsContainer.objectList[objectId].gameObject;
 
         hackInterface.SelectedProgrammableObject(selectedGameObject, inputCodes, outputCodes, graph);
 
+    }
+
+    public void SetHackState(int objectId, List<InOutVignette> inputCodes, List<InOutVignette> outputCodes, List<Arrow> graph)
+    {
+        using (var writer = new DataStreamWriter(4096, Allocator.Temp))
+        {
+            writer.Write(Constants.Client_SetHack);
+
+            writer.Write(objectId);
+
+            writer.Write(inputCodes.Count);
+            foreach (InOutVignette vignette in inputCodes)
+            {
+                byte[] buffer = new byte[vignette.code.Length];
+                for (int i = 0; i < vignette.code.Length; i++)
+                {
+                    buffer[i] = (byte)vignette.code.ToCharArray()[i];
+                }
+                writer.Write(vignette.code.Length);
+                writer.Write(buffer);
+
+                writer.Write(vignette.parameter_int);
+
+                buffer = new byte[vignette.parameter_string.Length];
+                for (int i = 0; i < vignette.parameter_string.Length; i++)
+                {
+                    buffer[i] = (byte)vignette.parameter_string.ToCharArray()[i];
+                }
+                writer.Write(vignette.parameter_string.Length);
+                writer.Write(buffer);
+
+                writer.Write(vignette.is_fixed ? 1 : 0);
+            }
+
+            writer.Write(outputCodes.Count);
+            foreach (InOutVignette vignette in outputCodes)
+            {
+                byte[] buffer = new byte[vignette.code.Length];
+                for (int i = 0; i < vignette.code.Length; i++)
+                {
+                    buffer[i] = (byte)vignette.code.ToCharArray()[i];
+                }
+                writer.Write(vignette.code.Length);
+                writer.Write(buffer);
+
+                writer.Write(vignette.parameter_int);
+
+                buffer = new byte[vignette.parameter_string.Length];
+                for (int i = 0; i < vignette.parameter_string.Length; i++)
+                {
+                    buffer[i] = (byte)vignette.parameter_string.ToCharArray()[i];
+                }
+                writer.Write(vignette.parameter_string.Length);
+                writer.Write(buffer);
+
+                writer.Write(vignette.is_fixed ? 1 : 0);
+            }
+
+            writer.Write(graph.Count);
+            foreach (Arrow arrow in graph)
+            {
+                writer.Write(arrow.input);
+                writer.Write(arrow.output);
+                writer.Write(arrow.transmitTime);
+
+                writer.Write(arrow.timeBeforeTransmit.Count);
+                foreach (float time in arrow.timeBeforeTransmit)
+                {
+                    writer.Write(time);
+                }
+            }
+            
+            m_Connection.Send(m_Driver, writer);
+        }
     }
 
     public void OnApplicationQuit()

@@ -120,11 +120,11 @@ public class Server : MonoBehaviour
                             int objectId = (int)stream.ReadUInt(ref readerCtx);
                             Debug.Log("Server received a request for object with ID " + objectId);
                             SendHackStatus(objectId, i);
-                            //TO DO
                             break;
 
                         case Constants.Client_SetHack:
-                            //TO DO
+                            objectId = (int)stream.ReadUInt(ref readerCtx);
+                            SetHackStatus(objectId, stream, ref readerCtx);
                             break;
 
                         default:
@@ -199,8 +199,7 @@ public class Server : MonoBehaviour
 
     public void SendHackStatus(int objectId, int connectionId)
     {
-        ProgrammableObjectsData programmableObject = programmableObjectsContainer.transform.GetChild(objectId).GetComponentInChildren<ProgrammableObjectsData>();
-
+        ProgrammableObjectsData programmableObject = programmableObjectsContainer.objectList[objectId];
         using (var writer = new DataStreamWriter(4096, Allocator.Temp))
         {
             writer.Write(Constants.Server_GetHack);
@@ -273,5 +272,95 @@ public class Server : MonoBehaviour
             m_Driver.Send(m_Connections[connectionId], writer);
         }
 
+    }
+
+    public void SetHackStatus(int objectId, DataStreamReader stream, ref DataStreamReader.Context readerCtx)
+    {
+        List<InOutVignette> inputCodes = new List<InOutVignette>();
+        List<InOutVignette> outputCodes = new List<InOutVignette>();
+        List<Arrow> graph = new List<Arrow>();
+
+        char[] buffer;
+        int inputCodesCount = (int)stream.ReadUInt(ref readerCtx);
+        for (int i = 0; i < inputCodesCount; i++)
+        {
+            int codeLength = (int)stream.ReadUInt(ref readerCtx);
+            buffer = new char[codeLength];
+            for (int j = 0; j < codeLength; j++)
+            {
+                buffer[j] = (char)stream.ReadByte(ref readerCtx);
+            }
+            string code = new string(buffer);
+
+            int parameter_int = (int)stream.ReadUInt(ref readerCtx);
+
+            int parameter_stringLength = (int)stream.ReadUInt(ref readerCtx);
+            buffer = new char[parameter_stringLength];
+            for (int j = 0; j < parameter_stringLength; j++)
+            {
+                buffer[j] = (char)stream.ReadByte(ref readerCtx);
+            }
+            string parameter_string = new string(buffer);
+
+            bool is_fixed = (stream.ReadUInt(ref readerCtx) == 1);
+
+            InOutVignette vignette = new InOutVignette(code, parameter_int, parameter_string, is_fixed);
+            inputCodes.Add(vignette);
+
+
+        }
+
+        int outputCodesCount = (int)stream.ReadUInt(ref readerCtx);
+        for (int i = 0; i < outputCodesCount; i++)
+        {
+            int codeLength = (int)stream.ReadUInt(ref readerCtx);
+            buffer = new char[codeLength];
+            for (int j = 0; j < codeLength; j++)
+            {
+                buffer[j] = (char)stream.ReadByte(ref readerCtx);
+            }
+            string code = new string(buffer);
+
+            int parameter_int = (int)stream.ReadUInt(ref readerCtx);
+
+            int parameter_stringLength = (int)stream.ReadUInt(ref readerCtx);
+            buffer = new char[parameter_stringLength];
+            for (int j = 0; j < parameter_stringLength; j++)
+            {
+                buffer[j] = (char)stream.ReadByte(ref readerCtx);
+            }
+            string parameter_string = new string(buffer);
+
+            bool is_fixed = (stream.ReadUInt(ref readerCtx) == 1);
+
+            InOutVignette vignette = new InOutVignette(code, parameter_int, parameter_string, is_fixed);
+            outputCodes.Add(vignette);
+
+        }
+
+        int arrowCount = (int)stream.ReadUInt(ref readerCtx);
+        for (int i = 0; i < arrowCount; i++)
+        {
+            int input = (int)stream.ReadUInt(ref readerCtx);
+            int output = (int)stream.ReadUInt(ref readerCtx);
+            float transmitTime = stream.ReadFloat(ref readerCtx);
+
+            List<float> timeBeforeTransmit = new List<float>();
+            int timeBeforeTransmitCount = (int)stream.ReadUInt(ref readerCtx);
+            for (int j = 0; j < timeBeforeTransmitCount; j++)
+            {
+                float timeBeforeTransmitElement = stream.ReadFloat(ref readerCtx);
+                timeBeforeTransmit.Add(timeBeforeTransmitElement);
+            }
+
+            Arrow arrow = new Arrow(input, output, transmitTime, timeBeforeTransmit);
+            graph.Add(arrow);
+        }
+
+        ProgrammableObjectsData objectData = programmableObjectsContainer.objectList[objectId];
+
+        objectData.inputCodes = inputCodes;
+        objectData.outputCodes = outputCodes;
+        objectData.graph = graph;
     }
 }
