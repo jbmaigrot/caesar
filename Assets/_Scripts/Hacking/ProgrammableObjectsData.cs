@@ -11,7 +11,7 @@ public class ProgrammableObjectsData : MonoBehaviour
 
     /*Server. Seulement coté serveur*/
     public GameObject Server;
-    public GameObject NavMeshSurface;
+    public NavMeshSurface NavMeshSurface;
 
     /*Network manager. Seulement coté client*/
     public NetworkManager networkManager;
@@ -42,7 +42,7 @@ public class ProgrammableObjectsData : MonoBehaviour
             OnOutput(ryan.code, ryan.parameter_string, ryan.parameter_int);
         }
 
-        NavMeshSurface = GameObject.Find("NavMesh");
+        NavMeshSurface = FindObjectOfType<NavMeshSurface>();
     }
 
     /*Si l'objet est cliqué à distance suffisament courte, ouvre l'interface de hack. Cette fonction doit être adapté pour le réseau.*/
