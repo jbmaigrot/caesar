@@ -29,7 +29,6 @@ public class ProgrammableObjectsData : MonoBehaviour
     void Start()
     {
         NavMeshSurface = FindObjectOfType<NavMeshSurface>();
-
         server = FindObjectOfType<Server>();
         objectsContainer = FindObjectOfType<ProgrammableObjectsContainer>();
         /*Initie le graphe de comportement*/

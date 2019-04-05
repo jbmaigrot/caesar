@@ -28,6 +28,7 @@ public class Client : MonoBehaviour
     private HackInterface hackInterface;
 
     public bool done;
+    private int lastSnapshot = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -98,6 +99,12 @@ public class Client : MonoBehaviour
                         switch (type)
                         {
                             case Constants.Server_Snapshot:
+                                int snapshotNumber = (int)stream.ReadUInt(ref readerCtx);
+                                if (snapshotNumber <= lastSnapshot)
+                                    return; //skip update for this frame
+                                else
+                                    lastSnapshot = snapshotNumber;
+
                                 int k = (int)stream.ReadUInt(ref readerCtx);
                                 if (k < characters.Count)
                                 {
