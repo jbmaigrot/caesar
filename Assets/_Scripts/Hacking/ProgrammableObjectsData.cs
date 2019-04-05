@@ -10,11 +10,11 @@ public class ProgrammableObjectsData : MonoBehaviour
     public GameObject HackInterface;
 
     /*Server. Seulement coté serveur*/
-    public GameObject Server;
+    private Server server;
     public NavMeshSurface NavMeshSurface;
 
     /*Network manager. Seulement coté client*/
-    public NetworkManager networkManager;
+    public Client client;
 
     /*Variables contenant le graphe de comportement de l'objet*/
     public List<InOutVignette> inputCodes=new List<InOutVignette>();
@@ -27,6 +27,7 @@ public class ProgrammableObjectsData : MonoBehaviour
 
     void Start()
     {
+        server = FindObjectOfType<Server>();
         /*Initie le graphe de comportement*/
         inputCodes = new List<InOutVignette>(Initiator.inputCodes);
         outputCodes = new List<InOutVignette>(Initiator.outputCodes);
@@ -51,7 +52,7 @@ public class ProgrammableObjectsData : MonoBehaviour
         //if((this.transform.position - HackInterface.GetComponent<HackInterface>().bonhomme.transform.position).magnitude < 3)
         if (true)
         {
-            networkManager.RequestHackState(transform.GetSiblingIndex());
+            client.RequestHackState(transform.GetSiblingIndex());
             //ExecuteEvents.Execute<ISelectObject>(HackInterface, null, (x, y) => x.SelectedProgrammableObject(this.gameObject));
             //OnInput("OnHack");
         }
@@ -126,7 +127,7 @@ public class ProgrammableObjectsData : MonoBehaviour
 
         if(codeoutput == "Stun")
         {
-            foreach (Transform ryan in Server.GetComponent<Server>().characters)
+            foreach (Transform ryan in server.characters)
             {
                 if (((int) Vector3.Distance(ryan.position, this.transform.position)) < parameter_int)
                 {

@@ -5,14 +5,16 @@ using UnityEngine.UI;
 
 public class ClientChatInput : MonoBehaviour
 {
-    public NetworkManager networkManager;
     public Text chatBox;
-    private InputField inputField;
 
+    private InputField inputField;
+    private Client client;
+    
     // Start is called before the first frame update
     void Start()
     {
         inputField = GetComponentInChildren<InputField>();
+        client = FindObjectOfType<Client>();
     }
 
     // Update is called once per frame
@@ -20,7 +22,7 @@ public class ClientChatInput : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            networkManager.Message(inputField.text);
+            client.Message(inputField.text);
             inputField.text = "";
         }
     }

@@ -7,8 +7,15 @@ using UnityEngine.EventSystems;
 
 public class PlayerInput : MonoBehaviour
 {
-    public NetworkManager networkManager;
-    
+    private Client client;
+
+    //Start
+    private void Start()
+    {
+        client = FindObjectOfType<Client>();
+    }
+
+    //Update
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -27,7 +34,7 @@ public class PlayerInput : MonoBehaviour
                 }
                 else if (Physics.Raycast(ray, out hit, 100f, 1)) // Layer 0 (ground)
                 {
-                    networkManager.SetDestination(hit.point);
+                    client.SetDestination(hit.point);
                 }
             }
 

@@ -12,25 +12,31 @@ using UdpCNetworkDriver = Unity.Networking.Transport.BasicNetworkDriver<Unity.Ne
 //using Buffers = NetStack.Buffers;
 //using Serialization = NetStack.Serialization;
 
-public class NetworkManager : MonoBehaviour
+public class Client : MonoBehaviour
 {
     public string ServerIP = "127.0.0.1"; //localhost by default
     public UdpCNetworkDriver m_Driver;
     public NetworkConnection m_Connection;
     public IPv4UDPSocket socket;
 
-    public CameraController cameraController;
     public List<ClientCharacter> characters;
     public GameObject characterPrefab;
-    public ClientChatInput chat;
-    public ProgrammableObjectsContainer programmableObjectsContainer;
-    public HackInterface hackInterface;
+
+    private CameraController cameraController;
+    private ClientChatInput chat;
+    private ProgrammableObjectsContainer programmableObjectsContainer;
+    private HackInterface hackInterface;
 
     public bool done;
 
     // Start is called before the first frame update
     void Start()
     {
+        cameraController = FindObjectOfType<CameraController>();
+        chat = FindObjectOfType<ClientChatInput>();
+        programmableObjectsContainer = FindObjectOfType<ProgrammableObjectsContainer>();
+        hackInterface = FindObjectOfType<HackInterface>();
+
         //TODO error : A Native Collection has not been disposed, resulting in a memory leak
         m_Driver = new UdpCNetworkDriver(new INetworkParameter[0]);
         m_Connection = default(NetworkConnection);
@@ -112,7 +118,6 @@ public class NetworkManager : MonoBehaviour
                                 {
                                     GameObject newCharacter = Instantiate(characterPrefab);
                                     newCharacter.GetComponent<ClientCharacter>().number = j;
-                                    newCharacter.GetComponent<ClientCharacter>().networkManager = this;
                                     characters.Add(newCharacter.GetComponent<ClientCharacter>());
                                 }
                                 if (characters[j] != null)
