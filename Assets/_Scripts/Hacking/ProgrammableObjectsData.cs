@@ -27,6 +27,7 @@ public class ProgrammableObjectsData : MonoBehaviour
 
     void Start()
     {
+        NavMeshSurface = FindObjectOfType<NavMeshSurface>();
         server = FindObjectOfType<Server>();
         /*Initie le graphe de comportement*/
         inputCodes = new List<InOutVignette>(Initiator.inputCodes);
@@ -43,7 +44,7 @@ public class ProgrammableObjectsData : MonoBehaviour
             OnOutput(ryan.code, ryan.parameter_string, ryan.parameter_int);
         }
 
-        NavMeshSurface = FindObjectOfType<NavMeshSurface>();
+        
     }
 
     /*Si l'objet est cliqué à distance suffisament courte, ouvre l'interface de hack. Cette fonction doit être adapté pour le réseau.*/
