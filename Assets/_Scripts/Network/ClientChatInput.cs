@@ -18,7 +18,7 @@ public class ClientChatInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (inputField.isFocused && Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             networkManager.Message(inputField.text);
             inputField.text = "";

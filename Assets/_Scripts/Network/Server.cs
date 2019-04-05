@@ -14,8 +14,9 @@ public class Server : MonoBehaviour
     public UdpCNetworkDriver m_Driver;
     public List<Transform> players;
     public List<Transform> characters; // Players + NPCs
+    public List<string> messages = new List<string>();
+    public ProgrammableObjectsContainer programmableObjects;
 
-    private List<Transform> newCharacters;
     private NativeList<NetworkConnection> m_Connections;
 
     private ProgrammableObjectsContainer programmableObjectsContainer;
@@ -100,7 +101,18 @@ public class Server : MonoBehaviour
                             break;
 
                         case Constants.Client_Message:
-                            //TO DO
+                            int length = (int)stream.ReadUInt(ref readerCtx);
+                            Debug.Log(length);
+                            byte[] buffer = stream.ReadBytesAsArray(ref readerCtx, length);
+                            char[] chars = new char[length];
+                            for (int n = 0; n < length; n++)
+                            {
+                                chars[n] = (char)buffer[n];
+                            }
+                            string message = new string(chars);
+                            Message(message);
+                            messages.Add(message);
+                            programmableObjects.ChatInstruction(message);
                             break;
 
                         case Constants.Client_RequestHack:
@@ -156,6 +168,29 @@ public class Server : MonoBehaviour
                 {
                     m_Driver.Send(m_Connections[k], writer);
                 }
+            }
+        }
+    }
+
+    
+    public void Message(string message)
+    {
+        using (var writer = new DataStreamWriter(256, Allocator.Temp))
+        {
+            writer.Write(Constants.Server_Message);
+            writer.Write(message.Length);
+            char[] chars = message.ToCharArray();
+            byte[] buffer = new byte[message.Length];
+            for (int i = 0; i < message.Length; i++)
+            {
+                buffer[i] = (byte)chars[i];
+            }
+            writer.Write(buffer);
+            writer.Write(Constants.Server_SnapshotEnd);
+            //send snapshot to all clients
+            for (int k = 0; k < m_Connections.Length; k++)
+            {
+                m_Driver.Send(m_Connections[k], writer);
             }
         }
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.AI;
 
 public class ProgrammableObjectsData : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class ProgrammableObjectsData : MonoBehaviour
 
     /*Server. Seulement coté serveur*/
     public GameObject Server;
+    public GameObject NavMeshSurface;
 
     /*Network manager. Seulement coté client*/
     public NetworkManager networkManager;
@@ -39,6 +41,8 @@ public class ProgrammableObjectsData : MonoBehaviour
         {
             OnOutput(ryan.code, ryan.parameter_string, ryan.parameter_int);
         }
+
+        NavMeshSurface = GameObject.Find("NavMesh");
     }
 
     /*Si l'objet est cliqué à distance suffisament courte, ouvre l'interface de hack. Cette fonction doit être adapté pour le réseau.*/
@@ -96,12 +100,13 @@ public class ProgrammableObjectsData : MonoBehaviour
         if(codeoutput == "OpenDoor")
         {
             this.GetComponentInChildren<DoorScript>().OnOpen();
-
+            NavMeshSurface.GetComponent<NavMeshSurfaceScript>().hasToBeRebake = true;
         }
 
         if(codeoutput == "CloseDoor")
         {
             this.GetComponentInChildren<DoorScript>().OnClose();
+            NavMeshSurface.GetComponent<NavMeshSurfaceScript>().hasToBeRebake = true;
         }
 
         if(codeoutput == "SendMessage")/*A adapter pour le chat*/
