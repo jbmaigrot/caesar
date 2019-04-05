@@ -7,12 +7,13 @@ public class CameraController : MonoBehaviour
 {
     private const int MODE_CHARA = 0;
     private const int MODE_FREE = 1;
+    private const int MODE_LOCK = 2;
 
     public Button cameraModeButton;
     public GameObject characterToFollow;
     public GameObject cameraParent;
 
-    [Header("0 : character, 1 : free")]
+    [Header("0 : character, 1 : free, 2 : lock")]
     public int cameraMode;
 
     [Header("Default value is 225. Apply to the camera's parent.")]
