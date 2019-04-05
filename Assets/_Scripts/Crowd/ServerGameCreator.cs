@@ -54,7 +54,7 @@ public class ServerGameCreator : MonoBehaviour
                     zoneClass.EmptySlot(_listPnj[i].DestinationGameObject);
                 }*/
 
-                Debug.Log("pnj n°"+i+" is going to move");
+                //Debug.Log("pnj n°"+i+" is going to move");
                 _listPnj[i].Time = 0;
                 
                 SlotClass sc = _listZone[rndZoneIndex].GetFreeSlot();
