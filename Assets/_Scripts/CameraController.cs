@@ -71,6 +71,10 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        if (cameraMode == MODE_LOCK)
+        {
+            return;
+        }
         Vector3 parentTargetPosition = cameraParent.transform.position;
 
         //Check if we are in the borders
@@ -160,5 +164,15 @@ public class CameraController : MonoBehaviour
             + (axesInput.x * cameraParent.transform.right + axesInput.y * cameraParent.transform.forward) * keyboardSpeed;
         
         return targetPosition;
+    }
+
+    public void LockCamera()
+    {
+        cameraMode = MODE_LOCK;
+    }
+
+    public void UnlockCamera()
+    {
+        cameraMode = MODE_FREE;
     }
 }

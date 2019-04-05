@@ -3,7 +3,7 @@
     public const int Client_SetDestination = 1;
     public const int Client_Tacle = 2;
     public const int Client_Message = 3;
-    public const int Client_GetHack = 4;
+    public const int Client_RequestHack = 4;
     public const int Client_SetHack = 5;
 
     public const int Server_MoveCharacter = 42;

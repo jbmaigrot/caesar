@@ -51,7 +51,6 @@ public class ProgrammableObjectsData : MonoBehaviour
         //if((this.transform.position - HackInterface.GetComponent<HackInterface>().bonhomme.transform.position).magnitude < 3)
         if (true)
         {
-            Debug.Log("requesting hack");
             networkManager.RequestHackState(transform.GetSiblingIndex());
             //ExecuteEvents.Execute<ISelectObject>(HackInterface, null, (x, y) => x.SelectedProgrammableObject(this.gameObject));
             //OnInput("OnHack");
