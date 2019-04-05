@@ -5,8 +5,14 @@ using UnityEngine.EventSystems;
 
 public class ProgrammableObjectsData : MonoBehaviour
 {
-    /*Interface de Hack. Utilisé pour envoyer les infos quand l'objets est hacké.*/
+    /*Interface de Hack. Utilisé pour envoyer les infos quand l'objets est hacké. Seulement coté client.*/
     public GameObject HackInterface;
+
+    /*Server. Seulement coté serveur*/
+    public GameObject Server;
+
+    /*Network manager. Seulement coté client*/
+    public NetworkManager networkManager;
 
     /*Variables contenant le graphe de comportement de l'objet*/
     public List<InOutVignette> inputCodes=new List<InOutVignette>();
@@ -38,11 +44,13 @@ public class ProgrammableObjectsData : MonoBehaviour
     /*Si l'objet est cliqué à distance suffisament courte, ouvre l'interface de hack. Cette fonction doit être adapté pour le réseau.*/
     void OnMouseDown()
     {
-        if((this.transform.position - HackInterface.GetComponent<HackInterface>().bonhomme.transform.position).magnitude < 3)
+        //if((this.transform.position - HackInterface.GetComponent<HackInterface>().bonhomme.transform.position).magnitude < 3)
+        if (true)
         {
-            HackInterface.GetComponent<HackInterface>().bonhomme.SetActive(false);
-            ExecuteEvents.Execute<ISelectObject>(HackInterface, null, (x, y) => x.SelectedProgrammableObject(this.gameObject));
-            OnInput("OnHack");
+            Debug.Log("requesting hack");
+            networkManager.RequestHackState(transform.GetSiblingIndex());
+            //ExecuteEvents.Execute<ISelectObject>(HackInterface, null, (x, y) => x.SelectedProgrammableObject(this.gameObject));
+            //OnInput("OnHack");
         }
         
     }
@@ -110,6 +118,17 @@ public class ProgrammableObjectsData : MonoBehaviour
         if(codeoutput == "Ring")
         {
             Debug.Log("ring-a-ling-a-ling, this is sound");
+        }
+
+        if(codeoutput == "Stun")
+        {
+            foreach (Transform ryan in Server.GetComponent<Server>().characters)
+            {
+                if (((int) Vector3.Distance(ryan.position, this.transform.position)) < parameter_int)
+                {
+                    ryan.GetComponent<ServerCharacter>().getStun();
+                }
+            }
         }
     }
 

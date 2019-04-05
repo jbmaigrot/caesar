@@ -83,6 +83,8 @@ public class HackInterface : MonoBehaviour, ISelectObject
         SelectedGameObject = SelectedObject;
         accessibleInputCode = new List<string>(SelectedObject.GetComponent<ProgrammableObjectsData>().Initiator.accessibleInputCode);
         accessibleOutputCode = new List<string>(SelectedObject.GetComponent<ProgrammableObjectsData>().Initiator.accessibleOutputCode);
+
+        //à récupérer depuis le serveur
         inputCodes = new List<InOutVignette>(SelectedObject.GetComponent<ProgrammableObjectsData>().inputCodes);
         outputCodes = new List<InOutVignette>(SelectedObject.GetComponent<ProgrammableObjectsData>().outputCodes);
         graph = new List<Arrow>(SelectedObject.GetComponent<ProgrammableObjectsData>().graph);

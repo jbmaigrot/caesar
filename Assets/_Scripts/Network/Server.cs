@@ -18,6 +18,8 @@ public class Server : MonoBehaviour
     private List<Transform> newCharacters;
     private NativeList<NetworkConnection> m_Connections;
 
+    private ProgrammableObjectsContainer programmableObjectsContainer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,8 @@ public class Server : MonoBehaviour
             m_Driver.Listen();
 
         m_Connections = new NativeList<NetworkConnection>(16, Allocator.Persistent);
+
+        programmableObjectsContainer = GameObject.FindObjectOfType<ProgrammableObjectsContainer>();
     }
 
     public void OnDestroy()
@@ -95,6 +99,20 @@ public class Server : MonoBehaviour
                             }                                
                             break;
 
+                        case Constants.Client_Message:
+                            //TO DO
+                            break;
+
+                        case Constants.Client_GetHack:
+                            int objectId = (int)stream.ReadUInt(ref readerCtx);
+                            SendHackStatus(objectId, i);
+                            //TO DO
+                            break;
+
+                        case Constants.Client_SetHack:
+                            //TO DO
+                            break;
+
                         default:
                             break;
                     }
@@ -139,5 +157,66 @@ public class Server : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void SendHackStatus(int objectId, int connectionId)
+    {
+        ProgrammableObjectsData programmableObject = programmableObjectsContainer.transform.GetChild(objectId).GetComponentInChildren<ProgrammableObjectsData>();
+
+        using (var writer = new DataStreamWriter(4096, Allocator.Temp))
+        {
+            writer.Write(Constants.Server_GetHack);
+            foreach(InOutVignette vignette in programmableObject.inputCodes)
+            {
+                for (int i = 0; i < vignette.code.Length; i++)
+                {
+                    writer.Write(vignette.code.ToCharArray()[i]);
+                }
+                writer.Write('\0');
+                writer.Write(vignette.parameter_int);
+                for (int i = 0; i < vignette.parameter_string.Length; i++)
+                {
+                    writer.Write(vignette.parameter_string.ToCharArray()[i]);
+                }
+                writer.Write('\0');
+                writer.Write(vignette.is_fixed ? 1 : 0);
+            }
+
+            writer.Write('\0');
+
+            foreach(InOutVignette vignette in programmableObject.outputCodes)
+            {
+                for(int i = 0; i < vignette.code.Length; i++)
+                {
+                    writer.Write(vignette.code.ToCharArray()[i]);
+                }
+                writer.Write('\0');
+                writer.Write(vignette.parameter_int);
+                for (int i = 0; i < vignette.parameter_string.Length; i++)
+                {
+                    writer.Write(vignette.parameter_string.ToCharArray()[i]);
+                }
+                writer.Write('\0');
+                writer.Write(vignette.is_fixed ? 1 : 0);
+            }
+
+            writer.Write('\0');
+
+            foreach(Arrow arrow in programmableObject.graph)
+            {
+                writer.Write(arrow.input);
+                writer.Write(arrow.output);
+                writer.Write(arrow.transmitTime);
+                foreach (float time in arrow.timeBeforeTransmit)
+                {
+                    writer.Write(time);
+                    writer.Write('\0');
+                }
+            }
+
+            writer.Write(Constants.Server_SnapshotEnd);
+            m_Driver.Send(m_Connections[connectionId], writer);
+        }
+
     }
 }

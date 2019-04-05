@@ -22,6 +22,7 @@ public class NetworkManager : MonoBehaviour
     public CameraController cameraController;
     public List<ClientCharacter> characters;
     public GameObject characterPrefab;
+    public ClientChatInput chat;
 
     public bool done;
 
@@ -134,6 +135,15 @@ public class NetworkManager : MonoBehaviour
                                 }
                                 break;
 
+                            case Constants.Server_Message:
+                                //TO DO
+                                chat.AddMessage("");
+                                break;
+
+                            case Constants.Server_GetHack:
+                                GetHackState(stream, readerCtx);
+                                break;
+
                             default:
                                 break;
                         }
@@ -176,6 +186,73 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
+    public void Message(string message)
+    {
+        using (var writer = new DataStreamWriter(256, Allocator.Temp))
+        {
+            writer.Write(Constants.Client_Message);
+            char[] chars = new char[message.Length + 1];
+            message.ToCharArray().CopyTo(chars, 0);
+            chars[message.Length] = '\0';
+            // message.ToCharArray()
+            m_Connection.Send(m_Driver, writer);
+        }
+    }
+
+    public void RequestHackState(int objectId)
+    {
+        using (var writer = new DataStreamWriter(32, Allocator.Temp))
+        {
+            writer.Write(Constants.Client_GetHack);
+            writer.Write(objectId);
+
+            m_Connection.Send(m_Driver, writer);
+        }
+    }
+
+    public void GetHackState(DataStreamReader stream, DataStreamReader.Context readerCtx)
+    {
+        char[] buffer;
+        int i;
+        char nextChar = (char)stream.ReadByte(ref readerCtx);
+        while (!nextChar.Equals('\0'))
+        {
+            buffer = new char[256];
+            i = 0;
+            do
+            {
+                byte b = stream.ReadByte(ref readerCtx);
+                buffer[i] = (char)b;
+                i++;
+            } while (!buffer[i].Equals('\0'));
+            string code = new string(buffer, 0, i);
+
+            int parameter_int = (int)stream.ReadUInt(ref readerCtx);
+
+            buffer = new char[256];
+            i = 0;
+            do
+            {
+                byte b = stream.ReadByte(ref readerCtx);
+                buffer[i] = (char)b;
+                i++;
+            } while (!buffer[i].Equals('\0'));
+            string parameter_string = new string(buffer, 0, i);
+
+            bool is_fixed = (stream.ReadUInt(ref readerCtx) == 1);
+
+            InOutVignette vignette = new InOutVignette(code, parameter_int, parameter_string, is_fixed);
+
+            Debug.Log(code);
+            Debug.Log(parameter_int);
+            Debug.Log(parameter_string);
+            Debug.Log(is_fixed);
+
+            nextChar = (char)stream.ReadByte(ref readerCtx);
+        }
+
+
+    }
 
     public void OnApplicationQuit()
     {

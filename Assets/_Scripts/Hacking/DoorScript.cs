@@ -5,60 +5,41 @@ using UnityEngine.EventSystems;
 
 public class DoorScript : MonoBehaviour
 {
-    bool isClosing=false;
-    bool isOccupied=false;
+    bool isOpen = false;
+    public bool isClosing=false;
+    public bool isOccupied=false;
     
 
     public void OnOpen()
     {
-        this.GetComponent<BoxCollider>().isTrigger = true;
-        this.GetComponent<MeshRenderer>().enabled = false;
+        if (!isOpen)
+        {
+            isOpen = true;
+            this.transform.Translate(new Vector3(2,0,0));
+        }
     }
 
     public void OnClose()
     {
-        if (isOccupied)
+        if (isOpen)
         {
-            isClosing = true;
-        }
-        else
-        {
-            this.GetComponent<BoxCollider>().isTrigger = false;
-            this.GetComponent<MeshRenderer>().enabled = true;
-        }
-        
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other = this.GetComponentInParent<ProgrammableObjectsData>().HackInterface.GetComponent<HackInterface>().bonhomme.GetComponent<Collider>())
-        {
-            isOccupied = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other = this.GetComponentInParent<ProgrammableObjectsData>().HackInterface.GetComponent<HackInterface>().bonhomme.GetComponent<Collider>())
-        {
-            isOccupied = false;
-            if(isClosing)
+            if (isOccupied)
             {
-                this.GetComponent<BoxCollider>().isTrigger = false;
-                this.GetComponent<MeshRenderer>().enabled = true;
-                isClosing = false;
+                isClosing = true;
             }
-            this.GetComponentInParent<ProgrammableObjectsData>().OnInput("OnPassInside");
+            else
+            {
+                isOpen = false;
+                this.transform.Translate(new Vector3(-2, 0, 0));
+            }
         }
     }
 
-    void OnMouseDown()
+    
+
+    void OnCollisionEnter()
     {
-        if((this.transform.position - this.GetComponentInParent<ProgrammableObjectsData>().HackInterface.GetComponent<HackInterface>().bonhomme.transform.position).magnitude < 1)
-        {
-            this.GetComponentInParent<ProgrammableObjectsData>().OnInput("OnInteract");
-        }
-        
+        this.GetComponentInParent<ProgrammableObjectsData>().OnInput("OnInteract");
     }
     
 }

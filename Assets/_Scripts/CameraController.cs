@@ -7,23 +7,32 @@ public class CameraController : MonoBehaviour
 {
     private const int MODE_CHARA = 0;
     private const int MODE_FREE = 1;
+    private const int MODE_LOCK = 2;
 
     public Button cameraModeButton;
     public GameObject characterToFollow;
+    public GameObject cameraParent;
 
-    [Header("0 : character, 1 : free")]
+    [Header("0 : character, 1 : free, 2 : lock")]
     public int cameraMode;
 
-    [Header("Default value are X = 28, Y = 50, Z = 27.5.")]
-    public Vector3 characterOffset = new Vector3(28.0f, 20.0f, 27.5f);
+    [Header("Default value is 225. Apply to the camera's parent.")]
+    public float defaultCameraYRotation = 225.0f;
 
-    [Header("Default value are X = 50, Y = 225, Z = 0.")]
-    public Vector3 defaultCameraRotation = new Vector3(50.0f, 225.0f, 0.0f);
-    
+    [Header("Default value is 50. Apply to the camera itself.")]
+    public float defaultCameraXRotation = 50.0f;
 
-    public float smoothTime = 0.6F;
+    public float smoothTime = 0.6f;
+    public float keyboardSpeed = 10.0f;
     private Vector3 velocity = Vector3.zero;
     private Camera cam;
+
+    public float zoomFactor = 0.8f; //goes from 0 to 1
+    private float targetZoomFactor;
+    public float zoomSpeed = 0.5f;
+    private float zoomVelocity = 0.0f;
+    private float zoomSmoothTime = 0.2f;
+    public Vector3 zoomMaxPosition;
 
     public Plane floorPlane;
 
@@ -53,14 +62,18 @@ public class CameraController : MonoBehaviour
 
         floorPlane = new Plane(Vector3.up, new Vector3(0, 0, 0));
 
-        transform.rotation = Quaternion.Euler(defaultCameraRotation);
+        zoomMaxPosition = transform.localPosition / zoomFactor;
+        targetZoomFactor = zoomFactor;
+
+        cameraParent.transform.rotation = Quaternion.Euler(new Vector3(0.0f, defaultCameraYRotation, 0.0f));
+        transform.localRotation = Quaternion.Euler(new Vector3(defaultCameraXRotation, 0.0f, 0.0f));
     }
 
-    // LateUpdate for the movement to happen after all updates
     void Update()
     {
-        Vector3 targetPosition = transform.position;
+        Vector3 parentTargetPosition = cameraParent.transform.position;
 
+        //Check if we are in the borders
         Vector3 mousePosition = Input.mousePosition;
         bool isInsideFreeModeBorder;
 
@@ -74,9 +87,16 @@ public class CameraController : MonoBehaviour
             isInsideFreeModeBorder = false;
         }
 
+        //Check if we have keyboard input
+        Vector2 axesInput = ReadKeyboardInput();
+        if (axesInput != Vector2.zero)
+        {
+            cameraMode = MODE_FREE;
+        }
+
         switch (cameraMode) {
             case MODE_CHARA:
-                targetPosition = characterToFollow.transform.position + characterOffset;
+                parentTargetPosition = characterToFollow.transform.position;
                 break;
             case MODE_FREE:
 
@@ -86,16 +106,26 @@ public class CameraController : MonoBehaviour
                     float enter = 0.0f;
                     if (floorPlane.Raycast(ray, out enter))
                     {
-                        targetPosition = ray.GetPoint(enter) + characterOffset;
+                        parentTargetPosition = ray.GetPoint(enter);
                     }
                 }
+
+                parentTargetPosition = TargetPositionFromKeyboardInput(axesInput, parentTargetPosition);
                 break;
             default:
                 //
                 break;
         }
+        
+        cameraParent.transform.position = Vector3.SmoothDamp(cameraParent.transform.position, parentTargetPosition, ref velocity, smoothTime);
 
-        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
+        targetZoomFactor -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
+        targetZoomFactor = Mathf.Clamp(targetZoomFactor, 0.05f, 1.0f);
+
+        zoomFactor = Mathf.SmoothDamp(zoomFactor, targetZoomFactor, ref zoomVelocity, zoomSmoothTime);
+        transform.localPosition = zoomMaxPosition * zoomFactor;
+
+
     }
 
     void CameraModeButtonOnClick()
@@ -114,5 +144,21 @@ public class CameraController : MonoBehaviour
         {
             return false;
         }
+    }
+
+    Vector2 ReadKeyboardInput ()
+    {
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
+        Vector2 axesInput = new Vector2(h, v);
+        return axesInput;
+    }
+
+    Vector3 TargetPositionFromKeyboardInput(Vector2 axesInput, Vector3 curPosition)
+    {
+        Vector3 targetPosition = curPosition 
+            + (axesInput.x * cameraParent.transform.right + axesInput.y * cameraParent.transform.forward) * keyboardSpeed;
+        
+        return targetPosition;
     }
 }

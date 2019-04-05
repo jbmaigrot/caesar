@@ -17,6 +17,10 @@ MonoBehaviour:
   accessibleOutputCode:
   - SendMessage
   inputCodes:
+  - code: OnHack
+    parameter_int: 0
+    parameter_string: 
+    is_fixed: 1
   - code: OnWord
     parameter_int: 0
     parameter_string: lighton
@@ -35,11 +39,11 @@ MonoBehaviour:
     parameter_string: 
     is_fixed: 1
   graph:
-  - input: 0
+  - input: 1
     output: 0
     transmitTime: 0.2
     timeBeforeTransmit: []
-  - input: 1
+  - input: 2
     output: 1
     transmitTime: 0.2
     timeBeforeTransmit: []
