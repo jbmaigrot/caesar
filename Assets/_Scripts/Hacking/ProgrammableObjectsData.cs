@@ -13,6 +13,9 @@ public class ProgrammableObjectsData : MonoBehaviour
     public GameObject Server;
     public GameObject NavMeshSurface;
 
+    /*Network manager. Seulement coté client*/
+    public NetworkManager networkManager;
+
     /*Variables contenant le graphe de comportement de l'objet*/
     public List<InOutVignette> inputCodes=new List<InOutVignette>();
     public List<InOutVignette> outputCodes=new List<InOutVignette>();
@@ -45,11 +48,13 @@ public class ProgrammableObjectsData : MonoBehaviour
     /*Si l'objet est cliqué à distance suffisament courte, ouvre l'interface de hack. Cette fonction doit être adapté pour le réseau.*/
     void OnMouseDown()
     {
-        if((this.transform.position - HackInterface.GetComponent<HackInterface>().bonhomme.transform.position).magnitude < 3)
+        //if((this.transform.position - HackInterface.GetComponent<HackInterface>().bonhomme.transform.position).magnitude < 3)
+        if (true)
         {
-            HackInterface.GetComponent<HackInterface>().bonhomme.SetActive(false);
-            ExecuteEvents.Execute<ISelectObject>(HackInterface, null, (x, y) => x.SelectedProgrammableObject(this.gameObject));
-            OnInput("OnHack");
+            Debug.Log("requesting hack");
+            networkManager.RequestHackState(transform.GetSiblingIndex());
+            //ExecuteEvents.Execute<ISelectObject>(HackInterface, null, (x, y) => x.SelectedProgrammableObject(this.gameObject));
+            //OnInput("OnHack");
         }
         
     }
