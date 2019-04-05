@@ -199,7 +199,7 @@ public class Server : MonoBehaviour
 
     public void SendHackStatus(int objectId, int connectionId)
     {
-        ProgrammableObjectsData programmableObject = programmableObjectsContainer.transform.GetChild(objectId).GetComponentInChildren<ProgrammableObjectsData>();
+        ProgrammableObjectsData programmableObject = programmableObjectsContainer.objectList[objectId];
 
         using (var writer = new DataStreamWriter(4096, Allocator.Temp))
         {
@@ -272,6 +272,11 @@ public class Server : MonoBehaviour
             writer.Write(Constants.Server_SnapshotEnd);
             m_Driver.Send(m_Connections[connectionId], writer);
         }
+
+    }
+
+    public void SetHackStatus(int objectId)
+    {
 
     }
 }
