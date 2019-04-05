@@ -6,12 +6,18 @@ public class ClientCharacter : MonoBehaviour
 {
     public Vector3 speed = new Vector3(0, 0, 0);
     public int number;
-    public NetworkManager networkManager;
+
+    private Client client;
+
+    //Start
+    private void Start()
+    {
+        client = FindObjectOfType<Client>();
+    }
 
     // Update is called once per frame
     void Update()
     {
-       
         transform.position = transform.position + speed * Time.deltaTime;
     }
 
@@ -19,7 +25,7 @@ public class ClientCharacter : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            networkManager.Tacle(number);
+            client.Tacle(number);
         }
     }
 }
