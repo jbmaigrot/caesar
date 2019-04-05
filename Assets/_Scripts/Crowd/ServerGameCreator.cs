@@ -11,6 +11,14 @@ public class ServerGameCreator : MonoBehaviour
 
     public GameObject[] ListZone;
 
+    [Range(0, 100)]
+    public int ChanceToGoToObject = 60;
+    [Range(0, 50)]
+    public int MinTimeMoving = 4;
+    [Range(0, 50)]
+    public int MaxTimeMoving = 16;
+
+    private GameObject[] _listFloor;
     private GameObject _containerNPC;
     private PnjClass[] _listPnj;
     
@@ -19,14 +27,16 @@ public class ServerGameCreator : MonoBehaviour
 
     void Start()
     {
+        _listFloor = GameObject.FindGameObjectsWithTag("Floor");
         foreach (GameObject zone in ListZone)
         {
             ZoneClass zc = new ZoneClass();
             zc.ZoneGameObject = zone;
             zc.FillListSlot();
-
             _listZone.Add(zc);
         }
+
+
         _containerNPC = GameObject.Find("NPC_crowd");
         FillCrowd();
     }
@@ -36,38 +46,96 @@ public class ServerGameCreator : MonoBehaviour
     {
         for (int i = 0; i < NbPnj; i++)
         {
-
-            int rndZoneIndex = Random.Range(0, _listZone.Count);
-
-            
-            
             _listPnj[i].Time += Time.deltaTime;
+
             if (_listPnj[i].Time >= _listPnj[i].MovingTime)
             {
                 //todo beuuurk
-                foreach (ZoneClass zone in _listZone)
-                {
-                    zone.EmptyListSlot();
-                }
-                /*foreach (ZoneClass zoneClass in _listZone)
-                {
-                    zoneClass.EmptySlot(_listPnj[i].DestinationGameObject);
-                }*/
+                //foreach (ZoneClass zone in _listZone)
+                //{
+                //    zone.EmptyListSlot();
+                //}
+                //foreach (ZoneClass zoneClass in _listZone)
+                //{
+                //    if (_listPnj[i].DestinationGameObject != null && zoneClass.ConnectedGameObject == _listPnj[i].DestinationGameObject)
+                //    {
+                //        zoneClass.EmptySlot(_listPnj[i].DestinationGameObject);
+                //    }
+                //}
 
-                Debug.Log("pnj n°"+i+" is going to move");
-                _listPnj[i].Time = 0;
-                
-                SlotClass sc = _listZone[rndZoneIndex].GetFreeSlot();
-                if (sc != null && sc.SlotGameObject != null)
+                int chanceGoZone = Random.Range(0, 100);
+                if (chanceGoZone <= ChanceToGoToObject)
                 {
-                    _listPnj[i].PrefabPnj.GetComponent<NavMeshAgent>().ResetPath();
-                    _listPnj[i].PrefabPnj.GetComponent<NavMeshAgent>().destination = sc.SlotGameObject.transform.position;
-                    _listPnj[i].DestinationGameObject = sc.ConnectedGameObject;
+                    int rndZoneIndex = Random.Range(0, _listZone.Count);
+                    {
+                        _listPnj[i].Time = 0;
+
+                        _listPnj[i].PrefabPnj.GetComponent<NavMeshAgent>().ResetPath();
+                        Vector3 pos = _listZone[rndZoneIndex].ConnectedGameObject.transform.position;
+                        Debug.Log(pos.x);
+                        pos.x += Random.Range(-5, 5);
+                        pos.z += Random.Range(-5, 5);
+                        Debug.Log(pos.x);
+                        _listPnj[i].PrefabPnj.GetComponent<NavMeshAgent>().destination = pos;
+
+                        //SlotClass sc = _listZone[rndZoneIndex].GetFreeSlot();
+                        //if (sc != null && sc.SlotGameObject != null)
+                        //{
+                        //    _listPnj[i].PrefabPnj.GetComponent<NavMeshAgent>().ResetPath();
+                        //    _listPnj[i].PrefabPnj.GetComponent<NavMeshAgent>().destination = sc.SlotGameObject.transform.position;
+                        //    _listPnj[i].DestinationGameObject = sc.ConnectedGameObject;
+                        //}
+                        // Add time to simulate hacking
+                        _listPnj[i].MovingTime = Random.Range(MinTimeMoving + 5, MaxTimeMoving + 5);
+                    }
                 }
-                else { Debug.Log("plus de place");}
-                _listPnj[i].MovingTime = Random.Range(2, 8);
+                else
+                {
+                    int rndZoneIndex = Random.Range(0, _listFloor.Length);
+                    _listPnj[i].Time = 0;
+                    _listPnj[i].PrefabPnj.GetComponent<NavMeshAgent>().ResetPath();
+                    _listPnj[i].PrefabPnj.GetComponent<NavMeshAgent>().destination = _listFloor[rndZoneIndex].transform.position;
+                    _listPnj[i].DestinationGameObject = _listFloor[rndZoneIndex];
+                    _listPnj[i].MovingTime = Random.Range(MinTimeMoving, MaxTimeMoving);
+                }
             }
+
+            
         }
+        
+            
+            //TODO Version Zone
+            //int rndZoneIndex = Random.Range(0, _listZone.Count);
+
+
+
+            //_listPnj[i].Time += Time.deltaTime;
+            //if (_listPnj[i].Time >= _listPnj[i].MovingTime)
+            //{
+            //    //todo beuuurk
+            //    foreach (ZoneClass zone in _listZone)
+            //    {
+            //        zone.EmptyListSlot();
+            //    }
+            //    /*foreach (ZoneClass zoneClass in _listZone)
+            //    {
+            //        zoneClass.EmptySlot(_listPnj[i].DestinationGameObject);
+            //    }*/
+
+            //    Debug.Log("pnj n°"+i+" is going to move");
+            //    _listPnj[i].Time = 0;
+
+            //    SlotClass sc = _listZone[rndZoneIndex].GetFreeSlot();
+            //    if (sc != null && sc.SlotGameObject != null)
+            //    {
+            //        _listPnj[i].PrefabPnj.GetComponent<NavMeshAgent>().ResetPath();
+            //        _listPnj[i].PrefabPnj.GetComponent<NavMeshAgent>().destination = sc.SlotGameObject.transform.position;
+            //        _listPnj[i].DestinationGameObject = sc.ConnectedGameObject;
+            //    }
+            //    else { Debug.Log("plus de place");}
+            //    _listPnj[i].MovingTime = Random.Range(2, 8);
+            //}
+        
     }
 
     void FillCrowd()

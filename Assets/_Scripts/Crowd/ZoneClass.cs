@@ -59,8 +59,7 @@ public class ZoneClass
 	public SlotClass GetFreeSlot(){
 		foreach(SlotClass slot in _listSlots){
 			if(!slot.IsUsed){
-					slot.IsUsed = true;
-			    bool test = slot.ConnectedGameObject != null;
+				slot.IsUsed = true;
                 return slot;
 			}
 		}
