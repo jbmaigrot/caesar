@@ -163,7 +163,7 @@ public class Client : MonoBehaviour
                                 break;
 
                             case Constants.Server_GetHack:
-                                GetHackState(stream, readerCtx);
+                                GetHackState(stream, ref readerCtx);
                                 break;
 
                             default:
@@ -237,7 +237,7 @@ public class Client : MonoBehaviour
         }
     }
 
-    public void GetHackState(DataStreamReader stream, DataStreamReader.Context readerCtx)
+    public void GetHackState(DataStreamReader stream, ref DataStreamReader.Context readerCtx)
     {
         int objectId = (int)stream.ReadUInt(ref readerCtx);
         List<InOutVignette> inputCodes = new List<InOutVignette>();
@@ -270,11 +270,7 @@ public class Client : MonoBehaviour
 
             InOutVignette vignette = new InOutVignette(code, parameter_int, parameter_string, is_fixed);
             inputCodes.Add(vignette);
-
-            Debug.Log(code);
-            Debug.Log(parameter_int);
-            Debug.Log(parameter_string);
-            Debug.Log(is_fixed);
+            
             
         }
 
@@ -304,11 +300,6 @@ public class Client : MonoBehaviour
             InOutVignette vignette = new InOutVignette(code, parameter_int, parameter_string, is_fixed);
             outputCodes.Add(vignette);
 
-            Debug.Log(code);
-            Debug.Log(parameter_int);
-            Debug.Log(parameter_string);
-            Debug.Log(is_fixed);
-
         }
 
         int arrowCount = (int)stream.ReadUInt(ref readerCtx);
@@ -322,13 +313,12 @@ public class Client : MonoBehaviour
             int timeBeforeTransmitCount = (int)stream.ReadUInt(ref readerCtx);
             for (int j = 0; j < timeBeforeTransmitCount; j++)
             {
-                timeBeforeTransmit.Add(stream.ReadFloat(ref readerCtx));
+                float timeBeforeTransmitElement = stream.ReadFloat(ref readerCtx);
+                timeBeforeTransmit.Add(timeBeforeTransmitElement);
             }
 
             Arrow arrow = new Arrow(input, output, transmitTime, timeBeforeTransmit);
             graph.Add(arrow);
-
-            Debug.Log("Arrow from input " + input + " and output " + output);
         }
 
         GameObject selectedGameObject = programmableObjectsContainer.objectList[objectId].gameObject;

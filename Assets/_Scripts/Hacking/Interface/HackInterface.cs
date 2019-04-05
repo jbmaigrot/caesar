@@ -27,9 +27,14 @@ public class HackInterface : MonoBehaviour, ISelectObject
     private bool isClosing;
     const float TIMEFORCLOSING = 0.1f;
 
+    private Client client;
+    private ProgrammableObjectsContainer objectsContainer;
+
     // Start is called before the first frame update
     void Start()
     {
+        client = FindObjectOfType<Client>();
+        objectsContainer = FindObjectOfType<ProgrammableObjectsContainer>();
         this.gameObject.GetComponent<CanvasGroup>().alpha=0f;
         this.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
         isClosing = false;
@@ -64,11 +69,9 @@ public class HackInterface : MonoBehaviour, ISelectObject
         isClosing = true;
 
         SelectedInputButton = -1;
-
+        
         /*Le graphe de comportement de l'objet hacké est remplacé par les modifications effectués.*/
-        SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes = inputCodes;
-        SelectedGameObject.GetComponent<ProgrammableObjectsData>().outputCodes = outputCodes;
-        SelectedGameObject.GetComponent<ProgrammableObjectsData>().graph = graph;
+        client.SetHackState(objectsContainer.GetObjectIndex(SelectedGameObject.GetComponent<ProgrammableObjectsData>()), inputCodes, outputCodes, graph);
 
         Camera.main.GetComponent<CameraController>().UnlockCamera();
     }

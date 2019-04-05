@@ -61,7 +61,7 @@ public class ProgrammableObjectsData : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         OnInput("OnPress");
     }
