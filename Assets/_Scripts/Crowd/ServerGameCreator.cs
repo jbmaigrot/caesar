@@ -28,11 +28,13 @@ public class ServerGameCreator : MonoBehaviour
     void Start()
     {
         _listFloor = GameObject.FindGameObjectsWithTag("Floor");
+        ListZone = GameObject.FindGameObjectsWithTag("ConnectedObject");
         foreach (GameObject zone in ListZone)
         {
             ZoneClass zc = new ZoneClass();
             zc.ZoneGameObject = zone;
-            zc.FillListSlot();
+            zc.ConnectedGameObject = zone;
+            //zc.FillListSlot();
             _listZone.Add(zc);
         }
 
@@ -72,10 +74,8 @@ public class ServerGameCreator : MonoBehaviour
 
                         _listPnj[i].PrefabPnj.GetComponent<NavMeshAgent>().ResetPath();
                         Vector3 pos = _listZone[rndZoneIndex].ConnectedGameObject.transform.position;
-                        Debug.Log(pos.x);
                         pos.x += Random.Range(-5, 5);
                         pos.z += Random.Range(-5, 5);
-                        Debug.Log(pos.x);
                         _listPnj[i].PrefabPnj.GetComponent<NavMeshAgent>().destination = pos;
 
                         //SlotClass sc = _listZone[rndZoneIndex].GetFreeSlot();
