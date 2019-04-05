@@ -61,9 +61,10 @@ public class ProgrammableObjectsData : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         OnInput("OnPress");
+        Debug.Log("voiture");
     }
 
     /*Quand le mot en parametre apparait dans le chat, active la vignette OnWord correspondant. Potentielement à adapter un petit peu pour le chat.*/
