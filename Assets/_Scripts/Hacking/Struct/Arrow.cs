@@ -9,4 +9,16 @@ public class Arrow
     public int output;
     public float transmitTime = 0.2f;
     public List<float> timeBeforeTransmit = new List<float>();
+
+    public Arrow()
+    {
+
+    }
+    public Arrow(int _input, int _output, float _transmitTime, List<float> _timeBeforeTransmit)
+    {
+        input = _input;
+        output = _output;
+        transmitTime = _transmitTime;
+        timeBeforeTransmit = _timeBeforeTransmit;
+    }
 }

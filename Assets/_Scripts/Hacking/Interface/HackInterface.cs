@@ -73,7 +73,8 @@ public class HackInterface : MonoBehaviour, ISelectObject
         SelectedGameObject.GetComponent<ProgrammableObjectsData>().inputCodes = inputCodes;
         SelectedGameObject.GetComponent<ProgrammableObjectsData>().outputCodes = outputCodes;
         SelectedGameObject.GetComponent<ProgrammableObjectsData>().graph = graph;
-                      
+
+        Camera.main.GetComponent<CameraController>().UnlockCamera();
     }
 
     /*Fonction appelé lorsque un objet est hacké par le joueur. A adapter pour le réseau*/
@@ -99,6 +100,33 @@ public class HackInterface : MonoBehaviour, ISelectObject
         this.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
         
         
+    }
+
+
+    //Network compatible version of the function
+    public void SelectedProgrammableObject(GameObject SelectedObject, List<InOutVignette> _inputCodes, List<InOutVignette> _outputCodes, List<Arrow> _graph)
+    {
+        /*Copie du graphe de comportement de l'objet*/
+        SelectedGameObject = SelectedObject;
+        accessibleInputCode = new List<string>(SelectedObject.GetComponent<ProgrammableObjectsData>().Initiator.accessibleInputCode);
+        accessibleOutputCode = new List<string>(SelectedObject.GetComponent<ProgrammableObjectsData>().Initiator.accessibleOutputCode);
+
+        //à récupérer depuis le serveur
+        inputCodes = _inputCodes;
+        outputCodes = _outputCodes;
+        graph = _graph;
+
+        /*Ecriture du contenu de l'interface*/
+        reloadInterface();
+        reloadArrow();
+        isClosing = false;
+
+        /*Ouverture de l'interface*/
+        this.gameObject.GetComponent<CanvasGroup>().alpha = 1f;
+        this.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+
+        SelectedObject.GetComponent<ProgrammableObjectsData>().OnInput("OnHack");
+        Camera.main.GetComponent<CameraController>().LockCamera();
     }
 
     /*Ecriture des vignettes de l'interface*/
