@@ -20,6 +20,7 @@ public class Server : MonoBehaviour
     private NativeList<NetworkConnection> m_Connections;
 
     private ProgrammableObjectsContainer programmableObjectsContainer;
+    private int snapshotCount = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -142,6 +143,7 @@ public class Server : MonoBehaviour
             {
                 //snapshot start
                 writer.Write(Constants.Server_Snapshot);
+                writer.Write(snapshotCount);
                 writer.Write(0); // (Temp 0) character to follow 
 
                 var n = characters.Count;
@@ -161,7 +163,7 @@ public class Server : MonoBehaviour
 
                 //close snapshot
                 writer.Write(Constants.Server_SnapshotEnd);
-
+                snapshotCount++;
 
                 //send snapshot to all clients
                 for (int k = 0; k < m_Connections.Length; k++)
