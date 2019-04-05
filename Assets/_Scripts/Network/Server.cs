@@ -103,8 +103,9 @@ public class Server : MonoBehaviour
                             //TO DO
                             break;
 
-                        case Constants.Client_GetHack:
+                        case Constants.Client_RequestHack:
                             int objectId = (int)stream.ReadUInt(ref readerCtx);
+                            Debug.Log("Server received a request for object with ID " + objectId);
                             SendHackStatus(objectId, i);
                             //TO DO
                             break;
@@ -166,51 +167,68 @@ public class Server : MonoBehaviour
         using (var writer = new DataStreamWriter(4096, Allocator.Temp))
         {
             writer.Write(Constants.Server_GetHack);
+
+            writer.Write(objectId);
+
+            writer.Write(programmableObject.inputCodes.Count);
             foreach(InOutVignette vignette in programmableObject.inputCodes)
             {
+                byte[] buffer = new byte[vignette.code.Length];
                 for (int i = 0; i < vignette.code.Length; i++)
                 {
-                    writer.Write(vignette.code.ToCharArray()[i]);
+                    buffer[i] = (byte)vignette.code.ToCharArray()[i];
                 }
-                writer.Write('\0');
+                writer.Write(vignette.code.Length);
+                writer.Write(buffer);
+
                 writer.Write(vignette.parameter_int);
+
+                buffer = new byte[vignette.parameter_string.Length];
                 for (int i = 0; i < vignette.parameter_string.Length; i++)
                 {
-                    writer.Write(vignette.parameter_string.ToCharArray()[i]);
+                    buffer[i] = (byte)vignette.parameter_string.ToCharArray()[i];
                 }
-                writer.Write('\0');
+                writer.Write(vignette.parameter_string.Length);
+                writer.Write(buffer);
+
                 writer.Write(vignette.is_fixed ? 1 : 0);
             }
 
-            writer.Write('\0');
-
-            foreach(InOutVignette vignette in programmableObject.outputCodes)
+            writer.Write(programmableObject.outputCodes.Count);
+            foreach (InOutVignette vignette in programmableObject.outputCodes)
             {
-                for(int i = 0; i < vignette.code.Length; i++)
+                byte[] buffer = new byte[vignette.code.Length];
+                for (int i = 0; i < vignette.code.Length; i++)
                 {
-                    writer.Write(vignette.code.ToCharArray()[i]);
+                    buffer[i] = (byte)vignette.code.ToCharArray()[i];
                 }
-                writer.Write('\0');
+                writer.Write(vignette.code.Length);
+                writer.Write(buffer);
+
                 writer.Write(vignette.parameter_int);
+
+                buffer = new byte[vignette.parameter_string.Length];
                 for (int i = 0; i < vignette.parameter_string.Length; i++)
                 {
-                    writer.Write(vignette.parameter_string.ToCharArray()[i]);
+                    buffer[i] = (byte)vignette.parameter_string.ToCharArray()[i];
                 }
-                writer.Write('\0');
+                writer.Write(vignette.parameter_string.Length);
+                writer.Write(buffer);
+
                 writer.Write(vignette.is_fixed ? 1 : 0);
             }
 
-            writer.Write('\0');
-
+            writer.Write(programmableObject.graph.Count);
             foreach(Arrow arrow in programmableObject.graph)
             {
                 writer.Write(arrow.input);
                 writer.Write(arrow.output);
                 writer.Write(arrow.transmitTime);
+
+                writer.Write(arrow.timeBeforeTransmit.Count);
                 foreach (float time in arrow.timeBeforeTransmit)
                 {
                     writer.Write(time);
-                    writer.Write('\0');
                 }
             }
 

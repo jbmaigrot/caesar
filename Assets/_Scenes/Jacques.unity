@@ -4241,7 +4241,7 @@ PrefabInstance:
     - target: {fileID: 6389667825813485096, guid: 2eb37019bedf04e4da03c14045794e29,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6389667825813485096, guid: 2eb37019bedf04e4da03c14045794e29,
         type: 3}
@@ -4251,7 +4251,7 @@ PrefabInstance:
     - target: {fileID: 4635247637901888519, guid: 2eb37019bedf04e4da03c14045794e29,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4635247637901888519, guid: 2eb37019bedf04e4da03c14045794e29,
         type: 3}
@@ -46892,29 +46892,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4284710731379844939}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2095482512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2095482510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15a66bf76cc67b949aaa75c4bfb2f7ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HackInterface: {fileID: 771040513}
-  Server: {fileID: 0}
-  networkManager: {fileID: 244240628}
-  inputCodes:
-  - code: OnHack
-    parameter_int: 10
-    parameter_string: ACAB
-    is_fixed: 0
-  outputCodes: []
-  graph: []
-  Initiator: {fileID: 11400000, guid: 92a96582a234e804baf5198308090606, type: 2}
 --- !u!135 &2095482513
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -48525,5 +48502,15 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2100283392616549104, guid: 6002f853a5f526149a64b17c28dce2b3,
+        type: 3}
+      propertyPath: networkManager
+      value: 
+      objectReference: {fileID: 244240628}
+    - target: {fileID: 2100283392616549104, guid: 6002f853a5f526149a64b17c28dce2b3,
+        type: 3}
+      propertyPath: HackInterface
+      value: 
+      objectReference: {fileID: 771040513}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6002f853a5f526149a64b17c28dce2b3, type: 3}
