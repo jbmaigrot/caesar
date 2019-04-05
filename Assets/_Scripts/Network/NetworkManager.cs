@@ -136,8 +136,16 @@ public class NetworkManager : MonoBehaviour
                                 break;
 
                             case Constants.Server_Message:
-                                //TO DO
-                                chat.AddMessage("");
+                                int length = (int)stream.ReadUInt(ref readerCtx);
+                                Debug.Log(length);
+                                byte[] buffer = stream.ReadBytesAsArray(ref readerCtx, length);
+                                char[] chars = new char[length];
+                                for (int n = 0; n < length; n++)
+                                {
+                                    chars[n] = (char)buffer[n];
+                                }
+                                //string message = ;
+                                chat.AddMessage(new string(chars));
                                 break;
 
                             case Constants.Server_GetHack:
@@ -191,9 +199,14 @@ public class NetworkManager : MonoBehaviour
         using (var writer = new DataStreamWriter(256, Allocator.Temp))
         {
             writer.Write(Constants.Client_Message);
-            char[] chars = new char[message.Length + 1];
-            message.ToCharArray().CopyTo(chars, 0);
-            chars[message.Length] = '\0';
+            writer.Write(message.Length);
+            char[] chars = message.ToCharArray();
+            byte[] buffer = new byte[message.Length];
+            for (int i = 0; i < message.Length; i++)
+            {
+                buffer[i] = (byte)chars[i];
+            }
+            writer.Write(buffer);
             // message.ToCharArray()
             m_Connection.Send(m_Driver, writer);
         }
