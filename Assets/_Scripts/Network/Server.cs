@@ -158,7 +158,7 @@ public class Server : MonoBehaviour
                     writer.Write(characters[j].GetComponent<NavMeshAgent>().velocity.z);
                     writer.Write(characters[j].gameObject.GetComponent<ServerCharacter>().isStunned?1:0);
                 }
-
+                
                 for(int j = 0; j < programmableObjectsContainer.objectList.Count; j++)
                 {
                     writer.Write(Constants.Server_UpdateObject);

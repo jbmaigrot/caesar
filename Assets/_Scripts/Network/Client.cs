@@ -24,7 +24,7 @@ public class Client : MonoBehaviour
 
     private CameraController cameraController;
     private ClientChatInput chat;
-    private ProgrammableObjectsContainer programmableObjectsContainer;
+    public ProgrammableObjectsContainer programmableObjectsContainer;
     private HackInterface hackInterface;
 
     public bool done;
@@ -165,25 +165,33 @@ public class Client : MonoBehaviour
                             case Constants.Server_GetHack:
                                 GetHackState(stream, ref readerCtx);
                                 break;
-
+                                
                             case Constants.Server_UpdateObject:
-                                 int l = (int)stream.ReadUInt(ref readerCtx);
+
+                                int l = (int)stream.ReadUInt(ref readerCtx);
+
                                 if ((int)stream.ReadUInt(ref readerCtx) == 0)
                                 {
-                                    programmableObjectsContainer.objectList[l].OnOutput("TurnOffLight");
+                                    if(programmableObjectsContainer.objectList[l].GetComponentInChildren<Light>()!=null)
+                                    programmableObjectsContainer.objectList[l].GetComponentInChildren<Light>().enabled = false; 
                                 }
                                 else
                                 {
-                                    programmableObjectsContainer.objectList[l].OnOutput("TurnOnLight");
+                                    if (programmableObjectsContainer.objectList[l].GetComponentInChildren<Light>() != null)
+                                        programmableObjectsContainer.objectList[l].GetComponentInChildren<Light>().enabled = true;
                                 }
+
                                 if ((int)stream.ReadUInt(ref readerCtx) == 0)
                                 {
-                                    programmableObjectsContainer.objectList[l].OnOutput("CloseDoor");
+                                    if (programmableObjectsContainer.objectList[l].GetComponentInChildren<DoorScript>() != null)
+                                        programmableObjectsContainer.objectList[l].GetComponentInChildren<DoorScript>().OnClose();
                                 }
                                 else
                                 {
-                                    programmableObjectsContainer.objectList[l].OnOutput("OpenDoor");
+                                    if (programmableObjectsContainer.objectList[l].GetComponentInChildren<DoorScript>() != null)
+                                        programmableObjectsContainer.objectList[l].GetComponentInChildren<DoorScript>().OnOpen();
                                 }
+
                                 break;
                             default:
                                 break;
