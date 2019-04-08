@@ -2,26 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProgrammableObjectsContainer : MonoBehaviour, IMessageReceiver
+public class ProgrammableObjectsContainer : MonoBehaviour
 {
+#if CLIENT
     public Client client;
-    public HackInterface hackInterface;
+#endif
 
     public List<ProgrammableObjectsData> objectList;
 
     public void Start()
     {
+#if CLIENT
         client = FindObjectOfType<Client>();
-        hackInterface = FindObjectOfType<HackInterface>();
+#endif
 
         foreach(ProgrammableObjectsData ryan in this.GetComponentsInChildren<ProgrammableObjectsData>())
         {
+#if CLIENT
             ryan.client = client;
-            ryan.hackInterface = hackInterface;
+#endif
             objectList.Add(ryan);
         }
     }
 
+#if SERVER
     public void ChatInstruction(string instruction)
     {
         for(int i = 0; i < objectList.Count; i++)
@@ -29,6 +33,7 @@ public class ProgrammableObjectsContainer : MonoBehaviour, IMessageReceiver
             objectList[i].ChatInstruction(instruction);
         }
     }
+#endif
 
     public int GetObjectIndex(ProgrammableObjectsData objectData)
     {

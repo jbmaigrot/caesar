@@ -10,8 +10,8 @@ public interface IMessageReceiver : IEventSystemHandler
     
 }
 
-public interface ISelectObject : IEventSystemHandler
-{
-    void SelectedProgrammableObject(GameObject SelectedObject);
-}
+//public interface ISelectObject : IEventSystemHandler
+//{
+//    void SelectedProgrammableObject(GameObject SelectedObject);
+//}
 

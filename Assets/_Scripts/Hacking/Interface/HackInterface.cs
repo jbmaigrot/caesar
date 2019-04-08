@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
-
-public class HackInterface : MonoBehaviour, ISelectObject
+#if CLIENT
+public class HackInterface : MonoBehaviour/*, ISelectObject*/
 {
     /*Variable qui contient la vignette d'input selectionné comme début de flèche. Est modifié par le script TextButtonHackInterface.*/
     static public int SelectedInputButton=-1;
@@ -77,29 +77,29 @@ public class HackInterface : MonoBehaviour, ISelectObject
     }
 
     /*Fonction appelé lorsque un objet est hacké par le joueur. A adapter pour le réseau*/
-    public void SelectedProgrammableObject(GameObject SelectedObject)
-    {
-        /*Copie du graphe de comportement de l'objet*/
-        SelectedGameObject = SelectedObject;
-        accessibleInputCode = new List<string>(SelectedObject.GetComponent<ProgrammableObjectsData>().Initiator.accessibleInputCode);
-        accessibleOutputCode = new List<string>(SelectedObject.GetComponent<ProgrammableObjectsData>().Initiator.accessibleOutputCode);
+    //public void SelectedProgrammableObject(GameObject SelectedObject)
+    //{
+    //    /*Copie du graphe de comportement de l'objet*/
+    //    SelectedGameObject = SelectedObject;
+    //    accessibleInputCode = new List<string>(SelectedObject.GetComponent<ProgrammableObjectsData>().Initiator.accessibleInputCode);
+    //    accessibleOutputCode = new List<string>(SelectedObject.GetComponent<ProgrammableObjectsData>().Initiator.accessibleOutputCode);
 
-        //à récupérer depuis le serveur
-        inputCodes = new List<InOutVignette>(SelectedObject.GetComponent<ProgrammableObjectsData>().inputCodes);
-        outputCodes = new List<InOutVignette>(SelectedObject.GetComponent<ProgrammableObjectsData>().outputCodes);
-        graph = new List<Arrow>(SelectedObject.GetComponent<ProgrammableObjectsData>().graph);
+    //    //à récupérer depuis le serveur
+    //    inputCodes = new List<InOutVignette>(SelectedObject.GetComponent<ProgrammableObjectsData>().inputCodes);
+    //    outputCodes = new List<InOutVignette>(SelectedObject.GetComponent<ProgrammableObjectsData>().outputCodes);
+    //    graph = new List<Arrow>(SelectedObject.GetComponent<ProgrammableObjectsData>().graph);
 
-        /*Ecriture du contenu de l'interface*/
-        reloadInterface();
-        reloadArrow();
-        isClosing = false;
+    //    /*Ecriture du contenu de l'interface*/
+    //    reloadInterface();
+    //    reloadArrow();
+    //    isClosing = false;
 
-        /*Ouverture de l'interface*/
-        this.gameObject.GetComponent<CanvasGroup>().alpha =1f;
-        this.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+    //    /*Ouverture de l'interface*/
+    //    this.gameObject.GetComponent<CanvasGroup>().alpha =1f;
+    //    this.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
         
         
-    }
+    //}
 
 
     //Network compatible version of the function
@@ -124,7 +124,6 @@ public class HackInterface : MonoBehaviour, ISelectObject
         this.gameObject.GetComponent<CanvasGroup>().alpha = 1f;
         this.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
 
-        SelectedObject.GetComponent<ProgrammableObjectsData>().OnInput("OnHack");
         Camera.main.GetComponent<CameraController>().LockCamera();
     }
 
@@ -146,3 +145,4 @@ public class HackInterface : MonoBehaviour, ISelectObject
         }
     }
 }
+#endif

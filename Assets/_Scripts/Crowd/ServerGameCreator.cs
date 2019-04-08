@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+#if SERVER
 public class ServerGameCreator : MonoBehaviour
 {
 
@@ -165,3 +165,4 @@ public class ServerGameCreator : MonoBehaviour
         
     }
 }
+#endif

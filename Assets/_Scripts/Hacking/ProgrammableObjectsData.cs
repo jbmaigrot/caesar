@@ -6,20 +6,27 @@ using UnityEngine.AI;
 
 public class ProgrammableObjectsData : MonoBehaviour
 {
-    /*Interface de Hack. Utilisé pour envoyer les infos quand l'objets est hacké. Seulement coté client.*/
-    public HackInterface hackInterface;
 
+#if SERVER
     /*Server. Seulement coté serveur*/
     private Server server;
     public NavMeshSurface NavMeshSurface;
+#endif
 
+#if CLIENT
     /*Network manager. Seulement coté client*/
     public Client client;
+#endif
 
+#if SERVER
     /*Variables contenant le graphe de comportement de l'objet*/
     public List<InOutVignette> inputCodes=new List<InOutVignette>();
     public List<InOutVignette> outputCodes=new List<InOutVignette>();
     public List<Arrow> graph= new List<Arrow>();
+
+    public bool isLightOn = false;
+    public bool isDoorOpen = false;
+#endif
 
     /*Variable servant à initié le graphe de comportement et à définir les input et output autorisées*/
     public ProgrammableObjectsScriptable Initiator;
@@ -28,9 +35,12 @@ public class ProgrammableObjectsData : MonoBehaviour
 
     void Start()
     {
+        objectsContainer = FindObjectOfType<ProgrammableObjectsContainer>();
+
+#if SERVER
         NavMeshSurface = FindObjectOfType<NavMeshSurface>();
         server = FindObjectOfType<Server>();
-        objectsContainer = FindObjectOfType<ProgrammableObjectsContainer>();
+
         /*Initie le graphe de comportement*/
         ProgrammableObjectsScriptable InitiatorClone = Instantiate(Initiator);
         inputCodes = new List<InOutVignette>(InitiatorClone.inputCodes);
@@ -46,22 +56,25 @@ public class ProgrammableObjectsData : MonoBehaviour
         {
             OnOutput(ryan.code, ryan.parameter_string, ryan.parameter_int);
         }
+#endif
 
     }
 
     /*Si l'objet est cliqué à distance suffisament courte, ouvre l'interface de hack. Cette fonction doit être adapté pour le réseau.*/
+#if CLIENT
     void OnMouseDown()
     {
         //if((this.transform.position - HackInterface.GetComponent<HackInterface>().bonhomme.transform.position).magnitude < 3)
         if (true)
         {
             client.RequestHackState(objectsContainer.GetObjectIndex(this));
-            //ExecuteEvents.Execute<ISelectObject>(HackInterface, null, (x, y) => x.SelectedProgrammableObject(this.gameObject));
-            //OnInput("OnHack");
+            
         }
         
     }
+#endif
 
+#if SERVER
     public void OnTriggerEnter(Collider other)
     {
         OnInput("OnPress");
@@ -86,28 +99,32 @@ public class ProgrammableObjectsData : MonoBehaviour
     }
 
     /*Quand la vignette output désigné est activé, fait l'effet correspondant*/
-    void OnOutput(string codeoutput, string parameter_string = "", int parameter_int = 0)
+    public void OnOutput(string codeoutput, string parameter_string = "", int parameter_int = 0)
     {
         if(codeoutput == "TurnOnLight")
         {
             GetComponentInChildren<Light>().enabled = true;
+            isLightOn = true;
         }
 
         if(codeoutput == "TurnOffLight")
         {
             GetComponentInChildren<Light>().enabled = false;
+            isLightOn = false;
         }
 
         if(codeoutput == "OpenDoor")
         {
             this.GetComponentInChildren<DoorScript>().OnOpen();
             NavMeshSurface.GetComponent<NavMeshSurfaceScript>().hasToBeRebake = true;
+            isDoorOpen = true;
         }
 
         if(codeoutput == "CloseDoor")
         {
             this.GetComponentInChildren<DoorScript>().OnClose();
             NavMeshSurface.GetComponent<NavMeshSurfaceScript>().hasToBeRebake = true;
+            isDoorOpen = false;
         }
 
         if(codeoutput == "SendMessage")
@@ -137,6 +154,7 @@ public class ProgrammableObjectsData : MonoBehaviour
         }
     }
 
+
     /*A chaque frame, le signal se déplace dans les flèches du graphe*/
     void Update()
     {
@@ -156,4 +174,6 @@ public class ProgrammableObjectsData : MonoBehaviour
             }
         }
     }
+#endif
 }
+

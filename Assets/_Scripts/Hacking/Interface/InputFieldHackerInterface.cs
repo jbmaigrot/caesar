@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-
+#if CLIENT
 public class InputFieldHackerInterface : MonoBehaviour
 {
     private string previousValue;
@@ -179,3 +179,4 @@ public class InputFieldHackerInterface : MonoBehaviour
         HackingAsset = HackAss;
     }
 }
+#endif

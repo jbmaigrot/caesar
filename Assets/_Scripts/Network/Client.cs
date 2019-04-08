@@ -11,7 +11,7 @@ using UdpCNetworkDriver = Unity.Networking.Transport.BasicNetworkDriver<Unity.Ne
 
 //using Buffers = NetStack.Buffers;
 //using Serialization = NetStack.Serialization;
-
+#if CLIENT
 public class Client : MonoBehaviour
 {
     public string ServerIP = "127.0.0.1"; //localhost by default
@@ -163,7 +163,34 @@ public class Client : MonoBehaviour
                             case Constants.Server_GetHack:
                                 GetHackState(stream, ref readerCtx);
                                 break;
+                                
+                            case Constants.Server_UpdateObject:
 
+                                int l = (int)stream.ReadUInt(ref readerCtx);
+
+                                if ((int)stream.ReadUInt(ref readerCtx) == 0)
+                                {
+                                    if(programmableObjectsContainer.objectList[l].GetComponentInChildren<Light>()!=null)
+                                    programmableObjectsContainer.objectList[l].GetComponentInChildren<Light>().enabled = false; 
+                                }
+                                else
+                                {
+                                    if (programmableObjectsContainer.objectList[l].GetComponentInChildren<Light>() != null)
+                                        programmableObjectsContainer.objectList[l].GetComponentInChildren<Light>().enabled = true;
+                                }
+
+                                if ((int)stream.ReadUInt(ref readerCtx) == 0)
+                                {
+                                    if (programmableObjectsContainer.objectList[l].GetComponentInChildren<DoorScript>() != null)
+                                        programmableObjectsContainer.objectList[l].GetComponentInChildren<DoorScript>().OnClose();
+                                }
+                                else
+                                {
+                                    if (programmableObjectsContainer.objectList[l].GetComponentInChildren<DoorScript>() != null)
+                                        programmableObjectsContainer.objectList[l].GetComponentInChildren<DoorScript>().OnOpen();
+                                }
+
+                                break;
                             default:
                                 break;
                         }
@@ -404,3 +431,4 @@ public class Client : MonoBehaviour
         m_Driver.Dispose();
     }
 }
+#endif

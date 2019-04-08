@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-
+#if CLIENT
 public class PlayerInput : MonoBehaviour
 {
     private Client client;
@@ -40,3 +40,4 @@ public class PlayerInput : MonoBehaviour
         }
     }
 }
+#endif

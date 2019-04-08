@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+#if CLIENT
 public class ClientChat : MonoBehaviour
 {
     public Text chatBox;
@@ -33,4 +34,5 @@ public class ClientChat : MonoBehaviour
         chatBox.text += "\n" + message;
     }
 }
+#endif
 

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+#if CLIENT
 public class ClientCharacter : MonoBehaviour
 {
     public Vector3 speed = new Vector3(0, 0, 0);
@@ -30,3 +30,4 @@ public class ClientCharacter : MonoBehaviour
         }
     }
 }
+#endif
