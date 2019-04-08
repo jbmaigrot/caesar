@@ -23,6 +23,9 @@ public class ProgrammableObjectsData : MonoBehaviour
     public List<InOutVignette> inputCodes=new List<InOutVignette>();
     public List<InOutVignette> outputCodes=new List<InOutVignette>();
     public List<Arrow> graph= new List<Arrow>();
+
+    public bool isLightOn = false;
+    public bool isDoorOpen = false;
 #endif
 
     /*Variable servant à initié le graphe de comportement et à définir les input et output autorisées*/
@@ -96,28 +99,32 @@ public class ProgrammableObjectsData : MonoBehaviour
     }
 
     /*Quand la vignette output désigné est activé, fait l'effet correspondant*/
-    void OnOutput(string codeoutput, string parameter_string = "", int parameter_int = 0)
+    public void OnOutput(string codeoutput, string parameter_string = "", int parameter_int = 0)
     {
         if(codeoutput == "TurnOnLight")
         {
             GetComponentInChildren<Light>().enabled = true;
+            isLightOn = true;
         }
 
         if(codeoutput == "TurnOffLight")
         {
             GetComponentInChildren<Light>().enabled = false;
+            isLightOn = false;
         }
 
         if(codeoutput == "OpenDoor")
         {
             this.GetComponentInChildren<DoorScript>().OnOpen();
             NavMeshSurface.GetComponent<NavMeshSurfaceScript>().hasToBeRebake = true;
+            isDoorOpen = true;
         }
 
         if(codeoutput == "CloseDoor")
         {
             this.GetComponentInChildren<DoorScript>().OnClose();
             NavMeshSurface.GetComponent<NavMeshSurfaceScript>().hasToBeRebake = true;
+            isDoorOpen = false;
         }
 
         if(codeoutput == "SendMessage")/*A adapter pour le chat*/

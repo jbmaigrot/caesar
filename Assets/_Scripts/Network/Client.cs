@@ -166,6 +166,25 @@ public class Client : MonoBehaviour
                                 GetHackState(stream, ref readerCtx);
                                 break;
 
+                            case Constants.Server_UpdateObject:
+                                 int l = (int)stream.ReadUInt(ref readerCtx);
+                                if ((int)stream.ReadUInt(ref readerCtx) == 0)
+                                {
+                                    programmableObjectsContainer.objectList[l].OnOutput("TurnOffLight");
+                                }
+                                else
+                                {
+                                    programmableObjectsContainer.objectList[l].OnOutput("TurnOnLight");
+                                }
+                                if ((int)stream.ReadUInt(ref readerCtx) == 0)
+                                {
+                                    programmableObjectsContainer.objectList[l].OnOutput("CloseDoor");
+                                }
+                                else
+                                {
+                                    programmableObjectsContainer.objectList[l].OnOutput("OpenDoor");
+                                }
+                                break;
                             default:
                                 break;
                         }

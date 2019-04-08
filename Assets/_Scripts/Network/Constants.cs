@@ -11,5 +11,6 @@
     public const int Server_Message = 44;
     public const int Server_GetHack = 45;
     public const int Server_Snapshot = 50;
+    public const int Server_UpdateObject = 57;
     public const int Server_SnapshotEnd = 9999;
 }

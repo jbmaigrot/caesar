@@ -146,10 +146,8 @@ public class Server : MonoBehaviour
                 writer.Write(snapshotCount);
                 writer.Write(0); // (Temp 0) character to follow 
 
-                var n = characters.Count;
-
                 //update characters positions
-                for (int j = 0; j < n; j++)
+                for (int j = 0; j < characters.Count; j++)
                 {
                     writer.Write(Constants.Server_MoveCharacter);
                     writer.Write(j);
@@ -159,6 +157,14 @@ public class Server : MonoBehaviour
                     writer.Write(characters[j].GetComponent<NavMeshAgent>().velocity.x);
                     writer.Write(characters[j].GetComponent<NavMeshAgent>().velocity.z);
                     writer.Write(characters[j].gameObject.GetComponent<ServerCharacter>().isStunned?1:0);
+                }
+
+                for(int j = 0; j < programmableObjectsContainer.objectList.Count; j++)
+                {
+                    writer.Write(Constants.Server_UpdateObject);
+                    writer.Write(j);
+                    writer.Write(programmableObjectsContainer.objectList[j].isLightOn?1:0);
+                    writer.Write(programmableObjectsContainer.objectList[j].isDoorOpen ? 1 : 0);
                 }
 
                 //close snapshot
