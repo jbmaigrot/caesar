@@ -9,13 +9,13 @@ using Unity.Collections;
 
 using UdpCNetworkDriver = Unity.Networking.Transport.BasicNetworkDriver<Unity.Networking.Transport.IPv4UDPSocket>;
 
+#if SERVER
 public class Server : MonoBehaviour
 {
     public UdpCNetworkDriver m_Driver;
     public List<Transform> players;
     public List<Transform> characters; // Players + NPCs
     public List<string> messages = new List<string>();
-    public ProgrammableObjectsContainer programmableObjects;
 
     private NativeList<NetworkConnection> m_Connections;
 
@@ -113,7 +113,7 @@ public class Server : MonoBehaviour
                             string message = new string(chars);
                             Message(message);
                             messages.Add(message);
-                            programmableObjects.ChatInstruction(message);
+                            programmableObjectsContainer.ChatInstruction(message);
                             break;
 
                         case Constants.Client_RequestHack:
@@ -270,6 +270,8 @@ public class Server : MonoBehaviour
 
             writer.Write(Constants.Server_SnapshotEnd);
             m_Driver.Send(m_Connections[connectionId], writer);
+
+            programmableObject.OnInput("OnHack");
         }
 
     }
@@ -364,3 +366,4 @@ public class Server : MonoBehaviour
         objectData.graph = graph;
     }
 }
+#endif

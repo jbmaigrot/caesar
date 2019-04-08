@@ -11,7 +11,7 @@ using UdpCNetworkDriver = Unity.Networking.Transport.BasicNetworkDriver<Unity.Ne
 
 //using Buffers = NetStack.Buffers;
 //using Serialization = NetStack.Serialization;
-
+#if CLIENT
 public class Client : MonoBehaviour
 {
     public string ServerIP = "127.0.0.1"; //localhost by default
@@ -406,3 +406,4 @@ public class Client : MonoBehaviour
         m_Driver.Dispose();
     }
 }
+#endif

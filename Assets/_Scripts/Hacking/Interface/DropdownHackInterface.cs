@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-
+#if CLIENT
 public class DropdownHackInterface : MonoBehaviour
 {
 
@@ -196,3 +196,4 @@ public class DropdownHackInterface : MonoBehaviour
         HackingAsset = HackAss;
     }
 }
+#endif

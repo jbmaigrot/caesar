@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-
+#if CLIENT
 public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPointerUpHandler*/
 {
     /*Variables pour savoir de quel bouton on parle. Exemple c'est la 3ième vignette d'input. C'est rentré à la main dans l'éditeur, ce qui est améliorable.*/
@@ -120,3 +120,4 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
         
     }
 }
+#endif

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DoorTriggerScript : MonoBehaviour
 {
+#if SERVER
     public GameObject DoorScript;
     private int nbrObstacle = -2;
     private void OnTriggerEnter(Collider other)
@@ -30,4 +31,5 @@ public class DoorTriggerScript : MonoBehaviour
         this.GetComponentInParent<ProgrammableObjectsData>().OnInput("OnPassInside");
         
     }
+#endif
 }

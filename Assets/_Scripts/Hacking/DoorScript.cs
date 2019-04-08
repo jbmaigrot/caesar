@@ -35,11 +35,12 @@ public class DoorScript : MonoBehaviour
         }
     }
 
-    
 
+#if SERVER
     void OnCollisionEnter()
     {
         this.GetComponentInParent<ProgrammableObjectsData>().OnInput("OnInteract");
     }
+#endif
     
 }
