@@ -111,9 +111,7 @@ public class Server : MonoBehaviour
                                 chars[n] = (char)buffer[n];
                             }
                             string message = new string(chars);
-                            Message(message);
-                            messages.Add(message);
-                            programmableObjects.ChatInstruction(message);
+                            AddMessage(message);
                             break;
 
                         case Constants.Client_RequestHack:
@@ -144,7 +142,7 @@ public class Server : MonoBehaviour
                 //snapshot start
                 writer.Write(Constants.Server_Snapshot);
                 writer.Write(snapshotCount);
-                writer.Write(0); // (Temp 0) character to follow 
+                writer.Write(0); // (Temp 0) character to follow
 
                 var n = characters.Count;
 
@@ -195,6 +193,13 @@ public class Server : MonoBehaviour
                 m_Driver.Send(m_Connections[k], writer);
             }
         }
+    }
+
+    public void AddMessage(string message)
+    {
+        Message(message);
+        messages.Add(message);
+        programmableObjects.ChatInstruction(message);
     }
 
     public void SendHackStatus(int objectId, int connectionId)

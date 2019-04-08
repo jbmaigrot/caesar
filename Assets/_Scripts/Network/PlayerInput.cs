@@ -37,8 +37,6 @@ public class PlayerInput : MonoBehaviour
                     client.SetDestination(hit.point);
                 }
             }
-
-            
         }
     }
 }

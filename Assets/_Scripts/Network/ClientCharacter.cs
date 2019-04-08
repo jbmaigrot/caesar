@@ -21,6 +21,7 @@ public class ClientCharacter : MonoBehaviour
         transform.position = transform.position + speed * Time.deltaTime;
     }
 
+    // Tacle
     public void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(1))

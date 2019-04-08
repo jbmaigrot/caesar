@@ -23,7 +23,7 @@ public class Client : MonoBehaviour
     public GameObject characterPrefab;
 
     private CameraController cameraController;
-    private ClientChatInput chat;
+    private ClientChat chat;
     private ProgrammableObjectsContainer programmableObjectsContainer;
     private HackInterface hackInterface;
 
@@ -34,7 +34,7 @@ public class Client : MonoBehaviour
     void Start()
     {
         cameraController = FindObjectOfType<CameraController>();
-        chat = FindObjectOfType<ClientChatInput>();
+        chat = FindObjectOfType<ClientChat>();
         programmableObjectsContainer = FindObjectOfType<ProgrammableObjectsContainer>();
         hackInterface = FindObjectOfType<HackInterface>();
 
@@ -151,14 +151,12 @@ public class Client : MonoBehaviour
 
                             case Constants.Server_Message:
                                 int length = (int)stream.ReadUInt(ref readerCtx);
-                                //Debug.Log(length);
                                 byte[] buffer = stream.ReadBytesAsArray(ref readerCtx, length);
                                 char[] chars = new char[length];
                                 for (int n = 0; n < length; n++)
                                 {
                                     chars[n] = (char)buffer[n];
                                 }
-                                //string message = ;
                                 chat.AddMessage(new string(chars));
                                 break;
 

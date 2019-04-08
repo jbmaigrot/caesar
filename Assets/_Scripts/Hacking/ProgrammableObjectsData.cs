@@ -110,9 +110,9 @@ public class ProgrammableObjectsData : MonoBehaviour
             NavMeshSurface.GetComponent<NavMeshSurfaceScript>().hasToBeRebake = true;
         }
 
-        if(codeoutput == "SendMessage")/*A adapter pour le chat*/
+        if(codeoutput == "SendMessage")
         {
-            ScriptChatBox.NewChatContent = parameter_string +"\n";
+            server.AddMessage(parameter_string);
         }
 
         if(codeoutput == "TestInt")
