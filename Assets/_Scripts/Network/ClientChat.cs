@@ -6,7 +6,8 @@ using UnityEngine.UI;
 #if CLIENT
 public class ClientChat : MonoBehaviour
 {
-    public Text chatBox;
+    public RectTransform chatBox;
+    public GameObject messagePrefab;
 
     private InputField inputField;
     private Client client;
@@ -29,9 +30,15 @@ public class ClientChat : MonoBehaviour
     }
 
     //
-    public void AddMessage(string message) 
+    public void AddMessage(string message, Vector3 pos) 
     {
-        chatBox.text += "\n" + message;
+        chatBox.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, chatBox.rect.height + 50);
+        GameObject newMessage = Instantiate(messagePrefab);
+        newMessage.transform.SetParent(chatBox);
+        newMessage.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        newMessage.GetComponent<RectTransform>().localPosition = new Vector3(10, 50, 0);
+        newMessage.GetComponentInChildren<Text>().text = message;
+        newMessage.GetComponent<ClientMessage>().sourcePosition = pos;
     }
 }
 #endif

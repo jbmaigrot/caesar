@@ -9,6 +9,8 @@ public class Arrow
     public int output;
     public float transmitTime = 0.2f;
     public List<float> timeBeforeTransmit = new List<float>();
+    public Vector3 inputPos = new Vector3();
+    public Vector3 outputPos = new Vector3();
 
     public Arrow()
     {

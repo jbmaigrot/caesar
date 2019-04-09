@@ -157,7 +157,9 @@ public class Client : MonoBehaviour
                                 {
                                     chars[n] = (char)buffer[n];
                                 }
-                                chat.AddMessage(new string(chars));
+                                float xPos = stream.ReadFloat(ref readerCtx);
+                                float zPos = stream.ReadFloat(ref readerCtx);
+                                chat.AddMessage(new string(chars), new Vector3(xPos, 0, zPos));
                                 break;
 
                             case Constants.Server_GetHack:
@@ -165,7 +167,6 @@ public class Client : MonoBehaviour
                                 break;
                                 
                             case Constants.Server_UpdateObject:
-
                                 int l = (int)stream.ReadUInt(ref readerCtx);
 
                                 if ((int)stream.ReadUInt(ref readerCtx) == 0)
@@ -189,8 +190,8 @@ public class Client : MonoBehaviour
                                     if (programmableObjectsContainer.objectList[l].GetComponentInChildren<DoorScript>() != null)
                                         programmableObjectsContainer.objectList[l].GetComponentInChildren<DoorScript>().OnOpen();
                                 }
-
                                 break;
+
                             default:
                                 break;
                         }

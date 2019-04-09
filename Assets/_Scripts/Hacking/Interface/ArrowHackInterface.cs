@@ -22,15 +22,21 @@ public class ArrowHackInterface : MonoBehaviour, IPointerDownHandler
     {
         if (HackInterface.graph.Count > numero)
         {
-            this.GetComponent<CanvasGroup>().alpha = 1f;
-            this.GetComponent<CanvasGroup>().blocksRaycasts = true;
-            this.GetComponentInChildren<Text>().text = HackInterface.graph[numero].input.ToString() + "   " + HackInterface.graph[numero].output.ToString();
+            GetComponent<CanvasGroup>().alpha = 1f;
+            GetComponent<CanvasGroup>().blocksRaycasts = true;
+            GetComponentInChildren<Text>().text = HackInterface.graph[numero].input.ToString() + "   " + HackInterface.graph[numero].output.ToString();
+            /*
+            GetComponent<LineRenderer>().SetPosition(0, HackInterface.graph[numero].inputPos);
+            GetComponent<LineRenderer>().SetPosition(1, HackInterface.graph[numero].outputPos);*/
         }
         else
         {
-            this.GetComponent<CanvasGroup>().alpha = 0f;
-            this.GetComponent<CanvasGroup>().blocksRaycasts = false;
-            this.GetComponentInChildren<Text>().text = "";
+            GetComponent<CanvasGroup>().alpha = 0f;
+            GetComponent<CanvasGroup>().blocksRaycasts = false;
+            GetComponentInChildren<Text>().text = "";
+            /*
+            GetComponent<LineRenderer>().SetPosition(0, new Vector3(0,0,0));
+            GetComponent<LineRenderer>().SetPosition(1, new Vector3(0,0,0));*/
         }
     }
 }

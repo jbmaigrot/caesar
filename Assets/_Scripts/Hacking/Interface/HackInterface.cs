@@ -30,6 +30,10 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     private Client client;
     private ProgrammableObjectsContainer objectsContainer;
 
+    //
+    public RectTransform[] inputButtons = new RectTransform[0];
+    public RectTransform[] outputButtons = new RectTransform[0];
+
     // Start is called before the first frame update
     void Start()
     {
@@ -144,5 +148,19 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
             ryan.UpdateArrow();
         }
     }
+
+    /*
+    //Draw arrows
+    public Material lineMat = new Material("Shader \"Lines/Colored Blended\" {" + "SubShader { Pass { " + "    Blend SrcAlpha OneMinusSrcAlpha " + "    ZWrite Off Cull Off Fog { Mode Off } " + "    BindChannels {" + "      Bind \"vertex\", vertex Bind \"color\", color }" + "} } }");
+
+    private void OnPostRender()
+    {
+        GL.Begin(GL.LINES);
+        lineMat.SetPass(0);
+        GL.Color(new Color(0f, 0f, 0f, 1f));
+        GL.Vertex3(0f, 0f, 0f);
+        GL.Vertex3(1f, 1f, 1f);
+        GL.End();
+    }*/
 }
 #endif

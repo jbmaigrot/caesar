@@ -15,10 +15,11 @@ public class Server : MonoBehaviour
     public UdpCNetworkDriver m_Driver;
     public List<Transform> players;
     public List<Transform> characters; // Players + NPCs
-    public List<string> messages = new List<string>();
 
     private NativeList<NetworkConnection> m_Connections;
 
+    private List<string> messages = new List<string>();
+    private List<Vector3> messagesPos = new List<Vector3>();
     private ProgrammableObjectsContainer programmableObjectsContainer;
     private int snapshotCount = 1;
 
@@ -111,7 +112,7 @@ public class Server : MonoBehaviour
                                 chars[n] = (char)buffer[n];
                             }
                             string message = new string(chars);
-                            AddMessage(message);
+                            AddMessage(message, players[i].transform.position);
                             break;
 
                         case Constants.Client_RequestHack:
@@ -136,15 +137,15 @@ public class Server : MonoBehaviour
                 }
             }
 
-            // Send snapshot (world state)
-            using (var writer = new DataStreamWriter(1024, Allocator.Temp))
+            // Snapshot (world state)
+            using (var writer = new DataStreamWriter(2048, Allocator.Temp))
             {
                 //snapshot start
                 writer.Write(Constants.Server_Snapshot);
                 writer.Write(snapshotCount);
                 writer.Write(0); // (Temp 0) character to follow
 
-                //update characters positions
+                //update characters states and positions
                 for (int j = 0; j < characters.Count; j++)
                 {
                     writer.Write(Constants.Server_MoveCharacter);
@@ -154,14 +155,14 @@ public class Server : MonoBehaviour
                     writer.Write(characters[j].rotation.eulerAngles.y);
                     writer.Write(characters[j].GetComponent<NavMeshAgent>().velocity.x);
                     writer.Write(characters[j].GetComponent<NavMeshAgent>().velocity.z);
-                    writer.Write(characters[j].gameObject.GetComponent<ServerCharacter>().isStunned?1:0);
+                    writer.Write(characters[j].gameObject.GetComponent<ServerCharacter>().isStunned ? 1 : 0);
                 }
-                
+                //update objects states (and positions)
                 for(int j = 0; j < programmableObjectsContainer.objectList.Count; j++)
                 {
                     writer.Write(Constants.Server_UpdateObject);
                     writer.Write(j);
-                    writer.Write(programmableObjectsContainer.objectList[j].isLightOn?1:0);
+                    writer.Write(programmableObjectsContainer.objectList[j].isLightOn ? 1 : 0);
                     writer.Write(programmableObjectsContainer.objectList[j].isDoorOpen ? 1 : 0);
                 }
 
@@ -169,7 +170,8 @@ public class Server : MonoBehaviour
                 writer.Write(Constants.Server_SnapshotEnd);
                 snapshotCount++;
 
-                //send snapshot to all clients
+
+                //Send snapshot to all clients
                 for (int k = 0; k < m_Connections.Length; k++)
                 {
                     m_Driver.Send(m_Connections[k], writer);
@@ -179,7 +181,7 @@ public class Server : MonoBehaviour
     }
 
     
-    public void Message(string message)
+    public void Message(string message, Vector3 pos)
     {
         using (var writer = new DataStreamWriter(256, Allocator.Temp))
         {
@@ -192,6 +194,8 @@ public class Server : MonoBehaviour
                 buffer[i] = (byte)chars[i];
             }
             writer.Write(buffer);
+            writer.Write(pos.x);
+            writer.Write(pos.z);
             writer.Write(Constants.Server_SnapshotEnd);
             //send snapshot to all clients
             for (int k = 0; k < m_Connections.Length; k++)
@@ -201,10 +205,11 @@ public class Server : MonoBehaviour
         }
     }
 
-    public void AddMessage(string message)
+    public void AddMessage(string message, Vector3 pos)
     {
-        Message(message);
+        Message(message, pos);
         messages.Add(message);
+        messagesPos.Add(pos);
         programmableObjectsContainer.ChatInstruction(message);
     }
 

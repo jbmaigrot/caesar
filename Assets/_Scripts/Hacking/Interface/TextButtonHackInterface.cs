@@ -19,6 +19,13 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
     /*Variable qui contient le dictionnaire de mot-clefs, lié à leur description dans l'interface et à si la vignette a besoin de parametre. Sous forme de List.*/
     private HackingAssetScriptable HackingAsset;
 
+    //(test) used for getting buttons coords
+    private HackInterface hackInterface;
+
+    private void Start()
+    {
+        hackInterface = FindObjectOfType<HackInterface>();
+    }
 
     /*Récupère HackingAsset du parent, et le transmet aux enfants.*/
     public void GetHackingAsset(HackingAssetScriptable HackAss)
@@ -42,8 +49,13 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
             /*Création de la nouvelle connection*/
             Arrow NewArrow = new Arrow();
             NewArrow.input = HackInterface.SelectedInputButton;
-            HackInterface.SelectedInputButton = -1;
             NewArrow.output = numero - 1;
+
+            //Debug.Log("" + HackInterface.SelectedInputButton + ", " + numero);
+            NewArrow.inputPos = hackInterface.inputButtons[HackInterface.SelectedInputButton].position;
+            NewArrow.outputPos = hackInterface.outputButtons[numero-1].position;
+
+            HackInterface.SelectedInputButton = -1;
 
             /*Verification que la connection n'existe pas déjà dans le graphe*/
             bool isItReallyNew = true;

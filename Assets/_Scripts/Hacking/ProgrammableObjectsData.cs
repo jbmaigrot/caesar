@@ -28,7 +28,7 @@ public class ProgrammableObjectsData : MonoBehaviour
     public bool isDoorOpen = false;
 #endif
 
-    /*Variable servant à initié le graphe de comportement et à définir les input et output autorisées*/
+    /*Variable servant à initier le graphe de comportement et à définir les inputs et outputs autorisées*/
     public ProgrammableObjectsScriptable Initiator;
 
     private ProgrammableObjectsContainer objectsContainer;
@@ -129,7 +129,7 @@ public class ProgrammableObjectsData : MonoBehaviour
 
         if(codeoutput == "SendMessage")
         {
-            server.AddMessage(parameter_string);
+            server.AddMessage(parameter_string, new Vector3(0,0,0)); //TO UPDATE: temporary position
         }
 
         if(codeoutput == "TestInt")
