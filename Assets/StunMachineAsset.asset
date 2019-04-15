@@ -16,7 +16,6 @@ MonoBehaviour:
   - OnWord
   accessibleOutputCode:
   - SendMessage
-  - Stun
   inputCodes:
   - code: OnWord
     parameter_int: 0
@@ -24,12 +23,14 @@ MonoBehaviour:
     is_fixed: 0
   outputCodes:
   - code: Stun
-    parameter_int: 25
+    parameter_int: 0
     parameter_string: 
-    is_fixed: 0
+    is_fixed: 1
   graph:
   - input: 0
     output: 0
     transmitTime: 0.2
     timeBeforeTransmit: []
+    inputPos: {x: 0, y: 0, z: 0}
+    outputPos: {x: 0, y: 0, z: 0}
   initialOutputActions: []
