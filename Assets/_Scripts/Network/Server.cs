@@ -158,12 +158,12 @@ public class Server : MonoBehaviour
                     writer.Write(characters[j].gameObject.GetComponent<ServerCharacter>().isStunned ? 1 : 0);
                 }
                 //update objects states (and positions)
-                for(int j = 0; j < programmableObjectsContainer.objectList.Count; j++)
+                for(int j = 0; j < programmableObjectsContainer.objectListServer.Count; j++)
                 {
                     writer.Write(Constants.Server_UpdateObject);
                     writer.Write(j);
-                    writer.Write(programmableObjectsContainer.objectList[j].isLightOn ? 1 : 0);
-                    writer.Write(programmableObjectsContainer.objectList[j].isDoorOpen ? 1 : 0);
+                    writer.Write(programmableObjectsContainer.objectListServer[j].isLightOn ? 1 : 0);
+                    writer.Write(programmableObjectsContainer.objectListServer[j].isDoorOpen ? 1 : 0);
                 }
 
                 //close snapshot
@@ -215,7 +215,7 @@ public class Server : MonoBehaviour
 
     public void SendHackStatus(int objectId, int connectionId)
     {
-        ProgrammableObjectsData programmableObject = programmableObjectsContainer.objectList[objectId];
+        ProgrammableObjectsData programmableObject = programmableObjectsContainer.objectListServer[objectId];
         using (var writer = new DataStreamWriter(4096, Allocator.Temp))
         {
             writer.Write(Constants.Server_GetHack);
@@ -375,7 +375,7 @@ public class Server : MonoBehaviour
             graph.Add(arrow);
         }
 
-        ProgrammableObjectsData objectData = programmableObjectsContainer.objectList[objectId];
+        ProgrammableObjectsData objectData = programmableObjectsContainer.objectListServer[objectId];
 
         objectData.inputCodes = inputCodes;
         objectData.outputCodes = outputCodes;

@@ -171,24 +171,24 @@ public class Client : MonoBehaviour
 
                                 if ((int)stream.ReadUInt(ref readerCtx) == 0)
                                 {
-                                    if(programmableObjectsContainer.objectList[l].GetComponentInChildren<Light>()!=null)
-                                    programmableObjectsContainer.objectList[l].GetComponentInChildren<Light>().enabled = false; 
+                                    if(programmableObjectsContainer.objectListClient[l].GetComponentInChildren<Light>()!=null)
+                                    programmableObjectsContainer.objectListClient[l].GetComponentInChildren<Light>().enabled = false; 
                                 }
                                 else
                                 {
-                                    if (programmableObjectsContainer.objectList[l].GetComponentInChildren<Light>() != null)
-                                        programmableObjectsContainer.objectList[l].GetComponentInChildren<Light>().enabled = true;
+                                    if (programmableObjectsContainer.objectListClient[l].GetComponentInChildren<Light>() != null)
+                                        programmableObjectsContainer.objectListClient[l].GetComponentInChildren<Light>().enabled = true;
                                 }
 
                                 if ((int)stream.ReadUInt(ref readerCtx) == 0)
                                 {
-                                    if (programmableObjectsContainer.objectList[l].GetComponentInChildren<DoorScript>() != null)
-                                        programmableObjectsContainer.objectList[l].GetComponentInChildren<DoorScript>().OnClose();
+                                    if (programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>() != null)
+                                        programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>().OnClose();
                                 }
                                 else
                                 {
-                                    if (programmableObjectsContainer.objectList[l].GetComponentInChildren<DoorScript>() != null)
-                                        programmableObjectsContainer.objectList[l].GetComponentInChildren<DoorScript>().OnOpen();
+                                    if (programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>() != null)
+                                        programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>().OnOpen();
                                 }
                                 break;
 
@@ -347,7 +347,7 @@ public class Client : MonoBehaviour
             graph.Add(arrow);
         }
 
-        GameObject selectedGameObject = programmableObjectsContainer.objectList[objectId].gameObject;
+        GameObject selectedGameObject = programmableObjectsContainer.objectListClient[objectId].gameObject;
 
         hackInterface.SelectedProgrammableObject(selectedGameObject, inputCodes, outputCodes, graph);
 

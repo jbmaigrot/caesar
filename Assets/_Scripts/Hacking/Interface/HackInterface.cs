@@ -75,7 +75,7 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
         SelectedInputButton = -1;
         
         /*Le graphe de comportement de l'objet hacké est remplacé par les modifications effectués.*/
-        client.SetHackState(objectsContainer.GetObjectIndex(SelectedGameObject.GetComponent<ProgrammableObjectsData>()), inputCodes, outputCodes, graph);
+        client.SetHackState(objectsContainer.GetObjectIndexClient(SelectedGameObject.GetComponent<ProgrammableObjectsData>()), inputCodes, outputCodes, graph);
 
         Camera.main.GetComponent<CameraController>().UnlockCamera();
     }

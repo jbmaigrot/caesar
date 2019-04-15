@@ -67,7 +67,7 @@ public class ProgrammableObjectsData : MonoBehaviour
         //if((this.transform.position - HackInterface.GetComponent<HackInterface>().bonhomme.transform.position).magnitude < 3)
         if (true)
         {
-            client.RequestHackState(objectsContainer.GetObjectIndex(this));
+            client.RequestHackState(objectsContainer.GetObjectIndexClient(this));
             
         }
         
