@@ -23,6 +23,7 @@ public class Server : MonoBehaviour
     private ProgrammableObjectsContainer programmableObjectsContainer;
     private int snapshotCount = 1;
 
+    private const float MANUALSTUNRADIUS = 15.0f;
 
     public GameObject prefabPJ;
 
@@ -103,10 +104,10 @@ public class Server : MonoBehaviour
 
                         case Constants.Client_Tacle:
                             int number = (int) stream.ReadUInt(ref readerCtx);
-                            if (players[i].GetComponent<ServerCharacter>().canStun && !players[i].GetComponent<ServerCharacter>().isStunned && number != i /*&& Vector3.Distance(players[i].transform.position, characters[name].transform.position) < 30 */)
+                            if (players[i].GetComponent<ServerCharacter>().canStun && !players[i].GetComponent<ServerCharacter>().isStunned && /*number != i &&*/ Vector3.Distance(players[i].transform.position, characters[number].transform.position) < MANUALSTUNRADIUS )
                             {
-                                players[i].GetComponent<ServerCharacter>().doStun();
                                 characters[number].GetComponent<ServerCharacter>().getStun();
+                                players[i].GetComponent<ServerCharacter>().doStun();                                
                             }                                
                             break;
 

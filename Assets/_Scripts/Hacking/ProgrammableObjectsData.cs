@@ -11,6 +11,7 @@ public class ProgrammableObjectsData : MonoBehaviour
     /*Server. Seulement coté serveur*/
     private Server server;
     public NavMeshSurface NavMeshSurface;
+    private const float STUNBOXRADIUS = 10.0f;
 #endif
 
 #if CLIENT
@@ -149,7 +150,7 @@ public class ProgrammableObjectsData : MonoBehaviour
         {
             foreach (Transform ryan in server.characters)
             {
-                if (((int) Vector3.Distance(ryan.position, this.transform.position)) < parameter_int)
+                if (((int) Vector3.Distance(ryan.position, this.transform.position)) < STUNBOXRADIUS)
                 {
                     ryan.GetComponent<ServerCharacter>().getStun();
                 }
