@@ -428,6 +428,7 @@ GameObject:
   - component: {fileID: 8117373046797846832}
   - component: {fileID: 8117373046797846847}
   - component: {fileID: 748927520588556156}
+  - component: {fileID: 7163615130798887378}
   m_Layer: 1
   m_Name: Drone_Proto_client
   m_TagString: PNJ
@@ -484,7 +485,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: {x: 0, y: 0, z: 0}
   number: 0
-  networkManager: {fileID: 0}
+--- !u!114 &7163615130798887378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8117373046797846833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15a66bf76cc67b949aaa75c4bfb2f7ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NavMeshSurface: {fileID: 0}
+  client: {fileID: 0}
+  inputCodes: []
+  outputCodes: []
+  graph: []
+  isLightOn: 0
+  isDoorOpen: 0
+  Initiator: {fileID: 11400000, guid: 21620f714c570ab468af91bd283bc07a, type: 2}
 --- !u!1 &8117373046909238050
 GameObject:
   m_ObjectHideFlags: 0

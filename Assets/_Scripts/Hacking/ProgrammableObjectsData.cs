@@ -57,6 +57,9 @@ public class ProgrammableObjectsData : MonoBehaviour
             OnOutput(ryan.code, ryan.parameter_string, ryan.parameter_int);
         }
 #endif
+#if CLIENT
+        client = FindObjectOfType<Client>();
+#endif
 
     }
 

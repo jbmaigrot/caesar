@@ -19,7 +19,7 @@ public class ServerGameCreator : MonoBehaviour
     public int MaxTimeMoving = 16;
 
     private GameObject[] _listFloor;
-    private GameObject _containerNPC;
+    private ProgrammableObjectsContainer _containerNPC;
     private PnjClass[] _listPnj;
     
 
@@ -39,7 +39,7 @@ public class ServerGameCreator : MonoBehaviour
         }
 
 
-        _containerNPC = GameObject.Find("NPC_crowd");
+        _containerNPC = FindObjectOfType<ProgrammableObjectsContainer>();
         FillCrowd();
     }
     
@@ -161,8 +161,8 @@ public class ServerGameCreator : MonoBehaviour
             pnj.Time = 0;
             GetComponent<Server>().characters.Add(pnj.PrefabPnj.transform);
             _listPnj[i] = pnj;
-        }
-        
+            _containerNPC.objectListServer.Add(pnj.PrefabPnj.GetComponent<ProgrammableObjectsData>());
+        }        
     }
 }
 #endif

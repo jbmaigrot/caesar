@@ -126,6 +126,7 @@ public class Client : MonoBehaviour
                                     GameObject newCharacter = Instantiate(characterPrefab);
                                     newCharacter.GetComponent<ClientCharacter>().number = j;
                                     characters.Add(newCharacter.GetComponent<ClientCharacter>());
+                                    programmableObjectsContainer.objectListClient.Add(newCharacter.GetComponent<ProgrammableObjectsData>());
                                 }
                                 if (characters[j] != null)
                                 {
