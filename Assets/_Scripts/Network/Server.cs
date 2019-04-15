@@ -23,6 +23,9 @@ public class Server : MonoBehaviour
     private ProgrammableObjectsContainer programmableObjectsContainer;
     private int snapshotCount = 1;
 
+
+    public GameObject prefabPJ;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,6 +72,11 @@ public class Server : MonoBehaviour
         while ((c = m_Driver.Accept()) != default(NetworkConnection))
         {
             m_Connections.Add(c);
+            //On ajoute un nouveau personnage joueur.
+            GameObject pj = Instantiate(prefabPJ, programmableObjectsContainer.transform);
+            players.Add(pj.transform);
+            characters.Add(pj.transform);
+            programmableObjectsContainer.objectListServer.Add(pj.GetComponent<ProgrammableObjectsData>());
             //Debug.Log("Accepted a connection");
         }
 
@@ -138,7 +146,7 @@ public class Server : MonoBehaviour
             }
 
             // Snapshot (world state)
-            using (var writer = new DataStreamWriter(2048, Allocator.Temp))
+            using (var writer = new DataStreamWriter(16384, Allocator.Temp))
             {
                 //snapshot start
                 writer.Write(Constants.Server_Snapshot);

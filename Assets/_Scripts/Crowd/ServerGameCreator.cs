@@ -164,5 +164,6 @@ public class ServerGameCreator : MonoBehaviour
             _containerNPC.objectListServer.Add(pnj.PrefabPnj.GetComponent<ProgrammableObjectsData>());
         }        
     }
+   
 }
 #endif
