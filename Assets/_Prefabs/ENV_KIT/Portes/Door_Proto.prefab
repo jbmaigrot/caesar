@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 07ed948e9ce081a4ca42d582d608e0d4, type: 2}
+  - {fileID: 2100000, guid: 13973625cf2ef6d4290b72e63c228809, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -195,7 +195,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 323ba968de69ab144859104068467af7, type: 2}
+  - {fileID: 2100000, guid: 13973625cf2ef6d4290b72e63c228809, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -305,13 +305,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a66bf76cc67b949aaa75c4bfb2f7ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HackInterface: {fileID: 0}
-  Server: {fileID: 0}
   NavMeshSurface: {fileID: 0}
-  networkManager: {fileID: 0}
+  hasAttract: 0
+  hasStunbox: 0
+  hasPowerpump: 0
+  client: {fileID: 0}
   inputCodes: []
   outputCodes: []
   graph: []
+  isLightOn: 0
+  isDoorOpen: 0
   Initiator: {fileID: 11400000, guid: 6afdb71ca2fdf0441a01f9696cc9161a, type: 2}
 --- !u!1 &775197464867919533
 GameObject:
@@ -370,7 +373,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 323ba968de69ab144859104068467af7, type: 2}
+  - {fileID: 2100000, guid: 84b9e1d19d11078d11005b9844295342, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -447,7 +450,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 323ba968de69ab144859104068467af7, type: 2}
+  - {fileID: 2100000, guid: 84b9e1d19d11078d11005b9844295342, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
