@@ -12,9 +12,12 @@ public class ProgrammableObjectsData : MonoBehaviour
     private Server server;
     public NavMeshSurface NavMeshSurface;
     private const float STUNBOXRADIUS = 10.0f;
-    public bool hasAttract;
-    public bool hasStunbox;
-    public bool hasPowerpump;
+    private const float ATTRACTRADIUS = 20.0f;
+    private const float ATTRACTTIME = 10.0f;
+    private bool isAttract;
+    private float attracttimebeforeend;
+    private float attracttimebeforeeffect;
+
 #endif
 
 #if CLIENT
@@ -61,9 +64,7 @@ public class ProgrammableObjectsData : MonoBehaviour
             OnOutput(ryan.code, ryan.parameter_string, ryan.parameter_int);
         }
 
-        hasAttract = false;
-        hasStunbox = false;
-        hasPowerpump = false;
+        isAttract = false;
 #endif
 #if CLIENT
         client = FindObjectOfType<Client>();
@@ -164,6 +165,13 @@ public class ProgrammableObjectsData : MonoBehaviour
             }
         }
 
+        if(codeoutput == "Attract")
+        {
+            isAttract = true;
+            attracttimebeforeend = ATTRACTTIME;
+            attracttimebeforeeffect = 0.0f;
+        }
+
         if(codeoutput == "UseGadget")
         {
             switch (parameter_int)
@@ -201,6 +209,33 @@ public class ProgrammableObjectsData : MonoBehaviour
                     graph[i].timeBeforeTransmit[j] = 5000;//.RemoveAt(j);
                 }
             }
+        }
+
+        if (isAttract)
+        {
+            TheAttractFunction();
+        }
+    }
+
+    void TheAttractFunction()
+    {
+        attracttimebeforeend -= Time.deltaTime;
+        attracttimebeforeeffect -= Time.deltaTime;
+        if (attracttimebeforeeffect <= 0.0f)
+        {
+            foreach (Transform ryan in server.characters)
+            {
+                if (((int)Vector3.Distance(ryan.position, this.transform.position)) < ATTRACTRADIUS)
+                {
+                    ryan.GetComponent<NavMeshAgent>().ResetPath();
+                    ryan.GetComponent<NavMeshAgent>().destination = this.transform.position;
+                }
+            }
+            attracttimebeforeeffect = 0.1f;
+        }
+        if (attracttimebeforeend <= 0.0f)
+        {
+            isAttract = false;
         }
     }
 #endif
