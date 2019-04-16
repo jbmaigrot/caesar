@@ -13,4 +13,13 @@
     public const int Server_Snapshot = 50;
     public const int Server_UpdateObject = 57;
     public const int Server_SnapshotEnd = 9999;
+
+    public const int Client_Lobby_ConnectionId = 101;
+    public const int Client_Lobby_SetTeam = 102;
+    public const int Client_Lobby_Ready = 103;
+    public const int Client_Lobby_Cancel = 104;
+
+    public const int Server_Lobby_SetConnectionId = 151;
+    public const int Server_Lobby_LobbyState = 152;
+    public const int Server_Lobby_StartGame = 153;
 }
