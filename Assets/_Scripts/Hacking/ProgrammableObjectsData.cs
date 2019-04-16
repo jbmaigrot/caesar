@@ -12,6 +12,9 @@ public class ProgrammableObjectsData : MonoBehaviour
     private Server server;
     public NavMeshSurface NavMeshSurface;
     private const float STUNBOXRADIUS = 10.0f;
+    public bool hasAttract;
+    public bool hasStunbox;
+    public bool hasPowerpump;
 #endif
 
 #if CLIENT
@@ -47,7 +50,7 @@ public class ProgrammableObjectsData : MonoBehaviour
         inputCodes = new List<InOutVignette>(InitiatorClone.inputCodes);
         outputCodes = new List<InOutVignette>(InitiatorClone.outputCodes);
         graph = new List<Arrow>(InitiatorClone.graph);
-
+        
         foreach(Arrow a in graph)
         {
             a.timeBeforeTransmit.Clear();
@@ -57,6 +60,10 @@ public class ProgrammableObjectsData : MonoBehaviour
         {
             OnOutput(ryan.code, ryan.parameter_string, ryan.parameter_int);
         }
+
+        hasAttract = false;
+        hasStunbox = false;
+        hasPowerpump = false;
 #endif
 #if CLIENT
         client = FindObjectOfType<Client>();

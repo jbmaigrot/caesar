@@ -18,19 +18,15 @@ public class DropdownHackInterface : MonoBehaviour
         /*Si le Dropdown est placé sur blank, on supprime la vignette*/
         if (this.GetComponent<Dropdown>().value == 0)
         {
+            /*this.GetComponentInParent<HackInterface>().RemoveVignette(this.GetComponentInParent<TextButtonHackInterface>().isInput, this.GetComponentInParent<TextButtonHackInterface>().numero-1);*/
             if (this.GetComponentInParent<TextButtonHackInterface>().isInput)
             {
-                if (this.GetComponentInParent<TextButtonHackInterface>().numero <= HackInterface.inputCodes.Count)
-                {
-                    HackInterface.inputCodes.RemoveAt(this.GetComponentInParent<TextButtonHackInterface>().numero - 1);
-                }
+                HackInterface.inputCodes.RemoveAt(this.GetComponentInParent<TextButtonHackInterface>().numero-1);
             }
             else
             {
-                if (this.GetComponentInParent<TextButtonHackInterface>().numero <= HackInterface.outputCodes.Count)
-                {
-                    HackInterface.outputCodes.RemoveAt(this.GetComponentInParent<TextButtonHackInterface>().numero - 1);
-                }
+
+                HackInterface.outputCodes.RemoveAt(this.GetComponentInParent<TextButtonHackInterface>().numero - 1);
             }
         }
         else

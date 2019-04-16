@@ -22,6 +22,10 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     static public List<InOutVignette> outputCodes = new List<InOutVignette>();
     static public List<Arrow> graph = new List<Arrow>();
 
+    static public bool hasAttract;
+    static public bool hasStunbox;
+    static public bool hasPowerpump;
+
     /*Variables utilisées pour le délais de fermeture d'interface*/
     private float timeBeforeClosing;
     private bool isClosing;
@@ -33,6 +37,8 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     //
     public RectTransform[] inputButtons = new RectTransform[0];
     public RectTransform[] outputButtons = new RectTransform[0];
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +52,10 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
         {
             ryan.GetHackingAsset(HackingAsset);
         }
+
+        hasAttract = false;
+        hasStunbox = false;
+        hasPowerpump = false;
     }
 
     // Update is called once per frame
@@ -147,6 +157,39 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
         {
             ryan.UpdateArrow();
         }
+    }
+
+    public void RemoveVignette(bool isInput, int num)
+    {
+        if (isInput)
+        {
+            foreach (Arrow ryan in graph)
+            {
+                if (ryan.input == num)
+                {
+                    graph.Remove(ryan);
+                }
+                else if (ryan.input > num)
+                {
+                    ryan.input -= 1;
+                }
+            }
+        }
+        else
+        {
+            foreach (Arrow ryan in graph)
+            {
+                if (ryan.output == num)
+                {
+                    graph.Remove(ryan);
+                }
+                else if (ryan.output > num)
+                {
+                    ryan.output -= 1;
+                }
+            }
+        }
+        reloadArrow();
     }
 
     /*
