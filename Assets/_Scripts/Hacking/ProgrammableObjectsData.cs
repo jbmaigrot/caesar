@@ -163,6 +163,24 @@ public class ProgrammableObjectsData : MonoBehaviour
                 }
             }
         }
+
+        if(codeoutput == "UseGadget")
+        {
+            switch (parameter_int)
+            {
+                case InventoryConstants.Attract:
+                    OnOutput("Attract", parameter_string,parameter_int);
+                    break;
+
+                case InventoryConstants.Stunbox:
+                    OnOutput("Stun", parameter_string, parameter_int);
+                    break;
+
+                case InventoryConstants.Powerpump:
+                    OnOutput("PowerPump", parameter_string, parameter_int);
+                    break;
+            }
+        }
     }
 
 

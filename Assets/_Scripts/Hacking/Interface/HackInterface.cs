@@ -21,10 +21,7 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     static public List<InOutVignette> inputCodes = new List<InOutVignette>();
     static public List<InOutVignette> outputCodes = new List<InOutVignette>();
     static public List<Arrow> graph = new List<Arrow>();
-
-    static public bool hasAttract;
-    static public bool hasStunbox;
-    static public bool hasPowerpump;
+    
 
     /*Variables utilisées pour le délais de fermeture d'interface*/
     private float timeBeforeClosing;
@@ -52,10 +49,6 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
         {
             ryan.GetHackingAsset(HackingAsset);
         }
-
-        hasAttract = false;
-        hasStunbox = false;
-        hasPowerpump = false;
     }
 
     // Update is called once per frame

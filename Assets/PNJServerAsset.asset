@@ -16,11 +16,16 @@ MonoBehaviour:
   - OnWord
   accessibleOutputCode:
   - SendMessage
+  - UseGadget
   inputCodes:
   - code: OnHack
     parameter_int: 0
     parameter_string: 
     is_fixed: 1
-  outputCodes: []
+  outputCodes:
+  - code: UseGadget
+    parameter_int: 0
+    parameter_string: 
+    is_fixed: 0
   graph: []
   initialOutputActions: []
