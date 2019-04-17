@@ -5,7 +5,6 @@ using UnityEngine.AI;
 #if SERVER
 public class ServerGameCreator : MonoBehaviour
 {
-    [SerializeField]
     public int NbPnj;
     public GameObject PnjGameObject;
 
