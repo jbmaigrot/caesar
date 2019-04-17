@@ -20,13 +20,15 @@ public class MapGenerator : MonoBehaviour
     private Case[] Grille;
     private int lengthX;
     private int lengthY;
-    
+    public GameObject PrefabFloor;
+    public GameObject PrefabWallStraight;
+
     // Start is called before the first frame update
     void Start()
     {
-        Random.InitState((int)Time.time * 987654321);
-        lengthX = (int)Random.Range(125f, 250f);
-        lengthY = (int)Random.Range(250f, 500f);
+        Random.InitState(System.DateTime.Now.Second);
+        lengthX = (int)Random.Range(10f, 50f);
+        lengthY = (int)Random.Range(20f, 100f);
         Grille = new Case[lengthX * lengthY];
         for (int ryan = 0; ryan < lengthX; ryan++)
         {
@@ -39,15 +41,35 @@ public class MapGenerator : MonoBehaviour
             }
 
         }
-        MakeRoom(1, 1, lengthX-1, 1, lengthY-1, lengthY-1, lengthY-1, 1, 1, 0);
-        for(int ryan = 1; ryan <lengthX; ryan++)
+        MakeRoom(0, 1, lengthX-1, 1, lengthY-1, lengthY-1, lengthY-1, 1, 1, 0);
+        for (int ryan = 0; ryan < lengthX-1; ryan++)
+        {
+            for (int reynolds = 1; reynolds < lengthY-1; reynolds++)
+            {
+                GameObject deadpool = Instantiate(PrefabFloor, new Vector3(2 * ryan, 0, 2 * reynolds), Quaternion.identity);
+                deadpool = Instantiate(PrefabFloor, new Vector3(-2 * ryan, 0, 2 * reynolds), Quaternion.identity);
+            }
+        }
+
+        for (int ryan = 1; ryan <lengthX; ryan++)
         {
             for(int reynolds = 1;reynolds <lengthY; reynolds++)
             {
                 
+                if(Grille[ryan + reynolds * lengthX].roomtype != Grille[ryan-1 + reynolds * lengthX].roomtype)
+                {
+                    Instantiate(PrefabWallStraight, new Vector3(2 * ryan - 1, 0, 2 * reynolds), Quaternion.AngleAxis(90.0f,new Vector3(0,1,0)));
+                    Instantiate(PrefabWallStraight, new Vector3(-2 * ryan + 1, 0, 2 * reynolds), Quaternion.AngleAxis(90.0f, new Vector3(0, 1, 0)));
+                }
+                if(Grille[ryan + reynolds * lengthX].roomtype != Grille[ryan + (reynolds-1) * lengthX].roomtype)
+                {
+                    Instantiate(PrefabWallStraight, new Vector3(2 * ryan, 0, 2 * reynolds-1), Quaternion.identity);
+                    Instantiate(PrefabWallStraight, new Vector3(-2 * ryan , 0, 2 * reynolds-1), Quaternion.identity);
+                }
             }
             
         }
+
 
     }
 
