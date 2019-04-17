@@ -14,9 +14,9 @@ public class ServerLobby : MonoBehaviour
     private const bool UP = true;
     private const bool DOWN = false;
     public UdpCNetworkDriver m_Driver;
-    private NativeList<NetworkConnection> m_Connections;
+    public NativeList<NetworkConnection> m_Connections;
     private NativeList<NetworkConnection> tmp_Connections;
-    private bool[] lostConnections;
+    public List<bool> lostConnections;
 
     private int numberOfPlayerSlots;
 
@@ -26,11 +26,6 @@ public class ServerLobby : MonoBehaviour
     {
         lobbyInterfaceManager = FindObjectOfType<LobbyInterfaceManager>();
         numberOfPlayerSlots = lobbyInterfaceManager.GetNumberOfPlayerSlots();
-        lostConnections = new bool[numberOfPlayerSlots];
-        for (int i = 0; i < numberOfPlayerSlots; i++)
-        {
-            lostConnections[i] = false;
-        }
 
         Application.targetFrameRate = 58;
 
@@ -117,6 +112,7 @@ public class ServerLobby : MonoBehaviour
                                 Debug.Log("Getting a new connection with connection ID : " + m_Connections.Length);
                                 SetConnectionId(m_Connections.Length, tmp_Connections[i]);
                                 m_Connections.Add(tmp_Connections[i]);
+                                lostConnections.Add(false);
                                 tmp_Connections.RemoveAtSwapBack(i);
                             }
                         } else
@@ -176,6 +172,11 @@ public class ServerLobby : MonoBehaviour
     public void SetNumberOfPlayerSlots(int _numberOfPlayerSlots)
     {
         numberOfPlayerSlots = _numberOfPlayerSlots;
+    }
+
+    public int GetNumberOfPlayerSlots()
+    {
+        return numberOfPlayerSlots;
     }
 
     public void SetConnectionId(int connectionId, NetworkConnection nc)

@@ -13,10 +13,14 @@ using UdpCNetworkDriver = Unity.Networking.Transport.BasicNetworkDriver<Unity.Ne
 public class Server : MonoBehaviour
 {
     public UdpCNetworkDriver m_Driver;
-    public List<Transform> players;
-    public List<Transform> characters; // Players + NPCs
+    public List<Transform> players = new List<Transform>();
+    public List<Transform> characters = new List<Transform>(); // Players + NPCs
+
 
     private NativeList<NetworkConnection> m_Connections;
+    private NativeList<NetworkConnection> tmp_Connections;
+    private List<bool> lostConnections;
+    private ServerLobby serverLobby;
 
     private List<string> messages = new List<string>();
     private List<Vector3> messagesPos = new List<Vector3>();
@@ -30,6 +34,7 @@ public class Server : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         Application.targetFrameRate = 58;
 
         m_Driver = new UdpCNetworkDriver(new INetworkParameter[0]);
@@ -40,7 +45,20 @@ public class Server : MonoBehaviour
         else
             m_Driver.Listen();
 
-        m_Connections = new NativeList<NetworkConnection>(16, Allocator.Persistent);
+        serverLobby = FindObjectOfType<ServerLobby>();
+        if (serverLobby == null)
+        {
+            Debug.Log("Didn't find any ServerLobby object in the scene");
+            m_Connections = new NativeList<NetworkConnection>(16, Allocator.Persistent);
+            lostConnections = new List<bool>();
+        } 
+        else
+        {
+            m_Connections = serverLobby.m_Connections;
+            lostConnections = serverLobby.lostConnections;
+        }
+        
+        tmp_Connections = new NativeList<NetworkConnection>(16, Allocator.Persistent);
 
         programmableObjectsContainer = GameObject.FindObjectOfType<ProgrammableObjectsContainer>();
     }
@@ -49,6 +67,7 @@ public class Server : MonoBehaviour
     {
         m_Driver.Dispose();
         m_Connections.Dispose();
+        tmp_Connections.Dispose();
     }
 
     // Update is called once per frame
@@ -63,7 +82,16 @@ public class Server : MonoBehaviour
         {
             if (!m_Connections[i].IsCreated)
             {
-                m_Connections.RemoveAtSwapBack(i);
+                //m_Connections.RemoveAtSwapBack(i);
+                //--i;
+                lostConnections[i] = true;
+            }
+        }
+        for (int i = 0; i < tmp_Connections.Length; i++)
+        {
+            if (!tmp_Connections[i].IsCreated)
+            {
+                tmp_Connections.RemoveAtSwapBack(i);
                 --i;
             }
         }
@@ -72,16 +100,75 @@ public class Server : MonoBehaviour
         NetworkConnection c;
         while ((c = m_Driver.Accept()) != default(NetworkConnection))
         {
-            m_Connections.Add(c);
-            //On ajoute un nouveau personnage joueur.
-            GameObject pj = Instantiate(prefabPJ, programmableObjectsContainer.transform);
-            players.Add(pj.transform);
-            characters.Add(pj.transform);
-            programmableObjectsContainer.objectListServer.Add(pj.GetComponent<ProgrammableObjectsData>());
-            //Debug.Log("Accepted a connection");
+            tmp_Connections.Add(c);
+            
+            Debug.Log("Accepted a temp connection");
         }
 
         DataStreamReader stream;
+
+        //Getting through tmp_Connections to reconnect lost connections and moving new connections to m_Connections
+        for (int i = 0; i < tmp_Connections.Length; i++)
+        {
+            if (!tmp_Connections[i].IsCreated) continue;
+
+            NetworkEvent.Type cmd;
+
+            cmd = m_Driver.PopEventForConnection(tmp_Connections[i], out stream);
+            if (cmd == NetworkEvent.Type.Empty) continue;
+
+            if (cmd == NetworkEvent.Type.Data)
+            {
+                var readerCtx = default(DataStreamReader.Context);
+                uint action = stream.ReadUInt(ref readerCtx);
+
+                switch (action)
+                {
+                    case Constants.Client_ConnectionId:
+                        int connectionId = (int)stream.ReadUInt(ref readerCtx);
+                        if (connectionId == -1)
+                        {
+                            if (serverLobby!= null && m_Connections.Length >= serverLobby.GetNumberOfPlayerSlots())
+                            {
+                                Debug.Log("Sorry, all player slots are allocated in this game.");
+                            }
+                            else
+                            {
+                                Debug.Log("Getting a new connection with connection ID : " + m_Connections.Length);
+                                SetConnectionId(m_Connections.Length, tmp_Connections[i]);
+                                m_Connections.Add(tmp_Connections[i]);
+                                lostConnections.Add(false);
+                                tmp_Connections.RemoveAtSwapBack(i);
+                                AddNewPlayer();
+                            }
+                        }
+                        else
+                        {
+                            if (lostConnections[connectionId] == false)
+                            {
+                                Debug.Log("Error. Trying to connect with an already attributed connection ID : " + connectionId);
+                            }
+                            else
+                            {
+                                Debug.Log("Re-establishing connection with connection ID : " + connectionId);
+                                m_Connections[connectionId] = tmp_Connections[i];
+                                lostConnections[connectionId] = false;
+                                tmp_Connections.RemoveAtSwapBack(i);
+                            }
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            else if (cmd == NetworkEvent.Type.Disconnect)
+            {
+                Debug.Log("Client disconnected from server");
+                tmp_Connections[i] = default(NetworkConnection);
+            }
+        }
+
         for (int i = 0; i < m_Connections.Length; i++)
         {
             if (!m_Connections[i].IsCreated) continue;
@@ -141,7 +228,7 @@ public class Server : MonoBehaviour
                 }
                 else if (cmd == NetworkEvent.Type.Disconnect)
                 {
-                    //Debug.Log("Client disconnected from server");
+                    Debug.Log("Client disconnected from server");
                     m_Connections[i] = default(NetworkConnection);
                 }
             }
@@ -152,7 +239,7 @@ public class Server : MonoBehaviour
                 //snapshot start
                 writer.Write(Constants.Server_Snapshot);
                 writer.Write(snapshotCount);
-                writer.Write(0); // (Temp 0) character to follow
+                
 
                 //update characters states and positions
                 for (int j = 0; j < characters.Count; j++)
@@ -179,10 +266,12 @@ public class Server : MonoBehaviour
                 writer.Write(Constants.Server_SnapshotEnd);
                 snapshotCount++;
 
+                
 
                 //Send snapshot to all clients
                 for (int k = 0; k < m_Connections.Length; k++)
                 {
+                    writer.Write(characters.IndexOf(players[k])); //index of the player in the character list
                     m_Driver.Send(m_Connections[k], writer);
                 }
             }
@@ -205,7 +294,6 @@ public class Server : MonoBehaviour
             writer.Write(buffer);
             writer.Write(pos.x);
             writer.Write(pos.z);
-            writer.Write(Constants.Server_SnapshotEnd);
             //send snapshot to all clients
             for (int k = 0; k < m_Connections.Length; k++)
             {
@@ -292,8 +380,7 @@ public class Server : MonoBehaviour
                     writer.Write(time);
                 }
             }
-
-            writer.Write(Constants.Server_SnapshotEnd);
+            
             m_Driver.Send(m_Connections[connectionId], writer);
 
             programmableObject.OnInput("OnHack");
@@ -390,5 +477,26 @@ public class Server : MonoBehaviour
         objectData.outputCodes = outputCodes;
         objectData.graph = graph;
     }
+
+    public int AddNewPlayer()
+    {
+        //On ajoute un nouveau personnage joueur.
+        GameObject pj = Instantiate(prefabPJ, programmableObjectsContainer.transform);
+        players.Add(pj.transform);
+        characters.Add(pj.transform);
+        programmableObjectsContainer.objectListServer.Add(pj.GetComponent<ProgrammableObjectsData>());
+        return characters.Count - 1;
+    }
+
+    public void SetConnectionId(int connectionId, NetworkConnection nc)
+    {
+        using (var writer = new DataStreamWriter(64, Allocator.Temp))
+        {
+            writer.Write(Constants.Server_SetConnectionId);
+            writer.Write(connectionId);
+            nc.Send(m_Driver, writer);
+        }
+    }
 }
+
 #endif

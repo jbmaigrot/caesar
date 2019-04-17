@@ -26,9 +26,12 @@ public class Client : MonoBehaviour
     private ClientChat chat;
     private ProgrammableObjectsContainer programmableObjectsContainer;
     private HackInterface hackInterface;
-
-    public bool done;
+    
     private int lastSnapshot = 0;
+
+    public ClientLobby clientLobby;
+    public int connectionId;
+    private bool initialHandshakeDone;
 
     // Start is called before the first frame update
     void Start()
@@ -42,9 +45,22 @@ public class Client : MonoBehaviour
         m_Driver = new UdpCNetworkDriver(new INetworkParameter[0]);
         m_Connection = default(NetworkConnection);
 
-        //var endpoint = new IPEndPoint(IPAddress.Loopback, 9000);
-        var endpoint = new IPEndPoint(IPAddress.Parse(ServerIP), 9000);
-        m_Connection = m_Driver.Connect(endpoint);
+
+        clientLobby = FindObjectOfType<ClientLobby>();
+        if (clientLobby == null)
+        {
+            Debug.Log("Didn't find any ClientLobby object in the scene.");
+            var endpoint = new IPEndPoint(IPAddress.Parse(ServerIP), 9000);
+            m_Connection = m_Driver.Connect(endpoint);
+            connectionId = -1;
+            initialHandshakeDone = false;
+        }
+        else
+        {
+            m_Connection = clientLobby.m_Connection;
+            connectionId = clientLobby.connectionId;
+            initialHandshakeDone = true;
+        }
     }
 
     public void OnDestroy()
@@ -67,14 +83,12 @@ public class Client : MonoBehaviour
 
         if (!m_Connection.IsCreated)
         {
-            if (!done)
-            {
-                //Debug.Log("Something went wrong during connect");
-                //var endpoint = new IPEndPoint(IPAddress.Loopback, 9000);
-                var endpoint = new IPEndPoint(IPAddress.Parse(ServerIP), 9000);
-                m_Connection = m_Driver.Connect(endpoint);
-                //Debug.Log("Connection reestablished");
-            }
+            Debug.Log("Something went wrong during connect");
+            //var endpoint = new IPEndPoint(IPAddress.Loopback, 9000);
+            var endpoint = new IPEndPoint(IPAddress.Parse(ServerIP), 9000);
+            m_Connection = m_Driver.Connect(endpoint);
+            Debug.Log("Connection reestablished");
+            initialHandshakeDone = false;
             return;
         }
         else
@@ -86,7 +100,11 @@ public class Client : MonoBehaviour
             {
                 if (cmd == NetworkEvent.Type.Connect)
                 {
-                    //Debug.Log("We are now connected to the server");
+                    Debug.Log("We are now connected to the server");
+                    if (initialHandshakeDone == false)
+                    {
+                        InitialHandshake();
+                    }
                 }
 
                 else if (cmd == NetworkEvent.Type.Data)
@@ -94,110 +112,126 @@ public class Client : MonoBehaviour
                     var readerCtx = default(DataStreamReader.Context);
                     var type = stream.ReadUInt(ref readerCtx);
 
-                    while (type != Constants.Server_SnapshotEnd)
+                    switch (type)
                     {
-                        switch (type)
-                        {
-                            case Constants.Server_Snapshot:
-                                int snapshotNumber = (int)stream.ReadUInt(ref readerCtx);
-                                if (snapshotNumber <= lastSnapshot)
-                                    return; //skip update for this frame
-                                else
-                                    lastSnapshot = snapshotNumber;
+                        case Constants.Server_Snapshot:
+                            int snapshotNumber = (int)stream.ReadUInt(ref readerCtx);
+
+                            if (snapshotNumber <= lastSnapshot)
+                                return; //skip update for this frame
+                            else
+                            {
+                                lastSnapshot = snapshotNumber;
+
+                                do
+                                {
+                                    type = stream.ReadUInt(ref readerCtx);
+                                    switch (type)
+                                    {
+                                        case Constants.Server_MoveCharacter:
+                                            int j = (int)stream.ReadUInt(ref readerCtx);
+                                            float x = stream.ReadFloat(ref readerCtx);
+                                            float z = stream.ReadFloat(ref readerCtx);
+                                            float angle = stream.ReadFloat(ref readerCtx);
+                                            float xSpeed = stream.ReadFloat(ref readerCtx);
+                                            float zSpeed = stream.ReadFloat(ref readerCtx);
+                                            int isStunned = (int)stream.ReadUInt(ref readerCtx);
+
+                                            if (j >= characters.Count)
+                                            {
+                                                GameObject newCharacter = Instantiate(characterPrefab);
+                                                newCharacter.GetComponent<ClientCharacter>().number = j;
+                                                characters.Add(newCharacter.GetComponent<ClientCharacter>());
+                                                programmableObjectsContainer.objectListClient.Add(newCharacter.GetComponent<ProgrammableObjectsData>());
+                                            }
+                                            if (characters[j] != null)
+                                            {
+                                                if (isStunned == 1)
+                                                {
+                                                    foreach (MeshRenderer ryan in characters[j].gameObject.GetComponentsInChildren<MeshRenderer>())
+                                                    {
+                                                        ryan.material.color = Color.red;
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    foreach (MeshRenderer ryan in characters[j].gameObject.GetComponentsInChildren<MeshRenderer>())
+                                                    {
+                                                        ryan.material.color = Color.white;
+                                                    }
+                                                }
+                                                characters[j].transform.SetPositionAndRotation(new Vector3(x, characters[j].transform.position.y, z), Quaternion.Euler(0, angle, 0));
+                                                characters[j].speed.x = xSpeed;
+                                                characters[j].speed.z = zSpeed;
+                                            }
+                                            break;
+
+                                        case Constants.Server_UpdateObject:
+                                            int l = (int)stream.ReadUInt(ref readerCtx);
+
+                                            if ((int)stream.ReadUInt(ref readerCtx) == 0)
+                                            {
+                                                if (programmableObjectsContainer.objectListClient[l].GetComponentInChildren<Light>() != null)
+                                                    programmableObjectsContainer.objectListClient[l].GetComponentInChildren<Light>().enabled = false;
+                                            }
+                                            else
+                                            {
+                                                if (programmableObjectsContainer.objectListClient[l].GetComponentInChildren<Light>() != null)
+                                                    programmableObjectsContainer.objectListClient[l].GetComponentInChildren<Light>().enabled = true;
+                                            }
+
+                                            if ((int)stream.ReadUInt(ref readerCtx) == 0)
+                                            {
+                                                if (programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>() != null)
+                                                    programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>().OnClose();
+                                            }
+                                            else
+                                            {
+                                                if (programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>() != null)
+                                                    programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>().OnOpen();
+                                            }
+                                            break;
+
+                                        default:
+                                            break;
+                                    }
+                                } while (type != Constants.Server_SnapshotEnd);
 
                                 int k = (int)stream.ReadUInt(ref readerCtx);
                                 if (k < characters.Count)
                                 {
                                     cameraController.characterToFollow = characters[k].gameObject;
                                 }
-                                break;
+                            }
+                            break;
 
-                            case Constants.Server_MoveCharacter:
-                                int j = (int)stream.ReadUInt(ref readerCtx);
-                                float x = stream.ReadFloat(ref readerCtx);
-                                float z = stream.ReadFloat(ref readerCtx);
-                                float angle = stream.ReadFloat(ref readerCtx);
-                                float xSpeed = stream.ReadFloat(ref readerCtx);
-                                float zSpeed = stream.ReadFloat(ref readerCtx);
-                                int isStunned = (int)stream.ReadUInt(ref readerCtx);
+                            
 
-                                if (j >= characters.Count)
-                                {
-                                    GameObject newCharacter = Instantiate(characterPrefab);
-                                    newCharacter.GetComponent<ClientCharacter>().number = j;
-                                    characters.Add(newCharacter.GetComponent<ClientCharacter>());
-                                    programmableObjectsContainer.objectListClient.Add(newCharacter.GetComponent<ProgrammableObjectsData>());
-                                }
-                                if (characters[j] != null)
-                                {
-                                    if (isStunned==1)
-                                    {
-                                        foreach (MeshRenderer ryan in characters[j].gameObject.GetComponentsInChildren<MeshRenderer>())
-                                        {
-                                            ryan.material.color = Color.red;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        foreach (MeshRenderer ryan in characters[j].gameObject.GetComponentsInChildren<MeshRenderer>())
-                                        {
-                                            ryan.material.color = Color.white;
-                                        }
-                                    }
-                                    characters[j].transform.SetPositionAndRotation(new Vector3(x, characters[j].transform.position.y, z), Quaternion.Euler(0, angle, 0));
-                                    characters[j].speed.x = xSpeed;
-                                    characters[j].speed.z = zSpeed;                                                                     
-                                }
-                                break;
+                        case Constants.Server_Message:
+                            int length = (int)stream.ReadUInt(ref readerCtx);
+                            byte[] buffer = stream.ReadBytesAsArray(ref readerCtx, length);
+                            char[] chars = new char[length];
+                            for (int n = 0; n < length; n++)
+                            {
+                                chars[n] = (char)buffer[n];
+                            }
+                            float xPos = stream.ReadFloat(ref readerCtx);
+                            float zPos = stream.ReadFloat(ref readerCtx);
+                            chat.AddMessage(new string(chars), new Vector3(xPos, 0, zPos));
+                            break;
 
-                            case Constants.Server_Message:
-                                int length = (int)stream.ReadUInt(ref readerCtx);
-                                byte[] buffer = stream.ReadBytesAsArray(ref readerCtx, length);
-                                char[] chars = new char[length];
-                                for (int n = 0; n < length; n++)
-                                {
-                                    chars[n] = (char)buffer[n];
-                                }
-                                float xPos = stream.ReadFloat(ref readerCtx);
-                                float zPos = stream.ReadFloat(ref readerCtx);
-                                chat.AddMessage(new string(chars), new Vector3(xPos, 0, zPos));
-                                break;
+                        case Constants.Server_GetHack:
+                            GetHackState(stream, ref readerCtx);
+                            break;
+                            
 
-                            case Constants.Server_GetHack:
-                                GetHackState(stream, ref readerCtx);
-                                break;
-                                
-                            case Constants.Server_UpdateObject:
-                                int l = (int)stream.ReadUInt(ref readerCtx);
+                        case Constants.Server_SetConnectionId:
+                            connectionId = (int)stream.ReadUInt(ref readerCtx);
+                            initialHandshakeDone = true;
+                            break;
 
-                                if ((int)stream.ReadUInt(ref readerCtx) == 0)
-                                {
-                                    if(programmableObjectsContainer.objectListClient[l].GetComponentInChildren<Light>()!=null)
-                                    programmableObjectsContainer.objectListClient[l].GetComponentInChildren<Light>().enabled = false; 
-                                }
-                                else
-                                {
-                                    if (programmableObjectsContainer.objectListClient[l].GetComponentInChildren<Light>() != null)
-                                        programmableObjectsContainer.objectListClient[l].GetComponentInChildren<Light>().enabled = true;
-                                }
-
-                                if ((int)stream.ReadUInt(ref readerCtx) == 0)
-                                {
-                                    if (programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>() != null)
-                                        programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>().OnClose();
-                                }
-                                else
-                                {
-                                    if (programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>() != null)
-                                        programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>().OnOpen();
-                                }
-                                break;
-
-                            default:
-                                break;
-                        }
-
-                        type = stream.ReadUInt(ref readerCtx);
+                        default:
+                            break;
                     }
                 }
 
@@ -424,6 +458,16 @@ public class Client : MonoBehaviour
                 }
             }
             
+            m_Connection.Send(m_Driver, writer);
+        }
+    }
+
+    private void InitialHandshake()
+    {
+        using (var writer = new DataStreamWriter(64, Allocator.Temp))
+        {
+            writer.Write(Constants.Client_ConnectionId);
+            writer.Write(connectionId);
             m_Connection.Send(m_Driver, writer);
         }
     }

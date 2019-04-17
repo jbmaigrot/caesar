@@ -5,6 +5,7 @@
     public const int Client_Message = 3;
     public const int Client_RequestHack = 4;
     public const int Client_SetHack = 5;
+    public const int Client_ConnectionId = 6;
 
     public const int Server_MoveCharacter = 42;
     public const int Server_CreateCharacter = 43;
@@ -13,6 +14,7 @@
     public const int Server_Snapshot = 50;
     public const int Server_UpdateObject = 57;
     public const int Server_SnapshotEnd = 9999;
+    public const int Server_SetConnectionId = 58;
 
     public const int Client_Lobby_ConnectionId = 101;
     public const int Client_Lobby_SetTeam = 102;
