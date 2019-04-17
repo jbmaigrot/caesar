@@ -20,6 +20,7 @@ public class MapGenerator : MonoBehaviour
     private Case[] Grille;
     private int lengthX;
     private int lengthY;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -31,14 +32,22 @@ public class MapGenerator : MonoBehaviour
         {
             for (int reynolds = 0; reynolds < lengthY; reynolds++)
             {
+                Grille[ryan + reynolds * lengthX] = new Case();
                 Grille[ryan + reynolds * lengthX].posX = ryan;
                 Grille[ryan + reynolds * lengthX].posY = reynolds;
                 Grille[ryan + reynolds * lengthX].roomtype = 0;
             }
 
         }
-        MakeRoom(0, 0, lengthX, 0, lengthY, lengthY, lengthY, 0, 1, 0);
-
+        MakeRoom(1, 1, lengthX-1, 1, lengthY-1, lengthY-1, lengthY-1, 1, 1, 0);
+        for(int ryan = 1; ryan <lengthX; ryan++)
+        {
+            for(int reynolds = 1;reynolds <lengthY; reynolds++)
+            {
+                
+            }
+            
+        }
 
     }
 
@@ -115,7 +124,7 @@ public class MapGenerator : MonoBehaviour
 
             dice = Random.value;
             //X cut
-            if (dice < 0.3)
+            if (dice < 0.5)
             {
                 Axb = centerX < Ax ? centerX : Ax;
                 Ayb = centerX < Ax ? Ay + Ax - centerX : Ay;
@@ -156,7 +165,7 @@ public class MapGenerator : MonoBehaviour
                 }
             }
             //Y cut
-            else if (dice < 0.6)
+            else if (dice < 1)
             {
                 Axb = Ax;
                 Ayb = Ay;
@@ -197,7 +206,7 @@ public class MapGenerator : MonoBehaviour
                 }
             }
             //positive diagonal cut
-            else if (dice < 0.8)
+            /*else if (dice < 0.8)
             {
                 int interHLX;
                 int interHLY;
@@ -225,23 +234,23 @@ public class MapGenerator : MonoBehaviour
                 interDRX = x;
                 interDRY = y;
 
-                Axb = Mathf.Min(interHLX,Ax);
-                Ayb = interHLY;
-                Bxb = interHLX;
+                Axb = Mathf.Max(Mathf.Min(interHLX-1,Ax),Ax-Hy+Ay);
+                Ayb = interHLX>Ax ? Ay : interHLY;
+                Bxb = Mathf.Max(interHLX-1,Ax-Hy+Ay);
                 Cyb = interDRY;
                 Dyb = Mathf.Max(interDRY,Dy);
                 Eyb = Ey;
                 Gyb = Gy;
-                Hyb = Mathf.Min(interHLX, Hx);
+                Hyb = Mathf.Max(interHLY, Hy);
 
-                Axt =;
+                Axt = Mathf.Max(interHLX+1, Ax);
                 Ayt = Ay;
                 Bxt = Bx;
                 Cyt = Cy;
-                Dyt = ;
-                Eyt = Cyb;
-                Gyt = Ayb;
-                Hyt = ;
+                Dyt = Mathf.Min(interDRY, Dy);
+                Eyt = interDRY;
+                Gyt = interHLY;
+                Hyt = Mathf.Min(interHLY, Hy);
 
                 checkb = CheckRoom(Axb, Ayb, Bxb, Cyb, Dyb, Eyb, Gyb, Hyb);
                 checkt = CheckRoom(Axt, Ayt, Bxt, Cyt, Dyt, Eyt, Gyt, Hyt);
@@ -267,7 +276,7 @@ public class MapGenerator : MonoBehaviour
             else
             {
 
-            }
+            }*/
         }
 
 

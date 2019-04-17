@@ -9,9 +9,11 @@ using Unity.Collections;
 
 using UdpCNetworkDriver = Unity.Networking.Transport.BasicNetworkDriver<Unity.Networking.Transport.IPv4UDPSocket>;
 
-#if SERVER
+
 public class Server : MonoBehaviour
 {
+    public GameObject prefabPJ;
+#if SERVER
     public UdpCNetworkDriver m_Driver;
     public List<Transform> players = new List<Transform>();
     public List<Transform> characters = new List<Transform>(); // Players + NPCs
@@ -29,7 +31,7 @@ public class Server : MonoBehaviour
 
     private const float MANUALSTUNRADIUS = 15.0f;
 
-    public GameObject prefabPJ;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -497,6 +499,6 @@ public class Server : MonoBehaviour
             nc.Send(m_Driver, writer);
         }
     }
-}
 
 #endif
+}
