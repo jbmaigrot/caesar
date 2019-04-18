@@ -34,6 +34,7 @@ public class ServerCharacter : MonoBehaviour
         timeBeforeEndOfStun = TIMEOFSTUN;
         isStunned = true;
         navMeshAgent.speed = 0;
+        this.GetComponent<ProgrammableObjectsData>().OnInput("OnStun");
     }
 
     public void doStun()

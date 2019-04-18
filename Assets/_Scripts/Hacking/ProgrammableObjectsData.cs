@@ -19,6 +19,9 @@ public class ProgrammableObjectsData : MonoBehaviour
     private float attracttimebeforeeffect;
 
     public int charactersIndex = -1; //This index correspond to the index in the list of transform of characters the server stores. -1 in case it's not a character
+
+    private float timeBeforeStunReload;
+    private const float TIMEOFSTUNRELOAD = 20.0f;
 #endif
 
 #if CLIENT
@@ -28,9 +31,9 @@ public class ProgrammableObjectsData : MonoBehaviour
 
 #if SERVER
     /*Variables contenant le graphe de comportement de l'objet*/
-    public List<InOutVignette> inputCodes=new List<InOutVignette>();
-    public List<InOutVignette> outputCodes=new List<InOutVignette>();
-    public List<Arrow> graph= new List<Arrow>();
+    public List<InOutVignette> inputCodes = new List<InOutVignette>();
+    public List<InOutVignette> outputCodes = new List<InOutVignette>();
+    public List<Arrow> graph = new List<Arrow>();
 
     public bool isLightOn = false;
     public bool isDoorOpen = false;
@@ -54,18 +57,19 @@ public class ProgrammableObjectsData : MonoBehaviour
         inputCodes = new List<InOutVignette>(InitiatorClone.inputCodes);
         outputCodes = new List<InOutVignette>(InitiatorClone.outputCodes);
         graph = new List<Arrow>(InitiatorClone.graph);
-        
-        foreach(Arrow a in graph)
+
+        foreach (Arrow a in graph)
         {
             a.timeBeforeTransmit.Clear();
         }
 
-        foreach(InOutVignette ryan in Initiator.initialOutputActions)
+        foreach (InOutVignette ryan in Initiator.initialOutputActions)
         {
             OnOutput(ryan.code, ryan.parameter_string, ryan.parameter_int);
         }
 
         isAttract = false;
+        timeBeforeStunReload = 0;
 #endif
 #if CLIENT
         client = FindObjectOfType<Client>();
@@ -77,11 +81,11 @@ public class ProgrammableObjectsData : MonoBehaviour
 #if CLIENT
     void OnMouseDown()
     {
-        if((this.GetComponent<Collider>().ClosestPoint(client.characters[client.playerIndex].transform.position) - client.characters[client.playerIndex].transform.position).magnitude < 5)
+        if ((this.GetComponent<Collider>().ClosestPoint(client.characters[client.playerIndex].transform.position) - client.characters[client.playerIndex].transform.position).magnitude < 5)
         {
             client.RequestHackState(objectsContainer.GetObjectIndexClient(this));
         }
-        
+
     }
 #endif
 
@@ -100,9 +104,9 @@ public class ProgrammableObjectsData : MonoBehaviour
     /*Quand la vignette input désignée en paramêtre est activé, active toute les fléches qui y sont relié*/
     public void OnInput(string codeinput, string parameter_string = "", int parameter_int = 0)
     {
-        foreach(Arrow ryan in graph)
+        foreach (Arrow ryan in graph)
         {
-            if(inputCodes.Count>ryan.input && inputCodes[ryan.input].code == codeinput && inputCodes[ryan.input].parameter_string == parameter_string && inputCodes[ryan.input].parameter_int == parameter_int)
+            if (inputCodes.Count > ryan.input && inputCodes[ryan.input].code == codeinput && inputCodes[ryan.input].parameter_string == parameter_string && inputCodes[ryan.input].parameter_int == parameter_int)
             {
                 ryan.timeBeforeTransmit.Add(ryan.transmitTime);
             }
@@ -112,72 +116,76 @@ public class ProgrammableObjectsData : MonoBehaviour
     /*Quand la vignette output désigné est activé, fait l'effet correspondant*/
     public void OnOutput(string codeoutput, string parameter_string = "", int parameter_int = 0)
     {
-        if(codeoutput == "TurnOnLight")
+        if (codeoutput == "TurnOnLight")
         {
             GetComponentInChildren<Light>().enabled = true;
             isLightOn = true;
         }
 
-        if(codeoutput == "TurnOffLight")
+        if (codeoutput == "TurnOffLight")
         {
             GetComponentInChildren<Light>().enabled = false;
             isLightOn = false;
         }
 
-        if(codeoutput == "OpenDoor")
+        if (codeoutput == "OpenDoor")
         {
             this.GetComponentInChildren<DoorScript>().OnOpen();
             NavMeshSurface.GetComponent<NavMeshSurfaceScript>().hasToBeRebake = true;
             isDoorOpen = true;
         }
 
-        if(codeoutput == "CloseDoor")
+        if (codeoutput == "CloseDoor")
         {
             this.GetComponentInChildren<DoorScript>().OnClose();
             NavMeshSurface.GetComponent<NavMeshSurfaceScript>().hasToBeRebake = true;
             isDoorOpen = false;
         }
 
-        if(codeoutput == "SendMessage")
+        if (codeoutput == "SendMessage")
         {
-            server.AddMessage(parameter_string, new Vector3(0,0,0)); //TO UPDATE: temporary position
+            server.AddMessage(parameter_string, new Vector3(0, 0, 0)); //TO UPDATE: temporary position
         }
 
-        if(codeoutput == "TestInt")
+        if (codeoutput == "TestInt")
         {
             Debug.Log(parameter_int.ToString());
         }
 
-        if(codeoutput == "Ring")
+        if (codeoutput == "Ring")
         {
             //Debug.Log("ring-a-ling-a-ling, this is sound");
             //Désolé Sylvain :'(
         }
 
-        if(codeoutput == "Stun")
+        if (codeoutput == "Stun")
         {
-            for(int i = 0; i<server.characters.Count;i++)
+            if (timeBeforeStunReload <= 0)
             {
-                if (((int) Vector3.Distance(server.characters[i].position, this.transform.position)) < STUNBOXRADIUS && i != charactersIndex)
+                timeBeforeStunReload = TIMEOFSTUNRELOAD;
+                for (int i = 0; i < server.characters.Count; i++)
                 {
-                    server.characters[i].GetComponent<ServerCharacter>().getStun();
+                    if (((int)Vector3.Distance(server.characters[i].position, this.transform.position)) < STUNBOXRADIUS && i != charactersIndex)
+                    {
+                        server.characters[i].GetComponent<ServerCharacter>().getStun();
+                    }
                 }
             }
         }
 
-        if(codeoutput == "Attract")
+        if (codeoutput == "Attract")
         {
             isAttract = true;
             attracttimebeforeend = ATTRACTTIME;
             attracttimebeforeeffect = 0.0f;
         }
 
-        if(codeoutput == "UseGadget")
+        if (codeoutput == "UseGadget")
         {
             switch (parameter_int)
             {
                 case InventoryConstants.Attract:
-                    OnOutput("Attract", parameter_string,parameter_int);
+                    OnOutput("Attract", parameter_string, parameter_int);
                     break;
 
                 case InventoryConstants.Stunbox:
@@ -195,7 +203,7 @@ public class ProgrammableObjectsData : MonoBehaviour
     /*A chaque frame, le signal se déplace dans les flèches du graphe*/
     void Update()
     {
-        for(int i = 0; i < graph.Count; i++)
+        for (int i = 0; i < graph.Count; i++)
         {
             for (int j = 0; j < graph[i].timeBeforeTransmit.Count; j++)
             {
@@ -215,6 +223,11 @@ public class ProgrammableObjectsData : MonoBehaviour
         {
             TheAttractFunction();
         }
+
+        if (timeBeforeStunReload > 0)
+        {
+            timeBeforeStunReload -= Time.deltaTime;
+        }
     }
 
     void TheAttractFunction()
@@ -223,8 +236,8 @@ public class ProgrammableObjectsData : MonoBehaviour
         attracttimebeforeeffect -= Time.deltaTime;
         if (attracttimebeforeeffect <= 0.0f)
         {
-                for (int i = 0; i < server.characters.Count; i++)
-                {
+            for (int i = 0; i < server.characters.Count; i++)
+            {
                 if (((int)Vector3.Distance(server.characters[i].position, this.transform.position)) < ATTRACTRADIUS && i != charactersIndex)
                 {
                     server.characters[i].GetComponent<NavMeshAgent>().ResetPath();
