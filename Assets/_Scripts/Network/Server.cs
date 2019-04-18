@@ -260,6 +260,7 @@ public class Server : MonoBehaviour
                     writer.Write(characters[j].gameObject.GetComponent<ServerCharacter>().isStunned ? 1 : 0);
                 }
                 //update objects states (and positions)
+                
                 for (int j = 0; j < programmableObjectsContainer.objectListServer.Count; j++)
                 {
                     writer.Write(Constants.Server_UpdateObject);
@@ -272,7 +273,8 @@ public class Server : MonoBehaviour
                 writer.Write(Constants.Server_SnapshotEnd);
                 snapshotCount++;
 
-                writer.Write(0);//characters.IndexOf(players[i]));//index of the player in the character list
+                writer.Write(characters.IndexOf(players[i]));//index of the player in the character list
+                Debug.Log(writer.Length);
                 m_Driver.Send(m_Connections[i], writer);
                 
             }
@@ -486,6 +488,7 @@ public class Server : MonoBehaviour
         players.Add(pj.transform);
         characters.Add(pj.transform);
         programmableObjectsContainer.objectListServer.Add(pj.GetComponent<ProgrammableObjectsData>());
+        pj.GetComponent<ProgrammableObjectsData>().charactersIndex = characters.Count - 1;
         return characters.Count - 1;
     }
 

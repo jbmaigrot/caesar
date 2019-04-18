@@ -18,6 +18,7 @@ public class ProgrammableObjectsData : MonoBehaviour
     private float attracttimebeforeend;
     private float attracttimebeforeeffect;
 
+    public int charactersIndex = -1; //This index correspond to the index in the list of transform of characters the server stores. -1 in case it's not a character
 #endif
 
 #if CLIENT

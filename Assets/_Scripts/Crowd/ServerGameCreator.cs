@@ -161,6 +161,7 @@ public class ServerGameCreator : MonoBehaviour
             GetComponent<Server>().characters.Add(pnj.PrefabPnj.transform);
             _listPnj[i] = pnj;
             _containerNPC.objectListServer.Add(pnj.PrefabPnj.GetComponent<ProgrammableObjectsData>());
+            pnj.PrefabPnj.GetComponent<ProgrammableObjectsData>().charactersIndex = GetComponent<Server>().characters.Count - 1;
         }        
     }
 #endif

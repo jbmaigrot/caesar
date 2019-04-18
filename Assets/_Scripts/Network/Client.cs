@@ -112,12 +112,10 @@ public class Client : MonoBehaviour
                 {
                     var readerCtx = default(DataStreamReader.Context);
                     var type = stream.ReadUInt(ref readerCtx);
-                    Debug.Log("receiving data of type : " + type);
 
                     switch (type)
                     {
                         case Constants.Server_Snapshot:
-                            Debug.Log("receiving a snapshot");
                             int snapshotNumber = (int)stream.ReadUInt(ref readerCtx);
 
                             if (snapshotNumber <= lastSnapshot)
