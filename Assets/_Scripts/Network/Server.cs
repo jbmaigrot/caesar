@@ -240,45 +240,44 @@ public class Server : MonoBehaviour
         {
             if (!m_Connections[i].IsCreated) continue;
             // Snapshot (world state)
-            using (var writer = new DataStreamWriter(16384, Allocator.Temp))
+
+            for (int j = 0; j < programmableObjectsContainer.objectListServer.Count; j++)
             {
-                //snapshot start
-                writer.Write(Constants.Server_Snapshot);
-                writer.Write(snapshotCount);
-
-
-                //update characters states and positions
-                for (int j = 0; j < characters.Count; j++)
+                int charactersIndex = programmableObjectsContainer.objectListServer[j].charactersIndex;
+                using (var writer = new DataStreamWriter(16384, Allocator.Temp))
                 {
-                    writer.Write(Constants.Server_MoveCharacter);
-                    writer.Write(j);
-                    writer.Write(characters[j].position.x);
-                    writer.Write(characters[j].position.z);
-                    writer.Write(characters[j].rotation.eulerAngles.y);
-                    writer.Write(characters[j].GetComponent<NavMeshAgent>().velocity.x);
-                    writer.Write(characters[j].GetComponent<NavMeshAgent>().velocity.z);
-                    writer.Write(characters[j].gameObject.GetComponent<ServerCharacter>().isStunned ? 1 : 0);
-                }
-                //update objects states (and positions)
-                
-                for (int j = 0; j < programmableObjectsContainer.objectListServer.Count; j++)
-                {
+                    //snapshot start
+                    writer.Write(Constants.Server_Snapshot);
+                    writer.Write(snapshotCount);
+
+                    if (charactersIndex != -1) //we have a character, update on its states and positions
+                    {
+                        writer.Write(Constants.Server_MoveCharacter);
+                        writer.Write(charactersIndex);
+                        writer.Write(characters[charactersIndex].position.x);
+                        writer.Write(characters[charactersIndex].position.z);
+                        writer.Write(characters[charactersIndex].rotation.eulerAngles.y);
+                        writer.Write(characters[charactersIndex].GetComponent<NavMeshAgent>().velocity.x);
+                        writer.Write(characters[charactersIndex].GetComponent<NavMeshAgent>().velocity.z);
+                        writer.Write(characters[charactersIndex].gameObject.GetComponent<ServerCharacter>().isStunned ? 1 : 0);
+                    }
+
+                    //update objects states
                     writer.Write(Constants.Server_UpdateObject);
                     writer.Write(j);
                     writer.Write(programmableObjectsContainer.objectListServer[j].isLightOn ? 1 : 0);
                     writer.Write(programmableObjectsContainer.objectListServer[j].isDoorOpen ? 1 : 0);
+
+                    //close snapshot
+                    writer.Write(Constants.Server_SnapshotEnd);
+
+                    writer.Write(characters.IndexOf(players[i]));//index of the player in the character list
+                    m_Driver.Send(m_Connections[i], writer);
                 }
-
-                //close snapshot
-                writer.Write(Constants.Server_SnapshotEnd);
-                snapshotCount++;
-
-                writer.Write(characters.IndexOf(players[i]));//index of the player in the character list
-                Debug.Log(writer.Length);
-                m_Driver.Send(m_Connections[i], writer);
-                
             }
         }
+
+        snapshotCount++;
     }
 
     
