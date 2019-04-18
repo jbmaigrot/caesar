@@ -272,7 +272,7 @@ public class Server : MonoBehaviour
                 writer.Write(Constants.Server_SnapshotEnd);
                 snapshotCount++;
 
-                writer.Write(0);//characters.IndexOf(players[i]));//index of the player in the character list
+                writer.Write(characters.IndexOf(players[i]));//index of the player in the character list
                 m_Driver.Send(m_Connections[i], writer);
                 
             }
