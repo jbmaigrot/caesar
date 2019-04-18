@@ -156,11 +156,11 @@ public class ProgrammableObjectsData : MonoBehaviour
 
         if(codeoutput == "Stun")
         {
-            foreach (Transform ryan in server.characters)
+            for(int i = 0; i<server.characters.Count;i++)
             {
-                if (((int) Vector3.Distance(ryan.position, this.transform.position)) < STUNBOXRADIUS)
+                if (((int) Vector3.Distance(server.characters[i].position, this.transform.position)) < STUNBOXRADIUS && i != charactersIndex)
                 {
-                    ryan.GetComponent<ServerCharacter>().getStun();
+                    server.characters[i].GetComponent<ServerCharacter>().getStun();
                 }
             }
         }
