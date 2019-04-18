@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class ServerCharacter : MonoBehaviour
 {
+#if SERVER
     public bool isStunned;
     private float timeBeforeEndOfStun;
     private const float TIMEOFSTUN = 15.0f;
@@ -34,7 +35,7 @@ public class ServerCharacter : MonoBehaviour
         timeBeforeEndOfStun = TIMEOFSTUN;
         isStunned = true;
         navMeshAgent.speed = 0;
-        this.GetComponent<ProgrammableObjectsData>().OnInput("OnStun");
+        GetComponent<ProgrammableObjectsData>().OnInput("OnStun");
     }
 
     public void doStun()
@@ -67,4 +68,5 @@ public class ServerCharacter : MonoBehaviour
             }
         }
     }
+#endif
 }
