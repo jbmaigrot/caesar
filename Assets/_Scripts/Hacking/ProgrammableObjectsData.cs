@@ -77,8 +77,7 @@ public class ProgrammableObjectsData : MonoBehaviour
 #if CLIENT
     void OnMouseDown()
     {
-        //if((this.transform.position - HackInterface.GetComponent<HackInterface>().bonhomme.transform.position).magnitude < 3)
-        if (true)
+        if((this.GetComponent<Collider>().ClosestPoint(client.characters[client.playerIndex].transform.position) - client.characters[client.playerIndex].transform.position).magnitude < 5)
         {
             client.RequestHackState(objectsContainer.GetObjectIndexClient(this));
         }

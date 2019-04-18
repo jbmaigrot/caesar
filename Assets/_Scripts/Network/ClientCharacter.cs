@@ -24,7 +24,7 @@ public class ClientCharacter : MonoBehaviour
     // Tacle
     public void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1)&& number != client.playerIndex)
         {
             client.Tacle(number);
         }

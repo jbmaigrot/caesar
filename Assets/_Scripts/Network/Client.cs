@@ -33,6 +33,8 @@ public class Client : MonoBehaviour
     public int connectionId;
     private bool initialHandshakeDone;
 
+    public int playerIndex;
+
 #if CLIENT
 
     // Start is called before the first frame update
@@ -198,10 +200,10 @@ public class Client : MonoBehaviour
                                     }
                                 } while (type != Constants.Server_SnapshotEnd);
 
-                                int k = (int)stream.ReadUInt(ref readerCtx);
-                                if (k < characters.Count)
+                                playerIndex = (int)stream.ReadUInt(ref readerCtx);
+                                if (playerIndex < characters.Count)
                                 {
-                                    cameraController.characterToFollow = characters[k].gameObject;
+                                    cameraController.characterToFollow = characters[playerIndex].gameObject;
                                 }
                             }
                             break;
