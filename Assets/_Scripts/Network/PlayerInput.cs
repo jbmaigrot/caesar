@@ -28,7 +28,7 @@ public class PlayerInput : MonoBehaviour
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
 
-                if (Physics.Raycast(ray, out hit, 100f, 1<<14)) // Layer 4 (objects)
+                if (Physics.Raycast(ray, out hit, 100f, 1<<14)||Physics.Raycast(ray, out hit, 100f, 1<<5)) // Layer 4 (objects)
                 {
                     Debug.Log(42);
                 }
