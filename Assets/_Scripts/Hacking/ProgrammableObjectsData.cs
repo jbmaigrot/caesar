@@ -21,7 +21,7 @@ public class ProgrammableObjectsData : MonoBehaviour
 #endif
 
 #if CLIENT
-    /*Network manager. Seulement coté client*/
+    /*Client. Seulement coté client*/
     public Client client;
 #endif
 
@@ -80,7 +80,6 @@ public class ProgrammableObjectsData : MonoBehaviour
         if (true)
         {
             client.RequestHackState(objectsContainer.GetObjectIndexClient(this));
-            
         }
         
     }
@@ -151,7 +150,8 @@ public class ProgrammableObjectsData : MonoBehaviour
 
         if(codeoutput == "Ring")
         {
-            Debug.Log("ring-a-ling-a-ling, this is sound");
+            //Debug.Log("ring-a-ling-a-ling, this is sound");
+            //Désolé Sylvain :'(
         }
 
         if(codeoutput == "Stun")

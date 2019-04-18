@@ -190,12 +190,12 @@ public class Server : MonoBehaviour
                             break;
 
                         case Constants.Client_Tacle:
-                            int number = (int) stream.ReadUInt(ref readerCtx);
-                            if (players[i].GetComponent<ServerCharacter>().canStun && !players[i].GetComponent<ServerCharacter>().isStunned && /*number != i &&*/ Vector3.Distance(players[i].transform.position, characters[number].transform.position) < MANUALSTUNRADIUS )
+                            int number = (int)stream.ReadUInt(ref readerCtx);
+                            if (players[i].GetComponent<ServerCharacter>().canStun && !players[i].GetComponent<ServerCharacter>().isStunned && /*number != i &&*/ Vector3.Distance(players[i].transform.position, characters[number].transform.position) < MANUALSTUNRADIUS)
                             {
                                 characters[number].GetComponent<ServerCharacter>().getStun();
-                                players[i].GetComponent<ServerCharacter>().doStun();                                
-                            }                                
+                                players[i].GetComponent<ServerCharacter>().doStun();
+                            }
                             break;
 
                         case Constants.Client_Message:
@@ -232,14 +232,18 @@ public class Server : MonoBehaviour
                     m_Connections[i] = default(NetworkConnection);
                 }
             }
+        }
 
+        for (int i = 0; i < m_Connections.Length; i++)
+        {
+            if (!m_Connections[i].IsCreated) continue;
             // Snapshot (world state)
             using (var writer = new DataStreamWriter(16384, Allocator.Temp))
             {
                 //snapshot start
                 writer.Write(Constants.Server_Snapshot);
                 writer.Write(snapshotCount);
-                
+
 
                 //update characters states and positions
                 for (int j = 0; j < characters.Count; j++)
@@ -254,7 +258,7 @@ public class Server : MonoBehaviour
                     writer.Write(characters[j].gameObject.GetComponent<ServerCharacter>().isStunned ? 1 : 0);
                 }
                 //update objects states (and positions)
-                for(int j = 0; j < programmableObjectsContainer.objectListServer.Count; j++)
+                for (int j = 0; j < programmableObjectsContainer.objectListServer.Count; j++)
                 {
                     writer.Write(Constants.Server_UpdateObject);
                     writer.Write(j);
@@ -266,14 +270,9 @@ public class Server : MonoBehaviour
                 writer.Write(Constants.Server_SnapshotEnd);
                 snapshotCount++;
 
+                writer.Write(0);//characters.IndexOf(players[i]));//index of the player in the character list
+                m_Driver.Send(m_Connections[i], writer);
                 
-
-                //Send snapshot to all clients
-                for (int k = 0; k < m_Connections.Length; k++)
-                {
-                    writer.Write(characters.IndexOf(players[k])); //index of the player in the character list
-                    m_Driver.Send(m_Connections[k], writer);
-                }
             }
         }
     }

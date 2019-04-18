@@ -11,7 +11,7 @@ using UdpCNetworkDriver = Unity.Networking.Transport.BasicNetworkDriver<Unity.Ne
 
 //using Buffers = NetStack.Buffers;
 //using Serialization = NetStack.Serialization;
-#if CLIENT
+
 public class Client : MonoBehaviour
 {
     public string ServerIP = "127.0.0.1"; //localhost by default
@@ -33,6 +33,8 @@ public class Client : MonoBehaviour
     public int connectionId;
     private bool initialHandshakeDone;
 
+#if CLIENT
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,7 +51,6 @@ public class Client : MonoBehaviour
         clientLobby = FindObjectOfType<ClientLobby>();
         if (clientLobby == null)
         {
-            Debug.Log("Didn't find any ClientLobby object in the scene.");
             var endpoint = new IPEndPoint(IPAddress.Parse(ServerIP), 9000);
             m_Connection = m_Driver.Connect(endpoint);
             connectionId = -1;
@@ -111,10 +112,12 @@ public class Client : MonoBehaviour
                 {
                     var readerCtx = default(DataStreamReader.Context);
                     var type = stream.ReadUInt(ref readerCtx);
+                    Debug.Log("receiving data of type : " + type);
 
                     switch (type)
                     {
                         case Constants.Server_Snapshot:
+                            Debug.Log("receiving a snapshot");
                             int snapshotNumber = (int)stream.ReadUInt(ref readerCtx);
 
                             if (snapshotNumber <= lastSnapshot)
@@ -139,7 +142,7 @@ public class Client : MonoBehaviour
 
                                             if (j >= characters.Count)
                                             {
-                                                GameObject newCharacter = Instantiate(characterPrefab);
+                                                GameObject newCharacter = Instantiate(characterPrefab, programmableObjectsContainer.transform);
                                                 newCharacter.GetComponent<ClientCharacter>().number = j;
                                                 characters.Add(newCharacter.GetComponent<ClientCharacter>());
                                                 programmableObjectsContainer.objectListClient.Add(newCharacter.GetComponent<ProgrammableObjectsData>());
@@ -476,5 +479,6 @@ public class Client : MonoBehaviour
     {
         m_Driver.Dispose();
     }
-}
+
 #endif
+}
