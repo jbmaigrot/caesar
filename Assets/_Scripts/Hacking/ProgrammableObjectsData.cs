@@ -156,11 +156,11 @@ public class ProgrammableObjectsData : MonoBehaviour
 
         if(codeoutput == "Stun")
         {
-            foreach (Transform ryan in server.characters)
+            for(int i = 0; i<server.characters.Count;i++)
             {
-                if (((int) Vector3.Distance(ryan.position, this.transform.position)) < STUNBOXRADIUS)
+                if (((int) Vector3.Distance(server.characters[i].position, this.transform.position)) < STUNBOXRADIUS && i != charactersIndex)
                 {
-                    ryan.GetComponent<ServerCharacter>().getStun();
+                    server.characters[i].GetComponent<ServerCharacter>().getStun();
                 }
             }
         }
@@ -223,12 +223,12 @@ public class ProgrammableObjectsData : MonoBehaviour
         attracttimebeforeeffect -= Time.deltaTime;
         if (attracttimebeforeeffect <= 0.0f)
         {
-            foreach (Transform ryan in server.characters)
-            {
-                if (((int)Vector3.Distance(ryan.position, this.transform.position)) < ATTRACTRADIUS)
+                for (int i = 0; i < server.characters.Count; i++)
                 {
-                    ryan.GetComponent<NavMeshAgent>().ResetPath();
-                    ryan.GetComponent<NavMeshAgent>().destination = this.transform.position;
+                if (((int)Vector3.Distance(server.characters[i].position, this.transform.position)) < ATTRACTRADIUS && i != charactersIndex)
+                {
+                    server.characters[i].GetComponent<NavMeshAgent>().ResetPath();
+                    server.characters[i].GetComponent<NavMeshAgent>().destination = this.transform.position;
                 }
             }
             attracttimebeforeeffect = 0.1f;
