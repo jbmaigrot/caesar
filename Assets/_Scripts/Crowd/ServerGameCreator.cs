@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-#if SERVER
+
 public class ServerGameCreator : MonoBehaviour
 {
     public int NbPnj;
     public GameObject PnjGameObject;
 
     public GameObject[] ListZone;
-
+#if SERVER
     [Range(0, 100)]
     public int ChanceToGoToObject = 60;
     [Range(0, 50)]
@@ -163,6 +163,5 @@ public class ServerGameCreator : MonoBehaviour
             _containerNPC.objectListServer.Add(pnj.PrefabPnj.GetComponent<ProgrammableObjectsData>());
         }        
     }
-   
-}
 #endif
+}
