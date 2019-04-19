@@ -148,8 +148,9 @@ public class ServerGameCreator : MonoBehaviour
             pnj.PrefabPnj = Instantiate(PnjGameObject, _containerNPC.transform);
 
             int rndZoneIndex = Random.Range(0, maxSize);
-
-            pnj.PrefabPnj.transform.position = _containerNPC.objectListServer[rndZoneIndex].transform.position;
+            pnj.PrefabPnj.GetComponent<NavMeshAgent>().enabled = false;
+            pnj.PrefabPnj.transform.position = new Vector3(Random.Range(-98,98),0f, Random.Range(-98, 98));
+            pnj.PrefabPnj.GetComponent<NavMeshAgent>().enabled = true;
             /*
             SlotClass sc = _listZone[rndZoneIndex].GetFreeSlot();
             if (sc != null && sc.SlotGameObject != null)
