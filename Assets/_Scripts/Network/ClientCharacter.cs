@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-#if CLIENT
+
 public class ClientCharacter : MonoBehaviour
 {
+#if CLIENT
     public Vector3 speed = new Vector3(0, 0, 0);
     public int number;
     public bool isTacle;
@@ -30,5 +31,6 @@ public class ClientCharacter : MonoBehaviour
             client.Tacle(number);
         }
     }
-}
 #endif
+}
+

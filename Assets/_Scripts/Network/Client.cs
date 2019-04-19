@@ -14,13 +14,16 @@ using UdpCNetworkDriver = Unity.Networking.Transport.BasicNetworkDriver<Unity.Ne
 
 public class Client : MonoBehaviour
 {
+    public GameObject characterPrefab;
+
+#if CLIENT
     public string ServerIP = "127.0.0.1"; //localhost by default
     public UdpCNetworkDriver m_Driver;
     public NetworkConnection m_Connection;
     public IPv4UDPSocket socket;
 
     public List<ClientCharacter> characters;
-    public GameObject characterPrefab;
+    
 
     private CameraController cameraController;
     private ClientChat chat;
@@ -35,7 +38,6 @@ public class Client : MonoBehaviour
 
     public int playerIndex;
 
-#if CLIENT
 
     // Start is called before the first frame update
     void Start()
@@ -155,7 +157,7 @@ public class Client : MonoBehaviour
                                         if (isStunned == 1)
                                         {
                                             characters[j].isTacle = true;
-                                            if(HackInterface.SelectedInputButton != -1)
+                                            if(j == playerIndex && HackInterface.SelectedGameObject != null)
                                             {
                                                 hackInterface.CloseByStun();
                                             }

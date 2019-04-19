@@ -27,4 +27,8 @@
     public const int Server_Lobby_SetConnectionId = 151;
     public const int Server_Lobby_LobbyState = 152;
     public const int Server_Lobby_StartGame = 153;
+
+
+    public static readonly string[] LobbyNames = new string[] {"Le Redoutable", "Le Triomphant", "Le Téméraire", "Le Vigilant", "Le Terrible",
+        "Le Conquérant", "Le Héros", "Le Glorieux", "Le Tonnant", "Le Foudroyant", "L'Indomptable", "L'Inflexible"};
 }

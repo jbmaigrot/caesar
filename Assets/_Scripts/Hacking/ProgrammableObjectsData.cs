@@ -27,6 +27,8 @@ public class ProgrammableObjectsData : MonoBehaviour
 #if CLIENT
     /*Client. Seulement coté client*/
     public Client client;
+    public HackInterface hackInterface;
+    public bool isWaitingHack;
 #endif
 
 #if SERVER
@@ -73,6 +75,8 @@ public class ProgrammableObjectsData : MonoBehaviour
 #endif
 #if CLIENT
         client = FindObjectOfType<Client>();
+        hackInterface = FindObjectOfType<HackInterface>();
+        isWaitingHack = false;
 #endif
 
     }
@@ -84,8 +88,16 @@ public class ProgrammableObjectsData : MonoBehaviour
         if ((this.GetComponent<Collider>().ClosestPoint(client.characters[client.playerIndex].transform.position) - client.characters[client.playerIndex].transform.position).magnitude < 5)
         {
             client.RequestHackState(objectsContainer.GetObjectIndexClient(this));
+            hackInterface.ReadyToOpen();
+            isWaitingHack = true;
         }
 
+    }
+
+    private void OnMouseUp()
+    {
+        hackInterface.DoNotOpenActually();
+        isWaitingHack = false;
     }
 #endif
 
@@ -228,6 +240,17 @@ public class ProgrammableObjectsData : MonoBehaviour
         {
             timeBeforeStunReload -= Time.deltaTime;
         }
+
+#if CLIENT
+        if (isWaitingHack)
+        {
+            this.GetComponentInChildren<MeshRenderer>().material.color = Color.green;
+        }
+        else
+        {
+            this.GetComponentInChildren<MeshRenderer>().material.color = Color.white;
+        }
+#endif
     }
 
     void TheAttractFunction()

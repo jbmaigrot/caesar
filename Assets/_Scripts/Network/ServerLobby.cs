@@ -11,8 +11,6 @@ using UdpCNetworkDriver = Unity.Networking.Transport.BasicNetworkDriver<Unity.Ne
 #if SERVER
 public class ServerLobby : MonoBehaviour
 {
-    private const bool UP = true;
-    private const bool DOWN = false;
     public UdpCNetworkDriver m_Driver;
     public NativeList<NetworkConnection> m_Connections;
     private NativeList<NetworkConnection> tmp_Connections;
@@ -24,8 +22,9 @@ public class ServerLobby : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lobbyInterfaceManager = FindObjectOfType<LobbyInterfaceManager>();
-        numberOfPlayerSlots = lobbyInterfaceManager.GetNumberOfPlayerSlots();
+        //lobbyInterfaceManager = FindObjectOfType<LobbyInterfaceManager>();
+        //numberOfPlayerSlots = lobbyInterfaceManager.GetNumberOfPlayerSlots();
+        //No real need for the interface on server side, and number of player slots should be modified by clients
 
         Application.targetFrameRate = 58;
 

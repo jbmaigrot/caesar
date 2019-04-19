@@ -18,18 +18,19 @@ public class ClientLobby : MonoBehaviour
 
     public int connectionId;
     private bool initialHandshakeDone;
+
+    private bool establishingConnection;
+
+    private LobbyInterfaceManager lobbyInterfaceManager;
+
     // Start is called before the first frame update
     void Start()
     {
-        connectionId = -1;
-        initialHandshakeDone = false;
-        //TODO error : A Native Collection has not been disposed, resulting in a memory leak
         m_Driver = new UdpCNetworkDriver(new INetworkParameter[0]);
-        m_Connection = default(NetworkConnection);
 
-        //var endpoint = new IPEndPoint(IPAddress.Loopback, 9000);
-        var endpoint = new IPEndPoint(IPAddress.Parse(ServerIP), 9000);
-        m_Connection = m_Driver.Connect(endpoint);
+        lobbyInterfaceManager = FindObjectOfType<LobbyInterfaceManager>();
+
+        establishingConnection = false;
     }
 
     public void OnDestroy()
@@ -49,60 +50,64 @@ public class ClientLobby : MonoBehaviour
     void FixedUpdate()
     {
         m_Driver.ScheduleUpdate().Complete();
-
-        if (!m_Connection.IsCreated)
+        
+        if (establishingConnection == true)
         {
-            Debug.Log("Something went wrong during connect");
-            //var endpoint = new IPEndPoint(IPAddress.Loopback, 9000);
-            var endpoint = new IPEndPoint(IPAddress.Parse(ServerIP), 9000);
-            m_Connection = m_Driver.Connect(endpoint);
-            Debug.Log("Connection reestablished");
-            initialHandshakeDone = false;
-            return;
-        }
-        else 
-        {
-            
-            DataStreamReader stream;
-            NetworkEvent.Type cmd;
-
-            while ((cmd = m_Connection.PopEvent(m_Driver, out stream)) != NetworkEvent.Type.Empty)
+            if (!m_Connection.IsCreated)
             {
-                if (cmd == NetworkEvent.Type.Connect)
-                {
-                    Debug.Log("We are now connected to the server");
-                    if (initialHandshakeDone == false)
-                    {
-                        InitialHandshake();
-                    }
-                }
+                Debug.Log("Something went wrong during connect");
+                //var endpoint = new IPEndPoint(IPAddress.Loopback, 9000);
+                var endpoint = new IPEndPoint(IPAddress.Parse(ServerIP), 9000);
+                m_Connection = m_Driver.Connect(endpoint);
+                Debug.Log("Trying to reestablished connection");
+                initialHandshakeDone = false;
+                return;
+            }
+            else
+            {
 
-                else if (cmd == NetworkEvent.Type.Data)
-                {
-                    var readerCtx = default(DataStreamReader.Context);
-                    var type = stream.ReadUInt(ref readerCtx);
+                DataStreamReader stream;
+                NetworkEvent.Type cmd;
 
-                    switch(type)
-                    {
-                        case Constants.Server_Lobby_SetConnectionId:
-                            connectionId = (int)stream.ReadUInt(ref readerCtx);
-                            initialHandshakeDone = true;
-                            break;
-                        case Constants.Server_Lobby_LobbyState:
-                            break;
-                        case Constants.Server_Lobby_StartGame:
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                else if (cmd == NetworkEvent.Type.Disconnect)
+                while ((cmd = m_Connection.PopEvent(m_Driver, out stream)) != NetworkEvent.Type.Empty)
                 {
-                    Debug.Log("Client got disconnected for some reason");
-                    m_Connection = default(NetworkConnection);
+                    if (cmd == NetworkEvent.Type.Connect)
+                    {
+                        Debug.Log("We are now connected to the server");
+                        if (initialHandshakeDone == false)
+                        {
+                            InitialHandshake();
+                        }
+                    }
+
+                    else if (cmd == NetworkEvent.Type.Data)
+                    {
+                        var readerCtx = default(DataStreamReader.Context);
+                        var type = stream.ReadUInt(ref readerCtx);
+
+                        switch (type)
+                        {
+                            case Constants.Server_Lobby_SetConnectionId:
+                                connectionId = (int)stream.ReadUInt(ref readerCtx);
+                                initialHandshakeDone = true;
+                                break;
+                            case Constants.Server_Lobby_LobbyState:
+                                break;
+                            case Constants.Server_Lobby_StartGame:
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    else if (cmd == NetworkEvent.Type.Disconnect)
+                    {
+                        Debug.Log("Client got disconnected for some reason");
+                        m_Connection = default(NetworkConnection);
+                    }
                 }
             }
         }
+        
     }
 
     private void InitialHandshake()
@@ -114,5 +119,20 @@ public class ClientLobby : MonoBehaviour
             m_Connection.Send(m_Driver, writer);
         }
     }
+
+    public void EstablishConnection(string ip)
+    {
+        connectionId = -1;
+        initialHandshakeDone = false;
+        establishingConnection = true;
+        //TODO error : A Native Collection has not been disposed, resulting in a memory leak
+
+        m_Connection = default(NetworkConnection);
+        
+        var endpoint = new IPEndPoint(IPAddress.Parse(ServerIP), 9000);
+        m_Connection = m_Driver.Connect(endpoint);
+
+    }
 }
+
 #endif
