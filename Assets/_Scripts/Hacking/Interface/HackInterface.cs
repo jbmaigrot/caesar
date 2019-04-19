@@ -83,6 +83,15 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
         Camera.main.GetComponent<CameraController>().UnlockCamera();
     }
 
+    public void CloseByStun()
+    {
+        timeBeforeClosing = TIMEFORCLOSING;
+        isClosing = true;
+
+        SelectedInputButton = -1;
+        Camera.main.GetComponent<CameraController>().UnlockCamera();
+    }
+
     /*Fonction appelé lorsque un objet est hacké par le joueur. A adapter pour le réseau*/
     //public void SelectedProgrammableObject(GameObject SelectedObject)
     //{

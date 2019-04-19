@@ -6,6 +6,7 @@ public class ClientCharacter : MonoBehaviour
 {
     public Vector3 speed = new Vector3(0, 0, 0);
     public int number;
+    public bool isTacle;
 
     private Client client;
 

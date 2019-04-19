@@ -154,6 +154,11 @@ public class Client : MonoBehaviour
                                     {
                                         if (isStunned == 1)
                                         {
+                                            characters[j].isTacle = true;
+                                            if(HackInterface.SelectedInputButton != -1)
+                                            {
+                                                hackInterface.CloseByStun();
+                                            }
                                             foreach (MeshRenderer ryan in characters[j].gameObject.GetComponentsInChildren<MeshRenderer>())
                                             {
                                                 ryan.material.color = Color.red;
@@ -161,6 +166,7 @@ public class Client : MonoBehaviour
                                         }
                                         else
                                         {
+                                            characters[j].isTacle = false;
                                             foreach (MeshRenderer ryan in characters[j].gameObject.GetComponentsInChildren<MeshRenderer>())
                                             {
                                                 ryan.material.color = Color.white;
@@ -303,6 +309,7 @@ public class Client : MonoBehaviour
 
     public void RequestHackState(int objectId)
     {
+        if(!characters[playerIndex].isTacle)
         using (var writer = new DataStreamWriter(32, Allocator.Temp))
         {
             writer.Write(Constants.Client_RequestHack);
