@@ -216,7 +216,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 866462999}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.685, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
   - {fileID: 712125438}
@@ -309,13 +309,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NavMeshSurface: {fileID: 0}
+  charactersIndex: -1
   client: {fileID: 0}
+  hackInterface: {fileID: 0}
+  isWaitingHack: 0
   inputCodes: []
   outputCodes: []
   graph: []
   isLightOn: 0
   isDoorOpen: 0
   Initiator: {fileID: 11400000, guid: f4db053c0b442c94c981f82269c05718, type: 2}
+  objectsContainer: {fileID: 0}
 --- !u!1 &904627408
 GameObject:
   m_ObjectHideFlags: 0
