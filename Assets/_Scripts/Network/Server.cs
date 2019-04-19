@@ -200,6 +200,16 @@ public class Server : MonoBehaviour
                             }
                             break;
 
+                        case Constants.Client_StartTaking:
+                            int objectId = (int)stream.ReadUInt(ref readerCtx);
+                            players[i].GetComponent<ServerCarrier>().StartTaking(programmableObjectsContainer.objectListServer[objectId].GetComponent<ServerCarrier>());
+                            break;
+
+                        case Constants.Client_StartGiving:
+                            int objectid = (int)stream.ReadUInt(ref readerCtx);
+                            players[i].GetComponent<ServerCarrier>().StartGiving(programmableObjectsContainer.objectListServer[objectid].GetComponent<ServerCarrier>());
+                            break;
+
                         case Constants.Client_Open_Door:
                             int numb = (int)stream.ReadUInt(ref readerCtx);
                             if (!players[i].GetComponent<ServerCharacter>().isStunned)
@@ -222,9 +232,9 @@ public class Server : MonoBehaviour
                             break;
 
                         case Constants.Client_RequestHack:
-                            int objectId = (int)stream.ReadUInt(ref readerCtx);
-                            Debug.Log("Server received a request for object with ID " + objectId);
-                            SendHackStatus(objectId, i);
+                            int object_Id = (int)stream.ReadUInt(ref readerCtx);
+                            Debug.Log("Server received a request for object with ID " + object_Id);
+                            SendHackStatus(object_Id, i);
                             break;
 
                         case Constants.Client_SetHack:
@@ -275,6 +285,11 @@ public class Server : MonoBehaviour
                     writer.Write(j);
                     writer.Write(programmableObjectsContainer.objectListServer[j].isLightOn ? 1 : 0);
                     writer.Write(programmableObjectsContainer.objectListServer[j].isDoorOpen ? 1 : 0);
+
+                    if (programmableObjectsContainer.objectListServer[j].GetComponent<ServerCarrier>())
+                        writer.Write(programmableObjectsContainer.objectListServer[j].GetComponent<ServerCarrier>().charge);
+                    else
+                        writer.Write(0f);
 
                     //close snapshot
                     writer.Write(Constants.Server_SnapshotEnd);

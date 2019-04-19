@@ -25,7 +25,7 @@ public class ClientCharacter : MonoBehaviour
     // Tacle
     public void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(1)&& number != client.playerIndex)
+        if (!Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(1) && number != client.playerIndex) //Control+click is for energy-related actions
         {
             client.Tacle(number);
         }

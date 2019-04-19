@@ -17,6 +17,7 @@ public class ServerCharacter : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     private float baseSpeed;
 
+    public ServerCarrier carrier;
     public int[] inventory = new int[3];
 
     // Start is called before the first frame update
@@ -25,6 +26,7 @@ public class ServerCharacter : MonoBehaviour
         isStunned = false;
         navMeshAgent = GetComponent<NavMeshAgent>();
         baseSpeed = navMeshAgent.speed;
+        carrier = GetComponent<ServerCarrier>();
         inventory[0] = InventoryConstants.Attract;
         inventory[1] = InventoryConstants.Stunbox;
         inventory[2] = InventoryConstants.Powerpump;

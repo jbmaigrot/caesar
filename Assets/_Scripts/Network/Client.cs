@@ -181,7 +181,7 @@ public class Client : MonoBehaviour
                                 }
 
                                 int l = (int)stream.ReadUInt(ref readerCtx);
-
+                                //Light
                                 if ((int)stream.ReadUInt(ref readerCtx) == 0)
                                 {
                                     if (programmableObjectsContainer.objectListClient[l].GetComponentInChildren<Light>() != null)
@@ -192,7 +192,7 @@ public class Client : MonoBehaviour
                                     if (programmableObjectsContainer.objectListClient[l].GetComponentInChildren<Light>() != null)
                                         programmableObjectsContainer.objectListClient[l].GetComponentInChildren<Light>().enabled = true;
                                 }
-
+                                //Door
                                 if ((int)stream.ReadUInt(ref readerCtx) == 0)
                                 {
                                     if (programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>() != null)
@@ -203,7 +203,12 @@ public class Client : MonoBehaviour
                                     if (programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>() != null)
                                         programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>().OnOpen();
                                 }
+                                // Charge
+                                float charge = stream.ReadFloat(ref readerCtx);
+                                if (programmableObjectsContainer.objectListClient[l].GetComponent<ServerCarrier>())
+                                    programmableObjectsContainer.objectListClient[l].GetComponent<ServerCarrier>().clientCharge = charge;
 
+                                // End
                                 type = stream.ReadUInt(ref readerCtx); //Should be Constants.Server_SnapshotEnd (need to be removed from the stream)
 
                                 playerIndex = (int)stream.ReadUInt(ref readerCtx);
@@ -273,6 +278,28 @@ public class Client : MonoBehaviour
         {
             writer.Write(Constants.Client_Tacle);
             writer.Write(number);
+
+            m_Connection.Send(m_Driver, writer);
+        }
+    }
+
+    public void StartTaking(int objectId)
+    {
+        using (var writer = new DataStreamWriter(32, Allocator.Temp))
+        {
+            writer.Write(Constants.Client_StartTaking);
+            writer.Write(objectId);
+
+            m_Connection.Send(m_Driver, writer);
+        }
+    }
+
+    public void StartGiving(int objectId)
+    {
+        using (var writer = new DataStreamWriter(32, Allocator.Temp))
+        {
+            writer.Write(Constants.Client_StartGiving);
+            writer.Write(objectId);
 
             m_Connection.Send(m_Driver, writer);
         }

@@ -28,14 +28,28 @@ public class PlayerInput : MonoBehaviour
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
 
-                if (Physics.Raycast(ray, out hit, 100f, 49184)) // Layer 5 14 et 15 (objects)
+                if (!Input.GetKey(KeyCode.LeftControl))
                 {
-                    Debug.Log(42);
+                    if (Physics.Raycast(ray, out hit, 100f, 49184)) // Layer 5 14 et 15 (objects)
+                    {
+                        Debug.Log(42);
+                    }
+                    else if (Physics.Raycast(ray, out hit, 100f, 1)) // Layer 0 (ground)
+                    {
+                        client.SetDestination(hit.point);
+                    }
                 }
-                else if (Physics.Raycast(ray, out hit, 100f, 1)) // Layer 0 (ground)
+                /*else //Control is pressed -> energy-related actions
                 {
-                    client.SetDestination(hit.point);
-                }
+                    if (Physics.Raycast(ray, out hit, 100f, 16384)) // Layer 14 (programmable objects)
+                    {
+                        if (hit.collider.GetComponent<ServerCarrier>())
+                        {
+                            client.StartTaking(hit.collider.GetComponent<ServerCarrier>());
+
+                        }
+                    }
+                }*/
             }
         }
     }
