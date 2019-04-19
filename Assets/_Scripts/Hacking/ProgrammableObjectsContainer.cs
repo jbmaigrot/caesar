@@ -44,7 +44,7 @@ public class ProgrammableObjectsContainer : MonoBehaviour
 #if CLIENT
     public int GetObjectIndexClient(ProgrammableObjectsData objectData)
     {
-
+        Debug.Log(objectData);
         return objectListClient.IndexOf(objectData);
 
     }

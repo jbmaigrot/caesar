@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 743243704701644321}
   - component: {fileID: 7078048776252840380}
   - component: {fileID: 743243704701644327}
-  m_Layer: 1
+  m_Layer: 12
   m_Name: ServerPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,6 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStunned: 0
   canStun: 0
+  inventory: 000000000000000000000000
 --- !u!195 &743243704701644321
 NavMeshAgent:
   m_ObjectHideFlags: 0

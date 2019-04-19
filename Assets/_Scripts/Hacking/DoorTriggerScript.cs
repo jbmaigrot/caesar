@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DoorTriggerScript : MonoBehaviour
 {
-#if SERVER
     public GameObject DoorScript;
+#if SERVER
     private int nbrObstacle = -2;
     private void OnTriggerEnter(Collider other)
     {

@@ -9,9 +9,11 @@ using Unity.Collections;
 
 using UdpCNetworkDriver = Unity.Networking.Transport.BasicNetworkDriver<Unity.Networking.Transport.IPv4UDPSocket>;
 
-#if SERVER
+
 public class Server : MonoBehaviour
 {
+    public GameObject prefabPJ;
+#if SERVER
     public UdpCNetworkDriver m_Driver;
     public List<Transform> players = new List<Transform>();
     public List<Transform> characters = new List<Transform>(); // Players + NPCs
@@ -29,7 +31,7 @@ public class Server : MonoBehaviour
 
     private const float MANUALSTUNRADIUS = 15.0f;
 
-    public GameObject prefabPJ;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -190,12 +192,20 @@ public class Server : MonoBehaviour
                             break;
 
                         case Constants.Client_Tacle:
-                            int number = (int) stream.ReadUInt(ref readerCtx);
-                            if (players[i].GetComponent<ServerCharacter>().canStun && !players[i].GetComponent<ServerCharacter>().isStunned && /*number != i &&*/ Vector3.Distance(players[i].transform.position, characters[number].transform.position) < MANUALSTUNRADIUS )
+                            int number = (int)stream.ReadUInt(ref readerCtx);
+                            if (players[i].GetComponent<ServerCharacter>().canStun && !players[i].GetComponent<ServerCharacter>().isStunned && /*number != i &&*/ Vector3.Distance(players[i].transform.position, characters[number].transform.position) < MANUALSTUNRADIUS)
                             {
                                 characters[number].GetComponent<ServerCharacter>().getStun();
-                                players[i].GetComponent<ServerCharacter>().doStun();                                
-                            }                                
+                                players[i].GetComponent<ServerCharacter>().doStun();
+                            }
+                            break;
+
+                        case Constants.Client_Open_Door:
+                            int numb = (int)stream.ReadUInt(ref readerCtx);
+                            if (!players[i].GetComponent<ServerCharacter>().isStunned)
+                            {
+                                programmableObjectsContainer.objectListServer[numb].OnInput("OnInteract");
+                            }
                             break;
 
                         case Constants.Client_Message:
@@ -232,50 +242,50 @@ public class Server : MonoBehaviour
                     m_Connections[i] = default(NetworkConnection);
                 }
             }
+        }
 
+        for (int i = 0; i < m_Connections.Length; i++)
+        {
+            if (!m_Connections[i].IsCreated) continue;
             // Snapshot (world state)
-            using (var writer = new DataStreamWriter(16384, Allocator.Temp))
-            {
-                //snapshot start
-                writer.Write(Constants.Server_Snapshot);
-                writer.Write(snapshotCount);
-                
 
-                //update characters states and positions
-                for (int j = 0; j < characters.Count; j++)
+            for (int j = 0; j < programmableObjectsContainer.objectListServer.Count; j++)
+            {
+                int charactersIndex = programmableObjectsContainer.objectListServer[j].charactersIndex;
+                using (var writer = new DataStreamWriter(16384, Allocator.Temp))
                 {
-                    writer.Write(Constants.Server_MoveCharacter);
-                    writer.Write(j);
-                    writer.Write(characters[j].position.x);
-                    writer.Write(characters[j].position.z);
-                    writer.Write(characters[j].rotation.eulerAngles.y);
-                    writer.Write(characters[j].GetComponent<NavMeshAgent>().velocity.x);
-                    writer.Write(characters[j].GetComponent<NavMeshAgent>().velocity.z);
-                    writer.Write(characters[j].gameObject.GetComponent<ServerCharacter>().isStunned ? 1 : 0);
-                }
-                //update objects states (and positions)
-                for(int j = 0; j < programmableObjectsContainer.objectListServer.Count; j++)
-                {
+                    //snapshot start
+                    writer.Write(Constants.Server_Snapshot);
+                    writer.Write(snapshotCount);
+
+                    if (charactersIndex != -1) //we have a character, update on its states and positions
+                    {
+                        writer.Write(Constants.Server_MoveCharacter);
+                        writer.Write(charactersIndex);
+                        writer.Write(characters[charactersIndex].position.x);
+                        writer.Write(characters[charactersIndex].position.z);
+                        writer.Write(characters[charactersIndex].rotation.eulerAngles.y);
+                        writer.Write(characters[charactersIndex].GetComponent<NavMeshAgent>().velocity.x);
+                        writer.Write(characters[charactersIndex].GetComponent<NavMeshAgent>().velocity.z);
+                        writer.Write(characters[charactersIndex].gameObject.GetComponent<ServerCharacter>().isStunned ? 1 : 0);
+                    }
+
+                    //update objects states
                     writer.Write(Constants.Server_UpdateObject);
                     writer.Write(j);
                     writer.Write(programmableObjectsContainer.objectListServer[j].isLightOn ? 1 : 0);
                     writer.Write(programmableObjectsContainer.objectListServer[j].isDoorOpen ? 1 : 0);
-                }
 
-                //close snapshot
-                writer.Write(Constants.Server_SnapshotEnd);
-                snapshotCount++;
+                    //close snapshot
+                    writer.Write(Constants.Server_SnapshotEnd);
 
-                
-
-                //Send snapshot to all clients
-                for (int k = 0; k < m_Connections.Length; k++)
-                {
-                    writer.Write(characters.IndexOf(players[k])); //index of the player in the character list
-                    m_Driver.Send(m_Connections[k], writer);
+                    writer.Write(characters.IndexOf(players[i]));//index of the player in the character list
+                    m_Driver.Send(m_Connections[i], writer);
                 }
             }
         }
+
+        snapshotCount++;
     }
 
     
@@ -485,6 +495,7 @@ public class Server : MonoBehaviour
         players.Add(pj.transform);
         characters.Add(pj.transform);
         programmableObjectsContainer.objectListServer.Add(pj.GetComponent<ProgrammableObjectsData>());
+        pj.GetComponent<ProgrammableObjectsData>().charactersIndex = characters.Count - 1;
         return characters.Count - 1;
     }
 
@@ -497,6 +508,6 @@ public class Server : MonoBehaviour
             nc.Send(m_Driver, writer);
         }
     }
-}
 
 #endif
+}

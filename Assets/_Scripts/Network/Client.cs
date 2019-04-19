@@ -11,7 +11,7 @@ using UdpCNetworkDriver = Unity.Networking.Transport.BasicNetworkDriver<Unity.Ne
 
 //using Buffers = NetStack.Buffers;
 //using Serialization = NetStack.Serialization;
-#if CLIENT
+
 public class Client : MonoBehaviour
 {
     public string ServerIP = "127.0.0.1"; //localhost by default
@@ -33,6 +33,10 @@ public class Client : MonoBehaviour
     public int connectionId;
     private bool initialHandshakeDone;
 
+    public int playerIndex;
+
+#if CLIENT
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,7 +53,6 @@ public class Client : MonoBehaviour
         clientLobby = FindObjectOfType<ClientLobby>();
         if (clientLobby == null)
         {
-            Debug.Log("Didn't find any ClientLobby object in the scene.");
             var endpoint = new IPEndPoint(IPAddress.Parse(ServerIP), 9000);
             m_Connection = m_Driver.Connect(endpoint);
             connectionId = -1;
@@ -117,90 +120,96 @@ public class Client : MonoBehaviour
                         case Constants.Server_Snapshot:
                             int snapshotNumber = (int)stream.ReadUInt(ref readerCtx);
 
-                            if (snapshotNumber <= lastSnapshot)
+                            if (snapshotNumber < lastSnapshot)
+                            {
+                                Debug.Log("we received snapshot " + snapshotNumber + " but lastSnapshot is " + lastSnapshot);
                                 return; //skip update for this frame
+                            }
                             else
                             {
                                 lastSnapshot = snapshotNumber;
 
-                                do
+                                type = stream.ReadUInt(ref readerCtx);
+                                if (type == Constants.Server_MoveCharacter)
                                 {
-                                    type = stream.ReadUInt(ref readerCtx);
-                                    switch (type)
+                                    int j = (int)stream.ReadUInt(ref readerCtx);
+                                    float x = stream.ReadFloat(ref readerCtx);
+                                    float z = stream.ReadFloat(ref readerCtx);
+                                    float angle = stream.ReadFloat(ref readerCtx);
+                                    float xSpeed = stream.ReadFloat(ref readerCtx);
+                                    float zSpeed = stream.ReadFloat(ref readerCtx);
+                                    int isStunned = (int)stream.ReadUInt(ref readerCtx);
+
+                                    if (j >= characters.Count)
                                     {
-                                        case Constants.Server_MoveCharacter:
-                                            int j = (int)stream.ReadUInt(ref readerCtx);
-                                            float x = stream.ReadFloat(ref readerCtx);
-                                            float z = stream.ReadFloat(ref readerCtx);
-                                            float angle = stream.ReadFloat(ref readerCtx);
-                                            float xSpeed = stream.ReadFloat(ref readerCtx);
-                                            float zSpeed = stream.ReadFloat(ref readerCtx);
-                                            int isStunned = (int)stream.ReadUInt(ref readerCtx);
-
-                                            if (j >= characters.Count)
-                                            {
-                                                GameObject newCharacter = Instantiate(characterPrefab);
-                                                newCharacter.GetComponent<ClientCharacter>().number = j;
-                                                characters.Add(newCharacter.GetComponent<ClientCharacter>());
-                                                programmableObjectsContainer.objectListClient.Add(newCharacter.GetComponent<ProgrammableObjectsData>());
-                                            }
-                                            if (characters[j] != null)
-                                            {
-                                                if (isStunned == 1)
-                                                {
-                                                    foreach (MeshRenderer ryan in characters[j].gameObject.GetComponentsInChildren<MeshRenderer>())
-                                                    {
-                                                        ryan.material.color = Color.red;
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    foreach (MeshRenderer ryan in characters[j].gameObject.GetComponentsInChildren<MeshRenderer>())
-                                                    {
-                                                        ryan.material.color = Color.white;
-                                                    }
-                                                }
-                                                characters[j].transform.SetPositionAndRotation(new Vector3(x, characters[j].transform.position.y, z), Quaternion.Euler(0, angle, 0));
-                                                characters[j].speed.x = xSpeed;
-                                                characters[j].speed.z = zSpeed;
-                                            }
-                                            break;
-
-                                        case Constants.Server_UpdateObject:
-                                            int l = (int)stream.ReadUInt(ref readerCtx);
-
-                                            if ((int)stream.ReadUInt(ref readerCtx) == 0)
-                                            {
-                                                if (programmableObjectsContainer.objectListClient[l].GetComponentInChildren<Light>() != null)
-                                                    programmableObjectsContainer.objectListClient[l].GetComponentInChildren<Light>().enabled = false;
-                                            }
-                                            else
-                                            {
-                                                if (programmableObjectsContainer.objectListClient[l].GetComponentInChildren<Light>() != null)
-                                                    programmableObjectsContainer.objectListClient[l].GetComponentInChildren<Light>().enabled = true;
-                                            }
-
-                                            if ((int)stream.ReadUInt(ref readerCtx) == 0)
-                                            {
-                                                if (programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>() != null)
-                                                    programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>().OnClose();
-                                            }
-                                            else
-                                            {
-                                                if (programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>() != null)
-                                                    programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>().OnOpen();
-                                            }
-                                            break;
-
-                                        default:
-                                            break;
+                                        for (int k = characters.Count; k <= j; k++)
+                                        {
+                                            GameObject newCharacter = Instantiate(characterPrefab, programmableObjectsContainer.transform);
+                                            newCharacter.GetComponent<ClientCharacter>().number = k;
+                                            characters.Add(newCharacter.GetComponent<ClientCharacter>());
+                                            programmableObjectsContainer.objectListClient.Add(newCharacter.GetComponent<ProgrammableObjectsData>());
+                                        }
                                     }
-                                } while (type != Constants.Server_SnapshotEnd);
+                                    if (characters[j] != null)
+                                    {
+                                        if (isStunned == 1)
+                                        {
+                                            characters[j].isTacle = true;
+                                            if(j == playerIndex && HackInterface.SelectedGameObject != null)
+                                            {
+                                                hackInterface.CloseByStun();
+                                            }
+                                            foreach (MeshRenderer ryan in characters[j].gameObject.GetComponentsInChildren<MeshRenderer>())
+                                            {
+                                                ryan.material.color = Color.red;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            characters[j].isTacle = false;
+                                            foreach (MeshRenderer ryan in characters[j].gameObject.GetComponentsInChildren<MeshRenderer>())
+                                            {
+                                                ryan.material.color = Color.white;
+                                            }
+                                        }
+                                        characters[j].transform.SetPositionAndRotation(new Vector3(x, characters[j].transform.position.y, z), Quaternion.Euler(0, angle, 0));
+                                        characters[j].speed.x = xSpeed;
+                                        characters[j].speed.z = zSpeed;
+                                    }
 
-                                int k = (int)stream.ReadUInt(ref readerCtx);
-                                if (k < characters.Count)
+                                    type = stream.ReadUInt(ref readerCtx); //Should be Constants.Server_UpdateObject (need to be removed from the stream)
+                                }
+
+                                int l = (int)stream.ReadUInt(ref readerCtx);
+
+                                if ((int)stream.ReadUInt(ref readerCtx) == 0)
                                 {
-                                    cameraController.characterToFollow = characters[k].gameObject;
+                                    if (programmableObjectsContainer.objectListClient[l].GetComponentInChildren<Light>() != null)
+                                        programmableObjectsContainer.objectListClient[l].GetComponentInChildren<Light>().enabled = false;
+                                }
+                                else
+                                {
+                                    if (programmableObjectsContainer.objectListClient[l].GetComponentInChildren<Light>() != null)
+                                        programmableObjectsContainer.objectListClient[l].GetComponentInChildren<Light>().enabled = true;
+                                }
+
+                                if ((int)stream.ReadUInt(ref readerCtx) == 0)
+                                {
+                                    if (programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>() != null)
+                                        programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>().OnClose();
+                                }
+                                else
+                                {
+                                    if (programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>() != null)
+                                        programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>().OnOpen();
+                                }
+
+                                type = stream.ReadUInt(ref readerCtx); //Should be Constants.Server_SnapshotEnd (need to be removed from the stream)
+
+                                playerIndex = (int)stream.ReadUInt(ref readerCtx);
+                                if (playerIndex < characters.Count)
+                                {
+                                    cameraController.characterToFollow = characters[playerIndex].gameObject;
                                 }
                             }
                             break;
@@ -269,6 +278,17 @@ public class Client : MonoBehaviour
         }
     }
 
+    public void DoorInteract(int number)
+    {
+        using (var writer = new DataStreamWriter(32, Allocator.Temp))
+        {
+            writer.Write(Constants.Client_Open_Door);
+            writer.Write(number);
+
+            m_Connection.Send(m_Driver, writer);
+        }
+    }
+
     public void Message(string message)
     {
         using (var writer = new DataStreamWriter(256, Allocator.Temp))
@@ -289,6 +309,7 @@ public class Client : MonoBehaviour
 
     public void RequestHackState(int objectId)
     {
+        if(!characters[playerIndex].isTacle)
         using (var writer = new DataStreamWriter(32, Allocator.Temp))
         {
             writer.Write(Constants.Client_RequestHack);
@@ -476,5 +497,6 @@ public class Client : MonoBehaviour
     {
         m_Driver.Dispose();
     }
-}
+
 #endif
+}

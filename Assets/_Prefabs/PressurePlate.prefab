@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 642428041981206440}
   - component: {fileID: 642428041981206441}
   - component: {fileID: 642428041981206454}
-  m_Layer: 1
+  m_Layer: 14
   m_Name: PressurePlate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,10 +104,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a66bf76cc67b949aaa75c4bfb2f7ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hackInterface: {fileID: 0}
   NavMeshSurface: {fileID: 0}
   client: {fileID: 0}
   inputCodes: []
   outputCodes: []
   graph: []
+  isLightOn: 0
+  isDoorOpen: 0
   Initiator: {fileID: 11400000, guid: d27911c9b81f68341963a30b1ce746ce, type: 2}

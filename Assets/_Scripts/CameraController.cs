@@ -67,6 +67,8 @@ public class CameraController : MonoBehaviour
 
         cameraParent.transform.rotation = Quaternion.Euler(new Vector3(0.0f, defaultCameraYRotation, 0.0f));
         transform.localRotation = Quaternion.Euler(new Vector3(defaultCameraXRotation, 0.0f, 0.0f));
+
+        cam.eventMask = 49185;
     }
 
     void Update()

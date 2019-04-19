@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3609628052400908161}
   - component: {fileID: 3609628052400908160}
   - component: {fileID: 3609628052400908167}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Stunbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,9 +104,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a66bf76cc67b949aaa75c4bfb2f7ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HackInterface: {fileID: 0}
-  Server: {fileID: 0}
+  NavMeshSurface: {fileID: 0}
+  client: {fileID: 0}
   inputCodes: []
   outputCodes: []
   graph: []
+  isLightOn: 0
+  isDoorOpen: 0
   Initiator: {fileID: 11400000, guid: 67704d260dc29cf44afae0d99c63dcc5, type: 2}

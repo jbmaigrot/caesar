@@ -28,6 +28,14 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     private bool isClosing;
     const float TIMEFORCLOSING = 0.1f;
 
+    private float timeReadyToOpen;
+    private bool isReadyToOpen;
+    const float TIMEREADYTOOPEN = 0.5f;
+
+    private float timeToOpen;
+    private bool isOpening;
+    const float TIMETOOPEN = 0.2f;
+
     private Client client;
     private ProgrammableObjectsContainer objectsContainer;
 
@@ -66,6 +74,24 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
                 this.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
             }
         }
+        if (isReadyToOpen)
+        {
+            timeReadyToOpen -= Time.deltaTime;
+            if(timeReadyToOpen <=0 && SelectedGameObject != null)
+            {
+                isReadyToOpen = false;
+                OpenInterface();
+            }
+        }
+        if (isOpening)
+        {
+            timeToOpen -= Time.deltaTime;
+            if (timeToOpen <= 0)
+            {
+                isOpening = false;
+                ReallyOpenInterface();
+            }
+        }
     }
 
      /*Fonction appelé lorsque le joueur ferme l'interface. A adapter pour le réseau.*/
@@ -80,6 +106,15 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
         /*Le graphe de comportement de l'objet hacké est remplacé par les modifications effectués.*/
         client.SetHackState(objectsContainer.GetObjectIndexClient(SelectedGameObject.GetComponent<ProgrammableObjectsData>()), inputCodes, outputCodes, graph);
 
+        Camera.main.GetComponent<CameraController>().UnlockCamera();
+    }
+
+    public void CloseByStun()
+    {
+        timeBeforeClosing = TIMEFORCLOSING;
+        isClosing = true;
+
+        SelectedInputButton = -1;
         Camera.main.GetComponent<CameraController>().UnlockCamera();
     }
 
@@ -112,21 +147,51 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     //Network compatible version of the function
     public void SelectedProgrammableObject(GameObject SelectedObject, List<InOutVignette> _inputCodes, List<InOutVignette> _outputCodes, List<Arrow> _graph)
     {
-        /*Copie du graphe de comportement de l'objet*/
-        SelectedGameObject = SelectedObject;
-        accessibleInputCode = new List<string>(SelectedObject.GetComponent<ProgrammableObjectsData>().Initiator.accessibleInputCode);
-        accessibleOutputCode = new List<string>(SelectedObject.GetComponent<ProgrammableObjectsData>().Initiator.accessibleOutputCode);
+        if (isReadyToOpen)
+        {
+            /*Copie du graphe de comportement de l'objet*/
+            SelectedGameObject = SelectedObject;
+            accessibleInputCode = new List<string>(SelectedObject.GetComponent<ProgrammableObjectsData>().Initiator.accessibleInputCode);
+            accessibleOutputCode = new List<string>(SelectedObject.GetComponent<ProgrammableObjectsData>().Initiator.accessibleOutputCode);
 
-        //à récupérer depuis le serveur
-        inputCodes = _inputCodes;
-        outputCodes = _outputCodes;
-        graph = _graph;
+            //à récupérer depuis le serveur
+            inputCodes = _inputCodes;
+            outputCodes = _outputCodes;
+            graph = _graph;
 
-        /*Ecriture du contenu de l'interface*/
-        reloadInterface();
-        reloadArrow();
-        isClosing = false;
+            /*Ecriture du contenu de l'interface*/
+            reloadInterface();
+            reloadArrow();
+            isClosing = false;
+            
+        }
+    }
 
+
+    public void ReadyToOpen()
+    {
+        isReadyToOpen = true;
+        timeReadyToOpen = TIMEREADYTOOPEN;
+    }
+
+    public void DoNotOpenActually()
+    {
+        if (isReadyToOpen)
+        {
+            isReadyToOpen = false;
+            SelectedGameObject = null;
+        }        
+    }
+
+    public void OpenInterface()
+    {
+        SelectedGameObject.GetComponent<ProgrammableObjectsData>().isWaitingHack = false;
+        isOpening = true;
+        timeToOpen = TIMETOOPEN;
+    }
+
+    public void ReallyOpenInterface()
+    {
         /*Ouverture de l'interface*/
         this.gameObject.GetComponent<CanvasGroup>().alpha = 1f;
         this.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;

@@ -6,6 +6,7 @@ public class ClientCharacter : MonoBehaviour
 {
     public Vector3 speed = new Vector3(0, 0, 0);
     public int number;
+    public bool isTacle;
 
     private Client client;
 
@@ -24,7 +25,7 @@ public class ClientCharacter : MonoBehaviour
     // Tacle
     public void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1)&& number != client.playerIndex)
         {
             client.Tacle(number);
         }
