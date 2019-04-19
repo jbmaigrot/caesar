@@ -11,7 +11,7 @@ public class ClientChat : MonoBehaviour
 
     private InputField inputField;
     private Client client;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,5 +41,6 @@ public class ClientChat : MonoBehaviour
         newMessage.GetComponent<ClientMessage>().sourcePosition = pos;
     }
 }
+
 #endif
 
