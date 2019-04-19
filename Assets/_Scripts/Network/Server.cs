@@ -200,6 +200,14 @@ public class Server : MonoBehaviour
                             }
                             break;
 
+                        case Constants.Client_Open_Door:
+                            int numb = (int)stream.ReadUInt(ref readerCtx);
+                            if (!players[i].GetComponent<ServerCharacter>().isStunned)
+                            {
+                                programmableObjectsContainer.objectListServer[numb].OnInput("OnInteract");
+                            }
+                            break;
+
                         case Constants.Client_Message:
                             int length = (int)stream.ReadUInt(ref readerCtx);
                             Debug.Log(length);

@@ -42,7 +42,7 @@ public class ProgrammableObjectsData : MonoBehaviour
     /*Variable servant à initier le graphe de comportement et à définir les inputs et outputs autorisées*/
     public ProgrammableObjectsScriptable Initiator;
 
-    private ProgrammableObjectsContainer objectsContainer;
+    public ProgrammableObjectsContainer objectsContainer;
 
     void Start()
     {

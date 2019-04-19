@@ -6,6 +6,7 @@
     public const int Client_RequestHack = 4;
     public const int Client_SetHack = 5;
     public const int Client_ConnectionId = 6;
+    public const int Client_Open_Door = 7;
 
     public const int Server_MoveCharacter = 42;
     public const int Server_CreateCharacter = 43;

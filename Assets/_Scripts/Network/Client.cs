@@ -272,6 +272,17 @@ public class Client : MonoBehaviour
         }
     }
 
+    public void DoorInteract(int number)
+    {
+        using (var writer = new DataStreamWriter(32, Allocator.Temp))
+        {
+            writer.Write(Constants.Client_Open_Door);
+            writer.Write(number);
+
+            m_Connection.Send(m_Driver, writer);
+        }
+    }
+
     public void Message(string message)
     {
         using (var writer = new DataStreamWriter(256, Allocator.Temp))
