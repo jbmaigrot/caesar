@@ -60,6 +60,7 @@ public class CameraController : MonoBehaviour
         } else
         {
             cameraMode = MODE_CHARA;
+            cameraParent.transform.position = characterToFollow.transform.position;
         }
 
         floorPlane = new Plane(Vector3.up, new Vector3(0, 0, 0));
@@ -109,7 +110,13 @@ public class CameraController : MonoBehaviour
                 parentTargetPosition = characterToFollow.transform.position;
                 break;
             case MODE_FREE:
-                cameraMode = MODE_CHARA;
+                if (characterToFollow != null)
+                {
+                    cameraMode = MODE_CHARA;
+                    cameraParent.transform.position = characterToFollow.transform.position;
+                    parentTargetPosition = characterToFollow.transform.position;
+                }
+                
                 /*if (isInsideFreeModeBorder)
                 {
                     Ray ray = cam.ScreenPointToRay(mousePosition);
