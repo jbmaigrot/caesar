@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 743243704701644321}
   - component: {fileID: 7078048776252840380}
   - component: {fileID: 743243704701644327}
+  - component: {fileID: 6319453446358032267}
   m_Layer: 12
   m_Name: ServerPlayer
   m_TagString: Untagged
@@ -110,6 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStunned: 0
   canStun: 0
+  carrier: {fileID: 0}
   inventory: 000000000000000000000000
 --- !u!195 &743243704701644321
 NavMeshAgent:
@@ -146,6 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NavMeshSurface: {fileID: 0}
+  isAttract: 0
   charactersIndex: -1
   client: {fileID: 0}
   hackInterface: {fileID: 0}
@@ -173,3 +176,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6319453446358032267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743243704701644350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d79003555484e4e8fe70097d49cf59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clientCharge: 0
+  charge: 0
+  maxCharge: 50
+  chargeSpeed: 5
+  charging: 0
+  givingTo: {fileID: 0}
+  takingFrom: {fileID: 0}
