@@ -27,7 +27,7 @@ public class Client : MonoBehaviour
 
     private CameraController cameraController;
     private ClientChat chat;
-    private ProgrammableObjectsContainer programmableObjectsContainer;
+    public ProgrammableObjectsContainer programmableObjectsContainer;
     private HackInterface hackInterface;
     
     private int lastSnapshot = 0;

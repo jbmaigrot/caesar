@@ -7,6 +7,7 @@ public class ServerCarrier : MonoBehaviour
 #if CLIENT
     public float clientCharge = 0;
     private Client client;
+    private ProgrammableObjectsContainer programmableObjectsContainer;
 #endif
 
 #if SERVER
@@ -22,6 +23,7 @@ public class ServerCarrier : MonoBehaviour
     private void Start()
     {
         client = FindObjectOfType<Client>();
+        programmableObjectsContainer = FindObjectOfType<ProgrammableObjectsContainer>();
     }
 #endif
 
@@ -41,7 +43,7 @@ public class ServerCarrier : MonoBehaviour
 
         if (givingTo != null && charge > 0) // The carrier is giving energy
         {
-            if (Vector3.Distance(transform.position, givingTo.transform.position) > 5) //max distance
+            if (givingTo.charge >= givingTo.maxCharge || Vector3.Distance(transform.position, givingTo.transform.position) > 5)
             {
                 StopGiving();
             }
@@ -54,7 +56,7 @@ public class ServerCarrier : MonoBehaviour
 
         if (takingFrom != null && charge < maxCharge) // The carrier is taking/stealing energy
         {
-            if (Vector3.Distance(transform.position, givingTo.transform.position) > 5) //max distance
+            if (givingTo.charge <= 0 || Vector3.Distance(transform.position, takingFrom.transform.position) > 5)
             {
                 StopTaking();
             }
@@ -71,41 +73,13 @@ public class ServerCarrier : MonoBehaviour
     // Take and Give
     public void OnMouseOver()
     {
-        if (Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(1) /*&& number != client.playerIndex*/) //Control+click is for energy-related actions
+        if (Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(0))
         {
-            //TO DO
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            client.StartTaking(programmableObjectsContainer.objectListClient.IndexOf(GetComponent<ProgrammableObjectsData>()));
+        }
+        else if (Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(1))
+        {
+            client.StartGiving(programmableObjectsContainer.objectListClient.IndexOf(GetComponent<ProgrammableObjectsData>()));
         }
     }
 #endif
@@ -114,18 +88,22 @@ public class ServerCarrier : MonoBehaviour
     //functions
     public void StartTaking(ServerCarrier other)
     {
-        if (other != this && Vector3.Distance(transform.position, other.transform.position) < 5) //max distance
+        if (other != this/* && Vector3.Distance(transform.position, other.transform.position) < 5*/) //max distance
+        {
             takingFrom = other;
+            charging = true;
+        }
     }
 
     public void StopTaking()
     {
         takingFrom = null;
+        charging = false;
     }
 
     public void StartGiving(ServerCarrier other)
     {
-        if (other != this && Vector3.Distance(transform.position, other.transform.position) < 5) //max distance
+        if (other != this/* && Vector3.Distance(transform.position, other.transform.position) < 5*/) //max distance
             givingTo = other;
     }
     
