@@ -517,6 +517,7 @@ public class Server : MonoBehaviour
     {
         //On ajoute un nouveau personnage joueur.
         GameObject pj = Instantiate(prefabPJ, programmableObjectsContainer.transform);
+        pj.GetComponent<NavMeshAgent>().enabled = false;
         if(players.Count%2 == 0)
         {
             pj.transform.position = FindObjectOfType<PlayerSpawn>().transform.position;
@@ -525,6 +526,7 @@ public class Server : MonoBehaviour
         {
             pj.transform.position = - FindObjectOfType<PlayerSpawn>().transform.position;
         }
+        pj.GetComponent<NavMeshAgent>().enabled = true;
         players.Add(pj.transform);
         characters.Add(pj.transform);
         programmableObjectsContainer.objectListServer.Add(pj.GetComponent<ProgrammableObjectsData>());
