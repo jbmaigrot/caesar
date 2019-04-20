@@ -217,6 +217,10 @@ public class Client : MonoBehaviour
                                 if (playerIndex < characters.Count)
                                 {
                                     cameraController.characterToFollow = characters[playerIndex].gameObject;
+                                    if ((playerIndex - FindObjectOfType<ServerGameCreator>().NbPnj) % 2 == 0)//Une manière dirty dirty de récupérer l'équipe dans laquelle on se trouve. A changer
+                                    { 
+                                        cameraController.RotateCamera180();
+                                    }
                                 }
                             }
                             break;

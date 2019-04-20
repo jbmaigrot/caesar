@@ -28,6 +28,7 @@ public class CameraController : MonoBehaviour
     public float keyboardSpeed = 10.0f;
     private Vector3 velocity = Vector3.zero;
     private Camera cam;
+    private bool isRotate180 = false;
 
     public float zoomFactor = 0.8f; //goes from 0 to 1
     private float targetZoomFactor;
@@ -196,5 +197,15 @@ public class CameraController : MonoBehaviour
     public void UnlockCamera()
     {
         cameraMode = MODE_FREE;
+    }
+
+    public void RotateCamera180()
+    {
+        if (!isRotate180)
+        {
+            isRotate180 = true;
+            cameraParent.transform.Rotate(new Vector3(0, 1, 0), 180.0f);
+        }
+        
     }
 }
