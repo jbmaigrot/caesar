@@ -418,6 +418,7 @@ public class Server : MonoBehaviour
         List<InOutVignette> inputCodes = new List<InOutVignette>();
         List<InOutVignette> outputCodes = new List<InOutVignette>();
         List<Arrow> graph = new List<Arrow>();
+        bool isAttract = false;
 
         char[] buffer;
         int inputCodesCount = (int)stream.ReadUInt(ref readerCtx);
@@ -462,6 +463,11 @@ public class Server : MonoBehaviour
 
             int parameter_int = (int)stream.ReadUInt(ref readerCtx);
 
+            if (code == "UseGadget" && parameter_int == InventoryConstants.Attract)
+            {
+                isAttract = true;
+            }
+
             int parameter_stringLength = (int)stream.ReadUInt(ref readerCtx);
             buffer = new char[parameter_stringLength];
             for (int j = 0; j < parameter_stringLength; j++)
@@ -501,6 +507,10 @@ public class Server : MonoBehaviour
         objectData.inputCodes = inputCodes;
         objectData.outputCodes = outputCodes;
         objectData.graph = graph;
+        if (!isAttract)
+        {
+            objectData.isAttract = false;
+        }
     }
 
     public int AddNewPlayer()

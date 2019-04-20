@@ -14,7 +14,7 @@ public class ProgrammableObjectsData : MonoBehaviour
     private const float STUNBOXRADIUS = 10.0f;
     private const float ATTRACTRADIUS = 20.0f;
     private const float ATTRACTTIME = 10.0f;
-    private bool isAttract;
+    public bool isAttract;
     private float attracttimebeforeend;
     private float attracttimebeforeeffect;
 
