@@ -203,7 +203,7 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
         this.gameObject.GetComponent<CanvasGroup>().alpha = 1f;
         this.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
 
-        Camera.main.GetComponent<CameraController>().LockCamera();
+        Camera.main.GetComponent<CameraController>().CameraModeFollow(SelectedGameObject);
     }
 
     /*Ecriture des vignettes de l'interface*/
