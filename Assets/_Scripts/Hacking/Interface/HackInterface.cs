@@ -97,25 +97,32 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
      /*Fonction appelé lorsque le joueur ferme l'interface. A adapter pour le réseau.*/
     public void OnClose()
     {
-        /*Initiation du délais de fermeture*/
-        timeBeforeClosing = TIMEFORCLOSING;
-        isClosing = true;
+        if (!isClosing)
+        {
+            /*Initiation du délais de fermeture*/
+            timeBeforeClosing = TIMEFORCLOSING;
+            isClosing = true;
 
-        SelectedInputButton = -1;
-        
-        /*Le graphe de comportement de l'objet hacké est remplacé par les modifications effectués.*/
-        client.SetHackState(objectsContainer.GetObjectIndexClient(SelectedGameObject.GetComponent<ProgrammableObjectsData>()), inputCodes, outputCodes, graph);
+            SelectedInputButton = -1;
 
-        Camera.main.GetComponent<CameraController>().UnlockCamera();
+            /*Le graphe de comportement de l'objet hacké est remplacé par les modifications effectués.*/
+            client.SetHackState(objectsContainer.GetObjectIndexClient(SelectedGameObject.GetComponent<ProgrammableObjectsData>()), inputCodes, outputCodes, graph);
+
+            Camera.main.GetComponent<CameraController>().UnlockCamera();
+        }        
     }
 
     public void CloseByStun()
     {
-        timeBeforeClosing = TIMEFORCLOSING;
-        isClosing = true;
+        Debug.Log("Ben Alors");
+        if (!isClosing)
+        {
+            timeBeforeClosing = TIMEFORCLOSING;
+            isClosing = true;
 
-        SelectedInputButton = -1;
-        Camera.main.GetComponent<CameraController>().UnlockCamera();
+            SelectedInputButton = -1;
+            Camera.main.GetComponent<CameraController>().UnlockCamera();
+        }        
     }
 
     /*Fonction appelé lorsque un objet est hacké par le joueur. A adapter pour le réseau*/

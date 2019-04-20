@@ -157,7 +157,7 @@ public class Client : MonoBehaviour
                                         if (isStunned == 1)
                                         {
                                             characters[j].isTacle = true;
-                                            if(j == playerIndex && HackInterface.SelectedGameObject != null)
+                                            if(j == playerIndex)
                                             {
                                                 hackInterface.CloseByStun();
                                             }
