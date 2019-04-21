@@ -7,11 +7,13 @@ using Unity.Networking.Transport;
 using UdpCNetworkDriver = Unity.Networking.Transport.BasicNetworkDriver<Unity.Networking.Transport.IPv4UDPSocket>;
 using System;
 using Unity.Collections;
+using System.Net.Sockets;
 
 #if CLIENT
 public class ClientLobby : MonoBehaviour
 {
     public string ServerIP = "127.0.0.1"; //localhost by default
+    public IPAddress iPAddress;
     public UdpCNetworkDriver m_Driver;
     public NetworkConnection m_Connection;
     public IPv4UDPSocket socket;
@@ -19,7 +21,7 @@ public class ClientLobby : MonoBehaviour
     public int connectionId;
     private bool initialHandshakeDone;
 
-    private bool establishingConnection;
+    public bool establishingConnection;
 
     private LobbyInterfaceManager lobbyInterfaceManager;
 
@@ -47,25 +49,28 @@ public class ClientLobby : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         m_Driver.ScheduleUpdate().Complete();
         
         if (establishingConnection == true)
         {
+            
             if (!m_Connection.IsCreated)
             {
                 Debug.Log("Something went wrong during connect");
-                //var endpoint = new IPEndPoint(IPAddress.Loopback, 9000);
-                var endpoint = new IPEndPoint(IPAddress.Parse(ServerIP), 9000);
-                m_Connection = m_Driver.Connect(endpoint);
-                Debug.Log("Trying to reestablished connection");
-                initialHandshakeDone = false;
+
+                if (initialHandshakeDone == true)
+                {
+                    var endpoint = new IPEndPoint(iPAddress, 9000);
+                    m_Connection = m_Driver.Connect(endpoint);
+                    Debug.Log("Trying to reestablished connection");
+                    initialHandshakeDone = false;
+                }
                 return;
             }
             else
             {
-
                 DataStreamReader stream;
                 NetworkEvent.Type cmd;
 
@@ -120,19 +125,36 @@ public class ClientLobby : MonoBehaviour
         }
     }
 
-    public void EstablishConnection(string ip)
+    public void EstablishConnection(IPAddress ip)
     {
         connectionId = -1;
+        m_Connection = default(NetworkConnection);
+
+        var endpoint = new IPEndPoint(ip, 9000);
+        iPAddress = ip;
+        try
+        {
+            m_Connection = m_Driver.Connect(endpoint);
+        }
+        catch(SocketException e)
+        {
+            CancelConnection();
+            throw;
+        }
+        
         initialHandshakeDone = false;
         establishingConnection = true;
         //TODO error : A Native Collection has not been disposed, resulting in a memory leak
-
-        m_Connection = default(NetworkConnection);
         
-        var endpoint = new IPEndPoint(IPAddress.Parse(ServerIP), 9000);
-        m_Connection = m_Driver.Connect(endpoint);
+    }
 
+    public void CancelConnection()
+    {
+        m_Driver.Dispose();
+        m_Driver = new UdpCNetworkDriver(new INetworkParameter[0]);
+        //m_Driver.Disconnect(m_Connection);
+        m_Connection = default(NetworkConnection);
+        establishingConnection = false;
     }
 }
-
 #endif
