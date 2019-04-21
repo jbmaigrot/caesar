@@ -8,9 +8,11 @@ public class CameraController : MonoBehaviour
     private const int MODE_CHARA = 0;
     private const int MODE_FREE = 1;
     private const int MODE_LOCK = 2;
+    private const int MODE_FOLLOW = 3;
 
     public Button cameraModeButton;
     public GameObject characterToFollow;
+    public GameObject objectToFollow;
     public GameObject cameraParent;
 
     [Header("0 : character, 1 : free, 2 : lock")]
@@ -26,6 +28,7 @@ public class CameraController : MonoBehaviour
     public float keyboardSpeed = 10.0f;
     private Vector3 velocity = Vector3.zero;
     private Camera cam;
+    private bool isRotate180 = false;
 
     public float zoomFactor = 0.8f; //goes from 0 to 1
     private float targetZoomFactor;
@@ -58,6 +61,7 @@ public class CameraController : MonoBehaviour
         } else
         {
             cameraMode = MODE_CHARA;
+            cameraParent.transform.position = characterToFollow.transform.position;
         }
 
         floorPlane = new Plane(Vector3.up, new Vector3(0, 0, 0));
@@ -84,29 +88,37 @@ public class CameraController : MonoBehaviour
         bool isInsideFreeModeBorder;
 
         Rect screen = new Rect(0, 0, Screen.width, Screen.height);
+        /*La suite est commenté car le mode free est désactivé. Ne pas supprimé.
+         * 
         if (IsInsideFreeModeBorder(mousePosition, screen, freeModeBorder))
         {
             cameraMode = MODE_FREE;
             isInsideFreeModeBorder = true;
         } else
-        {
+        {*/
             isInsideFreeModeBorder = false;
-        }
+        /*}*/
 
         //Check if we have keyboard input
-        Vector2 axesInput = ReadKeyboardInput();
+        /*Vector2 axesInput = ReadKeyboardInput();
         if (axesInput != Vector2.zero)
         {
             cameraMode = MODE_FREE;
-        }
+        }*/
 
         switch (cameraMode) {
             case MODE_CHARA:
                 parentTargetPosition = characterToFollow.transform.position;
                 break;
             case MODE_FREE:
-
-                if (isInsideFreeModeBorder)
+                if (characterToFollow != null)
+                {
+                    cameraMode = MODE_CHARA;
+                    cameraParent.transform.position = characterToFollow.transform.position;
+                    parentTargetPosition = characterToFollow.transform.position;
+                }
+                
+                /*if (isInsideFreeModeBorder)
                 {
                     Ray ray = cam.ScreenPointToRay(mousePosition);
                     float enter = 0.0f;
@@ -116,7 +128,10 @@ public class CameraController : MonoBehaviour
                     }
                 }
 
-                parentTargetPosition = TargetPositionFromKeyboardInput(axesInput, parentTargetPosition);
+                parentTargetPosition = TargetPositionFromKeyboardInput(axesInput, parentTargetPosition);*/
+                break;
+            case MODE_FOLLOW:
+                parentTargetPosition = objectToFollow.transform.position;
                 break;
             default:
                 //
@@ -137,6 +152,12 @@ public class CameraController : MonoBehaviour
     void CameraModeButtonOnClick()
     {
         cameraMode = MODE_CHARA;
+    }
+
+    public void CameraModeFollow(GameObject ryan)
+    {
+        objectToFollow = ryan;
+        cameraMode = MODE_FOLLOW;
     }
 
     bool IsInsideFreeModeBorder(Vector2 mousePosition, Rect screen, float freeModeBorder)
@@ -176,5 +197,15 @@ public class CameraController : MonoBehaviour
     public void UnlockCamera()
     {
         cameraMode = MODE_FREE;
+    }
+
+    public void RotateCamera180()
+    {
+        if (!isRotate180)
+        {
+            isRotate180 = true;
+            cameraParent.transform.Rotate(new Vector3(0, 1, 0), 180.0f);
+        }
+        
     }
 }

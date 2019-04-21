@@ -65,8 +65,8 @@ public class ServerGameCreator : MonoBehaviour
                 //}
 
                 int chanceGoZone = Random.Range(0, 100);
-                if (chanceGoZone <= ChanceToGoToObject)
-                {
+                /*if (chanceGoZone <= ChanceToGoToObject)
+                {*/
                     int rndZoneIndex = Random.Range(0, _listZone.Count);
                     {
                         _listPnj[i].Time = 0;
@@ -87,7 +87,7 @@ public class ServerGameCreator : MonoBehaviour
                         // Add time to simulate hacking
                         _listPnj[i].MovingTime = Random.Range(MinTimeMoving + 5, MaxTimeMoving + 5);
                     }
-                }
+                /*}
                 else
                 {
                     int rndZoneIndex = Random.Range(0, _listFloor.Length);
@@ -96,7 +96,8 @@ public class ServerGameCreator : MonoBehaviour
                     _listPnj[i].PrefabPnj.GetComponent<NavMeshAgent>().destination = _listFloor[rndZoneIndex].transform.position;
                     _listPnj[i].DestinationGameObject = _listFloor[rndZoneIndex];
                     _listPnj[i].MovingTime = Random.Range(MinTimeMoving, MaxTimeMoving);
-                }
+                }*/
+
             }
 
             
@@ -139,21 +140,25 @@ public class ServerGameCreator : MonoBehaviour
 
     void FillCrowd()
     {
+        int maxSize = _containerNPC.objectListServer.Count;
         _listPnj = new PnjClass[NbPnj];
         for (int i = 0; i < NbPnj; i++)
         {
             PnjClass pnj = new PnjClass();
             pnj.PrefabPnj = Instantiate(PnjGameObject, _containerNPC.transform);
 
-            int rndZoneIndex = Random.Range(0, _listZone.Count);
-
+            int rndZoneIndex = Random.Range(0, maxSize);
+            pnj.PrefabPnj.GetComponent<NavMeshAgent>().enabled = false;
+            pnj.PrefabPnj.transform.position = new Vector3(Random.Range(-98,98),0f, Random.Range(-98, 98));
+            pnj.PrefabPnj.GetComponent<NavMeshAgent>().enabled = true;
+            /*
             SlotClass sc = _listZone[rndZoneIndex].GetFreeSlot();
             if (sc != null && sc.SlotGameObject != null)
             {
                 pnj.PrefabPnj.transform.position = sc.SlotGameObject.GetComponent<Renderer>().bounds.center;
                 sc.PnjInSlot = pnj;
                 pnj.DestinationGameObject = sc.ConnectedGameObject;
-            }
+            }*/
 
             pnj.Name = i.ToString();
             pnj.MovingTime = Random.Range(2, 8);

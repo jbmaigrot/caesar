@@ -73,7 +73,7 @@ public class Server : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void LateUpdate()
     {
         //Debug.Log(Mathf.Round(1f / Time.deltaTime)); //Framerate
 
@@ -200,6 +200,16 @@ public class Server : MonoBehaviour
                             }
                             break;
 
+                        case Constants.Client_StartTaking:
+                            int objectId = (int)stream.ReadUInt(ref readerCtx);
+                            players[i].GetComponent<ServerCarrier>().StartTaking(programmableObjectsContainer.objectListServer[objectId].GetComponent<ServerCarrier>());
+                            break;
+
+                        case Constants.Client_StartGiving:
+                            int objectid = (int)stream.ReadUInt(ref readerCtx);
+                            players[i].GetComponent<ServerCarrier>().StartGiving(programmableObjectsContainer.objectListServer[objectid].GetComponent<ServerCarrier>());
+                            break;
+
                         case Constants.Client_Open_Door:
                             int numb = (int)stream.ReadUInt(ref readerCtx);
                             if (!players[i].GetComponent<ServerCharacter>().isStunned)
@@ -222,9 +232,9 @@ public class Server : MonoBehaviour
                             break;
 
                         case Constants.Client_RequestHack:
-                            int objectId = (int)stream.ReadUInt(ref readerCtx);
-                            Debug.Log("Server received a request for object with ID " + objectId);
-                            SendHackStatus(objectId, i);
+                            int object_Id = (int)stream.ReadUInt(ref readerCtx);
+                            Debug.Log("Server received a request for object with ID " + object_Id);
+                            SendHackStatus(object_Id, i);
                             break;
 
                         case Constants.Client_SetHack:
@@ -275,6 +285,11 @@ public class Server : MonoBehaviour
                     writer.Write(j);
                     writer.Write(programmableObjectsContainer.objectListServer[j].isLightOn ? 1 : 0);
                     writer.Write(programmableObjectsContainer.objectListServer[j].isDoorOpen ? 1 : 0);
+
+                    if (programmableObjectsContainer.objectListServer[j].GetComponent<ServerCarrier>())
+                        writer.Write(programmableObjectsContainer.objectListServer[j].GetComponent<ServerCarrier>().charge);
+                    else
+                        writer.Write(0f);
 
                     //close snapshot
                     writer.Write(Constants.Server_SnapshotEnd);
@@ -403,6 +418,7 @@ public class Server : MonoBehaviour
         List<InOutVignette> inputCodes = new List<InOutVignette>();
         List<InOutVignette> outputCodes = new List<InOutVignette>();
         List<Arrow> graph = new List<Arrow>();
+        bool isAttract = false;
 
         char[] buffer;
         int inputCodesCount = (int)stream.ReadUInt(ref readerCtx);
@@ -447,6 +463,11 @@ public class Server : MonoBehaviour
 
             int parameter_int = (int)stream.ReadUInt(ref readerCtx);
 
+            if (code == "UseGadget" && parameter_int == InventoryConstants.Attract)
+            {
+                isAttract = true;
+            }
+
             int parameter_stringLength = (int)stream.ReadUInt(ref readerCtx);
             buffer = new char[parameter_stringLength];
             for (int j = 0; j < parameter_stringLength; j++)
@@ -486,12 +507,26 @@ public class Server : MonoBehaviour
         objectData.inputCodes = inputCodes;
         objectData.outputCodes = outputCodes;
         objectData.graph = graph;
+        if (!isAttract)
+        {
+            objectData.isAttract = false;
+        }
     }
 
     public int AddNewPlayer()
     {
         //On ajoute un nouveau personnage joueur.
         GameObject pj = Instantiate(prefabPJ, programmableObjectsContainer.transform);
+        pj.GetComponent<NavMeshAgent>().enabled = false;
+        if(players.Count%2 == 0)
+        {
+            pj.transform.position = FindObjectOfType<PlayerSpawn>().transform.position;
+        }
+        else
+        {
+            pj.transform.position = - FindObjectOfType<PlayerSpawn>().transform.position;
+        }
+        pj.GetComponent<NavMeshAgent>().enabled = true;
         players.Add(pj.transform);
         characters.Add(pj.transform);
         programmableObjectsContainer.objectListServer.Add(pj.GetComponent<ProgrammableObjectsData>());

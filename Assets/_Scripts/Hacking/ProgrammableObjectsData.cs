@@ -14,7 +14,7 @@ public class ProgrammableObjectsData : MonoBehaviour
     private const float STUNBOXRADIUS = 10.0f;
     private const float ATTRACTRADIUS = 20.0f;
     private const float ATTRACTTIME = 10.0f;
-    private bool isAttract;
+    public bool isAttract;
     private float attracttimebeforeend;
     private float attracttimebeforeeffect;
 
@@ -211,10 +211,11 @@ public class ProgrammableObjectsData : MonoBehaviour
         }
     }
 
-
+#endif
     /*A chaque frame, le signal se déplace dans les flèches du graphe*/
     void Update()
     {
+#if SERVER
         for (int i = 0; i < graph.Count; i++)
         {
             for (int j = 0; j < graph[i].timeBeforeTransmit.Count; j++)
@@ -240,7 +241,7 @@ public class ProgrammableObjectsData : MonoBehaviour
         {
             timeBeforeStunReload -= Time.deltaTime;
         }
-
+#endif
 #if CLIENT
         if (isWaitingHack)
         {
@@ -252,7 +253,7 @@ public class ProgrammableObjectsData : MonoBehaviour
         }
 #endif
     }
-
+#if SERVER
     void TheAttractFunction()
     {
         attracttimebeforeend -= Time.deltaTime;

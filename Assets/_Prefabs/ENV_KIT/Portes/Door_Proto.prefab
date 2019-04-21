@@ -308,12 +308,15 @@ MonoBehaviour:
   NavMeshSurface: {fileID: 0}
   charactersIndex: -1
   client: {fileID: 0}
+  hackInterface: {fileID: 0}
+  isWaitingHack: 0
   inputCodes: []
   outputCodes: []
   graph: []
   isLightOn: 0
   isDoorOpen: 0
   Initiator: {fileID: 11400000, guid: 6afdb71ca2fdf0441a01f9696cc9161a, type: 2}
+  objectsContainer: {fileID: 0}
 --- !u!1 &775197464867919533
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,8 +343,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 775197464867919533}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.050305955, y: -0.000000033620868, z: 0.2654771}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.241, y: -0.175, z: 0.283}
+  m_LocalScale: {x: 2.0179, y: 2.0179, z: 2.0179}
   m_Children: []
   m_Father: {fileID: 775197464867883659}
   m_RootOrder: 2
@@ -417,8 +420,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 775197464867919535}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.050305955, y: -0.000000033620868, z: 0.2654771}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.241, y: -0.175, z: 0.792}
+  m_LocalScale: {x: 2.0179, y: 2.0179, z: 2.0179}
   m_Children: []
   m_Father: {fileID: 775197464867883659}
   m_RootOrder: 1
