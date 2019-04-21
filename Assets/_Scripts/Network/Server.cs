@@ -73,7 +73,7 @@ public class Server : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void LateUpdate()
     {
         //Debug.Log(Mathf.Round(1f / Time.deltaTime)); //Framerate
 
