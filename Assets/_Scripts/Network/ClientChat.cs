@@ -22,7 +22,7 @@ public class ClientChat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) && inputField.text != "")
         {
             client.Message(inputField.text);
             inputField.text = "";
