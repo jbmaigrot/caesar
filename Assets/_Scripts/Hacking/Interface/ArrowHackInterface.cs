@@ -31,19 +31,20 @@ public class ArrowHackInterface : MonoBehaviour, IPointerDownHandler
             Debug.Log(SpriteList);
             GetComponent<CanvasGroup>().alpha = 1f;
             GetComponent<CanvasGroup>().blocksRaycasts = true;
-            GetComponentInChildren<Text>().text = HackInterface.graph[numero].input.ToString() + "   " + HackInterface.graph[numero].output.ToString();
+            GetComponentInChildren<Text>().text = "";
+            //GetComponentInChildren<Text>().text = HackInterface.graph[numero].input.ToString() + "   " + HackInterface.graph[numero].output.ToString();
             string name = HackInterface.graph[numero].input.ToString() + "" + HackInterface.graph[numero].output.ToString();
-            //foreach (Sprite sp in SpriteList)
-            //{
-            //    if (sp.name == name)
-            //    {
-            //        Debug.Log("weeeeeeeeeeeeeeeeeeee");
-            //       //GetComponent<Image>().sprite = sp;
-            //       Debug.Log("alpha" + GetComponent<Image>().alphaHitTestMinimumThreshold);
-            //        //GetComponent<Image>().alphaHitTestMinimumThreshold = 1f;
-            //        Debug.Log("alpha" + GetComponent<Image>().alphaHitTestMinimumThreshold);
-            //    }
-            //}
+            Debug.Log("----------------------------------------------name :"+name);
+            foreach (Sprite sp in SpriteList)
+            {
+                Debug.Log(sp.name);
+                if (sp.name == name)
+                {
+                    Debug.Log("weeeeeeeeeeeeeeeeeeee");
+                    GetComponent<Image>().sprite = sp;
+                    GetComponent<Image>().alphaHitTestMinimumThreshold = 0.01f;
+                }
+            }
             /*
             GetComponent<LineRenderer>().SetPosition(0, HackInterface.graph[numero].inputPos);
             GetComponent<LineRenderer>().SetPosition(1, HackInterface.graph[numero].outputPos);*/
