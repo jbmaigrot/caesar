@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ServerSource : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class ServerSource : MonoBehaviour
     public AnimationCurve curve = new AnimationCurve();
     private float startingTime = 0;
     private ServerCarrier carrier;
+    private Server server;
     /*private List<ServerCarrier> carriers = new List<ServerCarrier>();
     private float totalChargeSpeed = 0; //sum of all requested charge */
 
@@ -16,6 +18,7 @@ public class ServerSource : MonoBehaviour
     {
         startingTime = Time.time;
         carrier = GetComponent<ServerCarrier>();
+        server = FindObjectOfType<Server>();
     }
     
     // Update is called once per frame
@@ -23,7 +26,14 @@ public class ServerSource : MonoBehaviour
     {
         //get charge
         carrier.charge = Mathf.Min(carrier.maxCharge, carrier.charge + curve.Evaluate(Time.time - startingTime) * Time.deltaTime);
-
+        foreach (Transform ryan in server.characters)
+        {
+            if (ryan.GetComponent<ServerCarrier>().charge< ryan.GetComponent<ServerCarrier>().maxCharge && (ryan.position-this.transform.position).magnitude< this.GetComponent<ServerCarrier>().charge * 30 / this.GetComponent<ServerCarrier>().maxCharge && !server.players.Contains(ryan))
+            {
+                ryan.GetComponent<NavMeshAgent>().destination = this.transform.position;
+                ryan.GetComponent<ServerCarrier>().StartTaking(this.GetComponent<ServerCarrier>());
+            }
+        }
         /* TEMP DISABLED
         //give charge
         totalChargeSpeed = 0;

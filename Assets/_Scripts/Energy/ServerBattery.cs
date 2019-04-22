@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ServerBattery : MonoBehaviour
 {
@@ -22,6 +23,14 @@ public class ServerBattery : MonoBehaviour
         if (carrier.charge >= carrier.maxCharge)
         {
             server.Win(team);
+        }
+        foreach (Transform ryan in server.characters)
+        {
+            if (ryan.GetComponent<ServerCarrier>().charge > 0 && (ryan.position - this.transform.position).magnitude < 30 && !server.players.Contains(ryan))
+            {
+                ryan.GetComponent<NavMeshAgent>().destination = this.transform.position;
+                ryan.GetComponent<ServerCarrier>().StartGiving(this.GetComponent<ServerCarrier>());
+            }
         }
     }
 
