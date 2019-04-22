@@ -16,7 +16,6 @@ MonoBehaviour:
   - OnWord
   accessibleOutputCode:
   - SendMessage
-  - UseGadget
   inputCodes:
   - code: OnHack
     parameter_int: 0
@@ -39,10 +38,6 @@ MonoBehaviour:
     parameter_int: 0
     parameter_string: 
     is_fixed: 1
-  - code: UseGadget
-    parameter_int: 0
-    parameter_string: 
-    is_fixed: 0
   graph:
   - input: 1
     output: 0

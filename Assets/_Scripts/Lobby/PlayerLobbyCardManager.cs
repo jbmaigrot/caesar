@@ -73,6 +73,14 @@ public class PlayerLobbyCardManager : MonoBehaviour
         playerTeam.value = playerLobbyCard.team;
         playerTeam.onValueChanged = tmpDropdownEvt;
 
+        if (playerLobbyCard.isReady == true)
+        {
+            ready.GetComponentInChildren<Text>().text = "Waiting...";
+        } else
+        {
+            ready.GetComponentInChildren<Text>().text = "Ready";
+        }
+
         GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.8f);
     }
 

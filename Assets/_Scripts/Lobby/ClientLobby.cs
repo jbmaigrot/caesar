@@ -150,7 +150,6 @@ public class ClientLobby : MonoBehaviour
                 }
             }
         }
-        
     }
 
     private void InitialHandshake()

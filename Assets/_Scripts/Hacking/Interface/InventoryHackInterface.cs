@@ -49,6 +49,7 @@ public class InventoryHackInterface : MonoBehaviour, IPointerDownHandler
             InOutVignette NewOutputHack = new InOutVignette();
             NewOutputHack.code = "UseGadget";
             NewOutputHack.parameter_int = hackinterface.inventory[numero];
+            NewOutputHack.is_fixed = true;
             hackinterface.inventory[numero] = InventoryConstants.Empty;
             HackInterface.outputCodes.Add(NewOutputHack);
             hackinterface.reloadInterface();
