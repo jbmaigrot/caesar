@@ -6,7 +6,6 @@ using UnityEngine.AI;
 
 public class ProgrammableObjectsData : MonoBehaviour
 {
-
 #if SERVER
     /*Server. Seulement coté serveur*/
     private Server server;
@@ -41,11 +40,15 @@ public class ProgrammableObjectsData : MonoBehaviour
     public bool isDoorOpen = false;
 #endif
 
+
     /*Variable servant à initier le graphe de comportement et à définir les inputs et outputs autorisées*/
     public ProgrammableObjectsScriptable Initiator;
 
     public ProgrammableObjectsContainer objectsContainer;
 
+    public bool isHackable = true;
+
+    // Start
     void Start()
     {
         objectsContainer = FindObjectOfType<ProgrammableObjectsContainer>();
@@ -85,7 +88,7 @@ public class ProgrammableObjectsData : MonoBehaviour
 #if CLIENT
     void OnMouseDown()
     {
-        if ((this.GetComponent<Collider>().ClosestPoint(client.characters[client.playerIndex].transform.position) - client.characters[client.playerIndex].transform.position).magnitude < 5)
+        if (isHackable && (this.GetComponent<Collider>().ClosestPoint(client.characters[client.playerIndex].transform.position) - client.characters[client.playerIndex].transform.position).magnitude < 5)
         {
             client.RequestHackState(objectsContainer.GetObjectIndexClient(this));
             hackInterface.ReadyToOpen();

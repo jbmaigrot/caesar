@@ -2,16 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ServerBattery : ServerCarrier
+public class ServerBattery : MonoBehaviour
 {
 #if SERVER
+    public int team = 0;
+    private ServerCarrier carrier;
+    private Server server;
+
+    // Start
+    private void Start()
+    {
+        carrier = GetComponent<ServerCarrier>();
+        server = FindObjectOfType<Server>();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (charge >= maxCharge)
+        if (carrier.charge >= carrier.maxCharge)
         {
-            Time.timeScale = 0;
-            Debug.Log("GG!");
+            server.Win(team);
         }
     }
 

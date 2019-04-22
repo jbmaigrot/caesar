@@ -12,8 +12,8 @@ using UdpCNetworkDriver = Unity.Networking.Transport.BasicNetworkDriver<Unity.Ne
 
 public class Server : MonoBehaviour
 {
-    public GameObject prefabPJ;
 #if SERVER
+    public GameObject prefabPJ;
     public UdpCNetworkDriver m_Driver;
     public List<Transform> players = new List<Transform>();
     public List<Transform> characters = new List<Transform>(); // Players + NPCs
@@ -28,9 +28,9 @@ public class Server : MonoBehaviour
     private List<Vector3> messagesPos = new List<Vector3>();
     private ProgrammableObjectsContainer programmableObjectsContainer;
     private int snapshotCount = 1;
+    private int winner = -1; 
 
     private const float MANUALSTUNRADIUS = 15.0f;
-
     
 
     // Start is called before the first frame update
@@ -278,6 +278,16 @@ public class Server : MonoBehaviour
                         writer.Write(characters[charactersIndex].GetComponent<NavMeshAgent>().velocity.x);
                         writer.Write(characters[charactersIndex].GetComponent<NavMeshAgent>().velocity.z);
                         writer.Write(characters[charactersIndex].gameObject.GetComponent<ServerCharacter>().isStunned ? 1 : 0);
+
+                        if (characters[charactersIndex].GetComponent<ServerCarrier>())
+                        {
+                            var carrier = characters[charactersIndex].GetComponent<ServerCarrier>();
+                            writer.Write(carrier.charge / carrier.maxCharge); //send charge ratio, rather than raw value (as clients do not know all max charges)
+                        }
+                        else
+                        {
+                            writer.Write(0.42f);
+                        }
                     }
 
                     //update objects states
@@ -287,9 +297,14 @@ public class Server : MonoBehaviour
                     writer.Write(programmableObjectsContainer.objectListServer[j].isDoorOpen ? 1 : 0);
 
                     if (programmableObjectsContainer.objectListServer[j].GetComponent<ServerCarrier>())
-                        writer.Write(programmableObjectsContainer.objectListServer[j].GetComponent<ServerCarrier>().charge);
+                    {
+                        var carrier = programmableObjectsContainer.objectListServer[j].GetComponent<ServerCarrier>();
+                        writer.Write(carrier.charge / carrier.maxCharge); //send charge ratio, rather than raw value (as clients do not know all max charges)
+                    }
                     else
+                    {
                         writer.Write(0f);
+                    }
 
                     //close snapshot
                     writer.Write(Constants.Server_SnapshotEnd);
@@ -541,6 +556,25 @@ public class Server : MonoBehaviour
             writer.Write(Constants.Server_SetConnectionId);
             writer.Write(connectionId);
             nc.Send(m_Driver, writer);
+        }
+    }
+
+    public void Win(int team)
+    {
+
+        if (winner == -1)
+        {
+            winner = team;
+
+            for (int i = 0; i < m_Connections.Length; i++)
+            { 
+                using (var writer = new DataStreamWriter(64, Allocator.Temp))
+                {
+                    writer.Write(Constants.Server_Win);
+                    writer.Write(winner);
+                    m_Connections[i].Send(m_Driver, writer);
+                }
+            }
         }
     }
 

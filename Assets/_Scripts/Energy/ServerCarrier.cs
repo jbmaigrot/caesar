@@ -5,9 +5,9 @@ using UnityEngine;
 public class ServerCarrier : MonoBehaviour
 {
 #if CLIENT
-    public float clientCharge = 0;
-    private Client client;
-    private ProgrammableObjectsContainer programmableObjectsContainer;
+    public float clientCharge = 0; //ratio between 0 and 1
+    public Client client;
+    public ProgrammableObjectsContainer programmableObjectsContainer;
 #endif
 
 #if SERVER
@@ -19,13 +19,13 @@ public class ServerCarrier : MonoBehaviour
     public ServerCarrier takingFrom = null;
 #endif
 
-#if CLIENT
     private void Start()
     {
+#if CLIENT
         client = FindObjectOfType<Client>();
         programmableObjectsContainer = FindObjectOfType<ProgrammableObjectsContainer>();
-    }
 #endif
+    }
 
     // Update is called once per frame
     void Update()
@@ -49,21 +49,23 @@ public class ServerCarrier : MonoBehaviour
             }
             else
             {
-                givingTo.charge += chargeSpeed * Time.deltaTime;
-                charge -= chargeSpeed * Time.deltaTime;
+                float energyToTransfer = Mathf.Min(charge, chargeSpeed * Time.deltaTime);
+                givingTo.charge += energyToTransfer;
+                charge -= energyToTransfer;
             }
         }
 
         if (takingFrom != null && charge < maxCharge) // The carrier is taking/stealing energy
         {
-            if (givingTo.charge <= 0 || Vector3.Distance(transform.position, takingFrom.transform.position) > 5)
+            if (takingFrom.charge <= 0 || Vector3.Distance(transform.position, takingFrom.transform.position) > 5)
             {
                 StopTaking();
             }
             else
             {
-                takingFrom.charge -= chargeSpeed * Time.deltaTime;
-                charge += chargeSpeed * Time.deltaTime;
+                float energyToTransfer = Mathf.Min(takingFrom.charge, chargeSpeed * Time.deltaTime);
+                takingFrom.charge -= energyToTransfer;
+                charge += energyToTransfer;
             }
         }
 #endif
@@ -75,11 +77,14 @@ public class ServerCarrier : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(0))
         {
-            client.StartTaking(programmableObjectsContainer.objectListClient.IndexOf(GetComponent<ProgrammableObjectsData>()));
+            if (GetComponent<ProgrammableObjectsData>() != null)
+                Debug.Log(programmableObjectsContainer.objectListClient.IndexOf(GetComponent<ProgrammableObjectsData>()));
+                client.StartTaking(programmableObjectsContainer.objectListClient.IndexOf(GetComponent<ProgrammableObjectsData>()));
         }
         else if (Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(1))
         {
-            client.StartGiving(programmableObjectsContainer.objectListClient.IndexOf(GetComponent<ProgrammableObjectsData>()));
+            if (GetComponent<ProgrammableObjectsData>() != null)
+                client.StartGiving(programmableObjectsContainer.objectListClient.IndexOf(GetComponent<ProgrammableObjectsData>()));
         }
     }
 #endif

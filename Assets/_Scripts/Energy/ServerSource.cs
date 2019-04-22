@@ -5,26 +5,26 @@ using UnityEngine;
 public class ServerSource : MonoBehaviour
 {
 #if SERVER
-    public float charge = 0;
-    public float maxCharge = 200;
     public AnimationCurve curve = new AnimationCurve();
-
     private float startingTime = 0;
-    private List<ServerCarrier> carriers = new List<ServerCarrier>();
-    private float totalChargeSpeed = 0; //sum of all requested charge
+    private ServerCarrier carrier;
+    /*private List<ServerCarrier> carriers = new List<ServerCarrier>();
+    private float totalChargeSpeed = 0; //sum of all requested charge */
 
     //Start
     private void Start()
     {
         startingTime = Time.time;
+        carrier = GetComponent<ServerCarrier>();
     }
-
+    
     // Update is called once per frame
     void Update()
     {
         //get charge
-        charge = Mathf.Max(maxCharge, charge + curve.Evaluate(Time.time - startingTime) * Time.deltaTime);
+        carrier.charge = Mathf.Min(carrier.maxCharge, carrier.charge + curve.Evaluate(Time.time - startingTime) * Time.deltaTime);
 
+        /* TEMP DISABLED
         //give charge
         totalChargeSpeed = 0;
         foreach (ServerCarrier james in carriers)
@@ -48,14 +48,15 @@ public class ServerSource : MonoBehaviour
                 james.charge += james.chargeSpeed / totalChargeSpeed * charge;
             }
             charge = 0;
-        }
+        }*/
     }
 
 
+    /* TEMP DISABLED
     // Add character to list
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<ServerCarrier>())
+        if(other.GetComponent<ServerCarrier>() && other.GetComponent<ServerCarrier>() != GetComponent<ServerCarrier>())
             carriers.Add(other.GetComponent<ServerCarrier>());
     }
 
@@ -70,6 +71,6 @@ public class ServerSource : MonoBehaviour
                 i--;
             }
         }
-    }
+    }*/
 #endif
 }

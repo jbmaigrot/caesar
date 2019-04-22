@@ -23,33 +23,19 @@ public class PlayerInput : MonoBehaviour
 
         if (! EventSystem.current.IsPointerOverGameObject()) //Checks if the mouse is not over any UI
         {
-            if (Input.GetMouseButtonDown(0))
+            if (!Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(0))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
 
-                if (!Input.GetKey(KeyCode.LeftControl))
+                if (Physics.Raycast(ray, out hit, 100f, 49184)) // Layer 5 14 et 15 (objects)
                 {
-                    if (Physics.Raycast(ray, out hit, 100f, 49184)) // Layer 5 14 et 15 (objects)
-                    {
-                        Debug.Log(42);
-                    }
-                    else if (Physics.Raycast(ray, out hit, 100f, 1)) // Layer 0 (ground)
-                    {
-                        client.SetDestination(hit.point);
-                    }
+                    //Debug.Log(42);
                 }
-                /*else //Control is pressed -> energy-related actions
+                else if (Physics.Raycast(ray, out hit, 100f, 1)) // Layer 0 (ground)
                 {
-                    if (Physics.Raycast(ray, out hit, 100f, 16384)) // Layer 14 (programmable objects)
-                    {
-                        if (hit.collider.GetComponent<ServerCarrier>())
-                        {
-                            client.StartTaking(hit.collider.GetComponent<ServerCarrier>());
-
-                        }
-                    }
-                }*/
+                    client.SetDestination(hit.point);
+                }
             }
         }
     }

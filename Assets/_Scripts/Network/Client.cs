@@ -179,8 +179,16 @@ public class Client : MonoBehaviour
                                         characters[j].speed.x = xSpeed;
                                         characters[j].speed.z = zSpeed;
                                     }
+                                    // Charge
+                                    float charge = stream.ReadFloat(ref readerCtx);
+                                    if (characters[j].GetComponent<ServerCarrier>())
+                                    {
+                                        var carrier = characters[j].GetComponent<ServerCarrier>();
+                                        carrier.clientCharge = charge;
+                                    }
 
                                     type = stream.ReadUInt(ref readerCtx); //Should be Constants.Server_UpdateObject (need to be removed from the stream)
+                                    
                                 }
 
                                 int l = (int)stream.ReadUInt(ref readerCtx);
@@ -207,9 +215,12 @@ public class Client : MonoBehaviour
                                         programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>().OnOpen();
                                 }
                                 // Charge
-                                float charge = stream.ReadFloat(ref readerCtx);
+                                float chargeRatio = stream.ReadFloat(ref readerCtx);
                                 if (programmableObjectsContainer.objectListClient[l].GetComponent<ServerCarrier>())
-                                    programmableObjectsContainer.objectListClient[l].GetComponent<ServerCarrier>().clientCharge = charge;
+                                {
+                                    var carrier = programmableObjectsContainer.objectListClient[l].GetComponent<ServerCarrier>();
+                                    carrier.clientCharge =  chargeRatio;
+                                }
 
                                 // End
                                 type = stream.ReadUInt(ref readerCtx); //Should be Constants.Server_SnapshotEnd (need to be removed from the stream)
@@ -250,6 +261,12 @@ public class Client : MonoBehaviour
                         case Constants.Server_SetConnectionId:
                             connectionId = (int)stream.ReadUInt(ref readerCtx);
                             initialHandshakeDone = true;
+                            break;
+
+                        case Constants.Server_Win:
+                            int winner = (int)stream.ReadUInt(ref readerCtx);
+                            // TO DO
+                            Debug.Log("Team " + winner + " wins!");
                             break;
 
                         default:
