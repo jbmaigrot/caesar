@@ -68,7 +68,7 @@ public class Server : MonoBehaviour
             {
                 AddNewPlayer(serverLobby.lobbyInterfaceState.playerLobbyCards[i].team);
             }
-            serverLobby.enabled = false;
+            serverLobby.stopUpdate = true;
         }
     }
 
