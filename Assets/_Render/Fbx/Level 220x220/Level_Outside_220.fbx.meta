@@ -1,0 +1,4408 @@
+fileFormatVersion: 2
+guid: 9a6fafa115bde7749a022f5c646eb447
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Corner_Slope
+    100002: Corner_Slope 1
+    100004: Corner_Slope 10
+    100006: Corner_Slope 11
+    100008: Corner_Slope 12
+    100010: Corner_Slope 13
+    100012: Corner_Slope 14
+    100014: Corner_Slope 15
+    100016: Corner_Slope 16
+    100018: Corner_Slope 17
+    100020: Corner_Slope 18
+    100022: Corner_Slope 19
+    100024: Corner_Slope 2
+    100026: Corner_Slope 20
+    100028: Corner_Slope 21
+    100030: Corner_Slope 22
+    100032: Corner_Slope 23
+    100034: Corner_Slope 24
+    100036: Corner_Slope 25
+    100038: Corner_Slope 26
+    100040: Corner_Slope 27
+    100042: Corner_Slope 28
+    100044: Corner_Slope 29
+    100046: Corner_Slope 3
+    100048: Corner_Slope 30
+    100050: Corner_Slope 31
+    100052: Corner_Slope 32
+    100054: Corner_Slope 33
+    100056: Corner_Slope 34
+    100058: Corner_Slope 35
+    100060: Corner_Slope 36
+    100062: Corner_Slope 37
+    100064: Corner_Slope 38
+    100066: Corner_Slope 39
+    100068: Corner_Slope 4
+    100070: Corner_Slope 5
+    100072: Corner_Slope 6
+    100074: Corner_Slope 7
+    100076: Corner_Slope 8
+    100078: Corner_Slope 9
+    100080: Edge_Slope
+    100082: Edge_Slope 1
+    100084: Edge_Slope 10
+    100086: Edge_Slope 11
+    100088: Edge_Slope 12
+    100090: Edge_Slope 13
+    100092: Edge_Slope 14
+    100094: Edge_Slope 15
+    100096: Edge_Slope 16
+    100098: Edge_Slope 17
+    100100: Edge_Slope 18
+    100102: Edge_Slope 19
+    100104: Edge_Slope 2
+    100106: Edge_Slope 20
+    100108: Edge_Slope 21
+    100110: Edge_Slope 22
+    100112: Edge_Slope 23
+    100114: Edge_Slope 24
+    100116: Edge_Slope 25
+    100118: Edge_Slope 26
+    100120: Edge_Slope 27
+    100122: Edge_Slope 28
+    100124: Edge_Slope 29
+    100126: Edge_Slope 3
+    100128: Edge_Slope 30
+    100130: Edge_Slope 31
+    100132: Edge_Slope 32
+    100134: Edge_Slope 33
+    100136: Edge_Slope 34
+    100138: Edge_Slope 35
+    100140: Edge_Slope 36
+    100142: Edge_Slope 37
+    100144: Edge_Slope 38
+    100146: Edge_Slope 39
+    100148: Edge_Slope 4
+    100150: Edge_Slope 5
+    100152: Edge_Slope 6
+    100154: Edge_Slope 7
+    100156: Edge_Slope 8
+    100158: Edge_Slope 9
+    100160: Floors
+    100162: Ground_N
+    100164: Ground_N1
+    100166: Ground_N10
+    100168: Ground_N2
+    100170: Ground_N3
+    100172: Ground_N4
+    100174: Ground_N5
+    100176: Ground_N6
+    100178: Ground_N7
+    100180: Ground_N8
+    100182: Ground_N9
+    100184: Half1
+    100186: Half1 1
+    100188: Half1 2
+    100190: Half1 3
+    100192: Half2
+    100194: Half2 1
+    100196: Half2 2
+    100198: Half2 3
+    100200: Half_SW
+    100202: Half_SW 1
+    100204: Half_SW 2
+    100206: Half_SW 3
+    100208: Half_SW 4
+    100210: Half_SW 5
+    100212: Half_SW 6
+    100214: Half_SW 7
+    100216: //RootNode
+    100218: N
+    100220: N 1
+    100222: N 2
+    100224: N 3
+    100226: N 4
+    100228: N 5
+    100230: N 6
+    100232: N 7
+    100234: N_1
+    100236: N_1 1
+    100238: N_1 2
+    100240: N_1 3
+    100242: N_1 4
+    100244: N_1 5
+    100246: N_1 6
+    100248: N_1 7
+    100250: N_10
+    100252: N_10 1
+    100254: N_10 2
+    100256: N_10 3
+    100258: N_10 4
+    100260: N_10 5
+    100262: N_10 6
+    100264: N_10 7
+    100266: N_2
+    100268: N_2 1
+    100270: N_2 2
+    100272: N_2 3
+    100274: N_2 4
+    100276: N_2 5
+    100278: N_2 6
+    100280: N_2 7
+    100282: N_3
+    100284: N_3 1
+    100286: N_3 2
+    100288: N_3 3
+    100290: N_3 4
+    100292: N_3 5
+    100294: N_3 6
+    100296: N_3 7
+    100298: N_4
+    100300: N_4 1
+    100302: N_4 2
+    100304: N_4 3
+    100306: N_4 4
+    100308: N_4 5
+    100310: N_4 6
+    100312: N_4 7
+    100314: N_5
+    100316: N_5 1
+    100318: N_5 2
+    100320: N_5 3
+    100322: N_5 4
+    100324: N_5 5
+    100326: N_5 6
+    100328: N_5 7
+    100330: N_6
+    100332: N_6 1
+    100334: N_6 2
+    100336: N_6 3
+    100338: N_6 4
+    100340: N_6 5
+    100342: N_6 6
+    100344: N_6 7
+    100346: N_7
+    100348: N_7 1
+    100350: N_7 2
+    100352: N_7 3
+    100354: N_7 4
+    100356: N_7 5
+    100358: N_7 6
+    100360: N_7 7
+    100362: N_8
+    100364: N_8 1
+    100366: N_8 2
+    100368: N_8 3
+    100370: N_8 4
+    100372: N_8 5
+    100374: N_8 6
+    100376: N_8 7
+    100378: N_9
+    100380: N_9 1
+    100382: N_9 2
+    100384: N_9 3
+    100386: N_9 4
+    100388: N_9 5
+    100390: N_9 6
+    100392: N_9 7
+    100394: Outside_corner
+    100396: Outside_corner1
+    100398: Outside_corner2
+    100400: Outside_corner3
+    100402: Pattern
+    100404: Pattern 1
+    100406: Pattern 10
+    100408: Pattern 11
+    100410: Pattern 12
+    100412: Pattern 13
+    100414: Pattern 14
+    100416: Pattern 15
+    100418: Pattern 16
+    100420: Pattern 17
+    100422: Pattern 18
+    100424: Pattern 19
+    100426: Pattern 2
+    100428: Pattern 20
+    100430: Pattern 21
+    100432: Pattern 22
+    100434: Pattern 23
+    100436: Pattern 24
+    100438: Pattern 25
+    100440: Pattern 26
+    100442: Pattern 27
+    100444: Pattern 28
+    100446: Pattern 29
+    100448: Pattern 3
+    100450: Pattern 30
+    100452: Pattern 31
+    100454: Pattern 32
+    100456: Pattern 33
+    100458: Pattern 34
+    100460: Pattern 35
+    100462: Pattern 36
+    100464: Pattern 37
+    100466: Pattern 38
+    100468: Pattern 39
+    100470: Pattern 4
+    100472: Pattern 40
+    100474: Pattern 41
+    100476: Pattern 42
+    100478: Pattern 43
+    100480: Pattern 44
+    100482: Pattern 45
+    100484: Pattern 46
+    100486: Pattern 47
+    100488: Pattern 48
+    100490: Pattern 49
+    100492: Pattern 5
+    100494: Pattern 50
+    100496: Pattern 51
+    100498: Pattern 52
+    100500: Pattern 53
+    100502: Pattern 54
+    100504: Pattern 55
+    100506: Pattern 56
+    100508: Pattern 57
+    100510: Pattern 58
+    100512: Pattern 59
+    100514: Pattern 6
+    100516: Pattern 60
+    100518: Pattern 61
+    100520: Pattern 62
+    100522: Pattern 63
+    100524: Pattern 64
+    100526: Pattern 65
+    100528: Pattern 66
+    100530: Pattern 67
+    100532: Pattern 68
+    100534: Pattern 69
+    100536: Pattern 7
+    100538: Pattern 70
+    100540: Pattern 71
+    100542: Pattern 72
+    100544: Pattern 73
+    100546: Pattern 74
+    100548: Pattern 75
+    100550: Pattern 76
+    100552: Pattern 77
+    100554: Pattern 78
+    100556: Pattern 79
+    100558: Pattern 8
+    100560: Pattern 80
+    100562: Pattern 81
+    100564: Pattern 82
+    100566: Pattern 83
+    100568: Pattern 84
+    100570: Pattern 85
+    100572: Pattern 86
+    100574: Pattern 87
+    100576: Pattern 9
+    100578: Pattern2
+    100580: Pattern2 1
+    100582: Pattern2 10
+    100584: Pattern2 11
+    100586: Pattern2 12
+    100588: Pattern2 13
+    100590: Pattern2 14
+    100592: Pattern2 15
+    100594: Pattern2 16
+    100596: Pattern2 17
+    100598: Pattern2 18
+    100600: Pattern2 19
+    100602: Pattern2 2
+    100604: Pattern2 20
+    100606: Pattern2 21
+    100608: Pattern2 22
+    100610: Pattern2 23
+    100612: Pattern2 24
+    100614: Pattern2 25
+    100616: Pattern2 26
+    100618: Pattern2 27
+    100620: Pattern2 28
+    100622: Pattern2 29
+    100624: Pattern2 3
+    100626: Pattern2 30
+    100628: Pattern2 31
+    100630: Pattern2 32
+    100632: Pattern2 33
+    100634: Pattern2 34
+    100636: Pattern2 35
+    100638: Pattern2 36
+    100640: Pattern2 37
+    100642: Pattern2 38
+    100644: Pattern2 39
+    100646: Pattern2 4
+    100648: Pattern2 40
+    100650: Pattern2 41
+    100652: Pattern2 42
+    100654: Pattern2 43
+    100656: Pattern2 44
+    100658: Pattern2 45
+    100660: Pattern2 46
+    100662: Pattern2 47
+    100664: Pattern2 48
+    100666: Pattern2 49
+    100668: Pattern2 5
+    100670: Pattern2 50
+    100672: Pattern2 51
+    100674: Pattern2 52
+    100676: Pattern2 53
+    100678: Pattern2 54
+    100680: Pattern2 55
+    100682: Pattern2 56
+    100684: Pattern2 57
+    100686: Pattern2 58
+    100688: Pattern2 59
+    100690: Pattern2 6
+    100692: Pattern2 60
+    100694: Pattern2 61
+    100696: Pattern2 62
+    100698: Pattern2 63
+    100700: Pattern2 64
+    100702: Pattern2 65
+    100704: Pattern2 66
+    100706: Pattern2 67
+    100708: Pattern2 68
+    100710: Pattern2 69
+    100712: Pattern2 7
+    100714: Pattern2 70
+    100716: Pattern2 71
+    100718: Pattern2 72
+    100720: Pattern2 73
+    100722: Pattern2 74
+    100724: Pattern2 75
+    100726: Pattern2 76
+    100728: Pattern2 77
+    100730: Pattern2 78
+    100732: Pattern2 79
+    100734: Pattern2 8
+    100736: Pattern2 80
+    100738: Pattern2 81
+    100740: Pattern2 82
+    100742: Pattern2 83
+    100744: Pattern2 84
+    100746: Pattern2 85
+    100748: Pattern2 86
+    100750: Pattern2 87
+    100752: Pattern2 9
+    100754: Pattern3
+    100756: Pattern3 1
+    100758: Pattern3 10
+    100760: Pattern3 11
+    100762: Pattern3 12
+    100764: Pattern3 13
+    100766: Pattern3 14
+    100768: Pattern3 15
+    100770: Pattern3 16
+    100772: Pattern3 17
+    100774: Pattern3 18
+    100776: Pattern3 19
+    100778: Pattern3 2
+    100780: Pattern3 20
+    100782: Pattern3 21
+    100784: Pattern3 22
+    100786: Pattern3 23
+    100788: Pattern3 24
+    100790: Pattern3 25
+    100792: Pattern3 26
+    100794: Pattern3 27
+    100796: Pattern3 28
+    100798: Pattern3 29
+    100800: Pattern3 3
+    100802: Pattern3 30
+    100804: Pattern3 31
+    100806: Pattern3 32
+    100808: Pattern3 33
+    100810: Pattern3 34
+    100812: Pattern3 35
+    100814: Pattern3 36
+    100816: Pattern3 37
+    100818: Pattern3 38
+    100820: Pattern3 39
+    100822: Pattern3 4
+    100824: Pattern3 40
+    100826: Pattern3 41
+    100828: Pattern3 42
+    100830: Pattern3 43
+    100832: Pattern3 44
+    100834: Pattern3 45
+    100836: Pattern3 46
+    100838: Pattern3 47
+    100840: Pattern3 48
+    100842: Pattern3 49
+    100844: Pattern3 5
+    100846: Pattern3 50
+    100848: Pattern3 51
+    100850: Pattern3 52
+    100852: Pattern3 53
+    100854: Pattern3 54
+    100856: Pattern3 55
+    100858: Pattern3 56
+    100860: Pattern3 57
+    100862: Pattern3 58
+    100864: Pattern3 59
+    100866: Pattern3 6
+    100868: Pattern3 60
+    100870: Pattern3 61
+    100872: Pattern3 62
+    100874: Pattern3 63
+    100876: Pattern3 64
+    100878: Pattern3 65
+    100880: Pattern3 66
+    100882: Pattern3 67
+    100884: Pattern3 68
+    100886: Pattern3 69
+    100888: Pattern3 7
+    100890: Pattern3 70
+    100892: Pattern3 71
+    100894: Pattern3 72
+    100896: Pattern3 73
+    100898: Pattern3 74
+    100900: Pattern3 75
+    100902: Pattern3 76
+    100904: Pattern3 77
+    100906: Pattern3 78
+    100908: Pattern3 79
+    100910: Pattern3 8
+    100912: Pattern3 80
+    100914: Pattern3 81
+    100916: Pattern3 82
+    100918: Pattern3 83
+    100920: Pattern3 84
+    100922: Pattern3 85
+    100924: Pattern3 86
+    100926: Pattern3 87
+    100928: Pattern3 9
+    100930: Pattern_Due
+    100932: Pattern_Due 1
+    100934: Pattern_Due 10
+    100936: Pattern_Due 100
+    100938: Pattern_Due 101
+    100940: Pattern_Due 102
+    100942: Pattern_Due 103
+    100944: Pattern_Due 104
+    100946: Pattern_Due 105
+    100948: Pattern_Due 106
+    100950: Pattern_Due 107
+    100952: Pattern_Due 108
+    100954: Pattern_Due 109
+    100956: Pattern_Due 11
+    100958: Pattern_Due 110
+    100960: Pattern_Due 111
+    100962: Pattern_Due 112
+    100964: Pattern_Due 113
+    100966: Pattern_Due 114
+    100968: Pattern_Due 115
+    100970: Pattern_Due 116
+    100972: Pattern_Due 117
+    100974: Pattern_Due 118
+    100976: Pattern_Due 119
+    100978: Pattern_Due 12
+    100980: Pattern_Due 120
+    100982: Pattern_Due 121
+    100984: Pattern_Due 122
+    100986: Pattern_Due 123
+    100988: Pattern_Due 124
+    100990: Pattern_Due 125
+    100992: Pattern_Due 126
+    100994: Pattern_Due 127
+    100996: Pattern_Due 128
+    100998: Pattern_Due 129
+    101000: Pattern_Due 13
+    101002: Pattern_Due 130
+    101004: Pattern_Due 131
+    101006: Pattern_Due 132
+    101008: Pattern_Due 133
+    101010: Pattern_Due 134
+    101012: Pattern_Due 135
+    101014: Pattern_Due 136
+    101016: Pattern_Due 137
+    101018: Pattern_Due 138
+    101020: Pattern_Due 139
+    101022: Pattern_Due 14
+    101024: Pattern_Due 140
+    101026: Pattern_Due 141
+    101028: Pattern_Due 142
+    101030: Pattern_Due 143
+    101032: Pattern_Due 144
+    101034: Pattern_Due 145
+    101036: Pattern_Due 146
+    101038: Pattern_Due 147
+    101040: Pattern_Due 148
+    101042: Pattern_Due 149
+    101044: Pattern_Due 15
+    101046: Pattern_Due 150
+    101048: Pattern_Due 151
+    101050: Pattern_Due 152
+    101052: Pattern_Due 153
+    101054: Pattern_Due 154
+    101056: Pattern_Due 155
+    101058: Pattern_Due 156
+    101060: Pattern_Due 157
+    101062: Pattern_Due 158
+    101064: Pattern_Due 159
+    101066: Pattern_Due 16
+    101068: Pattern_Due 160
+    101070: Pattern_Due 161
+    101072: Pattern_Due 162
+    101074: Pattern_Due 163
+    101076: Pattern_Due 164
+    101078: Pattern_Due 165
+    101080: Pattern_Due 166
+    101082: Pattern_Due 167
+    101084: Pattern_Due 168
+    101086: Pattern_Due 169
+    101088: Pattern_Due 17
+    101090: Pattern_Due 170
+    101092: Pattern_Due 171
+    101094: Pattern_Due 172
+    101096: Pattern_Due 173
+    101098: Pattern_Due 174
+    101100: Pattern_Due 175
+    101102: Pattern_Due 176
+    101104: Pattern_Due 177
+    101106: Pattern_Due 178
+    101108: Pattern_Due 179
+    101110: Pattern_Due 18
+    101112: Pattern_Due 180
+    101114: Pattern_Due 181
+    101116: Pattern_Due 182
+    101118: Pattern_Due 183
+    101120: Pattern_Due 184
+    101122: Pattern_Due 185
+    101124: Pattern_Due 186
+    101126: Pattern_Due 187
+    101128: Pattern_Due 188
+    101130: Pattern_Due 189
+    101132: Pattern_Due 19
+    101134: Pattern_Due 190
+    101136: Pattern_Due 191
+    101138: Pattern_Due 192
+    101140: Pattern_Due 193
+    101142: Pattern_Due 194
+    101144: Pattern_Due 195
+    101146: Pattern_Due 196
+    101148: Pattern_Due 197
+    101150: Pattern_Due 198
+    101152: Pattern_Due 199
+    101154: Pattern_Due 2
+    101156: Pattern_Due 20
+    101158: Pattern_Due 200
+    101160: Pattern_Due 201
+    101162: Pattern_Due 202
+    101164: Pattern_Due 203
+    101166: Pattern_Due 204
+    101168: Pattern_Due 205
+    101170: Pattern_Due 206
+    101172: Pattern_Due 207
+    101174: Pattern_Due 208
+    101176: Pattern_Due 209
+    101178: Pattern_Due 21
+    101180: Pattern_Due 210
+    101182: Pattern_Due 211
+    101184: Pattern_Due 212
+    101186: Pattern_Due 213
+    101188: Pattern_Due 214
+    101190: Pattern_Due 215
+    101192: Pattern_Due 216
+    101194: Pattern_Due 217
+    101196: Pattern_Due 218
+    101198: Pattern_Due 219
+    101200: Pattern_Due 22
+    101202: Pattern_Due 220
+    101204: Pattern_Due 221
+    101206: Pattern_Due 222
+    101208: Pattern_Due 223
+    101210: Pattern_Due 224
+    101212: Pattern_Due 225
+    101214: Pattern_Due 226
+    101216: Pattern_Due 227
+    101218: Pattern_Due 228
+    101220: Pattern_Due 229
+    101222: Pattern_Due 23
+    101224: Pattern_Due 230
+    101226: Pattern_Due 231
+    101228: Pattern_Due 232
+    101230: Pattern_Due 233
+    101232: Pattern_Due 234
+    101234: Pattern_Due 235
+    101236: Pattern_Due 236
+    101238: Pattern_Due 237
+    101240: Pattern_Due 238
+    101242: Pattern_Due 239
+    101244: Pattern_Due 24
+    101246: Pattern_Due 240
+    101248: Pattern_Due 241
+    101250: Pattern_Due 242
+    101252: Pattern_Due 243
+    101254: Pattern_Due 244
+    101256: Pattern_Due 245
+    101258: Pattern_Due 246
+    101260: Pattern_Due 247
+    101262: Pattern_Due 248
+    101264: Pattern_Due 249
+    101266: Pattern_Due 25
+    101268: Pattern_Due 250
+    101270: Pattern_Due 251
+    101272: Pattern_Due 252
+    101274: Pattern_Due 253
+    101276: Pattern_Due 254
+    101278: Pattern_Due 255
+    101280: Pattern_Due 256
+    101282: Pattern_Due 257
+    101284: Pattern_Due 258
+    101286: Pattern_Due 259
+    101288: Pattern_Due 26
+    101290: Pattern_Due 260
+    101292: Pattern_Due 261
+    101294: Pattern_Due 262
+    101296: Pattern_Due 263
+    101298: Pattern_Due 27
+    101300: Pattern_Due 28
+    101302: Pattern_Due 29
+    101304: Pattern_Due 3
+    101306: Pattern_Due 30
+    101308: Pattern_Due 31
+    101310: Pattern_Due 32
+    101312: Pattern_Due 33
+    101314: Pattern_Due 34
+    101316: Pattern_Due 35
+    101318: Pattern_Due 36
+    101320: Pattern_Due 37
+    101322: Pattern_Due 38
+    101324: Pattern_Due 39
+    101326: Pattern_Due 4
+    101328: Pattern_Due 40
+    101330: Pattern_Due 41
+    101332: Pattern_Due 42
+    101334: Pattern_Due 43
+    101336: Pattern_Due 44
+    101338: Pattern_Due 45
+    101340: Pattern_Due 46
+    101342: Pattern_Due 47
+    101344: Pattern_Due 48
+    101346: Pattern_Due 49
+    101348: Pattern_Due 5
+    101350: Pattern_Due 50
+    101352: Pattern_Due 51
+    101354: Pattern_Due 52
+    101356: Pattern_Due 53
+    101358: Pattern_Due 54
+    101360: Pattern_Due 55
+    101362: Pattern_Due 56
+    101364: Pattern_Due 57
+    101366: Pattern_Due 58
+    101368: Pattern_Due 59
+    101370: Pattern_Due 6
+    101372: Pattern_Due 60
+    101374: Pattern_Due 61
+    101376: Pattern_Due 62
+    101378: Pattern_Due 63
+    101380: Pattern_Due 64
+    101382: Pattern_Due 65
+    101384: Pattern_Due 66
+    101386: Pattern_Due 67
+    101388: Pattern_Due 68
+    101390: Pattern_Due 69
+    101392: Pattern_Due 7
+    101394: Pattern_Due 70
+    101396: Pattern_Due 71
+    101398: Pattern_Due 72
+    101400: Pattern_Due 73
+    101402: Pattern_Due 74
+    101404: Pattern_Due 75
+    101406: Pattern_Due 76
+    101408: Pattern_Due 77
+    101410: Pattern_Due 78
+    101412: Pattern_Due 79
+    101414: Pattern_Due 8
+    101416: Pattern_Due 80
+    101418: Pattern_Due 81
+    101420: Pattern_Due 82
+    101422: Pattern_Due 83
+    101424: Pattern_Due 84
+    101426: Pattern_Due 85
+    101428: Pattern_Due 86
+    101430: Pattern_Due 87
+    101432: Pattern_Due 88
+    101434: Pattern_Due 89
+    101436: Pattern_Due 9
+    101438: Pattern_Due 90
+    101440: Pattern_Due 91
+    101442: Pattern_Due 92
+    101444: Pattern_Due 93
+    101446: Pattern_Due 94
+    101448: Pattern_Due 95
+    101450: Pattern_Due 96
+    101452: Pattern_Due 97
+    101454: Pattern_Due 98
+    101456: Pattern_Due 99
+    101458: Pattern_Uno
+    101460: Pattern_Uno 1
+    101462: Pattern_Uno 10
+    101464: Pattern_Uno 100
+    101466: Pattern_Uno 101
+    101468: Pattern_Uno 102
+    101470: Pattern_Uno 103
+    101472: Pattern_Uno 104
+    101474: Pattern_Uno 105
+    101476: Pattern_Uno 106
+    101478: Pattern_Uno 107
+    101480: Pattern_Uno 108
+    101482: Pattern_Uno 109
+    101484: Pattern_Uno 11
+    101486: Pattern_Uno 110
+    101488: Pattern_Uno 111
+    101490: Pattern_Uno 112
+    101492: Pattern_Uno 113
+    101494: Pattern_Uno 114
+    101496: Pattern_Uno 115
+    101498: Pattern_Uno 116
+    101500: Pattern_Uno 117
+    101502: Pattern_Uno 118
+    101504: Pattern_Uno 119
+    101506: Pattern_Uno 12
+    101508: Pattern_Uno 120
+    101510: Pattern_Uno 121
+    101512: Pattern_Uno 122
+    101514: Pattern_Uno 123
+    101516: Pattern_Uno 124
+    101518: Pattern_Uno 125
+    101520: Pattern_Uno 126
+    101522: Pattern_Uno 127
+    101524: Pattern_Uno 128
+    101526: Pattern_Uno 129
+    101528: Pattern_Uno 13
+    101530: Pattern_Uno 130
+    101532: Pattern_Uno 131
+    101534: Pattern_Uno 132
+    101536: Pattern_Uno 133
+    101538: Pattern_Uno 134
+    101540: Pattern_Uno 135
+    101542: Pattern_Uno 136
+    101544: Pattern_Uno 137
+    101546: Pattern_Uno 138
+    101548: Pattern_Uno 139
+    101550: Pattern_Uno 14
+    101552: Pattern_Uno 140
+    101554: Pattern_Uno 141
+    101556: Pattern_Uno 142
+    101558: Pattern_Uno 143
+    101560: Pattern_Uno 144
+    101562: Pattern_Uno 145
+    101564: Pattern_Uno 146
+    101566: Pattern_Uno 147
+    101568: Pattern_Uno 148
+    101570: Pattern_Uno 149
+    101572: Pattern_Uno 15
+    101574: Pattern_Uno 150
+    101576: Pattern_Uno 151
+    101578: Pattern_Uno 152
+    101580: Pattern_Uno 153
+    101582: Pattern_Uno 154
+    101584: Pattern_Uno 155
+    101586: Pattern_Uno 156
+    101588: Pattern_Uno 157
+    101590: Pattern_Uno 158
+    101592: Pattern_Uno 159
+    101594: Pattern_Uno 16
+    101596: Pattern_Uno 160
+    101598: Pattern_Uno 161
+    101600: Pattern_Uno 162
+    101602: Pattern_Uno 163
+    101604: Pattern_Uno 164
+    101606: Pattern_Uno 165
+    101608: Pattern_Uno 166
+    101610: Pattern_Uno 167
+    101612: Pattern_Uno 168
+    101614: Pattern_Uno 169
+    101616: Pattern_Uno 17
+    101618: Pattern_Uno 170
+    101620: Pattern_Uno 171
+    101622: Pattern_Uno 172
+    101624: Pattern_Uno 173
+    101626: Pattern_Uno 174
+    101628: Pattern_Uno 175
+    101630: Pattern_Uno 176
+    101632: Pattern_Uno 177
+    101634: Pattern_Uno 178
+    101636: Pattern_Uno 179
+    101638: Pattern_Uno 18
+    101640: Pattern_Uno 180
+    101642: Pattern_Uno 181
+    101644: Pattern_Uno 182
+    101646: Pattern_Uno 183
+    101648: Pattern_Uno 184
+    101650: Pattern_Uno 185
+    101652: Pattern_Uno 186
+    101654: Pattern_Uno 187
+    101656: Pattern_Uno 188
+    101658: Pattern_Uno 189
+    101660: Pattern_Uno 19
+    101662: Pattern_Uno 190
+    101664: Pattern_Uno 191
+    101666: Pattern_Uno 192
+    101668: Pattern_Uno 193
+    101670: Pattern_Uno 194
+    101672: Pattern_Uno 195
+    101674: Pattern_Uno 196
+    101676: Pattern_Uno 197
+    101678: Pattern_Uno 198
+    101680: Pattern_Uno 199
+    101682: Pattern_Uno 2
+    101684: Pattern_Uno 20
+    101686: Pattern_Uno 200
+    101688: Pattern_Uno 201
+    101690: Pattern_Uno 202
+    101692: Pattern_Uno 203
+    101694: Pattern_Uno 204
+    101696: Pattern_Uno 205
+    101698: Pattern_Uno 206
+    101700: Pattern_Uno 207
+    101702: Pattern_Uno 208
+    101704: Pattern_Uno 209
+    101706: Pattern_Uno 21
+    101708: Pattern_Uno 210
+    101710: Pattern_Uno 211
+    101712: Pattern_Uno 212
+    101714: Pattern_Uno 213
+    101716: Pattern_Uno 214
+    101718: Pattern_Uno 215
+    101720: Pattern_Uno 216
+    101722: Pattern_Uno 217
+    101724: Pattern_Uno 218
+    101726: Pattern_Uno 219
+    101728: Pattern_Uno 22
+    101730: Pattern_Uno 220
+    101732: Pattern_Uno 221
+    101734: Pattern_Uno 222
+    101736: Pattern_Uno 223
+    101738: Pattern_Uno 224
+    101740: Pattern_Uno 225
+    101742: Pattern_Uno 226
+    101744: Pattern_Uno 227
+    101746: Pattern_Uno 228
+    101748: Pattern_Uno 229
+    101750: Pattern_Uno 23
+    101752: Pattern_Uno 230
+    101754: Pattern_Uno 231
+    101756: Pattern_Uno 232
+    101758: Pattern_Uno 233
+    101760: Pattern_Uno 234
+    101762: Pattern_Uno 235
+    101764: Pattern_Uno 236
+    101766: Pattern_Uno 237
+    101768: Pattern_Uno 238
+    101770: Pattern_Uno 239
+    101772: Pattern_Uno 24
+    101774: Pattern_Uno 240
+    101776: Pattern_Uno 241
+    101778: Pattern_Uno 242
+    101780: Pattern_Uno 243
+    101782: Pattern_Uno 244
+    101784: Pattern_Uno 245
+    101786: Pattern_Uno 246
+    101788: Pattern_Uno 247
+    101790: Pattern_Uno 248
+    101792: Pattern_Uno 249
+    101794: Pattern_Uno 25
+    101796: Pattern_Uno 250
+    101798: Pattern_Uno 251
+    101800: Pattern_Uno 252
+    101802: Pattern_Uno 253
+    101804: Pattern_Uno 254
+    101806: Pattern_Uno 255
+    101808: Pattern_Uno 26
+    101810: Pattern_Uno 27
+    101812: Pattern_Uno 28
+    101814: Pattern_Uno 29
+    101816: Pattern_Uno 3
+    101818: Pattern_Uno 30
+    101820: Pattern_Uno 31
+    101822: Pattern_Uno 32
+    101824: Pattern_Uno 33
+    101826: Pattern_Uno 34
+    101828: Pattern_Uno 35
+    101830: Pattern_Uno 36
+    101832: Pattern_Uno 37
+    101834: Pattern_Uno 38
+    101836: Pattern_Uno 39
+    101838: Pattern_Uno 4
+    101840: Pattern_Uno 40
+    101842: Pattern_Uno 41
+    101844: Pattern_Uno 42
+    101846: Pattern_Uno 43
+    101848: Pattern_Uno 44
+    101850: Pattern_Uno 45
+    101852: Pattern_Uno 46
+    101854: Pattern_Uno 47
+    101856: Pattern_Uno 48
+    101858: Pattern_Uno 49
+    101860: Pattern_Uno 5
+    101862: Pattern_Uno 50
+    101864: Pattern_Uno 51
+    101866: Pattern_Uno 52
+    101868: Pattern_Uno 53
+    101870: Pattern_Uno 54
+    101872: Pattern_Uno 55
+    101874: Pattern_Uno 56
+    101876: Pattern_Uno 57
+    101878: Pattern_Uno 58
+    101880: Pattern_Uno 59
+    101882: Pattern_Uno 6
+    101884: Pattern_Uno 60
+    101886: Pattern_Uno 61
+    101888: Pattern_Uno 62
+    101890: Pattern_Uno 63
+    101892: Pattern_Uno 64
+    101894: Pattern_Uno 65
+    101896: Pattern_Uno 66
+    101898: Pattern_Uno 67
+    101900: Pattern_Uno 68
+    101902: Pattern_Uno 69
+    101904: Pattern_Uno 7
+    101906: Pattern_Uno 70
+    101908: Pattern_Uno 71
+    101910: Pattern_Uno 72
+    101912: Pattern_Uno 73
+    101914: Pattern_Uno 74
+    101916: Pattern_Uno 75
+    101918: Pattern_Uno 76
+    101920: Pattern_Uno 77
+    101922: Pattern_Uno 78
+    101924: Pattern_Uno 79
+    101926: Pattern_Uno 8
+    101928: Pattern_Uno 80
+    101930: Pattern_Uno 81
+    101932: Pattern_Uno 82
+    101934: Pattern_Uno 83
+    101936: Pattern_Uno 84
+    101938: Pattern_Uno 85
+    101940: Pattern_Uno 86
+    101942: Pattern_Uno 87
+    101944: Pattern_Uno 88
+    101946: Pattern_Uno 89
+    101948: Pattern_Uno 9
+    101950: Pattern_Uno 90
+    101952: Pattern_Uno 91
+    101954: Pattern_Uno 92
+    101956: Pattern_Uno 93
+    101958: Pattern_Uno 94
+    101960: Pattern_Uno 95
+    101962: Pattern_Uno 96
+    101964: Pattern_Uno 97
+    101966: Pattern_Uno 98
+    101968: Pattern_Uno 99
+    101970: Slope
+    101972: Slope 1
+    101974: Slope 10
+    101976: Slope 11
+    101978: Slope 12
+    101980: Slope 13
+    101982: Slope 14
+    101984: Slope 15
+    101986: Slope 16
+    101988: Slope 17
+    101990: Slope 18
+    101992: Slope 19
+    101994: Slope 2
+    101996: Slope 20
+    101998: Slope 21
+    102000: Slope 22
+    102002: Slope 23
+    102004: Slope 24
+    102006: Slope 25
+    102008: Slope 26
+    102010: Slope 27
+    102012: Slope 28
+    102014: Slope 29
+    102016: Slope 3
+    102018: Slope 30
+    102020: Slope 31
+    102022: Slope 32
+    102024: Slope 33
+    102026: Slope 34
+    102028: Slope 35
+    102030: Slope 36
+    102032: Slope 37
+    102034: Slope 38
+    102036: Slope 39
+    102038: Slope 4
+    102040: Slope 5
+    102042: Slope 6
+    102044: Slope 7
+    102046: Slope 8
+    102048: Slope 9
+    102050: Under_Slope
+    102052: Under_Slope 1
+    102054: Under_Slope 10
+    102056: Under_Slope 11
+    102058: Under_Slope 12
+    102060: Under_Slope 13
+    102062: Under_Slope 14
+    102064: Under_Slope 15
+    102066: Under_Slope 16
+    102068: Under_Slope 17
+    102070: Under_Slope 18
+    102072: Under_Slope 19
+    102074: Under_Slope 2
+    102076: Under_Slope 20
+    102078: Under_Slope 21
+    102080: Under_Slope 22
+    102082: Under_Slope 23
+    102084: Under_Slope 24
+    102086: Under_Slope 25
+    102088: Under_Slope 26
+    102090: Under_Slope 27
+    102092: Under_Slope 28
+    102094: Under_Slope 29
+    102096: Under_Slope 3
+    102098: Under_Slope 30
+    102100: Under_Slope 31
+    102102: Under_Slope 32
+    102104: Under_Slope 33
+    102106: Under_Slope 34
+    102108: Under_Slope 35
+    102110: Under_Slope 36
+    102112: Under_Slope 37
+    102114: Under_Slope 38
+    102116: Under_Slope 39
+    102118: Under_Slope 4
+    102120: Under_Slope 40
+    102122: Under_Slope 41
+    102124: Under_Slope 42
+    102126: Under_Slope 43
+    102128: Under_Slope 44
+    102130: Under_Slope 45
+    102132: Under_Slope 46
+    102134: Under_Slope 47
+    102136: Under_Slope 5
+    102138: Under_Slope 6
+    102140: Under_Slope 7
+    102142: Under_Slope 8
+    102144: Under_Slope 9
+    102146: Wall_East
+    102148: Wall_North
+    102150: Wall_South
+    102152: Wall_West
+    102154: Outside_corner4
+    102156: Glass
+    102158: Glass 1
+    102160: Glass 2
+    102162: Glass 3
+    102164: Glass_inverse
+    102166: Glass_inverse 1
+    102168: Glass_inverse 2
+    102170: Glass_inverse 3
+    102172: Glass 4
+    102174: Glass 5
+    102176: Glass 6
+    102178: Glass 7
+    102180: Outside_corner 1
+    102182: Outside_corner 2
+    102184: Outside_corner 3
+    102186: Top_Black
+    102188: Top_Black 1
+    102190: Top_Black 2
+    102192: Top_Black 3
+    102194: Top_Black 4
+    102196: Top_Black 5
+    102198: Top_Black 6
+    102200: Top_Black 7
+    400000: Corner_Slope
+    400002: Corner_Slope 1
+    400004: Corner_Slope 10
+    400006: Corner_Slope 11
+    400008: Corner_Slope 12
+    400010: Corner_Slope 13
+    400012: Corner_Slope 14
+    400014: Corner_Slope 15
+    400016: Corner_Slope 16
+    400018: Corner_Slope 17
+    400020: Corner_Slope 18
+    400022: Corner_Slope 19
+    400024: Corner_Slope 2
+    400026: Corner_Slope 20
+    400028: Corner_Slope 21
+    400030: Corner_Slope 22
+    400032: Corner_Slope 23
+    400034: Corner_Slope 24
+    400036: Corner_Slope 25
+    400038: Corner_Slope 26
+    400040: Corner_Slope 27
+    400042: Corner_Slope 28
+    400044: Corner_Slope 29
+    400046: Corner_Slope 3
+    400048: Corner_Slope 30
+    400050: Corner_Slope 31
+    400052: Corner_Slope 32
+    400054: Corner_Slope 33
+    400056: Corner_Slope 34
+    400058: Corner_Slope 35
+    400060: Corner_Slope 36
+    400062: Corner_Slope 37
+    400064: Corner_Slope 38
+    400066: Corner_Slope 39
+    400068: Corner_Slope 4
+    400070: Corner_Slope 5
+    400072: Corner_Slope 6
+    400074: Corner_Slope 7
+    400076: Corner_Slope 8
+    400078: Corner_Slope 9
+    400080: Edge_Slope
+    400082: Edge_Slope 1
+    400084: Edge_Slope 10
+    400086: Edge_Slope 11
+    400088: Edge_Slope 12
+    400090: Edge_Slope 13
+    400092: Edge_Slope 14
+    400094: Edge_Slope 15
+    400096: Edge_Slope 16
+    400098: Edge_Slope 17
+    400100: Edge_Slope 18
+    400102: Edge_Slope 19
+    400104: Edge_Slope 2
+    400106: Edge_Slope 20
+    400108: Edge_Slope 21
+    400110: Edge_Slope 22
+    400112: Edge_Slope 23
+    400114: Edge_Slope 24
+    400116: Edge_Slope 25
+    400118: Edge_Slope 26
+    400120: Edge_Slope 27
+    400122: Edge_Slope 28
+    400124: Edge_Slope 29
+    400126: Edge_Slope 3
+    400128: Edge_Slope 30
+    400130: Edge_Slope 31
+    400132: Edge_Slope 32
+    400134: Edge_Slope 33
+    400136: Edge_Slope 34
+    400138: Edge_Slope 35
+    400140: Edge_Slope 36
+    400142: Edge_Slope 37
+    400144: Edge_Slope 38
+    400146: Edge_Slope 39
+    400148: Edge_Slope 4
+    400150: Edge_Slope 5
+    400152: Edge_Slope 6
+    400154: Edge_Slope 7
+    400156: Edge_Slope 8
+    400158: Edge_Slope 9
+    400160: Floors
+    400162: Ground_N
+    400164: Ground_N1
+    400166: Ground_N10
+    400168: Ground_N2
+    400170: Ground_N3
+    400172: Ground_N4
+    400174: Ground_N5
+    400176: Ground_N6
+    400178: Ground_N7
+    400180: Ground_N8
+    400182: Ground_N9
+    400184: Half1
+    400186: Half1 1
+    400188: Half1 2
+    400190: Half1 3
+    400192: Half2
+    400194: Half2 1
+    400196: Half2 2
+    400198: Half2 3
+    400200: Half_SW
+    400202: Half_SW 1
+    400204: Half_SW 2
+    400206: Half_SW 3
+    400208: Half_SW 4
+    400210: Half_SW 5
+    400212: Half_SW 6
+    400214: Half_SW 7
+    400216: //RootNode
+    400218: N
+    400220: N 1
+    400222: N 2
+    400224: N 3
+    400226: N 4
+    400228: N 5
+    400230: N 6
+    400232: N 7
+    400234: N_1
+    400236: N_1 1
+    400238: N_1 2
+    400240: N_1 3
+    400242: N_1 4
+    400244: N_1 5
+    400246: N_1 6
+    400248: N_1 7
+    400250: N_10
+    400252: N_10 1
+    400254: N_10 2
+    400256: N_10 3
+    400258: N_10 4
+    400260: N_10 5
+    400262: N_10 6
+    400264: N_10 7
+    400266: N_2
+    400268: N_2 1
+    400270: N_2 2
+    400272: N_2 3
+    400274: N_2 4
+    400276: N_2 5
+    400278: N_2 6
+    400280: N_2 7
+    400282: N_3
+    400284: N_3 1
+    400286: N_3 2
+    400288: N_3 3
+    400290: N_3 4
+    400292: N_3 5
+    400294: N_3 6
+    400296: N_3 7
+    400298: N_4
+    400300: N_4 1
+    400302: N_4 2
+    400304: N_4 3
+    400306: N_4 4
+    400308: N_4 5
+    400310: N_4 6
+    400312: N_4 7
+    400314: N_5
+    400316: N_5 1
+    400318: N_5 2
+    400320: N_5 3
+    400322: N_5 4
+    400324: N_5 5
+    400326: N_5 6
+    400328: N_5 7
+    400330: N_6
+    400332: N_6 1
+    400334: N_6 2
+    400336: N_6 3
+    400338: N_6 4
+    400340: N_6 5
+    400342: N_6 6
+    400344: N_6 7
+    400346: N_7
+    400348: N_7 1
+    400350: N_7 2
+    400352: N_7 3
+    400354: N_7 4
+    400356: N_7 5
+    400358: N_7 6
+    400360: N_7 7
+    400362: N_8
+    400364: N_8 1
+    400366: N_8 2
+    400368: N_8 3
+    400370: N_8 4
+    400372: N_8 5
+    400374: N_8 6
+    400376: N_8 7
+    400378: N_9
+    400380: N_9 1
+    400382: N_9 2
+    400384: N_9 3
+    400386: N_9 4
+    400388: N_9 5
+    400390: N_9 6
+    400392: N_9 7
+    400394: Outside_corner
+    400396: Outside_corner1
+    400398: Outside_corner2
+    400400: Outside_corner3
+    400402: Pattern
+    400404: Pattern 1
+    400406: Pattern 10
+    400408: Pattern 11
+    400410: Pattern 12
+    400412: Pattern 13
+    400414: Pattern 14
+    400416: Pattern 15
+    400418: Pattern 16
+    400420: Pattern 17
+    400422: Pattern 18
+    400424: Pattern 19
+    400426: Pattern 2
+    400428: Pattern 20
+    400430: Pattern 21
+    400432: Pattern 22
+    400434: Pattern 23
+    400436: Pattern 24
+    400438: Pattern 25
+    400440: Pattern 26
+    400442: Pattern 27
+    400444: Pattern 28
+    400446: Pattern 29
+    400448: Pattern 3
+    400450: Pattern 30
+    400452: Pattern 31
+    400454: Pattern 32
+    400456: Pattern 33
+    400458: Pattern 34
+    400460: Pattern 35
+    400462: Pattern 36
+    400464: Pattern 37
+    400466: Pattern 38
+    400468: Pattern 39
+    400470: Pattern 4
+    400472: Pattern 40
+    400474: Pattern 41
+    400476: Pattern 42
+    400478: Pattern 43
+    400480: Pattern 44
+    400482: Pattern 45
+    400484: Pattern 46
+    400486: Pattern 47
+    400488: Pattern 48
+    400490: Pattern 49
+    400492: Pattern 5
+    400494: Pattern 50
+    400496: Pattern 51
+    400498: Pattern 52
+    400500: Pattern 53
+    400502: Pattern 54
+    400504: Pattern 55
+    400506: Pattern 56
+    400508: Pattern 57
+    400510: Pattern 58
+    400512: Pattern 59
+    400514: Pattern 6
+    400516: Pattern 60
+    400518: Pattern 61
+    400520: Pattern 62
+    400522: Pattern 63
+    400524: Pattern 64
+    400526: Pattern 65
+    400528: Pattern 66
+    400530: Pattern 67
+    400532: Pattern 68
+    400534: Pattern 69
+    400536: Pattern 7
+    400538: Pattern 70
+    400540: Pattern 71
+    400542: Pattern 72
+    400544: Pattern 73
+    400546: Pattern 74
+    400548: Pattern 75
+    400550: Pattern 76
+    400552: Pattern 77
+    400554: Pattern 78
+    400556: Pattern 79
+    400558: Pattern 8
+    400560: Pattern 80
+    400562: Pattern 81
+    400564: Pattern 82
+    400566: Pattern 83
+    400568: Pattern 84
+    400570: Pattern 85
+    400572: Pattern 86
+    400574: Pattern 87
+    400576: Pattern 9
+    400578: Pattern2
+    400580: Pattern2 1
+    400582: Pattern2 10
+    400584: Pattern2 11
+    400586: Pattern2 12
+    400588: Pattern2 13
+    400590: Pattern2 14
+    400592: Pattern2 15
+    400594: Pattern2 16
+    400596: Pattern2 17
+    400598: Pattern2 18
+    400600: Pattern2 19
+    400602: Pattern2 2
+    400604: Pattern2 20
+    400606: Pattern2 21
+    400608: Pattern2 22
+    400610: Pattern2 23
+    400612: Pattern2 24
+    400614: Pattern2 25
+    400616: Pattern2 26
+    400618: Pattern2 27
+    400620: Pattern2 28
+    400622: Pattern2 29
+    400624: Pattern2 3
+    400626: Pattern2 30
+    400628: Pattern2 31
+    400630: Pattern2 32
+    400632: Pattern2 33
+    400634: Pattern2 34
+    400636: Pattern2 35
+    400638: Pattern2 36
+    400640: Pattern2 37
+    400642: Pattern2 38
+    400644: Pattern2 39
+    400646: Pattern2 4
+    400648: Pattern2 40
+    400650: Pattern2 41
+    400652: Pattern2 42
+    400654: Pattern2 43
+    400656: Pattern2 44
+    400658: Pattern2 45
+    400660: Pattern2 46
+    400662: Pattern2 47
+    400664: Pattern2 48
+    400666: Pattern2 49
+    400668: Pattern2 5
+    400670: Pattern2 50
+    400672: Pattern2 51
+    400674: Pattern2 52
+    400676: Pattern2 53
+    400678: Pattern2 54
+    400680: Pattern2 55
+    400682: Pattern2 56
+    400684: Pattern2 57
+    400686: Pattern2 58
+    400688: Pattern2 59
+    400690: Pattern2 6
+    400692: Pattern2 60
+    400694: Pattern2 61
+    400696: Pattern2 62
+    400698: Pattern2 63
+    400700: Pattern2 64
+    400702: Pattern2 65
+    400704: Pattern2 66
+    400706: Pattern2 67
+    400708: Pattern2 68
+    400710: Pattern2 69
+    400712: Pattern2 7
+    400714: Pattern2 70
+    400716: Pattern2 71
+    400718: Pattern2 72
+    400720: Pattern2 73
+    400722: Pattern2 74
+    400724: Pattern2 75
+    400726: Pattern2 76
+    400728: Pattern2 77
+    400730: Pattern2 78
+    400732: Pattern2 79
+    400734: Pattern2 8
+    400736: Pattern2 80
+    400738: Pattern2 81
+    400740: Pattern2 82
+    400742: Pattern2 83
+    400744: Pattern2 84
+    400746: Pattern2 85
+    400748: Pattern2 86
+    400750: Pattern2 87
+    400752: Pattern2 9
+    400754: Pattern3
+    400756: Pattern3 1
+    400758: Pattern3 10
+    400760: Pattern3 11
+    400762: Pattern3 12
+    400764: Pattern3 13
+    400766: Pattern3 14
+    400768: Pattern3 15
+    400770: Pattern3 16
+    400772: Pattern3 17
+    400774: Pattern3 18
+    400776: Pattern3 19
+    400778: Pattern3 2
+    400780: Pattern3 20
+    400782: Pattern3 21
+    400784: Pattern3 22
+    400786: Pattern3 23
+    400788: Pattern3 24
+    400790: Pattern3 25
+    400792: Pattern3 26
+    400794: Pattern3 27
+    400796: Pattern3 28
+    400798: Pattern3 29
+    400800: Pattern3 3
+    400802: Pattern3 30
+    400804: Pattern3 31
+    400806: Pattern3 32
+    400808: Pattern3 33
+    400810: Pattern3 34
+    400812: Pattern3 35
+    400814: Pattern3 36
+    400816: Pattern3 37
+    400818: Pattern3 38
+    400820: Pattern3 39
+    400822: Pattern3 4
+    400824: Pattern3 40
+    400826: Pattern3 41
+    400828: Pattern3 42
+    400830: Pattern3 43
+    400832: Pattern3 44
+    400834: Pattern3 45
+    400836: Pattern3 46
+    400838: Pattern3 47
+    400840: Pattern3 48
+    400842: Pattern3 49
+    400844: Pattern3 5
+    400846: Pattern3 50
+    400848: Pattern3 51
+    400850: Pattern3 52
+    400852: Pattern3 53
+    400854: Pattern3 54
+    400856: Pattern3 55
+    400858: Pattern3 56
+    400860: Pattern3 57
+    400862: Pattern3 58
+    400864: Pattern3 59
+    400866: Pattern3 6
+    400868: Pattern3 60
+    400870: Pattern3 61
+    400872: Pattern3 62
+    400874: Pattern3 63
+    400876: Pattern3 64
+    400878: Pattern3 65
+    400880: Pattern3 66
+    400882: Pattern3 67
+    400884: Pattern3 68
+    400886: Pattern3 69
+    400888: Pattern3 7
+    400890: Pattern3 70
+    400892: Pattern3 71
+    400894: Pattern3 72
+    400896: Pattern3 73
+    400898: Pattern3 74
+    400900: Pattern3 75
+    400902: Pattern3 76
+    400904: Pattern3 77
+    400906: Pattern3 78
+    400908: Pattern3 79
+    400910: Pattern3 8
+    400912: Pattern3 80
+    400914: Pattern3 81
+    400916: Pattern3 82
+    400918: Pattern3 83
+    400920: Pattern3 84
+    400922: Pattern3 85
+    400924: Pattern3 86
+    400926: Pattern3 87
+    400928: Pattern3 9
+    400930: Pattern_Due
+    400932: Pattern_Due 1
+    400934: Pattern_Due 10
+    400936: Pattern_Due 100
+    400938: Pattern_Due 101
+    400940: Pattern_Due 102
+    400942: Pattern_Due 103
+    400944: Pattern_Due 104
+    400946: Pattern_Due 105
+    400948: Pattern_Due 106
+    400950: Pattern_Due 107
+    400952: Pattern_Due 108
+    400954: Pattern_Due 109
+    400956: Pattern_Due 11
+    400958: Pattern_Due 110
+    400960: Pattern_Due 111
+    400962: Pattern_Due 112
+    400964: Pattern_Due 113
+    400966: Pattern_Due 114
+    400968: Pattern_Due 115
+    400970: Pattern_Due 116
+    400972: Pattern_Due 117
+    400974: Pattern_Due 118
+    400976: Pattern_Due 119
+    400978: Pattern_Due 12
+    400980: Pattern_Due 120
+    400982: Pattern_Due 121
+    400984: Pattern_Due 122
+    400986: Pattern_Due 123
+    400988: Pattern_Due 124
+    400990: Pattern_Due 125
+    400992: Pattern_Due 126
+    400994: Pattern_Due 127
+    400996: Pattern_Due 128
+    400998: Pattern_Due 129
+    401000: Pattern_Due 13
+    401002: Pattern_Due 130
+    401004: Pattern_Due 131
+    401006: Pattern_Due 132
+    401008: Pattern_Due 133
+    401010: Pattern_Due 134
+    401012: Pattern_Due 135
+    401014: Pattern_Due 136
+    401016: Pattern_Due 137
+    401018: Pattern_Due 138
+    401020: Pattern_Due 139
+    401022: Pattern_Due 14
+    401024: Pattern_Due 140
+    401026: Pattern_Due 141
+    401028: Pattern_Due 142
+    401030: Pattern_Due 143
+    401032: Pattern_Due 144
+    401034: Pattern_Due 145
+    401036: Pattern_Due 146
+    401038: Pattern_Due 147
+    401040: Pattern_Due 148
+    401042: Pattern_Due 149
+    401044: Pattern_Due 15
+    401046: Pattern_Due 150
+    401048: Pattern_Due 151
+    401050: Pattern_Due 152
+    401052: Pattern_Due 153
+    401054: Pattern_Due 154
+    401056: Pattern_Due 155
+    401058: Pattern_Due 156
+    401060: Pattern_Due 157
+    401062: Pattern_Due 158
+    401064: Pattern_Due 159
+    401066: Pattern_Due 16
+    401068: Pattern_Due 160
+    401070: Pattern_Due 161
+    401072: Pattern_Due 162
+    401074: Pattern_Due 163
+    401076: Pattern_Due 164
+    401078: Pattern_Due 165
+    401080: Pattern_Due 166
+    401082: Pattern_Due 167
+    401084: Pattern_Due 168
+    401086: Pattern_Due 169
+    401088: Pattern_Due 17
+    401090: Pattern_Due 170
+    401092: Pattern_Due 171
+    401094: Pattern_Due 172
+    401096: Pattern_Due 173
+    401098: Pattern_Due 174
+    401100: Pattern_Due 175
+    401102: Pattern_Due 176
+    401104: Pattern_Due 177
+    401106: Pattern_Due 178
+    401108: Pattern_Due 179
+    401110: Pattern_Due 18
+    401112: Pattern_Due 180
+    401114: Pattern_Due 181
+    401116: Pattern_Due 182
+    401118: Pattern_Due 183
+    401120: Pattern_Due 184
+    401122: Pattern_Due 185
+    401124: Pattern_Due 186
+    401126: Pattern_Due 187
+    401128: Pattern_Due 188
+    401130: Pattern_Due 189
+    401132: Pattern_Due 19
+    401134: Pattern_Due 190
+    401136: Pattern_Due 191
+    401138: Pattern_Due 192
+    401140: Pattern_Due 193
+    401142: Pattern_Due 194
+    401144: Pattern_Due 195
+    401146: Pattern_Due 196
+    401148: Pattern_Due 197
+    401150: Pattern_Due 198
+    401152: Pattern_Due 199
+    401154: Pattern_Due 2
+    401156: Pattern_Due 20
+    401158: Pattern_Due 200
+    401160: Pattern_Due 201
+    401162: Pattern_Due 202
+    401164: Pattern_Due 203
+    401166: Pattern_Due 204
+    401168: Pattern_Due 205
+    401170: Pattern_Due 206
+    401172: Pattern_Due 207
+    401174: Pattern_Due 208
+    401176: Pattern_Due 209
+    401178: Pattern_Due 21
+    401180: Pattern_Due 210
+    401182: Pattern_Due 211
+    401184: Pattern_Due 212
+    401186: Pattern_Due 213
+    401188: Pattern_Due 214
+    401190: Pattern_Due 215
+    401192: Pattern_Due 216
+    401194: Pattern_Due 217
+    401196: Pattern_Due 218
+    401198: Pattern_Due 219
+    401200: Pattern_Due 22
+    401202: Pattern_Due 220
+    401204: Pattern_Due 221
+    401206: Pattern_Due 222
+    401208: Pattern_Due 223
+    401210: Pattern_Due 224
+    401212: Pattern_Due 225
+    401214: Pattern_Due 226
+    401216: Pattern_Due 227
+    401218: Pattern_Due 228
+    401220: Pattern_Due 229
+    401222: Pattern_Due 23
+    401224: Pattern_Due 230
+    401226: Pattern_Due 231
+    401228: Pattern_Due 232
+    401230: Pattern_Due 233
+    401232: Pattern_Due 234
+    401234: Pattern_Due 235
+    401236: Pattern_Due 236
+    401238: Pattern_Due 237
+    401240: Pattern_Due 238
+    401242: Pattern_Due 239
+    401244: Pattern_Due 24
+    401246: Pattern_Due 240
+    401248: Pattern_Due 241
+    401250: Pattern_Due 242
+    401252: Pattern_Due 243
+    401254: Pattern_Due 244
+    401256: Pattern_Due 245
+    401258: Pattern_Due 246
+    401260: Pattern_Due 247
+    401262: Pattern_Due 248
+    401264: Pattern_Due 249
+    401266: Pattern_Due 25
+    401268: Pattern_Due 250
+    401270: Pattern_Due 251
+    401272: Pattern_Due 252
+    401274: Pattern_Due 253
+    401276: Pattern_Due 254
+    401278: Pattern_Due 255
+    401280: Pattern_Due 256
+    401282: Pattern_Due 257
+    401284: Pattern_Due 258
+    401286: Pattern_Due 259
+    401288: Pattern_Due 26
+    401290: Pattern_Due 260
+    401292: Pattern_Due 261
+    401294: Pattern_Due 262
+    401296: Pattern_Due 263
+    401298: Pattern_Due 27
+    401300: Pattern_Due 28
+    401302: Pattern_Due 29
+    401304: Pattern_Due 3
+    401306: Pattern_Due 30
+    401308: Pattern_Due 31
+    401310: Pattern_Due 32
+    401312: Pattern_Due 33
+    401314: Pattern_Due 34
+    401316: Pattern_Due 35
+    401318: Pattern_Due 36
+    401320: Pattern_Due 37
+    401322: Pattern_Due 38
+    401324: Pattern_Due 39
+    401326: Pattern_Due 4
+    401328: Pattern_Due 40
+    401330: Pattern_Due 41
+    401332: Pattern_Due 42
+    401334: Pattern_Due 43
+    401336: Pattern_Due 44
+    401338: Pattern_Due 45
+    401340: Pattern_Due 46
+    401342: Pattern_Due 47
+    401344: Pattern_Due 48
+    401346: Pattern_Due 49
+    401348: Pattern_Due 5
+    401350: Pattern_Due 50
+    401352: Pattern_Due 51
+    401354: Pattern_Due 52
+    401356: Pattern_Due 53
+    401358: Pattern_Due 54
+    401360: Pattern_Due 55
+    401362: Pattern_Due 56
+    401364: Pattern_Due 57
+    401366: Pattern_Due 58
+    401368: Pattern_Due 59
+    401370: Pattern_Due 6
+    401372: Pattern_Due 60
+    401374: Pattern_Due 61
+    401376: Pattern_Due 62
+    401378: Pattern_Due 63
+    401380: Pattern_Due 64
+    401382: Pattern_Due 65
+    401384: Pattern_Due 66
+    401386: Pattern_Due 67
+    401388: Pattern_Due 68
+    401390: Pattern_Due 69
+    401392: Pattern_Due 7
+    401394: Pattern_Due 70
+    401396: Pattern_Due 71
+    401398: Pattern_Due 72
+    401400: Pattern_Due 73
+    401402: Pattern_Due 74
+    401404: Pattern_Due 75
+    401406: Pattern_Due 76
+    401408: Pattern_Due 77
+    401410: Pattern_Due 78
+    401412: Pattern_Due 79
+    401414: Pattern_Due 8
+    401416: Pattern_Due 80
+    401418: Pattern_Due 81
+    401420: Pattern_Due 82
+    401422: Pattern_Due 83
+    401424: Pattern_Due 84
+    401426: Pattern_Due 85
+    401428: Pattern_Due 86
+    401430: Pattern_Due 87
+    401432: Pattern_Due 88
+    401434: Pattern_Due 89
+    401436: Pattern_Due 9
+    401438: Pattern_Due 90
+    401440: Pattern_Due 91
+    401442: Pattern_Due 92
+    401444: Pattern_Due 93
+    401446: Pattern_Due 94
+    401448: Pattern_Due 95
+    401450: Pattern_Due 96
+    401452: Pattern_Due 97
+    401454: Pattern_Due 98
+    401456: Pattern_Due 99
+    401458: Pattern_Uno
+    401460: Pattern_Uno 1
+    401462: Pattern_Uno 10
+    401464: Pattern_Uno 100
+    401466: Pattern_Uno 101
+    401468: Pattern_Uno 102
+    401470: Pattern_Uno 103
+    401472: Pattern_Uno 104
+    401474: Pattern_Uno 105
+    401476: Pattern_Uno 106
+    401478: Pattern_Uno 107
+    401480: Pattern_Uno 108
+    401482: Pattern_Uno 109
+    401484: Pattern_Uno 11
+    401486: Pattern_Uno 110
+    401488: Pattern_Uno 111
+    401490: Pattern_Uno 112
+    401492: Pattern_Uno 113
+    401494: Pattern_Uno 114
+    401496: Pattern_Uno 115
+    401498: Pattern_Uno 116
+    401500: Pattern_Uno 117
+    401502: Pattern_Uno 118
+    401504: Pattern_Uno 119
+    401506: Pattern_Uno 12
+    401508: Pattern_Uno 120
+    401510: Pattern_Uno 121
+    401512: Pattern_Uno 122
+    401514: Pattern_Uno 123
+    401516: Pattern_Uno 124
+    401518: Pattern_Uno 125
+    401520: Pattern_Uno 126
+    401522: Pattern_Uno 127
+    401524: Pattern_Uno 128
+    401526: Pattern_Uno 129
+    401528: Pattern_Uno 13
+    401530: Pattern_Uno 130
+    401532: Pattern_Uno 131
+    401534: Pattern_Uno 132
+    401536: Pattern_Uno 133
+    401538: Pattern_Uno 134
+    401540: Pattern_Uno 135
+    401542: Pattern_Uno 136
+    401544: Pattern_Uno 137
+    401546: Pattern_Uno 138
+    401548: Pattern_Uno 139
+    401550: Pattern_Uno 14
+    401552: Pattern_Uno 140
+    401554: Pattern_Uno 141
+    401556: Pattern_Uno 142
+    401558: Pattern_Uno 143
+    401560: Pattern_Uno 144
+    401562: Pattern_Uno 145
+    401564: Pattern_Uno 146
+    401566: Pattern_Uno 147
+    401568: Pattern_Uno 148
+    401570: Pattern_Uno 149
+    401572: Pattern_Uno 15
+    401574: Pattern_Uno 150
+    401576: Pattern_Uno 151
+    401578: Pattern_Uno 152
+    401580: Pattern_Uno 153
+    401582: Pattern_Uno 154
+    401584: Pattern_Uno 155
+    401586: Pattern_Uno 156
+    401588: Pattern_Uno 157
+    401590: Pattern_Uno 158
+    401592: Pattern_Uno 159
+    401594: Pattern_Uno 16
+    401596: Pattern_Uno 160
+    401598: Pattern_Uno 161
+    401600: Pattern_Uno 162
+    401602: Pattern_Uno 163
+    401604: Pattern_Uno 164
+    401606: Pattern_Uno 165
+    401608: Pattern_Uno 166
+    401610: Pattern_Uno 167
+    401612: Pattern_Uno 168
+    401614: Pattern_Uno 169
+    401616: Pattern_Uno 17
+    401618: Pattern_Uno 170
+    401620: Pattern_Uno 171
+    401622: Pattern_Uno 172
+    401624: Pattern_Uno 173
+    401626: Pattern_Uno 174
+    401628: Pattern_Uno 175
+    401630: Pattern_Uno 176
+    401632: Pattern_Uno 177
+    401634: Pattern_Uno 178
+    401636: Pattern_Uno 179
+    401638: Pattern_Uno 18
+    401640: Pattern_Uno 180
+    401642: Pattern_Uno 181
+    401644: Pattern_Uno 182
+    401646: Pattern_Uno 183
+    401648: Pattern_Uno 184
+    401650: Pattern_Uno 185
+    401652: Pattern_Uno 186
+    401654: Pattern_Uno 187
+    401656: Pattern_Uno 188
+    401658: Pattern_Uno 189
+    401660: Pattern_Uno 19
+    401662: Pattern_Uno 190
+    401664: Pattern_Uno 191
+    401666: Pattern_Uno 192
+    401668: Pattern_Uno 193
+    401670: Pattern_Uno 194
+    401672: Pattern_Uno 195
+    401674: Pattern_Uno 196
+    401676: Pattern_Uno 197
+    401678: Pattern_Uno 198
+    401680: Pattern_Uno 199
+    401682: Pattern_Uno 2
+    401684: Pattern_Uno 20
+    401686: Pattern_Uno 200
+    401688: Pattern_Uno 201
+    401690: Pattern_Uno 202
+    401692: Pattern_Uno 203
+    401694: Pattern_Uno 204
+    401696: Pattern_Uno 205
+    401698: Pattern_Uno 206
+    401700: Pattern_Uno 207
+    401702: Pattern_Uno 208
+    401704: Pattern_Uno 209
+    401706: Pattern_Uno 21
+    401708: Pattern_Uno 210
+    401710: Pattern_Uno 211
+    401712: Pattern_Uno 212
+    401714: Pattern_Uno 213
+    401716: Pattern_Uno 214
+    401718: Pattern_Uno 215
+    401720: Pattern_Uno 216
+    401722: Pattern_Uno 217
+    401724: Pattern_Uno 218
+    401726: Pattern_Uno 219
+    401728: Pattern_Uno 22
+    401730: Pattern_Uno 220
+    401732: Pattern_Uno 221
+    401734: Pattern_Uno 222
+    401736: Pattern_Uno 223
+    401738: Pattern_Uno 224
+    401740: Pattern_Uno 225
+    401742: Pattern_Uno 226
+    401744: Pattern_Uno 227
+    401746: Pattern_Uno 228
+    401748: Pattern_Uno 229
+    401750: Pattern_Uno 23
+    401752: Pattern_Uno 230
+    401754: Pattern_Uno 231
+    401756: Pattern_Uno 232
+    401758: Pattern_Uno 233
+    401760: Pattern_Uno 234
+    401762: Pattern_Uno 235
+    401764: Pattern_Uno 236
+    401766: Pattern_Uno 237
+    401768: Pattern_Uno 238
+    401770: Pattern_Uno 239
+    401772: Pattern_Uno 24
+    401774: Pattern_Uno 240
+    401776: Pattern_Uno 241
+    401778: Pattern_Uno 242
+    401780: Pattern_Uno 243
+    401782: Pattern_Uno 244
+    401784: Pattern_Uno 245
+    401786: Pattern_Uno 246
+    401788: Pattern_Uno 247
+    401790: Pattern_Uno 248
+    401792: Pattern_Uno 249
+    401794: Pattern_Uno 25
+    401796: Pattern_Uno 250
+    401798: Pattern_Uno 251
+    401800: Pattern_Uno 252
+    401802: Pattern_Uno 253
+    401804: Pattern_Uno 254
+    401806: Pattern_Uno 255
+    401808: Pattern_Uno 26
+    401810: Pattern_Uno 27
+    401812: Pattern_Uno 28
+    401814: Pattern_Uno 29
+    401816: Pattern_Uno 3
+    401818: Pattern_Uno 30
+    401820: Pattern_Uno 31
+    401822: Pattern_Uno 32
+    401824: Pattern_Uno 33
+    401826: Pattern_Uno 34
+    401828: Pattern_Uno 35
+    401830: Pattern_Uno 36
+    401832: Pattern_Uno 37
+    401834: Pattern_Uno 38
+    401836: Pattern_Uno 39
+    401838: Pattern_Uno 4
+    401840: Pattern_Uno 40
+    401842: Pattern_Uno 41
+    401844: Pattern_Uno 42
+    401846: Pattern_Uno 43
+    401848: Pattern_Uno 44
+    401850: Pattern_Uno 45
+    401852: Pattern_Uno 46
+    401854: Pattern_Uno 47
+    401856: Pattern_Uno 48
+    401858: Pattern_Uno 49
+    401860: Pattern_Uno 5
+    401862: Pattern_Uno 50
+    401864: Pattern_Uno 51
+    401866: Pattern_Uno 52
+    401868: Pattern_Uno 53
+    401870: Pattern_Uno 54
+    401872: Pattern_Uno 55
+    401874: Pattern_Uno 56
+    401876: Pattern_Uno 57
+    401878: Pattern_Uno 58
+    401880: Pattern_Uno 59
+    401882: Pattern_Uno 6
+    401884: Pattern_Uno 60
+    401886: Pattern_Uno 61
+    401888: Pattern_Uno 62
+    401890: Pattern_Uno 63
+    401892: Pattern_Uno 64
+    401894: Pattern_Uno 65
+    401896: Pattern_Uno 66
+    401898: Pattern_Uno 67
+    401900: Pattern_Uno 68
+    401902: Pattern_Uno 69
+    401904: Pattern_Uno 7
+    401906: Pattern_Uno 70
+    401908: Pattern_Uno 71
+    401910: Pattern_Uno 72
+    401912: Pattern_Uno 73
+    401914: Pattern_Uno 74
+    401916: Pattern_Uno 75
+    401918: Pattern_Uno 76
+    401920: Pattern_Uno 77
+    401922: Pattern_Uno 78
+    401924: Pattern_Uno 79
+    401926: Pattern_Uno 8
+    401928: Pattern_Uno 80
+    401930: Pattern_Uno 81
+    401932: Pattern_Uno 82
+    401934: Pattern_Uno 83
+    401936: Pattern_Uno 84
+    401938: Pattern_Uno 85
+    401940: Pattern_Uno 86
+    401942: Pattern_Uno 87
+    401944: Pattern_Uno 88
+    401946: Pattern_Uno 89
+    401948: Pattern_Uno 9
+    401950: Pattern_Uno 90
+    401952: Pattern_Uno 91
+    401954: Pattern_Uno 92
+    401956: Pattern_Uno 93
+    401958: Pattern_Uno 94
+    401960: Pattern_Uno 95
+    401962: Pattern_Uno 96
+    401964: Pattern_Uno 97
+    401966: Pattern_Uno 98
+    401968: Pattern_Uno 99
+    401970: Slope
+    401972: Slope 1
+    401974: Slope 10
+    401976: Slope 11
+    401978: Slope 12
+    401980: Slope 13
+    401982: Slope 14
+    401984: Slope 15
+    401986: Slope 16
+    401988: Slope 17
+    401990: Slope 18
+    401992: Slope 19
+    401994: Slope 2
+    401996: Slope 20
+    401998: Slope 21
+    402000: Slope 22
+    402002: Slope 23
+    402004: Slope 24
+    402006: Slope 25
+    402008: Slope 26
+    402010: Slope 27
+    402012: Slope 28
+    402014: Slope 29
+    402016: Slope 3
+    402018: Slope 30
+    402020: Slope 31
+    402022: Slope 32
+    402024: Slope 33
+    402026: Slope 34
+    402028: Slope 35
+    402030: Slope 36
+    402032: Slope 37
+    402034: Slope 38
+    402036: Slope 39
+    402038: Slope 4
+    402040: Slope 5
+    402042: Slope 6
+    402044: Slope 7
+    402046: Slope 8
+    402048: Slope 9
+    402050: Under_Slope
+    402052: Under_Slope 1
+    402054: Under_Slope 10
+    402056: Under_Slope 11
+    402058: Under_Slope 12
+    402060: Under_Slope 13
+    402062: Under_Slope 14
+    402064: Under_Slope 15
+    402066: Under_Slope 16
+    402068: Under_Slope 17
+    402070: Under_Slope 18
+    402072: Under_Slope 19
+    402074: Under_Slope 2
+    402076: Under_Slope 20
+    402078: Under_Slope 21
+    402080: Under_Slope 22
+    402082: Under_Slope 23
+    402084: Under_Slope 24
+    402086: Under_Slope 25
+    402088: Under_Slope 26
+    402090: Under_Slope 27
+    402092: Under_Slope 28
+    402094: Under_Slope 29
+    402096: Under_Slope 3
+    402098: Under_Slope 30
+    402100: Under_Slope 31
+    402102: Under_Slope 32
+    402104: Under_Slope 33
+    402106: Under_Slope 34
+    402108: Under_Slope 35
+    402110: Under_Slope 36
+    402112: Under_Slope 37
+    402114: Under_Slope 38
+    402116: Under_Slope 39
+    402118: Under_Slope 4
+    402120: Under_Slope 40
+    402122: Under_Slope 41
+    402124: Under_Slope 42
+    402126: Under_Slope 43
+    402128: Under_Slope 44
+    402130: Under_Slope 45
+    402132: Under_Slope 46
+    402134: Under_Slope 47
+    402136: Under_Slope 5
+    402138: Under_Slope 6
+    402140: Under_Slope 7
+    402142: Under_Slope 8
+    402144: Under_Slope 9
+    402146: Wall_East
+    402148: Wall_North
+    402150: Wall_South
+    402152: Wall_West
+    402154: Outside_corner4
+    402156: Glass
+    402158: Glass 1
+    402160: Glass 2
+    402162: Glass 3
+    402164: Glass_inverse
+    402166: Glass_inverse 1
+    402168: Glass_inverse 2
+    402170: Glass_inverse 3
+    402172: Glass 4
+    402174: Glass 5
+    402176: Glass 6
+    402178: Glass 7
+    402180: Outside_corner 1
+    402182: Outside_corner 2
+    402184: Outside_corner 3
+    402186: Top_Black
+    402188: Top_Black 1
+    402190: Top_Black 2
+    402192: Top_Black 3
+    402194: Top_Black 4
+    402196: Top_Black 5
+    402198: Top_Black 6
+    402200: Top_Black 7
+    2100000: Edge_slope
+    2100002: slope
+    2100004: Pattern_uno
+    2100006: Pattern_due
+    2100008: Under_slope
+    2100010: lambert1
+    2100012: Windows_glass
+    2100014: Secondary_floors
+    2100016: Top_black
+    2300000: Edge_Slope
+    2300002: Edge_Slope 1
+    2300004: Edge_Slope 10
+    2300006: Edge_Slope 11
+    2300008: Edge_Slope 12
+    2300010: Edge_Slope 13
+    2300012: Edge_Slope 14
+    2300014: Edge_Slope 15
+    2300016: Edge_Slope 16
+    2300018: Edge_Slope 17
+    2300020: Edge_Slope 18
+    2300022: Edge_Slope 19
+    2300024: Edge_Slope 2
+    2300026: Edge_Slope 20
+    2300028: Edge_Slope 21
+    2300030: Edge_Slope 22
+    2300032: Edge_Slope 23
+    2300034: Edge_Slope 24
+    2300036: Edge_Slope 25
+    2300038: Edge_Slope 26
+    2300040: Edge_Slope 27
+    2300042: Edge_Slope 28
+    2300044: Edge_Slope 29
+    2300046: Edge_Slope 3
+    2300048: Edge_Slope 30
+    2300050: Edge_Slope 31
+    2300052: Edge_Slope 32
+    2300054: Edge_Slope 33
+    2300056: Edge_Slope 34
+    2300058: Edge_Slope 35
+    2300060: Edge_Slope 36
+    2300062: Edge_Slope 37
+    2300064: Edge_Slope 38
+    2300066: Edge_Slope 39
+    2300068: Edge_Slope 4
+    2300070: Edge_Slope 5
+    2300072: Edge_Slope 6
+    2300074: Edge_Slope 7
+    2300076: Edge_Slope 8
+    2300078: Edge_Slope 9
+    2300080: Ground_N
+    2300082: Ground_N1
+    2300084: Ground_N10
+    2300086: Ground_N2
+    2300088: Ground_N3
+    2300090: Ground_N4
+    2300092: Ground_N5
+    2300094: Ground_N6
+    2300096: Ground_N7
+    2300098: Ground_N8
+    2300100: Ground_N9
+    2300102: Outside_corner
+    2300104: Outside_corner1
+    2300106: Outside_corner2
+    2300108: Outside_corner3
+    2300110: Pattern_Due
+    2300112: Pattern_Due 1
+    2300114: Pattern_Due 10
+    2300116: Pattern_Due 100
+    2300118: Pattern_Due 101
+    2300120: Pattern_Due 102
+    2300122: Pattern_Due 103
+    2300124: Pattern_Due 104
+    2300126: Pattern_Due 105
+    2300128: Pattern_Due 106
+    2300130: Pattern_Due 107
+    2300132: Pattern_Due 108
+    2300134: Pattern_Due 109
+    2300136: Pattern_Due 11
+    2300138: Pattern_Due 110
+    2300140: Pattern_Due 111
+    2300142: Pattern_Due 112
+    2300144: Pattern_Due 113
+    2300146: Pattern_Due 114
+    2300148: Pattern_Due 115
+    2300150: Pattern_Due 116
+    2300152: Pattern_Due 117
+    2300154: Pattern_Due 118
+    2300156: Pattern_Due 119
+    2300158: Pattern_Due 12
+    2300160: Pattern_Due 120
+    2300162: Pattern_Due 121
+    2300164: Pattern_Due 122
+    2300166: Pattern_Due 123
+    2300168: Pattern_Due 124
+    2300170: Pattern_Due 125
+    2300172: Pattern_Due 126
+    2300174: Pattern_Due 127
+    2300176: Pattern_Due 128
+    2300178: Pattern_Due 129
+    2300180: Pattern_Due 13
+    2300182: Pattern_Due 130
+    2300184: Pattern_Due 131
+    2300186: Pattern_Due 132
+    2300188: Pattern_Due 133
+    2300190: Pattern_Due 134
+    2300192: Pattern_Due 135
+    2300194: Pattern_Due 136
+    2300196: Pattern_Due 137
+    2300198: Pattern_Due 138
+    2300200: Pattern_Due 139
+    2300202: Pattern_Due 14
+    2300204: Pattern_Due 140
+    2300206: Pattern_Due 141
+    2300208: Pattern_Due 142
+    2300210: Pattern_Due 143
+    2300212: Pattern_Due 144
+    2300214: Pattern_Due 145
+    2300216: Pattern_Due 146
+    2300218: Pattern_Due 147
+    2300220: Pattern_Due 148
+    2300222: Pattern_Due 149
+    2300224: Pattern_Due 15
+    2300226: Pattern_Due 150
+    2300228: Pattern_Due 151
+    2300230: Pattern_Due 152
+    2300232: Pattern_Due 153
+    2300234: Pattern_Due 154
+    2300236: Pattern_Due 155
+    2300238: Pattern_Due 156
+    2300240: Pattern_Due 157
+    2300242: Pattern_Due 158
+    2300244: Pattern_Due 159
+    2300246: Pattern_Due 16
+    2300248: Pattern_Due 160
+    2300250: Pattern_Due 161
+    2300252: Pattern_Due 162
+    2300254: Pattern_Due 163
+    2300256: Pattern_Due 164
+    2300258: Pattern_Due 165
+    2300260: Pattern_Due 166
+    2300262: Pattern_Due 167
+    2300264: Pattern_Due 168
+    2300266: Pattern_Due 169
+    2300268: Pattern_Due 17
+    2300270: Pattern_Due 170
+    2300272: Pattern_Due 171
+    2300274: Pattern_Due 172
+    2300276: Pattern_Due 173
+    2300278: Pattern_Due 174
+    2300280: Pattern_Due 175
+    2300282: Pattern_Due 176
+    2300284: Pattern_Due 177
+    2300286: Pattern_Due 178
+    2300288: Pattern_Due 179
+    2300290: Pattern_Due 18
+    2300292: Pattern_Due 180
+    2300294: Pattern_Due 181
+    2300296: Pattern_Due 182
+    2300298: Pattern_Due 183
+    2300300: Pattern_Due 184
+    2300302: Pattern_Due 185
+    2300304: Pattern_Due 186
+    2300306: Pattern_Due 187
+    2300308: Pattern_Due 188
+    2300310: Pattern_Due 189
+    2300312: Pattern_Due 19
+    2300314: Pattern_Due 190
+    2300316: Pattern_Due 191
+    2300318: Pattern_Due 192
+    2300320: Pattern_Due 193
+    2300322: Pattern_Due 194
+    2300324: Pattern_Due 195
+    2300326: Pattern_Due 196
+    2300328: Pattern_Due 197
+    2300330: Pattern_Due 198
+    2300332: Pattern_Due 199
+    2300334: Pattern_Due 2
+    2300336: Pattern_Due 20
+    2300338: Pattern_Due 200
+    2300340: Pattern_Due 201
+    2300342: Pattern_Due 202
+    2300344: Pattern_Due 203
+    2300346: Pattern_Due 204
+    2300348: Pattern_Due 205
+    2300350: Pattern_Due 206
+    2300352: Pattern_Due 207
+    2300354: Pattern_Due 208
+    2300356: Pattern_Due 209
+    2300358: Pattern_Due 21
+    2300360: Pattern_Due 210
+    2300362: Pattern_Due 211
+    2300364: Pattern_Due 212
+    2300366: Pattern_Due 213
+    2300368: Pattern_Due 214
+    2300370: Pattern_Due 215
+    2300372: Pattern_Due 216
+    2300374: Pattern_Due 217
+    2300376: Pattern_Due 218
+    2300378: Pattern_Due 219
+    2300380: Pattern_Due 22
+    2300382: Pattern_Due 220
+    2300384: Pattern_Due 221
+    2300386: Pattern_Due 222
+    2300388: Pattern_Due 223
+    2300390: Pattern_Due 224
+    2300392: Pattern_Due 225
+    2300394: Pattern_Due 226
+    2300396: Pattern_Due 227
+    2300398: Pattern_Due 228
+    2300400: Pattern_Due 229
+    2300402: Pattern_Due 23
+    2300404: Pattern_Due 230
+    2300406: Pattern_Due 231
+    2300408: Pattern_Due 232
+    2300410: Pattern_Due 233
+    2300412: Pattern_Due 234
+    2300414: Pattern_Due 235
+    2300416: Pattern_Due 236
+    2300418: Pattern_Due 237
+    2300420: Pattern_Due 238
+    2300422: Pattern_Due 239
+    2300424: Pattern_Due 24
+    2300426: Pattern_Due 240
+    2300428: Pattern_Due 241
+    2300430: Pattern_Due 242
+    2300432: Pattern_Due 243
+    2300434: Pattern_Due 244
+    2300436: Pattern_Due 245
+    2300438: Pattern_Due 246
+    2300440: Pattern_Due 247
+    2300442: Pattern_Due 248
+    2300444: Pattern_Due 249
+    2300446: Pattern_Due 25
+    2300448: Pattern_Due 250
+    2300450: Pattern_Due 251
+    2300452: Pattern_Due 252
+    2300454: Pattern_Due 253
+    2300456: Pattern_Due 254
+    2300458: Pattern_Due 255
+    2300460: Pattern_Due 256
+    2300462: Pattern_Due 257
+    2300464: Pattern_Due 258
+    2300466: Pattern_Due 259
+    2300468: Pattern_Due 26
+    2300470: Pattern_Due 260
+    2300472: Pattern_Due 261
+    2300474: Pattern_Due 262
+    2300476: Pattern_Due 263
+    2300478: Pattern_Due 27
+    2300480: Pattern_Due 28
+    2300482: Pattern_Due 29
+    2300484: Pattern_Due 3
+    2300486: Pattern_Due 30
+    2300488: Pattern_Due 31
+    2300490: Pattern_Due 32
+    2300492: Pattern_Due 33
+    2300494: Pattern_Due 34
+    2300496: Pattern_Due 35
+    2300498: Pattern_Due 36
+    2300500: Pattern_Due 37
+    2300502: Pattern_Due 38
+    2300504: Pattern_Due 39
+    2300506: Pattern_Due 4
+    2300508: Pattern_Due 40
+    2300510: Pattern_Due 41
+    2300512: Pattern_Due 42
+    2300514: Pattern_Due 43
+    2300516: Pattern_Due 44
+    2300518: Pattern_Due 45
+    2300520: Pattern_Due 46
+    2300522: Pattern_Due 47
+    2300524: Pattern_Due 48
+    2300526: Pattern_Due 49
+    2300528: Pattern_Due 5
+    2300530: Pattern_Due 50
+    2300532: Pattern_Due 51
+    2300534: Pattern_Due 52
+    2300536: Pattern_Due 53
+    2300538: Pattern_Due 54
+    2300540: Pattern_Due 55
+    2300542: Pattern_Due 56
+    2300544: Pattern_Due 57
+    2300546: Pattern_Due 58
+    2300548: Pattern_Due 59
+    2300550: Pattern_Due 6
+    2300552: Pattern_Due 60
+    2300554: Pattern_Due 61
+    2300556: Pattern_Due 62
+    2300558: Pattern_Due 63
+    2300560: Pattern_Due 64
+    2300562: Pattern_Due 65
+    2300564: Pattern_Due 66
+    2300566: Pattern_Due 67
+    2300568: Pattern_Due 68
+    2300570: Pattern_Due 69
+    2300572: Pattern_Due 7
+    2300574: Pattern_Due 70
+    2300576: Pattern_Due 71
+    2300578: Pattern_Due 72
+    2300580: Pattern_Due 73
+    2300582: Pattern_Due 74
+    2300584: Pattern_Due 75
+    2300586: Pattern_Due 76
+    2300588: Pattern_Due 77
+    2300590: Pattern_Due 78
+    2300592: Pattern_Due 79
+    2300594: Pattern_Due 8
+    2300596: Pattern_Due 80
+    2300598: Pattern_Due 81
+    2300600: Pattern_Due 82
+    2300602: Pattern_Due 83
+    2300604: Pattern_Due 84
+    2300606: Pattern_Due 85
+    2300608: Pattern_Due 86
+    2300610: Pattern_Due 87
+    2300612: Pattern_Due 88
+    2300614: Pattern_Due 89
+    2300616: Pattern_Due 9
+    2300618: Pattern_Due 90
+    2300620: Pattern_Due 91
+    2300622: Pattern_Due 92
+    2300624: Pattern_Due 93
+    2300626: Pattern_Due 94
+    2300628: Pattern_Due 95
+    2300630: Pattern_Due 96
+    2300632: Pattern_Due 97
+    2300634: Pattern_Due 98
+    2300636: Pattern_Due 99
+    2300638: Pattern_Uno
+    2300640: Pattern_Uno 1
+    2300642: Pattern_Uno 10
+    2300644: Pattern_Uno 100
+    2300646: Pattern_Uno 101
+    2300648: Pattern_Uno 102
+    2300650: Pattern_Uno 103
+    2300652: Pattern_Uno 104
+    2300654: Pattern_Uno 105
+    2300656: Pattern_Uno 106
+    2300658: Pattern_Uno 107
+    2300660: Pattern_Uno 108
+    2300662: Pattern_Uno 109
+    2300664: Pattern_Uno 11
+    2300666: Pattern_Uno 110
+    2300668: Pattern_Uno 111
+    2300670: Pattern_Uno 112
+    2300672: Pattern_Uno 113
+    2300674: Pattern_Uno 114
+    2300676: Pattern_Uno 115
+    2300678: Pattern_Uno 116
+    2300680: Pattern_Uno 117
+    2300682: Pattern_Uno 118
+    2300684: Pattern_Uno 119
+    2300686: Pattern_Uno 12
+    2300688: Pattern_Uno 120
+    2300690: Pattern_Uno 121
+    2300692: Pattern_Uno 122
+    2300694: Pattern_Uno 123
+    2300696: Pattern_Uno 124
+    2300698: Pattern_Uno 125
+    2300700: Pattern_Uno 126
+    2300702: Pattern_Uno 127
+    2300704: Pattern_Uno 128
+    2300706: Pattern_Uno 129
+    2300708: Pattern_Uno 13
+    2300710: Pattern_Uno 130
+    2300712: Pattern_Uno 131
+    2300714: Pattern_Uno 132
+    2300716: Pattern_Uno 133
+    2300718: Pattern_Uno 134
+    2300720: Pattern_Uno 135
+    2300722: Pattern_Uno 136
+    2300724: Pattern_Uno 137
+    2300726: Pattern_Uno 138
+    2300728: Pattern_Uno 139
+    2300730: Pattern_Uno 14
+    2300732: Pattern_Uno 140
+    2300734: Pattern_Uno 141
+    2300736: Pattern_Uno 142
+    2300738: Pattern_Uno 143
+    2300740: Pattern_Uno 144
+    2300742: Pattern_Uno 145
+    2300744: Pattern_Uno 146
+    2300746: Pattern_Uno 147
+    2300748: Pattern_Uno 148
+    2300750: Pattern_Uno 149
+    2300752: Pattern_Uno 15
+    2300754: Pattern_Uno 150
+    2300756: Pattern_Uno 151
+    2300758: Pattern_Uno 152
+    2300760: Pattern_Uno 153
+    2300762: Pattern_Uno 154
+    2300764: Pattern_Uno 155
+    2300766: Pattern_Uno 156
+    2300768: Pattern_Uno 157
+    2300770: Pattern_Uno 158
+    2300772: Pattern_Uno 159
+    2300774: Pattern_Uno 16
+    2300776: Pattern_Uno 160
+    2300778: Pattern_Uno 161
+    2300780: Pattern_Uno 162
+    2300782: Pattern_Uno 163
+    2300784: Pattern_Uno 164
+    2300786: Pattern_Uno 165
+    2300788: Pattern_Uno 166
+    2300790: Pattern_Uno 167
+    2300792: Pattern_Uno 168
+    2300794: Pattern_Uno 169
+    2300796: Pattern_Uno 17
+    2300798: Pattern_Uno 170
+    2300800: Pattern_Uno 171
+    2300802: Pattern_Uno 172
+    2300804: Pattern_Uno 173
+    2300806: Pattern_Uno 174
+    2300808: Pattern_Uno 175
+    2300810: Pattern_Uno 176
+    2300812: Pattern_Uno 177
+    2300814: Pattern_Uno 178
+    2300816: Pattern_Uno 179
+    2300818: Pattern_Uno 18
+    2300820: Pattern_Uno 180
+    2300822: Pattern_Uno 181
+    2300824: Pattern_Uno 182
+    2300826: Pattern_Uno 183
+    2300828: Pattern_Uno 184
+    2300830: Pattern_Uno 185
+    2300832: Pattern_Uno 186
+    2300834: Pattern_Uno 187
+    2300836: Pattern_Uno 188
+    2300838: Pattern_Uno 189
+    2300840: Pattern_Uno 19
+    2300842: Pattern_Uno 190
+    2300844: Pattern_Uno 191
+    2300846: Pattern_Uno 192
+    2300848: Pattern_Uno 193
+    2300850: Pattern_Uno 194
+    2300852: Pattern_Uno 195
+    2300854: Pattern_Uno 196
+    2300856: Pattern_Uno 197
+    2300858: Pattern_Uno 198
+    2300860: Pattern_Uno 199
+    2300862: Pattern_Uno 2
+    2300864: Pattern_Uno 20
+    2300866: Pattern_Uno 200
+    2300868: Pattern_Uno 201
+    2300870: Pattern_Uno 202
+    2300872: Pattern_Uno 203
+    2300874: Pattern_Uno 204
+    2300876: Pattern_Uno 205
+    2300878: Pattern_Uno 206
+    2300880: Pattern_Uno 207
+    2300882: Pattern_Uno 208
+    2300884: Pattern_Uno 209
+    2300886: Pattern_Uno 21
+    2300888: Pattern_Uno 210
+    2300890: Pattern_Uno 211
+    2300892: Pattern_Uno 212
+    2300894: Pattern_Uno 213
+    2300896: Pattern_Uno 214
+    2300898: Pattern_Uno 215
+    2300900: Pattern_Uno 216
+    2300902: Pattern_Uno 217
+    2300904: Pattern_Uno 218
+    2300906: Pattern_Uno 219
+    2300908: Pattern_Uno 22
+    2300910: Pattern_Uno 220
+    2300912: Pattern_Uno 221
+    2300914: Pattern_Uno 222
+    2300916: Pattern_Uno 223
+    2300918: Pattern_Uno 224
+    2300920: Pattern_Uno 225
+    2300922: Pattern_Uno 226
+    2300924: Pattern_Uno 227
+    2300926: Pattern_Uno 228
+    2300928: Pattern_Uno 229
+    2300930: Pattern_Uno 23
+    2300932: Pattern_Uno 230
+    2300934: Pattern_Uno 231
+    2300936: Pattern_Uno 232
+    2300938: Pattern_Uno 233
+    2300940: Pattern_Uno 234
+    2300942: Pattern_Uno 235
+    2300944: Pattern_Uno 236
+    2300946: Pattern_Uno 237
+    2300948: Pattern_Uno 238
+    2300950: Pattern_Uno 239
+    2300952: Pattern_Uno 24
+    2300954: Pattern_Uno 240
+    2300956: Pattern_Uno 241
+    2300958: Pattern_Uno 242
+    2300960: Pattern_Uno 243
+    2300962: Pattern_Uno 244
+    2300964: Pattern_Uno 245
+    2300966: Pattern_Uno 246
+    2300968: Pattern_Uno 247
+    2300970: Pattern_Uno 248
+    2300972: Pattern_Uno 249
+    2300974: Pattern_Uno 25
+    2300976: Pattern_Uno 250
+    2300978: Pattern_Uno 251
+    2300980: Pattern_Uno 252
+    2300982: Pattern_Uno 253
+    2300984: Pattern_Uno 254
+    2300986: Pattern_Uno 255
+    2300988: Pattern_Uno 26
+    2300990: Pattern_Uno 27
+    2300992: Pattern_Uno 28
+    2300994: Pattern_Uno 29
+    2300996: Pattern_Uno 3
+    2300998: Pattern_Uno 30
+    2301000: Pattern_Uno 31
+    2301002: Pattern_Uno 32
+    2301004: Pattern_Uno 33
+    2301006: Pattern_Uno 34
+    2301008: Pattern_Uno 35
+    2301010: Pattern_Uno 36
+    2301012: Pattern_Uno 37
+    2301014: Pattern_Uno 38
+    2301016: Pattern_Uno 39
+    2301018: Pattern_Uno 4
+    2301020: Pattern_Uno 40
+    2301022: Pattern_Uno 41
+    2301024: Pattern_Uno 42
+    2301026: Pattern_Uno 43
+    2301028: Pattern_Uno 44
+    2301030: Pattern_Uno 45
+    2301032: Pattern_Uno 46
+    2301034: Pattern_Uno 47
+    2301036: Pattern_Uno 48
+    2301038: Pattern_Uno 49
+    2301040: Pattern_Uno 5
+    2301042: Pattern_Uno 50
+    2301044: Pattern_Uno 51
+    2301046: Pattern_Uno 52
+    2301048: Pattern_Uno 53
+    2301050: Pattern_Uno 54
+    2301052: Pattern_Uno 55
+    2301054: Pattern_Uno 56
+    2301056: Pattern_Uno 57
+    2301058: Pattern_Uno 58
+    2301060: Pattern_Uno 59
+    2301062: Pattern_Uno 6
+    2301064: Pattern_Uno 60
+    2301066: Pattern_Uno 61
+    2301068: Pattern_Uno 62
+    2301070: Pattern_Uno 63
+    2301072: Pattern_Uno 64
+    2301074: Pattern_Uno 65
+    2301076: Pattern_Uno 66
+    2301078: Pattern_Uno 67
+    2301080: Pattern_Uno 68
+    2301082: Pattern_Uno 69
+    2301084: Pattern_Uno 7
+    2301086: Pattern_Uno 70
+    2301088: Pattern_Uno 71
+    2301090: Pattern_Uno 72
+    2301092: Pattern_Uno 73
+    2301094: Pattern_Uno 74
+    2301096: Pattern_Uno 75
+    2301098: Pattern_Uno 76
+    2301100: Pattern_Uno 77
+    2301102: Pattern_Uno 78
+    2301104: Pattern_Uno 79
+    2301106: Pattern_Uno 8
+    2301108: Pattern_Uno 80
+    2301110: Pattern_Uno 81
+    2301112: Pattern_Uno 82
+    2301114: Pattern_Uno 83
+    2301116: Pattern_Uno 84
+    2301118: Pattern_Uno 85
+    2301120: Pattern_Uno 86
+    2301122: Pattern_Uno 87
+    2301124: Pattern_Uno 88
+    2301126: Pattern_Uno 89
+    2301128: Pattern_Uno 9
+    2301130: Pattern_Uno 90
+    2301132: Pattern_Uno 91
+    2301134: Pattern_Uno 92
+    2301136: Pattern_Uno 93
+    2301138: Pattern_Uno 94
+    2301140: Pattern_Uno 95
+    2301142: Pattern_Uno 96
+    2301144: Pattern_Uno 97
+    2301146: Pattern_Uno 98
+    2301148: Pattern_Uno 99
+    2301150: Slope
+    2301152: Slope 1
+    2301154: Slope 10
+    2301156: Slope 11
+    2301158: Slope 12
+    2301160: Slope 13
+    2301162: Slope 14
+    2301164: Slope 15
+    2301166: Slope 16
+    2301168: Slope 17
+    2301170: Slope 18
+    2301172: Slope 19
+    2301174: Slope 2
+    2301176: Slope 20
+    2301178: Slope 21
+    2301180: Slope 22
+    2301182: Slope 23
+    2301184: Slope 24
+    2301186: Slope 25
+    2301188: Slope 26
+    2301190: Slope 27
+    2301192: Slope 28
+    2301194: Slope 29
+    2301196: Slope 3
+    2301198: Slope 30
+    2301200: Slope 31
+    2301202: Slope 32
+    2301204: Slope 33
+    2301206: Slope 34
+    2301208: Slope 35
+    2301210: Slope 36
+    2301212: Slope 37
+    2301214: Slope 38
+    2301216: Slope 39
+    2301218: Slope 4
+    2301220: Slope 5
+    2301222: Slope 6
+    2301224: Slope 7
+    2301226: Slope 8
+    2301228: Slope 9
+    2301230: Under_Slope
+    2301232: Under_Slope 1
+    2301234: Under_Slope 10
+    2301236: Under_Slope 11
+    2301238: Under_Slope 12
+    2301240: Under_Slope 13
+    2301242: Under_Slope 14
+    2301244: Under_Slope 15
+    2301246: Under_Slope 16
+    2301248: Under_Slope 17
+    2301250: Under_Slope 18
+    2301252: Under_Slope 19
+    2301254: Under_Slope 2
+    2301256: Under_Slope 20
+    2301258: Under_Slope 21
+    2301260: Under_Slope 22
+    2301262: Under_Slope 23
+    2301264: Under_Slope 24
+    2301266: Under_Slope 25
+    2301268: Under_Slope 26
+    2301270: Under_Slope 27
+    2301272: Under_Slope 28
+    2301274: Under_Slope 29
+    2301276: Under_Slope 3
+    2301278: Under_Slope 30
+    2301280: Under_Slope 31
+    2301282: Under_Slope 32
+    2301284: Under_Slope 33
+    2301286: Under_Slope 34
+    2301288: Under_Slope 35
+    2301290: Under_Slope 36
+    2301292: Under_Slope 37
+    2301294: Under_Slope 38
+    2301296: Under_Slope 39
+    2301298: Under_Slope 4
+    2301300: Under_Slope 40
+    2301302: Under_Slope 41
+    2301304: Under_Slope 42
+    2301306: Under_Slope 43
+    2301308: Under_Slope 44
+    2301310: Under_Slope 45
+    2301312: Under_Slope 46
+    2301314: Under_Slope 47
+    2301316: Under_Slope 5
+    2301318: Under_Slope 6
+    2301320: Under_Slope 7
+    2301322: Under_Slope 8
+    2301324: Under_Slope 9
+    2301326: Outside_corner4
+    2301328: Glass
+    2301330: Glass 1
+    2301332: Glass 2
+    2301334: Glass 3
+    2301336: Glass_inverse
+    2301338: Glass_inverse 1
+    2301340: Glass_inverse 2
+    2301342: Glass_inverse 3
+    2301344: Glass 4
+    2301346: Glass 5
+    2301348: Glass 6
+    2301350: Glass 7
+    2301352: Outside_corner 1
+    2301354: Outside_corner 2
+    2301356: Outside_corner 3
+    2301358: Top_Black
+    2301360: Top_Black 1
+    2301362: Top_Black 2
+    2301364: Top_Black 3
+    2301366: Top_Black 4
+    2301368: Top_Black 5
+    2301370: Top_Black 6
+    2301372: Top_Black 7
+    3300000: Edge_Slope
+    3300002: Edge_Slope 1
+    3300004: Edge_Slope 10
+    3300006: Edge_Slope 11
+    3300008: Edge_Slope 12
+    3300010: Edge_Slope 13
+    3300012: Edge_Slope 14
+    3300014: Edge_Slope 15
+    3300016: Edge_Slope 16
+    3300018: Edge_Slope 17
+    3300020: Edge_Slope 18
+    3300022: Edge_Slope 19
+    3300024: Edge_Slope 2
+    3300026: Edge_Slope 20
+    3300028: Edge_Slope 21
+    3300030: Edge_Slope 22
+    3300032: Edge_Slope 23
+    3300034: Edge_Slope 24
+    3300036: Edge_Slope 25
+    3300038: Edge_Slope 26
+    3300040: Edge_Slope 27
+    3300042: Edge_Slope 28
+    3300044: Edge_Slope 29
+    3300046: Edge_Slope 3
+    3300048: Edge_Slope 30
+    3300050: Edge_Slope 31
+    3300052: Edge_Slope 32
+    3300054: Edge_Slope 33
+    3300056: Edge_Slope 34
+    3300058: Edge_Slope 35
+    3300060: Edge_Slope 36
+    3300062: Edge_Slope 37
+    3300064: Edge_Slope 38
+    3300066: Edge_Slope 39
+    3300068: Edge_Slope 4
+    3300070: Edge_Slope 5
+    3300072: Edge_Slope 6
+    3300074: Edge_Slope 7
+    3300076: Edge_Slope 8
+    3300078: Edge_Slope 9
+    3300080: Ground_N
+    3300082: Ground_N1
+    3300084: Ground_N10
+    3300086: Ground_N2
+    3300088: Ground_N3
+    3300090: Ground_N4
+    3300092: Ground_N5
+    3300094: Ground_N6
+    3300096: Ground_N7
+    3300098: Ground_N8
+    3300100: Ground_N9
+    3300102: Outside_corner
+    3300104: Outside_corner1
+    3300106: Outside_corner2
+    3300108: Outside_corner3
+    3300110: Pattern_Due
+    3300112: Pattern_Due 1
+    3300114: Pattern_Due 10
+    3300116: Pattern_Due 100
+    3300118: Pattern_Due 101
+    3300120: Pattern_Due 102
+    3300122: Pattern_Due 103
+    3300124: Pattern_Due 104
+    3300126: Pattern_Due 105
+    3300128: Pattern_Due 106
+    3300130: Pattern_Due 107
+    3300132: Pattern_Due 108
+    3300134: Pattern_Due 109
+    3300136: Pattern_Due 11
+    3300138: Pattern_Due 110
+    3300140: Pattern_Due 111
+    3300142: Pattern_Due 112
+    3300144: Pattern_Due 113
+    3300146: Pattern_Due 114
+    3300148: Pattern_Due 115
+    3300150: Pattern_Due 116
+    3300152: Pattern_Due 117
+    3300154: Pattern_Due 118
+    3300156: Pattern_Due 119
+    3300158: Pattern_Due 12
+    3300160: Pattern_Due 120
+    3300162: Pattern_Due 121
+    3300164: Pattern_Due 122
+    3300166: Pattern_Due 123
+    3300168: Pattern_Due 124
+    3300170: Pattern_Due 125
+    3300172: Pattern_Due 126
+    3300174: Pattern_Due 127
+    3300176: Pattern_Due 128
+    3300178: Pattern_Due 129
+    3300180: Pattern_Due 13
+    3300182: Pattern_Due 130
+    3300184: Pattern_Due 131
+    3300186: Pattern_Due 132
+    3300188: Pattern_Due 133
+    3300190: Pattern_Due 134
+    3300192: Pattern_Due 135
+    3300194: Pattern_Due 136
+    3300196: Pattern_Due 137
+    3300198: Pattern_Due 138
+    3300200: Pattern_Due 139
+    3300202: Pattern_Due 14
+    3300204: Pattern_Due 140
+    3300206: Pattern_Due 141
+    3300208: Pattern_Due 142
+    3300210: Pattern_Due 143
+    3300212: Pattern_Due 144
+    3300214: Pattern_Due 145
+    3300216: Pattern_Due 146
+    3300218: Pattern_Due 147
+    3300220: Pattern_Due 148
+    3300222: Pattern_Due 149
+    3300224: Pattern_Due 15
+    3300226: Pattern_Due 150
+    3300228: Pattern_Due 151
+    3300230: Pattern_Due 152
+    3300232: Pattern_Due 153
+    3300234: Pattern_Due 154
+    3300236: Pattern_Due 155
+    3300238: Pattern_Due 156
+    3300240: Pattern_Due 157
+    3300242: Pattern_Due 158
+    3300244: Pattern_Due 159
+    3300246: Pattern_Due 16
+    3300248: Pattern_Due 160
+    3300250: Pattern_Due 161
+    3300252: Pattern_Due 162
+    3300254: Pattern_Due 163
+    3300256: Pattern_Due 164
+    3300258: Pattern_Due 165
+    3300260: Pattern_Due 166
+    3300262: Pattern_Due 167
+    3300264: Pattern_Due 168
+    3300266: Pattern_Due 169
+    3300268: Pattern_Due 17
+    3300270: Pattern_Due 170
+    3300272: Pattern_Due 171
+    3300274: Pattern_Due 172
+    3300276: Pattern_Due 173
+    3300278: Pattern_Due 174
+    3300280: Pattern_Due 175
+    3300282: Pattern_Due 176
+    3300284: Pattern_Due 177
+    3300286: Pattern_Due 178
+    3300288: Pattern_Due 179
+    3300290: Pattern_Due 18
+    3300292: Pattern_Due 180
+    3300294: Pattern_Due 181
+    3300296: Pattern_Due 182
+    3300298: Pattern_Due 183
+    3300300: Pattern_Due 184
+    3300302: Pattern_Due 185
+    3300304: Pattern_Due 186
+    3300306: Pattern_Due 187
+    3300308: Pattern_Due 188
+    3300310: Pattern_Due 189
+    3300312: Pattern_Due 19
+    3300314: Pattern_Due 190
+    3300316: Pattern_Due 191
+    3300318: Pattern_Due 192
+    3300320: Pattern_Due 193
+    3300322: Pattern_Due 194
+    3300324: Pattern_Due 195
+    3300326: Pattern_Due 196
+    3300328: Pattern_Due 197
+    3300330: Pattern_Due 198
+    3300332: Pattern_Due 199
+    3300334: Pattern_Due 2
+    3300336: Pattern_Due 20
+    3300338: Pattern_Due 200
+    3300340: Pattern_Due 201
+    3300342: Pattern_Due 202
+    3300344: Pattern_Due 203
+    3300346: Pattern_Due 204
+    3300348: Pattern_Due 205
+    3300350: Pattern_Due 206
+    3300352: Pattern_Due 207
+    3300354: Pattern_Due 208
+    3300356: Pattern_Due 209
+    3300358: Pattern_Due 21
+    3300360: Pattern_Due 210
+    3300362: Pattern_Due 211
+    3300364: Pattern_Due 212
+    3300366: Pattern_Due 213
+    3300368: Pattern_Due 214
+    3300370: Pattern_Due 215
+    3300372: Pattern_Due 216
+    3300374: Pattern_Due 217
+    3300376: Pattern_Due 218
+    3300378: Pattern_Due 219
+    3300380: Pattern_Due 22
+    3300382: Pattern_Due 220
+    3300384: Pattern_Due 221
+    3300386: Pattern_Due 222
+    3300388: Pattern_Due 223
+    3300390: Pattern_Due 224
+    3300392: Pattern_Due 225
+    3300394: Pattern_Due 226
+    3300396: Pattern_Due 227
+    3300398: Pattern_Due 228
+    3300400: Pattern_Due 229
+    3300402: Pattern_Due 23
+    3300404: Pattern_Due 230
+    3300406: Pattern_Due 231
+    3300408: Pattern_Due 232
+    3300410: Pattern_Due 233
+    3300412: Pattern_Due 234
+    3300414: Pattern_Due 235
+    3300416: Pattern_Due 236
+    3300418: Pattern_Due 237
+    3300420: Pattern_Due 238
+    3300422: Pattern_Due 239
+    3300424: Pattern_Due 24
+    3300426: Pattern_Due 240
+    3300428: Pattern_Due 241
+    3300430: Pattern_Due 242
+    3300432: Pattern_Due 243
+    3300434: Pattern_Due 244
+    3300436: Pattern_Due 245
+    3300438: Pattern_Due 246
+    3300440: Pattern_Due 247
+    3300442: Pattern_Due 248
+    3300444: Pattern_Due 249
+    3300446: Pattern_Due 25
+    3300448: Pattern_Due 250
+    3300450: Pattern_Due 251
+    3300452: Pattern_Due 252
+    3300454: Pattern_Due 253
+    3300456: Pattern_Due 254
+    3300458: Pattern_Due 255
+    3300460: Pattern_Due 256
+    3300462: Pattern_Due 257
+    3300464: Pattern_Due 258
+    3300466: Pattern_Due 259
+    3300468: Pattern_Due 26
+    3300470: Pattern_Due 260
+    3300472: Pattern_Due 261
+    3300474: Pattern_Due 262
+    3300476: Pattern_Due 263
+    3300478: Pattern_Due 27
+    3300480: Pattern_Due 28
+    3300482: Pattern_Due 29
+    3300484: Pattern_Due 3
+    3300486: Pattern_Due 30
+    3300488: Pattern_Due 31
+    3300490: Pattern_Due 32
+    3300492: Pattern_Due 33
+    3300494: Pattern_Due 34
+    3300496: Pattern_Due 35
+    3300498: Pattern_Due 36
+    3300500: Pattern_Due 37
+    3300502: Pattern_Due 38
+    3300504: Pattern_Due 39
+    3300506: Pattern_Due 4
+    3300508: Pattern_Due 40
+    3300510: Pattern_Due 41
+    3300512: Pattern_Due 42
+    3300514: Pattern_Due 43
+    3300516: Pattern_Due 44
+    3300518: Pattern_Due 45
+    3300520: Pattern_Due 46
+    3300522: Pattern_Due 47
+    3300524: Pattern_Due 48
+    3300526: Pattern_Due 49
+    3300528: Pattern_Due 5
+    3300530: Pattern_Due 50
+    3300532: Pattern_Due 51
+    3300534: Pattern_Due 52
+    3300536: Pattern_Due 53
+    3300538: Pattern_Due 54
+    3300540: Pattern_Due 55
+    3300542: Pattern_Due 56
+    3300544: Pattern_Due 57
+    3300546: Pattern_Due 58
+    3300548: Pattern_Due 59
+    3300550: Pattern_Due 6
+    3300552: Pattern_Due 60
+    3300554: Pattern_Due 61
+    3300556: Pattern_Due 62
+    3300558: Pattern_Due 63
+    3300560: Pattern_Due 64
+    3300562: Pattern_Due 65
+    3300564: Pattern_Due 66
+    3300566: Pattern_Due 67
+    3300568: Pattern_Due 68
+    3300570: Pattern_Due 69
+    3300572: Pattern_Due 7
+    3300574: Pattern_Due 70
+    3300576: Pattern_Due 71
+    3300578: Pattern_Due 72
+    3300580: Pattern_Due 73
+    3300582: Pattern_Due 74
+    3300584: Pattern_Due 75
+    3300586: Pattern_Due 76
+    3300588: Pattern_Due 77
+    3300590: Pattern_Due 78
+    3300592: Pattern_Due 79
+    3300594: Pattern_Due 8
+    3300596: Pattern_Due 80
+    3300598: Pattern_Due 81
+    3300600: Pattern_Due 82
+    3300602: Pattern_Due 83
+    3300604: Pattern_Due 84
+    3300606: Pattern_Due 85
+    3300608: Pattern_Due 86
+    3300610: Pattern_Due 87
+    3300612: Pattern_Due 88
+    3300614: Pattern_Due 89
+    3300616: Pattern_Due 9
+    3300618: Pattern_Due 90
+    3300620: Pattern_Due 91
+    3300622: Pattern_Due 92
+    3300624: Pattern_Due 93
+    3300626: Pattern_Due 94
+    3300628: Pattern_Due 95
+    3300630: Pattern_Due 96
+    3300632: Pattern_Due 97
+    3300634: Pattern_Due 98
+    3300636: Pattern_Due 99
+    3300638: Pattern_Uno
+    3300640: Pattern_Uno 1
+    3300642: Pattern_Uno 10
+    3300644: Pattern_Uno 100
+    3300646: Pattern_Uno 101
+    3300648: Pattern_Uno 102
+    3300650: Pattern_Uno 103
+    3300652: Pattern_Uno 104
+    3300654: Pattern_Uno 105
+    3300656: Pattern_Uno 106
+    3300658: Pattern_Uno 107
+    3300660: Pattern_Uno 108
+    3300662: Pattern_Uno 109
+    3300664: Pattern_Uno 11
+    3300666: Pattern_Uno 110
+    3300668: Pattern_Uno 111
+    3300670: Pattern_Uno 112
+    3300672: Pattern_Uno 113
+    3300674: Pattern_Uno 114
+    3300676: Pattern_Uno 115
+    3300678: Pattern_Uno 116
+    3300680: Pattern_Uno 117
+    3300682: Pattern_Uno 118
+    3300684: Pattern_Uno 119
+    3300686: Pattern_Uno 12
+    3300688: Pattern_Uno 120
+    3300690: Pattern_Uno 121
+    3300692: Pattern_Uno 122
+    3300694: Pattern_Uno 123
+    3300696: Pattern_Uno 124
+    3300698: Pattern_Uno 125
+    3300700: Pattern_Uno 126
+    3300702: Pattern_Uno 127
+    3300704: Pattern_Uno 128
+    3300706: Pattern_Uno 129
+    3300708: Pattern_Uno 13
+    3300710: Pattern_Uno 130
+    3300712: Pattern_Uno 131
+    3300714: Pattern_Uno 132
+    3300716: Pattern_Uno 133
+    3300718: Pattern_Uno 134
+    3300720: Pattern_Uno 135
+    3300722: Pattern_Uno 136
+    3300724: Pattern_Uno 137
+    3300726: Pattern_Uno 138
+    3300728: Pattern_Uno 139
+    3300730: Pattern_Uno 14
+    3300732: Pattern_Uno 140
+    3300734: Pattern_Uno 141
+    3300736: Pattern_Uno 142
+    3300738: Pattern_Uno 143
+    3300740: Pattern_Uno 144
+    3300742: Pattern_Uno 145
+    3300744: Pattern_Uno 146
+    3300746: Pattern_Uno 147
+    3300748: Pattern_Uno 148
+    3300750: Pattern_Uno 149
+    3300752: Pattern_Uno 15
+    3300754: Pattern_Uno 150
+    3300756: Pattern_Uno 151
+    3300758: Pattern_Uno 152
+    3300760: Pattern_Uno 153
+    3300762: Pattern_Uno 154
+    3300764: Pattern_Uno 155
+    3300766: Pattern_Uno 156
+    3300768: Pattern_Uno 157
+    3300770: Pattern_Uno 158
+    3300772: Pattern_Uno 159
+    3300774: Pattern_Uno 16
+    3300776: Pattern_Uno 160
+    3300778: Pattern_Uno 161
+    3300780: Pattern_Uno 162
+    3300782: Pattern_Uno 163
+    3300784: Pattern_Uno 164
+    3300786: Pattern_Uno 165
+    3300788: Pattern_Uno 166
+    3300790: Pattern_Uno 167
+    3300792: Pattern_Uno 168
+    3300794: Pattern_Uno 169
+    3300796: Pattern_Uno 17
+    3300798: Pattern_Uno 170
+    3300800: Pattern_Uno 171
+    3300802: Pattern_Uno 172
+    3300804: Pattern_Uno 173
+    3300806: Pattern_Uno 174
+    3300808: Pattern_Uno 175
+    3300810: Pattern_Uno 176
+    3300812: Pattern_Uno 177
+    3300814: Pattern_Uno 178
+    3300816: Pattern_Uno 179
+    3300818: Pattern_Uno 18
+    3300820: Pattern_Uno 180
+    3300822: Pattern_Uno 181
+    3300824: Pattern_Uno 182
+    3300826: Pattern_Uno 183
+    3300828: Pattern_Uno 184
+    3300830: Pattern_Uno 185
+    3300832: Pattern_Uno 186
+    3300834: Pattern_Uno 187
+    3300836: Pattern_Uno 188
+    3300838: Pattern_Uno 189
+    3300840: Pattern_Uno 19
+    3300842: Pattern_Uno 190
+    3300844: Pattern_Uno 191
+    3300846: Pattern_Uno 192
+    3300848: Pattern_Uno 193
+    3300850: Pattern_Uno 194
+    3300852: Pattern_Uno 195
+    3300854: Pattern_Uno 196
+    3300856: Pattern_Uno 197
+    3300858: Pattern_Uno 198
+    3300860: Pattern_Uno 199
+    3300862: Pattern_Uno 2
+    3300864: Pattern_Uno 20
+    3300866: Pattern_Uno 200
+    3300868: Pattern_Uno 201
+    3300870: Pattern_Uno 202
+    3300872: Pattern_Uno 203
+    3300874: Pattern_Uno 204
+    3300876: Pattern_Uno 205
+    3300878: Pattern_Uno 206
+    3300880: Pattern_Uno 207
+    3300882: Pattern_Uno 208
+    3300884: Pattern_Uno 209
+    3300886: Pattern_Uno 21
+    3300888: Pattern_Uno 210
+    3300890: Pattern_Uno 211
+    3300892: Pattern_Uno 212
+    3300894: Pattern_Uno 213
+    3300896: Pattern_Uno 214
+    3300898: Pattern_Uno 215
+    3300900: Pattern_Uno 216
+    3300902: Pattern_Uno 217
+    3300904: Pattern_Uno 218
+    3300906: Pattern_Uno 219
+    3300908: Pattern_Uno 22
+    3300910: Pattern_Uno 220
+    3300912: Pattern_Uno 221
+    3300914: Pattern_Uno 222
+    3300916: Pattern_Uno 223
+    3300918: Pattern_Uno 224
+    3300920: Pattern_Uno 225
+    3300922: Pattern_Uno 226
+    3300924: Pattern_Uno 227
+    3300926: Pattern_Uno 228
+    3300928: Pattern_Uno 229
+    3300930: Pattern_Uno 23
+    3300932: Pattern_Uno 230
+    3300934: Pattern_Uno 231
+    3300936: Pattern_Uno 232
+    3300938: Pattern_Uno 233
+    3300940: Pattern_Uno 234
+    3300942: Pattern_Uno 235
+    3300944: Pattern_Uno 236
+    3300946: Pattern_Uno 237
+    3300948: Pattern_Uno 238
+    3300950: Pattern_Uno 239
+    3300952: Pattern_Uno 24
+    3300954: Pattern_Uno 240
+    3300956: Pattern_Uno 241
+    3300958: Pattern_Uno 242
+    3300960: Pattern_Uno 243
+    3300962: Pattern_Uno 244
+    3300964: Pattern_Uno 245
+    3300966: Pattern_Uno 246
+    3300968: Pattern_Uno 247
+    3300970: Pattern_Uno 248
+    3300972: Pattern_Uno 249
+    3300974: Pattern_Uno 25
+    3300976: Pattern_Uno 250
+    3300978: Pattern_Uno 251
+    3300980: Pattern_Uno 252
+    3300982: Pattern_Uno 253
+    3300984: Pattern_Uno 254
+    3300986: Pattern_Uno 255
+    3300988: Pattern_Uno 26
+    3300990: Pattern_Uno 27
+    3300992: Pattern_Uno 28
+    3300994: Pattern_Uno 29
+    3300996: Pattern_Uno 3
+    3300998: Pattern_Uno 30
+    3301000: Pattern_Uno 31
+    3301002: Pattern_Uno 32
+    3301004: Pattern_Uno 33
+    3301006: Pattern_Uno 34
+    3301008: Pattern_Uno 35
+    3301010: Pattern_Uno 36
+    3301012: Pattern_Uno 37
+    3301014: Pattern_Uno 38
+    3301016: Pattern_Uno 39
+    3301018: Pattern_Uno 4
+    3301020: Pattern_Uno 40
+    3301022: Pattern_Uno 41
+    3301024: Pattern_Uno 42
+    3301026: Pattern_Uno 43
+    3301028: Pattern_Uno 44
+    3301030: Pattern_Uno 45
+    3301032: Pattern_Uno 46
+    3301034: Pattern_Uno 47
+    3301036: Pattern_Uno 48
+    3301038: Pattern_Uno 49
+    3301040: Pattern_Uno 5
+    3301042: Pattern_Uno 50
+    3301044: Pattern_Uno 51
+    3301046: Pattern_Uno 52
+    3301048: Pattern_Uno 53
+    3301050: Pattern_Uno 54
+    3301052: Pattern_Uno 55
+    3301054: Pattern_Uno 56
+    3301056: Pattern_Uno 57
+    3301058: Pattern_Uno 58
+    3301060: Pattern_Uno 59
+    3301062: Pattern_Uno 6
+    3301064: Pattern_Uno 60
+    3301066: Pattern_Uno 61
+    3301068: Pattern_Uno 62
+    3301070: Pattern_Uno 63
+    3301072: Pattern_Uno 64
+    3301074: Pattern_Uno 65
+    3301076: Pattern_Uno 66
+    3301078: Pattern_Uno 67
+    3301080: Pattern_Uno 68
+    3301082: Pattern_Uno 69
+    3301084: Pattern_Uno 7
+    3301086: Pattern_Uno 70
+    3301088: Pattern_Uno 71
+    3301090: Pattern_Uno 72
+    3301092: Pattern_Uno 73
+    3301094: Pattern_Uno 74
+    3301096: Pattern_Uno 75
+    3301098: Pattern_Uno 76
+    3301100: Pattern_Uno 77
+    3301102: Pattern_Uno 78
+    3301104: Pattern_Uno 79
+    3301106: Pattern_Uno 8
+    3301108: Pattern_Uno 80
+    3301110: Pattern_Uno 81
+    3301112: Pattern_Uno 82
+    3301114: Pattern_Uno 83
+    3301116: Pattern_Uno 84
+    3301118: Pattern_Uno 85
+    3301120: Pattern_Uno 86
+    3301122: Pattern_Uno 87
+    3301124: Pattern_Uno 88
+    3301126: Pattern_Uno 89
+    3301128: Pattern_Uno 9
+    3301130: Pattern_Uno 90
+    3301132: Pattern_Uno 91
+    3301134: Pattern_Uno 92
+    3301136: Pattern_Uno 93
+    3301138: Pattern_Uno 94
+    3301140: Pattern_Uno 95
+    3301142: Pattern_Uno 96
+    3301144: Pattern_Uno 97
+    3301146: Pattern_Uno 98
+    3301148: Pattern_Uno 99
+    3301150: Slope
+    3301152: Slope 1
+    3301154: Slope 10
+    3301156: Slope 11
+    3301158: Slope 12
+    3301160: Slope 13
+    3301162: Slope 14
+    3301164: Slope 15
+    3301166: Slope 16
+    3301168: Slope 17
+    3301170: Slope 18
+    3301172: Slope 19
+    3301174: Slope 2
+    3301176: Slope 20
+    3301178: Slope 21
+    3301180: Slope 22
+    3301182: Slope 23
+    3301184: Slope 24
+    3301186: Slope 25
+    3301188: Slope 26
+    3301190: Slope 27
+    3301192: Slope 28
+    3301194: Slope 29
+    3301196: Slope 3
+    3301198: Slope 30
+    3301200: Slope 31
+    3301202: Slope 32
+    3301204: Slope 33
+    3301206: Slope 34
+    3301208: Slope 35
+    3301210: Slope 36
+    3301212: Slope 37
+    3301214: Slope 38
+    3301216: Slope 39
+    3301218: Slope 4
+    3301220: Slope 5
+    3301222: Slope 6
+    3301224: Slope 7
+    3301226: Slope 8
+    3301228: Slope 9
+    3301230: Under_Slope
+    3301232: Under_Slope 1
+    3301234: Under_Slope 10
+    3301236: Under_Slope 11
+    3301238: Under_Slope 12
+    3301240: Under_Slope 13
+    3301242: Under_Slope 14
+    3301244: Under_Slope 15
+    3301246: Under_Slope 16
+    3301248: Under_Slope 17
+    3301250: Under_Slope 18
+    3301252: Under_Slope 19
+    3301254: Under_Slope 2
+    3301256: Under_Slope 20
+    3301258: Under_Slope 21
+    3301260: Under_Slope 22
+    3301262: Under_Slope 23
+    3301264: Under_Slope 24
+    3301266: Under_Slope 25
+    3301268: Under_Slope 26
+    3301270: Under_Slope 27
+    3301272: Under_Slope 28
+    3301274: Under_Slope 29
+    3301276: Under_Slope 3
+    3301278: Under_Slope 30
+    3301280: Under_Slope 31
+    3301282: Under_Slope 32
+    3301284: Under_Slope 33
+    3301286: Under_Slope 34
+    3301288: Under_Slope 35
+    3301290: Under_Slope 36
+    3301292: Under_Slope 37
+    3301294: Under_Slope 38
+    3301296: Under_Slope 39
+    3301298: Under_Slope 4
+    3301300: Under_Slope 40
+    3301302: Under_Slope 41
+    3301304: Under_Slope 42
+    3301306: Under_Slope 43
+    3301308: Under_Slope 44
+    3301310: Under_Slope 45
+    3301312: Under_Slope 46
+    3301314: Under_Slope 47
+    3301316: Under_Slope 5
+    3301318: Under_Slope 6
+    3301320: Under_Slope 7
+    3301322: Under_Slope 8
+    3301324: Under_Slope 9
+    3301326: Outside_corner4
+    3301328: Glass
+    3301330: Glass 1
+    3301332: Glass 2
+    3301334: Glass 3
+    3301336: Glass_inverse
+    3301338: Glass_inverse 1
+    3301340: Glass_inverse 2
+    3301342: Glass_inverse 3
+    3301344: Glass 4
+    3301346: Glass 5
+    3301348: Glass 6
+    3301350: Glass 7
+    3301352: Outside_corner 1
+    3301354: Outside_corner 2
+    3301356: Outside_corner 3
+    3301358: Top_Black
+    3301360: Top_Black 1
+    3301362: Top_Black 2
+    3301364: Top_Black 3
+    3301366: Top_Black 4
+    3301368: Top_Black 5
+    3301370: Top_Black 6
+    3301372: Top_Black 7
+    4300000: Edge_Slope
+    4300002: Slope
+    4300004: Pattern_Uno
+    4300006: Pattern_Due
+    4300008: Pattern_Uno
+    4300010: Pattern_Due
+    4300012: Pattern_Uno
+    4300014: Pattern_Due
+    4300016: Edge_Slope
+    4300018: Slope
+    4300020: Pattern_Uno
+    4300022: Pattern_Due
+    4300024: Pattern_Uno
+    4300026: Pattern_Due
+    4300028: Pattern_Uno
+    4300030: Pattern_Due
+    4300032: Edge_Slope
+    4300034: Slope
+    4300036: Pattern_Uno
+    4300038: Pattern_Due
+    4300040: Pattern_Uno
+    4300042: Pattern_Due
+    4300044: Pattern_Uno
+    4300046: Pattern_Due
+    4300048: Edge_Slope
+    4300050: Slope
+    4300052: Pattern_Uno
+    4300054: Pattern_Due
+    4300056: Pattern_Uno
+    4300058: Pattern_Due
+    4300060: Pattern_Uno
+    4300062: Pattern_Due
+    4300064: Edge_Slope
+    4300066: Slope
+    4300068: Pattern_Due
+    4300070: Pattern_Uno
+    4300072: Pattern_Due
+    4300074: Pattern_Uno
+    4300076: Pattern_Due
+    4300078: Pattern_Uno
+    4300080: Pattern_Due
+    4300082: Pattern_Uno
+    4300084: Pattern_Due
+    4300086: Pattern_Uno
+    4300088: Pattern_Due
+    4300090: Under_Slope
+    4300092: Pattern_Uno
+    4300094: Pattern_Due
+    4300096: Pattern_Uno
+    4300098: Pattern_Due
+    4300100: Pattern_Uno
+    4300102: Pattern_Due
+    4300104: Under_Slope
+    4300106: Pattern_Uno
+    4300108: Pattern_Due
+    4300110: Pattern_Uno
+    4300112: Pattern_Due
+    4300114: Pattern_Uno
+    4300116: Pattern_Due
+    4300118: Under_Slope
+    4300120: Pattern_Uno
+    4300122: Pattern_Due
+    4300124: Pattern_Uno
+    4300126: Pattern_Due
+    4300128: Pattern_Uno
+    4300130: Pattern_Due
+    4300132: Under_Slope
+    4300134: Pattern_Uno
+    4300136: Pattern_Due
+    4300138: Pattern_Uno
+    4300140: Pattern_Due
+    4300142: Pattern_Uno
+    4300144: Pattern_Due
+    4300146: Under_Slope
+    4300148: Pattern_Uno
+    4300150: Pattern_Due
+    4300152: Pattern_Uno
+    4300154: Pattern_Due
+    4300156: Pattern_Uno
+    4300158: Pattern_Due
+    4300160: Under_Slope
+    4300162: Edge_Slope
+    4300164: Slope
+    4300166: Pattern_Uno
+    4300168: Pattern_Due
+    4300170: Pattern_Uno
+    4300172: Pattern_Due
+    4300174: Pattern_Uno
+    4300176: Pattern_Due
+    4300178: Edge_Slope
+    4300180: Slope
+    4300182: Pattern_Uno
+    4300184: Pattern_Due
+    4300186: Pattern_Uno
+    4300188: Pattern_Due
+    4300190: Pattern_Uno
+    4300192: Pattern_Due
+    4300194: Edge_Slope
+    4300196: Slope
+    4300198: Pattern_Uno
+    4300200: Pattern_Due
+    4300202: Pattern_Uno
+    4300204: Pattern_Due
+    4300206: Pattern_Uno
+    4300208: Pattern_Due
+    4300210: Edge_Slope
+    4300212: Slope
+    4300214: Pattern_Uno
+    4300216: Pattern_Due
+    4300218: Pattern_Uno
+    4300220: Pattern_Due
+    4300222: Pattern_Uno
+    4300224: Pattern_Due
+    4300226: Edge_Slope
+    4300228: Slope
+    4300230: Pattern_Due
+    4300232: Pattern_Uno
+    4300234: Pattern_Due
+    4300236: Pattern_Uno
+    4300238: Pattern_Due
+    4300240: Pattern_Uno
+    4300242: Pattern_Due
+    4300244: Pattern_Uno
+    4300246: Pattern_Due
+    4300248: Pattern_Uno
+    4300250: Pattern_Due
+    4300252: Under_Slope
+    4300254: Pattern_Uno
+    4300256: Pattern_Due
+    4300258: Pattern_Uno
+    4300260: Pattern_Due
+    4300262: Pattern_Uno
+    4300264: Pattern_Due
+    4300266: Under_Slope
+    4300268: Pattern_Uno
+    4300270: Pattern_Due
+    4300272: Pattern_Uno
+    4300274: Pattern_Due
+    4300276: Pattern_Uno
+    4300278: Pattern_Due
+    4300280: Under_Slope
+    4300282: Pattern_Uno
+    4300284: Pattern_Due
+    4300286: Pattern_Uno
+    4300288: Pattern_Due
+    4300290: Pattern_Uno
+    4300292: Pattern_Due
+    4300294: Under_Slope
+    4300296: Pattern_Uno
+    4300298: Pattern_Due
+    4300300: Pattern_Uno
+    4300302: Pattern_Due
+    4300304: Pattern_Uno
+    4300306: Pattern_Due
+    4300308: Under_Slope
+    4300310: Pattern_Uno
+    4300312: Pattern_Due
+    4300314: Pattern_Uno
+    4300316: Pattern_Due
+    4300318: Pattern_Uno
+    4300320: Pattern_Due
+    4300322: Under_Slope
+    4300324: Ground_N
+    4300326: Ground_N1
+    4300328: Ground_N2
+    4300330: Ground_N3
+    4300332: Ground_N4
+    4300334: Ground_N5
+    4300336: Ground_N6
+    4300338: Ground_N7
+    4300340: Ground_N8
+    4300342: Ground_N9
+    4300344: Ground_N10
+    4300346: Edge_Slope
+    4300348: Slope
+    4300350: Pattern_Uno
+    4300352: Pattern_Due
+    4300354: Pattern_Uno
+    4300356: Pattern_Due
+    4300358: Pattern_Uno
+    4300360: Pattern_Due
+    4300362: Edge_Slope
+    4300364: Slope
+    4300366: Pattern_Uno
+    4300368: Pattern_Due
+    4300370: Pattern_Uno
+    4300372: Pattern_Due
+    4300374: Pattern_Uno
+    4300376: Pattern_Due
+    4300378: Edge_Slope
+    4300380: Slope
+    4300382: Pattern_Uno
+    4300384: Pattern_Due
+    4300386: Pattern_Uno
+    4300388: Pattern_Due
+    4300390: Pattern_Uno
+    4300392: Pattern_Due
+    4300394: Edge_Slope
+    4300396: Slope
+    4300398: Pattern_Uno
+    4300400: Pattern_Due
+    4300402: Pattern_Uno
+    4300404: Pattern_Due
+    4300406: Pattern_Uno
+    4300408: Pattern_Due
+    4300410: Edge_Slope
+    4300412: Slope
+    4300414: Pattern_Due
+    4300416: Pattern_Uno
+    4300418: Pattern_Due
+    4300420: Pattern_Uno
+    4300422: Pattern_Due
+    4300424: Pattern_Uno
+    4300426: Pattern_Due
+    4300428: Pattern_Uno
+    4300430: Pattern_Due
+    4300432: Pattern_Uno
+    4300434: Pattern_Due
+    4300436: Under_Slope
+    4300438: Pattern_Uno
+    4300440: Pattern_Due
+    4300442: Pattern_Uno
+    4300444: Pattern_Due
+    4300446: Pattern_Uno
+    4300448: Pattern_Due
+    4300450: Under_Slope
+    4300452: Pattern_Uno
+    4300454: Pattern_Due
+    4300456: Pattern_Uno
+    4300458: Pattern_Due
+    4300460: Pattern_Uno
+    4300462: Pattern_Due
+    4300464: Under_Slope
+    4300466: Pattern_Uno
+    4300468: Pattern_Due
+    4300470: Pattern_Uno
+    4300472: Pattern_Due
+    4300474: Pattern_Uno
+    4300476: Pattern_Due
+    4300478: Under_Slope
+    4300480: Pattern_Uno
+    4300482: Pattern_Due
+    4300484: Pattern_Uno
+    4300486: Pattern_Due
+    4300488: Pattern_Uno
+    4300490: Pattern_Due
+    4300492: Under_Slope
+    4300494: Pattern_Uno
+    4300496: Pattern_Due
+    4300498: Pattern_Uno
+    4300500: Pattern_Due
+    4300502: Pattern_Uno
+    4300504: Pattern_Due
+    4300506: Under_Slope
+    4300508: Edge_Slope
+    4300510: Slope
+    4300512: Pattern_Uno
+    4300514: Pattern_Due
+    4300516: Pattern_Uno
+    4300518: Pattern_Due
+    4300520: Pattern_Uno
+    4300522: Pattern_Due
+    4300524: Edge_Slope
+    4300526: Slope
+    4300528: Pattern_Uno
+    4300530: Pattern_Due
+    4300532: Pattern_Uno
+    4300534: Pattern_Due
+    4300536: Pattern_Uno
+    4300538: Pattern_Due
+    4300540: Edge_Slope
+    4300542: Slope
+    4300544: Pattern_Uno
+    4300546: Pattern_Due
+    4300548: Pattern_Uno
+    4300550: Pattern_Due
+    4300552: Pattern_Uno
+    4300554: Pattern_Due
+    4300556: Edge_Slope
+    4300558: Slope
+    4300560: Pattern_Uno
+    4300562: Pattern_Due
+    4300564: Pattern_Uno
+    4300566: Pattern_Due
+    4300568: Pattern_Uno
+    4300570: Pattern_Due
+    4300572: Edge_Slope
+    4300574: Slope
+    4300576: Pattern_Due
+    4300578: Pattern_Uno
+    4300580: Pattern_Due
+    4300582: Pattern_Uno
+    4300584: Pattern_Due
+    4300586: Pattern_Uno
+    4300588: Pattern_Due
+    4300590: Pattern_Uno
+    4300592: Pattern_Due
+    4300594: Pattern_Uno
+    4300596: Pattern_Due
+    4300598: Under_Slope
+    4300600: Pattern_Uno
+    4300602: Pattern_Due
+    4300604: Pattern_Uno
+    4300606: Pattern_Due
+    4300608: Pattern_Uno
+    4300610: Pattern_Due
+    4300612: Under_Slope
+    4300614: Pattern_Uno
+    4300616: Pattern_Due
+    4300618: Pattern_Uno
+    4300620: Pattern_Due
+    4300622: Pattern_Uno
+    4300624: Pattern_Due
+    4300626: Under_Slope
+    4300628: Pattern_Uno
+    4300630: Pattern_Due
+    4300632: Pattern_Uno
+    4300634: Pattern_Due
+    4300636: Pattern_Uno
+    4300638: Pattern_Due
+    4300640: Under_Slope
+    4300642: Pattern_Uno
+    4300644: Pattern_Due
+    4300646: Pattern_Uno
+    4300648: Pattern_Due
+    4300650: Pattern_Uno
+    4300652: Pattern_Due
+    4300654: Under_Slope
+    4300656: Pattern_Uno
+    4300658: Pattern_Due
+    4300660: Pattern_Uno
+    4300662: Pattern_Due
+    4300664: Pattern_Uno
+    4300666: Pattern_Due
+    4300668: Under_Slope
+    4300670: Edge_Slope
+    4300672: Slope
+    4300674: Pattern_Uno
+    4300676: Pattern_Due
+    4300678: Pattern_Uno
+    4300680: Pattern_Due
+    4300682: Pattern_Uno
+    4300684: Pattern_Due
+    4300686: Edge_Slope
+    4300688: Slope
+    4300690: Pattern_Uno
+    4300692: Pattern_Due
+    4300694: Pattern_Uno
+    4300696: Pattern_Due
+    4300698: Pattern_Uno
+    4300700: Pattern_Due
+    4300702: Edge_Slope
+    4300704: Slope
+    4300706: Pattern_Uno
+    4300708: Pattern_Due
+    4300710: Pattern_Uno
+    4300712: Pattern_Due
+    4300714: Pattern_Uno
+    4300716: Pattern_Due
+    4300718: Edge_Slope
+    4300720: Slope
+    4300722: Pattern_Uno
+    4300724: Pattern_Due
+    4300726: Pattern_Uno
+    4300728: Pattern_Due
+    4300730: Pattern_Uno
+    4300732: Pattern_Due
+    4300734: Edge_Slope
+    4300736: Slope
+    4300738: Pattern_Due
+    4300740: Pattern_Uno
+    4300742: Pattern_Due
+    4300744: Pattern_Uno
+    4300746: Pattern_Due
+    4300748: Pattern_Uno
+    4300750: Pattern_Due
+    4300752: Pattern_Uno
+    4300754: Pattern_Due
+    4300756: Pattern_Uno
+    4300758: Pattern_Due
+    4300760: Under_Slope
+    4300762: Pattern_Uno
+    4300764: Pattern_Due
+    4300766: Pattern_Uno
+    4300768: Pattern_Due
+    4300770: Pattern_Uno
+    4300772: Pattern_Due
+    4300774: Under_Slope
+    4300776: Pattern_Uno
+    4300778: Pattern_Due
+    4300780: Pattern_Uno
+    4300782: Pattern_Due
+    4300784: Pattern_Uno
+    4300786: Pattern_Due
+    4300788: Under_Slope
+    4300790: Pattern_Uno
+    4300792: Pattern_Due
+    4300794: Pattern_Uno
+    4300796: Pattern_Due
+    4300798: Pattern_Uno
+    4300800: Pattern_Due
+    4300802: Under_Slope
+    4300804: Pattern_Uno
+    4300806: Pattern_Due
+    4300808: Pattern_Uno
+    4300810: Pattern_Due
+    4300812: Pattern_Uno
+    4300814: Pattern_Due
+    4300816: Under_Slope
+    4300818: Pattern_Uno
+    4300820: Pattern_Due
+    4300822: Pattern_Uno
+    4300824: Pattern_Due
+    4300826: Pattern_Uno
+    4300828: Pattern_Due
+    4300830: Under_Slope
+    4300832: Edge_Slope
+    4300834: Slope
+    4300836: Pattern_Uno
+    4300838: Pattern_Due
+    4300840: Pattern_Uno
+    4300842: Pattern_Due
+    4300844: Pattern_Uno
+    4300846: Pattern_Due
+    4300848: Edge_Slope
+    4300850: Slope
+    4300852: Pattern_Uno
+    4300854: Pattern_Due
+    4300856: Pattern_Uno
+    4300858: Pattern_Due
+    4300860: Pattern_Uno
+    4300862: Pattern_Due
+    4300864: Edge_Slope
+    4300866: Slope
+    4300868: Pattern_Uno
+    4300870: Pattern_Due
+    4300872: Pattern_Uno
+    4300874: Pattern_Due
+    4300876: Pattern_Uno
+    4300878: Pattern_Due
+    4300880: Edge_Slope
+    4300882: Slope
+    4300884: Pattern_Uno
+    4300886: Pattern_Due
+    4300888: Pattern_Uno
+    4300890: Pattern_Due
+    4300892: Pattern_Uno
+    4300894: Pattern_Due
+    4300896: Edge_Slope
+    4300898: Slope
+    4300900: Pattern_Due
+    4300902: Pattern_Uno
+    4300904: Pattern_Due
+    4300906: Pattern_Uno
+    4300908: Pattern_Due
+    4300910: Pattern_Uno
+    4300912: Pattern_Due
+    4300914: Pattern_Uno
+    4300916: Pattern_Due
+    4300918: Pattern_Uno
+    4300920: Pattern_Due
+    4300922: Under_Slope
+    4300924: Pattern_Uno
+    4300926: Pattern_Due
+    4300928: Pattern_Uno
+    4300930: Pattern_Due
+    4300932: Pattern_Uno
+    4300934: Pattern_Due
+    4300936: Under_Slope
+    4300938: Pattern_Uno
+    4300940: Pattern_Due
+    4300942: Pattern_Uno
+    4300944: Pattern_Due
+    4300946: Pattern_Uno
+    4300948: Pattern_Due
+    4300950: Under_Slope
+    4300952: Pattern_Uno
+    4300954: Pattern_Due
+    4300956: Pattern_Uno
+    4300958: Pattern_Due
+    4300960: Pattern_Uno
+    4300962: Pattern_Due
+    4300964: Under_Slope
+    4300966: Pattern_Uno
+    4300968: Pattern_Due
+    4300970: Pattern_Uno
+    4300972: Pattern_Due
+    4300974: Pattern_Uno
+    4300976: Pattern_Due
+    4300978: Under_Slope
+    4300980: Pattern_Uno
+    4300982: Pattern_Due
+    4300984: Pattern_Uno
+    4300986: Pattern_Due
+    4300988: Pattern_Uno
+    4300990: Pattern_Due
+    4300992: Under_Slope
+    4300994: Edge_Slope
+    4300996: Slope
+    4300998: Pattern_Uno
+    4301000: Pattern_Due
+    4301002: Pattern_Uno
+    4301004: Pattern_Due
+    4301006: Pattern_Uno
+    4301008: Pattern_Due
+    4301010: Edge_Slope
+    4301012: Slope
+    4301014: Pattern_Uno
+    4301016: Pattern_Due
+    4301018: Pattern_Uno
+    4301020: Pattern_Due
+    4301022: Pattern_Uno
+    4301024: Pattern_Due
+    4301026: Edge_Slope
+    4301028: Slope
+    4301030: Pattern_Uno
+    4301032: Pattern_Due
+    4301034: Pattern_Uno
+    4301036: Pattern_Due
+    4301038: Pattern_Uno
+    4301040: Pattern_Due
+    4301042: Edge_Slope
+    4301044: Slope
+    4301046: Pattern_Uno
+    4301048: Pattern_Due
+    4301050: Pattern_Uno
+    4301052: Pattern_Due
+    4301054: Pattern_Uno
+    4301056: Pattern_Due
+    4301058: Edge_Slope
+    4301060: Slope
+    4301062: Pattern_Due
+    4301064: Pattern_Uno
+    4301066: Pattern_Due
+    4301068: Pattern_Uno
+    4301070: Pattern_Due
+    4301072: Pattern_Uno
+    4301074: Pattern_Due
+    4301076: Pattern_Uno
+    4301078: Pattern_Due
+    4301080: Pattern_Uno
+    4301082: Pattern_Due
+    4301084: Under_Slope
+    4301086: Pattern_Uno
+    4301088: Pattern_Due
+    4301090: Pattern_Uno
+    4301092: Pattern_Due
+    4301094: Pattern_Uno
+    4301096: Pattern_Due
+    4301098: Under_Slope
+    4301100: Pattern_Uno
+    4301102: Pattern_Due
+    4301104: Pattern_Uno
+    4301106: Pattern_Due
+    4301108: Pattern_Uno
+    4301110: Pattern_Due
+    4301112: Under_Slope
+    4301114: Pattern_Uno
+    4301116: Pattern_Due
+    4301118: Pattern_Uno
+    4301120: Pattern_Due
+    4301122: Pattern_Uno
+    4301124: Pattern_Due
+    4301126: Under_Slope
+    4301128: Pattern_Uno
+    4301130: Pattern_Due
+    4301132: Pattern_Uno
+    4301134: Pattern_Due
+    4301136: Pattern_Uno
+    4301138: Pattern_Due
+    4301140: Under_Slope
+    4301142: Pattern_Uno
+    4301144: Pattern_Due
+    4301146: Pattern_Uno
+    4301148: Pattern_Due
+    4301150: Pattern_Uno
+    4301152: Pattern_Due
+    4301154: Under_Slope
+    4301156: Edge_Slope
+    4301158: Slope
+    4301160: Pattern_Uno
+    4301162: Pattern_Due
+    4301164: Pattern_Uno
+    4301166: Pattern_Due
+    4301168: Pattern_Uno
+    4301170: Pattern_Due
+    4301172: Edge_Slope
+    4301174: Slope
+    4301176: Pattern_Uno
+    4301178: Pattern_Due
+    4301180: Pattern_Uno
+    4301182: Pattern_Due
+    4301184: Pattern_Uno
+    4301186: Pattern_Due
+    4301188: Edge_Slope
+    4301190: Slope
+    4301192: Pattern_Uno
+    4301194: Pattern_Due
+    4301196: Pattern_Uno
+    4301198: Pattern_Due
+    4301200: Pattern_Uno
+    4301202: Pattern_Due
+    4301204: Edge_Slope
+    4301206: Slope
+    4301208: Pattern_Uno
+    4301210: Pattern_Due
+    4301212: Pattern_Uno
+    4301214: Pattern_Due
+    4301216: Pattern_Uno
+    4301218: Pattern_Due
+    4301220: Edge_Slope
+    4301222: Slope
+    4301224: Pattern_Due
+    4301226: Pattern_Uno
+    4301228: Pattern_Due
+    4301230: Pattern_Uno
+    4301232: Pattern_Due
+    4301234: Pattern_Uno
+    4301236: Pattern_Due
+    4301238: Pattern_Uno
+    4301240: Pattern_Due
+    4301242: Pattern_Uno
+    4301244: Pattern_Due
+    4301246: Under_Slope
+    4301248: Pattern_Uno
+    4301250: Pattern_Due
+    4301252: Pattern_Uno
+    4301254: Pattern_Due
+    4301256: Pattern_Uno
+    4301258: Pattern_Due
+    4301260: Under_Slope
+    4301262: Pattern_Uno
+    4301264: Pattern_Due
+    4301266: Pattern_Uno
+    4301268: Pattern_Due
+    4301270: Pattern_Uno
+    4301272: Pattern_Due
+    4301274: Under_Slope
+    4301276: Pattern_Uno
+    4301278: Pattern_Due
+    4301280: Pattern_Uno
+    4301282: Pattern_Due
+    4301284: Pattern_Uno
+    4301286: Pattern_Due
+    4301288: Under_Slope
+    4301290: Pattern_Uno
+    4301292: Pattern_Due
+    4301294: Pattern_Uno
+    4301296: Pattern_Due
+    4301298: Pattern_Uno
+    4301300: Pattern_Due
+    4301302: Under_Slope
+    4301304: Pattern_Uno
+    4301306: Pattern_Due
+    4301308: Pattern_Uno
+    4301310: Pattern_Due
+    4301312: Pattern_Uno
+    4301314: Pattern_Due
+    4301316: Under_Slope
+    4301318: Outside_corner
+    4301320: Outside_corner1
+    4301322: Outside_corner2
+    4301324: Outside_corner3
+    4301326: Outside_corner4
+    4301328: Glass
+    4301330: Glass_inverse
+    4301332: Glass
+    4301334: Glass_inverse
+    4301336: Glass
+    4301338: Glass_inverse
+    4301340: Glass
+    4301342: Glass_inverse
+    4301344: Top_Black
+    4301346: Top_Black
+    4301348: Top_Black
+    4301350: Outside_corner
+    4301352: Top_Black
+    4301354: Glass
+    4301356: Top_Black
+    4301358: Outside_corner
+    4301360: Glass
+    4301362: Top_Black
+    4301364: Glass
+    4301366: Top_Black
+    4301368: Outside_corner
+    4301370: Glass
+    4301372: Top_Black
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Edge_slope
+    second: {fileID: 2100000, guid: 59af719dfe0732c4a84bed5768a3ef90, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pattern_due
+    second: {fileID: 2100000, guid: 9fc559cbca942f5439082156d263c8e0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pattern_uno
+    second: {fileID: 2100000, guid: 037140acd9b9b4b48aa7f06b37f591c9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Secondary_floors
+    second: {fileID: 2100000, guid: 62939e083c350c64c9f7f48fff1e453a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Top_black
+    second: {fileID: 2100000, guid: 85a5047a684704f4b958968e7fe6898a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Under_slope
+    second: {fileID: 2100000, guid: b1c7a00309ff66e4fbc05d794279ff93, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Windows_glass
+    second: {fileID: 2100000, guid: 3c6b1523a5c1fd04a8ff8447561ee73a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 7cbffe30563449f409a618b98b978bf4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: slope
+    second: {fileID: 2100000, guid: d78b426b1e2397e4696975f5058c1792, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
