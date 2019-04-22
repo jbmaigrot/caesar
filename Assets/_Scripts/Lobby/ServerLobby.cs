@@ -22,8 +22,8 @@ public class ServerLobby : MonoBehaviour
     private LobbyInterfaceManager lobbyInterfaceManager;
 
     public LobbyInterfaceManager.LobbyInterface lobbyInterfaceState;
-    
-    
+
+    public bool stopUpdate = false;
 
 #if SERVER
     // Start is called before the first frame update
@@ -72,6 +72,10 @@ public class ServerLobby : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (stopUpdate == true)
+        {
+            return;
+        }
         m_Driver.ScheduleUpdate().Complete();
 
         // Clean up connections
