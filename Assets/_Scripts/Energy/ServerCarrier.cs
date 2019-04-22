@@ -9,7 +9,7 @@ public class ServerCarrier : MonoBehaviour
     public float clientCharge = 0; //ratio between 0 and 1
     public Client client;
     public ProgrammableObjectsContainer programmableObjectsContainer;
-    //public 
+    private HackInterface hackInterface;
 #endif
 
 #if SERVER
@@ -26,6 +26,7 @@ public class ServerCarrier : MonoBehaviour
 #if CLIENT
         client = FindObjectOfType<Client>();
         programmableObjectsContainer = FindObjectOfType<ProgrammableObjectsContainer>();
+        hackInterface = FindObjectOfType<HackInterface>();
 #endif
     }
 
@@ -77,6 +78,7 @@ public class ServerCarrier : MonoBehaviour
     // Take and Give
     public void OnMouseOver()
     {
+        if(!hackInterface.GetComponent<CanvasGroup>().blocksRaycasts)
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(0))
         {
             if (GetComponent<ProgrammableObjectsData>() != null)

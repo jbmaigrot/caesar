@@ -10,11 +10,13 @@ public class ClientCharacter : MonoBehaviour
     public bool isTacle;
 
     private Client client;
+    private HackInterface hackinterface;
 
     //Start
     private void Start()
     {
         client = FindObjectOfType<Client>();
+        hackinterface = FindObjectOfType<HackInterface>();
     }
 
     // Update is called once per frame
@@ -26,7 +28,7 @@ public class ClientCharacter : MonoBehaviour
     // Tacle
     public void OnMouseOver()
     {
-        if (!Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(1) && number != client.playerIndex) //Control+click is for energy-related actions
+        if (!Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(1) && number != client.playerIndex&&!hackinterface.GetComponent<CanvasGroup>().blocksRaycasts) //Control+click is for energy-related actions
         {
             client.Tacle(number);
         }

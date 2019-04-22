@@ -8,11 +8,13 @@ using UnityEngine.EventSystems;
 public class PlayerInput : MonoBehaviour
 {
     private Client client;
+    private HackInterface hackinterface;
 
     //Start
     private void Start()
     {
         client = FindObjectOfType<Client>();
+        hackinterface = FindObjectOfType<HackInterface>();
     }
 
     //Update
@@ -23,7 +25,7 @@ public class PlayerInput : MonoBehaviour
 
         if (! EventSystem.current.IsPointerOverGameObject()) //Checks if the mouse is not over any UI
         {
-            if (!Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(0))
+            if (!Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(0)&&!hackinterface.GetComponent<CanvasGroup>().blocksRaycasts)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
