@@ -47,7 +47,7 @@ public class ProgrammableObjectsData : MonoBehaviour
 
     public ProgrammableObjectsContainer objectsContainer;
 
-    public bool isHackable = true;
+    private bool isHackable = true;
 
     // Start
     void Start()
@@ -77,6 +77,7 @@ public class ProgrammableObjectsData : MonoBehaviour
         isAttract = false;
         timeBeforeStunReload = 0;
 #endif
+        isHackable = Initiator.isHackable;
 #if CLIENT
         client = FindObjectOfType<Client>();
         hackInterface = FindObjectOfType<HackInterface>();
