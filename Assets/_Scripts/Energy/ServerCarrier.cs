@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ServerCarrier : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class ServerCarrier : MonoBehaviour
     public float clientCharge = 0; //ratio between 0 and 1
     public Client client;
     public ProgrammableObjectsContainer programmableObjectsContainer;
+    //public 
 #endif
 
 #if SERVER
@@ -96,14 +98,14 @@ public class ServerCarrier : MonoBehaviour
         if (other != this/* && Vector3.Distance(transform.position, other.transform.position) < 5*/) //max distance
         {
             takingFrom = other;
-            charging = true;
+            //charging = true;
         }
     }
 
     public void StopTaking()
     {
         takingFrom = null;
-        charging = false;
+        //charging = false;
     }
 
     public void StartGiving(ServerCarrier other)
