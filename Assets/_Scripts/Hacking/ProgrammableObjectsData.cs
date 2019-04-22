@@ -10,17 +10,22 @@ public class ProgrammableObjectsData : MonoBehaviour
     /*Server. Seulement coté serveur*/
     private Server server;
     public NavMeshSurface NavMeshSurface;
-    private const float STUNBOXRADIUS = 10.0f;
+    
+
     private const float ATTRACTRADIUS = 20.0f;
     private const float ATTRACTTIME = 10.0f;
     public bool isAttract;
     private float attracttimebeforeend;
     private float attracttimebeforeeffect;
 
+    private const float POWERPUMPRADIUS = 25.0f;
+    private ServerCarrier serverCarrier;
+
     public int charactersIndex = -1; //This index correspond to the index in the list of transform of characters the server stores. -1 in case it's not a character
 
     private float timeBeforeStunReload;
     private const float TIMEOFSTUNRELOAD = 20.0f;
+    private const float STUNBOXRADIUS = 10.0f;
 #endif
 
 #if CLIENT
@@ -47,7 +52,7 @@ public class ProgrammableObjectsData : MonoBehaviour
 
     public ProgrammableObjectsContainer objectsContainer;
 
-    public bool isHackable = true;
+    private bool isHackable = true;
 
     // Start
     void Start()
@@ -76,7 +81,10 @@ public class ProgrammableObjectsData : MonoBehaviour
 
         isAttract = false;
         timeBeforeStunReload = 0;
+
+        serverCarrier = this.GetComponent<ServerCarrier>();
 #endif
+        isHackable = Initiator.isHackable;
 #if CLIENT
         client = FindObjectOfType<Client>();
         hackInterface = FindObjectOfType<HackInterface>();
@@ -197,6 +205,31 @@ public class ProgrammableObjectsData : MonoBehaviour
             isAttract = true;
             attracttimebeforeend = ATTRACTTIME;
             attracttimebeforeeffect = 0.0f;
+        }
+
+        if(codeoutput == "PowerPump")
+        {
+            ServerCarrier targetCarrier;
+            for (int i = 0; i < objectsContainer.objectListServer.Count; i++)
+            {
+                if (((int)Vector3.Distance(objectsContainer.objectListServer[i].transform.position, this.transform.position)) < POWERPUMPRADIUS && objectsContainer.objectListServer[i]!=this)
+                {
+                    if (serverCarrier.charge < serverCarrier.maxCharge)
+                    {
+                        targetCarrier = objectsContainer.objectListServer[i].GetComponent<ServerCarrier>();
+                        if (targetCarrier.charge >= serverCarrier.maxCharge - serverCarrier.charge)
+                        {
+                            targetCarrier.charge -= serverCarrier.maxCharge - serverCarrier.charge;
+                            serverCarrier.charge = serverCarrier.maxCharge;
+                        }
+                        else
+                        {
+                            serverCarrier.charge += targetCarrier.charge;
+                            targetCarrier.charge = 0;
+                        }
+                    }
+                }
+            }
         }
 
         if (codeoutput == "UseGadget")

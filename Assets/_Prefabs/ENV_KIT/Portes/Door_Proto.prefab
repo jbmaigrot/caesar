@@ -253,6 +253,7 @@ GameObject:
   - component: {fileID: 775197464867883659}
   - component: {fileID: 8535933234279190715}
   - component: {fileID: 7399394353192112315}
+  - component: {fileID: 8595263710795962983}
   m_Layer: 14
   m_Name: Control_panels
   m_TagString: Untagged
@@ -306,6 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NavMeshSurface: {fileID: 0}
+  isAttract: 0
   charactersIndex: -1
   client: {fileID: 0}
   hackInterface: {fileID: 0}
@@ -317,6 +319,27 @@ MonoBehaviour:
   isDoorOpen: 0
   Initiator: {fileID: 11400000, guid: 6afdb71ca2fdf0441a01f9696cc9161a, type: 2}
   objectsContainer: {fileID: 0}
+--- !u!114 &8595263710795962983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775197464867919531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d79003555484e4e8fe70097d49cf59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clientCharge: 0
+  client: {fileID: 0}
+  programmableObjectsContainer: {fileID: 0}
+  charge: 0
+  maxCharge: 100
+  chargeSpeed: 1
+  charging: 0
+  givingTo: {fileID: 0}
+  takingFrom: {fileID: 0}
 --- !u!1 &775197464867919533
 GameObject:
   m_ObjectHideFlags: 0

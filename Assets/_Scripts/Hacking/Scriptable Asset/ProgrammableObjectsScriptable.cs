@@ -14,5 +14,5 @@ public class ProgrammableObjectsScriptable : ScriptableObject
     public List<Arrow> graph = new List<Arrow>();
 
     public List<InOutVignette> initialOutputActions = new List<InOutVignette>();
-
+    public bool isHackable;
 }

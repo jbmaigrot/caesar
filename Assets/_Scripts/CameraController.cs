@@ -132,6 +132,7 @@ public class CameraController : MonoBehaviour
                 break;
             case MODE_FOLLOW:
                 parentTargetPosition = objectToFollow.transform.position;
+                parentTargetPosition += cameraParent.transform.forward * (-8);
                 break;
             default:
                 //
