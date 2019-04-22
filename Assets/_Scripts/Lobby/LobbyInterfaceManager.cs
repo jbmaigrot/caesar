@@ -15,7 +15,7 @@ public class LobbyInterfaceManager : MonoBehaviour
     public GameObject playerLobbyCardContainer;
     public GameObject playerLobbyCardPrefab;
 
-    public struct LobbyInterface
+    public class LobbyInterface
     {
         public int numberOfPlayerSlots;
         public List<PlayerLobbyCardManager.PlayerLobbyCard> playerLobbyCards;
@@ -25,7 +25,7 @@ public class LobbyInterfaceManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -55,6 +55,30 @@ public class LobbyInterfaceManager : MonoBehaviour
         for (int i = 0; i < state.numberOfPlayerSlots; i++)
         {
 
+            if (i >= playerLobbyCardManagers.Count)
+            {
+                playerLobbyCardManagers.Add(AddPlayerCard(state.playerLobbyCards[i]));
+            }
+
+            if (i == connectionId)
+            {
+                playerLobbyCardManagers[i].SetInteractable(true);
+            }
+            else
+            {
+                playerLobbyCardManagers[i].SetInteractable(false);
+            }
+
+            playerLobbyCardManagers[i].UpdateCard(state.playerLobbyCards[i]);
+
+            
         }
+    }
+
+    public PlayerLobbyCardManager AddPlayerCard(PlayerLobbyCardManager.PlayerLobbyCard playerCard)
+    {
+        PlayerLobbyCardManager playerCardManager = Instantiate(playerLobbyCardPrefab, playerLobbyCardContainer.transform).GetComponent<PlayerLobbyCardManager>();
+        playerCardManager.UpdateCard(playerCard);
+        return playerCardManager;
     }
 }

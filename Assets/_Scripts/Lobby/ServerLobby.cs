@@ -117,29 +117,38 @@ public class ServerLobby : MonoBehaviour
                             if (m_Connections.Length >= numberOfPlayerSlots)
                             {
                                 Debug.Log("Sorry, all player slots are allocated in this game.");
-                            } else
+                            }
+                            else
                             {
                                 Debug.Log("Getting a new connection with connection ID : " + m_Connections.Length);
                                 SetConnectionId(m_Connections.Length, tmp_Connections[i]);
                                 m_Connections.Add(tmp_Connections[i]);
                                 lostConnections.Add(false);
                                 tmp_Connections.RemoveAtSwapBack(i);
+
+                                lobbyInterfaceState.playerLobbyCards[i].connected = true;
+                                SendLobbyInterfaceState();
                             }
-                        } else
+                        }
+                        else
                         {
                             if (lostConnections[connectionId] == false)
                             {
                                 Debug.Log("Error. Trying to connect with an already attributed connection ID : " + connectionId);
-                            } else
+                            }
+                            else
                             {
                                 Debug.Log("Re-establishing connection with connection ID : " + connectionId);
                                 m_Connections[connectionId] = tmp_Connections[i];
                                 lostConnections[connectionId] = false;
                                 tmp_Connections.RemoveAtSwapBack(i);
+
+                                lobbyInterfaceState.playerLobbyCards[i].connected = true;
+                                SendLobbyInterfaceState();
                             }
                         }
                         break;
-
+                        
                     default:
                         break;
                 }
@@ -167,13 +176,54 @@ public class ServerLobby : MonoBehaviour
 
                     switch (action)
                     {
+                        case Constants.Client_Lobby_PlayerName:
+                            char[] buffer;
+                            int playerNameLength = (int)stream.ReadUInt(ref readerCtx);
+                            buffer = new char[playerNameLength];
+                            for (int j = 0; j < playerNameLength; j++)
+                            {
+                                buffer[j] = (char)stream.ReadByte(ref readerCtx);
+                            }
+                            string playerName = new string(buffer);
 
+                            lobbyInterfaceState.playerLobbyCards[i].playerName = playerName;
+
+                            SendLobbyInterfaceState();
+                            break;
+
+                        case Constants.Client_Lobby_SetTeam:
+                            int team = (int)stream.ReadUInt(ref readerCtx);
+
+                            lobbyInterfaceState.playerLobbyCards[i].team = team;
+
+                            SendLobbyInterfaceState();
+                            break;
+
+                        case Constants.Client_Lobby_Ready:
+
+                            lobbyInterfaceState.playerLobbyCards[i].isReady = true;
+
+                            //Send state
+                            SendLobbyInterfaceState();
+
+                            //Check if everybody is ready
+                            //  Launch game
+                            break;
+
+                        case Constants.Client_Lobby_Cancel:
+
+                            lobbyInterfaceState.playerLobbyCards[i].isReady = false;
+
+                            SendLobbyInterfaceState();
+                            break;
                     }
                 }
                 else if (cmd == NetworkEvent.Type.Disconnect)
                 {
                     //Debug.Log("Client disconnected from server");
                     m_Connections[i] = default(NetworkConnection);
+                    lobbyInterfaceState.playerLobbyCards[i].connected = false;
+                    SendLobbyInterfaceState();
                 }
             }
         }

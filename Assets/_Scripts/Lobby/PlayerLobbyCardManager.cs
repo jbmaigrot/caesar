@@ -13,13 +13,13 @@ public class PlayerLobbyCardManager : MonoBehaviour
     public Button ready;
     public Button cancel;
 
-    public ClientLobby clientLobby;
+    private ClientLobby clientLobby;
 
-    public struct PlayerLobbyCard
+    public class PlayerLobbyCard
     {
         public int playerNumber;
         public bool connected;
-        public string playerName;
+        public string playerName { get; set; }
         public int team; //0 is the first option in drop down list (i.e. "Team A"), 1 is "Team B"
         public bool isReady;
 
@@ -62,11 +62,14 @@ public class PlayerLobbyCardManager : MonoBehaviour
 
         playerName.text = playerLobbyCard.playerName;
         playerTeam.value = playerLobbyCard.team;
-
+        
         if (playerLobbyCard.isReady == true)
         {
             ready.interactable = false;
             cancel.interactable = true;
+
+            playerName.interactable = false;
+            playerTeam.interactable = false;
         }
     }
 
@@ -86,9 +89,33 @@ public class PlayerLobbyCardManager : MonoBehaviour
 
     }
     
-    public void EditPlayerName()
+    public void OnEditPlayerName()
     {
-
+        clientLobby.WritePlayerName(playerName.text);
     }
 
+    public void OnEditTeam()
+    {
+        clientLobby.WriteTeam(playerTeam.value);
+    }
+
+    public void OnClickReady()
+    {
+        clientLobby.WriteReady();
+        ready.interactable = false;
+        cancel.interactable = true;
+
+        playerName.interactable = false;
+        playerTeam.interactable = false;
+    }
+
+    public void OnClickCancel()
+    {
+        clientLobby.WriteCancel();
+        ready.interactable = true;
+        cancel.interactable = false;
+
+        playerName.interactable = true;
+        playerTeam.interactable = true;
+    }
 }

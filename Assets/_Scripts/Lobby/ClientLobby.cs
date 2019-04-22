@@ -108,10 +108,10 @@ public class ClientLobby : MonoBehaviour
                                 initialHandshakeDone = true;
                                 connectingMessageManager.Hide();
                                 iPConnectionInterfaceManager.Hide();
-                                lobbyInterfaceManager.Show();
                                 break;
                             case Constants.Server_Lobby_LobbyState:
-                                ReadLobbyState(stream, ref readerCtx);
+                                lobbyInterfaceManager.Show();
+                                lobbyInterfaceManager.UpdateInterface(ReadLobbyState(stream, ref readerCtx), connectionId);
                                 break;
                             case Constants.Server_Lobby_StartGame:
                                 break;
@@ -181,6 +181,7 @@ public class ClientLobby : MonoBehaviour
         tmpState.playerLobbyCards = new List<PlayerLobbyCardManager.PlayerLobbyCard>();
 
         int numberOfPlayerSlots = (int)stream.ReadUInt(ref readerCtx);
+        tmpState.numberOfPlayerSlots = numberOfPlayerSlots;
 
         char[] buffer;
         for (int i = 0; i < numberOfPlayerSlots; i++)
