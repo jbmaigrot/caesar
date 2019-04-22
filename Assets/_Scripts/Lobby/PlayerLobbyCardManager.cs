@@ -13,15 +13,82 @@ public class PlayerLobbyCardManager : MonoBehaviour
     public Button ready;
     public Button cancel;
 
-    // Start is called before the first frame update
-    void Start()
+    public ClientLobby clientLobby;
+
+    public struct PlayerLobbyCard
     {
-        
+        public int playerNumber;
+        public bool connected;
+        public string playerName;
+        public int team; //0 is the first option in drop down list (i.e. "Team A"), 1 is "Team B"
+        public bool isReady;
+
+        public PlayerLobbyCard(string _playerName = "", int _playerNumber = -1, bool _connected = false, int _team = 0, bool _isReady = false)
+        {
+            playerNumber = _playerNumber;
+            connected = _connected;
+            if (_playerName == "")
+            {
+                playerName = Constants.LobbyNames[Random.Range(0, Constants.LobbyNames.Length)];
+            } else
+            {
+                playerName = _playerName;
+            }
+            team = _team;
+            isReady = _isReady;
+        }
+    };
+
+    public void Start()
+    {
+        clientLobby = FindObjectOfType<ClientLobby>();
+
+        UpdateCard(new PlayerLobbyCard(""));
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateCard(PlayerLobbyCard playerLobbyCard)
     {
-        
+        playerNumber.text = "Player " + playerLobbyCard.playerNumber;
+
+        if (playerLobbyCard.connected == true)
+        {
+            connected.gameObject.SetActive(true);
+            notConnected.gameObject.SetActive(false);
+        } else
+        {
+            connected.gameObject.SetActive(false);
+            notConnected.gameObject.SetActive(true);
+        }
+
+        playerName.text = playerLobbyCard.playerName;
+        playerTeam.value = playerLobbyCard.team;
+
+        if (playerLobbyCard.isReady == true)
+        {
+            ready.interactable = false;
+            cancel.interactable = true;
+        }
     }
+
+    public void SetInteractable(bool interactable)
+    {
+        playerName.interactable = interactable;
+        playerTeam.interactable = interactable;
+        ready.interactable = interactable;
+
+        if (interactable)
+        {
+            GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.8f);
+        } else
+        {
+            GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.4f);
+        }
+
+    }
+    
+    public void EditPlayerName()
+    {
+
+    }
+
 }

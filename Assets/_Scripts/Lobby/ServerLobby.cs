@@ -16,9 +16,11 @@ public class ServerLobby : MonoBehaviour
     private NativeList<NetworkConnection> tmp_Connections;
     public List<bool> lostConnections;
 
-    private int numberOfPlayerSlots;
+    public int numberOfPlayerSlots = 4;
 
     private LobbyInterfaceManager lobbyInterfaceManager;
+
+    public LobbyInterfaceManager.LobbyInterface lobbyInterfaceState;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,15 @@ public class ServerLobby : MonoBehaviour
 
         m_Connections = new NativeList<NetworkConnection>(16, Allocator.Persistent);
         tmp_Connections = new NativeList<NetworkConnection>(16, Allocator.Persistent);
+
+        lobbyInterfaceState = new LobbyInterfaceManager.LobbyInterface();
+        lobbyInterfaceState.numberOfPlayerSlots = numberOfPlayerSlots;
+        lobbyInterfaceState.playerLobbyCards = new List<PlayerLobbyCardManager.PlayerLobbyCard>();
+        for (int i = 0; i < numberOfPlayerSlots; i++)
+        {
+            var lobbyCard = new PlayerLobbyCardManager.PlayerLobbyCard("", i + 1);
+            lobbyInterfaceState.playerLobbyCards.Add(lobbyCard);
+        }
     }
 
     public void OnDestroy()
@@ -185,6 +196,39 @@ public class ServerLobby : MonoBehaviour
             writer.Write(Constants.Server_Lobby_SetConnectionId);
             writer.Write(connectionId);
             nc.Send(m_Driver, writer);
+        }
+    }
+
+    public void SendLobbyInterfaceState()
+    {
+        
+        for(int i = 0; i < m_Connections.Length; i++)
+        {
+            if (!m_Connections[i].IsCreated) continue;
+            using (var writer = new DataStreamWriter(2048, Allocator.Temp))
+            {
+                writer.Write(Constants.Server_Lobby_LobbyState);
+                writer.Write(lobbyInterfaceState.numberOfPlayerSlots);
+                for (int j = 0; j < lobbyInterfaceState.numberOfPlayerSlots; j++)
+                {
+                    PlayerLobbyCardManager.PlayerLobbyCard tmpCard = lobbyInterfaceState.playerLobbyCards[j];
+
+                    writer.Write(tmpCard.playerNumber);
+                    writer.Write(tmpCard.connected ? 1 : 0);
+
+                    byte[] buffer = new byte[tmpCard.playerName.Length];
+                    for (int k = 0; k < tmpCard.playerName.Length; k++)
+                    {
+                        buffer[k] = (byte)tmpCard.playerName.ToCharArray()[k];
+                    }
+                    writer.Write(tmpCard.playerName.Length);
+                    writer.Write(buffer);
+
+                    writer.Write(tmpCard.team);
+                    writer.Write(tmpCard.isReady ? 1 : 0);
+                }
+                m_Driver.Send(m_Connections[i], writer);
+            }
         }
     }
 }

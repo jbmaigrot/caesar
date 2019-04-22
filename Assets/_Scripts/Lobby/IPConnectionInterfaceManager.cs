@@ -12,6 +12,7 @@ public class IPConnectionInterfaceManager : MonoBehaviour
     public InputField ipInputField;
     private ClientLobby clientLobby;
     private PopupMessageManager popupMessageManager;
+    public GameObject interfacePanel;
 
     // Start is called before the first frame update
     void Start()
@@ -53,5 +54,15 @@ public class IPConnectionInterfaceManager : MonoBehaviour
             //return;
         }
 
+    }
+
+    public void Hide()
+    {
+        interfacePanel.SetActive(false);
+    }
+
+    public void Show()
+    {
+        interfacePanel.SetActive(true);
     }
 }
