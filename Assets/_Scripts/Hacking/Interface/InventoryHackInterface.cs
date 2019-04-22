@@ -48,6 +48,7 @@ public class InventoryHackInterface : MonoBehaviour
             NewOutputHack.parameter_int = hackinterface.inventory[numero];
             hackinterface.inventory[numero] = InventoryConstants.Empty;
             HackInterface.outputCodes.Add(NewOutputHack);
+            hackinterface.reloadInterface();
         }
     }
 #endif 
