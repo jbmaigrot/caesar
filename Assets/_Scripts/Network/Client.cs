@@ -86,7 +86,6 @@ public class Client : MonoBehaviour
         {
             Debug.Log(e.Message);
         }
-       
     }
 
     // Update is called once per frame

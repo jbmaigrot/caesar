@@ -43,7 +43,7 @@ public class Server : MonoBehaviour
         
         tmp_Connections = new NativeList<NetworkConnection>(16, Allocator.Persistent);
 
-        programmableObjectsContainer = GameObject.FindObjectOfType<ProgrammableObjectsContainer>();
+        programmableObjectsContainer = FindObjectOfType<ProgrammableObjectsContainer>();
 
         serverLobby = FindObjectOfType<ServerLobby>();
         if (serverLobby == null)
