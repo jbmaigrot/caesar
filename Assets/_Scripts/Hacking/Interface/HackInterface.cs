@@ -169,6 +169,9 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
             outputCodes = _outputCodes;
             graph = _graph;
 
+            inventory[0] = client.inventory[0];
+            inventory[1] = client.inventory[1];
+            inventory[2] = client.inventory[2];
             /*Ecriture du contenu de l'interface*/
             reloadInterface();
             reloadArrow();
@@ -205,9 +208,6 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
         /*Ouverture de l'interface*/
         this.gameObject.GetComponent<CanvasGroup>().alpha = 1f;
         this.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
-        inventory[0] = client.inventory[0];
-        inventory[1] = client.inventory[1];
-        inventory[2] = client.inventory[2];
         Camera.main.GetComponent<CameraController>().CameraModeFollow(SelectedGameObject);
     }
 
