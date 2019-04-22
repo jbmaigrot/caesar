@@ -41,6 +41,8 @@ public class Client : MonoBehaviour
     public int playerIndex;
     public int[] inventory = new int[3];
 
+    private bool isNapperoned = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -238,6 +240,31 @@ public class Client : MonoBehaviour
                                 playerIndex = (int)stream.ReadUInt(ref readerCtx);
                                 if (playerIndex < characters.Count)
                                 {
+                                    if (!isNapperoned)
+                                    {
+                                        foreach (Transform child in characters[playerIndex].transform)
+                                        {
+                                            if (child.name == "napperon")
+                                            {
+
+                                                //todo color is not working, check if team ok
+                                                if (team == -1)
+                                                {
+                                                    child.GetComponent<SpriteRenderer>().color =
+                                                        new Color(92, 200, 242, 1f);
+                                                }
+                                                else
+                                                {
+                                                    child.GetComponent<SpriteRenderer>().color =
+                                                        new Color(245, 130, 93, 1f);
+                                                }
+                                                
+                                                isNapperoned = true;
+                                            }
+                                        }
+                                    }
+                                    
+                                    
                                     cameraController.characterToFollow = characters[playerIndex].gameObject;
                                     if (team == -1)
                                     {

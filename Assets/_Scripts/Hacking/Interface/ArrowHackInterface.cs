@@ -34,13 +34,11 @@ public class ArrowHackInterface : MonoBehaviour, IPointerDownHandler
             GetComponentInChildren<Text>().text = "";
             //GetComponentInChildren<Text>().text = HackInterface.graph[numero].input.ToString() + "   " + HackInterface.graph[numero].output.ToString();
             string name = HackInterface.graph[numero].input.ToString() + "" + HackInterface.graph[numero].output.ToString();
-            Debug.Log("----------------------------------------------name :"+name);
             foreach (Sprite sp in SpriteList)
             {
                 Debug.Log(sp.name);
                 if (sp.name == name)
                 {
-                    Debug.Log("weeeeeeeeeeeeeeeeeeee");
                     GetComponent<Image>().sprite = sp;
                     GetComponent<Image>().alphaHitTestMinimumThreshold = 0.01f;
                 }
