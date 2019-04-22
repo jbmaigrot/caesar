@@ -28,8 +28,6 @@ public class ClientLobby : MonoBehaviour
     private ConnectingMessageManager connectingMessageManager;
     private PopupMessageManager popupMessageManager;
     private IPConnectionInterfaceManager iPConnectionInterfaceManager;
-
-    public bool stopUpdate = false;
     
 
 #if CLIENT
@@ -53,6 +51,7 @@ public class ClientLobby : MonoBehaviour
 
     public void OnDestroy()
     {
+        Debug.Log("Call to OnDestroy() in clientLobby");
         try
         {
             m_Driver.Dispose();
@@ -67,10 +66,6 @@ public class ClientLobby : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (stopUpdate == true)
-        {
-            return;
-        }
         m_Driver.ScheduleUpdate().Complete();
         
         if (establishingConnection == true)

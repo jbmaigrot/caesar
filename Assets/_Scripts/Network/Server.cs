@@ -68,12 +68,13 @@ public class Server : MonoBehaviour
             {
                 AddNewPlayer(serverLobby.lobbyInterfaceState.playerLobbyCards[i].team);
             }
-            serverLobby.stopUpdate = true;
+            serverLobby.enabled = false;
         }
     }
 
     public void OnDestroy()
     {
+        Debug.Log("Call to OnDestroy() in server");
         m_Driver.Dispose();
         m_Connections.Dispose();
         tmp_Connections.Dispose();
