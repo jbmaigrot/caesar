@@ -26,21 +26,14 @@ public class InventoryHackInterface : MonoBehaviour, IPointerDownHandler
         {
             case InventoryConstants.Empty:
                 this.GetComponent<SVGImage>().sprite = Empty;
-                Debug.Log("affichage0");
                 break;
             case InventoryConstants.Attract:
                 this.GetComponent<SVGImage>().sprite = Attract;
-<<<<<<< HEAD
-                Debug.Log("affichage2");
-=======
->>>>>>> parent of 8cb9dc8... modif prefab hackinginterface
                 break;
             case InventoryConstants.Stunbox:
                 this.GetComponent<SVGImage>().sprite = Stun;
-                Debug.Log("affichage3");
                 break;
             case InventoryConstants.Powerpump:
-                Debug.Log("affichage4");
                 this.GetComponent<SVGImage>().sprite = PowerPump;
                 break;
             default:
