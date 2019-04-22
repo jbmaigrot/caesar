@@ -7,8 +7,9 @@ using Unity.Networking.Transport;
 using Unity.Collections;
 
 using UdpCNetworkDriver = Unity.Networking.Transport.BasicNetworkDriver<Unity.Networking.Transport.IPv4UDPSocket>;
+using UnityEngine.SceneManagement;
 
-#if SERVER
+
 public class ServerLobby : MonoBehaviour
 {
     public UdpCNetworkDriver m_Driver;
@@ -21,6 +22,10 @@ public class ServerLobby : MonoBehaviour
     private LobbyInterfaceManager lobbyInterfaceManager;
 
     public LobbyInterfaceManager.LobbyInterface lobbyInterfaceState;
+    
+    
+
+#if SERVER
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +54,11 @@ public class ServerLobby : MonoBehaviour
             var lobbyCard = new PlayerLobbyCardManager.PlayerLobbyCard("", i + 1);
             lobbyInterfaceState.playerLobbyCards.Add(lobbyCard);
         }
+    }
+
+    public void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
     }
 
     public void OnDestroy()
@@ -148,7 +158,7 @@ public class ServerLobby : MonoBehaviour
                             }
                         }
                         break;
-                        
+
                     default:
                         break;
                 }
@@ -207,7 +217,22 @@ public class ServerLobby : MonoBehaviour
                             SendLobbyInterfaceState();
 
                             //Check if everybody is ready
-                            //  Launch game
+                            var everyBodyReady = true;
+                            for (int j = 0; j < lobbyInterfaceState.playerLobbyCards.Count; j++) 
+                            {
+                                var lobbyCard = lobbyInterfaceState.playerLobbyCards[i];
+                                if (lobbyCard.isReady == false && lobbyCard.connected == true)
+                                {
+                                    everyBodyReady = false;
+                                    break;
+                                }
+                            }
+                            if (everyBodyReady == true)
+                            {
+                                //Launch game
+                                SendStartGame();
+                                SceneManager.LoadScene(1);
+                            }
                             break;
 
                         case Constants.Client_Lobby_Cancel:
@@ -251,8 +276,8 @@ public class ServerLobby : MonoBehaviour
 
     public void SendLobbyInterfaceState()
     {
-        
-        for(int i = 0; i < m_Connections.Length; i++)
+
+        for (int i = 0; i < m_Connections.Length; i++)
         {
             if (!m_Connections[i].IsCreated) continue;
             using (var writer = new DataStreamWriter(2048, Allocator.Temp))
@@ -281,5 +306,18 @@ public class ServerLobby : MonoBehaviour
             }
         }
     }
-}
+
+    public void SendStartGame()
+    {
+        for (int i = 0; i < m_Connections.Length; i++)
+        {
+            if (!m_Connections[i].IsCreated) continue;
+            using (var writer = new DataStreamWriter(2048, Allocator.Temp))
+            {
+                writer.Write(Constants.Server_Lobby_StartGame);
+                m_Driver.Send(m_Connections[i], writer);
+            }
+        }
+    }
 #endif
+}

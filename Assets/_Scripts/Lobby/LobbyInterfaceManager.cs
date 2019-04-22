@@ -21,7 +21,7 @@ public class LobbyInterfaceManager : MonoBehaviour
         public List<PlayerLobbyCardManager.PlayerLobbyCard> playerLobbyCards;
     };
 
-    
+#if CLIENT
     // Start is called before the first frame update
     void Start()
     {
@@ -92,4 +92,5 @@ public class LobbyInterfaceManager : MonoBehaviour
         playerCardManager.UpdateCard(playerCard);
         return playerCardManager;
     }
+#endif
 }

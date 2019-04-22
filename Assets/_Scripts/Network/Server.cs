@@ -39,30 +39,37 @@ public class Server : MonoBehaviour
 
         Application.targetFrameRate = 58;
 
-        m_Driver = new UdpCNetworkDriver(new INetworkParameter[0]);
-
-        if (m_Driver.Bind(new IPEndPoint(IPAddress.Any, 9000)) != 0)
-            Debug.Log("Failed to bind to port 9000");
-
-        else
-            m_Driver.Listen();
-
-        serverLobby = FindObjectOfType<ServerLobby>();
-        if (serverLobby == null)
-        {
-            Debug.Log("Didn't find any ServerLobby object in the scene");
-            m_Connections = new NativeList<NetworkConnection>(16, Allocator.Persistent);
-            lostConnections = new List<bool>();
-        } 
-        else
-        {
-            m_Connections = serverLobby.m_Connections;
-            lostConnections = serverLobby.lostConnections;
-        }
+        
         
         tmp_Connections = new NativeList<NetworkConnection>(16, Allocator.Persistent);
 
         programmableObjectsContainer = GameObject.FindObjectOfType<ProgrammableObjectsContainer>();
+
+        serverLobby = FindObjectOfType<ServerLobby>();
+        if (serverLobby == null)
+        {
+            m_Driver = new UdpCNetworkDriver(new INetworkParameter[0]);
+
+            if (m_Driver.Bind(new IPEndPoint(IPAddress.Any, 9000)) != 0)
+                Debug.Log("Failed to bind to port 9000");
+
+            else
+                m_Driver.Listen();
+
+            m_Connections = new NativeList<NetworkConnection>(16, Allocator.Persistent);
+            lostConnections = new List<bool>();
+        }
+        else
+        {
+            m_Driver = serverLobby.m_Driver;
+            m_Connections = serverLobby.m_Connections;
+            lostConnections = serverLobby.lostConnections;
+            for (int i = 0; i < m_Connections.Length; i++)
+            {
+                AddNewPlayer(serverLobby.lobbyInterfaceState.playerLobbyCards[i].team);
+            }
+            serverLobby.enabled = false;
+        }
     }
 
     public void OnDestroy()
@@ -141,7 +148,7 @@ public class Server : MonoBehaviour
                                 m_Connections.Add(tmp_Connections[i]);
                                 lostConnections.Add(false);
                                 tmp_Connections.RemoveAtSwapBack(i);
-                                AddNewPlayer();
+                                AddNewPlayer(-1);
                             }
                         }
                         else
@@ -258,7 +265,6 @@ public class Server : MonoBehaviour
         {
             if (!m_Connections[i].IsCreated) continue;
             // Snapshot (world state)
-
             for (int j = 0; j < programmableObjectsContainer.objectListServer.Count; j++)
             {
                 int charactersIndex = programmableObjectsContainer.objectListServer[j].charactersIndex;
@@ -513,19 +519,34 @@ public class Server : MonoBehaviour
         }
     }
 
-    public int AddNewPlayer()
+    public int AddNewPlayer(int team)
     {
         //On ajoute un nouveau personnage joueur.
         GameObject pj = Instantiate(prefabPJ, programmableObjectsContainer.transform);
         pj.GetComponent<NavMeshAgent>().enabled = false;
-        if(players.Count%2 == 0)
+        if (team == -1)
         {
-            pj.transform.position = FindObjectOfType<PlayerSpawn>().transform.position;
+            if (players.Count % 2 == 0)
+            {
+                pj.transform.position = FindObjectOfType<PlayerSpawn>().transform.position;
+            }
+            else
+            {
+                pj.transform.position = -FindObjectOfType<PlayerSpawn>().transform.position;
+            }
         }
         else
         {
-            pj.transform.position = - FindObjectOfType<PlayerSpawn>().transform.position;
+            if (team == 0)
+            {
+                pj.transform.position = FindObjectOfType<PlayerSpawn>().transform.position;
+            }
+            else if (team == 1)
+            {
+                pj.transform.position = -FindObjectOfType<PlayerSpawn>().transform.position;
+            }
         }
+        
         pj.GetComponent<NavMeshAgent>().enabled = true;
         players.Add(pj.transform);
         characters.Add(pj.transform);

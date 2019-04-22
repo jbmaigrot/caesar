@@ -38,6 +38,7 @@ public class PlayerLobbyCardManager : MonoBehaviour
             isReady = _isReady;
         }
     };
+#if CLIENT
 
     public void Start()
     {
@@ -114,4 +115,5 @@ public class PlayerLobbyCardManager : MonoBehaviour
         playerName.interactable = true;
         playerTeam.interactable = true;
     }
+#endif
 }

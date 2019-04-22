@@ -7,7 +7,7 @@ public class PopupMessageManager : MonoBehaviour
 {
     public Text messageField;
     public GameObject popupPanel;
-
+#if CLIENT
     public void Show(string message)
     {
         messageField.text = message;
@@ -18,4 +18,5 @@ public class PopupMessageManager : MonoBehaviour
     {
         popupPanel.SetActive(false);
     }
+#endif
 }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ConnectingMessageManager : MonoBehaviour
 {
     public GameObject connectingPanel;
-
+#if CLIENT
     public void Show()
     {
         connectingPanel.SetActive(true);
@@ -16,4 +16,5 @@ public class ConnectingMessageManager : MonoBehaviour
     {
         connectingPanel.SetActive(false);
     }
+#endif
 }

@@ -8,8 +8,8 @@ using UdpCNetworkDriver = Unity.Networking.Transport.BasicNetworkDriver<Unity.Ne
 using System;
 using Unity.Collections;
 using System.Net.Sockets;
+using UnityEngine.SceneManagement;
 
-#if CLIENT
 public class ClientLobby : MonoBehaviour
 {
     public string ServerIP = "127.0.0.1"; //localhost by default
@@ -20,6 +20,7 @@ public class ClientLobby : MonoBehaviour
 
     public int connectionId;
     private bool initialHandshakeDone;
+    public int team;
 
     public bool establishingConnection;
 
@@ -27,7 +28,9 @@ public class ClientLobby : MonoBehaviour
     private ConnectingMessageManager connectingMessageManager;
     private PopupMessageManager popupMessageManager;
     private IPConnectionInterfaceManager iPConnectionInterfaceManager;
+    
 
+#if CLIENT
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +42,11 @@ public class ClientLobby : MonoBehaviour
         iPConnectionInterfaceManager = FindObjectOfType<IPConnectionInterfaceManager>();
 
         establishingConnection = false;
+    }
+
+    public void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
     }
 
     public void OnDestroy()
@@ -112,12 +120,17 @@ public class ClientLobby : MonoBehaviour
 
                                 lobbyInterfaceManager.Show();
                                 break;
+
                             case Constants.Server_Lobby_LobbyState:
                                 LobbyInterfaceManager.LobbyInterface lobbyState = ReadLobbyState(stream, ref readerCtx);
                                 lobbyInterfaceManager.UpdateInterface(lobbyState, connectionId);
                                 break;
+
                             case Constants.Server_Lobby_StartGame:
+                                team = lobbyInterfaceManager.playerLobbyCardManagers[connectionId].playerTeam.value;
+                                SceneManager.LoadScene(1);
                                 break;
+
                             default:
                                 break;
                         }
@@ -256,5 +269,5 @@ public class ClientLobby : MonoBehaviour
             m_Connection.Send(m_Driver, writer);
         }
     }
-}
 #endif
+}

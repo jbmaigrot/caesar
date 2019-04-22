@@ -14,6 +14,7 @@ public class IPConnectionInterfaceManager : MonoBehaviour
     private PopupMessageManager popupMessageManager;
     public GameObject interfacePanel;
 
+#if CLIENT
     // Start is called before the first frame update
     void Start()
     {
@@ -65,4 +66,5 @@ public class IPConnectionInterfaceManager : MonoBehaviour
     {
         interfacePanel.SetActive(true);
     }
+#endif
 }
