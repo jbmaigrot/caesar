@@ -39,7 +39,7 @@ public class Client : MonoBehaviour
     public int team;// 0 or 1 ; -1 in case we didn't use the lobby -> automatically assigned based on connectionID
 
     public int playerIndex;
-
+    public int[] inventory = new int[3];
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +48,9 @@ public class Client : MonoBehaviour
         chat = FindObjectOfType<ClientChat>();
         programmableObjectsContainer = FindObjectOfType<ProgrammableObjectsContainer>();
         hackInterface = FindObjectOfType<HackInterface>();
-
+        inventory[0] = InventoryConstants.Attract;
+        inventory[1] = InventoryConstants.Stunbox;
+        inventory[2] = InventoryConstants.Powerpump;
     }
 
     void Awake() { 
@@ -237,10 +239,21 @@ public class Client : MonoBehaviour
                                 if (playerIndex < characters.Count)
                                 {
                                     cameraController.characterToFollow = characters[playerIndex].gameObject;
-                                    if (!knowOrientationOfCam && (playerIndex - FindObjectOfType<ServerGameCreator>().NbPnj) % 2 == 0)//Une manière dirty dirty de récupérer l'équipe dans laquelle on se trouve. A changer
-                                    { 
-                                        cameraController.RotateCamera180();
-                                        knowOrientationOfCam = true;
+                                    if (team == -1)
+                                    {
+                                        if (!knowOrientationOfCam && (playerIndex - FindObjectOfType<ServerGameCreator>().NbPnj) % 2 == 0)//Une manière dirty dirty de récupérer l'équipe dans laquelle on se trouve. A changer
+                                        {
+                                            cameraController.RotateCamera180();
+                                            knowOrientationOfCam = true;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (!knowOrientationOfCam && team == 0)
+                                        {
+                                            cameraController.RotateCamera180();
+                                            knowOrientationOfCam = true;
+                                        }
                                     }
                                 }
                             }

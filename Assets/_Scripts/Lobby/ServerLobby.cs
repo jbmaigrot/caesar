@@ -225,7 +225,7 @@ public class ServerLobby : MonoBehaviour
                             var everyBodyReady = true;
                             for (int j = 0; j < lobbyInterfaceState.playerLobbyCards.Count; j++) 
                             {
-                                var lobbyCard = lobbyInterfaceState.playerLobbyCards[i];
+                                var lobbyCard = lobbyInterfaceState.playerLobbyCards[j];
                                 if (lobbyCard.isReady == false && lobbyCard.connected == true)
                                 {
                                     everyBodyReady = false;

@@ -39,6 +39,7 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     private Client client;
     private ProgrammableObjectsContainer objectsContainer;
 
+    public int[] inventory = new int[3];
     //
     public RectTransform[] inputButtons = new RectTransform[0];
     public RectTransform[] outputButtons = new RectTransform[0];
@@ -202,7 +203,9 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
         /*Ouverture de l'interface*/
         this.gameObject.GetComponent<CanvasGroup>().alpha = 1f;
         this.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
-
+        inventory[0] = client.inventory[0];
+        inventory[1] = client.inventory[1];
+        inventory[2] = client.inventory[2];
         Camera.main.GetComponent<CameraController>().CameraModeFollow(SelectedGameObject);
     }
 
@@ -212,7 +215,11 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
         foreach (TextButtonHackInterface ryan in this.GetComponentsInChildren<TextButtonHackInterface>(false))
         {
             ryan.UpdateOptions(inputCodes.Count,outputCodes.Count);
-        }        
+        }
+        foreach(InventoryHackInterface ryan in this.GetComponentsInChildren<InventoryHackInterface>(false))
+        {
+            ryan.reloadInventory();
+        }
     }
 
     /*Ecriture des fleches de l'interface*/
