@@ -43,7 +43,7 @@ public class Server : MonoBehaviour
         
         tmp_Connections = new NativeList<NetworkConnection>(16, Allocator.Persistent);
 
-        programmableObjectsContainer = GameObject.FindObjectOfType<ProgrammableObjectsContainer>();
+        programmableObjectsContainer = FindObjectOfType<ProgrammableObjectsContainer>();
 
         serverLobby = FindObjectOfType<ServerLobby>();
         if (serverLobby == null)
@@ -74,6 +74,7 @@ public class Server : MonoBehaviour
 
     public void OnDestroy()
     {
+        Debug.Log("Call to OnDestroy() in server");
         m_Driver.Dispose();
         m_Connections.Dispose();
         tmp_Connections.Dispose();

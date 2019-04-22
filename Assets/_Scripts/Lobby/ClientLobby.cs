@@ -53,6 +53,7 @@ public class ClientLobby : MonoBehaviour
 
     public void OnDestroy()
     {
+        Debug.Log("Call to OnDestroy() in clientLobby");
         try
         {
             m_Driver.Dispose();

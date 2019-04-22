@@ -78,6 +78,8 @@ public class Client : MonoBehaviour
 
     public void OnDestroy()
     {
+        Debug.Log("Call to OnDestroy() in client");
+        /*
         try
         {
             m_Driver.Dispose();
@@ -85,8 +87,7 @@ public class Client : MonoBehaviour
         catch (InvalidOperationException e)
         {
             Debug.Log(e.Message);
-        }
-       
+        }*/
     }
 
     // Update is called once per frame

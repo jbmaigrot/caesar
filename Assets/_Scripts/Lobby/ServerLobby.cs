@@ -63,6 +63,7 @@ public class ServerLobby : MonoBehaviour
 
     public void OnDestroy()
     {
+        Debug.Log("Call to OnDestroy() in serverLobby");
         m_Driver.Dispose();
         m_Connections.Dispose();
         tmp_Connections.Dispose();
@@ -71,7 +72,7 @@ public class ServerLobby : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (stopUpdate == true) 
+        if (stopUpdate == true)
         {
             return;
         }
