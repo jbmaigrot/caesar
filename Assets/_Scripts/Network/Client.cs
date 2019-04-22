@@ -39,7 +39,7 @@ public class Client : MonoBehaviour
     public int team;// 0 or 1 ; -1 in case we didn't use the lobby -> automatically assigned based on connectionID
 
     public int playerIndex;
-
+    public int[] inventory = new int[3];
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +48,9 @@ public class Client : MonoBehaviour
         chat = FindObjectOfType<ClientChat>();
         programmableObjectsContainer = FindObjectOfType<ProgrammableObjectsContainer>();
         hackInterface = FindObjectOfType<HackInterface>();
-
+        inventory[0] = InventoryConstants.Attract;
+        inventory[1] = InventoryConstants.Stunbox;
+        inventory[2] = InventoryConstants.Powerpump;
     }
 
     void Awake() { 
