@@ -26,6 +26,7 @@ public class InventoryHackInterface : MonoBehaviour
                 break;
             case InventoryConstants.Attract:
                 this.GetComponent<SVGImage>().sprite = Attract;
+                Debug.Log("affichage");
                 break;
             case InventoryConstants.Stunbox:
                 this.GetComponent<SVGImage>().sprite = Stun;
@@ -41,8 +42,10 @@ public class InventoryHackInterface : MonoBehaviour
 
     private void OnMouseDown()
     {
+        Debug.Log("Clicc");
         if(hackinterface.inventory[numero] != InventoryConstants.Empty && HackInterface.outputCodes.Count < 5)
         {
+            Debug.Log("Creation");
             InOutVignette NewOutputHack = new InOutVignette();
             NewOutputHack.code = "UseGadget";
             NewOutputHack.parameter_int = hackinterface.inventory[numero];
