@@ -30,7 +30,10 @@ public class InventoryHackInterface : MonoBehaviour, IPointerDownHandler
                 break;
             case InventoryConstants.Attract:
                 this.GetComponent<SVGImage>().sprite = Attract;
+<<<<<<< HEAD
                 Debug.Log("affichage2");
+=======
+>>>>>>> parent of 8cb9dc8... modif prefab hackinginterface
                 break;
             case InventoryConstants.Stunbox:
                 this.GetComponent<SVGImage>().sprite = Stun;
@@ -48,10 +51,8 @@ public class InventoryHackInterface : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("Clicc");
         if(hackinterface.inventory[numero] != InventoryConstants.Empty && HackInterface.outputCodes.Count < 5)
         {
-            Debug.Log("Creation");
             InOutVignette NewOutputHack = new InOutVignette();
             NewOutputHack.code = "UseGadget";
             NewOutputHack.parameter_int = hackinterface.inventory[numero];
