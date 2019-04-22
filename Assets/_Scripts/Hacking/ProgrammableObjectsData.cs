@@ -28,6 +28,7 @@ public class ProgrammableObjectsData : MonoBehaviour
     public Client client;
     public HackInterface hackInterface;
     public bool isWaitingHack;
+    private RosaceForHacking rosaceForHacking;
 #endif
 
 #if SERVER
@@ -80,6 +81,7 @@ public class ProgrammableObjectsData : MonoBehaviour
         client = FindObjectOfType<Client>();
         hackInterface = FindObjectOfType<HackInterface>();
         isWaitingHack = false;
+        rosaceForHacking = FindObjectOfType<RosaceForHacking>();
 #endif
 
     }
@@ -93,6 +95,7 @@ public class ProgrammableObjectsData : MonoBehaviour
             client.RequestHackState(objectsContainer.GetObjectIndexClient(this));
             hackInterface.ReadyToOpen();
             isWaitingHack = true;
+            rosaceForHacking.GetComponent<Animator>().SetTrigger("Activate");
         }
 
     }
@@ -101,6 +104,7 @@ public class ProgrammableObjectsData : MonoBehaviour
     {
         hackInterface.DoNotOpenActually();
         isWaitingHack = false;
+        rosaceForHacking.GetComponent<Animator>().SetTrigger("Deactivate");
     }
 #endif
 
@@ -214,10 +218,11 @@ public class ProgrammableObjectsData : MonoBehaviour
         }
     }
 
-
+#endif
     /*A chaque frame, le signal se déplace dans les flèches du graphe*/
     void Update()
     {
+#if SERVER
         for (int i = 0; i < graph.Count; i++)
         {
             for (int j = 0; j < graph[i].timeBeforeTransmit.Count; j++)
@@ -243,19 +248,19 @@ public class ProgrammableObjectsData : MonoBehaviour
         {
             timeBeforeStunReload -= Time.deltaTime;
         }
-
+#endif
 #if CLIENT
         if (isWaitingHack)
         {
-            this.GetComponentInChildren<MeshRenderer>().material.color = Color.green;
+            /*this.GetComponentInChildren<MeshRenderer>().material.color = Color.green;*/
         }
         else
         {
-            this.GetComponentInChildren<MeshRenderer>().material.color = Color.white;
+            /*this.GetComponentInChildren<MeshRenderer>().material.color = Color.white;*/
         }
 #endif
     }
-
+#if SERVER
     void TheAttractFunction()
     {
         attracttimebeforeend -= Time.deltaTime;

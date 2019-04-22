@@ -36,6 +36,7 @@ public class Client : MonoBehaviour
     public ClientLobby clientLobby;
     public int connectionId;
     private bool initialHandshakeDone;
+    public int team;// 0 or 1 ; -1 in case we didn't use the lobby -> automatically assigned based on connectionID
 
     public int playerIndex;
 
@@ -48,6 +49,9 @@ public class Client : MonoBehaviour
         programmableObjectsContainer = FindObjectOfType<ProgrammableObjectsContainer>();
         hackInterface = FindObjectOfType<HackInterface>();
 
+    }
+
+    void Awake() { 
         //TODO error : A Native Collection has not been disposed, resulting in a memory leak
         m_Driver = new UdpCNetworkDriver(new INetworkParameter[0]);
         m_Connection = default(NetworkConnection);
@@ -63,9 +67,12 @@ public class Client : MonoBehaviour
         }
         else
         {
+            m_Driver = clientLobby.m_Driver;
             m_Connection = clientLobby.m_Connection;
             connectionId = clientLobby.connectionId;
             initialHandshakeDone = true;
+            team = clientLobby.team;
+            clientLobby.enabled = false;
         }
     }
 
@@ -83,7 +90,7 @@ public class Client : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void LateUpdate()
     {
         m_Driver.ScheduleUpdate().Complete();
 

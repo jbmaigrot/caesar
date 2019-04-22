@@ -30,7 +30,7 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
 
     private float timeReadyToOpen;
     private bool isReadyToOpen;
-    const float TIMEREADYTOOPEN = 0.5f;
+    const float TIMEREADYTOOPEN = 0.75f;
 
     private float timeToOpen;
     private bool isOpening;
