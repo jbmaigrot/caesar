@@ -247,16 +247,16 @@ public class Client : MonoBehaviour
                                             if (child.name == "napperon")
                                             {
 
-                                                //todo color is not working, check if team ok
+                                                //todo check if team ok
                                                 if (team == -1)
                                                 {
                                                     child.GetComponent<SpriteRenderer>().color =
-                                                        new Color(92, 200, 242, 1f);
+                                                        new Color(0.961f, 0.51f, 0.365f, 1f);
                                                 }
                                                 else
                                                 {
                                                     child.GetComponent<SpriteRenderer>().color =
-                                                        new Color(245, 130, 93, 1f);
+                                                        new Color(0.361f, 0.784f, 0.949f, 1f);
                                                 }
                                                 
                                                 isNapperoned = true;
