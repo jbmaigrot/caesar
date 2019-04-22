@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class InventoryHackInterface : MonoBehaviour
+public class InventoryHackInterface : MonoBehaviour, IPointerDownHandler
 {
     public int numero;
     public Sprite Empty;
@@ -19,19 +21,23 @@ public class InventoryHackInterface : MonoBehaviour
 
     public void reloadInventory()
     {
+        
         switch (hackinterface.inventory[numero])
         {
             case InventoryConstants.Empty:
                 this.GetComponent<SVGImage>().sprite = Empty;
+                Debug.Log("affichage0");
                 break;
             case InventoryConstants.Attract:
                 this.GetComponent<SVGImage>().sprite = Attract;
-                Debug.Log("affichage");
+                Debug.Log("affichage2");
                 break;
             case InventoryConstants.Stunbox:
                 this.GetComponent<SVGImage>().sprite = Stun;
+                Debug.Log("affichage3");
                 break;
             case InventoryConstants.Powerpump:
+                Debug.Log("affichage4");
                 this.GetComponent<SVGImage>().sprite = PowerPump;
                 break;
             default:
@@ -40,7 +46,7 @@ public class InventoryHackInterface : MonoBehaviour
             
     }
 
-    private void OnMouseDown()
+    public void OnPointerDown(PointerEventData eventData)
     {
         Debug.Log("Clicc");
         if(hackinterface.inventory[numero] != InventoryConstants.Empty && HackInterface.outputCodes.Count < 5)
