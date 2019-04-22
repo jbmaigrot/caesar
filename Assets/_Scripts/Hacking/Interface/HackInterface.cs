@@ -108,7 +108,9 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
 
             /*Le graphe de comportement de l'objet hacké est remplacé par les modifications effectués.*/
             client.SetHackState(objectsContainer.GetObjectIndexClient(SelectedGameObject.GetComponent<ProgrammableObjectsData>()), inputCodes, outputCodes, graph);
-
+            client.inventory[0] = inventory[0];
+            client.inventory[1] = inventory[1];
+            client.inventory[2] = inventory[2];
             Camera.main.GetComponent<CameraController>().UnlockCamera();
         }        
     }
