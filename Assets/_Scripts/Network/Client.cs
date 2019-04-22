@@ -237,10 +237,21 @@ public class Client : MonoBehaviour
                                 if (playerIndex < characters.Count)
                                 {
                                     cameraController.characterToFollow = characters[playerIndex].gameObject;
-                                    if (!knowOrientationOfCam && (playerIndex - FindObjectOfType<ServerGameCreator>().NbPnj) % 2 == 0)//Une manière dirty dirty de récupérer l'équipe dans laquelle on se trouve. A changer
-                                    { 
-                                        cameraController.RotateCamera180();
-                                        knowOrientationOfCam = true;
+                                    if (team == -1)
+                                    {
+                                        if (!knowOrientationOfCam && (playerIndex - FindObjectOfType<ServerGameCreator>().NbPnj) % 2 == 0)//Une manière dirty dirty de récupérer l'équipe dans laquelle on se trouve. A changer
+                                        {
+                                            cameraController.RotateCamera180();
+                                            knowOrientationOfCam = true;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (!knowOrientationOfCam && team == 0)
+                                        {
+                                            cameraController.RotateCamera180();
+                                            knowOrientationOfCam = true;
+                                        }
                                     }
                                 }
                             }
