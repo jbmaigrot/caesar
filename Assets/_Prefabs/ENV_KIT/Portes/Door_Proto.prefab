@@ -114,6 +114,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 775197464867883653}
+  - component: {fileID: 2544454193267179657}
   m_Layer: 0
   m_Name: Door_Proto
   m_TagString: Untagged
@@ -136,6 +137,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2544454193267179657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775197464867919525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d79003555484e4e8fe70097d49cf59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clientCharge: 0
+  client: {fileID: 0}
+  programmableObjectsContainer: {fileID: 0}
+  charge: 0
+  maxCharge: 10
+  chargeSpeed: 1
+  charging: 0
+  givingTo: {fileID: 0}
+  takingFrom: {fileID: 0}
 --- !u!1 &775197464867919527
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,6 +328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NavMeshSurface: {fileID: 0}
+  isAttract: 0
   charactersIndex: -1
   client: {fileID: 0}
   hackInterface: {fileID: 0}

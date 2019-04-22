@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 642428041981206440}
   - component: {fileID: 642428041981206441}
   - component: {fileID: 642428041981206454}
+  - component: {fileID: 1673502655083158911}
   m_Layer: 14
   m_Name: PressurePlate
   m_TagString: Untagged
@@ -105,10 +106,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NavMeshSurface: {fileID: 0}
+  isAttract: 0
+  charactersIndex: -1
   client: {fileID: 0}
+  hackInterface: {fileID: 0}
+  isWaitingHack: 0
   inputCodes: []
   outputCodes: []
   graph: []
   isLightOn: 0
   isDoorOpen: 0
   Initiator: {fileID: 11400000, guid: d27911c9b81f68341963a30b1ce746ce, type: 2}
+  objectsContainer: {fileID: 0}
+--- !u!114 &1673502655083158911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642428041981206452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d79003555484e4e8fe70097d49cf59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clientCharge: 0
+  client: {fileID: 0}
+  programmableObjectsContainer: {fileID: 0}
+  charge: 0
+  maxCharge: 10
+  chargeSpeed: 1
+  charging: 0
+  givingTo: {fileID: 0}
+  takingFrom: {fileID: 0}
