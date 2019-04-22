@@ -72,7 +72,7 @@ public class Client : MonoBehaviour
             connectionId = clientLobby.connectionId;
             initialHandshakeDone = true;
             team = clientLobby.team;
-            clientLobby.enabled = false;
+            clientLobby.stopUpdate = true;
         }
     }
 
