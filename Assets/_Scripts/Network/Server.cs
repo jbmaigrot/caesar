@@ -80,7 +80,7 @@ public class Server : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
         //Debug.Log(Mathf.Round(1f / Time.deltaTime)); //Framerate
 
