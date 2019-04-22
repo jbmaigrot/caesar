@@ -94,6 +94,7 @@ public class ClientLobby : MonoBehaviour
                         {
                             InitialHandshake();
                         }
+                        connectingMessageManager.Hide();
                     }
 
                     else if (cmd == NetworkEvent.Type.Data)
@@ -108,10 +109,12 @@ public class ClientLobby : MonoBehaviour
                                 initialHandshakeDone = true;
                                 connectingMessageManager.Hide();
                                 iPConnectionInterfaceManager.Hide();
+
+                                lobbyInterfaceManager.Show();
                                 break;
                             case Constants.Server_Lobby_LobbyState:
-                                lobbyInterfaceManager.Show();
-                                lobbyInterfaceManager.UpdateInterface(ReadLobbyState(stream, ref readerCtx), connectionId);
+                                LobbyInterfaceManager.LobbyInterface lobbyState = ReadLobbyState(stream, ref readerCtx);
+                                lobbyInterfaceManager.UpdateInterface(lobbyState, connectionId);
                                 break;
                             case Constants.Server_Lobby_StartGame:
                                 break;

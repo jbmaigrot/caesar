@@ -47,6 +47,17 @@ public class LobbyInterfaceManager : MonoBehaviour
     public void Show()
     {
         interfacePanel.SetActive(true);
+
+        /*
+        LobbyInterface lobbyInterfaceState = new LobbyInterfaceManager.LobbyInterface();
+        lobbyInterfaceState.numberOfPlayerSlots = 4;
+        lobbyInterfaceState.playerLobbyCards = new List<PlayerLobbyCardManager.PlayerLobbyCard>();
+        for (int i = 0; i < 4; i++)
+        {
+            var lobbyCard = new PlayerLobbyCardManager.PlayerLobbyCard("caca", i + 1);
+            lobbyInterfaceState.playerLobbyCards.Add(lobbyCard);
+        }
+        UpdateInterface(lobbyInterfaceState, 0);*/
     }
 
     public void UpdateInterface(LobbyInterface state, int connectionId)
@@ -62,15 +73,15 @@ public class LobbyInterfaceManager : MonoBehaviour
 
             if (i == connectionId)
             {
-                playerLobbyCardManagers[i].SetInteractable(true);
+                playerLobbyCardManagers[i].UpdateCard(state.playerLobbyCards[i]);
             }
             else
             {
-                playerLobbyCardManagers[i].SetInteractable(false);
+                playerLobbyCardManagers[i].UpdateCard(state.playerLobbyCards[i]);
+                playerLobbyCardManagers[i].nonInteractable();
             }
 
-            playerLobbyCardManagers[i].UpdateCard(state.playerLobbyCards[i]);
-
+            
             
         }
     }

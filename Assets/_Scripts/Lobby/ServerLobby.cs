@@ -126,7 +126,7 @@ public class ServerLobby : MonoBehaviour
                                 lostConnections.Add(false);
                                 tmp_Connections.RemoveAtSwapBack(i);
 
-                                lobbyInterfaceState.playerLobbyCards[i].connected = true;
+                                lobbyInterfaceState.playerLobbyCards[m_Connections.Length - 1].connected = true;
                                 SendLobbyInterfaceState();
                             }
                         }
@@ -143,7 +143,7 @@ public class ServerLobby : MonoBehaviour
                                 lostConnections[connectionId] = false;
                                 tmp_Connections.RemoveAtSwapBack(i);
 
-                                lobbyInterfaceState.playerLobbyCards[i].connected = true;
+                                lobbyInterfaceState.playerLobbyCards[connectionId].connected = true;
                                 SendLobbyInterfaceState();
                             }
                         }

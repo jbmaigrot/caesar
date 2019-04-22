@@ -42,8 +42,7 @@ public class PlayerLobbyCardManager : MonoBehaviour
     public void Start()
     {
         clientLobby = FindObjectOfType<ClientLobby>();
-
-        UpdateCard(new PlayerLobbyCard(""));
+        
     }
 
     public void UpdateCard(PlayerLobbyCard playerLobbyCard)
@@ -60,33 +59,30 @@ public class PlayerLobbyCardManager : MonoBehaviour
             notConnected.gameObject.SetActive(true);
         }
 
+        InputField.OnChangeEvent tmpInputEvt = playerName.onValueChanged;
+        playerName.onValueChanged = new InputField.OnChangeEvent();
         playerName.text = playerLobbyCard.playerName;
-        playerTeam.value = playerLobbyCard.team;
-        
-        if (playerLobbyCard.isReady == true)
-        {
-            ready.interactable = false;
-            cancel.interactable = true;
+        playerName.onValueChanged = tmpInputEvt;
 
-            playerName.interactable = false;
-            playerTeam.interactable = false;
-        }
+        //https://forum.unity.com/threads/change-the-value-of-a-toggle-without-triggering-onvaluechanged.275056/
+        //Before adding these lines, an edit to one of the team would change the value for all players
+        //due to the fact the OnValueChange function is triggering not only on user input, but also when manually editing the value through code.
+        Dropdown.DropdownEvent tmpDropdownEvt = playerTeam.onValueChanged;
+        playerTeam.onValueChanged = new Dropdown.DropdownEvent();
+        playerTeam.value = playerLobbyCard.team;
+        playerTeam.onValueChanged = tmpDropdownEvt;
+
+        GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.8f);
     }
 
-    public void SetInteractable(bool interactable)
+    public void nonInteractable()
     {
-        playerName.interactable = interactable;
-        playerTeam.interactable = interactable;
-        ready.interactable = interactable;
-
-        if (interactable)
-        {
-            GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.8f);
-        } else
-        {
-            GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.4f);
-        }
-
+        playerName.interactable = false;
+        playerTeam.interactable = false;
+        ready.interactable = false;
+        cancel.interactable = false;
+        
+        GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.4f);
     }
     
     public void OnEditPlayerName()
