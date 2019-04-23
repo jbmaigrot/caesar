@@ -26,8 +26,9 @@ public class ServerBattery : MonoBehaviour
         }
         foreach (Transform ryan in server.characters)
         {
-            if (ryan.GetComponent<ServerCarrier>().charge > 0 && (ryan.position - this.transform.position).magnitude < 30 && !server.players.Contains(ryan))
+            if (ryan.GetComponent<ServerCarrier>().charge > 0 && Vector3.Distance(ryan.position,this.transform.position) < 30 && !server.players.Contains(ryan))
             {
+                Debug.Log("Le volume");
                 ryan.GetComponent<NavMeshAgent>().destination = this.transform.position;
                 ryan.GetComponent<ServerCarrier>().StartGiving(this.GetComponent<ServerCarrier>());
             }

@@ -193,7 +193,11 @@ GameObject:
   - component: {fileID: 3104201622330388678}
   - component: {fileID: 5302935984244834746}
   - component: {fileID: 9126072510677154314}
-  m_Layer: 11
+  - component: {fileID: 3463148001763349531}
+  - component: {fileID: 2899957898095974009}
+  - component: {fileID: 1991442871396865135}
+  - component: {fileID: 7312932513954447421}
+  m_Layer: 14
   m_Name: Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,6 +263,82 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &3463148001763349531
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4307144919065949451}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.010682907, y: 0.074712135, z: 0.010531747}
+  m_Center: {x: -0.000044836645, y: 0.011307425, z: 0.000121761914}
+--- !u!114 &2899957898095974009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4307144919065949451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58b4a4c8041637b42817b948030aa53e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 1
+--- !u!114 &1991442871396865135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4307144919065949451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d79003555484e4e8fe70097d49cf59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clientCharge: 0
+  client: {fileID: 0}
+  programmableObjectsContainer: {fileID: 0}
+  pos: {x: 0, y: 0}
+  size: {x: 0, y: 0}
+  emptyTex: {fileID: 0}
+  fullTex: {fileID: 0}
+  draw: 0
+  charge: 0
+  maxCharge: 500
+  chargeSpeed: 1
+  givingTo: {fileID: 0}
+  takingFrom: {fileID: 0}
+--- !u!114 &7312932513954447421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4307144919065949451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15a66bf76cc67b949aaa75c4bfb2f7ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NavMeshSurface: {fileID: 0}
+  isAttract: 0
+  charactersIndex: -1
+  client: {fileID: 0}
+  hackInterface: {fileID: 0}
+  isWaitingHack: 0
+  inputCodes: []
+  outputCodes: []
+  graph: []
+  isLightOn: 0
+  isDoorOpen: 0
+  Initiator: {fileID: 11400000, guid: 842e3ff43ee2224498d97fe59d74c454, type: 2}
+  objectsContainer: {fileID: 0}
 --- !u!1 &4598231264075584797
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,11 +712,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5149781087663628134}
-  - component: {fileID: 8630039474702666910}
-  - component: {fileID: 8013367164868004981}
-  - component: {fileID: 240463915200791776}
-  - component: {fileID: 5694591436402609504}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Battery_Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -670,84 +746,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8630039474702666910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6378860381134614230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02d79003555484e4e8fe70097d49cf59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clientCharge: 0
-  client: {fileID: 0}
-  scoreDisplay: {fileID: 0}
-  programmableObjectsContainer: {fileID: 0}
-  pos: {x: 0, y: 0}
-  size: {x: 0, y: 0}
-  emptyTex: {fileID: 0}
-  fullTex: {fileID: 0}
-  draw: 0
-  charge: 0
-  maxCharge: 500
-  chargeSpeed: 1
-  charging: 0
-  givingTo: {fileID: 0}
-  takingFrom: {fileID: 0}
---- !u!114 &8013367164868004981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6378860381134614230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58b4a4c8041637b42817b948030aa53e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team: 1
---- !u!114 &240463915200791776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6378860381134614230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15a66bf76cc67b949aaa75c4bfb2f7ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NavMeshSurface: {fileID: 0}
-  isAttract: 0
-  charactersIndex: -1
-  client: {fileID: 0}
-  hackInterface: {fileID: 0}
-  isWaitingHack: 0
-  inputCodes: []
-  outputCodes: []
-  graph: []
-  isLightOn: 0
-  isDoorOpen: 0
-  Initiator: {fileID: 11400000, guid: 842e3ff43ee2224498d97fe59d74c454, type: 2}
-  objectsContainer: {fileID: 0}
---- !u!65 &5694591436402609504
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6378860381134614230}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.1275482, y: 7.6522675, z: 3.2067947}
-  m_Center: {x: 93.903206, y: 4.00142, z: 94.48361}
 --- !u!1 &6509011481474319584
 GameObject:
   m_ObjectHideFlags: 0
