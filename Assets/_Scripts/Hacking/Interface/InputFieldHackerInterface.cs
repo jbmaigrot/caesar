@@ -3,16 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-#if CLIENT
-public class InputFieldHackerInterface : MonoBehaviour
+
+public class InputFieldHackerInterface : MonoBehaviour, IPointerDownHandler
 {
+
+    public Sprite Normal;
+    public Sprite Attract;
+    public Sprite Stun;
+    public Sprite PowerPump;
+#if CLIENT
     private string previousValue;
     private bool isOnString;
     private bool isOnInt;
 
     private HackingAssetScriptable HackingAsset;
+    private HackInterface hackinterface;
 
 
+
+    void Start()
+    {
+        hackinterface = FindObjectOfType<HackInterface>();
+    }
 
     /*Fonction pour modifier le parametre d'une vignette en fonction de l'input field*/
     void UpdateHackingGraph()
@@ -102,6 +114,8 @@ public class InputFieldHackerInterface : MonoBehaviour
         /*Si le code requiert un input field string, on écrit le contenue tiré du graphe.*/
         if (isOnString)
         {
+            this.GetComponent<InputField>().enabled = true;
+            this.GetComponent<SVGImage>().sprite = Normal;
             this.GetComponent<InputField>().contentType = InputField.ContentType.Standard;
             if (isInput)
             {
@@ -126,36 +140,50 @@ public class InputFieldHackerInterface : MonoBehaviour
             }            
             this.GetComponent<CanvasGroup>().blocksRaycasts = true;
         }
-        ///*Si le code requiet un input field de type int, on écrit le contenu tiré du graphe*/
-        //else if (isOnInt)
-        //{
-        //    this.GetComponent<InputField>().contentType = InputField.ContentType.IntegerNumber;
-        //    if (isInput)
-        //    {
-        //        this.GetComponent<InputField>().text = HackInterface.inputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_int.ToString();
-        //        previousValue = this.GetComponent<InputField>().text;
-        //    }
-        //    else
-        //    {
-        //        this.GetComponent<InputField>().text = HackInterface.outputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_int.ToString();
-        //        previousValue = this.GetComponent<InputField>().text;
-        //    }
-        //    this.GetComponent<CanvasGroup>().alpha = 1f;
+        /*Si le code requiet un input field de type int, on écrit le contenu tiré du graphe*/
+        else if (isOnInt)
+        {
+            int value;
+            this.GetComponent<InputField>().enabled = false;
+            if (isInput)
+            {
+                value = HackInterface.inputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_int;
+            }
+            else
+            {
+                value = HackInterface.outputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_int;
+            }
+            switch (value)
+            {
+                case InventoryConstants.Attract:
+                    this.GetComponent<SVGImage>().sprite = Attract;
+                        break;
+                case InventoryConstants.Stunbox:
+                    this.GetComponent<SVGImage>().sprite = Stun;
+                    break;
+                case InventoryConstants.Powerpump:
+                    this.GetComponent<SVGImage>().sprite = PowerPump;
+                    break;
+                default:
+                    break;
+            }
+            this.GetComponent<CanvasGroup>().alpha = 1f;
 
-        //    /*Si la vignette est fixé dans le graphe, on empèche le joueur de changer le contenu de l'input field, sinon on le laisse faire.*/
-        //    if (isFixed)
-        //    {
-        //        this.GetComponent<CanvasGroup>().interactable = false;
-        //    }
-        //    else
-        //    {
-        //        this.GetComponent<CanvasGroup>().interactable = true;
-        //    }
-        //    this.GetComponent<CanvasGroup>().blocksRaycasts = true;
-        //}
+            /*Si la vignette est fixé dans le graphe, on empèche le joueur de changer le contenu de l'input field, sinon on le laisse faire.*/
+            if (isFixed)
+            {
+                this.GetComponent<CanvasGroup>().interactable = false;
+            }
+            else
+            {
+                this.GetComponent<CanvasGroup>().interactable = true;
+            }
+            this.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        }
         /*Si le code ne requiert pas d'input field, on l'éteint*/
         else
         {
+            this.GetComponent<InputField>().enabled = true;
             this.GetComponent<InputField>().text = "";
             previousValue = this.GetComponent<InputField>().text;
             if (isInput)
@@ -178,5 +206,36 @@ public class InputFieldHackerInterface : MonoBehaviour
     {
         HackingAsset = HackAss;
     }
-}
 #endif
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        
+#if CLIENT
+        if (isOnInt)
+        {
+            
+            if (hackinterface.inventory[0] == InventoryConstants.Empty)
+            {
+                hackinterface.inventory[0] = HackInterface.outputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_int;
+                HackInterface.outputCodes.RemoveAt(this.GetComponentInParent<TextButtonHackInterface>().numero - 1);
+                hackinterface.reloadInterface();
+                hackinterface.RemoveVignette(false, this.GetComponentInParent<TextButtonHackInterface>().numero - 1);
+            }
+            else if (hackinterface.inventory[1] == InventoryConstants.Empty)
+            {
+                hackinterface.inventory[1] = HackInterface.outputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_int;
+                HackInterface.outputCodes.RemoveAt(this.GetComponentInParent<TextButtonHackInterface>().numero - 1);
+                hackinterface.reloadInterface();
+                hackinterface.RemoveVignette(false, this.GetComponentInParent<TextButtonHackInterface>().numero - 1);
+            }
+            else if (hackinterface.inventory[2] == InventoryConstants.Empty)
+            {
+                hackinterface.inventory[2] = HackInterface.outputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_int;
+                HackInterface.outputCodes.RemoveAt(this.GetComponentInParent<TextButtonHackInterface>().numero - 1);
+                hackinterface.reloadInterface();
+                hackinterface.RemoveVignette(false, this.GetComponentInParent<TextButtonHackInterface>().numero - 1);
+            }
+        }
+#endif
+    }
+}
