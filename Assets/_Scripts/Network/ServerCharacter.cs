@@ -18,7 +18,6 @@ public class ServerCharacter : MonoBehaviour
     private float baseSpeed;
 
     public ServerCarrier carrier;
-    
 
     // Start is called before the first frame update
     void Start()

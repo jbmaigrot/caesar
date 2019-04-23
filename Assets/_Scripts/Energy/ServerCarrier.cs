@@ -7,7 +7,7 @@ public class ServerCarrier : MonoBehaviour
 #if CLIENT
     public float clientCharge = 0; //ratio between 0 and 1
     public Client client;
-    public GameObject scoreDisplay;
+    //public GameObject scoreDisplay;
     public ProgrammableObjectsContainer programmableObjectsContainer;
     private HackInterface hackInterface;
 
@@ -26,7 +26,7 @@ public class ServerCarrier : MonoBehaviour
     public float charge = 0;
     public float maxCharge = 10;
     public float chargeSpeed = 1;
-    public bool charging = false;
+    //public bool charging = false;
     public ServerCarrier givingTo = null;
     public ServerCarrier takingFrom = null;
 #endif
