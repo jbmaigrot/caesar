@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4933739459704552208}
   - component: {fileID: 4933739459704552206}
   - component: {fileID: 4933739459704552209}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Base_low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 4933739459978470442}
   - component: {fileID: 4933739459978470440}
   - component: {fileID: 4933739459978470443}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Doigt2_low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 4933739460069197949}
   - component: {fileID: 4933739460069197947}
   - component: {fileID: 4933739460069197946}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Main_low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +244,7 @@ GameObject:
   - component: {fileID: 5830408924605963406}
   - component: {fileID: 2194309330242708255}
   - component: {fileID: 2465187952446484485}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Drone_Client
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +338,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clientCharge: 0
   client: {fileID: 0}
+  scoreDisplay: {fileID: 0}
   programmableObjectsContainer: {fileID: 0}
+  pos: {x: 0, y: 0}
+  size: {x: 0, y: 0}
+  emptyTex: {fileID: 2800000, guid: a089e39cb36331940a4f602bb6a0d064, type: 3}
+  fullTex: {fileID: 2800000, guid: 80861de6aa80f234ea54ed391d0638f3, type: 3}
+  draw: 1
   charge: 0
   maxCharge: 10
   chargeSpeed: 1
@@ -356,7 +362,7 @@ GameObject:
   - component: {fileID: 4933739460478403979}
   - component: {fileID: 4933739460478403977}
   - component: {fileID: 4933739460478403976}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Doigt_low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -433,7 +439,7 @@ GameObject:
   - component: {fileID: 4933739460547125495}
   - component: {fileID: 4933739460547125493}
   - component: {fileID: 4933739460547125492}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Baton_low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -510,7 +516,7 @@ GameObject:
   - component: {fileID: 4933739460829338130}
   - component: {fileID: 4933739460829338128}
   - component: {fileID: 4933739460829338131}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Visiere_low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -585,7 +591,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4933739460919854642}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Bras
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -621,7 +627,7 @@ GameObject:
   - component: {fileID: 4933739461296341556}
   - component: {fileID: 4933739461296341554}
   - component: {fileID: 4933739461296341557}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Doigt3_low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -697,7 +703,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5192427822761529805}
   - component: {fileID: 1276766204454771933}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: napperon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

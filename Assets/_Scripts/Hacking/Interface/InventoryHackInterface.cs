@@ -41,9 +41,10 @@ public class InventoryHackInterface : MonoBehaviour, IPointerDownHandler
         }
             
     }
-
+#endif
     public void OnPointerDown(PointerEventData eventData)
     {
+#if CLIENT
         if(hackinterface.inventory[numero] != InventoryConstants.Empty && HackInterface.outputCodes.Count < 5)
         {
             InOutVignette NewOutputHack = new InOutVignette();
@@ -54,6 +55,6 @@ public class InventoryHackInterface : MonoBehaviour, IPointerDownHandler
             HackInterface.outputCodes.Add(NewOutputHack);
             hackinterface.reloadInterface();
         }
+#endif
     }
-#endif 
 }
