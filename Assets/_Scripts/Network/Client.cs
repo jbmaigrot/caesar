@@ -18,6 +18,7 @@ public class Client : MonoBehaviour
 
 #if CLIENT
     public string ServerIP = "127.0.0.1"; //localhost by default
+    public IPAddress iPAddress;
     public UdpCNetworkDriver m_Driver;
     public NetworkConnection m_Connection;
     public IPv4UDPSocket socket;
@@ -64,7 +65,8 @@ public class Client : MonoBehaviour
         clientLobby = FindObjectOfType<ClientLobby>();
         if (clientLobby == null)
         {
-            var endpoint = new IPEndPoint(IPAddress.Parse(ServerIP), 9000);
+            iPAddress = IPAddress.Parse(ServerIP);
+            var endpoint = new IPEndPoint(iPAddress, 9000);
             m_Connection = m_Driver.Connect(endpoint);
             connectionId = -1;
             initialHandshakeDone = false;
@@ -74,6 +76,7 @@ public class Client : MonoBehaviour
             m_Driver = clientLobby.m_Driver;
             m_Connection = clientLobby.m_Connection;
             connectionId = clientLobby.connectionId;
+            iPAddress = clientLobby.iPAddress;
             initialHandshakeDone = true;
             team = clientLobby.team;
             clientLobby.stopUpdate = true;
@@ -103,7 +106,7 @@ public class Client : MonoBehaviour
         {
             Debug.Log("Something went wrong during connect");
             //var endpoint = new IPEndPoint(IPAddress.Loopback, 9000);
-            var endpoint = new IPEndPoint(IPAddress.Parse(ServerIP), 9000);
+            var endpoint = new IPEndPoint(iPAddress, 9000);
             m_Connection = m_Driver.Connect(endpoint);
             Debug.Log("Connection reestablished");
             initialHandshakeDone = false;
