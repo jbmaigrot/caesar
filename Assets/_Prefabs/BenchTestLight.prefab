@@ -155,6 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NavMeshSurface: {fileID: 0}
+  isAttract: 0
   charactersIndex: -1
   client: {fileID: 0}
   hackInterface: {fileID: 0}
@@ -222,8 +223,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0.81455797, g: 0.8867924, b: 0.51450694, a: 1}
-  m_Intensity: 9
-  m_Range: 12
+  m_Intensity: 30
+  m_Range: 22
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
