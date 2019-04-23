@@ -161,6 +161,7 @@ public class Server : MonoBehaviour
                             else
                             {
                                 Debug.Log("Re-establishing connection with connection ID : " + connectionId);
+                                SetConnectionId(connectionId, tmp_Connections[i]);
                                 m_Connections[connectionId] = tmp_Connections[i];
                                 lostConnections[connectionId] = false;
                                 tmp_Connections.RemoveAtSwapBack(i);

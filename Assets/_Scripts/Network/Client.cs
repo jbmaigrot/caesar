@@ -39,7 +39,9 @@ public class Client : MonoBehaviour
     public int team;// 0 or 1 ; -1 in case we didn't use the lobby -> automatically assigned based on connectionID
 
     public int playerIndex;
+    public int[] inventory = new int[3];
 
+    private bool isNapperoned = false;
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +50,9 @@ public class Client : MonoBehaviour
         chat = FindObjectOfType<ClientChat>();
         programmableObjectsContainer = FindObjectOfType<ProgrammableObjectsContainer>();
         hackInterface = FindObjectOfType<HackInterface>();
-
+        inventory[0] = InventoryConstants.Attract;
+        inventory[1] = InventoryConstants.Stunbox;
+        inventory[2] = InventoryConstants.Powerpump;
     }
 
     void Awake() { 
@@ -236,6 +240,31 @@ public class Client : MonoBehaviour
                                 playerIndex = (int)stream.ReadUInt(ref readerCtx);
                                 if (playerIndex < characters.Count)
                                 {
+                                    if (!isNapperoned)
+                                    {
+                                        foreach (Transform child in characters[playerIndex].transform)
+                                        {
+                                            if (child.name == "napperon")
+                                            {
+
+                                                //todo check if team ok
+                                                if (team == -1)
+                                                {
+                                                    child.GetComponent<SpriteRenderer>().color =
+                                                        new Color(0.961f, 0.51f, 0.365f, 1f);
+                                                }
+                                                else
+                                                {
+                                                    child.GetComponent<SpriteRenderer>().color =
+                                                        new Color(0.361f, 0.784f, 0.949f, 1f);
+                                                }
+                                                
+                                                isNapperoned = true;
+                                            }
+                                        }
+                                    }
+                                    
+                                    
                                     cameraController.characterToFollow = characters[playerIndex].gameObject;
                                     if (team == -1)
                                     {

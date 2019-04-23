@@ -7,6 +7,7 @@ public class ServerCarrier : MonoBehaviour
 #if CLIENT
     public float clientCharge = 0; //ratio between 0 and 1
     public Client client;
+    public GameObject scoreDisplay;
     public ProgrammableObjectsContainer programmableObjectsContainer;
     private HackInterface hackInterface;
 
@@ -61,6 +62,18 @@ public class ServerCarrier : MonoBehaviour
             GUI.EndGroup();
         }
     }
+	/*
+        //Display charge
+        //todo changer le test degueu de la batterie + charger batterie par étape
+        if (scoreDisplay != null)
+        {
+            scoreDisplay.GetComponentInChildren<Text>().text = clientCharge.ToString() + " %";
+            if(clientCharge > 0.2f && clientCharge <= 0.4f)
+            {
+                //scoreDisplay
+                
+            }
+        }*/
 #endif
 
     // Update is called once per frame
