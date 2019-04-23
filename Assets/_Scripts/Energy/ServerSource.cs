@@ -31,7 +31,7 @@ public class ServerSource : MonoBehaviour
         carrier.charge = Mathf.Min(carrier.maxCharge, carrier.charge + curve.Evaluate(Time.time - startingTime) * Time.deltaTime);
         foreach (Transform ryan in server.characters)
         {
-            if (ryan.GetComponent<ServerCarrier>().charge < ryan.GetComponent<ServerCarrier>().maxCharge && (ryan.position-this.transform.position).magnitude < this.GetComponent<ServerCarrier>().charge * 30 / this.GetComponent<ServerCarrier>().maxCharge && !server.players.Contains(ryan))
+            if (ryan.GetComponent<ServerCarrier>().charge < ryan.GetComponent<ServerCarrier>().maxCharge && Vector3.Distance(ryan.position, this.transform.position) < this.GetComponent<ServerCarrier>().charge * 30 / this.GetComponent<ServerCarrier>().maxCharge && !server.players.Contains(ryan))
             {
                 ryan.GetComponent<NavMeshAgent>().destination = this.transform.position;
                 ryan.GetComponent<ServerCarrier>().StartTaking(this.GetComponent<ServerCarrier>());
