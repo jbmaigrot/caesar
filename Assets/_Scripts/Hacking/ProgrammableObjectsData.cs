@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -158,7 +158,7 @@ public class ProgrammableObjectsData : MonoBehaviour
         if (codeoutput == "OpenDoor")
         {
             this.GetComponentInChildren<DoorScript>().OnOpen();
-            Debug.Log("sound " +this.GetComponentInChildren<AudioSource>().clip.name);
+            //Debug.Log("sound " +this.GetComponentInChildren<AudioSource>().clip.name);
             NavMeshSurface.GetComponent<NavMeshSurfaceScript>().hasToBeRebake = true;
             isDoorOpen = true;
         }
