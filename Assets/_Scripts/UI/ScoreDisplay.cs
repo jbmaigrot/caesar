@@ -10,6 +10,7 @@ public class ScoreDisplay : MonoBehaviour
     public ServerCarrier battery;
     private Text text;
 
+#if CLIENT
     // Start is called before the first frame update
     void Start()
     {
@@ -34,4 +35,5 @@ public class ScoreDisplay : MonoBehaviour
     {
         lines[num].GetComponent<SVGImage>().color = col;
     }*/
+#endif
 }
