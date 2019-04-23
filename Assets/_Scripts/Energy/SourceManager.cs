@@ -7,8 +7,9 @@ public class SourceManager : MonoBehaviour
     public List<ServerSource> sources;
 
 #if SERVER
-    public float timeBeforeNewSource = 240;
+    public float timeBeforeNewSource = 180;
     private float startingTime = 0;
+    private float timeBeforeSource;
 #endif
 
     // Start is called before the first frame update
@@ -18,6 +19,12 @@ public class SourceManager : MonoBehaviour
 
 #if SERVER
         startingTime = Time.time;
+        timeBeforeSource = 0;
+        Random.InitState(System.DateTime.Now.Second);
+        for(int i = 0; i < 3; i++)
+        {
+            sources[i].gameObject.SetActive(false);
+        }
 #endif
     }
 
@@ -25,25 +32,19 @@ public class SourceManager : MonoBehaviour
     void Update()
     {
 #if SERVER
-        if (Time.time - startingTime < timeBeforeNewSource)
+        timeBeforeSource -= Time.deltaTime;
+        if (timeBeforeSource <= 0)
         {
-            //sources[0].startingTime = Time.time;
-            sources[0].gameObject.SetActive(true);
+            int i;
+            do
+            {
+                i = Random.Range(0, 3);
+            } while (sources[i].gameObject.activeSelf);
+            sources[i].gameObject.SetActive(true);
+            sources[i].startingTime = Time.time;
+            timeBeforeSource = timeBeforeNewSource;
         }
-        else if (Time.time - startingTime < 2*timeBeforeNewSource)
-        {
-            //sources[1].startingTime = Time.time;
-            sources[1].gameObject.SetActive(true);
-        }
-        else if (Time.time - startingTime < 3 * timeBeforeNewSource)
-        {
-            //sources[2].startingTime = Time.time;
-            sources[2].gameObject.SetActive(true);
-        }
-        else
-        {
-            startingTime = Time.time; //LOOP
-        }
+        
 #endif
 
 #if CLIENT

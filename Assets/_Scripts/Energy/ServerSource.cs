@@ -24,7 +24,7 @@ public class ServerSource : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time - startingTime > 300)
+        if (Time.time - startingTime > 240)
             gameObject.SetActive(false);
 
         //get charge
