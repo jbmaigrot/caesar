@@ -37,7 +37,7 @@ public class Server : MonoBehaviour
     void Start()
     {
 
-        Application.targetFrameRate = 58;
+        //Application.targetFrameRate = 58;
 
         
         
@@ -198,6 +198,7 @@ public class Server : MonoBehaviour
                             float dest_x = stream.ReadFloat(ref readerCtx);
                             float dest_z = stream.ReadFloat(ref readerCtx);
                             players[i].gameObject.GetComponent<NavMeshAgent>().SetDestination(new Vector3(dest_x, 0, dest_z));
+                            Debug.Log("now");
                             break;
 
                         case Constants.Client_Tacle:
