@@ -7,7 +7,7 @@ public class ServerSource : MonoBehaviour
 {
 #if SERVER
     public AnimationCurve curve = new AnimationCurve();
-    private float startingTime = 0;
+    public float startingTime = 0;
     private ServerCarrier carrier;
     private Server server;
     /*private List<ServerCarrier> carriers = new List<ServerCarrier>();
@@ -24,11 +24,14 @@ public class ServerSource : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Time.time - startingTime > 300)
+            gameObject.SetActive(false);
+
         //get charge
         carrier.charge = Mathf.Min(carrier.maxCharge, carrier.charge + curve.Evaluate(Time.time - startingTime) * Time.deltaTime);
         foreach (Transform ryan in server.characters)
         {
-            if (ryan.GetComponent<ServerCarrier>().charge< ryan.GetComponent<ServerCarrier>().maxCharge && (ryan.position-this.transform.position).magnitude< this.GetComponent<ServerCarrier>().charge * 30 / this.GetComponent<ServerCarrier>().maxCharge && !server.players.Contains(ryan))
+            if (ryan.GetComponent<ServerCarrier>().charge < ryan.GetComponent<ServerCarrier>().maxCharge && (ryan.position-this.transform.position).magnitude < this.GetComponent<ServerCarrier>().charge * 30 / this.GetComponent<ServerCarrier>().maxCharge && !server.players.Contains(ryan))
             {
                 ryan.GetComponent<NavMeshAgent>().destination = this.transform.position;
                 ryan.GetComponent<ServerCarrier>().StartTaking(this.GetComponent<ServerCarrier>());
