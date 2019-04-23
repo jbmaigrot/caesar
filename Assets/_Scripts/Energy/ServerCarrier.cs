@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ServerCarrier : MonoBehaviour
 {
@@ -11,6 +10,16 @@ public class ServerCarrier : MonoBehaviour
     public GameObject scoreDisplay;
     public ProgrammableObjectsContainer programmableObjectsContainer;
     private HackInterface hackInterface;
+
+    //to display charge
+    public Vector2 pos = new Vector2(0,0);
+    public Vector2 size = new Vector2(0,0);
+    private float zoom = 1;
+    public Texture2D emptyTex;
+    public Texture2D fullTex;
+    public bool draw = false;
+    private GUIStyle style = new GUIStyle();
+    private Camera cam;
 #endif
 
 #if SERVER
@@ -28,13 +37,32 @@ public class ServerCarrier : MonoBehaviour
         client = FindObjectOfType<Client>();
         programmableObjectsContainer = FindObjectOfType<ProgrammableObjectsContainer>();
         hackInterface = FindObjectOfType<HackInterface>();
+        cam = Camera.main;
 #endif
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 #if CLIENT
+    // Display charge
+    void OnGUI()
+    {
+        if (draw)
+        {
+            zoom = Mathf.Sqrt(cam.GetComponent<CameraController>().zoomFactor);
+            size = new Vector2(0.05f * Screen.width / zoom, 0.01f * Screen.height / zoom);
+            pos = new Vector2(cam.WorldToScreenPoint(transform.position).x - size.x /2, Screen.height - cam.WorldToScreenPoint(transform.position).y);
+            //draw the background:
+            GUI.BeginGroup(new Rect(pos.x, pos.y, size.x, size.y));
+                GUI.Box(new Rect(0, 0, size.x, size.y), emptyTex, style);
+
+                //draw the filled-in part:
+                GUI.BeginGroup(new Rect(0, 0, size.x * clientCharge, size.y));
+                    GUI.Box(new Rect(0, 0, size.x, size.y), fullTex, style);
+
+                GUI.EndGroup();
+            GUI.EndGroup();
+        }
+    }
+	/*
         //Display charge
         //todo changer le test degueu de la batterie + charger batterie par étape
         if (scoreDisplay != null)
@@ -45,10 +73,12 @@ public class ServerCarrier : MonoBehaviour
                 //scoreDisplay
                 
             }
-        }
-        
+        }*/
 #endif
 
+    // Update is called once per frame
+    void Update()
+    {
 #if SERVER
         if (charge > maxCharge)
         {
@@ -113,6 +143,7 @@ public class ServerCarrier : MonoBehaviour
         {
             takingFrom = other;
             //charging = true;
+            StopGiving();
         }
     }
 
@@ -125,7 +156,10 @@ public class ServerCarrier : MonoBehaviour
     public void StartGiving(ServerCarrier other)
     {
         if (other != this/* && Vector3.Distance(transform.position, other.transform.position) < 5*/) //max distance
+        {
             givingTo = other;
+            StopTaking();
+        }
     }
     
     public void StopGiving()
