@@ -1307,7 +1307,7 @@ PrefabInstance:
         type: 3}
       propertyPath: battery
       value: 
-      objectReference: {fileID: 1388416882}
+      objectReference: {fileID: 0}
     - target: {fileID: 9215418701025542539, guid: 426649c0c40ed934eac19b907ca5a9b7,
         type: 3}
       propertyPath: col.a
@@ -15707,6 +15707,26 @@ PrefabInstance:
       propertyPath: pos.y
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 9218878638808000985, guid: d16175523ea1f9c41a59f16aa4292369,
+        type: 3}
+      propertyPath: curve.m_Curve.Array.data[0].time
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218878638808000985, guid: d16175523ea1f9c41a59f16aa4292369,
+        type: 3}
+      propertyPath: curve.m_Curve.Array.data[1].time
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218878638808000985, guid: d16175523ea1f9c41a59f16aa4292369,
+        type: 3}
+      propertyPath: curve.m_Curve.Array.data[1].value
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218878638808000985, guid: d16175523ea1f9c41a59f16aa4292369,
+        type: 3}
+      propertyPath: curve.m_Curve.Array.data[2].time
+      value: 180
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d16175523ea1f9c41a59f16aa4292369, type: 3}
 --- !u!1 &1309894449 stripped
@@ -18136,18 +18156,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1472723319}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1388416882 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8630039474702666910, guid: f82716b109211ec48a962e8676ca56be,
-    type: 3}
-  m_PrefabInstance: {fileID: 3723477725621139591}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02d79003555484e4e8fe70097d49cf59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1400415785 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6747846442757090336, guid: cd9708868d32be047a25bd421215a520,
@@ -31856,7 +31864,7 @@ MonoBehaviour:
   - {fileID: 5056017}
   - {fileID: 321769470}
   - {fileID: 989011125}
-  timeBeforeNewSource: 120
+  timeBeforeNewSource: 180
 --- !u!1001 &502614231074500929
 PrefabInstance:
   m_ObjectHideFlags: 0

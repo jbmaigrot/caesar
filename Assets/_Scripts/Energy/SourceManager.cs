@@ -27,17 +27,17 @@ public class SourceManager : MonoBehaviour
 #if SERVER
         if (Time.time - startingTime < timeBeforeNewSource)
         {
-            sources[0].startingTime = Time.time;
+            //sources[0].startingTime = Time.time;
             sources[0].gameObject.SetActive(true);
         }
         else if (Time.time - startingTime < 2*timeBeforeNewSource)
         {
-            sources[1].startingTime = Time.time;
+            //sources[1].startingTime = Time.time;
             sources[1].gameObject.SetActive(true);
         }
         else if (Time.time - startingTime < 3 * timeBeforeNewSource)
         {
-            sources[2].startingTime = Time.time;
+            //sources[2].startingTime = Time.time;
             sources[2].gameObject.SetActive(true);
         }
         else
