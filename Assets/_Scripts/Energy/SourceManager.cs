@@ -21,11 +21,11 @@ public class SourceManager : MonoBehaviour
         startingTime = Time.time;
         timeBeforeSource = 0;
         Random.InitState(System.DateTime.Now.Second);
-        for(int i = 0; i < 3; i++)
+#endif
+        for (int i = 0; i < 3; i++)
         {
             sources[i].gameObject.SetActive(false);
         }
-#endif
     }
 
     // Update is called once per frame

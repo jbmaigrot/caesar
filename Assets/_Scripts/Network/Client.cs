@@ -229,8 +229,21 @@ public class Client : MonoBehaviour
                                     if (programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>() != null)
                                         programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>().OnOpen();
                                 }
-                                // Charge
-                                float chargeRatio = stream.ReadFloat(ref readerCtx);
+                                uint sourceIsActive = stream.ReadUInt(ref readerCtx);
+                                if (programmableObjectsContainer.objectListClient[l].GetComponent<ServerSource>())
+                                {
+                                    if (sourceIsActive==1)
+                                    {
+                                        programmableObjectsContainer.objectListClient[l].enabled = true;
+                                    }
+                                    else
+                                    {
+                                        programmableObjectsContainer.objectListClient[l].enabled = false;
+                                    }
+                                   
+                                }
+                                    // Charge
+                                    float chargeRatio = stream.ReadFloat(ref readerCtx);
                                 if (programmableObjectsContainer.objectListClient[l].GetComponent<ServerCarrier>())
                                 {
                                     var carrier = programmableObjectsContainer.objectListClient[l].GetComponent<ServerCarrier>();

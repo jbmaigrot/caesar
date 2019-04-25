@@ -307,12 +307,23 @@ public class Server : MonoBehaviour
 
                     if (programmableObjectsContainer.objectListServer[j].GetComponent<ServerCarrier>())
                     {
+                        if (programmableObjectsContainer.objectListServer[j].GetComponent<ServerSource>()&& programmableObjectsContainer.objectListServer[j].enabled)
+                        {
+                            writer.Write(1);
+                        }
+                        else
+                        {
+                            writer.Write(0);
+                        }
                         var carrier = programmableObjectsContainer.objectListServer[j].GetComponent<ServerCarrier>();
                         writer.Write(carrier.charge / carrier.maxCharge); //send charge ratio, rather than raw value (as clients do not know all max charges)
+                        
                     }
                     else
                     {
+                        writer.Write(0);
                         writer.Write(0f);
+                        
                     }
 
                     //close snapshot
