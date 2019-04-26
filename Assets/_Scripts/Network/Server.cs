@@ -307,7 +307,7 @@ public class Server : MonoBehaviour
 
                     if (programmableObjectsContainer.objectListServer[j].GetComponent<ServerCarrier>())
                     {
-                        if (programmableObjectsContainer.objectListServer[j].GetComponent<ServerSource>()&& programmableObjectsContainer.objectListServer[j].enabled)
+                        if (programmableObjectsContainer.objectListServer[j].GetComponent<ServerSource>()&& programmableObjectsContainer.objectListServer[j].gameObject.activeSelf)
                         {
                             writer.Write(1);
                         }

@@ -207,46 +207,49 @@ public class Client : MonoBehaviour
                                 }
 
                                 int l = (int)stream.ReadUInt(ref readerCtx);
+                                ProgrammableObjectsData progObject = programmableObjectsContainer.objectListClient[l];
                                 //Light
                                 if ((int)stream.ReadUInt(ref readerCtx) == 0)
                                 {
-                                    if (programmableObjectsContainer.objectListClient[l].GetComponentInChildren<Light>() != null)
-                                        programmableObjectsContainer.objectListClient[l].GetComponentInChildren<Light>().enabled = false;
+                                    if (progObject.GetComponentInChildren<Light>() != null)
+                                        progObject.GetComponentInChildren<Light>().enabled = false;
                                 }
                                 else
                                 {
-                                    if (programmableObjectsContainer.objectListClient[l].GetComponentInChildren<Light>() != null)
-                                        programmableObjectsContainer.objectListClient[l].GetComponentInChildren<Light>().enabled = true;
+                                    if (progObject.GetComponentInChildren<Light>() != null)
+                                        progObject.GetComponentInChildren<Light>().enabled = true;
                                 }
                                 //Door
                                 if ((int)stream.ReadUInt(ref readerCtx) == 0)
                                 {
-                                    if (programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>() != null)
-                                        programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>().OnClose();
+                                    if (progObject.GetComponentInChildren<DoorScript>() != null)
+                                        progObject.GetComponentInChildren<DoorScript>().OnClose();
                                 }
                                 else
                                 {
-                                    if (programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>() != null)
-                                        programmableObjectsContainer.objectListClient[l].GetComponentInChildren<DoorScript>().OnOpen();
+                                    if (progObject.GetComponentInChildren<DoorScript>() != null)
+                                        progObject.GetComponentInChildren<DoorScript>().OnOpen();
                                 }
-                                uint sourceIsActive = stream.ReadUInt(ref readerCtx);
-                                if (programmableObjectsContainer.objectListClient[l].GetComponent<ServerSource>())
+                                int sourceIsActive = (int)stream.ReadUInt(ref readerCtx);
+                                if (progObject.GetComponent<ServerSource>())
                                 {
                                     if (sourceIsActive==1)
                                     {
-                                        programmableObjectsContainer.objectListClient[l].enabled = true;
+                                        progObject.gameObject.SetActive(true);
+                                        Debug.Log("Active");
                                     }
                                     else
                                     {
-                                        programmableObjectsContainer.objectListClient[l].enabled = false;
+                                        progObject.gameObject.SetActive(false);
+                                        Debug.Log("NotActive");
                                     }
                                    
                                 }
                                     // Charge
                                     float chargeRatio = stream.ReadFloat(ref readerCtx);
-                                if (programmableObjectsContainer.objectListClient[l].GetComponent<ServerCarrier>())
+                                if (progObject.GetComponent<ServerCarrier>())
                                 {
-                                    var carrier = programmableObjectsContainer.objectListClient[l].GetComponent<ServerCarrier>();
+                                    var carrier = progObject.GetComponent<ServerCarrier>();
                                     carrier.clientCharge =  chargeRatio;
                                 }
 
