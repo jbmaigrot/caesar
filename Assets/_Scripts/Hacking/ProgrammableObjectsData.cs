@@ -158,15 +158,15 @@ public class ProgrammableObjectsData : MonoBehaviour
         if (codeoutput == "OpenDoor")
         {
             this.GetComponentInChildren<DoorScript>().OnOpen();
-            //Debug.Log("sound " +this.GetComponentInChildren<AudioSource>().clip.name);
-            NavMeshSurface.GetComponent<NavMeshSurfaceScript>().hasToBeRebake = true;
+            //this.GetComponentInChildren<NavMeshObstacle>().carving = false;
+            this.GetComponentInChildren<NavMeshObstacle>().enabled = false;
             isDoorOpen = true;
         }
 
         if (codeoutput == "CloseDoor")
         {
             this.GetComponentInChildren<DoorScript>().OnClose();
-            NavMeshSurface.GetComponent<NavMeshSurfaceScript>().hasToBeRebake = true;
+            this.GetComponentInChildren<NavMeshObstacle>().enabled = true;
             isDoorOpen = false;
         }
 
