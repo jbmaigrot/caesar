@@ -70,12 +70,11 @@ public class ServerGameCreator : MonoBehaviour
                     int rndZoneIndex = Random.Range(0, _listZone.Count);
                     {
                         _listPnj[i].Time = 0;
-
-                        _listPnj[i].PrefabPnj.GetComponent<NavMeshAgent>().ResetPath();
+                    
                         Vector3 pos = _listZone[rndZoneIndex].ConnectedGameObject.transform.position;
                         pos.x += Random.Range(-5, 5);
                         pos.z += Random.Range(-5, 5);
-                        _listPnj[i].PrefabPnj.GetComponent<NavMeshAgent>().destination = pos;
+                        _listPnj[i].PrefabPnj.GetComponent<ServerCharacter>().normalDestination = pos;
 
                         //SlotClass sc = _listZone[rndZoneIndex].GetFreeSlot();
                         //if (sc != null && sc.SlotGameObject != null)

@@ -19,6 +19,18 @@ public class ServerCharacter : MonoBehaviour
 
     public ServerCarrier carrier;
 
+    public bool isAttracted =false;
+    public float attracttimebeforeend;
+    public Vector3 attractDestination;
+
+    public int isAttractedByData = 0;
+    public Vector3 attractByDataDestination;
+
+    public Vector3 normalDestination;
+
+    public Vector3 actualDestination;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,6 +75,52 @@ public class ServerCharacter : MonoBehaviour
                 if (timeBeforeStunReload <= 0)
                 {
                     canStun = true;
+                }
+            }
+
+            if (isAttracted)
+            {
+                attracttimebeforeend -= Time.deltaTime;
+                if (attracttimebeforeend > 0)
+                {
+                    if (Vector3.Distance(attractDestination, actualDestination) > 0.2)
+                    {
+                        actualDestination = attractDestination;
+                        this.GetComponent<NavMeshAgent>().destination = actualDestination;
+                    }
+                }
+                else
+                {
+                    isAttracted = false;
+                }
+                
+            }
+            else
+            {
+                if (isAttractedByData!=0)
+                {
+                    if((isAttractedByData>0 && this.GetComponent<ServerCarrier>().charge< this.GetComponent<ServerCarrier>().maxCharge) || (isAttractedByData < 0 && this.GetComponent<ServerCarrier>().charge > 0.0f) && Vector3.Distance(this.transform.position, attractDestination) < 30)
+                    {
+                        if (actualDestination != attractByDataDestination)
+                        {
+                            actualDestination = attractByDataDestination;
+                            this.GetComponent<NavMeshAgent>().ResetPath();
+                            this.GetComponent<NavMeshAgent>().destination = actualDestination;
+                        }
+                    }
+                    else
+                    {
+                        isAttractedByData = 0;
+                    }
+                }
+                else
+                {
+                    if(normalDestination != actualDestination)
+                    {
+                        actualDestination = normalDestination;
+                        this.GetComponent<NavMeshAgent>().ResetPath();
+                        this.GetComponent<NavMeshAgent>().destination = actualDestination;
+                    }
                 }
             }
         }

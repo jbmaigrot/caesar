@@ -305,8 +305,9 @@ public class ProgrammableObjectsData : MonoBehaviour
             {
                 if (((int)Vector3.Distance(server.characters[i].position, this.transform.position)) < ATTRACTRADIUS && i != charactersIndex)
                 {
-                    server.characters[i].GetComponent<NavMeshAgent>().ResetPath();
-                    server.characters[i].GetComponent<NavMeshAgent>().destination = this.transform.position;
+                    server.characters[i].GetComponent<ServerCharacter>().isAttracted = true;
+                    server.characters[i].GetComponent<ServerCharacter>().attractDestination = this.transform.position;
+                    server.characters[i].GetComponent<ServerCharacter>().attracttimebeforeend = attracttimebeforeend;
                 }
             }
             attracttimebeforeeffect = 0.1f;
