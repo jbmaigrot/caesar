@@ -15,7 +15,8 @@ public class DoorScript : MonoBehaviour
         if (!isOpen)
         {
             isOpen = true;
-            this.transform.Translate(new Vector3(2,0,0));
+            this.GetComponent<MeshRenderer>().enabled = false;
+            this.GetComponent<Collider>().enabled = false;
         }
     }
 
@@ -30,7 +31,9 @@ public class DoorScript : MonoBehaviour
             else
             {
                 isOpen = false;
-                this.transform.Translate(new Vector3(-2, 0, 0));
+                this.GetComponent<MeshRenderer>().enabled = true;
+                this.GetComponent<Collider>().enabled = true;
+                
             }
         }
     }
