@@ -43,6 +43,16 @@ MonoBehaviour:
     descriptionWithoutParameter: When I am stunned
     parameter_int: 0
     parameter_string: 0
+  - code: OnFull
+    descriptionWithParameter: When I am full
+    descriptionWithoutParameter: When I am full
+    parameter_int: 0
+    parameter_string: 0
+  - code: OnEmpty
+    descriptionWithParameter: When I am empty
+    descriptionWithoutParameter: When I am empty
+    parameter_int: 0
+    parameter_string: 0
   outputCodes:
   - code: TurnOnLight
     descriptionWithParameter: I turn the light on

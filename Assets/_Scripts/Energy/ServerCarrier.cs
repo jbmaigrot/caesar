@@ -29,6 +29,8 @@ public class ServerCarrier : MonoBehaviour
     //public bool charging = false;
     public ServerCarrier givingTo = null;
     public ServerCarrier takingFrom = null;
+    private bool isFull;
+    private bool isEmpty;
 #endif
 
     private void Start()
@@ -80,10 +82,33 @@ public class ServerCarrier : MonoBehaviour
     void Update()
     {
 #if SERVER
-        if (charge > maxCharge)
+        if (charge >= maxCharge)
         {
             charge = maxCharge;
+            if (!isFull)
+            {
+                this.GetComponent<ProgrammableObjectsData>().OnInput("OnFull");
+                isFull = true;
+            }
             StopTaking();
+        }
+        else
+        {
+            isFull = false;
+        }
+
+        if (charge <= 0)
+        {
+            charge = 0;
+            if (!isEmpty)
+            {
+                this.GetComponent<ProgrammableObjectsData>().OnInput("OnEmpty");
+                isEmpty = true;
+            }
+        }
+        else
+        {
+            isEmpty = false;
         }
 
         if (givingTo != null && charge > 0) // The carrier is giving energy
