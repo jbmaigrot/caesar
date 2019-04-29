@@ -197,7 +197,7 @@ public class Server : MonoBehaviour
                         case Constants.Client_SetDestination:
                             float dest_x = stream.ReadFloat(ref readerCtx);
                             float dest_z = stream.ReadFloat(ref readerCtx);
-                            players[i].gameObject.GetComponent<NavMeshAgent>().SetDestination(new Vector3(dest_x, 0, dest_z));
+                            players[i].gameObject.GetComponent<ServerCharacter>().normalDestination = new Vector3(dest_x, 0, dest_z);
                             Debug.Log("now");
                             break;
 
