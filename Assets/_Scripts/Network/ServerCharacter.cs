@@ -26,6 +26,9 @@ public class ServerCharacter : MonoBehaviour
     public int isAttractedByData = 0;
     public Vector3 attractByDataDestination;
 
+    public bool hasAPriorityDestination;
+    public Vector3 priorityDestination;
+
     public Vector3 normalDestination;
 
     public Vector3 actualDestination;
@@ -65,6 +68,7 @@ public class ServerCharacter : MonoBehaviour
             {
                 isStunned = false;
                 navMeshAgent.speed = baseSpeed;
+                hasAPriorityDestination = false;
             }
         }
         else
@@ -93,7 +97,7 @@ public class ServerCharacter : MonoBehaviour
                 {
                     isAttracted = false;
                 }
-                
+                hasAPriorityDestination = false;
             }
             else
             {
@@ -112,15 +116,35 @@ public class ServerCharacter : MonoBehaviour
                     {
                         isAttractedByData = 0;
                     }
+                    hasAPriorityDestination = false;
                 }
                 else
                 {
-                    if(normalDestination != actualDestination)
+                    if (hasAPriorityDestination)
                     {
-                        actualDestination = normalDestination;
-                        this.GetComponent<NavMeshAgent>().ResetPath();
-                        this.GetComponent<NavMeshAgent>().destination = actualDestination;
+                        if(Vector3.Distance(this.transform.position, priorityDestination) < 5)
+                        {
+                            hasAPriorityDestination = false;
+                        }
+                        else
+                        {
+                            if (actualDestination != priorityDestination)
+                            {
+                                actualDestination = priorityDestination;
+                                this.GetComponent<NavMeshAgent>().ResetPath();
+                                this.GetComponent<NavMeshAgent>().destination = actualDestination;
+                            }
+                        }
                     }
+                    else
+                    {
+                        if (normalDestination != actualDestination)
+                        {
+                            actualDestination = normalDestination;
+                            this.GetComponent<NavMeshAgent>().ResetPath();
+                            this.GetComponent<NavMeshAgent>().destination = actualDestination;
+                        }
+                    }                    
                 }
             }
         }

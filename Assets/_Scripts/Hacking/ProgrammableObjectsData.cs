@@ -44,6 +44,9 @@ public class ProgrammableObjectsData : MonoBehaviour
 
     public bool isLightOn = false;
     public bool isDoorOpen = false;
+
+    private Transform BlueBatterie;
+    private Transform RedBatterie;
 #endif
 
 
@@ -83,6 +86,20 @@ public class ProgrammableObjectsData : MonoBehaviour
         timeBeforeStunReload = 0;
 
         serverCarrier = this.GetComponent<ServerCarrier>();
+
+        ServerBattery[] Batteries;
+        Batteries = FindObjectsOfType<ServerBattery>();
+
+        if (Batteries[0].team == 0)
+        {
+            RedBatterie = Batteries[0].transform;
+            BlueBatterie = Batteries[1].transform;
+        }
+        else
+        {
+            RedBatterie = Batteries[1].transform;
+            BlueBatterie = Batteries[0].transform;
+        }
 #endif
         isHackable = Initiator.isHackable;
 #if CLIENT
@@ -249,6 +266,18 @@ public class ProgrammableObjectsData : MonoBehaviour
                     OnOutput("PowerPump", parameter_string, parameter_int);
                     break;
             }
+        }
+
+        if(codeoutput == "GoRed")
+        {
+            this.GetComponent<ServerCharacter>().hasAPriorityDestination = true;
+            this.GetComponent<ServerCharacter>().priorityDestination = RedBatterie.position;
+        }
+
+        if(codeoutput == "GoBlue")
+        {
+            this.GetComponent<ServerCharacter>().hasAPriorityDestination = true;
+            this.GetComponent<ServerCharacter>().priorityDestination = BlueBatterie.position;
         }
     }
 
