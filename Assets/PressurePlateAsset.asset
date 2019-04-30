@@ -16,17 +16,15 @@ MonoBehaviour:
   - OnWord
   - OnEmpty
   - OnFull
+  - OnHack
+  - OnPress
   accessibleOutputCode:
   - SendMessage
   inputCodes:
-  - code: OnHack
-    parameter_int: 0
-    parameter_string: 
-    is_fixed: 1
   - code: OnPress
     parameter_int: 0
     parameter_string: 
-    is_fixed: 1
+    is_fixed: 0
   outputCodes: []
   graph: []
   initialOutputActions: []

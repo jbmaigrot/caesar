@@ -11,6 +11,12 @@ public class DropdownHackInterface : MonoBehaviour
 
     private HackingAssetScriptable HackingAsset;
 
+    private List<string> accessibleCode;
+
+    void Start()
+    {
+        accessibleCode = new List<string>();
+    }
 
     /*Fonction pour modifier le code d'une vignette en fonction du dropdown*/
     void UpdateHackingGraph()
@@ -37,13 +43,13 @@ public class DropdownHackInterface : MonoBehaviour
                 if (this.GetComponentInParent<TextButtonHackInterface>().isInput)
                 {
                     InOutVignette NewInputHack = new InOutVignette();
-                    NewInputHack.code = HackInterface.accessibleInputCode[this.GetComponent<Dropdown>().value - 1];
+                    NewInputHack.code = accessibleCode[this.GetComponent<Dropdown>().value - 1];
                     HackInterface.inputCodes.Add(NewInputHack);
                 }
                 else
                 {
                     InOutVignette NewOutputHack = new InOutVignette();
-                    NewOutputHack.code = HackInterface.accessibleOutputCode[this.GetComponent<Dropdown>().value - 1];
+                    NewOutputHack.code = accessibleCode[this.GetComponent<Dropdown>().value - 1];
                     HackInterface.outputCodes.Add(NewOutputHack);
                 }
             }
@@ -52,11 +58,11 @@ public class DropdownHackInterface : MonoBehaviour
             {
                 if (this.GetComponentInParent<TextButtonHackInterface>().isInput)
                 {
-                    HackInterface.inputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].code = HackInterface.accessibleInputCode[this.GetComponent<Dropdown>().value - 1];
+                    HackInterface.inputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].code = accessibleCode[this.GetComponent<Dropdown>().value - 1];
                 }
                 else
                 {
-                    HackInterface.outputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].code = HackInterface.accessibleOutputCode[this.GetComponent<Dropdown>().value - 1];
+                    HackInterface.outputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].code = accessibleCode[this.GetComponent<Dropdown>().value - 1];
                 }
             }
         }
@@ -131,11 +137,15 @@ public class DropdownHackInterface : MonoBehaviour
     {
         this.GetComponent<Dropdown>().ClearOptions();
 
-        Dropdown.OptionData NewData; NewData = new Dropdown.OptionData();
+        Dropdown.OptionData NewData;
+        NewData = new Dropdown.OptionData();
         List<Dropdown.OptionData> ListNewData = new List<Dropdown.OptionData>();
 
         int indice = 0;
         int retour = 0;
+
+        accessibleCode.Clear();
+        
 
         if (HackInterface.SelectedGameObject != null)
         {
@@ -147,16 +157,36 @@ public class DropdownHackInterface : MonoBehaviour
                 ListNewData.Add(NewData);
                 foreach (string ryan in HackInterface.accessibleInputCode)
                 {
-                    indice += 1;
-                    NewData = new Dropdown.OptionData();
-                    NewData.image = null;
-                    NewData.text = HackingAsset.DescribeCode(ryan, false, true);
+                    bool hasToBeWritten = true;
 
-                    ListNewData.Add(NewData);
-                    if (ryan == code)
+                    for (int i = 0; i < HackInterface.inputCodes.Count; i++)
                     {
-                        retour= indice;
+                        if (i != this.GetComponentInParent<TextButtonHackInterface>().numero - 1 && HackInterface.inputCodes[i].code == ryan) hasToBeWritten = false;
                     }
+
+                    if (!hasToBeWritten)
+                    {
+                        for (int i = 0; i < HackingAsset.inputCodes.Count; i++)
+                        {
+                            if (HackingAsset.inputCodes[i].code == ryan  && HackingAsset.inputCodes[i].parameter_string) hasToBeWritten = true;
+                            if (HackingAsset.inputCodes[i].code == ryan && HackingAsset.inputCodes[i].parameter_int) hasToBeWritten = true;
+                        }
+                    }
+
+                    if (hasToBeWritten) {
+                        indice += 1;
+                        NewData = new Dropdown.OptionData();
+                        NewData.image = null;
+                        NewData.text = HackingAsset.DescribeCode(ryan, false, true);
+
+                        ListNewData.Add(NewData);
+                        if (ryan == code)
+                        {
+                            retour = indice;
+                        }
+                        accessibleCode.Add(ryan);
+                    }
+                    
                 }
             }
             else
@@ -167,16 +197,37 @@ public class DropdownHackInterface : MonoBehaviour
                 ListNewData.Add(NewData);
                 foreach (string ryan in HackInterface.accessibleOutputCode)
                 {
-                    indice += 1;
-                    NewData = new Dropdown.OptionData();
-                    NewData.image = null;
-                    NewData.text = HackingAsset.DescribeCode(ryan, false, false);
+                    bool hasToBeWritten = true;
 
-                    ListNewData.Add(NewData);
-                    if (ryan == code)
+                    for (int i = 0; i < HackInterface.outputCodes.Count; i++)
                     {
-                        retour= indice;
+                        if (i != this.GetComponentInParent<TextButtonHackInterface>().numero - 1 && HackInterface.outputCodes[i].code == ryan) hasToBeWritten = false;
                     }
+
+                    if (!hasToBeWritten)
+                    {
+                        for (int i = 0; i < HackingAsset.outputCodes.Count; i++)
+                        {
+                            if (HackingAsset.outputCodes[i].code == ryan && HackingAsset.outputCodes[i].parameter_string) hasToBeWritten = true;
+                            if (HackingAsset.outputCodes[i].code == ryan && HackingAsset.outputCodes[i].parameter_int) hasToBeWritten = true;
+                        }
+                    }
+
+                    if (hasToBeWritten)
+                    {
+                        indice += 1;
+                        NewData = new Dropdown.OptionData();
+                        NewData.image = null;
+                        NewData.text = HackingAsset.DescribeCode(ryan, false, false);
+
+                        ListNewData.Add(NewData);
+                        if (ryan == code)
+                        {
+                            retour = indice;
+                        }
+                        accessibleCode.Add(ryan);
+                    }
+                    
                 }
             }
             this.GetComponent<Dropdown>().AddOptions(ListNewData);

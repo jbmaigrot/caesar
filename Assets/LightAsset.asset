@@ -14,43 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   accessibleInputCode:
   - OnWord
+  - OnHack
   accessibleOutputCode:
   - SendMessage
-  inputCodes:
-  - code: OnHack
-    parameter_int: 0
-    parameter_string: 
-    is_fixed: 1
-  - code: OnWord
-    parameter_int: 0
-    parameter_string: lighton
-    is_fixed: 0
-  - code: OnWord
-    parameter_int: 0
-    parameter_string: lightoff
-    is_fixed: 0
+  - TurnOnLight
+  - TurnOffLight
+  inputCodes: []
   outputCodes:
   - code: TurnOnLight
     parameter_int: 0
     parameter_string: 
-    is_fixed: 1
+    is_fixed: 0
   - code: TurnOffLight
     parameter_int: 0
     parameter_string: 
-    is_fixed: 1
-  graph:
-  - input: 1
-    output: 0
-    transmitTime: 0.2
-    timeBeforeTransmit: []
-    inputPos: {x: 0, y: 0, z: 0}
-    outputPos: {x: 0, y: 0, z: 0}
-  - input: 2
-    output: 1
-    transmitTime: 0.2
-    timeBeforeTransmit: []
-    inputPos: {x: 0, y: 0, z: 0}
-    outputPos: {x: 0, y: 0, z: 0}
+    is_fixed: 0
+  graph: []
   initialOutputActions:
   - code: TurnOnLight
     parameter_int: 0
