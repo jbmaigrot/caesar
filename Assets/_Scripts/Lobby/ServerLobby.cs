@@ -8,7 +8,7 @@ using Unity.Collections;
 
 using UdpCNetworkDriver = Unity.Networking.Transport.BasicNetworkDriver<Unity.Networking.Transport.IPv4UDPSocket>;
 using UnityEngine.SceneManagement;
-
+using System;
 
 public class ServerLobby : MonoBehaviour
 {
@@ -61,12 +61,23 @@ public class ServerLobby : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void OnDestroy()
+    public void OnApplicationQuit()
     {
-        Debug.Log("Call to OnDestroy() in serverLobby");
-        m_Driver.Dispose();
-        m_Connections.Dispose();
-        tmp_Connections.Dispose();
+        Debug.Log("Call to OnApplicationQuit() in serverLobby");
+
+        if (stopUpdate == false) //Means we changed scene, and the main server code is handling these objects
+        {
+            try
+            {
+                m_Driver.Dispose();
+                m_Connections.Dispose();
+                tmp_Connections.Dispose();
+            }
+            catch (InvalidOperationException e)
+            {
+                Debug.Log(e.Message);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -83,8 +94,6 @@ public class ServerLobby : MonoBehaviour
         {
             if (!m_Connections[i].IsCreated)
             {
-                //m_Connections.RemoveAtSwapBack(i);
-                //--i;
                 lostConnections[i] = true;
             }
         }

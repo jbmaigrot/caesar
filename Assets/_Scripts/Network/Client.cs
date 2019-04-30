@@ -21,7 +21,7 @@ public class Client : MonoBehaviour
     public IPAddress iPAddress;
     public UdpCNetworkDriver m_Driver;
     public NetworkConnection m_Connection;
-    public IPv4UDPSocket socket;
+    //public IPv4UDPSocket socket;
 
     public List<ClientCharacter> characters;
     
@@ -58,15 +58,14 @@ public class Client : MonoBehaviour
 
     void Awake() { 
         //TODO error : A Native Collection has not been disposed, resulting in a memory leak
-        m_Driver = new UdpCNetworkDriver(new INetworkParameter[0]);
-        m_Connection = default(NetworkConnection);
-
 
         clientLobby = FindObjectOfType<ClientLobby>();
         if (clientLobby == null)
         {
             iPAddress = IPAddress.Parse(ServerIP);
             var endpoint = new IPEndPoint(iPAddress, 9000);
+            m_Driver = new UdpCNetworkDriver(new INetworkParameter[0]);
+            //m_Connection = default(NetworkConnection);
             m_Connection = m_Driver.Connect(endpoint);
             connectionId = -1;
             initialHandshakeDone = false;
@@ -83,10 +82,10 @@ public class Client : MonoBehaviour
         }
     }
 
-    public void OnDestroy()
+    public void OnApplicationQuit()
     {
-        Debug.Log("Call to OnDestroy() in client");
-        /*
+        Debug.Log("Call to OnApplicationQuit() in client");
+        
         try
         {
             m_Driver.Dispose();
@@ -94,7 +93,7 @@ public class Client : MonoBehaviour
         catch (InvalidOperationException e)
         {
             Debug.Log(e.Message);
-        }*/
+        }
     }
 
     // Update is called once per frame
@@ -612,10 +611,6 @@ public class Client : MonoBehaviour
         }
     }
 
-    public void OnApplicationQuit()
-    {
-        m_Driver.Dispose();
-    }
 
 #endif
 }

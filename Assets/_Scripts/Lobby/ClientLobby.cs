@@ -16,7 +16,7 @@ public class ClientLobby : MonoBehaviour
     public IPAddress iPAddress;
     public UdpCNetworkDriver m_Driver;
     public NetworkConnection m_Connection;
-    public IPv4UDPSocket socket;
+    //public IPv4UDPSocket socket;
 
     public int connectionId;
     private bool initialHandshakeDone;
@@ -51,18 +51,21 @@ public class ClientLobby : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void OnDestroy()
+    public void OnApplicationQuit()
     {
-        Debug.Log("Call to OnDestroy() in clientLobby");
-        try
-        {
-            m_Driver.Dispose();
-        }
-        catch (InvalidOperationException e)
-        {
-            Debug.Log(e.Message);
-        }
+        Debug.Log("Call to OnApplicationQuit() in clientLobby");
 
+        if (stopUpdate == false) //Means we changed scene, and the main client code is handling these objects
+        {
+            try
+            {
+                m_Driver.Dispose();
+            }
+            catch (InvalidOperationException e)
+            {
+                Debug.Log(e.Message);
+            }
+        }
     }
 
     // Update is called once per frame

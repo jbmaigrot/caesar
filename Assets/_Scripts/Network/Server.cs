@@ -8,7 +8,7 @@ using Unity.Networking.Transport;
 using Unity.Collections;
 
 using UdpCNetworkDriver = Unity.Networking.Transport.BasicNetworkDriver<Unity.Networking.Transport.IPv4UDPSocket>;
-
+using System;
 
 public class Server : MonoBehaviour
 {
@@ -38,8 +38,6 @@ public class Server : MonoBehaviour
     {
 
         //Application.targetFrameRate = 58;
-
-        
         
         tmp_Connections = new NativeList<NetworkConnection>(16, Allocator.Persistent);
 
@@ -72,12 +70,20 @@ public class Server : MonoBehaviour
         }
     }
 
-    public void OnDestroy()
+    public void OnApplicationQuit()
     {
-        Debug.Log("Call to OnDestroy() in server");
-        m_Driver.Dispose();
-        m_Connections.Dispose();
-        tmp_Connections.Dispose();
+        Debug.Log("Call to OnApplicationQuit() in server");
+
+        try
+        {
+            m_Driver.Dispose();
+            m_Connections.Dispose();
+            tmp_Connections.Dispose();
+        }
+        catch (InvalidOperationException e)
+        {
+            Debug.Log(e.Message);
+        }
     }
 
     // Update is called once per frame
@@ -92,8 +98,6 @@ public class Server : MonoBehaviour
         {
             if (!m_Connections[i].IsCreated)
             {
-                //m_Connections.RemoveAtSwapBack(i);
-                //--i;
                 lostConnections[i] = true;
             }
         }
