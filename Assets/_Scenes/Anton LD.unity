@@ -30443,6 +30443,8 @@ MonoBehaviour:
   - {fileID: 321769470}
   - {fileID: 989011125}
   timeBeforeNewSource: 180
+  startingTime: 0
+  timeBeforeSource: 0
 --- !u!4 &495646690613516634
 Transform:
   m_ObjectHideFlags: 0
@@ -54802,6 +54804,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1458981991467775528, guid: 2d1d724c080e79342b35f5da7a6bd33f,
+        type: 3}
+      propertyPath: Initiator
+      value: 
+      objectReference: {fileID: 11400000, guid: eb5a96cfcf946ba4da2b8f58ade3766b,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d1d724c080e79342b35f5da7a6bd33f, type: 3}
 --- !u!114 &3587339889608841534
@@ -55716,6 +55724,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7312932513954447421, guid: f82716b109211ec48a962e8676ca56be,
+        type: 3}
+      propertyPath: Initiator
+      value: 
+      objectReference: {fileID: 11400000, guid: eb5a96cfcf946ba4da2b8f58ade3766b,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f82716b109211ec48a962e8676ca56be, type: 3}
 --- !u!1 &4059363128366650743
