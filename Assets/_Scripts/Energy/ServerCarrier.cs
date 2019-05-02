@@ -23,6 +23,7 @@ public class ServerCarrier : MonoBehaviour
 #endif
 
 #if SERVER
+    private const float RELAYTRANSFERRATE = 1.0f;
     public float charge = 0;
     public float maxCharge = 10;
     public float chargeSpeed = 1;
@@ -31,10 +32,14 @@ public class ServerCarrier : MonoBehaviour
     public ServerCarrier takingFrom = null;
     private bool isFull;
     private bool isEmpty;
+    private ProgrammableObjectsData objectData;
 #endif
 
     private void Start()
     {
+#if SERVER
+        objectData = this.gameObject.GetComponent<ProgrammableObjectsData>();
+#endif
 #if CLIENT
         client = FindObjectOfType<Client>();
         programmableObjectsContainer = FindObjectOfType<ProgrammableObjectsContainer>();
@@ -87,7 +92,7 @@ public class ServerCarrier : MonoBehaviour
             charge = maxCharge;
             if (!isFull)
             {
-                this.GetComponent<ProgrammableObjectsData>().OnInput("OnFull");
+                objectData.OnInput("OnFull");
                 isFull = true;
             }
             StopTaking();
@@ -102,7 +107,7 @@ public class ServerCarrier : MonoBehaviour
             charge = 0;
             if (!isEmpty)
             {
-                this.GetComponent<ProgrammableObjectsData>().OnInput("OnEmpty");
+                objectData.OnInput("OnEmpty");
                 isEmpty = true;
             }
         }
@@ -137,6 +142,19 @@ public class ServerCarrier : MonoBehaviour
                 takingFrom.charge -= energyToTransfer;
                 charge += energyToTransfer;
             }
+        }
+
+        if (objectData.sendingToBlue)
+        {
+            float energyToTransfer = Mathf.Min(charge, RELAYTRANSFERRATE * Time.deltaTime);
+            charge -= energyToTransfer;
+            objectData.BlueBatterie.gameObject.GetComponent<ServerCarrier>().charge += energyToTransfer;
+        }
+        if (objectData.sendingToRed)
+        {
+            float energyToTransfer = Mathf.Min(charge, RELAYTRANSFERRATE * Time.deltaTime);
+            charge -= energyToTransfer;
+            objectData.RedBatterie.gameObject.GetComponent<ServerCarrier>().charge += energyToTransfer;
         }
 #endif
     }
