@@ -67,8 +67,6 @@ public class LobbyInterfaceManager : MonoBehaviour
         int cardCount = playerLobbyCardManagers.Count;
         for (int i = cardCount; i > state.numberOfPlayerSlots; i--)
         {
-            Debug.Log("Nombre d'objets children : " + cardCount 
-                + " et nombre de slots renseigné : " + state.numberOfPlayerSlots);
             RemovePlayerCard(playerLobbyCardManagers[i-1]);
         }
 
@@ -77,10 +75,8 @@ public class LobbyInterfaceManager : MonoBehaviour
 
             if (i >= playerLobbyCardManagers.Count)
             {
-                Debug.Log("Added a card");
                 playerLobbyCardManagers.Add(AddPlayerCard(state.playerLobbyCards[i]));
             }
-            Debug.Log(i + " " + state.numberOfPlayerSlots);
 
             if (i == connectionId)
             {
