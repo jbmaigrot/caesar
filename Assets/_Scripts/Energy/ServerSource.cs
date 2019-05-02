@@ -8,6 +8,7 @@ public class ServerSource : MonoBehaviour
 #if SERVER
     public AnimationCurve curve = new AnimationCurve();
     public float startingTime = 0;
+    private bool isActivated;
     private ServerCarrier carrier;
     private Server server;
     /*private List<ServerCarrier> carriers = new List<ServerCarrier>();
@@ -19,13 +20,26 @@ public class ServerSource : MonoBehaviour
         startingTime = Time.time;
         carrier = GetComponent<ServerCarrier>();
         server = FindObjectOfType<Server>();
+        isActivated = false;
+        gameObject.SetActive(false);
     }
     
     // Update is called once per frame
     void Update()
     {
-        if (Time.time - startingTime > 240)
-            gameObject.SetActive(false);
+        if (isActivated)
+        {
+            if (Time.time - startingTime > 240)
+            {
+                isActivated = false;
+                gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            isActivated = true;
+        }
+        
 
         //get charge
         carrier.charge = Mathf.Min(carrier.maxCharge, carrier.charge + curve.Evaluate(Time.time - startingTime) * Time.deltaTime);
