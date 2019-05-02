@@ -45,8 +45,11 @@ public class ProgrammableObjectsData : MonoBehaviour
     public bool isLightOn = false;
     public bool isDoorOpen = false;
 
-    private Transform BlueBatterie;
-    private Transform RedBatterie;
+    public Transform BlueBatterie;
+    public Transform RedBatterie;
+
+    public bool sendingToBlue;
+    public bool sendingToRed;
 #endif
 
 

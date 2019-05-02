@@ -458,6 +458,8 @@ public class Server : MonoBehaviour
         List<InOutVignette> outputCodes = new List<InOutVignette>();
         List<Arrow> graph = new List<Arrow>();
         bool isAttract = false;
+        bool sendingToBlue = false;
+        bool sendingToRed = false;
 
         char[] buffer;
         int inputCodesCount = (int)stream.ReadUInt(ref readerCtx);
@@ -502,9 +504,20 @@ public class Server : MonoBehaviour
 
             int parameter_int = (int)stream.ReadUInt(ref readerCtx);
 
-            if (code == "UseGadget" && parameter_int == InventoryConstants.Attract)
+            if (code == "UseGadget")
             {
-                isAttract = true;
+                if(parameter_int == InventoryConstants.Attract)
+                {
+                    isAttract = true;
+                }
+                if(parameter_int == InventoryConstants.BlueRelay)
+                {
+                    sendingToBlue = true;
+                }
+                if(parameter_int == InventoryConstants.OrangeRelay)
+                {
+                    sendingToRed = true;
+                }
             }
 
             int parameter_stringLength = (int)stream.ReadUInt(ref readerCtx);
@@ -549,6 +562,19 @@ public class Server : MonoBehaviour
         if (!isAttract)
         {
             objectData.isAttract = false;
+        }
+        objectData.sendingToRed = sendingToRed;
+        objectData.sendingToBlue = sendingToBlue;
+        if(sendingToRed && objectData.transform == objectData.BlueBatterie)
+        {
+            objectData.sendingToRed = false;
+            objectData.GetComponent<ServerBattery>().RelayWin();
+        }
+
+        if (sendingToBlue && objectData.transform == objectData.RedBatterie)
+        {
+            objectData.sendingToBlue = false;
+            objectData.GetComponent<ServerBattery>().RelayWin();
         }
     }
 
