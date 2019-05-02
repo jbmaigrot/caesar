@@ -25,6 +25,7 @@
     public const int Client_Lobby_Ready = 103;
     public const int Client_Lobby_Cancel = 104;
     public const int Client_Lobby_PlayerName = 105;
+    public const int Client_Lobby_SetPlayerNumber = 106;
 
     public const int Server_Lobby_SetConnectionId = 151;
     public const int Server_Lobby_LobbyState = 152;

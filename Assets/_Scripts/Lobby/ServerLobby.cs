@@ -138,7 +138,7 @@ public class ServerLobby : MonoBehaviour
                         int connectionId = (int)stream.ReadUInt(ref readerCtx);
                         if (connectionId == -1)
                         {
-                            if (m_Connections.Length >= numberOfPlayerSlots)
+                            if (m_Connections.Length >= lobbyInterfaceState.numberOfPlayerSlots)
                             {
                                 Debug.Log("Sorry, all player slots are allocated in this game.");
                             }
@@ -256,6 +256,19 @@ public class ServerLobby : MonoBehaviour
 
                             SendLobbyInterfaceState();
                             break;
+
+                        case Constants.Client_Lobby_SetPlayerNumber:
+                            int playerNumber = (int)stream.ReadUInt(ref readerCtx);
+                            
+                            for (int j = lobbyInterfaceState.numberOfPlayerSlots; j < playerNumber; j++)
+                            {
+                                var lobbyCard = new PlayerLobbyCardManager.PlayerLobbyCard("", j + 1);
+                                lobbyInterfaceState.playerLobbyCards.Add(lobbyCard);
+                            }
+                            lobbyInterfaceState.numberOfPlayerSlots = playerNumber;
+
+                            SendLobbyInterfaceState();
+                            break;
                     }
                 }
                 else if (cmd == NetworkEvent.Type.Disconnect)
@@ -269,14 +282,9 @@ public class ServerLobby : MonoBehaviour
         }
     }
 
-    public void SetNumberOfPlayerSlots(int _numberOfPlayerSlots)
-    {
-        numberOfPlayerSlots = _numberOfPlayerSlots;
-    }
-
     public int GetNumberOfPlayerSlots()
     {
-        return numberOfPlayerSlots;
+        return lobbyInterfaceState.numberOfPlayerSlots;
     }
 
     public void SetConnectionId(int connectionId, NetworkConnection nc)

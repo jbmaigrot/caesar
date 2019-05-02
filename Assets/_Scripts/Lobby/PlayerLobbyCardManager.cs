@@ -123,5 +123,6 @@ public class PlayerLobbyCardManager : MonoBehaviour
         playerName.interactable = true;
         playerTeam.interactable = true;
     }
+
 #endif
 }

@@ -63,13 +63,24 @@ public class LobbyInterfaceManager : MonoBehaviour
     public void UpdateInterface(LobbyInterface state, int connectionId)
     {
         numberOfPlayerSlots.text = state.numberOfPlayerSlots.ToString();
+
+        int cardCount = playerLobbyCardManagers.Count;
+        for (int i = cardCount; i > state.numberOfPlayerSlots; i--)
+        {
+            Debug.Log("Nombre d'objets children : " + cardCount 
+                + " et nombre de slots renseigné : " + state.numberOfPlayerSlots);
+            RemovePlayerCard(playerLobbyCardManagers[i-1]);
+        }
+
         for (int i = 0; i < state.numberOfPlayerSlots; i++)
         {
 
             if (i >= playerLobbyCardManagers.Count)
             {
+                Debug.Log("Added a card");
                 playerLobbyCardManagers.Add(AddPlayerCard(state.playerLobbyCards[i]));
             }
+            Debug.Log(i + " " + state.numberOfPlayerSlots);
 
             if (i == connectionId)
             {
@@ -80,9 +91,6 @@ public class LobbyInterfaceManager : MonoBehaviour
                 playerLobbyCardManagers[i].UpdateCard(state.playerLobbyCards[i]);
                 playerLobbyCardManagers[i].nonInteractable();
             }
-
-            
-            
         }
     }
 
@@ -91,6 +99,12 @@ public class LobbyInterfaceManager : MonoBehaviour
         PlayerLobbyCardManager playerCardManager = Instantiate(playerLobbyCardPrefab, playerLobbyCardContainer.transform).GetComponent<PlayerLobbyCardManager>();
         playerCardManager.UpdateCard(playerCard);
         return playerCardManager;
+    }
+
+    public void RemovePlayerCard(PlayerLobbyCardManager playerLobbyCardManager)
+    {
+        playerLobbyCardManagers.Remove(playerLobbyCardManager);
+        Destroy(playerLobbyCardManager.gameObject);        
     }
 #endif
 }

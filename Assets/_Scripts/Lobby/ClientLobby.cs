@@ -141,6 +141,14 @@ public class ClientLobby : MonoBehaviour
                                 SceneManager.LoadScene(1);
                                 break;
 
+                            /*case Constants.Server_Lobby_Disconnect:
+                                m_Connection = default(NetworkConnection);
+                                connectingMessageManager.Hide();
+                                lobbyInterfaceManager.Hide();
+                                iPConnectionInterfaceManager.Show();
+                                popupMessageManager.Show("Could not establish a connection.");
+                                break;*/
+
                             default:
                                 break;
                         }
@@ -275,6 +283,42 @@ public class ClientLobby : MonoBehaviour
         using (var writer = new DataStreamWriter(64, Allocator.Temp))
         {
             writer.Write(Constants.Client_Lobby_Cancel);
+            m_Connection.Send(m_Driver, writer);
+        }
+    }
+
+    public void SetPlayerNumber()
+    {
+        int playerNumber = lobbyInterfaceManager.GetNumberOfPlayerSlots();
+        if (playerNumber > 10 || playerNumber < 1)
+        {
+            popupMessageManager.Show("Number of player not set properly. Should be between 1 and 10.");
+        }
+        else
+        {
+            WritePlayerNumber(playerNumber);
+        }
+    }
+
+    public void AddOnePlayerNumber()
+    {
+        int playerNumber = lobbyInterfaceManager.GetNumberOfPlayerSlots() + 1;
+        if (playerNumber > 10 || playerNumber < 1)
+        {
+            popupMessageManager.Show("Number of player not set properly. Should be between 1 and 10.");
+        }
+        else
+        {
+            WritePlayerNumber(playerNumber);
+        }
+    }
+
+    public void WritePlayerNumber(int playerNumber)
+    {
+        using (var writer = new DataStreamWriter(64, Allocator.Temp))
+        {
+            writer.Write(Constants.Client_Lobby_SetPlayerNumber);
+            writer.Write(playerNumber);
             m_Connection.Send(m_Driver, writer);
         }
     }
