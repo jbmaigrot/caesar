@@ -11,6 +11,8 @@ public class InputFieldHackerInterface : MonoBehaviour, IPointerDownHandler
     public Sprite Attract;
     public Sprite Stun;
     public Sprite PowerPump;
+    public Sprite RedRelay;
+    public Sprite BlueRelay;
 #if CLIENT
     private string previousValue;
     private bool isOnString;
@@ -163,6 +165,12 @@ public class InputFieldHackerInterface : MonoBehaviour, IPointerDownHandler
                     break;
                 case InventoryConstants.Powerpump:
                     this.GetComponent<SVGImage>().sprite = PowerPump;
+                    break;
+                case InventoryConstants.BlueRelay:
+                    this.GetComponent<SVGImage>().sprite = BlueRelay;
+                    break;
+                case InventoryConstants.OrangeRelay:
+                    this.GetComponent<SVGImage>().sprite = RedRelay;
                     break;
                 default:
                     break;
