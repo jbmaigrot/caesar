@@ -47,7 +47,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1918375504594924619}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -124,7 +124,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1918375504867273589}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -201,7 +201,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1918375505060693796}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -335,10 +335,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58279579c7fc0c345a9bf60c1d34979c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team: -1
   isStunned: 0
   canStun: 0
   carrier: {fileID: 0}
-  inventory: 000000000000000000000000
+  isAttracted: 0
+  attracttimebeforeend: 0
+  attractDestination: {x: 0, y: 0, z: 0}
+  isAttractedByData: 0
+  attractByDataDestination: {x: 0, y: 0, z: 0}
+  hasAPriorityDestination: 0
+  priorityDestination: {x: 0, y: 0, z: 0}
+  normalDestination: {x: 0, y: 0, z: 0}
+  actualDestination: {x: 0, y: 0, z: 0}
 --- !u!114 &8673126337475319941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,10 +388,14 @@ MonoBehaviour:
   clientCharge: 0
   client: {fileID: 0}
   programmableObjectsContainer: {fileID: 0}
+  pos: {x: 0, y: 0}
+  size: {x: 0, y: 0}
+  emptyTex: {fileID: 0}
+  fullTex: {fileID: 0}
+  draw: 0
   charge: 0
   maxCharge: 10
   chargeSpeed: 1
-  charging: 0
   givingTo: {fileID: 0}
   takingFrom: {fileID: 0}
 --- !u!1 &1918375505431628498
@@ -432,7 +445,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1918375505431628498}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -509,7 +522,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1918375505632538542}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -620,7 +633,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1918375505887483213}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -697,7 +710,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1918375506249633135}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

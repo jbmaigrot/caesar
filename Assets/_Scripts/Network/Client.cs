@@ -260,26 +260,25 @@ public class Client : MonoBehaviour
                                 {
                                     if (!isNapperoned)
                                     {
-                                        foreach (Transform child in characters[playerIndex].transform)
-                                        {
-                                            if (child.name == "napperon")
-                                            {
+                                        SpriteRenderer napperon = characters[playerIndex].transform.Find("napperon").GetComponent<SpriteRenderer>();
+                                        SpriteRenderer range = characters[playerIndex].transform.Find("range").GetComponent<SpriteRenderer>();
 
-                                                //todo check if team ok
-                                                if (team == -1)
-                                                {
-                                                    child.GetComponent<SpriteRenderer>().color =
-                                                        new Color(0.961f, 0.51f, 0.365f, 1f);
-                                                }
-                                                else
-                                                {
-                                                    child.GetComponent<SpriteRenderer>().color =
-                                                        new Color(0.361f, 0.784f, 0.949f, 1f);
-                                                }
-                                                
-                                                isNapperoned = true;
-                                            }
+                                        if (team == 0)
+                                        {
+                                            napperon.enabled = true;
+                                            napperon.color = new Color(0.961f, 0.51f, 0.365f, 1f);
+
+                                            range.enabled = true;
                                         }
+                                        else if (team == 1)
+                                        {
+                                            napperon.enabled = true;
+                                            napperon.color = new Color(0.361f, 0.784f, 0.949f, 1f);
+
+                                            range.enabled = true;
+                                        }
+                                                
+                                        isNapperoned = true;
                                     }
                                     
                                     
