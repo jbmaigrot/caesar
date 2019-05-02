@@ -1323,12 +1323,6 @@ MonoBehaviour:
   chargeSpeed: 1
   givingTo: {fileID: 0}
   takingFrom: {fileID: 0}
---- !u!1 &93694834 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3211462287270269997, guid: 426649c0c40ed934eac19b907ca5a9b7,
-    type: 3}
-  m_PrefabInstance: {fileID: 86219317}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &93694837 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3211462287270269998, guid: 426649c0c40ed934eac19b907ca5a9b7,
@@ -21845,6 +21839,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9059320709059374001, guid: 9c9990fde319f484b91c5a117aac8332,
+        type: 3}
+      propertyPath: RedRelay
+      value: 
+      objectReference: {fileID: 21300000, guid: 22db3d1683e49874c9321c2887146b94,
+        type: 3}
+    - target: {fileID: 9059320709059374001, guid: 9c9990fde319f484b91c5a117aac8332,
+        type: 3}
+      propertyPath: BlueRelay
+      value: 
+      objectReference: {fileID: 21300000, guid: 0bec15edb140cf644aeb9fdf64a13f81,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c9990fde319f484b91c5a117aac8332, type: 3}
 --- !u!1001 &1478194804
@@ -28865,12 +28871,6 @@ PrefabInstance:
 --- !u!224 &2043592050 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3211462287270269998, guid: 426649c0c40ed934eac19b907ca5a9b7,
-    type: 3}
-  m_PrefabInstance: {fileID: 2043592049}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2043592051 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3211462287270269997, guid: 426649c0c40ed934eac19b907ca5a9b7,
     type: 3}
   m_PrefabInstance: {fileID: 2043592049}
   m_PrefabAsset: {fileID: 0}
@@ -54729,26 +54729,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Battery_Orange
       objectReference: {fileID: 0}
-    - target: {fileID: 5064819468873797968, guid: 2d1d724c080e79342b35f5da7a6bd33f,
-        type: 3}
-      propertyPath: scoreDisplay
-      value: 
-      objectReference: {fileID: 2043592051}
-    - target: {fileID: 5064819468873797968, guid: 2d1d724c080e79342b35f5da7a6bd33f,
-        type: 3}
-      propertyPath: emptyTex
-      value: 
-      objectReference: {fileID: 2800000, guid: a089e39cb36331940a4f602bb6a0d064, type: 3}
-    - target: {fileID: 5064819468873797968, guid: 2d1d724c080e79342b35f5da7a6bd33f,
-        type: 3}
-      propertyPath: fullTex
-      value: 
-      objectReference: {fileID: 2800000, guid: 80861de6aa80f234ea54ed391d0638f3, type: 3}
-    - target: {fileID: 5064819468873797968, guid: 2d1d724c080e79342b35f5da7a6bd33f,
-        type: 3}
-      propertyPath: draw
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8687175311622759336, guid: 2d1d724c080e79342b35f5da7a6bd33f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -54804,12 +54784,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1458981991467775528, guid: 2d1d724c080e79342b35f5da7a6bd33f,
-        type: 3}
-      propertyPath: Initiator
-      value: 
-      objectReference: {fileID: 11400000, guid: eb5a96cfcf946ba4da2b8f58ade3766b,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d1d724c080e79342b35f5da7a6bd33f, type: 3}
 --- !u!114 &3587339889608841534
@@ -55649,26 +55623,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Battery_Blue
       objectReference: {fileID: 0}
-    - target: {fileID: 8630039474702666910, guid: f82716b109211ec48a962e8676ca56be,
-        type: 3}
-      propertyPath: scoreDisplay
-      value: 
-      objectReference: {fileID: 93694834}
-    - target: {fileID: 8630039474702666910, guid: f82716b109211ec48a962e8676ca56be,
-        type: 3}
-      propertyPath: emptyTex
-      value: 
-      objectReference: {fileID: 2800000, guid: a089e39cb36331940a4f602bb6a0d064, type: 3}
-    - target: {fileID: 8630039474702666910, guid: f82716b109211ec48a962e8676ca56be,
-        type: 3}
-      propertyPath: fullTex
-      value: 
-      objectReference: {fileID: 2800000, guid: 80861de6aa80f234ea54ed391d0638f3, type: 3}
-    - target: {fileID: 8630039474702666910, guid: f82716b109211ec48a962e8676ca56be,
-        type: 3}
-      propertyPath: draw
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5149781087663628134, guid: f82716b109211ec48a962e8676ca56be,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -55724,12 +55678,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7312932513954447421, guid: f82716b109211ec48a962e8676ca56be,
-        type: 3}
-      propertyPath: Initiator
-      value: 
-      objectReference: {fileID: 11400000, guid: eb5a96cfcf946ba4da2b8f58ade3766b,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f82716b109211ec48a962e8676ca56be, type: 3}
 --- !u!1 &4059363128366650743
