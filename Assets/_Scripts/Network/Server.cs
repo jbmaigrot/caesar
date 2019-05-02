@@ -562,10 +562,12 @@ public class Server : MonoBehaviour
             if (players.Count % 2 == 0)
             {
                 pj.transform.position = FindObjectOfType<PlayerSpawn>().transform.position;
+                pj.GetComponent<ServerCharacter>().team = 0;
             }
             else
             {
                 pj.transform.position = -FindObjectOfType<PlayerSpawn>().transform.position;
+                pj.GetComponent<ServerCharacter>().team = 1;
             }
         }
         else
@@ -573,10 +575,12 @@ public class Server : MonoBehaviour
             if (team == 0)
             {
                 pj.transform.position = FindObjectOfType<PlayerSpawn>().transform.position;
+                pj.GetComponent<ServerCharacter>().team = 0;
             }
             else if (team == 1)
             {
                 pj.transform.position = -FindObjectOfType<PlayerSpawn>().transform.position;
+                pj.GetComponent<ServerCharacter>().team = 1;
             }
         }
         

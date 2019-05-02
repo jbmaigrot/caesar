@@ -6,6 +6,8 @@ using UnityEngine.AI;
 public class ServerCharacter : MonoBehaviour
 {
 #if SERVER
+    public int team = -1;
+
     public bool isStunned;
     private float timeBeforeEndOfStun;
     private const float TIMEOFSTUN = 15.0f;
