@@ -93,6 +93,8 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
                 ReallyOpenInterface();
             }
         }
+        //click outside
+        //TO DO   if ()
     }
 
      /*Fonction appelé lorsque le joueur ferme l'interface. A adapter pour le réseau.*/
