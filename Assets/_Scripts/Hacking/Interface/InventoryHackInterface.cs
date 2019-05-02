@@ -11,6 +11,8 @@ public class InventoryHackInterface : MonoBehaviour, IPointerDownHandler
     public Sprite Attract;
     public Sprite Stun;
     public Sprite PowerPump;
+    public Sprite BlueRelay;
+    public Sprite RedRelay;
 #if CLIENT
     private HackInterface hackinterface;
     // Start is called before the first frame update
@@ -35,6 +37,12 @@ public class InventoryHackInterface : MonoBehaviour, IPointerDownHandler
                 break;
             case InventoryConstants.Powerpump:
                 this.GetComponent<SVGImage>().sprite = PowerPump;
+                break;
+            case InventoryConstants.BlueRelay:
+                this.GetComponent<SVGImage>().sprite = BlueRelay;
+                break;
+            case InventoryConstants.OrangeRelay:
+                this.GetComponent<SVGImage>().sprite = RedRelay;
                 break;
             default:
                 break;
