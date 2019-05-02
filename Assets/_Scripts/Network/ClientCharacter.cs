@@ -12,17 +12,29 @@ public class ClientCharacter : MonoBehaviour
     private Client client;
     private HackInterface hackinterface;
 
+    private float floatingRange = 0.1f;
+    private float floatingFreq = 0;
+    private Transform mesh;
+    private float startingY;
+
     //Start
     private void Start()
     {
         client = FindObjectOfType<Client>();
         hackinterface = FindObjectOfType<HackInterface>();
+
+        floatingFreq = Random.Range(0.2f, 0.3f);
+        mesh = transform.Find("Mesh").transform;
+        startingY = transform.position.y;
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.position = transform.position + speed * Time.deltaTime;
+
+        // Floating animation
+        mesh.position = new Vector3(transform.position.x, startingY - floatingRange / 2 + floatingRange * (Mathf.Sin(Time.time * 2 * Mathf.PI * floatingFreq)), transform.position.z);
     }
 
     // Tacle
