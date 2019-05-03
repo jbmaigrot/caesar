@@ -175,6 +175,20 @@ public class Client : MonoBehaviour
                                             if(j == playerIndex)
                                             {
                                                 hackInterface.CloseByStun();
+                                                if (team == 0)
+                                                {
+                                                    if(inventory[0]==InventoryConstants.BlueRelay|| inventory[1] == InventoryConstants.BlueRelay|| inventory[2] == InventoryConstants.BlueRelay)
+                                                    {
+                                                        ThiefHasBeenIntercepted();
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    if (inventory[0] == InventoryConstants.OrangeRelay || inventory[1] == InventoryConstants.OrangeRelay || inventory[2] == InventoryConstants.OrangeRelay)
+                                                    {
+                                                        ThiefHasBeenIntercepted();
+                                                    }
+                                                }
                                             }
                                             foreach (MeshRenderer ryan in characters[j].gameObject.GetComponentsInChildren<MeshRenderer>())
                                             {
@@ -610,6 +624,16 @@ public class Client : MonoBehaviour
         }
     }
 
+    private void ThiefHasBeenIntercepted()
+    {
+        using (var writer = new DataStreamWriter(64, Allocator.Temp))
+        {
+            writer.Write(Constants.Client_ThiefHasBeenStunned);
+            writer.Write(1 - team);
+            m_Connection.Send(m_Driver, writer);
+        }
+            
+    }
 
 #endif
 }

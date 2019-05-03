@@ -17,7 +17,8 @@ public class Server : MonoBehaviour
     public UdpCNetworkDriver m_Driver;
     public List<Transform> players = new List<Transform>();
     public List<Transform> characters = new List<Transform>(); // Players + NPCs
-
+    public Transform BlueBatterie;
+    public Transform RedBatterie;
 
     private NativeList<NetworkConnection> m_Connections;
     private NativeList<NetworkConnection> tmp_Connections;
@@ -67,6 +68,20 @@ public class Server : MonoBehaviour
                 AddNewPlayer(serverLobby.lobbyInterfaceState.playerLobbyCards[i].team);
             }
             serverLobby.stopUpdate = true;
+        }
+
+        ServerBattery[] Batteries;
+        Batteries = FindObjectsOfType<ServerBattery>();
+
+        if (Batteries[0].team == 0)
+        {
+            RedBatterie = Batteries[0].transform;
+            BlueBatterie = Batteries[1].transform;
+        }
+        else
+        {
+            RedBatterie = Batteries[1].transform;
+            BlueBatterie = Batteries[0].transform;
         }
     }
 
@@ -256,6 +271,30 @@ public class Server : MonoBehaviour
                             SetHackStatus(objectId, stream, ref readerCtx);
                             break;
 
+                        case Constants.Client_ThiefHasBeenStunned:
+                            int team = (int)stream.ReadUInt(ref readerCtx);
+                            bool alreadyMoved = false;
+                            if (team == 0)
+                            {
+                                foreach( InOutVignette ryan in RedBatterie.GetComponent<ProgrammableObjectsData>().outputCodes)
+                                {
+                                    if(ryan.code == "UseGadget" && ryan.parameter_int == InventoryConstants.OrangeRelay)
+                                    {
+                                        alreadyMoved = true;
+                                    }
+                                }
+                                if (!alreadyMoved)
+                                {
+                                    //CREER un nouvel inoutvignette qui contient le gadget OrangeRelay dans la redBatterie
+                                }
+
+                                //Envoyer un message à tous les client pour supprimer leur OrangeRelay de leur inventaire
+                            }
+                            else if (team == 1)
+                            {
+                                // Faire comme au dessus mais pour les bleus
+                            }
+                            break;
                         default:
                             break;
                     }
