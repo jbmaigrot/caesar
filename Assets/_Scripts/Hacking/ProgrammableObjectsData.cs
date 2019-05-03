@@ -118,7 +118,10 @@ public class ProgrammableObjectsData : MonoBehaviour
 #if CLIENT
     void OnMouseDown()
     {
-        if (isHackable && (this.GetComponent<Collider>().ClosestPoint(client.characters[client.playerIndex].transform.position) - client.characters[client.playerIndex].transform.position).magnitude < 5 &&!hackInterface.GetComponent<CanvasGroup>().blocksRaycasts&& !Input.GetKey(KeyCode.LeftControl))
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        
+        if (Physics.Raycast(ray, out hit, 100f, 16384)&& isHackable && (hit.collider.ClosestPoint(client.characters[client.playerIndex].transform.position) - client.characters[client.playerIndex].transform.position).magnitude < 15 &&!hackInterface.GetComponent<CanvasGroup>().blocksRaycasts&& !Input.GetKey(KeyCode.LeftControl))
         {
             client.RequestHackState(objectsContainer.GetObjectIndexClient(this));
             hackInterface.ReadyToOpen();
