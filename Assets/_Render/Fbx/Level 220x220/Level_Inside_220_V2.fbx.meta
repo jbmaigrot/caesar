@@ -3,1040 +3,896 @@ guid: 7081fcf2443c17443a6bd20b49652a33
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Bassin
-    100002: Bassin 1
-    100004: Bassin 2
-    100006: Bassin 3
-    100008: Dalle_Base
-    100010: Dalle_bassin
-    100012: Dalle_bassin 1
-    100014: Dalle_Bureau
-    100016: Dalle_Bureau_1
-    100018: Dalle_Bureau_2
-    100020: Dalle_Bureau_3
-    100022: Dalle_Center
-    100024: Dalle_Center1
-    100026: Dalle_Center2
-    100028: Dalle_Center3
-    100030: Dalle_Center_NE
-    100032: Dalle_Center_SE
-    100034: Dalle_Center_sq
-    100036: Dalle_Centersq2
-    100038: Dalle_Pool
-    100040: Dalle_Pool_alt
-    100042: Dalle_Pool_alt1
-    100044: Dalle_Pool_mini
-    100046: Dalle_Small
-    100048: Dalle_Small1
-    100050: Dalle_Small2
-    100052: Dalle_Small3
-    100054: Dalle_Source
-    100056: Dalles
-    100058: Dalles_Bureau
-    100060: Dalles_Center
-    100062: Dalles_Pool_alt
-    100064: Dalles_Small
-    100066: Eau
-    100068: Eau 1
-    100070: Eau 2
-    100072: Eau 3
-    100074: Eau 4
-    100076: Eau 5
-    100078: //RootNode
-    100080: Piece_centrale_half
-    100082: Pieces_annexes
-    100084: Pilier_NE
-    100086: Pilier_SE
-    100088: Pilier_SE 1
-    100090: Pilier_SE 2
-    100092: Piliers
-    100094: Top_Black_Pillar
-    100096: Top_Black_Pillar 1
-    100098: Wall
-    100100: Wall 1
-    100102: Wall 2
-    100104: Wall 3
-    100106: Wall100
-    100108: Wall102
-    100110: Wall103
-    100112: Wall104
-    100114: Wall105
-    100116: Wall106
-    100118: Wall107
-    100120: Wall108
-    100122: Wall113
-    100124: Wall114
-    100126: Wall115
-    100128: Wall116
-    100130: Wall122
-    100132: Wall123
-    100134: Wall124
-    100136: Wall125
-    100138: Wall126
-    100140: Wall127
-    100142: Wall128
-    100144: Wall129
-    100146: Wall130
-    100148: Wall131
-    100150: Wall132
-    100152: Wall133
-    100154: Wall134
-    100156: Wall135
-    100158: Wall136
-    100160: Wall137
-    100162: Wall20
-    100164: Wall20 1
-    100166: Wall20 2
-    100168: Wall21
-    100170: Wall21 1
-    100172: Wall21 2
-    100174: Wall22
-    100176: Wall22 1
-    100178: Wall22 2
-    100180: Wall22 3
-    100182: Wall23
-    100184: Wall23 1
-    100186: Wall25
-    100188: Wall25 1
-    100190: Wall26
-    100192: Wall26 1
-    100194: Wall26 2
-    100196: Wall27
-    100198: Wall27 1
-    100200: Wall27 2
-    100202: Wall28
-    100204: Wall28 1
-    100206: Wall29
-    100208: Wall29 1
-    100210: Wall30
-    100212: Wall30 1
-    100214: Wall31
-    100216: Wall31 1
-    100218: Wall31 2
-    100220: Wall32
-    100222: Wall32 1
-    100224: Wall33
-    100226: Wall33 1
-    100228: Wall33 2
-    100230: Wall34
-    100232: Wall34 1
-    100234: Wall34 2
-    100236: Wall35
-    100238: Wall35 1
-    100240: Wall35 2
-    100242: Wall36
-    100244: Wall36 1
-    100246: Wall36 2
-    100248: Wall37
-    100250: Wall37 1
-    100252: Wall37 2
-    100254: Wall39
-    100256: Wall39 1
-    100258: Wall39 2
-    100260: Wall40
-    100262: Wall40 1
-    100264: Wall40 2
-    100266: Wall41
-    100268: Wall42
-    100270: Wall44
-    100272: Wall45
-    100274: Wall46
-    100276: Wall47
-    100278: Wall48
-    100280: Wall50
-    100282: Wall51
-    100284: Wall52
-    100286: Wall53
-    100288: Wall54
-    100290: Wall55
-    100292: Wall56
-    100294: Wall58
-    100296: Wall59
-    100298: Wall60
-    100300: Wall61
-    100302: Wall62
-    100304: Wall63
-    100306: Wall64
-    100308: Wall65
-    100310: Wall66
-    100312: Wall67
-    100314: Wall68
-    100316: Wall75
-    100318: Wall75 1
-    100320: Wall76
-    100322: Wall76 1
-    100324: Wall77
-    100326: Wall77 1
-    100328: Wall78
-    100330: Wall78 1
-    100332: Wall79
-    100334: Wall80
-    100336: Wall81
-    100338: Wall82
-    100340: Wall83
-    100342: Wall84
-    100344: Wall95
-    100346: Wall96
-    100348: Wall97
-    100350: Wall98
-    100352: Wall99
-    100354: Wall_Long
-    100356: Wall_short_alt_N
-    100358: Wall_Short_N
-    100360: Wall_Short_S
-    100362: Wall_Slope
-    100364: Wall_Slope 1
-    100366: Wall_Slope1
-    100368: Wall_Slope1 1
-    100370: Wall_Slope2
-    100372: Wall_Slope2 1
-    100374: Wall_Slope2 2
-    100376: Wall_Slope2 3
-    100378: Wall_Slope3
-    100380: Wall_Slope3 1
-    100382: Wall_Slope4
-    100384: Wall_Slope4 1
-    100386: Wall_Slope5
-    100388: Wall_Slope_N
-    100390: Wall_Slope_NE
-    100392: Wall_Slope_S
-    100394: Wall_Slope_SE
-    100396: Wall_Super_Short_E
-    100398: Wall_window
-    100400: Wall_window1
-    100402: Wall_window10
-    100404: Wall_window11
-    100406: Wall_window12
-    100408: Wall_window13
-    100410: Wall_window14
-    100412: Wall_window15
-    100414: Wall_window16
-    100416: Wall_window17
-    100418: Wall_window2
-    100420: Wall_window3
-    100422: Wall_window4
-    100424: Wall_window5
-    100426: Wall_window6
-    100428: Wall_window7
-    100430: Wall_window8
-    100432: Wall_window9
-    100434: Walls
-    100436: Walls_center_N
-    100438: Walls_center_N1
-    100440: Walls_Top_Black
-    100442: Walls_Top_Black_center
-    100444: Wall138
-    400000: Bassin
-    400002: Bassin 1
-    400004: Bassin 2
-    400006: Bassin 3
-    400008: Dalle_Base
-    400010: Dalle_bassin
-    400012: Dalle_bassin 1
-    400014: Dalle_Bureau
-    400016: Dalle_Bureau_1
-    400018: Dalle_Bureau_2
-    400020: Dalle_Bureau_3
-    400022: Dalle_Center
-    400024: Dalle_Center1
-    400026: Dalle_Center2
-    400028: Dalle_Center3
-    400030: Dalle_Center_NE
-    400032: Dalle_Center_SE
-    400034: Dalle_Center_sq
-    400036: Dalle_Centersq2
-    400038: Dalle_Pool
-    400040: Dalle_Pool_alt
-    400042: Dalle_Pool_alt1
-    400044: Dalle_Pool_mini
-    400046: Dalle_Small
-    400048: Dalle_Small1
-    400050: Dalle_Small2
-    400052: Dalle_Small3
-    400054: Dalle_Source
-    400056: Dalles
-    400058: Dalles_Bureau
-    400060: Dalles_Center
-    400062: Dalles_Pool_alt
-    400064: Dalles_Small
-    400066: Eau
-    400068: Eau 1
-    400070: Eau 2
-    400072: Eau 3
-    400074: Eau 4
-    400076: Eau 5
-    400078: //RootNode
-    400080: Piece_centrale_half
-    400082: Pieces_annexes
-    400084: Pilier_NE
-    400086: Pilier_SE
-    400088: Pilier_SE 1
-    400090: Pilier_SE 2
-    400092: Piliers
-    400094: Top_Black_Pillar
-    400096: Top_Black_Pillar 1
-    400098: Wall
-    400100: Wall 1
-    400102: Wall 2
-    400104: Wall 3
-    400106: Wall100
-    400108: Wall102
-    400110: Wall103
-    400112: Wall104
-    400114: Wall105
-    400116: Wall106
-    400118: Wall107
-    400120: Wall108
-    400122: Wall113
-    400124: Wall114
-    400126: Wall115
-    400128: Wall116
-    400130: Wall122
-    400132: Wall123
-    400134: Wall124
-    400136: Wall125
-    400138: Wall126
-    400140: Wall127
-    400142: Wall128
-    400144: Wall129
-    400146: Wall130
-    400148: Wall131
-    400150: Wall132
-    400152: Wall133
-    400154: Wall134
-    400156: Wall135
-    400158: Wall136
-    400160: Wall137
-    400162: Wall20
-    400164: Wall20 1
-    400166: Wall20 2
-    400168: Wall21
-    400170: Wall21 1
-    400172: Wall21 2
-    400174: Wall22
-    400176: Wall22 1
-    400178: Wall22 2
-    400180: Wall22 3
-    400182: Wall23
-    400184: Wall23 1
-    400186: Wall25
-    400188: Wall25 1
-    400190: Wall26
-    400192: Wall26 1
-    400194: Wall26 2
-    400196: Wall27
-    400198: Wall27 1
-    400200: Wall27 2
-    400202: Wall28
-    400204: Wall28 1
-    400206: Wall29
-    400208: Wall29 1
-    400210: Wall30
-    400212: Wall30 1
-    400214: Wall31
-    400216: Wall31 1
-    400218: Wall31 2
-    400220: Wall32
-    400222: Wall32 1
-    400224: Wall33
-    400226: Wall33 1
-    400228: Wall33 2
-    400230: Wall34
-    400232: Wall34 1
-    400234: Wall34 2
-    400236: Wall35
-    400238: Wall35 1
-    400240: Wall35 2
-    400242: Wall36
-    400244: Wall36 1
-    400246: Wall36 2
-    400248: Wall37
-    400250: Wall37 1
-    400252: Wall37 2
-    400254: Wall39
-    400256: Wall39 1
-    400258: Wall39 2
-    400260: Wall40
-    400262: Wall40 1
-    400264: Wall40 2
-    400266: Wall41
-    400268: Wall42
-    400270: Wall44
-    400272: Wall45
-    400274: Wall46
-    400276: Wall47
-    400278: Wall48
-    400280: Wall50
-    400282: Wall51
-    400284: Wall52
-    400286: Wall53
-    400288: Wall54
-    400290: Wall55
-    400292: Wall56
-    400294: Wall58
-    400296: Wall59
-    400298: Wall60
-    400300: Wall61
-    400302: Wall62
-    400304: Wall63
-    400306: Wall64
-    400308: Wall65
-    400310: Wall66
-    400312: Wall67
-    400314: Wall68
-    400316: Wall75
-    400318: Wall75 1
-    400320: Wall76
-    400322: Wall76 1
-    400324: Wall77
-    400326: Wall77 1
-    400328: Wall78
-    400330: Wall78 1
-    400332: Wall79
-    400334: Wall80
-    400336: Wall81
-    400338: Wall82
-    400340: Wall83
-    400342: Wall84
-    400344: Wall95
-    400346: Wall96
-    400348: Wall97
-    400350: Wall98
-    400352: Wall99
-    400354: Wall_Long
-    400356: Wall_short_alt_N
-    400358: Wall_Short_N
-    400360: Wall_Short_S
-    400362: Wall_Slope
-    400364: Wall_Slope 1
-    400366: Wall_Slope1
-    400368: Wall_Slope1 1
-    400370: Wall_Slope2
-    400372: Wall_Slope2 1
-    400374: Wall_Slope2 2
-    400376: Wall_Slope2 3
-    400378: Wall_Slope3
-    400380: Wall_Slope3 1
-    400382: Wall_Slope4
-    400384: Wall_Slope4 1
-    400386: Wall_Slope5
-    400388: Wall_Slope_N
-    400390: Wall_Slope_NE
-    400392: Wall_Slope_S
-    400394: Wall_Slope_SE
-    400396: Wall_Super_Short_E
-    400398: Wall_window
-    400400: Wall_window1
-    400402: Wall_window10
-    400404: Wall_window11
-    400406: Wall_window12
-    400408: Wall_window13
-    400410: Wall_window14
-    400412: Wall_window15
-    400414: Wall_window16
-    400416: Wall_window17
-    400418: Wall_window2
-    400420: Wall_window3
-    400422: Wall_window4
-    400424: Wall_window5
-    400426: Wall_window6
-    400428: Wall_window7
-    400430: Wall_window8
-    400432: Wall_window9
-    400434: Walls
-    400436: Walls_center_N
-    400438: Walls_center_N1
-    400440: Walls_Top_Black
-    400442: Walls_Top_Black_center
-    400444: Wall138
-    2100000: ground
-    2100002: lambert1
-    2100004: pilar
-    2100006: Top_black
-    2100008: wall_interior
-    2100010: wall_interior_window
-    2300000: Bassin
-    2300002: Bassin 1
-    2300004: Bassin 2
-    2300006: Bassin 3
-    2300008: Dalle_Base
-    2300010: Dalle_bassin
-    2300012: Dalle_bassin 1
-    2300014: Dalle_Bureau
-    2300016: Dalle_Bureau_1
-    2300018: Dalle_Bureau_2
-    2300020: Dalle_Bureau_3
-    2300022: Dalle_Center
-    2300024: Dalle_Center1
-    2300026: Dalle_Center2
-    2300028: Dalle_Center3
-    2300030: Dalle_Center_sq
-    2300032: Dalle_Centersq2
-    2300034: Dalle_Small
-    2300036: Dalle_Small1
-    2300038: Dalle_Small2
-    2300040: Dalle_Small3
-    2300042: Dalle_Source
-    2300044: Eau
-    2300046: Eau 1
-    2300048: Eau 2
-    2300050: Eau 3
-    2300052: Eau 4
-    2300054: Eau 5
-    2300056: Pilier_SE 1
-    2300058: Pilier_SE 2
-    2300060: Top_Black_Pillar
-    2300062: Top_Black_Pillar 1
-    2300064: Wall
-    2300066: Wall 1
-    2300068: Wall 2
-    2300070: Wall 3
-    2300072: Wall100
-    2300074: Wall102
-    2300076: Wall103
-    2300078: Wall104
-    2300080: Wall105
-    2300082: Wall106
-    2300084: Wall107
-    2300086: Wall108
-    2300088: Wall113
-    2300090: Wall114
-    2300092: Wall115
-    2300094: Wall116
-    2300096: Wall122
-    2300098: Wall123
-    2300100: Wall124
-    2300102: Wall125
-    2300104: Wall126
-    2300106: Wall127
-    2300108: Wall128
-    2300110: Wall129
-    2300112: Wall130
-    2300114: Wall131
-    2300116: Wall132
-    2300118: Wall133
-    2300120: Wall134
-    2300122: Wall135
-    2300124: Wall136
-    2300126: Wall137
-    2300128: Wall20
-    2300130: Wall20 1
-    2300132: Wall20 2
-    2300134: Wall21
-    2300136: Wall21 1
-    2300138: Wall21 2
-    2300140: Wall22
-    2300142: Wall22 1
-    2300144: Wall22 2
-    2300146: Wall22 3
-    2300148: Wall23
-    2300150: Wall23 1
-    2300152: Wall25
-    2300154: Wall25 1
-    2300156: Wall26
-    2300158: Wall26 1
-    2300160: Wall26 2
-    2300162: Wall27
-    2300164: Wall27 1
-    2300166: Wall27 2
-    2300168: Wall28
-    2300170: Wall28 1
-    2300172: Wall29
-    2300174: Wall29 1
-    2300176: Wall30
-    2300178: Wall30 1
-    2300180: Wall31
-    2300182: Wall31 1
-    2300184: Wall31 2
-    2300186: Wall32
-    2300188: Wall32 1
-    2300190: Wall33
-    2300192: Wall33 1
-    2300194: Wall33 2
-    2300196: Wall34
-    2300198: Wall34 1
-    2300200: Wall34 2
-    2300202: Wall35
-    2300204: Wall35 1
-    2300206: Wall35 2
-    2300208: Wall36
-    2300210: Wall36 1
-    2300212: Wall36 2
-    2300214: Wall37
-    2300216: Wall37 1
-    2300218: Wall37 2
-    2300220: Wall39
-    2300222: Wall39 1
-    2300224: Wall39 2
-    2300226: Wall40
-    2300228: Wall40 1
-    2300230: Wall40 2
-    2300232: Wall41
-    2300234: Wall42
-    2300236: Wall44
-    2300238: Wall45
-    2300240: Wall46
-    2300242: Wall47
-    2300244: Wall48
-    2300246: Wall50
-    2300248: Wall51
-    2300250: Wall52
-    2300252: Wall53
-    2300254: Wall54
-    2300256: Wall55
-    2300258: Wall56
-    2300260: Wall58
-    2300262: Wall59
-    2300264: Wall60
-    2300266: Wall61
-    2300268: Wall62
-    2300270: Wall63
-    2300272: Wall64
-    2300274: Wall65
-    2300276: Wall66
-    2300278: Wall67
-    2300280: Wall68
-    2300282: Wall75
-    2300284: Wall75 1
-    2300286: Wall76
-    2300288: Wall76 1
-    2300290: Wall77
-    2300292: Wall77 1
-    2300294: Wall78
-    2300296: Wall78 1
-    2300298: Wall79
-    2300300: Wall80
-    2300302: Wall81
-    2300304: Wall82
-    2300306: Wall83
-    2300308: Wall84
-    2300310: Wall95
-    2300312: Wall96
-    2300314: Wall97
-    2300316: Wall98
-    2300318: Wall99
-    2300320: Wall_Slope
-    2300322: Wall_Slope 1
-    2300324: Wall_Slope1
-    2300326: Wall_Slope1 1
-    2300328: Wall_Slope2
-    2300330: Wall_Slope2 1
-    2300332: Wall_Slope2 2
-    2300334: Wall_Slope2 3
-    2300336: Wall_Slope3
-    2300338: Wall_Slope3 1
-    2300340: Wall_Slope4
-    2300342: Wall_Slope4 1
-    2300344: Wall_Slope5
-    2300346: Wall_window
-    2300348: Wall_window1
-    2300350: Wall_window10
-    2300352: Wall_window11
-    2300354: Wall_window12
-    2300356: Wall_window13
-    2300358: Wall_window14
-    2300360: Wall_window15
-    2300362: Wall_window16
-    2300364: Wall_window17
-    2300366: Wall_window2
-    2300368: Wall_window3
-    2300370: Wall_window4
-    2300372: Wall_window5
-    2300374: Wall_window6
-    2300376: Wall_window7
-    2300378: Wall_window8
-    2300380: Wall_window9
-    2300382: Walls_Top_Black
-    2300384: Walls_Top_Black_center
-    2300386: Wall138
-    3300000: Bassin
-    3300002: Bassin 1
-    3300004: Bassin 2
-    3300006: Bassin 3
-    3300008: Dalle_Base
-    3300010: Dalle_bassin
-    3300012: Dalle_bassin 1
-    3300014: Dalle_Bureau
-    3300016: Dalle_Bureau_1
-    3300018: Dalle_Bureau_2
-    3300020: Dalle_Bureau_3
-    3300022: Dalle_Center
-    3300024: Dalle_Center1
-    3300026: Dalle_Center2
-    3300028: Dalle_Center3
-    3300030: Dalle_Center_sq
-    3300032: Dalle_Centersq2
-    3300034: Dalle_Small
-    3300036: Dalle_Small1
-    3300038: Dalle_Small2
-    3300040: Dalle_Small3
-    3300042: Dalle_Source
-    3300044: Eau
-    3300046: Eau 1
-    3300048: Eau 2
-    3300050: Eau 3
-    3300052: Eau 4
-    3300054: Eau 5
-    3300056: Pilier_SE 1
-    3300058: Pilier_SE 2
-    3300060: Top_Black_Pillar
-    3300062: Top_Black_Pillar 1
-    3300064: Wall
-    3300066: Wall 1
-    3300068: Wall 2
-    3300070: Wall 3
-    3300072: Wall100
-    3300074: Wall102
-    3300076: Wall103
-    3300078: Wall104
-    3300080: Wall105
-    3300082: Wall106
-    3300084: Wall107
-    3300086: Wall108
-    3300088: Wall113
-    3300090: Wall114
-    3300092: Wall115
-    3300094: Wall116
-    3300096: Wall122
-    3300098: Wall123
-    3300100: Wall124
-    3300102: Wall125
-    3300104: Wall126
-    3300106: Wall127
-    3300108: Wall128
-    3300110: Wall129
-    3300112: Wall130
-    3300114: Wall131
-    3300116: Wall132
-    3300118: Wall133
-    3300120: Wall134
-    3300122: Wall135
-    3300124: Wall136
-    3300126: Wall137
-    3300128: Wall20
-    3300130: Wall20 1
-    3300132: Wall20 2
-    3300134: Wall21
-    3300136: Wall21 1
-    3300138: Wall21 2
-    3300140: Wall22
-    3300142: Wall22 1
-    3300144: Wall22 2
-    3300146: Wall22 3
-    3300148: Wall23
-    3300150: Wall23 1
-    3300152: Wall25
-    3300154: Wall25 1
-    3300156: Wall26
-    3300158: Wall26 1
-    3300160: Wall26 2
-    3300162: Wall27
-    3300164: Wall27 1
-    3300166: Wall27 2
-    3300168: Wall28
-    3300170: Wall28 1
-    3300172: Wall29
-    3300174: Wall29 1
-    3300176: Wall30
-    3300178: Wall30 1
-    3300180: Wall31
-    3300182: Wall31 1
-    3300184: Wall31 2
-    3300186: Wall32
-    3300188: Wall32 1
-    3300190: Wall33
-    3300192: Wall33 1
-    3300194: Wall33 2
-    3300196: Wall34
-    3300198: Wall34 1
-    3300200: Wall34 2
-    3300202: Wall35
-    3300204: Wall35 1
-    3300206: Wall35 2
-    3300208: Wall36
-    3300210: Wall36 1
-    3300212: Wall36 2
-    3300214: Wall37
-    3300216: Wall37 1
-    3300218: Wall37 2
-    3300220: Wall39
-    3300222: Wall39 1
-    3300224: Wall39 2
-    3300226: Wall40
-    3300228: Wall40 1
-    3300230: Wall40 2
-    3300232: Wall41
-    3300234: Wall42
-    3300236: Wall44
-    3300238: Wall45
-    3300240: Wall46
-    3300242: Wall47
-    3300244: Wall48
-    3300246: Wall50
-    3300248: Wall51
-    3300250: Wall52
-    3300252: Wall53
-    3300254: Wall54
-    3300256: Wall55
-    3300258: Wall56
-    3300260: Wall58
-    3300262: Wall59
-    3300264: Wall60
-    3300266: Wall61
-    3300268: Wall62
-    3300270: Wall63
-    3300272: Wall64
-    3300274: Wall65
-    3300276: Wall66
-    3300278: Wall67
-    3300280: Wall68
-    3300282: Wall75
-    3300284: Wall75 1
-    3300286: Wall76
-    3300288: Wall76 1
-    3300290: Wall77
-    3300292: Wall77 1
-    3300294: Wall78
-    3300296: Wall78 1
-    3300298: Wall79
-    3300300: Wall80
-    3300302: Wall81
-    3300304: Wall82
-    3300306: Wall83
-    3300308: Wall84
-    3300310: Wall95
-    3300312: Wall96
-    3300314: Wall97
-    3300316: Wall98
-    3300318: Wall99
-    3300320: Wall_Slope
-    3300322: Wall_Slope 1
-    3300324: Wall_Slope1
-    3300326: Wall_Slope1 1
-    3300328: Wall_Slope2
-    3300330: Wall_Slope2 1
-    3300332: Wall_Slope2 2
-    3300334: Wall_Slope2 3
-    3300336: Wall_Slope3
-    3300338: Wall_Slope3 1
-    3300340: Wall_Slope4
-    3300342: Wall_Slope4 1
-    3300344: Wall_Slope5
-    3300346: Wall_window
-    3300348: Wall_window1
-    3300350: Wall_window10
-    3300352: Wall_window11
-    3300354: Wall_window12
-    3300356: Wall_window13
-    3300358: Wall_window14
-    3300360: Wall_window15
-    3300362: Wall_window16
-    3300364: Wall_window17
-    3300366: Wall_window2
-    3300368: Wall_window3
-    3300370: Wall_window4
-    3300372: Wall_window5
-    3300374: Wall_window6
-    3300376: Wall_window7
-    3300378: Wall_window8
-    3300380: Wall_window9
-    3300382: Walls_Top_Black
-    3300384: Walls_Top_Black_center
-    3300386: Wall138
-    4300000: Dalle_Base
-    4300002: Dalle_Source
-    4300004: Dalle_bassin
-    4300006: Eau
-    4300008: Dalle_bassin
-    4300010: Eau
-    4300012: Dalle_Bureau
-    4300014: Dalle_Bureau_1
-    4300016: Dalle_Bureau_2
-    4300018: Dalle_Bureau_3
-    4300020: Bassin
-    4300022: Eau
-    4300024: Bassin
-    4300026: Eau
-    4300028: Dalle_Small
-    4300030: Dalle_Small1
-    4300032: Dalle_Small2
-    4300034: Dalle_Small3
-    4300036: Dalle_Center_sq
-    4300038: Dalle_Centersq2
-    4300040: Dalle_Center
-    4300042: Dalle_Center1
-    4300044: Dalle_Center2
-    4300046: Dalle_Center3
-    4300048: Bassin
-    4300050: Eau
-    4300052: Bassin
-    4300054: Eau
-    4300056: Pilier_SE
-    4300058: Top_Black_Pillar
-    4300060: Pilier_SE
-    4300062: Top_Black_Pillar
-    4300064: Wall31
-    4300066: Wall32
-    4300068: Wall33
-    4300070: Wall34
-    4300072: Wall35
-    4300074: Wall36
-    4300076: Wall37
-    4300078: Wall39
-    4300080: Wall40
-    4300082: Wall97
-    4300084: Wall
-    4300086: Wall21
-    4300088: Wall22
-    4300090: Wall96
-    4300092: Wall95
-    4300094: Wall26
-    4300096: Wall27
-    4300098: Wall108
-    4300100: Wall
-    4300102: Wall20
-    4300104: Wall21
-    4300106: Wall22
-    4300108: Wall23
-    4300110: Wall25
-    4300112: Wall26
-    4300114: Wall27
-    4300116: Wall28
-    4300118: Wall29
-    4300120: Wall30
-    4300122: Wall31
-    4300124: Wall32
-    4300126: Wall33
-    4300128: Wall34
-    4300130: Wall35
-    4300132: Wall36
-    4300134: Wall37
-    4300136: Wall39
-    4300138: Wall40
-    4300140: Wall
-    4300142: Wall20
-    4300144: Wall22
-    4300146: Wall_Slope
-    4300148: Wall_Slope2
-    4300150: Wall_Slope3
-    4300152: Wall_Slope1
-    4300154: Wall_Slope2
-    4300156: Wall_Slope4
-    4300158: Wall
-    4300160: Wall20
-    4300162: Wall21
-    4300164: Wall22
-    4300166: Wall23
-    4300168: Wall25
-    4300170: Wall26
-    4300172: Wall27
-    4300174: Wall28
-    4300176: Wall29
-    4300178: Wall30
-    4300180: Wall31
-    4300182: Wall33
-    4300184: Wall34
-    4300186: Wall35
-    4300188: Wall36
-    4300190: Wall37
-    4300192: Wall39
-    4300194: Wall40
-    4300196: Wall41
-    4300198: Wall42
-    4300200: Wall44
-    4300202: Wall45
-    4300204: Wall46
-    4300206: Wall47
-    4300208: Wall48
-    4300210: Wall50
-    4300212: Wall51
-    4300214: Wall52
-    4300216: Wall53
-    4300218: Wall54
-    4300220: Wall55
-    4300222: Wall56
-    4300224: Wall58
-    4300226: Wall59
-    4300228: Wall60
-    4300230: Wall61
-    4300232: Wall62
-    4300234: Wall_Slope1
-    4300236: Wall_Slope2
-    4300238: Wall_Slope4
-    4300240: Wall_Slope
-    4300242: Wall_Slope2
-    4300244: Wall_Slope3
-    4300246: Wall_Slope5
-    4300248: Wall107
-    4300250: Wall106
-    4300252: Wall105
-    4300254: Wall104
-    4300256: Wall103
-    4300258: Wall102
-    4300260: Wall100
-    4300262: Wall99
-    4300264: Wall98
-    4300266: Walls_Top_Black
+    100000: Dalle_1
+    100002: Dalle_2
+    100004: Dalles
+    100006: Eau
+    100008: Eau1
+    100010: Eau2
+    100012: Eau3
+    100014: Eau4
+    100016: Eau5
+    100018: //RootNode
+    100020: Piece_centrale_half
+    100022: Pieces_annexes
+    100024: Stairs1
+    100026: Stairs2
+    100028: Wall
+    100030: Wall 1
+    100032: Wall 2
+    100034: Wall 3
+    100036: Wall100
+    100038: Wall102
+    100040: Wall103
+    100042: Wall104
+    100044: Wall105
+    100046: Wall106
+    100048: Wall107
+    100050: Wall108
+    100052: Wall113
+    100054: Wall114
+    100056: Wall115
+    100058: Wall116
+    100060: Wall122
+    100062: Wall123
+    100064: Wall124
+    100066: Wall125
+    100068: Wall126
+    100070: Wall127
+    100072: Wall128
+    100074: Wall129
+    100076: Wall130
+    100078: Wall131
+    100080: Wall132
+    100082: Wall133
+    100084: Wall135
+    100086: Wall136
+    100088: Wall137
+    100090: Wall138
+    100092: Wall20
+    100094: Wall20 1
+    100096: Wall20 2
+    100098: Wall21
+    100100: Wall21 1
+    100102: Wall21 2
+    100104: Wall22
+    100106: Wall22 1
+    100108: Wall22 2
+    100110: Wall22 3
+    100112: Wall23
+    100114: Wall23 1
+    100116: Wall25
+    100118: Wall25 1
+    100120: Wall26
+    100122: Wall26 1
+    100124: Wall26 2
+    100126: Wall27
+    100128: Wall27 1
+    100130: Wall27 2
+    100132: Wall28
+    100134: Wall28 1
+    100136: Wall29
+    100138: Wall29 1
+    100140: Wall30
+    100142: Wall30 1
+    100144: Wall31
+    100146: Wall31 1
+    100148: Wall31 2
+    100150: Wall32
+    100152: Wall32 1
+    100154: Wall33
+    100156: Wall33 1
+    100158: Wall33 2
+    100160: Wall34
+    100162: Wall34 1
+    100164: Wall34 2
+    100166: Wall35
+    100168: Wall35 1
+    100170: Wall35 2
+    100172: Wall36
+    100174: Wall36 1
+    100176: Wall36 2
+    100178: Wall37
+    100180: Wall37 1
+    100182: Wall37 2
+    100184: Wall39
+    100186: Wall39 1
+    100188: Wall39 2
+    100190: Wall40
+    100192: Wall40 1
+    100194: Wall40 2
+    100196: Wall41
+    100198: Wall42
+    100200: Wall44
+    100202: Wall45
+    100204: Wall46
+    100206: Wall47
+    100208: Wall48
+    100210: Wall51
+    100212: Wall52
+    100214: Wall53
+    100216: Wall54
+    100218: Wall55
+    100220: Wall56
+    100222: Wall58
+    100224: Wall59
+    100226: Wall60
+    100228: Wall61
+    100230: Wall62
+    100232: Wall63
+    100234: Wall64
+    100236: Wall65
+    100238: Wall66
+    100240: Wall67
+    100242: Wall68
+    100244: Wall75
+    100246: Wall75 1
+    100248: Wall76
+    100250: Wall76 1
+    100252: Wall77
+    100254: Wall77 1
+    100256: Wall78
+    100258: Wall78 1
+    100260: Wall79
+    100262: Wall80
+    100264: Wall82
+    100266: Wall83
+    100268: Wall84
+    100270: Wall95
+    100272: Wall96
+    100274: Wall97
+    100276: Wall98
+    100278: Wall99
+    100280: Wall_Long
+    100282: Wall_short_alt_N
+    100284: Wall_Short_N
+    100286: Wall_Short_S
+    100288: Wall_Slope
+    100290: Wall_Slope 1
+    100292: Wall_Slope1
+    100294: Wall_Slope1 1
+    100296: Wall_Slope2
+    100298: Wall_Slope2 1
+    100300: Wall_Slope2 2
+    100302: Wall_Slope2 3
+    100304: Wall_Slope3
+    100306: Wall_Slope3 1
+    100308: Wall_Slope4
+    100310: Wall_Slope4 1
+    100312: Wall_Slope5
+    100314: Wall_Slope_N
+    100316: Wall_Slope_NE
+    100318: Wall_Slope_S
+    100320: Wall_Slope_SE
+    100322: Wall_Super_Short_E
+    100324: Wall_window
+    100326: Wall_window1
+    100328: Wall_window10
+    100330: Wall_window11
+    100332: Wall_window12
+    100334: Wall_window13
+    100336: Wall_window14
+    100338: Wall_window15
+    100340: Wall_window16
+    100342: Wall_window17
+    100344: Wall_window2
+    100346: Wall_window3
+    100348: Wall_window4
+    100350: Wall_window5
+    100352: Wall_window6
+    100354: Wall_window7
+    100356: Wall_window8
+    100358: Wall_window9
+    100360: Walls
+    100362: Walls_center_N
+    100364: Walls_center_N1
+    100366: Walls_Top_Black
+    100368: Walls_Top_Black_center
+    100370: Dalle_3
+    400000: Dalle_1
+    400002: Dalle_2
+    400004: Dalles
+    400006: Eau
+    400008: Eau1
+    400010: Eau2
+    400012: Eau3
+    400014: Eau4
+    400016: Eau5
+    400018: //RootNode
+    400020: Piece_centrale_half
+    400022: Pieces_annexes
+    400024: Stairs1
+    400026: Stairs2
+    400028: Wall
+    400030: Wall 1
+    400032: Wall 2
+    400034: Wall 3
+    400036: Wall100
+    400038: Wall102
+    400040: Wall103
+    400042: Wall104
+    400044: Wall105
+    400046: Wall106
+    400048: Wall107
+    400050: Wall108
+    400052: Wall113
+    400054: Wall114
+    400056: Wall115
+    400058: Wall116
+    400060: Wall122
+    400062: Wall123
+    400064: Wall124
+    400066: Wall125
+    400068: Wall126
+    400070: Wall127
+    400072: Wall128
+    400074: Wall129
+    400076: Wall130
+    400078: Wall131
+    400080: Wall132
+    400082: Wall133
+    400084: Wall135
+    400086: Wall136
+    400088: Wall137
+    400090: Wall138
+    400092: Wall20
+    400094: Wall20 1
+    400096: Wall20 2
+    400098: Wall21
+    400100: Wall21 1
+    400102: Wall21 2
+    400104: Wall22
+    400106: Wall22 1
+    400108: Wall22 2
+    400110: Wall22 3
+    400112: Wall23
+    400114: Wall23 1
+    400116: Wall25
+    400118: Wall25 1
+    400120: Wall26
+    400122: Wall26 1
+    400124: Wall26 2
+    400126: Wall27
+    400128: Wall27 1
+    400130: Wall27 2
+    400132: Wall28
+    400134: Wall28 1
+    400136: Wall29
+    400138: Wall29 1
+    400140: Wall30
+    400142: Wall30 1
+    400144: Wall31
+    400146: Wall31 1
+    400148: Wall31 2
+    400150: Wall32
+    400152: Wall32 1
+    400154: Wall33
+    400156: Wall33 1
+    400158: Wall33 2
+    400160: Wall34
+    400162: Wall34 1
+    400164: Wall34 2
+    400166: Wall35
+    400168: Wall35 1
+    400170: Wall35 2
+    400172: Wall36
+    400174: Wall36 1
+    400176: Wall36 2
+    400178: Wall37
+    400180: Wall37 1
+    400182: Wall37 2
+    400184: Wall39
+    400186: Wall39 1
+    400188: Wall39 2
+    400190: Wall40
+    400192: Wall40 1
+    400194: Wall40 2
+    400196: Wall41
+    400198: Wall42
+    400200: Wall44
+    400202: Wall45
+    400204: Wall46
+    400206: Wall47
+    400208: Wall48
+    400210: Wall51
+    400212: Wall52
+    400214: Wall53
+    400216: Wall54
+    400218: Wall55
+    400220: Wall56
+    400222: Wall58
+    400224: Wall59
+    400226: Wall60
+    400228: Wall61
+    400230: Wall62
+    400232: Wall63
+    400234: Wall64
+    400236: Wall65
+    400238: Wall66
+    400240: Wall67
+    400242: Wall68
+    400244: Wall75
+    400246: Wall75 1
+    400248: Wall76
+    400250: Wall76 1
+    400252: Wall77
+    400254: Wall77 1
+    400256: Wall78
+    400258: Wall78 1
+    400260: Wall79
+    400262: Wall80
+    400264: Wall82
+    400266: Wall83
+    400268: Wall84
+    400270: Wall95
+    400272: Wall96
+    400274: Wall97
+    400276: Wall98
+    400278: Wall99
+    400280: Wall_Long
+    400282: Wall_short_alt_N
+    400284: Wall_Short_N
+    400286: Wall_Short_S
+    400288: Wall_Slope
+    400290: Wall_Slope 1
+    400292: Wall_Slope1
+    400294: Wall_Slope1 1
+    400296: Wall_Slope2
+    400298: Wall_Slope2 1
+    400300: Wall_Slope2 2
+    400302: Wall_Slope2 3
+    400304: Wall_Slope3
+    400306: Wall_Slope3 1
+    400308: Wall_Slope4
+    400310: Wall_Slope4 1
+    400312: Wall_Slope5
+    400314: Wall_Slope_N
+    400316: Wall_Slope_NE
+    400318: Wall_Slope_S
+    400320: Wall_Slope_SE
+    400322: Wall_Super_Short_E
+    400324: Wall_window
+    400326: Wall_window1
+    400328: Wall_window10
+    400330: Wall_window11
+    400332: Wall_window12
+    400334: Wall_window13
+    400336: Wall_window14
+    400338: Wall_window15
+    400340: Wall_window16
+    400342: Wall_window17
+    400344: Wall_window2
+    400346: Wall_window3
+    400348: Wall_window4
+    400350: Wall_window5
+    400352: Wall_window6
+    400354: Wall_window7
+    400356: Wall_window8
+    400358: Wall_window9
+    400360: Walls
+    400362: Walls_center_N
+    400364: Walls_center_N1
+    400366: Walls_Top_Black
+    400368: Walls_Top_Black_center
+    400370: Dalle_3
+    2100000: wall_interior
+    2100002: Top_black
+    2100004: wall_interior_window
+    2100006: dalle_1
+    2100008: dalle_2
+    2100010: stairs
+    2100012: lambert1
+    2100014: dalle_3
+    2300000: Dalle_1
+    2300002: Dalle_2
+    2300004: Eau
+    2300006: Eau1
+    2300008: Eau2
+    2300010: Eau3
+    2300012: Eau4
+    2300014: Eau5
+    2300016: Stairs1
+    2300018: Stairs2
+    2300020: Wall
+    2300022: Wall 1
+    2300024: Wall 2
+    2300026: Wall 3
+    2300028: Wall100
+    2300030: Wall102
+    2300032: Wall103
+    2300034: Wall104
+    2300036: Wall105
+    2300038: Wall106
+    2300040: Wall107
+    2300042: Wall108
+    2300044: Wall113
+    2300046: Wall114
+    2300048: Wall115
+    2300050: Wall116
+    2300052: Wall122
+    2300054: Wall123
+    2300056: Wall124
+    2300058: Wall125
+    2300060: Wall126
+    2300062: Wall127
+    2300064: Wall128
+    2300066: Wall129
+    2300068: Wall130
+    2300070: Wall131
+    2300072: Wall132
+    2300074: Wall133
+    2300076: Wall135
+    2300078: Wall136
+    2300080: Wall137
+    2300082: Wall138
+    2300084: Wall20
+    2300086: Wall20 1
+    2300088: Wall20 2
+    2300090: Wall21
+    2300092: Wall21 1
+    2300094: Wall21 2
+    2300096: Wall22
+    2300098: Wall22 1
+    2300100: Wall22 2
+    2300102: Wall22 3
+    2300104: Wall23
+    2300106: Wall23 1
+    2300108: Wall25
+    2300110: Wall25 1
+    2300112: Wall26
+    2300114: Wall26 1
+    2300116: Wall26 2
+    2300118: Wall27
+    2300120: Wall27 1
+    2300122: Wall27 2
+    2300124: Wall28
+    2300126: Wall28 1
+    2300128: Wall29
+    2300130: Wall29 1
+    2300132: Wall30
+    2300134: Wall30 1
+    2300136: Wall31
+    2300138: Wall31 1
+    2300140: Wall31 2
+    2300142: Wall32
+    2300144: Wall32 1
+    2300146: Wall33
+    2300148: Wall33 1
+    2300150: Wall33 2
+    2300152: Wall34
+    2300154: Wall34 1
+    2300156: Wall34 2
+    2300158: Wall35
+    2300160: Wall35 1
+    2300162: Wall35 2
+    2300164: Wall36
+    2300166: Wall36 1
+    2300168: Wall36 2
+    2300170: Wall37
+    2300172: Wall37 1
+    2300174: Wall37 2
+    2300176: Wall39
+    2300178: Wall39 1
+    2300180: Wall39 2
+    2300182: Wall40
+    2300184: Wall40 1
+    2300186: Wall40 2
+    2300188: Wall41
+    2300190: Wall42
+    2300192: Wall44
+    2300194: Wall45
+    2300196: Wall46
+    2300198: Wall47
+    2300200: Wall48
+    2300202: Wall51
+    2300204: Wall52
+    2300206: Wall53
+    2300208: Wall54
+    2300210: Wall55
+    2300212: Wall56
+    2300214: Wall58
+    2300216: Wall59
+    2300218: Wall60
+    2300220: Wall61
+    2300222: Wall62
+    2300224: Wall63
+    2300226: Wall64
+    2300228: Wall65
+    2300230: Wall66
+    2300232: Wall67
+    2300234: Wall68
+    2300236: Wall75
+    2300238: Wall75 1
+    2300240: Wall76
+    2300242: Wall76 1
+    2300244: Wall77
+    2300246: Wall77 1
+    2300248: Wall78
+    2300250: Wall78 1
+    2300252: Wall79
+    2300254: Wall80
+    2300256: Wall82
+    2300258: Wall83
+    2300260: Wall84
+    2300262: Wall95
+    2300264: Wall96
+    2300266: Wall97
+    2300268: Wall98
+    2300270: Wall99
+    2300272: Wall_Slope
+    2300274: Wall_Slope 1
+    2300276: Wall_Slope1
+    2300278: Wall_Slope1 1
+    2300280: Wall_Slope2
+    2300282: Wall_Slope2 1
+    2300284: Wall_Slope2 2
+    2300286: Wall_Slope2 3
+    2300288: Wall_Slope3
+    2300290: Wall_Slope3 1
+    2300292: Wall_Slope4
+    2300294: Wall_Slope4 1
+    2300296: Wall_Slope5
+    2300298: Wall_window
+    2300300: Wall_window1
+    2300302: Wall_window10
+    2300304: Wall_window11
+    2300306: Wall_window12
+    2300308: Wall_window13
+    2300310: Wall_window14
+    2300312: Wall_window15
+    2300314: Wall_window16
+    2300316: Wall_window17
+    2300318: Wall_window2
+    2300320: Wall_window3
+    2300322: Wall_window4
+    2300324: Wall_window5
+    2300326: Wall_window6
+    2300328: Wall_window7
+    2300330: Wall_window8
+    2300332: Wall_window9
+    2300334: Walls_Top_Black
+    2300336: Walls_Top_Black_center
+    2300338: Dalle_3
+    3300000: Dalle_1
+    3300002: Dalle_2
+    3300004: Eau
+    3300006: Eau1
+    3300008: Eau2
+    3300010: Eau3
+    3300012: Eau4
+    3300014: Eau5
+    3300016: Stairs1
+    3300018: Stairs2
+    3300020: Wall
+    3300022: Wall 1
+    3300024: Wall 2
+    3300026: Wall 3
+    3300028: Wall100
+    3300030: Wall102
+    3300032: Wall103
+    3300034: Wall104
+    3300036: Wall105
+    3300038: Wall106
+    3300040: Wall107
+    3300042: Wall108
+    3300044: Wall113
+    3300046: Wall114
+    3300048: Wall115
+    3300050: Wall116
+    3300052: Wall122
+    3300054: Wall123
+    3300056: Wall124
+    3300058: Wall125
+    3300060: Wall126
+    3300062: Wall127
+    3300064: Wall128
+    3300066: Wall129
+    3300068: Wall130
+    3300070: Wall131
+    3300072: Wall132
+    3300074: Wall133
+    3300076: Wall135
+    3300078: Wall136
+    3300080: Wall137
+    3300082: Wall138
+    3300084: Wall20
+    3300086: Wall20 1
+    3300088: Wall20 2
+    3300090: Wall21
+    3300092: Wall21 1
+    3300094: Wall21 2
+    3300096: Wall22
+    3300098: Wall22 1
+    3300100: Wall22 2
+    3300102: Wall22 3
+    3300104: Wall23
+    3300106: Wall23 1
+    3300108: Wall25
+    3300110: Wall25 1
+    3300112: Wall26
+    3300114: Wall26 1
+    3300116: Wall26 2
+    3300118: Wall27
+    3300120: Wall27 1
+    3300122: Wall27 2
+    3300124: Wall28
+    3300126: Wall28 1
+    3300128: Wall29
+    3300130: Wall29 1
+    3300132: Wall30
+    3300134: Wall30 1
+    3300136: Wall31
+    3300138: Wall31 1
+    3300140: Wall31 2
+    3300142: Wall32
+    3300144: Wall32 1
+    3300146: Wall33
+    3300148: Wall33 1
+    3300150: Wall33 2
+    3300152: Wall34
+    3300154: Wall34 1
+    3300156: Wall34 2
+    3300158: Wall35
+    3300160: Wall35 1
+    3300162: Wall35 2
+    3300164: Wall36
+    3300166: Wall36 1
+    3300168: Wall36 2
+    3300170: Wall37
+    3300172: Wall37 1
+    3300174: Wall37 2
+    3300176: Wall39
+    3300178: Wall39 1
+    3300180: Wall39 2
+    3300182: Wall40
+    3300184: Wall40 1
+    3300186: Wall40 2
+    3300188: Wall41
+    3300190: Wall42
+    3300192: Wall44
+    3300194: Wall45
+    3300196: Wall46
+    3300198: Wall47
+    3300200: Wall48
+    3300202: Wall51
+    3300204: Wall52
+    3300206: Wall53
+    3300208: Wall54
+    3300210: Wall55
+    3300212: Wall56
+    3300214: Wall58
+    3300216: Wall59
+    3300218: Wall60
+    3300220: Wall61
+    3300222: Wall62
+    3300224: Wall63
+    3300226: Wall64
+    3300228: Wall65
+    3300230: Wall66
+    3300232: Wall67
+    3300234: Wall68
+    3300236: Wall75
+    3300238: Wall75 1
+    3300240: Wall76
+    3300242: Wall76 1
+    3300244: Wall77
+    3300246: Wall77 1
+    3300248: Wall78
+    3300250: Wall78 1
+    3300252: Wall79
+    3300254: Wall80
+    3300256: Wall82
+    3300258: Wall83
+    3300260: Wall84
+    3300262: Wall95
+    3300264: Wall96
+    3300266: Wall97
+    3300268: Wall98
+    3300270: Wall99
+    3300272: Wall_Slope
+    3300274: Wall_Slope 1
+    3300276: Wall_Slope1
+    3300278: Wall_Slope1 1
+    3300280: Wall_Slope2
+    3300282: Wall_Slope2 1
+    3300284: Wall_Slope2 2
+    3300286: Wall_Slope2 3
+    3300288: Wall_Slope3
+    3300290: Wall_Slope3 1
+    3300292: Wall_Slope4
+    3300294: Wall_Slope4 1
+    3300296: Wall_Slope5
+    3300298: Wall_window
+    3300300: Wall_window1
+    3300302: Wall_window10
+    3300304: Wall_window11
+    3300306: Wall_window12
+    3300308: Wall_window13
+    3300310: Wall_window14
+    3300312: Wall_window15
+    3300314: Wall_window16
+    3300316: Wall_window17
+    3300318: Wall_window2
+    3300320: Wall_window3
+    3300322: Wall_window4
+    3300324: Wall_window5
+    3300326: Wall_window6
+    3300328: Wall_window7
+    3300330: Wall_window8
+    3300332: Wall_window9
+    3300334: Walls_Top_Black
+    3300336: Walls_Top_Black_center
+    3300338: Dalle_3
+    4300000: Wall31
+    4300002: Wall32
+    4300004: Wall33
+    4300006: Wall34
+    4300008: Wall35
+    4300010: Wall36
+    4300012: Wall37
+    4300014: Wall39
+    4300016: Wall40
+    4300018: Wall97
+    4300020: Wall
+    4300022: Wall21
+    4300024: Wall22
+    4300026: Wall96
+    4300028: Wall95
+    4300030: Wall26
+    4300032: Wall27
+    4300034: Wall108
+    4300036: Wall
+    4300038: Wall20
+    4300040: Wall21
+    4300042: Wall22
+    4300044: Wall23
+    4300046: Wall25
+    4300048: Wall26
+    4300050: Wall27
+    4300052: Wall28
+    4300054: Wall29
+    4300056: Wall30
+    4300058: Wall31
+    4300060: Wall32
+    4300062: Wall33
+    4300064: Wall34
+    4300066: Wall35
+    4300068: Wall36
+    4300070: Wall37
+    4300072: Wall39
+    4300074: Wall40
+    4300076: Wall
+    4300078: Wall20
+    4300080: Wall22
+    4300082: Wall_Slope
+    4300084: Wall_Slope2
+    4300086: Wall_Slope3
+    4300088: Wall_Slope1
+    4300090: Wall_Slope2
+    4300092: Wall_Slope4
+    4300094: Wall
+    4300096: Wall20
+    4300098: Wall21
+    4300100: Wall22
+    4300102: Wall23
+    4300104: Wall25
+    4300106: Wall26
+    4300108: Wall27
+    4300110: Wall28
+    4300112: Wall29
+    4300114: Wall30
+    4300116: Wall31
+    4300118: Wall33
+    4300120: Wall34
+    4300122: Wall35
+    4300124: Wall36
+    4300126: Wall37
+    4300128: Wall39
+    4300130: Wall40
+    4300132: Wall41
+    4300134: Wall42
+    4300136: Wall44
+    4300138: Wall45
+    4300140: Wall46
+    4300142: Wall47
+    4300144: Wall48
+    4300146: Wall51
+    4300148: Wall52
+    4300150: Wall53
+    4300152: Wall54
+    4300154: Wall55
+    4300156: Wall56
+    4300158: Wall58
+    4300160: Wall59
+    4300162: Wall60
+    4300164: Wall61
+    4300166: Wall62
+    4300168: Wall138
+    4300170: Wall_Slope1
+    4300172: Wall_Slope2
+    4300174: Wall_Slope4
+    4300176: Wall_Slope
+    4300178: Wall_Slope2
+    4300180: Wall_Slope3
+    4300182: Wall_Slope5
+    4300184: Wall107
+    4300186: Wall106
+    4300188: Wall105
+    4300190: Wall104
+    4300192: Wall103
+    4300194: Wall102
+    4300196: Wall100
+    4300198: Wall99
+    4300200: Wall98
+    4300202: Walls_Top_Black
+    4300204: Wall75
+    4300206: Wall76
+    4300208: Wall77
+    4300210: Wall78
+    4300212: Wall113
+    4300214: Wall114
+    4300216: Wall115
+    4300218: Wall116
+    4300220: Wall_window
+    4300222: Wall_window1
+    4300224: Wall_window2
+    4300226: Wall_window3
+    4300228: Wall_window4
+    4300230: Wall_window5
+    4300232: Wall_window6
+    4300234: Wall_window7
+    4300236: Wall_window8
+    4300238: Wall_window9
+    4300240: Wall_window10
+    4300242: Wall_window11
+    4300244: Wall_window12
+    4300246: Wall_window13
+    4300248: Wall_window14
+    4300250: Wall_window15
+    4300252: Wall_window16
+    4300254: Wall_window17
+    4300256: Wall66
+    4300258: Wall67
+    4300260: Wall68
+    4300262: Wall65
+    4300264: Wall64
+    4300266: Wall63
     4300268: Wall75
     4300270: Wall76
     4300272: Wall77
     4300274: Wall78
-    4300276: Wall113
-    4300278: Wall114
-    4300280: Wall115
-    4300282: Wall116
-    4300284: Wall_window
-    4300286: Wall_window1
-    4300288: Wall_window2
-    4300290: Wall_window3
-    4300292: Wall_window4
-    4300294: Wall_window5
-    4300296: Wall_window6
-    4300298: Wall_window7
-    4300300: Wall_window8
-    4300302: Wall_window9
-    4300304: Wall_window10
-    4300306: Wall_window11
-    4300308: Wall_window12
-    4300310: Wall_window13
-    4300312: Wall_window14
-    4300314: Wall_window15
-    4300316: Wall_window16
-    4300318: Wall_window17
-    4300320: Wall66
-    4300322: Wall67
-    4300324: Wall68
-    4300326: Wall65
-    4300328: Wall64
-    4300330: Wall63
-    4300332: Wall75
-    4300334: Wall76
-    4300336: Wall77
-    4300338: Wall78
-    4300340: Wall79
-    4300342: Wall80
-    4300344: Wall81
-    4300346: Wall82
-    4300348: Wall83
-    4300350: Wall84
-    4300352: Wall122
-    4300354: Wall123
-    4300356: Wall124
-    4300358: Wall125
-    4300360: Wall126
-    4300362: Wall127
-    4300364: Wall128
-    4300366: Wall129
-    4300368: Wall130
-    4300370: Wall131
-    4300372: Wall132
-    4300374: Wall133
-    4300376: Wall134
-    4300378: Wall135
-    4300380: Wall136
-    4300382: Wall137
-    4300384: Walls_Top_Black_center
-    4300386: Wall138
+    4300276: Wall79
+    4300278: Wall80
+    4300280: Wall82
+    4300282: Wall83
+    4300284: Wall84
+    4300286: Wall122
+    4300288: Wall123
+    4300290: Wall124
+    4300292: Wall125
+    4300294: Wall126
+    4300296: Wall127
+    4300298: Wall128
+    4300300: Wall129
+    4300302: Wall130
+    4300304: Wall131
+    4300306: Wall132
+    4300308: Wall133
+    4300310: Wall135
+    4300312: Wall136
+    4300314: Wall137
+    4300316: Walls_Top_Black_center
+    4300318: Dalle_1
+    4300320: Dalle_2
+    4300322: Stairs1
+    4300324: Stairs2
+    4300326: Eau
+    4300328: Eau1
+    4300330: Eau2
+    4300332: Eau3
+    4300334: Eau4
+    4300336: Eau5
+    4300338: Dalle_3
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -1046,8 +902,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: ground
-    second: {fileID: 2100000, guid: 005df5dca0265584686e0a3ee548f13e, type: 2}
+      name: dalle_1
+    second: {fileID: 2100000, guid: 1341361c7b57d2740905345b5ca26135, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dalle_2
+    second: {fileID: 2100000, guid: 53b7c6d3d9a88f44a8cab4cf038bcb01, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: stairs
+    second: {fileID: 2100000, guid: 0d318c6f74df2114eb6f93a549f8ea88, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -1097,7 +963,7 @@ ModelImporter:
     importCameras: 1
     importLights: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
