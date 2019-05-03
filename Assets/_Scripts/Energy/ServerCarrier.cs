@@ -118,7 +118,7 @@ public class ServerCarrier : MonoBehaviour
 
         if (givingTo != null && charge > 0) // The carrier is giving energy
         {
-            if (givingTo.charge >= givingTo.maxCharge || Vector3.Distance(transform.position, givingTo.transform.position) > 5)
+            if (givingTo.charge >= givingTo.maxCharge || Vector3.Distance(transform.position, givingTo.transform.position) > 15)
             {
                 StopGiving();
             }
@@ -132,7 +132,7 @@ public class ServerCarrier : MonoBehaviour
 
         if (takingFrom != null && charge < maxCharge) // The carrier is taking/stealing energy
         {
-            if (takingFrom.charge <= 0 || Vector3.Distance(transform.position, takingFrom.transform.position) > 5)
+            if (takingFrom.charge <= 0 || Vector3.Distance(transform.position, takingFrom.transform.position) > 15)
             {
                 StopTaking();
             }
