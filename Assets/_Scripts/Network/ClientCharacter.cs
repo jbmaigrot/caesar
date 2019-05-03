@@ -25,7 +25,7 @@ public class ClientCharacter : MonoBehaviour
 
         floatingFreq = Random.Range(0.2f, 0.3f);
         mesh = transform.Find("Mesh").transform;
-        startingY = transform.position.y;
+        startingY = transform.localPosition.y;
     }
 
     // Update is called once per frame
@@ -34,7 +34,7 @@ public class ClientCharacter : MonoBehaviour
         transform.position = transform.position + speed * Time.deltaTime;
 
         // Floating animation
-        mesh.position = new Vector3(transform.position.x, startingY - floatingRange / 2 + floatingRange * (Mathf.Sin(Time.time * 2 * Mathf.PI * floatingFreq)), transform.position.z);
+        mesh.localPosition = new Vector3(0, startingY - floatingRange / 2 + floatingRange * (Mathf.Sin(Time.time * 2 * Mathf.PI * floatingFreq)), 0);
     }
 
     // Tacle
