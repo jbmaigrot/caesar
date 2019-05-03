@@ -137,6 +137,7 @@ public class ServerCharacter : MonoBehaviour
                             if (actualDestination != priorityDestination)
                             {
                                 actualDestination = priorityDestination;
+                                normalDestination = actualDestination;
                                 navMeshAgent.ResetPath();
                                 navMeshAgent.destination = actualDestination;
                                 SendPathChange();
