@@ -19,7 +19,7 @@ public class CameraController : MonoBehaviour
     public int cameraMode;
 
     [Header("Default value is 225. Apply to the camera's parent.")]
-    public float defaultCameraYRotation = 225.0f;
+    public float defaultCameraYRotation = 135.0f;
 
     [Header("Default value is 50. Apply to the camera itself.")]
     public float defaultCameraXRotation = 50.0f;
