@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-#if CLIENT
+
 public class ClientChat : MonoBehaviour
 {
     public RectTransform chatBox;
     public GameObject messagePrefab;
-
+#if CLIENT
     private InputField inputField;
     private Client client;
 
@@ -40,7 +40,8 @@ public class ClientChat : MonoBehaviour
         newMessage.GetComponentInChildren<Text>().text = message;
         newMessage.GetComponent<ClientMessage>().sourcePosition = pos;
     }
+#endif
 }
 
-#endif
+
 

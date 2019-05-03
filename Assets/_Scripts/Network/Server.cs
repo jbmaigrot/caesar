@@ -12,8 +12,9 @@ using System;
 
 public class Server : MonoBehaviour
 {
-#if SERVER
+
     public GameObject prefabPJ;
+#if SERVER
     public UdpCNetworkDriver m_Driver;
     public List<Transform> players = new List<Transform>();
     public List<Transform> characters = new List<Transform>(); // Players + NPCs
@@ -398,7 +399,7 @@ public class Server : MonoBehaviour
                     if (OrangeIsBack)
                     {
                         writer.Write(1);
-                        OrangeIsBack = false;
+                        
                     }
                     else
                     {
@@ -407,7 +408,7 @@ public class Server : MonoBehaviour
                     if (BlueIsBack)
                     {
                         writer.Write(1);
-                        BlueIsBack = false;
+                        
                     }
                     else
                     {
@@ -417,7 +418,8 @@ public class Server : MonoBehaviour
                 }
             }
         }
-
+        OrangeIsBack = false;
+        BlueIsBack = false;
         snapshotCount++;
     }
 

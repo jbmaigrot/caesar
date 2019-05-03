@@ -643,7 +643,8 @@ public class Client : MonoBehaviour
         using (var writer = new DataStreamWriter(64, Allocator.Temp))
         {
             writer.Write(Constants.Client_ThiefHasBeenStunned);
-            writer.Write(1 - team);
+            if (team == 1) writer.Write(0);
+            else writer.Write(1);
             m_Connection.Send(m_Driver, writer);
         }
             
