@@ -362,6 +362,17 @@ public class Client : MonoBehaviour
                             Debug.Log("Team " + winner + " wins!");
                             break;
 
+                        case Constants.Server_SendPath:
+                            int pathLength = (int)stream.ReadUInt(ref readerCtx);
+                            Vector3[] pathAs3dPositions = new Vector3[pathLength];
+                            for (int i = 0; i < pathLength; i++)
+                            {
+                                float x = stream.ReadFloat(ref readerCtx);
+                                float y = stream.ReadFloat(ref readerCtx);
+                                float z = stream.ReadFloat(ref readerCtx);
+                            }
+                            break;
+
                         default:
                             break;
                     }
@@ -384,6 +395,7 @@ public class Client : MonoBehaviour
         {
             writer.Write(Constants.Client_SetDestination);
             writer.Write(destination.x);
+            writer.Write(destination.y);
             writer.Write(destination.z);
 
             m_Connection.Send(m_Driver, writer);
