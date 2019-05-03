@@ -314,6 +314,20 @@ public class Client : MonoBehaviour
                                         }
                                     }
                                 }
+                                if((int)stream.ReadUInt(ref readerCtx)==1)//OrangeIsBack so we should delete the orange Relay from the inventory.
+                                {
+                                    for(int ryan = 0;ryan < inventory.Length; ryan++)
+                                    {
+                                        if (inventory[ryan] == InventoryConstants.OrangeRelay) inventory[ryan] = InventoryConstants.Empty;
+                                    }
+                                }
+                                if ((int)stream.ReadUInt(ref readerCtx) == 1)//BlueIsBack so we should delete the blue Relay from the inventory.
+                                {
+                                    for (int ryan = 0; ryan < inventory.Length; ryan++)
+                                    {
+                                        if (inventory[ryan] == InventoryConstants.BlueRelay) inventory[ryan] = InventoryConstants.Empty;
+                                    }
+                                }
                             }
                             break;
 

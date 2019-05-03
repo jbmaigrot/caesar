@@ -19,6 +19,8 @@ public class Server : MonoBehaviour
     public List<Transform> characters = new List<Transform>(); // Players + NPCs
     public Transform BlueBatterie;
     public Transform RedBatterie;
+    private bool OrangeIsBack;
+    private bool BlueIsBack;
 
     private NativeList<NetworkConnection> m_Connections;
     private NativeList<NetworkConnection> tmp_Connections;
@@ -285,14 +287,34 @@ public class Server : MonoBehaviour
                                 }
                                 if (!alreadyMoved)
                                 {
-                                    //CREER un nouvel inoutvignette qui contient le gadget OrangeRelay dans la redBatterie
-                                }
-
-                                //Envoyer un message à tous les client pour supprimer leur OrangeRelay de leur inventaire
+                                    InOutVignette reynolds = new InOutVignette();
+                                    reynolds.code = "UseGadget";
+                                    reynolds.is_fixed = true;
+                                    reynolds.parameter_int = InventoryConstants.OrangeRelay;
+                                    RedBatterie.GetComponent<ProgrammableObjectsData>().outputCodes.Add(reynolds);
+                                    AddMessage("THE ORANGE RELAY IS BACK IN ITS SERVER.", Vector3.zero);
+                                }                                
+                                OrangeIsBack = true;
                             }
                             else if (team == 1)
                             {
-                                // Faire comme au dessus mais pour les bleus
+                                foreach (InOutVignette ryan in BlueBatterie.GetComponent<ProgrammableObjectsData>().outputCodes)
+                                {
+                                    if (ryan.code == "UseGadget" && ryan.parameter_int == InventoryConstants.BlueRelay)
+                                    {
+                                        alreadyMoved = true;
+                                    }
+                                }
+                                if (!alreadyMoved)
+                                {
+                                    InOutVignette reynolds = new InOutVignette();
+                                    reynolds.code = "UseGadget";
+                                    reynolds.is_fixed = true;
+                                    reynolds.parameter_int = InventoryConstants.BlueRelay;
+                                    BlueBatterie.GetComponent<ProgrammableObjectsData>().outputCodes.Add(reynolds);
+                                    AddMessage("THE BLUE RELAY IS BACK IN ITS SERVER.", Vector3.zero);
+                                }                               
+                                BlueIsBack = true;
                             }
                             break;
                         default:
@@ -373,6 +395,24 @@ public class Server : MonoBehaviour
                     writer.Write(Constants.Server_SnapshotEnd);
 
                     writer.Write(characters.IndexOf(players[i]));//index of the player in the character list
+                    if (OrangeIsBack)
+                    {
+                        writer.Write(1);
+                        OrangeIsBack = false;
+                    }
+                    else
+                    {
+                        writer.Write(0);
+                    }
+                    if (BlueIsBack)
+                    {
+                        writer.Write(1);
+                        BlueIsBack = false;
+                    }
+                    else
+                    {
+                        writer.Write(0);
+                    }
                     m_Driver.Send(m_Connections[i], writer);
                 }
             }
