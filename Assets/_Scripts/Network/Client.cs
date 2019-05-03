@@ -153,6 +153,7 @@ public class Client : MonoBehaviour
                                 {
                                     int j = (int)stream.ReadUInt(ref readerCtx);
                                     float x = stream.ReadFloat(ref readerCtx);
+                                    float y = stream.ReadFloat(ref readerCtx);
                                     float z = stream.ReadFloat(ref readerCtx);
                                     float angle = stream.ReadFloat(ref readerCtx);
                                     float xSpeed = stream.ReadFloat(ref readerCtx);
@@ -205,7 +206,7 @@ public class Client : MonoBehaviour
                                                 ryan.material.color = Color.white;
                                             }
                                         }
-                                        characters[j].transform.SetPositionAndRotation(new Vector3(x, characters[j].transform.position.y, z), Quaternion.Euler(0, angle, 0));
+                                        characters[j].transform.SetPositionAndRotation(new Vector3(x, y, z), Quaternion.Euler(0, angle, 0));
                                         characters[j].speed.x = xSpeed;
                                         characters[j].speed.z = zSpeed;
                                     }
@@ -347,8 +348,9 @@ public class Client : MonoBehaviour
                                 chars[n] = (char)buffer[n];
                             }
                             float xPos = stream.ReadFloat(ref readerCtx);
+                            float yPos = stream.ReadFloat(ref readerCtx);
                             float zPos = stream.ReadFloat(ref readerCtx);
-                            chat.AddMessage(new string(chars), new Vector3(xPos, 0, zPos));
+                            chat.AddMessage(new string(chars), new Vector3(xPos, yPos, zPos));
                             break;
 
                         case Constants.Server_GetHack:
