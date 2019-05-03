@@ -349,6 +349,7 @@ public class Server : MonoBehaviour
                         writer.Write(Constants.Server_MoveCharacter);
                         writer.Write(charactersIndex);
                         writer.Write(characters[charactersIndex].position.x);
+                        writer.Write(characters[charactersIndex].position.y);
                         writer.Write(characters[charactersIndex].position.z);
                         writer.Write(characters[charactersIndex].rotation.eulerAngles.y);
                         writer.Write(characters[charactersIndex].GetComponent<NavMeshAgent>().velocity.x);
@@ -439,6 +440,7 @@ public class Server : MonoBehaviour
             }
             writer.Write(buffer);
             writer.Write(pos.x);
+            writer.Write(pos.y);
             writer.Write(pos.z);
             //send snapshot to all clients
             for (int k = 0; k < m_Connections.Length; k++)
