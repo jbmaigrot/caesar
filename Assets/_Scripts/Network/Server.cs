@@ -218,8 +218,9 @@ public class Server : MonoBehaviour
                     {
                         case Constants.Client_SetDestination:
                             float dest_x = stream.ReadFloat(ref readerCtx);
+                            float dest_y = stream.ReadFloat(ref readerCtx);
                             float dest_z = stream.ReadFloat(ref readerCtx);
-                            players[i].gameObject.GetComponent<ServerCharacter>().normalDestination = new Vector3(dest_x, 0, dest_z);
+                            players[i].gameObject.GetComponent<ServerCharacter>().normalDestination = new Vector3(dest_x, dest_y, dest_z);
                             Debug.Log("now");
                             break;
 
@@ -728,5 +729,34 @@ public class Server : MonoBehaviour
         }
     }
 
+    public void SendPath(Vector3[] pathAs3dPositions, NetworkConnection nc)
+    {
+        using (var writer = new DataStreamWriter(64, Allocator.Temp))
+        {
+            writer.Write(Constants.Server_SendPath);
+            writer.Write(pathAs3dPositions.Length);
+            for (int i = 0; i < pathAs3dPositions.Length; i++)
+            {
+                writer.Write(pathAs3dPositions[i].x);
+                writer.Write(pathAs3dPositions[i].y);
+                writer.Write(pathAs3dPositions[i].z);
+            }
+            nc.Send(m_Driver, writer);
+        }
+    }
+
+    public NetworkConnection GetNetworkConnectionFromPlayerTransform(Transform tf)
+    {
+        int index = players.IndexOf(tf);
+        if (index != -1)
+        {
+            return m_Connections[index];
+        }
+        else
+        {
+            Debug.Log("Could not find requested player transform in the players list. Returning default connection.");
+            return default(NetworkConnection);
+        }
+    }
 #endif
 }
