@@ -138,7 +138,7 @@ public class ServerCharacter : MonoBehaviour
                             {
                                 actualDestination = priorityDestination;
                                 normalDestination = actualDestination;
-                                navMeshAgent.ResetPath();
+                                //navMeshAgent.ResetPath();
                                 navMeshAgent.destination = actualDestination;
                                 SendPathChange();
                             }
@@ -149,7 +149,7 @@ public class ServerCharacter : MonoBehaviour
                         if (normalDestination != actualDestination)
                         {
                             actualDestination = normalDestination;
-                            navMeshAgent.ResetPath();
+                            //navMeshAgent.ResetPath();
                             navMeshAgent.destination = actualDestination;
                             SendPathChange();
                         }
