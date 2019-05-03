@@ -137,7 +137,8 @@ public class ServerCharacter : MonoBehaviour
                             if (actualDestination != priorityDestination)
                             {
                                 actualDestination = priorityDestination;
-                                navMeshAgent.ResetPath();
+                                normalDestination = actualDestination;
+                                //navMeshAgent.ResetPath();
                                 navMeshAgent.destination = actualDestination;
                                 SendPathChange();
                             }
@@ -148,7 +149,7 @@ public class ServerCharacter : MonoBehaviour
                         if (normalDestination != actualDestination)
                         {
                             actualDestination = normalDestination;
-                            navMeshAgent.ResetPath();
+                            //navMeshAgent.ResetPath();
                             navMeshAgent.destination = actualDestination;
                             SendPathChange();
                         }
@@ -169,6 +170,7 @@ public class ServerCharacter : MonoBehaviour
                 for (int i = 0; i < path.corners.Length - 1; i++)
                     pathAs3dPositions[i] = new Vector3(path.corners[i].x, path.corners[i].y, path.corners[i].z);
 
+                pathAs3dPositions[path.corners.Length - 1] = navMeshAgent.destination;
                 server.SendPath(pathAs3dPositions, server.GetNetworkConnectionFromPlayerTransform(transform));
             }
         }
