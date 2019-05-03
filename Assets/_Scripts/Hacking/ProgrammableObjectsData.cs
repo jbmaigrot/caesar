@@ -273,7 +273,7 @@ public class ProgrammableObjectsData : MonoBehaviour
 
         if(codeoutput == "GoRed")
         {
-            if(server.GetComponent<ServerCharacter>().team != 1)
+            if(this.GetComponent<ServerCharacter>().team != 1)
             {
                 this.GetComponent<ServerCharacter>().hasAPriorityDestination = true;
                 this.GetComponent<ServerCharacter>().priorityDestination = RedBatterie.position;
@@ -282,7 +282,7 @@ public class ProgrammableObjectsData : MonoBehaviour
 
         if(codeoutput == "GoBlue")
         {
-            if (server.GetComponent<ServerCharacter>().team != 0)
+            if (this.GetComponent<ServerCharacter>().team != 0)
             {
                 this.GetComponent<ServerCharacter>().hasAPriorityDestination = true;
                 this.GetComponent<ServerCharacter>().priorityDestination = BlueBatterie.position;

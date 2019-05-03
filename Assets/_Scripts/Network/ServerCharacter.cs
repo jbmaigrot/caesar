@@ -93,6 +93,7 @@ public class ServerCharacter : MonoBehaviour
                     {
                         actualDestination = attractDestination;
                         this.GetComponent<NavMeshAgent>().destination = actualDestination;
+                        SendPathChange();
                     }
                 }
                 else
@@ -112,6 +113,7 @@ public class ServerCharacter : MonoBehaviour
                             actualDestination = attractByDataDestination;
                             this.GetComponent<NavMeshAgent>().ResetPath();
                             this.GetComponent<NavMeshAgent>().destination = actualDestination;
+                            SendPathChange();
                         }
                     }
                     else
@@ -135,6 +137,7 @@ public class ServerCharacter : MonoBehaviour
                                 actualDestination = priorityDestination;
                                 this.GetComponent<NavMeshAgent>().ResetPath();
                                 this.GetComponent<NavMeshAgent>().destination = actualDestination;
+                                SendPathChange();
                             }
                         }
                     }
@@ -145,10 +148,19 @@ public class ServerCharacter : MonoBehaviour
                             actualDestination = normalDestination;
                             this.GetComponent<NavMeshAgent>().ResetPath();
                             this.GetComponent<NavMeshAgent>().destination = actualDestination;
+                            SendPathChange();
                         }
                     }                    
                 }
             }
+        }
+    }
+
+    public void SendPathChange()
+    {
+        if (team != -1)
+        {
+            Debug.Log("Not a pnj is going to move");
         }
     }
 #endif
