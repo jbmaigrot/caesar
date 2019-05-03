@@ -731,7 +731,7 @@ public class Server : MonoBehaviour
 
     public void SendPath(Vector3[] pathAs3dPositions, NetworkConnection nc)
     {
-        using (var writer = new DataStreamWriter(64, Allocator.Temp))
+        using (var writer = new DataStreamWriter(1024, Allocator.Temp))
         {
             writer.Write(Constants.Server_SendPath);
             writer.Write(pathAs3dPositions.Length);

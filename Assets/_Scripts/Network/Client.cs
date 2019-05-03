@@ -44,6 +44,8 @@ public class Client : MonoBehaviour
 
     private bool isNapperoned = false;
 
+    public LineRenderer lineRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -277,6 +279,9 @@ public class Client : MonoBehaviour
                                         SpriteRenderer napperon = characters[playerIndex].transform.Find("napperon").GetComponent<SpriteRenderer>();
                                         SpriteRenderer range = characters[playerIndex].transform.Find("range").GetComponent<SpriteRenderer>();
 
+                                        lineRenderer = characters[playerIndex].transform.Find("lineRenderer").GetComponent<LineRenderer>();
+                                        lineRenderer.enabled = true;
+
                                         if (team == 0)
                                         {
                                             napperon.enabled = true;
@@ -370,7 +375,10 @@ public class Client : MonoBehaviour
                                 float x = stream.ReadFloat(ref readerCtx);
                                 float y = stream.ReadFloat(ref readerCtx);
                                 float z = stream.ReadFloat(ref readerCtx);
+                                pathAs3dPositions[i] = new Vector3(x, y, z);
                             }
+
+                            DrawPath(pathAs3dPositions);
                             break;
 
                         default:
@@ -386,6 +394,8 @@ public class Client : MonoBehaviour
                 }
             }
         }
+
+        UpdateDrawPath();
     }
 
     
@@ -659,7 +669,37 @@ public class Client : MonoBehaviour
             else writer.Write(1);
             m_Connection.Send(m_Driver, writer);
         }
-            
+    }
+
+    private void DrawPath(Vector3[] pathAs3dPositions)
+    {
+        if (lineRenderer != null)
+        {
+            lineRenderer.positionCount = pathAs3dPositions.Length;
+            lineRenderer.SetPositions(pathAs3dPositions);
+        }
+    }
+
+    private void UpdateDrawPath()
+    {
+        if (lineRenderer != null)
+        {
+            Vector3 playerPos = lineRenderer.transform.parent.position;
+            Vector3 startLine = new Vector3(playerPos.x, playerPos.y + 0.25f, playerPos.z);
+            lineRenderer.SetPosition(0, startLine);
+
+            if (lineRenderer.positionCount > 2)
+            {
+                if (Vector3.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(1)) < 2.5f)
+                {
+                    for (int i = 0; i < lineRenderer.positionCount - 1; i++)
+                    {
+                        lineRenderer.SetPosition(i, lineRenderer.GetPosition(i + 1));
+                    }
+                    lineRenderer.positionCount -= 1;
+                }
+            }
+        }
     }
 
 #endif
