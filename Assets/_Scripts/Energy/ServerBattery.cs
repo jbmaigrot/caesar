@@ -10,6 +10,8 @@ public class ServerBattery : MonoBehaviour
     private ServerCarrier carrier;
     private Server server;
     private ProgrammableObjectsData objectData;
+    private bool HasReachFifty;
+    private bool HasReachNinety;
 
     // Start
     private void Start()
@@ -17,6 +19,8 @@ public class ServerBattery : MonoBehaviour
         carrier = GetComponent<ServerCarrier>();
         server = FindObjectOfType<Server>();
         objectData = GetComponent<ProgrammableObjectsData>();
+        HasReachFifty = false;
+        HasReachNinety = false;
     }
 
     // Update is called once per frame
@@ -25,7 +29,40 @@ public class ServerBattery : MonoBehaviour
         if (carrier.charge >= carrier.maxCharge)
         {
             server.Win(team);
+            if(team == 0)
+            {
+                server.AddMessage("THE ORANGE TEAM WINS. CONGRATULATION.", Vector3.zero);
+            }
+            else
+            {
+                server.AddMessage("THE BLUE TEAM WINS. CONGRATULATION.", Vector3.zero);
+            }
         }
+        if(!HasReachFifty && carrier.charge >= carrier.maxCharge / 2.0f)
+        {
+            HasReachFifty = true;
+            if (team == 0)
+            {
+                server.AddMessage("THE ORANGE TEAM'S SERVER IS AT 50%", Vector3.zero);
+            }
+            else
+            {
+                server.AddMessage("THE BLUE TEAM'S SERVER IS AT 50%", Vector3.zero);
+            }
+        }
+        if (!HasReachNinety && carrier.charge >= carrier.maxCharge*0.9f)
+        {
+            HasReachNinety = true;
+            if (team == 0)
+            {
+                server.AddMessage("THE ORANGE TEAM'S SERVER IS AT 90%", Vector3.zero);
+            }
+            else
+            {
+                server.AddMessage("THE BLUE TEAM'S SERVER IS AT 90%", Vector3.zero);
+            }
+        }
+
         foreach (Transform ryan in server.characters)
         {
             if (ryan.GetComponent<ServerCarrier>().charge > 0 && Vector3.Distance(ryan.position,this.transform.position) < 30 && !server.players.Contains(ryan))

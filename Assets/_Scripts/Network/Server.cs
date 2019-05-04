@@ -35,7 +35,8 @@ public class Server : MonoBehaviour
     private int winner = -1; 
 
     private const float MANUALSTUNRADIUS = 15.0f;
-    
+
+    private bool hasSendItsRegard;
 
     // Start is called before the first frame update
     void Start()
@@ -86,6 +87,8 @@ public class Server : MonoBehaviour
             RedBatterie = Batteries[1].transform;
             BlueBatterie = Batteries[0].transform;
         }
+        hasSendItsRegard = false;
+        
     }
 
     public void OnApplicationQuit()
@@ -107,6 +110,11 @@ public class Server : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!hasSendItsRegard)
+        {
+            AddMessage("WELCOME TO TONIGHT CEREMONY. GOOD LUCK TO BOTH TEAM AND REMEMBER TO HAVE FUN.", Vector3.zero);
+            hasSendItsRegard = true;
+        }
         //Debug.Log(Mathf.Round(1f / Time.deltaTime)); //Framerate
 
         m_Driver.ScheduleUpdate().Complete();

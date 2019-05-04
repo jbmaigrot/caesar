@@ -373,7 +373,7 @@ public class ProgrammableObjectsData : MonoBehaviour
                 foreach (MeshRenderer ryan in this.GetComponentsInChildren<MeshRenderer>())
                 {
                     ryan.material.color = new Color(ryan.material.color.r*1.5625f, ryan.material.color.g*0.8f, ryan.material.color.b * 0.8f);
-                    Debug.Log("This is suppose to be kinda Red" + ryan.material.color.ToString());                    
+                                     
                 }
             }
             
@@ -386,7 +386,6 @@ public class ProgrammableObjectsData : MonoBehaviour
                 {
                     
                     ryan.material.color = new Color(ryan.material.color.r * 0.64f, ryan.material.color.g * 1.25f, ryan.material.color.b * 1.25f);
-                    Debug.Log("This is suppose to be kinda Not Red" + ryan.material.color.ToString());
                 }
             }
         }

@@ -18,7 +18,7 @@ public class SourceManager : MonoBehaviour
     {
 #if SERVER
         startingTime = Time.time;
-        timeBeforeSource = 0;
+        timeBeforeSource = 15.0f;
         Random.InitState(System.DateTime.Now.Second);
         server = FindObjectOfType<Server>();
 #endif
@@ -31,7 +31,7 @@ public class SourceManager : MonoBehaviour
         timeBeforeSource -= Time.deltaTime;
         if (timeBeforeSource <= 0)
         {
-            server.AddMessage("A NEW DATA POOL HAS APPEARED", Vector3.zero);
+            server.AddMessage("A NEW DATA POOL HAS APPEARED.", Vector3.zero);
             int i;
             do
             {
