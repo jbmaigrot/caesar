@@ -37,7 +37,12 @@ public class ServerSource : MonoBehaviour
         }
         else
         {
-            isActivated = true;
+            if (carrier.charge > 0)
+            {
+                isActivated = true;
+                server.AddMessage("THE NEW DATA POOL HAS BEGUN TO FILL", Vector3.zero);
+            }
+
         }
         
 

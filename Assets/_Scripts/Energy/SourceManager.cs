@@ -31,7 +31,7 @@ public class SourceManager : MonoBehaviour
         timeBeforeSource -= Time.deltaTime;
         if (timeBeforeSource <= 0)
         {
-            server.AddMessage("A NEW POOL OF DATA HAS APPEARED", Vector3.zero);
+            server.AddMessage("A NEW DATA POOL HAS APPEARED", Vector3.zero);
             int i;
             do
             {
