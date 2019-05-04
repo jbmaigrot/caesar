@@ -15,12 +15,12 @@ public class ServerCarrier : MonoBehaviour
     public Vector2 pos = new Vector2(0,0);
     public Vector2 size = new Vector2(0,0);
     private float zoom = 1;
-    public Texture2D emptyTex;
-    public Texture2D fullTex;
-    public bool draw = false;
     private GUIStyle style = new GUIStyle();
     private Camera cam;
 #endif
+    public Texture2D emptyTex;
+    public Texture2D fullTex;
+    public bool draw = false;
 
 #if SERVER
     private const float RELAYTRANSFERRATE = 1.0f;
