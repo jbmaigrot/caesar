@@ -174,13 +174,13 @@ public class Client : MonoBehaviour
                                     {
                                         if (isStunned == 1)
                                         {
-                                            characters[j].isTacle = true;
-                                            if(j == playerIndex)
+                                            characters[j].GetTacled(true);
+                                            if (j == playerIndex)
                                             {
                                                 hackInterface.CloseByStun();
                                                 if (team == 0)
                                                 {
-                                                    if(inventory[0]==InventoryConstants.BlueRelay|| inventory[1] == InventoryConstants.BlueRelay|| inventory[2] == InventoryConstants.BlueRelay)
+                                                    if (inventory[0] == InventoryConstants.BlueRelay || inventory[1] == InventoryConstants.BlueRelay || inventory[2] == InventoryConstants.BlueRelay)
                                                     {
                                                         ThiefHasBeenIntercepted();
                                                     }
@@ -193,18 +193,10 @@ public class Client : MonoBehaviour
                                                     }
                                                 }
                                             }
-                                            foreach (MeshRenderer ryan in characters[j].gameObject.GetComponentsInChildren<MeshRenderer>())
-                                            {
-                                                ryan.material.color = Color.red;
-                                            }
                                         }
                                         else
                                         {
-                                            characters[j].isTacle = false;
-                                            foreach (MeshRenderer ryan in characters[j].gameObject.GetComponentsInChildren<MeshRenderer>())
-                                            {
-                                                ryan.material.color = Color.white;
-                                            }
+                                            characters[j].GetTacled(false);
                                         }
                                         characters[j].transform.SetPositionAndRotation(new Vector3(x, y, z), Quaternion.Euler(0, angle, 0));
                                         characters[j].speed.x = xSpeed;
@@ -267,6 +259,27 @@ public class Client : MonoBehaviour
                                 {
                                     var carrier = progObject.GetComponent<ServerCarrier>();
                                     carrier.clientCharge =  chargeRatio;
+                                }
+
+                                //presence of Relay
+
+                                uint relayCode = stream.ReadUInt(ref readerCtx);
+                                if (relayCode % 2 == 1)
+                                {
+                                    progObject.SetSendingToBatterie(false, true);
+                                }
+                                else
+                                {
+                                    progObject.SetSendingToBatterie(false, false);
+                                }
+                                relayCode /= 2;
+                                if (relayCode == 1)
+                                {
+                                    progObject.SetSendingToBatterie(true, true);
+                                }
+                                else
+                                {
+                                    progObject.SetSendingToBatterie(true, false);
                                 }
 
                                 // End

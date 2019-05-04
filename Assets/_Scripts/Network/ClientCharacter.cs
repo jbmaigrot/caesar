@@ -45,6 +45,34 @@ public class ClientCharacter : MonoBehaviour
             client.Tacle(number);
         }
     }
+
+    public void GetTacled(bool OnNotOff)
+    {
+        if (OnNotOff)
+        {
+            if (!isTacle)
+            {
+                isTacle = true;
+                foreach (MeshRenderer ryan in this.gameObject.GetComponentsInChildren<MeshRenderer>())
+                {
+                    ryan.material.color = new Color(ryan.material.color.r * 0.8f, ryan.material.color.g * 1.5625f, ryan.material.color.b * 0.8f);
+                }
+            }
+            
+        }
+        else
+        {
+            if (isTacle)
+            {
+                isTacle = false;
+                foreach (MeshRenderer ryan in this.gameObject.GetComponentsInChildren<MeshRenderer>())
+                {
+                    ryan.material.color = new Color(ryan.material.color.r * 1.25f, ryan.material.color.g * 0.64f, ryan.material.color.b * 1.25f);
+                }
+            }
+            
+        }
+    }
 #endif
 }
 

@@ -393,6 +393,28 @@ public class Server : MonoBehaviour
                         writer.Write(0f);
                         
                     }
+                    if (programmableObjectsContainer.objectListServer[j].sendingToRedServer)
+                    {
+                        if (programmableObjectsContainer.objectListServer[j].sendingToBlueServer)
+                        {
+                            writer.Write(3);
+                        }
+                        else
+                        {
+                            writer.Write(2);
+                        }
+                    }
+                    else
+                    {
+                        if (programmableObjectsContainer.objectListServer[j].sendingToBlueServer)
+                        {
+                            writer.Write(1);
+                        }
+                        else
+                        {
+                            writer.Write(0);
+                        }
+                    }
 
                     //close snapshot
                     writer.Write(Constants.Server_SnapshotEnd);
@@ -647,17 +669,17 @@ public class Server : MonoBehaviour
         {
             objectData.isAttract = false;
         }
-        objectData.sendingToRed = sendingToRed;
-        objectData.sendingToBlue = sendingToBlue;
+        objectData.sendingToRedServer = sendingToRed;
+        objectData.sendingToBlueServer = sendingToBlue;
         if(sendingToRed && objectData.transform == objectData.BlueBatterie)
         {
-            objectData.sendingToRed = false;
+            objectData.sendingToRedServer = false;
             objectData.GetComponent<ServerBattery>().RelayWin();
         }
 
         if (sendingToBlue && objectData.transform == objectData.RedBatterie)
         {
-            objectData.sendingToBlue = false;
+            objectData.sendingToBlueServer = false;
             objectData.GetComponent<ServerBattery>().RelayWin();
         }
     }

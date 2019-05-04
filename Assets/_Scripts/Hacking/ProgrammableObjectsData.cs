@@ -34,6 +34,8 @@ public class ProgrammableObjectsData : MonoBehaviour
     public HackInterface hackInterface;
     public bool isWaitingHack;
     private RosaceForHacking rosaceForHacking;
+    public bool sendingToBlueClient;
+    public bool sendingToRedClient;
 #endif
 
 #if SERVER
@@ -48,8 +50,8 @@ public class ProgrammableObjectsData : MonoBehaviour
     public Transform BlueBatterie;
     public Transform RedBatterie;
 
-    public bool sendingToBlue;
-    public bool sendingToRed;
+    public bool sendingToBlueServer;
+    public bool sendingToRedServer;
 #endif
 
 
@@ -356,6 +358,57 @@ public class ProgrammableObjectsData : MonoBehaviour
         if (attracttimebeforeend <= 0.0f)
         {
             isAttract = false;
+        }
+    }
+#endif
+
+#if CLIENT
+    public void SetSendingToBatterie(bool RedNotBlue, bool OnNotOff)
+    {
+        if (RedNotBlue)
+        {
+            if (OnNotOff && !sendingToRedClient)
+            {
+                sendingToRedClient = true;
+                foreach (MeshRenderer ryan in this.GetComponentsInChildren<MeshRenderer>())
+                {
+                    ryan.material.color = new Color(ryan.material.color.r*1.5625f, ryan.material.color.g*0.8f, ryan.material.color.b * 0.8f);
+                    Debug.Log("This is suppose to be kinda Red" + ryan.material.color.ToString());                    
+                }
+            }
+            
+            if(!OnNotOff && sendingToRedClient)
+            {
+                sendingToRedClient = false;
+
+                
+                foreach (MeshRenderer ryan in this.GetComponentsInChildren<MeshRenderer>())
+                {
+                    
+                    ryan.material.color = new Color(ryan.material.color.r * 0.64f, ryan.material.color.g * 1.25f, ryan.material.color.b * 1.25f);
+                    Debug.Log("This is suppose to be kinda Not Red" + ryan.material.color.ToString());
+                }
+            }
+        }
+        else
+        {
+            if (OnNotOff && !sendingToBlueClient)
+            {
+                sendingToBlueClient = true;
+                foreach (MeshRenderer ryan in this.GetComponentsInChildren<MeshRenderer>())
+                {
+                    ryan.material.color = new Color(ryan.material.color.r * 0.8f, ryan.material.color.g * 0.8f, ryan.material.color.b * 1.5625f);
+                }
+            }
+
+            if (!OnNotOff && sendingToBlueClient)
+            {
+                sendingToBlueClient = false;
+                foreach (MeshRenderer ryan in this.GetComponentsInChildren<MeshRenderer>())
+                {
+                    ryan.material.color = new Color(ryan.material.color.r * 1.25f, ryan.material.color.g * 1.25f, ryan.material.color.b * 0.64f);
+                }
+            }
         }
     }
 #endif

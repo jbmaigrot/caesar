@@ -332,6 +332,8 @@ MonoBehaviour:
   client: {fileID: 0}
   hackInterface: {fileID: 0}
   isWaitingHack: 0
+  sendingToBlueClient: 0
+  sendingToRedClient: 0
   inputCodes: []
   outputCodes: []
   graph: []
@@ -339,8 +341,8 @@ MonoBehaviour:
   isDoorOpen: 0
   BlueBatterie: {fileID: 0}
   RedBatterie: {fileID: 0}
-  sendingToBlue: 0
-  sendingToRed: 0
+  sendingToBlueServer: 0
+  sendingToRedServer: 0
   Initiator: {fileID: 11400000, guid: eb5a96cfcf946ba4da2b8f58ade3766b, type: 2}
   objectsContainer: {fileID: 0}
 --- !u!1 &4598231264075584797

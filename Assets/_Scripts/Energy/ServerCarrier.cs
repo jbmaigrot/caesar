@@ -144,13 +144,13 @@ public class ServerCarrier : MonoBehaviour
             }
         }
 
-        if (objectData.sendingToBlue)
+        if (objectData.sendingToBlueServer)
         {
             float energyToTransfer = Mathf.Min(charge, RELAYTRANSFERRATE * Time.deltaTime);
             charge -= energyToTransfer;
             objectData.BlueBatterie.gameObject.GetComponent<ServerCarrier>().charge += energyToTransfer;
         }
-        if (objectData.sendingToRed)
+        if (objectData.sendingToRedServer)
         {
             float energyToTransfer = Mathf.Min(charge, RELAYTRANSFERRATE * Time.deltaTime);
             charge -= energyToTransfer;
