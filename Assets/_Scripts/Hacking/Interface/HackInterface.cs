@@ -119,7 +119,6 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
 
     public void CloseByStun()
     {
-        Debug.Log("Ben Alors");
         if (!isClosing)
         {
             timeBeforeClosing = TIMEFORCLOSING;

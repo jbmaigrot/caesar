@@ -289,12 +289,13 @@ public class Server : MonoBehaviour
                                 }
                                 if (!alreadyMoved)
                                 {
+                                    AddMessage("THE ORANGE RELAY IS BACK IN ITS SERVER.", Vector3.zero);
                                     InOutVignette reynolds = new InOutVignette();
                                     reynolds.code = "UseGadget";
                                     reynolds.is_fixed = true;
                                     reynolds.parameter_int = InventoryConstants.OrangeRelay;
                                     RedBatterie.GetComponent<ProgrammableObjectsData>().outputCodes.Add(reynolds);
-                                    AddMessage("THE ORANGE RELAY IS BACK IN ITS SERVER.", Vector3.zero);
+                                    
                                 }                                
                                 OrangeIsBack = true;
                             }
@@ -309,12 +310,13 @@ public class Server : MonoBehaviour
                                 }
                                 if (!alreadyMoved)
                                 {
+                                    AddMessage("THE BLUE RELAY IS BACK IN ITS SERVER.", Vector3.zero);
                                     InOutVignette reynolds = new InOutVignette();
                                     reynolds.code = "UseGadget";
                                     reynolds.is_fixed = true;
                                     reynolds.parameter_int = InventoryConstants.BlueRelay;
                                     BlueBatterie.GetComponent<ProgrammableObjectsData>().outputCodes.Add(reynolds);
-                                    AddMessage("THE BLUE RELAY IS BACK IN ITS SERVER.", Vector3.zero);
+                                    
                                 }                               
                                 BlueIsBack = true;
                             }

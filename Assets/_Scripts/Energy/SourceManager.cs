@@ -10,22 +10,18 @@ public class SourceManager : MonoBehaviour
     public float timeBeforeNewSource = 180;
     public float startingTime = 0;
     public float timeBeforeSource;
+    private Server server;
 #endif
 
     // Start is called before the first frame update
     void Start()
     {
-        //sources.AddRange(GetComponentsInChildren<ServerSource>());
-
 #if SERVER
         startingTime = Time.time;
         timeBeforeSource = 0;
         Random.InitState(System.DateTime.Now.Second);
+        server = FindObjectOfType<Server>();
 #endif
-        /*for (int i = 0; i < 3; i++)
-        {
-            sources[i].gameObject.SetActive(false);
-        }*/
     }
 
     // Update is called once per frame
@@ -35,6 +31,7 @@ public class SourceManager : MonoBehaviour
         timeBeforeSource -= Time.deltaTime;
         if (timeBeforeSource <= 0)
         {
+            server.AddMessage("A NEW POOL OF DATA HAS APPEARED", Vector3.zero);
             int i;
             do
             {
@@ -45,13 +42,6 @@ public class SourceManager : MonoBehaviour
             Debug.Log(i);
             timeBeforeSource = timeBeforeNewSource;
         }
-        
-#endif
-
-#if CLIENT
-        //TO DO: set active sources when the serverside SourceManager decides to
-        //
-        //
 #endif
     }
 }
