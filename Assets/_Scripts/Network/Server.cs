@@ -229,7 +229,6 @@ public class Server : MonoBehaviour
                             float dest_y = stream.ReadFloat(ref readerCtx);
                             float dest_z = stream.ReadFloat(ref readerCtx);
                             players[i].gameObject.GetComponent<ServerCharacter>().normalDestination = new Vector3(dest_x, dest_y, dest_z);
-                            Debug.Log("now");
                             break;
 
                         case Constants.Client_Tacle:

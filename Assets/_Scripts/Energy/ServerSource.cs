@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class ServerSource : MonoBehaviour
 {
@@ -23,7 +23,7 @@ public class ServerSource : MonoBehaviour
         isActivated = false;
         gameObject.SetActive(false);
     }
-    
+
     // Update is called once per frame
     void Update()
     {
@@ -57,7 +57,8 @@ public class ServerSource : MonoBehaviour
                 ryan.GetComponent<ServerCarrier>().StartTaking(this.GetComponent<ServerCarrier>());
             }
         }
-        /* TEMP DISABLED
+
+        /* DISABLED: split charge equally
         //give charge
         totalChargeSpeed = 0;
         foreach (ServerCarrier james in carriers)
@@ -85,7 +86,7 @@ public class ServerSource : MonoBehaviour
     }
 
 
-    /* TEMP DISABLED
+    /* DISABLED: split charge equally
     // Add character to list
     private void OnTriggerEnter(Collider other)
     {

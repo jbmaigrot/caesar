@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Collections;
+using UnityEngine.UI;
 //using Unity.Collections.LowLevel.Unsafe;
 
 using System.Net;
@@ -44,6 +45,8 @@ public class Client : MonoBehaviour
 
     private bool isNapperoned = false;
 
+    private Minimap minimap;
+
     public LineRenderer lineRenderer;
 
     // Start is called before the first frame update
@@ -56,6 +59,7 @@ public class Client : MonoBehaviour
         inventory[0] = InventoryConstants.Attract;
         inventory[1] = InventoryConstants.Stunbox;
         inventory[2] = InventoryConstants.Powerpump;
+        minimap = FindObjectOfType<Minimap>();
     }
 
     void Awake() { 
@@ -302,6 +306,9 @@ public class Client : MonoBehaviour
                                             napperon.color = new Color(0.961f, 0.51f, 0.365f, 1f);
 
                                             range.enabled = true;
+
+                                            minimap.player = characters[playerIndex].transform;
+                                            minimap.transform.Find("Map player").GetComponent<Image>().color = new Color(0.961f, 0.51f, 0.365f, 1f);
                                         }
                                         else if (team == 1)
                                         {
@@ -309,6 +316,9 @@ public class Client : MonoBehaviour
                                             napperon.color = new Color(0.361f, 0.784f, 0.949f, 1f);
 
                                             range.enabled = true;
+
+                                            minimap.player = characters[playerIndex].transform;
+                                            minimap.transform.Find("Map player").GetComponent<Image>().color = new Color(0.361f, 0.784f, 0.949f, 1f);
                                         }
                                                 
                                         isNapperoned = true;

@@ -11,6 +11,7 @@ public class SourceManager : MonoBehaviour
     public float startingTime = 0;
     public float timeBeforeSource;
     private Server server;
+    private Minimap minimap;
 #endif
 
     // Start is called before the first frame update
@@ -21,6 +22,7 @@ public class SourceManager : MonoBehaviour
         timeBeforeSource = 15.0f;
         Random.InitState(System.DateTime.Now.Second);
         server = FindObjectOfType<Server>();
+        minimap = FindObjectOfType<Minimap>();
 #endif
     }
 
@@ -39,6 +41,9 @@ public class SourceManager : MonoBehaviour
             } while (sources[i].gameObject.activeSelf);
             sources[i].gameObject.SetActive(true);
             sources[i].startingTime = Time.time;
+
+            minimap.mapSource.localPosition = new Vector2(sources[i].transform.position.x / minimap.worldSize * minimap.mapSize, sources[i].transform.position.z / minimap.worldSize * minimap.mapSize);
+
             Debug.Log(i);
             timeBeforeSource = timeBeforeNewSource;
         }
