@@ -307,6 +307,7 @@ public class Client : MonoBehaviour
 
                                             range.enabled = true;
 
+                                            minimap.GetComponent<RectTransform>().localEulerAngles = new Vector3(0, 0, -45);
                                             minimap.player = characters[playerIndex].transform;
                                             minimap.transform.Find("Map player").GetComponent<Image>().color = new Color(0.961f, 0.51f, 0.365f, 1f);
                                         }
@@ -317,6 +318,7 @@ public class Client : MonoBehaviour
 
                                             range.enabled = true;
 
+                                            minimap.GetComponent<RectTransform>().localEulerAngles = new Vector3(0, 0, 135);
                                             minimap.player = characters[playerIndex].transform;
                                             minimap.transform.Find("Map player").GetComponent<Image>().color = new Color(0.361f, 0.784f, 0.949f, 1f);
                                         }
