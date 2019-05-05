@@ -69,7 +69,7 @@ public class Server : MonoBehaviour
             lostConnections = serverLobby.lostConnections;
             for (int i = 0; i < m_Connections.Length; i++)
             {
-                AddNewPlayer(serverLobby.lobbyInterfaceState.playerLobbyCards[i].team);
+                AddNewPlayer(serverLobby.lobbyInterfaceState.playerLobbyCards[i].team, serverLobby.lobbyInterfaceState.playerLobbyCards[i].playerName);
             }
             serverLobby.stopUpdate = true;
         }
@@ -373,6 +373,25 @@ public class Server : MonoBehaviour
                         else
                         {
                             writer.Write(0f);
+                        }
+
+                        //Send information about teammates
+                        int curTeam = players[i].GetComponent<ServerCharacter>().team;
+
+                        if (characters[charactersIndex].gameObject.GetComponent<ServerCharacter>().team == curTeam) 
+                            //means this is an ally of the player associated with the current connection
+                        {
+                            writer.Write(Constants.Server_TeammateInfo);
+
+                            char[] playerNameAsChars = characters[charactersIndex].gameObject.GetComponent<ServerCharacter>().playerName.ToCharArray();
+                            byte[] buffer = new byte[playerNameAsChars.Length];
+                            
+                            for (int k = 0; k < playerNameAsChars.Length; k++)
+                            {
+                                buffer[k] = (byte)playerNameAsChars[k];
+                            }
+                            writer.Write(playerNameAsChars.Length);
+                            writer.Write(buffer);
                         }
                     }
 
@@ -695,6 +714,11 @@ public class Server : MonoBehaviour
 
     public int AddNewPlayer(int team)
     {
+        return AddNewPlayer(team, "defaultName");
+    }
+
+    public int AddNewPlayer(int team, string playerName)
+    {
         //On ajoute un nouveau personnage joueur.
         GameObject pj = Instantiate(prefabPJ, programmableObjectsContainer.transform);
         pj.GetComponent<NavMeshAgent>().enabled = false;
@@ -724,6 +748,8 @@ public class Server : MonoBehaviour
                 pj.GetComponent<ServerCharacter>().team = 1;
             }
         }
+
+        pj.GetComponent<ServerCharacter>().playerName = playerName;
         
         pj.GetComponent<NavMeshAgent>().enabled = true;
         players.Add(pj.transform);

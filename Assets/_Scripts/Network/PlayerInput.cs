@@ -37,8 +37,33 @@ public class PlayerInput : MonoBehaviour
                 else if (Physics.Raycast(ray, out hit, 100f, 1)) // Layer 0 (ground)
                 {
                     client.SetDestination(hit.point);
+                    StartCoroutine(ClickMaintenu()); //No need to check if button is still pressed as we are stopping coroutine once it's released
                 }
             }
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            StopAllCoroutines();
+        }
+    }
+
+    IEnumerator ClickMaintenu()
+    {
+        while (true)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, 100f, 49184)) // Layer 5 14 et 15 (objects)
+            {
+                //Debug.Log(42);
+            }
+            else if (Physics.Raycast(ray, out hit, 100f, 1)) // Layer 0 (ground)
+            {
+                client.SetDestination(hit.point);
+            }
+            yield return new WaitForSeconds(.2f);
         }
     }
 }
