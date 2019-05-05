@@ -7,6 +7,7 @@ public class ServerCharacter : MonoBehaviour
 {
 #if SERVER
     public int team = -1;
+    public string playerName;
 
     public bool isStunned;
     private float timeBeforeEndOfStun;

@@ -424,6 +424,8 @@ MonoBehaviour:
   speed: {x: 0, y: 0, z: 0}
   number: 0
   isTacle: 0
+  isAlly: 0
+  playerName: 
 --- !u!114 &2194309330242708255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,6 +444,8 @@ MonoBehaviour:
   client: {fileID: 0}
   hackInterface: {fileID: 0}
   isWaitingHack: 0
+  sendingToBlueClient: 0
+  sendingToRedClient: 0
   inputCodes: []
   outputCodes: []
   graph: []
@@ -449,8 +453,8 @@ MonoBehaviour:
   isDoorOpen: 0
   BlueBatterie: {fileID: 0}
   RedBatterie: {fileID: 0}
-  sendingToBlue: 0
-  sendingToRed: 0
+  sendingToBlueServer: 0
+  sendingToRedServer: 0
   Initiator: {fileID: 11400000, guid: ecb70c1bccf97ce499384bd5aeb6a010, type: 2}
   objectsContainer: {fileID: 0}
 --- !u!114 &2465187952446484485

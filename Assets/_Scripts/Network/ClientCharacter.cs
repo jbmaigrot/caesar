@@ -17,6 +17,9 @@ public class ClientCharacter : MonoBehaviour
     private Transform mesh;
     private float startingY;
 
+    public bool isAlly = false;
+    public string playerName;
+
     //Start
     private void Start()
     {

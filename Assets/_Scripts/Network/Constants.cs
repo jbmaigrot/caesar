@@ -23,6 +23,7 @@
     public const int Server_SetConnectionId = 58;
     public const int Server_Win = 59;
     public const int Server_SendPath = 60;
+    public const int Server_TeammateInfo = 61;
 
     public const int Client_Lobby_ConnectionId = 101;
     public const int Client_Lobby_SetTeam = 102;

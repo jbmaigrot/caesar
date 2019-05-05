@@ -172,6 +172,8 @@ public class Client : MonoBehaviour
                                             newCharacter.GetComponent<ClientCharacter>().number = k;
                                             characters.Add(newCharacter.GetComponent<ClientCharacter>());
                                             programmableObjectsContainer.objectListClient.Add(newCharacter.GetComponent<ProgrammableObjectsData>());
+
+                                            
                                         }
                                     }
                                     if (characters[j] != null)
@@ -214,8 +216,22 @@ public class Client : MonoBehaviour
                                         carrier.clientCharge = charge;
                                     }
 
-                                    type = stream.ReadUInt(ref readerCtx); //Should be Constants.Server_UpdateObject (need to be removed from the stream)
-                                    
+                                    type = stream.ReadUInt(ref readerCtx);
+
+                                    if (type == Constants.Server_TeammateInfo)
+                                    {
+                                        int playerNameLength = (int)stream.ReadUInt(ref readerCtx);
+                                        char[] playerNameBuffer = new char[playerNameLength];
+                                        for (int k = 0; k < playerNameLength; k++)
+                                        {
+                                            playerNameBuffer[k] = (char)stream.ReadByte(ref readerCtx);
+                                        }
+
+                                        characters[j].GetComponent<ClientCharacter>().isAlly = true;
+                                        characters[j].GetComponent<ClientCharacter>().playerName = new string(playerNameBuffer);
+
+                                        type = stream.ReadUInt(ref readerCtx); //Should be Constants.Server_UpdateObject (need to be removed from the stream)
+                                    }
                                 }
 
                                 int l = (int)stream.ReadUInt(ref readerCtx);
