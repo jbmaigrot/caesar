@@ -172,8 +172,6 @@ public class Client : MonoBehaviour
                                             newCharacter.GetComponent<ClientCharacter>().number = k;
                                             characters.Add(newCharacter.GetComponent<ClientCharacter>());
                                             programmableObjectsContainer.objectListClient.Add(newCharacter.GetComponent<ProgrammableObjectsData>());
-
-                                            
                                         }
                                     }
                                     if (characters[j] != null)
@@ -218,6 +216,7 @@ public class Client : MonoBehaviour
 
                                     type = stream.ReadUInt(ref readerCtx);
 
+                                    //Identify character as teammate
                                     if (type == Constants.Server_TeammateInfo)
                                     {
                                         int playerNameLength = (int)stream.ReadUInt(ref readerCtx);
@@ -229,6 +228,10 @@ public class Client : MonoBehaviour
 
                                         characters[j].GetComponent<ClientCharacter>().isAlly = true;
                                         characters[j].GetComponent<ClientCharacter>().playerName = new string(playerNameBuffer);
+
+                                        characters[j].transform.Find("AllyNameOffsetter").GetComponentInChildren<MeshRenderer>().enabled = true;
+                                        characters[j].transform.Find("AllyNameOffsetter").GetComponentInChildren<AllyNameDisplay>().enabled = true;
+                                        characters[j].transform.Find("AllyNameOffsetter").GetComponentInChildren<TextMesh>().text = new string(playerNameBuffer);
 
                                         type = stream.ReadUInt(ref readerCtx); //Should be Constants.Server_UpdateObject (need to be removed from the stream)
                                     }
