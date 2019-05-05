@@ -373,7 +373,7 @@ public class Server : MonoBehaviour
                         }
                         else
                         {
-                            writer.Write(0.42f);
+                            writer.Write(0f);
                         }
                     }
 

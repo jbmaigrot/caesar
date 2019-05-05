@@ -142,7 +142,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 1
+  m_BaseOffset: 0
   m_WalkableMask: 5
   m_ObstacleAvoidanceType: 4
 --- !u!114 &7078048776252840380
@@ -163,6 +163,8 @@ MonoBehaviour:
   client: {fileID: 0}
   hackInterface: {fileID: 0}
   isWaitingHack: 0
+  sendingToBlueClient: 0
+  sendingToRedClient: 0
   inputCodes: []
   outputCodes: []
   graph: []
@@ -170,8 +172,8 @@ MonoBehaviour:
   isDoorOpen: 0
   BlueBatterie: {fileID: 0}
   RedBatterie: {fileID: 0}
-  sendingToBlue: 0
-  sendingToRed: 0
+  sendingToBlueServer: 0
+  sendingToRedServer: 0
   Initiator: {fileID: 11400000, guid: f4db053c0b442c94c981f82269c05718, type: 2}
   objectsContainer: {fileID: 0}
 --- !u!54 &743243704701644327

@@ -23,7 +23,7 @@ public class ClientCharacter : MonoBehaviour
         client = FindObjectOfType<Client>();
         hackinterface = FindObjectOfType<HackInterface>();
 
-        floatingFreq = Random.Range(0.2f, 0.3f);
+        floatingFreq = Random.Range(0.3f, 0.4f);
         mesh = transform.Find("Mesh").transform;
         startingY = transform.localPosition.y;
     }

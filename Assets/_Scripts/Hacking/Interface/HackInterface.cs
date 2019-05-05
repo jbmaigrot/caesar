@@ -181,6 +181,11 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
         }
     }
 
+    public GameObject GetSelectedProgrammableObject()
+    {
+        return SelectedGameObject;
+    }
+
 
     public void ReadyToOpen()
     {
