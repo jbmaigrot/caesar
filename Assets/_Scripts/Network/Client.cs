@@ -25,6 +25,7 @@ public class Client : MonoBehaviour
     //public IPv4UDPSocket socket;
 
     public List<ClientCharacter> characters;
+    public List<ClientCharacter> allyCharacters;
     
 
     private CameraController cameraController;
@@ -219,6 +220,7 @@ public class Client : MonoBehaviour
                                     //Identify character as teammate
                                     if (type == Constants.Server_TeammateInfo)
                                     {
+                                        ClientCharacter allyCharacter = characters[j].GetComponent<ClientCharacter>();
                                         int playerNameLength = (int)stream.ReadUInt(ref readerCtx);
                                         char[] playerNameBuffer = new char[playerNameLength];
                                         for (int k = 0; k < playerNameLength; k++)
@@ -226,12 +228,19 @@ public class Client : MonoBehaviour
                                             playerNameBuffer[k] = (char)stream.ReadByte(ref readerCtx);
                                         }
 
-                                        characters[j].GetComponent<ClientCharacter>().isAlly = true;
-                                        characters[j].GetComponent<ClientCharacter>().playerName = new string(playerNameBuffer);
+                                        allyCharacter.isAlly = true;
+                                        allyCharacter.playerName = new string(playerNameBuffer);
 
-                                        characters[j].transform.Find("AllyNameOffsetter").GetComponentInChildren<MeshRenderer>().enabled = true;
-                                        characters[j].transform.Find("AllyNameOffsetter").GetComponentInChildren<AllyNameDisplay>().enabled = true;
-                                        characters[j].transform.Find("AllyNameOffsetter").GetComponentInChildren<TextMesh>().text = new string(playerNameBuffer);
+                                        if (allyCharacter.isKnownAsAlly != true)
+                                        {
+                                            allyCharacters.Add(characters[j].GetComponent<ClientCharacter>());
+
+                                            characters[j].transform.Find("AllyNameOffsetter").GetComponentInChildren<MeshRenderer>().enabled = true;
+                                            characters[j].transform.Find("AllyNameOffsetter").GetComponentInChildren<AllyNameDisplay>().enabled = true;
+                                            characters[j].transform.Find("AllyNameOffsetter").GetComponentInChildren<TextMesh>().text = new string(playerNameBuffer);
+
+                                            allyCharacter.isKnownAsAlly = true;
+                                        }
 
                                         type = stream.ReadUInt(ref readerCtx); //Should be Constants.Server_UpdateObject (need to be removed from the stream)
                                     }

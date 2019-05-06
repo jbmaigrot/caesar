@@ -18,6 +18,7 @@ public class ClientCharacter : MonoBehaviour
     private float startingY;
 
     public bool isAlly = false;
+    public bool isKnownAsAlly = false;
     public string playerName;
 
     private Animator stunAnimator;
