@@ -11,21 +11,18 @@ public class ProgrammableObjectsData : MonoBehaviour
     private Server server;
     public NavMeshSurface NavMeshSurface;
     
-
-    private const float ATTRACTRADIUS = 20.0f;
+    
     private const float ATTRACTTIME = 10.0f;
     public bool isAttract;
     private float attracttimebeforeend;
     private float attracttimebeforeeffect;
-
-    private const float POWERPUMPRADIUS = 25.0f;
+    
     private ServerCarrier serverCarrier;
 
     public int charactersIndex = -1; //This index correspond to the index in the list of transform of characters the server stores. -1 in case it's not a character
 
     private float timeBeforeStunReload;
     private const float TIMEOFSTUNRELOAD = 20.0f;
-    private const float STUNBOXRADIUS = 10.0f;
     
 #endif
 
@@ -223,7 +220,7 @@ public class ProgrammableObjectsData : MonoBehaviour
                 timeBeforeStunReload = TIMEOFSTUNRELOAD;
                 for (int i = 0; i < server.characters.Count; i++)
                 {
-                    if (((int)Vector3.Distance(server.characters[i].position, this.transform.position)) < STUNBOXRADIUS && i != charactersIndex)
+                    if (((int)Vector3.Distance(server.characters[i].position, this.transform.position)) < InventoryConstants.StunBoxRange && i != charactersIndex)
                     {
                         server.characters[i].GetComponent<ServerCharacter>().getStun();
                     }
@@ -243,7 +240,7 @@ public class ProgrammableObjectsData : MonoBehaviour
             ServerCarrier targetCarrier;
             for (int i = 0; i < objectsContainer.objectListServer.Count; i++)
             {
-                if (((int)Vector3.Distance(objectsContainer.objectListServer[i].transform.position, this.transform.position)) < POWERPUMPRADIUS && objectsContainer.objectListServer[i]!=this)
+                if (((int)Vector3.Distance(objectsContainer.objectListServer[i].transform.position, this.transform.position)) < InventoryConstants.PowerPumpRange && objectsContainer.objectListServer[i]!=this)
                 {
                     if (serverCarrier.charge < serverCarrier.maxCharge)
                     {
@@ -351,7 +348,7 @@ public class ProgrammableObjectsData : MonoBehaviour
         {
             for (int i = 0; i < server.characters.Count; i++)
             {
-                if (((int)Vector3.Distance(server.characters[i].position, this.transform.position)) < ATTRACTRADIUS && i != charactersIndex)
+                if (((int)Vector3.Distance(server.characters[i].position, this.transform.position)) < InventoryConstants.AttractRange && i != charactersIndex)
                 {
                     server.characters[i].GetComponent<ServerCharacter>().isAttracted = true;
                     server.characters[i].GetComponent<ServerCharacter>().attractDestination = this.transform.position;
