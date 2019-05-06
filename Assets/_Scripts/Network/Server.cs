@@ -447,7 +447,8 @@ public class Server : MonoBehaviour
                     //close snapshot
                     writer.Write(Constants.Server_SnapshotEnd);
 
-                    writer.Write(characters.IndexOf(players[i]));//index of the player in the character list
+                    //writer.Write(characters.IndexOf(players[i]));
+                    writer.Write(players[i].GetComponent<ProgrammableObjectsData>().charactersIndex); //index of the player in the character list
                     if (OrangeIsBack)
                     {
                         writer.Write(1);
