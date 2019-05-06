@@ -63,7 +63,7 @@ public class PlayerInput : MonoBehaviour
             {
                 client.SetDestination(hit.point);
             }
-            yield return new WaitForSeconds(.2f);
+            yield return null;//new WaitForSeconds(.2f);
         }
     }
 }

@@ -44,7 +44,8 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     public RectTransform[] inputButtons = new RectTransform[0];
     public RectTransform[] outputButtons = new RectTransform[0];
 
-
+    private Sprite[] SpriteList;
+    public Sprite[] ArrowSpriteTable;
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +59,24 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
         {
             ryan.GetHackingAsset(HackingAsset);
         }
+        SpriteList = Resources.FindObjectsOfTypeAll<Sprite>();
+        ArrowSpriteTable = new Sprite[25];
+        for (int ryan = 0; ryan<5; ryan++)
+        {
+            for(int reynolds = 0; reynolds < 5; reynolds++)
+            {
+                string name = ryan.ToString() + "" + reynolds.ToString();
+                foreach (Sprite sp in SpriteList)
+                {
+                    if (sp.name == name)
+                    {
+                        ArrowSpriteTable[5 * ryan + reynolds] = sp;
+                    }
+                }
+            }
+        }
+        reloadArrow();
+        
     }
 
     // Update is called once per frame
