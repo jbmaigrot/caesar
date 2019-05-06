@@ -291,7 +291,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
-  m_WalkableMask: 13
+  m_WalkableMask: 29
   m_ObstacleAvoidanceType: 4
 --- !u!136 &9185805262413483041
 CapsuleCollider:
@@ -336,6 +336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: -1
+  playerName: 
   isStunned: 0
   canStun: 0
   carrier: {fileID: 0}
@@ -348,6 +349,7 @@ MonoBehaviour:
   priorityDestination: {x: 0, y: 0, z: 0}
   normalDestination: {x: 0, y: 0, z: 0}
   actualDestination: {x: 0, y: 0, z: 0}
+  server: {fileID: 0}
 --- !u!114 &8673126337475319941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,11 +368,17 @@ MonoBehaviour:
   client: {fileID: 0}
   hackInterface: {fileID: 0}
   isWaitingHack: 0
+  sendingToBlueClient: 0
+  sendingToRedClient: 0
   inputCodes: []
   outputCodes: []
   graph: []
   isLightOn: 0
   isDoorOpen: 0
+  BlueBatterie: {fileID: 0}
+  RedBatterie: {fileID: 0}
+  sendingToBlueServer: 0
+  sendingToRedServer: 0
   Initiator: {fileID: 11400000, guid: f4db053c0b442c94c981f82269c05718, type: 2}
   objectsContainer: {fileID: 0}
 --- !u!114 &1418012412464275197

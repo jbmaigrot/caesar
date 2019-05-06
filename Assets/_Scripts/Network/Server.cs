@@ -447,7 +447,8 @@ public class Server : MonoBehaviour
                     //close snapshot
                     writer.Write(Constants.Server_SnapshotEnd);
 
-                    writer.Write(characters.IndexOf(players[i]));//index of the player in the character list
+                    //writer.Write(characters.IndexOf(players[i]));
+                    writer.Write(players[i].GetComponent<ProgrammableObjectsData>().charactersIndex); //index of the player in the character list
                     if (OrangeIsBack)
                     {
                         writer.Write(1);
@@ -728,11 +729,13 @@ public class Server : MonoBehaviour
             {
                 pj.transform.position = FindObjectOfType<PlayerSpawn>().transform.position;
                 pj.GetComponent<ServerCharacter>().team = 0;
+                pj.GetComponent<NavMeshAgent>().areaMask = 13;
             }
             else
             {
                 pj.transform.position = -FindObjectOfType<PlayerSpawn>().transform.position;
                 pj.GetComponent<ServerCharacter>().team = 1;
+                pj.GetComponent<NavMeshAgent>().areaMask = 21;
             }
         }
         else
@@ -741,11 +744,13 @@ public class Server : MonoBehaviour
             {
                 pj.transform.position = FindObjectOfType<PlayerSpawn>().transform.position;
                 pj.GetComponent<ServerCharacter>().team = 0;
+                pj.GetComponent<NavMeshAgent>().areaMask = 13;
             }
             else if (team == 1)
             {
                 pj.transform.position = -FindObjectOfType<PlayerSpawn>().transform.position;
                 pj.GetComponent<ServerCharacter>().team = 1;
+                pj.GetComponent<NavMeshAgent>().areaMask = 21;
             }
         }
 
