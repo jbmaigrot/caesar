@@ -142,7 +142,10 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     {
         if (!isClosing)
         {
-            client.GiveBackHackToken(objectsContainer.GetObjectIndexClient(SelectedGameObject.GetComponent<ProgrammableObjectsData>()));
+            if(SelectedGameObject != null)
+            {
+                client.GiveBackHackToken(objectsContainer.GetObjectIndexClient(SelectedGameObject.GetComponent<ProgrammableObjectsData>()));
+            }            
             timeBeforeClosing = TIMEFORCLOSING;
             isClosing = true;
 
