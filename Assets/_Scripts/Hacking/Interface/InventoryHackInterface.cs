@@ -16,13 +16,19 @@ public class InventoryHackInterface : MonoBehaviour, IPointerDownHandler
     public GameObject gadgetRange;
 #if CLIENT
     private HackInterface hackinterface;
+    private bool isPointerOver = false;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         hackinterface = FindObjectOfType<HackInterface>();
+    }
 
-        if (gadgetRange == null)
-            gadgetRange = GameObject.Find("Gadget Range");
+    private void Update()
+    {
+        if (isPointerOver)
+        {
+            gadgetRange.transform.position = hackinterface.GetSelectedProgrammableObject().transform.position;
+        }
     }
 
     public void reloadInventory()
@@ -63,7 +69,7 @@ public class InventoryHackInterface : MonoBehaviour, IPointerDownHandler
     public void ShowRange()
     {
         gadgetRange.SetActive(true);
-        gadgetRange.transform.position = hackinterface.GetSelectedProgrammableObject().transform.position;
+        isPointerOver = true;
 
         switch (hackinterface.inventory[numero])
         {
@@ -88,6 +94,7 @@ public class InventoryHackInterface : MonoBehaviour, IPointerDownHandler
     public void HideRange()
     {
         gadgetRange.SetActive(false);
+        isPointerOver = false;
     }
 
 #endif

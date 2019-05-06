@@ -13,6 +13,9 @@ public class InputFieldHackerInterface : MonoBehaviour, IPointerDownHandler
     public Sprite PowerPump;
     public Sprite RedRelay;
     public Sprite BlueRelay;
+
+    public GameObject gadgetRange;
+
 #if CLIENT
     private string previousValue;
     private bool isOnString;
@@ -20,7 +23,8 @@ public class InputFieldHackerInterface : MonoBehaviour, IPointerDownHandler
 
     private HackingAssetScriptable HackingAsset;
     private HackInterface hackinterface;
-
+    private int numeroGadget = 0;
+    private bool isPointerOver = false;
 
 
     void Start()
@@ -72,9 +76,12 @@ public class InputFieldHackerInterface : MonoBehaviour, IPointerDownHandler
         /*Si le contenu de l'input field change, on modifie le graphe*/
         if (this.GetComponent<InputField>().text != previousValue)
         {
-
             UpdateHackingGraph();
+        }
 
+        if (isPointerOver)
+        {
+            gadgetRange.transform.position = hackinterface.GetSelectedProgrammableObject().transform.position;
         }
     }
 
@@ -145,17 +152,16 @@ public class InputFieldHackerInterface : MonoBehaviour, IPointerDownHandler
         /*Si le code requiet un input field de type int, on écrit le contenu tiré du graphe*/
         else if (isOnInt)
         {
-            int value;
             this.GetComponent<InputField>().enabled = false;
             if (isInput)
             {
-                value = HackInterface.inputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_int;
+                numeroGadget = HackInterface.inputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_int;
             }
             else
             {
-                value = HackInterface.outputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_int;
+                numeroGadget = HackInterface.outputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_int;
             }
-            switch (value)
+            switch (numeroGadget)
             {
                 case InventoryConstants.Attract:
                     this.GetComponent<SVGImage>().sprite = Attract;
@@ -213,6 +219,38 @@ public class InputFieldHackerInterface : MonoBehaviour, IPointerDownHandler
     public void GetHackingAsset(HackingAssetScriptable HackAss)
     {
         HackingAsset = HackAss;
+    }
+
+
+    public void ShowRange()
+    {
+        gadgetRange.SetActive(true);
+        isPointerOver = true;
+
+        switch (numeroGadget)
+        {
+            case InventoryConstants.Attract:
+                gadgetRange.transform.localScale = new Vector3(5, 5, 1);
+                break;
+
+            case InventoryConstants.Stunbox:
+                gadgetRange.transform.localScale = new Vector3(10, 10, 1);
+                break;
+
+            case InventoryConstants.Powerpump:
+                gadgetRange.transform.localScale = new Vector3(14, 14, 1);
+                break;
+
+            default:
+                gadgetRange.SetActive(false);
+                break;
+        }
+    }
+
+    public void HideRange()
+    {
+        gadgetRange.SetActive(false);
+        isPointerOver = false;
     }
 #endif
     public void OnPointerDown(PointerEventData eventData)
