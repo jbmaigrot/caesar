@@ -14,7 +14,7 @@ public class ClientCharacter : MonoBehaviour
 
     private float floatingRange = 0.1f;
     private float floatingFreq = 0;
-    private Transform mesh;
+    public Transform mesh;
     private float startingY;
 
     public bool isAlly = false;
