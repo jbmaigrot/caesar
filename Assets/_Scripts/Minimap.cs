@@ -21,7 +21,19 @@ public class Minimap : MonoBehaviour
     void Update()
     {
         if (player != null)
-            mapPlayer.localPosition = new Vector2(player.position.x / worldSize * mapSize, player.position.z / worldSize * mapSize);
+            mapPlayer.localPosition = worldToMap(player.position);
+    }
+
+
+    // Convert coordinates
+    public Vector2 worldToMap (Vector3 worldPosition)
+    {
+        return new Vector2(worldPosition.x / worldSize * mapSize, worldPosition.z / worldSize * mapSize);
+    }
+
+    public Vector3 mapToWorld(Vector2 mapPosition)
+    {
+        return new Vector3(mapPosition.x * worldSize / mapSize, 0, mapPosition.y * worldSize / mapSize);
     }
 }
 

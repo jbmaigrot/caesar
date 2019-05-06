@@ -74,15 +74,15 @@ public class InventoryHackInterface : MonoBehaviour, IPointerDownHandler
         switch (hackinterface.inventory[numero])
         {
             case InventoryConstants.Attract:
-                gadgetRange.transform.localScale = new Vector3(5,5,1);
+                gadgetRange.transform.localScale = new Vector3(InventoryConstants.AttractRange, InventoryConstants.AttractRange, 1);
                 break;
 
             case InventoryConstants.Stunbox:
-                gadgetRange.transform.localScale = new Vector3(10, 10, 1);
+                gadgetRange.transform.localScale = new Vector3(InventoryConstants.StunboxRange, InventoryConstants.StunboxRange, 1);
                 break;
 
             case InventoryConstants.Powerpump:
-                gadgetRange.transform.localScale = new Vector3(14, 14, 1);
+                gadgetRange.transform.localScale = new Vector3(InventoryConstants.PowerpumpRange, InventoryConstants.PowerpumpRange, 1);
                 break;
 
             default:
