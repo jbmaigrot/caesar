@@ -282,6 +282,17 @@ public class Server : MonoBehaviour
                             SetHackStatus(objectId, stream, ref readerCtx);
                             break;
 
+                        case Constants.Client_GiveBackHackToken:
+                            objectId = (int)stream.ReadUInt(ref readerCtx);
+                            if (programmableObjectsContainer.objectListServer[objectId].isBeingHackedServer == i)
+                            {
+                                programmableObjectsContainer.objectListServer[objectId].isBeingHackedServer = -1;
+                            }
+                            break;
+                        case Constants.Client_HackInterfaceIsOpen:
+                            objectId = (int)stream.ReadUInt(ref readerCtx);
+                            programmableObjectsContainer.objectListServer[objectId].OnInput("OnHack");
+                            break;
                         case Constants.Client_ThiefHasBeenStunned:
                             int team = (int)stream.ReadUInt(ref readerCtx);
                             bool alreadyMoved = false;
@@ -517,72 +528,83 @@ public class Server : MonoBehaviour
             writer.Write(Constants.Server_GetHack);
 
             writer.Write(objectId);
-
-            writer.Write(programmableObject.inputCodes.Count);
-            foreach(InOutVignette vignette in programmableObject.inputCodes)
+            if(programmableObject.isBeingHackedServer == -1)
             {
-                byte[] buffer = new byte[vignette.code.Length];
-                for (int i = 0; i < vignette.code.Length; i++)
+                programmableObject.isBeingHackedServer = connectionId;
+                writer.Write(1);
+                writer.Write(programmableObject.inputCodes.Count);
+                foreach (InOutVignette vignette in programmableObject.inputCodes)
                 {
-                    buffer[i] = (byte)vignette.code.ToCharArray()[i];
+                    byte[] buffer = new byte[vignette.code.Length];
+                    for (int i = 0; i < vignette.code.Length; i++)
+                    {
+                        buffer[i] = (byte)vignette.code.ToCharArray()[i];
+                    }
+                    writer.Write(vignette.code.Length);
+                    writer.Write(buffer);
+
+                    writer.Write(vignette.parameter_int);
+
+                    buffer = new byte[vignette.parameter_string.Length];
+                    for (int i = 0; i < vignette.parameter_string.Length; i++)
+                    {
+                        buffer[i] = (byte)vignette.parameter_string.ToCharArray()[i];
+                    }
+                    writer.Write(vignette.parameter_string.Length);
+                    writer.Write(buffer);
+
+                    writer.Write(vignette.is_fixed ? 1 : 0);
                 }
-                writer.Write(vignette.code.Length);
-                writer.Write(buffer);
 
-                writer.Write(vignette.parameter_int);
-
-                buffer = new byte[vignette.parameter_string.Length];
-                for (int i = 0; i < vignette.parameter_string.Length; i++)
+                writer.Write(programmableObject.outputCodes.Count);
+                foreach (InOutVignette vignette in programmableObject.outputCodes)
                 {
-                    buffer[i] = (byte)vignette.parameter_string.ToCharArray()[i];
-                }
-                writer.Write(vignette.parameter_string.Length);
-                writer.Write(buffer);
+                    byte[] buffer = new byte[vignette.code.Length];
+                    for (int i = 0; i < vignette.code.Length; i++)
+                    {
+                        buffer[i] = (byte)vignette.code.ToCharArray()[i];
+                    }
+                    writer.Write(vignette.code.Length);
+                    writer.Write(buffer);
 
-                writer.Write(vignette.is_fixed ? 1 : 0);
+                    writer.Write(vignette.parameter_int);
+
+                    buffer = new byte[vignette.parameter_string.Length];
+                    for (int i = 0; i < vignette.parameter_string.Length; i++)
+                    {
+                        buffer[i] = (byte)vignette.parameter_string.ToCharArray()[i];
+                    }
+                    writer.Write(vignette.parameter_string.Length);
+                    writer.Write(buffer);
+
+                    writer.Write(vignette.is_fixed ? 1 : 0);
+                }
+
+                writer.Write(programmableObject.graph.Count);
+                foreach (Arrow arrow in programmableObject.graph)
+                {
+                    writer.Write(arrow.input);
+                    writer.Write(arrow.output);
+                    writer.Write(arrow.transmitTime);
+
+                    writer.Write(arrow.timeBeforeTransmit.Count);
+                    foreach (float time in arrow.timeBeforeTransmit)
+                    {
+                        writer.Write(time);
+                    }
+                }
+                m_Driver.Send(m_Connections[connectionId], writer);
+
+                
             }
-
-            writer.Write(programmableObject.outputCodes.Count);
-            foreach (InOutVignette vignette in programmableObject.outputCodes)
+            else
             {
-                byte[] buffer = new byte[vignette.code.Length];
-                for (int i = 0; i < vignette.code.Length; i++)
-                {
-                    buffer[i] = (byte)vignette.code.ToCharArray()[i];
-                }
-                writer.Write(vignette.code.Length);
-                writer.Write(buffer);
-
-                writer.Write(vignette.parameter_int);
-
-                buffer = new byte[vignette.parameter_string.Length];
-                for (int i = 0; i < vignette.parameter_string.Length; i++)
-                {
-                    buffer[i] = (byte)vignette.parameter_string.ToCharArray()[i];
-                }
-                writer.Write(vignette.parameter_string.Length);
-                writer.Write(buffer);
-
-                writer.Write(vignette.is_fixed ? 1 : 0);
-            }
-
-            writer.Write(programmableObject.graph.Count);
-            foreach(Arrow arrow in programmableObject.graph)
-            {
-                writer.Write(arrow.input);
-                writer.Write(arrow.output);
-                writer.Write(arrow.transmitTime);
-
-                writer.Write(arrow.timeBeforeTransmit.Count);
-                foreach (float time in arrow.timeBeforeTransmit)
-                {
-                    writer.Write(time);
-                }
+                writer.Write(0);
+                m_Driver.Send(m_Connections[connectionId], writer);
+                //TODO Warn the player inside the interface.
             }
             
-            m_Driver.Send(m_Connections[connectionId], writer);
-
-            programmableObject.OnInput("OnHack");
+            
         }
 
     }

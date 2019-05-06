@@ -172,6 +172,7 @@ public class Client : MonoBehaviour
                                             GameObject newCharacter = Instantiate(characterPrefab, programmableObjectsContainer.transform);
                                             newCharacter.GetComponent<ClientCharacter>().number = k;
                                             characters.Add(newCharacter.GetComponent<ClientCharacter>());
+                                            newCharacter.GetComponent<ProgrammableObjectsData>().objectIndexClient = programmableObjectsContainer.objectListClient.Count;
                                             programmableObjectsContainer.objectListClient.Add(newCharacter.GetComponent<ProgrammableObjectsData>());
                                         }
                                     }
@@ -544,90 +545,99 @@ public class Client : MonoBehaviour
     public void GetHackState(DataStreamReader stream, ref DataStreamReader.Context readerCtx)
     {
         int objectId = (int)stream.ReadUInt(ref readerCtx);
-        List<InOutVignette> inputCodes = new List<InOutVignette>();
-        List<InOutVignette> outputCodes = new List<InOutVignette>();
-        List<Arrow> graph = new List<Arrow>();
 
-        char[] buffer;
-        int inputCodesCount = (int)stream.ReadUInt(ref readerCtx);
-        for (int i = 0; i < inputCodesCount; i++)
+        if(stream.ReadUInt(ref readerCtx) == 1)
         {
-            int codeLength = (int)stream.ReadUInt(ref readerCtx);
-            buffer = new char[codeLength];
-            for (int j = 0; j < codeLength; j++)
+            List<InOutVignette> inputCodes = new List<InOutVignette>();
+            List<InOutVignette> outputCodes = new List<InOutVignette>();
+            List<Arrow> graph = new List<Arrow>();
+
+            char[] buffer;
+            int inputCodesCount = (int)stream.ReadUInt(ref readerCtx);
+            for (int i = 0; i < inputCodesCount; i++)
             {
-                buffer[j] = (char)stream.ReadByte(ref readerCtx);
+                int codeLength = (int)stream.ReadUInt(ref readerCtx);
+                buffer = new char[codeLength];
+                for (int j = 0; j < codeLength; j++)
+                {
+                    buffer[j] = (char)stream.ReadByte(ref readerCtx);
+                }
+                string code = new string(buffer);
+
+                int parameter_int = (int)stream.ReadUInt(ref readerCtx);
+
+                int parameter_stringLength = (int)stream.ReadUInt(ref readerCtx);
+                buffer = new char[parameter_stringLength];
+                for (int j = 0; j < parameter_stringLength; j++)
+                {
+                    buffer[j] = (char)stream.ReadByte(ref readerCtx);
+                }
+                string parameter_string = new string(buffer);
+
+                bool is_fixed = (stream.ReadUInt(ref readerCtx) == 1);
+
+                InOutVignette vignette = new InOutVignette(code, parameter_int, parameter_string, is_fixed);
+                inputCodes.Add(vignette);
+
+
             }
-            string code = new string(buffer);
 
-            int parameter_int = (int)stream.ReadUInt(ref readerCtx);
-
-            int parameter_stringLength = (int)stream.ReadUInt(ref readerCtx);
-            buffer = new char[parameter_stringLength];
-            for (int j = 0; j < parameter_stringLength; j++)
+            int outputCodesCount = (int)stream.ReadUInt(ref readerCtx);
+            for (int i = 0; i < outputCodesCount; i++)
             {
-                buffer[j] = (char)stream.ReadByte(ref readerCtx);
+                int codeLength = (int)stream.ReadUInt(ref readerCtx);
+                buffer = new char[codeLength];
+                for (int j = 0; j < codeLength; j++)
+                {
+                    buffer[j] = (char)stream.ReadByte(ref readerCtx);
+                }
+                string code = new string(buffer);
+
+                int parameter_int = (int)stream.ReadUInt(ref readerCtx);
+
+                int parameter_stringLength = (int)stream.ReadUInt(ref readerCtx);
+                buffer = new char[parameter_stringLength];
+                for (int j = 0; j < parameter_stringLength; j++)
+                {
+                    buffer[j] = (char)stream.ReadByte(ref readerCtx);
+                }
+                string parameter_string = new string(buffer);
+
+                bool is_fixed = (stream.ReadUInt(ref readerCtx) == 1);
+
+                InOutVignette vignette = new InOutVignette(code, parameter_int, parameter_string, is_fixed);
+                outputCodes.Add(vignette);
+
             }
-            string parameter_string = new string(buffer);
 
-            bool is_fixed = (stream.ReadUInt(ref readerCtx) == 1);
+            int arrowCount = (int)stream.ReadUInt(ref readerCtx);
+            for (int i = 0; i < arrowCount; i++)
+            {
+                int input = (int)stream.ReadUInt(ref readerCtx);
+                int output = (int)stream.ReadUInt(ref readerCtx);
+                float transmitTime = stream.ReadFloat(ref readerCtx);
 
-            InOutVignette vignette = new InOutVignette(code, parameter_int, parameter_string, is_fixed);
-            inputCodes.Add(vignette);
-            
-            
+                List<float> timeBeforeTransmit = new List<float>();
+                int timeBeforeTransmitCount = (int)stream.ReadUInt(ref readerCtx);
+                for (int j = 0; j < timeBeforeTransmitCount; j++)
+                {
+                    float timeBeforeTransmitElement = stream.ReadFloat(ref readerCtx);
+                    timeBeforeTransmit.Add(timeBeforeTransmitElement);
+                }
+
+                Arrow arrow = new Arrow(input, output, transmitTime, timeBeforeTransmit);
+                graph.Add(arrow);
+            }
+
+            GameObject selectedGameObject = programmableObjectsContainer.objectListClient[objectId].gameObject;
+
+            hackInterface.SelectedProgrammableObject(selectedGameObject, inputCodes, outputCodes, graph);
         }
-
-        int outputCodesCount = (int)stream.ReadUInt(ref readerCtx);
-        for (int i = 0; i < outputCodesCount; i++)
+        else
         {
-            int codeLength = (int)stream.ReadUInt(ref readerCtx);
-            buffer = new char[codeLength];
-            for (int j = 0; j < codeLength; j++)
-            {
-                buffer[j] = (char)stream.ReadByte(ref readerCtx);
-            }
-            string code = new string(buffer);
-
-            int parameter_int = (int)stream.ReadUInt(ref readerCtx);
-
-            int parameter_stringLength = (int)stream.ReadUInt(ref readerCtx);
-            buffer = new char[parameter_stringLength];
-            for (int j = 0; j < parameter_stringLength; j++)
-            {
-                buffer[j] = (char)stream.ReadByte(ref readerCtx);
-            }
-            string parameter_string = new string(buffer);
-
-            bool is_fixed = (stream.ReadUInt(ref readerCtx) == 1);
-
-            InOutVignette vignette = new InOutVignette(code, parameter_int, parameter_string, is_fixed);
-            outputCodes.Add(vignette);
-
+            //TODO HackRequestDenied
         }
-
-        int arrowCount = (int)stream.ReadUInt(ref readerCtx);
-        for (int i = 0; i < arrowCount; i++)
-        {
-            int input = (int)stream.ReadUInt(ref readerCtx);
-            int output = (int)stream.ReadUInt(ref readerCtx);
-            float transmitTime = stream.ReadFloat(ref readerCtx);
-
-            List<float> timeBeforeTransmit = new List<float>();
-            int timeBeforeTransmitCount = (int)stream.ReadUInt(ref readerCtx);
-            for (int j = 0; j < timeBeforeTransmitCount; j++)
-            {
-                float timeBeforeTransmitElement = stream.ReadFloat(ref readerCtx);
-                timeBeforeTransmit.Add(timeBeforeTransmitElement);
-            }
-
-            Arrow arrow = new Arrow(input, output, transmitTime, timeBeforeTransmit);
-            graph.Add(arrow);
-        }
-
-        GameObject selectedGameObject = programmableObjectsContainer.objectListClient[objectId].gameObject;
-
-        hackInterface.SelectedProgrammableObject(selectedGameObject, inputCodes, outputCodes, graph);
+        
 
     }
 
@@ -703,6 +713,18 @@ public class Client : MonoBehaviour
             
             m_Connection.Send(m_Driver, writer);
         }
+        
+    }
+
+    public void GiveBackHackToken(int objectId)
+    {
+        using (var writer = new DataStreamWriter(4096, Allocator.Temp))
+        {
+            writer.Write(Constants.Client_GiveBackHackToken);
+
+            writer.Write(objectId);
+            m_Connection.Send(m_Driver, writer);
+        }
     }
 
     private void InitialHandshake()
@@ -757,5 +779,15 @@ public class Client : MonoBehaviour
         }
     }
 
+    public void OpenedHackInterface(int objectId)
+    {
+        using (var writer = new DataStreamWriter(4096, Allocator.Temp))
+        {
+            writer.Write(Constants.Client_HackInterfaceIsOpen);
+
+            writer.Write(objectId);
+            m_Connection.Send(m_Driver, writer);
+        }
+    }
 #endif
 }

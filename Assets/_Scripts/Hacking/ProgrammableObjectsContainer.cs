@@ -24,6 +24,7 @@ public class ProgrammableObjectsContainer : MonoBehaviour
 #if CLIENT
             ryan.client = client;
             objectListClient.Add(ryan);
+            ryan.objectIndexClient = objectListClient.Count - 1;
 #endif
 
 #if SERVER

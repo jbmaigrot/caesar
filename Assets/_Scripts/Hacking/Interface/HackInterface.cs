@@ -109,7 +109,9 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
             SelectedInputButton = -1;
 
             /*Le graphe de comportement de l'objet hacké est remplacé par les modifications effectués.*/
-            client.SetHackState(objectsContainer.GetObjectIndexClient(SelectedGameObject.GetComponent<ProgrammableObjectsData>()), inputCodes, outputCodes, graph);
+            int objectId = objectsContainer.GetObjectIndexClient(SelectedGameObject.GetComponent<ProgrammableObjectsData>());
+            client.SetHackState(objectId, inputCodes, outputCodes, graph);
+            client.GiveBackHackToken(objectId);
             client.inventory[0] = inventory[0];
             client.inventory[1] = inventory[1];
             client.inventory[2] = inventory[2];
@@ -121,6 +123,7 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     {
         if (!isClosing)
         {
+            client.GiveBackHackToken(objectsContainer.GetObjectIndexClient(SelectedGameObject.GetComponent<ProgrammableObjectsData>()));
             timeBeforeClosing = TIMEFORCLOSING;
             isClosing = true;
 
@@ -204,6 +207,7 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
 
     public void OpenInterface()
     {
+        client.OpenedHackInterface(SelectedGameObject.GetComponent<ProgrammableObjectsData>().objectIndexClient);
         SelectedGameObject.GetComponent<ProgrammableObjectsData>().isWaitingHack = false;
         isOpening = true;
         timeToOpen = TIMETOOPEN;
