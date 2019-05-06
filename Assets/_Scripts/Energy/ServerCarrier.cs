@@ -23,7 +23,7 @@ public class ServerCarrier : MonoBehaviour
     public bool draw = false;
 
 #if SERVER
-    private const float RELAYTRANSFERRATE = 1.0f;
+    private const float RELAYTRANSFERRATE = 2.0f;
     public float charge = 0;
     public float maxCharge = 10;
     public float chargeSpeed = 1;
