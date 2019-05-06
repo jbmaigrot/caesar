@@ -204,7 +204,8 @@ public class Client : MonoBehaviour
                                         {
                                             characters[j].GetTacled(false);
                                         }
-                                        characters[j].transform.SetPositionAndRotation(new Vector3(x, y, z), Quaternion.Euler(0, angle, 0));
+                                        characters[j].transform.position = new Vector3(x, y, z);
+                                        characters[j].mesh.localRotation = Quaternion.Euler(0, angle, 0); //we preserve the orientation of the parent object to allow for UI element to face the camera
                                         characters[j].speed.x = xSpeed;
                                         characters[j].speed.z = zSpeed;
                                     }
@@ -236,9 +237,9 @@ public class Client : MonoBehaviour
                                         {
                                             allyCharacters.Add(characters[j].GetComponent<ClientCharacter>());
 
-                                            characters[j].transform.Find("AllyNameOffsetter").GetComponentInChildren<MeshRenderer>().enabled = true;
-                                            characters[j].transform.Find("AllyNameOffsetter").GetComponentInChildren<AllyNameDisplay>().enabled = true;
-                                            characters[j].transform.Find("AllyNameOffsetter").GetComponentInChildren<TextMesh>().text = new string(playerNameBuffer);
+                                            characters[j].GetComponentInChildren<Text>().enabled = true;
+                                            characters[j].GetComponentInChildren<AllyNameDisplay>().enabled = true;
+                                            characters[j].GetComponentInChildren<AllyNameDisplay>().allyNameText.text = new string(playerNameBuffer);
 
                                             allyCharacter.isKnownAsAlly = true;
                                         }
