@@ -20,6 +20,8 @@ public class ClientCharacter : MonoBehaviour
     public bool isAlly = false;
     public string playerName;
 
+    private Animator stunAnimator;
+
     //Start
     private void Start()
     {
@@ -29,6 +31,8 @@ public class ClientCharacter : MonoBehaviour
         floatingFreq = Random.Range(0.3f, 0.4f);
         mesh = transform.Find("Mesh").transform;
         startingY = transform.localPosition.y;
+
+        stunAnimator = this.transform.Find("StunLightning").GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -56,6 +60,9 @@ public class ClientCharacter : MonoBehaviour
             if (!isTacle)
             {
                 isTacle = true;
+                SpriteRenderer lightning = this.transform.Find("StunLightning").GetComponent<SpriteRenderer>();
+                lightning.enabled = true;
+                stunAnimator.Play(0);
                 foreach (MeshRenderer ryan in this.gameObject.GetComponentsInChildren<MeshRenderer>())
                 {
                     ryan.material.color = new Color(ryan.material.color.r * 0.8f, ryan.material.color.g * 1.5625f, ryan.material.color.b * 0.8f);
@@ -68,6 +75,8 @@ public class ClientCharacter : MonoBehaviour
             if (isTacle)
             {
                 isTacle = false;
+                SpriteRenderer lightning = this.transform.Find("StunLightning").GetComponent<SpriteRenderer>();
+                lightning.enabled = false;
                 foreach (MeshRenderer ryan in this.gameObject.GetComponentsInChildren<MeshRenderer>())
                 {
                     ryan.material.color = new Color(ryan.material.color.r * 1.25f, ryan.material.color.g * 0.64f, ryan.material.color.b * 1.25f);
