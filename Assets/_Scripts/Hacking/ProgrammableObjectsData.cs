@@ -220,7 +220,7 @@ public class ProgrammableObjectsData : MonoBehaviour
                 timeBeforeStunReload = TIMEOFSTUNRELOAD;
                 for (int i = 0; i < server.characters.Count; i++)
                 {
-                    if (((int)Vector3.Distance(server.characters[i].position, this.transform.position)) < InventoryConstants.StunBoxRange && i != charactersIndex)
+                    if (((int)Vector3.Distance(server.characters[i].position, this.transform.position)) < InventoryConstants.StunboxRange && i != charactersIndex)
                     {
                         server.characters[i].GetComponent<ServerCharacter>().getStun();
                     }
@@ -240,7 +240,7 @@ public class ProgrammableObjectsData : MonoBehaviour
             ServerCarrier targetCarrier;
             for (int i = 0; i < objectsContainer.objectListServer.Count; i++)
             {
-                if (((int)Vector3.Distance(objectsContainer.objectListServer[i].transform.position, this.transform.position)) < InventoryConstants.PowerPumpRange && objectsContainer.objectListServer[i]!=this)
+                if (((int)Vector3.Distance(objectsContainer.objectListServer[i].transform.position, this.transform.position)) < InventoryConstants.PowerpumpRange && objectsContainer.objectListServer[i]!=this)
                 {
                     if (serverCarrier.charge < serverCarrier.maxCharge)
                     {
