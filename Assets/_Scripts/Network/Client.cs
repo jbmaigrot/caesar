@@ -237,7 +237,7 @@ public class Client : MonoBehaviour
                                         {
                                             allyCharacters.Add(characters[j].GetComponent<ClientCharacter>());
 
-                                            characters[j].GetComponentInChildren<Text>().enabled = true;
+                                            characters[j].GetComponentInChildren<Canvas>().enabled = true;
                                             characters[j].GetComponentInChildren<AllyNameDisplay>().enabled = true;
                                             characters[j].GetComponentInChildren<AllyNameDisplay>().allyNameText.text = new string(playerNameBuffer);
 
