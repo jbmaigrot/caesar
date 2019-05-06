@@ -27,7 +27,7 @@ public class ScoreDisplay : MonoBehaviour
             if(battery.clientCharge >= (i+1)*0.2)
                 lines[i].GetComponent<SVGImage>().color = col;
             else
-                lines[i].GetComponent<SVGImage>().color = Color.grey;
+                lines[i].GetComponent<SVGImage>().color = Color.white;
         }
     }
 
