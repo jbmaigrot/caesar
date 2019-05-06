@@ -21,6 +21,10 @@ public class SourceManager : MonoBehaviour
         timeBeforeSource = 15.0f;
         Random.InitState(System.DateTime.Now.Second);
         server = FindObjectOfType<Server>();
+        foreach(ServerSource ryan in sources)
+        {
+            ryan.gameObject.SetActive(false);
+        }
 #endif
     }
 

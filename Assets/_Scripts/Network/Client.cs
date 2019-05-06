@@ -275,6 +275,7 @@ public class Client : MonoBehaviour
                                 int sourceIsActive = (int)stream.ReadUInt(ref readerCtx);
                                 if (progObject.GetComponent<ServerSource>())
                                 {
+#if !SERVER
                                     if (sourceIsActive==1)
                                     {
                                         progObject.gameObject.SetActive(true);
@@ -285,7 +286,7 @@ public class Client : MonoBehaviour
                                         progObject.gameObject.SetActive(false);
                                         Debug.Log("NotActive");
                                     }
-                                   
+#endif
                                 }
                                     // Charge
                                     float chargeRatio = stream.ReadFloat(ref readerCtx);
@@ -791,4 +792,4 @@ public class Client : MonoBehaviour
         }
     }
 #endif
-}
+                                }
