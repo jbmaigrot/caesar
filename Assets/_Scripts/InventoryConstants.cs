@@ -9,6 +9,6 @@
 
 
     public const float AttractRange = 20.0f;
-    public const float StunBoxRange = 10.0f;
-    public const float PowerPumpRange = 25.0f;
+    public const float StunboxRange = 10.0f;
+    public const float PowerpumpRange = 25.0f;
 }

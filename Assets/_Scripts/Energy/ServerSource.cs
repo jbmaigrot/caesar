@@ -21,7 +21,6 @@ public class ServerSource : MonoBehaviour
         carrier = GetComponent<ServerCarrier>();
         server = FindObjectOfType<Server>();
         isActivated = false;
-        gameObject.SetActive(false);
     }
 
     // Update is called once per frame

@@ -19,7 +19,7 @@ public class ProgrammableObjectsContainer : MonoBehaviour
         client = FindObjectOfType<Client>();
 #endif
 
-        foreach(ProgrammableObjectsData ryan in this.GetComponentsInChildren<ProgrammableObjectsData>())
+        foreach(ProgrammableObjectsData ryan in this.GetComponentsInChildren<ProgrammableObjectsData>(true))
         {
 #if CLIENT
             ryan.client = client;
