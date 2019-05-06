@@ -12,8 +12,8 @@ public class ServerCarrier : MonoBehaviour
     private HackInterface hackInterface;
 
     //to display charge
-    public Vector2 pos = new Vector2(0,0);
-    public Vector2 size = new Vector2(0,0);
+    public Vector2 pos = new Vector2(0, 0);
+    public Vector2 size = new Vector2(0, 0);
     private float zoom = 1;
     private GUIStyle style = new GUIStyle();
     private Camera cam;
@@ -56,20 +56,20 @@ public class ServerCarrier : MonoBehaviour
         {
             zoom = Mathf.Sqrt(cam.GetComponent<CameraController>().zoomFactor);
             size = new Vector2(0.05f * Screen.width / zoom, 0.01f * Screen.height / zoom);
-            pos = new Vector2(cam.WorldToScreenPoint(transform.position).x - size.x /2, Screen.height - cam.WorldToScreenPoint(transform.position).y);
+            pos = new Vector2(cam.WorldToScreenPoint(transform.position).x - size.x / 2, Screen.height - cam.WorldToScreenPoint(transform.position).y);
             //draw the background:
             GUI.BeginGroup(new Rect(pos.x, pos.y, size.x, size.y));
-                GUI.Box(new Rect(0, 0, size.x, size.y), emptyTex, style);
+            GUI.Box(new Rect(0, 0, size.x, size.y), emptyTex, style);
 
-                //draw the filled-in part:
-                GUI.BeginGroup(new Rect(0, 0, size.x * clientCharge, size.y));
-                    GUI.Box(new Rect(0, 0, size.x, size.y), fullTex, style);
+            //draw the filled-in part:
+            GUI.BeginGroup(new Rect(0, 0, size.x * clientCharge, size.y));
+            GUI.Box(new Rect(0, 0, size.x, size.y), fullTex, style);
 
-                GUI.EndGroup();
+            GUI.EndGroup();
             GUI.EndGroup();
         }
     }
-	/*
+    /*
         //Display charge
         //todo changer le test degueu de la batterie + charger batterie par étape
         if (scoreDisplay != null)
@@ -163,18 +163,22 @@ public class ServerCarrier : MonoBehaviour
     // Take and Give
     public void OnMouseOver()
     {
-        if(!hackInterface.GetComponent<CanvasGroup>().blocksRaycasts)
-        if (Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(0))
-        {
-            if (GetComponent<ProgrammableObjectsData>() != null)
-                Debug.Log(programmableObjectsContainer.objectListClient.IndexOf(GetComponent<ProgrammableObjectsData>()));
-                client.StartTaking(programmableObjectsContainer.objectListClient.IndexOf(GetComponent<ProgrammableObjectsData>()));
-        }
-        else if (Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(1))
-        {
-            if (GetComponent<ProgrammableObjectsData>() != null)
-                client.StartGiving(programmableObjectsContainer.objectListClient.IndexOf(GetComponent<ProgrammableObjectsData>()));
-        }
+        if (!hackInterface.GetComponent<CanvasGroup>().blocksRaycasts)
+            if (Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(0))
+            {
+                if (GetComponent<ProgrammableObjectsData>() != null)
+                {
+                    client.StartTaking(GetComponent<ProgrammableObjectsData>().objectIndexClient);
+                }
+
+            }
+            else if (Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(1))
+            {
+                if (GetComponent<ProgrammableObjectsData>() != null)
+                {
+                    client.StartGiving(GetComponent<ProgrammableObjectsData>().objectIndexClient);
+                }
+            }
     }
 #endif
 
@@ -204,7 +208,7 @@ public class ServerCarrier : MonoBehaviour
             StopTaking();
         }
     }
-    
+
     public void StopGiving()
     {
         givingTo = null;

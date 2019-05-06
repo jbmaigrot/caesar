@@ -26,6 +26,7 @@ public class ProgrammableObjectsData : MonoBehaviour
     private float timeBeforeStunReload;
     private const float TIMEOFSTUNRELOAD = 20.0f;
     private const float STUNBOXRADIUS = 10.0f;
+    
 #endif
 
 #if CLIENT
@@ -36,6 +37,7 @@ public class ProgrammableObjectsData : MonoBehaviour
     private RosaceForHacking rosaceForHacking;
     public bool sendingToBlueClient;
     public bool sendingToRedClient;
+    public int objectIndexClient;
 #endif
 
 #if SERVER
@@ -50,6 +52,7 @@ public class ProgrammableObjectsData : MonoBehaviour
     public Transform BlueBatterie;
     public Transform RedBatterie;
 
+    public int isBeingHackedServer;
     public bool sendingToBlueServer;
     public bool sendingToRedServer;
 #endif
@@ -105,6 +108,7 @@ public class ProgrammableObjectsData : MonoBehaviour
             RedBatterie = Batteries[1].transform;
             BlueBatterie = Batteries[0].transform;
         }
+        isBeingHackedServer = -1;
 #endif
         isHackable = Initiator.isHackable;
 #if CLIENT
@@ -125,7 +129,7 @@ public class ProgrammableObjectsData : MonoBehaviour
         
         if (Physics.Raycast(ray, out hit, 100f, 16384)&& isHackable && (hit.collider.ClosestPoint(client.characters[client.playerIndex].transform.position) - client.characters[client.playerIndex].transform.position).magnitude < 15 &&!hackInterface.GetComponent<CanvasGroup>().blocksRaycasts&& !Input.GetKey(KeyCode.LeftControl))
         {
-            client.RequestHackState(objectsContainer.GetObjectIndexClient(this));
+            client.RequestHackState(objectIndexClient);
             hackInterface.ReadyToOpen();
             isWaitingHack = true;
             rosaceForHacking.GetComponent<Animator>().SetTrigger("Activate");
@@ -136,6 +140,7 @@ public class ProgrammableObjectsData : MonoBehaviour
     private void OnMouseUp()
     {
         hackInterface.DoNotOpenActually();
+        client.GiveBackHackToken(objectIndexClient);
         isWaitingHack = false;
         rosaceForHacking.GetComponent<Animator>().SetTrigger("Deactivate");
     }

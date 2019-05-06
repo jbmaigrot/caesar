@@ -4,13 +4,16 @@
     public const int Client_Tacle = 2;
     public const int Client_Message = 3;
     public const int Client_RequestHack = 4;
-    public const int Client_SetHack = 5;
-    public const int Client_ConnectionId = 6;
-    public const int Client_Open_Door = 7;
-    public const int Client_StartTaking = 8;
-    public const int Client_StartGiving = 9;
+    public const int Client_GiveBackHackToken = 5;
+    public const int Client_HackInterfaceIsOpen = 6;
+    public const int Client_SetHack = 7;
+    public const int Client_ConnectionId = 8;
+    public const int Client_Open_Door = 9;
+    public const int Client_StartTaking = 10;
+    public const int Client_StartGiving = 11;
 
-    public const int Client_ThiefHasBeenStunned = 10;
+    public const int Client_ThiefHasBeenStunned = 12;
+    
 
 
     public const int Server_MoveCharacter = 42;
