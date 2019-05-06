@@ -729,11 +729,13 @@ public class Server : MonoBehaviour
             {
                 pj.transform.position = FindObjectOfType<PlayerSpawn>().transform.position;
                 pj.GetComponent<ServerCharacter>().team = 0;
+                pj.GetComponent<NavMeshAgent>().areaMask = 13;
             }
             else
             {
                 pj.transform.position = -FindObjectOfType<PlayerSpawn>().transform.position;
                 pj.GetComponent<ServerCharacter>().team = 1;
+                pj.GetComponent<NavMeshAgent>().areaMask = 21;
             }
         }
         else
@@ -742,11 +744,13 @@ public class Server : MonoBehaviour
             {
                 pj.transform.position = FindObjectOfType<PlayerSpawn>().transform.position;
                 pj.GetComponent<ServerCharacter>().team = 0;
+                pj.GetComponent<NavMeshAgent>().areaMask = 13;
             }
             else if (team == 1)
             {
                 pj.transform.position = -FindObjectOfType<PlayerSpawn>().transform.position;
                 pj.GetComponent<ServerCharacter>().team = 1;
+                pj.GetComponent<NavMeshAgent>().areaMask = 21;
             }
         }
 
