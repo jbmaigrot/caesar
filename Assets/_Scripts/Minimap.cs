@@ -77,5 +77,5 @@ public class Minimap : MonoBehaviour
         return new Vector2(((mousePosition.x - mapPos.x) * Mathf.Cos(angle) - (mousePosition.y - mapPos.y) * Mathf.Sin(angle)) * 1920 / Screen.width,
                            ((mousePosition.x - mapPos.x) * Mathf.Sin(angle) + (mousePosition.y - mapPos.y) * Mathf.Cos(angle)) * 1080 / Screen.height);
     }
-}
 #endif
+}
