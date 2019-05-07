@@ -643,7 +643,7 @@ public class Client : MonoBehaviour
 
     }
 
-    public void SetHackState(int objectId, List<InOutVignette> inputCodes, List<InOutVignette> outputCodes, List<Arrow> graph)
+    public void SetHackState(int objectId, List<InOutVignette> inputCodes, List<InOutVignette> outputCodes, List<Arrow> graph, int RelayHasMoved)
     {
         using (var writer = new DataStreamWriter(4096, Allocator.Temp))
         {
@@ -712,7 +712,9 @@ public class Client : MonoBehaviour
                     writer.Write(time);
                 }
             }
-            
+
+            writer.Write(RelayHasMoved);
+
             m_Connection.Send(m_Driver, writer);
         }
         

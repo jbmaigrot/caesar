@@ -19,7 +19,9 @@ public class Server : MonoBehaviour
     public List<Transform> players = new List<Transform>();
     public List<Transform> characters = new List<Transform>(); // Players + NPCs
     public Transform BlueBatterie;
+    private Transform PositionBlueRelay;
     public Transform RedBatterie;
+    private Transform PositionRedRelay;
     private bool OrangeIsBack;
     private bool BlueIsBack;
 
@@ -87,6 +89,8 @@ public class Server : MonoBehaviour
             RedBatterie = Batteries[1].transform;
             BlueBatterie = Batteries[0].transform;
         }
+        PositionBlueRelay = BlueBatterie;
+        PositionRedRelay = RedBatterie;
         hasSendItsRegard = false;
         
     }
@@ -279,7 +283,7 @@ public class Server : MonoBehaviour
 
                         case Constants.Client_SetHack:
                             objectId = (int)stream.ReadUInt(ref readerCtx);
-                            SetHackStatus(objectId, stream, ref readerCtx);
+                            SetHackStatus(objectId, stream, ref readerCtx, i);
                             break;
 
                         case Constants.Client_GiveBackHackToken:
@@ -313,7 +317,7 @@ public class Server : MonoBehaviour
                                     reynolds.is_fixed = true;
                                     reynolds.parameter_int = InventoryConstants.OrangeRelay;
                                     RedBatterie.GetComponent<ProgrammableObjectsData>().outputCodes.Add(reynolds);
-                                    
+                                    PositionRedRelay = RedBatterie;
                                 }                                
                                 OrangeIsBack = true;
                             }
@@ -334,7 +338,7 @@ public class Server : MonoBehaviour
                                     reynolds.is_fixed = true;
                                     reynolds.parameter_int = InventoryConstants.BlueRelay;
                                     BlueBatterie.GetComponent<ProgrammableObjectsData>().outputCodes.Add(reynolds);
-                                    
+                                    PositionBlueRelay=BlueBatterie;
                                 }                               
                                 BlueIsBack = true;
                             }
@@ -609,7 +613,7 @@ public class Server : MonoBehaviour
 
     }
 
-    public void SetHackStatus(int objectId, DataStreamReader stream, ref DataStreamReader.Context readerCtx)
+    public void SetHackStatus(int objectId, DataStreamReader stream, ref DataStreamReader.Context readerCtx, int indexPlayer)
     {
         List<InOutVignette> inputCodes = new List<InOutVignette>();
         List<InOutVignette> outputCodes = new List<InOutVignette>();
@@ -712,6 +716,28 @@ public class Server : MonoBehaviour
         }
 
         ProgrammableObjectsData objectData = programmableObjectsContainer.objectListServer[objectId];
+
+        int RelayHasMoved = (int)stream.ReadUInt(ref readerCtx);
+
+        if(RelayHasMoved%3 == 1)
+        {
+            PositionRedRelay = players[indexPlayer].transform;
+        }
+        else if (RelayHasMoved % 3 == 2)
+        {
+            PositionRedRelay = objectData.transform;
+        }
+
+        if (RelayHasMoved / 3 == 1)
+        {
+            PositionBlueRelay = players[indexPlayer].transform;
+        }
+        else if (RelayHasMoved / 3 == 2)
+        {
+            PositionBlueRelay = objectData.transform;
+        }
+
+        
 
         objectData.inputCodes = inputCodes;
         objectData.outputCodes = outputCodes;

@@ -47,6 +47,7 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     private Sprite[] SpriteList;
     public Sprite[] ArrowSpriteTable;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -119,6 +120,7 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
      /*Fonction appelé lorsque le joueur ferme l'interface. A adapter pour le réseau.*/
     public void OnClose()
     {
+        int RelayHasMoved = 0;
         if (!isClosing)
         {
             /*Initiation du délais de fermeture*/
@@ -126,14 +128,37 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
             isClosing = true;
 
             SelectedInputButton = -1;
+            for(int i = 0; i < inventory.Length; i++)
+            {
+                if (inventory[i] == InventoryConstants.OrangeRelay)
+                {
+                    RelayHasMoved += 1;
+                }
+                else if (inventory[i] == InventoryConstants.BlueRelay)
+                {
+                    RelayHasMoved += 3;
+                }
+            }
+            foreach (InOutVignette ryan in outputCodes)
+            {
+                if (ryan.code == "UseGadget" &&ryan.parameter_int == InventoryConstants.OrangeRelay)
+                {
+                    RelayHasMoved += 2;
+                }
+                else if (ryan.code == "UseGadget" && ryan.parameter_int == InventoryConstants.BlueRelay)
+                {
+                    RelayHasMoved += 6;
+                }
+            }
 
-            /*Le graphe de comportement de l'objet hacké est remplacé par les modifications effectués.*/
-            int objectId = objectsContainer.GetObjectIndexClient(SelectedGameObject.GetComponent<ProgrammableObjectsData>());
-            client.SetHackState(objectId, inputCodes, outputCodes, graph);
+                /*Le graphe de comportement de l'objet hacké est remplacé par les modifications effectués.*/
+                int objectId = objectsContainer.GetObjectIndexClient(SelectedGameObject.GetComponent<ProgrammableObjectsData>());
+            client.SetHackState(objectId, inputCodes, outputCodes, graph,RelayHasMoved);
             client.GiveBackHackToken(objectId);
             client.inventory[0] = inventory[0];
             client.inventory[1] = inventory[1];
             client.inventory[2] = inventory[2];
+
             Camera.main.GetComponent<CameraController>().UnlockCamera();
         }        
     }
