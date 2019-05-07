@@ -62,6 +62,7 @@ public class ProgrammableObjectsData : MonoBehaviour
 
     private bool isHackable = true;
 
+    private bool startIsOver = false;
     // Start
     void Start()
     {
@@ -114,7 +115,7 @@ public class ProgrammableObjectsData : MonoBehaviour
         isWaitingHack = false;
         rosaceForHacking = FindObjectOfType<RosaceForHacking>();
 #endif
-
+        startIsOver = true;
     }
 
     /*Si l'objet est cliqué à distance suffisament courte, ouvre l'interface de hack. Cette fonction doit être adapté pour le réseau.*/
@@ -146,11 +147,15 @@ public class ProgrammableObjectsData : MonoBehaviour
 #if SERVER
     public void OnTriggerEnter(Collider other)
     {
-        OnInput("OnPress");
-        if(other.transform == server.PositionBlueRelay || other.transform == server.PositionRedRelay)
+        if (startIsOver)
         {
-            OnInput("OnRelayMet");
+            OnInput("OnPress");
+            if (other.transform == server.PositionBlueRelay || other.transform == server.PositionRedRelay)
+            {
+                OnInput("OnRelayMet");
+            }
         }
+        
     }
 
     /*Quand le mot en parametre apparait dans le chat, active la vignette OnWord correspondant. Potentielement à adapter un petit peu pour le chat.*/
