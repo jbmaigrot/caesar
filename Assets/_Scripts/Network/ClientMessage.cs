@@ -7,17 +7,27 @@ public class ClientMessage : MonoBehaviour
 {
     public Vector3 sourcePosition = new Vector3(0,0,0);
     private CameraController cam;
+    private Minimap minimap;
 
     //Start
     void Start()
     {
         cam = Camera.main.GetComponent<CameraController>();
+        minimap = FindObjectOfType<Minimap>();
     }
 
+    //Click
+    public void ShowMessageOnMap()
+    {
+        minimap.mapMessage.gameObject.SetActive(true);
+        minimap.mapMessage.localPosition = minimap.worldToMap(sourcePosition);
+    }
+
+    /*
     //Click
     public void MoveCamera()
     {
         cam.cameraMode = 1;
         cam.transform.parent.position = sourcePosition;
-    }
+    }*/
 }
