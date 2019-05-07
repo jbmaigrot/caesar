@@ -109,12 +109,12 @@ public class ServerCharacter : MonoBehaviour
             {
                 if (isAttractedByData!=0)
                 {
-                    if((isAttractedByData>0 && carrier.charge < carrier.maxCharge) || (isAttractedByData < 0 && carrier.charge > 0.0f) && Vector3.Distance(this.transform.position, attractDestination) < 30)
+                    if((isAttractedByData>0 && carrier.charge < carrier.maxCharge) || (isAttractedByData < 0 && carrier.charge > 0.0f) && Vector3.Distance(this.transform.position, attractByDataDestination) < 35)
                     {
                         if (actualDestination != attractByDataDestination)
                         {
                             actualDestination = attractByDataDestination;
-                            navMeshAgent.ResetPath();
+                            //navMeshAgent.ResetPath();
                             navMeshAgent.destination = actualDestination;
                             SendPathChange();
                         }
