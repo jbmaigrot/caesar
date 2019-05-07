@@ -9,6 +9,8 @@ public class ServerGameCreator : MonoBehaviour
     public GameObject PnjGameObject;
 
     public GameObject[] ListZone;
+    public Transform PnjSpawnContainer;
+    
 #if SERVER
     [Range(0, 100)]
     public int ChanceToGoToObject = 60;
@@ -20,7 +22,7 @@ public class ServerGameCreator : MonoBehaviour
     private GameObject[] _listFloor;
     private ProgrammableObjectsContainer _containerNPC;
     private PnjClass[] _listPnj;
-    
+    private List<Transform> PNJSpawn;
 
     private List<ZoneClass> _listZone = new List<ZoneClass>();
 
@@ -36,8 +38,9 @@ public class ServerGameCreator : MonoBehaviour
             //zc.FillListSlot();
             _listZone.Add(zc);
         }
-
-
+        PNJSpawn = new List<Transform>();
+        foreach (Transform ryan in PnjSpawnContainer.GetComponentsInChildren<Transform>()) PNJSpawn.Add(ryan);
+        
         _containerNPC = FindObjectOfType<ProgrammableObjectsContainer>();
         FillCrowd();
     }
@@ -139,16 +142,16 @@ public class ServerGameCreator : MonoBehaviour
 
     void FillCrowd()
     {
-        int maxSize = _containerNPC.objectListServer.Count;
+        int maxSize = PNJSpawn.Count;
         _listPnj = new PnjClass[NbPnj];
         for (int i = 0; i < NbPnj; i++)
         {
             PnjClass pnj = new PnjClass();
             pnj.PrefabPnj = Instantiate(PnjGameObject, _containerNPC.transform);
 
-            int rndZoneIndex = Random.Range(0, maxSize);
+            int rndSpawnIndex = Random.Range(0, maxSize);
             pnj.PrefabPnj.GetComponent<NavMeshAgent>().enabled = false;
-            pnj.PrefabPnj.transform.position = new Vector3(Random.Range(-98,98),0f, Random.Range(-98, 98));
+            pnj.PrefabPnj.transform.position = PNJSpawn[rndSpawnIndex].position;
             pnj.PrefabPnj.GetComponent<NavMeshAgent>().enabled = true;
             /*
             SlotClass sc = _listZone[rndZoneIndex].GetFreeSlot();
