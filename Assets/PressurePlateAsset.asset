@@ -18,10 +18,15 @@ MonoBehaviour:
   - OnFull
   - OnHack
   - OnPress
+  - OnRelayMet
   accessibleOutputCode:
   - SendMessage
   inputCodes:
   - code: OnPress
+    parameter_int: 0
+    parameter_string: 
+    is_fixed: 0
+  - code: OnRelayMet
     parameter_int: 0
     parameter_string: 
     is_fixed: 0

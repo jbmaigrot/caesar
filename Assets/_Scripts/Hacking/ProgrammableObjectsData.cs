@@ -147,6 +147,10 @@ public class ProgrammableObjectsData : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         OnInput("OnPress");
+        if(other.transform == server.PositionBlueRelay || other.transform == server.PositionRedRelay)
+        {
+            OnInput("OnRelayMet");
+        }
     }
 
     /*Quand le mot en parametre apparait dans le chat, active la vignette OnWord correspondant. Potentielement à adapter un petit peu pour le chat.*/

@@ -34,8 +34,8 @@ MonoBehaviour:
     parameter_int: 0
     parameter_string: 0
   - code: OnPress
-    descriptionWithParameter: When I am passed over
-    descriptionWithoutParameter: When I am passed over
+    descriptionWithParameter: When a drone pass over
+    descriptionWithoutParameter: When a drone pass over
     parameter_int: 0
     parameter_string: 0
   - code: OnStun
@@ -51,6 +51,11 @@ MonoBehaviour:
   - code: OnEmpty
     descriptionWithParameter: When I am empty
     descriptionWithoutParameter: When I am empty
+    parameter_int: 0
+    parameter_string: 0
+  - code: OnRelayMet
+    descriptionWithParameter: When a relay pass over
+    descriptionWithoutParameter: When a relay pass over
     parameter_int: 0
     parameter_string: 0
   outputCodes:
