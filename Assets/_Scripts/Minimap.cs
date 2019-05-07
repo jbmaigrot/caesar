@@ -11,8 +11,8 @@ public class Minimap : MonoBehaviour
     public List<RectTransform> mapAllies = new List<RectTransform>();
     public RectTransform mapOrangeRelay;
     public RectTransform mapBlueRelay;
-    public RectTransform mapPing;
     public RectTransform mapMessage;
+    public GameObject mapPingPrefab;
 
     public Transform player;
     public List<Transform> allies = new List<Transform>();
@@ -21,12 +21,13 @@ public class Minimap : MonoBehaviour
 #if CLIENT
     private bool isPointerOver = false;
     private Client client;
+    private HackInterface hackInterface;
 
     // Start
     private void Start()
     {
         client = FindObjectOfType<Client>();
-        mapPing.gameObject.SetActive(false);
+        hackInterface = FindObjectOfType<HackInterface>();
         mapMessage.gameObject.SetActive(false);
     }
 
@@ -40,16 +41,22 @@ public class Minimap : MonoBehaviour
         //inputs: move or ping
         if (isPointerOver)
         {
-            if (!Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(0) /*&& !hackinterface.GetComponent<CanvasGroup>().blocksRaycasts*/)
+            if (!Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(0) && !hackInterface.GetComponent<CanvasGroup>().blocksRaycasts)
             {
                 client.SetDestination(mapToWorld(screenToMap(Input.mousePosition)));
             }
-            else if (!Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(1) /*&& !hackinterface.GetComponent<CanvasGroup>().blocksRaycasts*/)
+            else if (!Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(1))
             {
-                mapPing.gameObject.SetActive(true);
-                mapPing.localPosition = screenToMap(Input.mousePosition);
+                client.Ping(screenToMap(Input.mousePosition));
             }
         }
+    }
+
+    // Ping
+    public void Ping(Vector2 mapPos)
+    {
+        GameObject newPing = Instantiate(mapPingPrefab);
+        newPing.GetComponent<RectTransform>().localPosition = mapPos;
     }
 
     // Set isPointerOver

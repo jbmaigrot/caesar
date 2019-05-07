@@ -393,8 +393,7 @@ public class Client : MonoBehaviour
                             }
                             break;
 
-                            
-
+                        
                         case Constants.Server_Message:
                             int length = (int)stream.ReadUInt(ref readerCtx);
                             byte[] buffer = stream.ReadBytesAsArray(ref readerCtx, length);
@@ -407,6 +406,11 @@ public class Client : MonoBehaviour
                             float yPos = stream.ReadFloat(ref readerCtx);
                             float zPos = stream.ReadFloat(ref readerCtx);
                             chat.AddMessage(new string(chars), new Vector3(xPos, yPos, zPos));
+                            break;
+
+                        case Constants.Server_Ping:
+                            Vector2 mapPos = new Vector2(stream.ReadFloat(ref readerCtx), stream.ReadFloat(ref readerCtx));
+                            minimap.Ping(mapPos);
                             break;
 
                         case Constants.Server_GetHack:
@@ -528,6 +532,17 @@ public class Client : MonoBehaviour
             }
             writer.Write(buffer);
             // message.ToCharArray()
+            m_Connection.Send(m_Driver, writer);
+        }
+    }
+
+    public void Ping(Vector2 mapPos)
+    {
+        using (var writer = new DataStreamWriter(32, Allocator.Temp))
+        {
+            writer.Write(Constants.Client_Ping);
+            writer.Write(mapPos.x);
+            writer.Write(mapPos.y);
             m_Connection.Send(m_Driver, writer);
         }
     }

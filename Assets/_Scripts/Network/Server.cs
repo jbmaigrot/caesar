@@ -275,6 +275,11 @@ public class Server : MonoBehaviour
                             AddMessage(message, players[i].transform.position);
                             break;
 
+                        case Constants.Client_Ping:
+                            Vector2 mapPos = new Vector2(stream.ReadFloat(ref readerCtx), stream.ReadFloat(ref readerCtx));
+                            Ping(mapPos);
+                            break;
+
                         case Constants.Client_RequestHack:
                             int object_Id = (int)stream.ReadUInt(ref readerCtx);
                             Debug.Log("Server received a request for object with ID " + object_Id);
@@ -522,6 +527,20 @@ public class Server : MonoBehaviour
         messages.Add(message);
         messagesPos.Add(pos);
         programmableObjectsContainer.ChatInstruction(message);
+    }
+
+    public void Ping(Vector2 mapPos)
+    {
+        using (var writer = new DataStreamWriter(32, Allocator.Temp))
+        {
+            writer.Write(Constants.Server_Ping);
+            writer.Write(mapPos.x);
+            writer.Write(mapPos.y);
+            for (int k = 0; k < m_Connections.Length; k++)
+            {
+                m_Driver.Send(m_Connections[k], writer);
+            }
+        }
     }
 
     public void SendHackStatus(int objectId, int connectionId)

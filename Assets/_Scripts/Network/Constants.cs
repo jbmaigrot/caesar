@@ -11,9 +11,8 @@
     public const int Client_Open_Door = 9;
     public const int Client_StartTaking = 10;
     public const int Client_StartGiving = 11;
-
     public const int Client_ThiefHasBeenStunned = 12;
-    
+    public const int Client_Ping = 13;
 
 
     public const int Server_MoveCharacter = 42;
@@ -27,6 +26,7 @@
     public const int Server_Win = 59;
     public const int Server_SendPath = 60;
     public const int Server_TeammateInfo = 61;
+    public const int Server_Ping = 62;
 
     public const int Client_Lobby_ConnectionId = 101;
     public const int Client_Lobby_SetTeam = 102;
