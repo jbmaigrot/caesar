@@ -326,7 +326,7 @@ public class Client : MonoBehaviour
                                     if (!isNapperoned)
                                     {
                                         SpriteRenderer napperon = characters[playerIndex].transform.Find("napperon").GetComponent<SpriteRenderer>();
-                                        SpriteRenderer range = characters[playerIndex].transform.Find("range").GetComponent<SpriteRenderer>();
+                                        Renderer range = characters[playerIndex].transform.Find("range").GetComponent<Renderer>();
 
                                         lineRenderer = characters[playerIndex].transform.Find("lineRenderer").GetComponent<LineRenderer>();
                                         lineRenderer.enabled = true;
