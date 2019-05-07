@@ -57,7 +57,7 @@ public class Minimap : MonoBehaviour
     {
         isPointerOver = b;
     }
-
+#endif
     // Convert coordinates
     public Vector2 worldToMap (Vector3 worldPosition)
     {
@@ -77,5 +77,5 @@ public class Minimap : MonoBehaviour
         return new Vector2(((mousePosition.x - mapPos.x) * Mathf.Cos(angle) - (mousePosition.y - mapPos.y) * Mathf.Sin(angle)) * 1920 / Screen.width,
                            ((mousePosition.x - mapPos.x) * Mathf.Sin(angle) + (mousePosition.y - mapPos.y) * Mathf.Cos(angle)) * 1080 / Screen.height);
     }
-#endif
+
 }
