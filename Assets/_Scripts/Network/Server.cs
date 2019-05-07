@@ -19,9 +19,9 @@ public class Server : MonoBehaviour
     public List<Transform> players = new List<Transform>();
     public List<Transform> characters = new List<Transform>(); // Players + NPCs
     public Transform BlueBatterie;
-    private Transform PositionBlueRelay;
+    public Transform PositionBlueRelay;
     public Transform RedBatterie;
-    private Transform PositionRedRelay;
+    public Transform PositionRedRelay;
     private bool OrangeIsBack;
     private bool BlueIsBack;
 
