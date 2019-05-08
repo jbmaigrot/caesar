@@ -1,0 +1,939 @@
+fileFormatVersion: 2
+guid: 549ab15c36a38c841ac10c327270edc3
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Corner_ext_1
+    100002: Corner_ext_1 1
+    100004: Corner_ext_1 2
+    100006: Corner_ext_1 3
+    100008: Corner_ext_1 4
+    100010: Corner_ext_1 5
+    100012: Corner_ext_1 6
+    100014: Corner_ext_1 7
+    100016: Corner_ext_2
+    100018: Corner_ext_2 1
+    100020: Corner_ext_2 2
+    100022: Corner_ext_2 3
+    100024: Corner_ext_2 4
+    100026: Corner_ext_2 5
+    100028: Corner_ext_2 6
+    100030: Corner_ext_2 7
+    100032: Corner_int_1
+    100034: Corner_int_1 1
+    100036: Corner_int_1 2
+    100038: Corner_int_1 3
+    100040: Corner_int_1 4
+    100042: Corner_int_1 5
+    100044: Corner_int_1 6
+    100046: Corner_int_1 7
+    100048: Corner_int_2
+    100050: Corner_int_2 1
+    100052: Corner_int_2 2
+    100054: Corner_int_2 3
+    100056: Corner_int_2 4
+    100058: Corner_int_2 5
+    100060: Corner_int_2 6
+    100062: Corner_int_2 7
+    100064: Corner_slope
+    100066: Corner_slope 1
+    100068: Corner_slope 2
+    100070: Corner_slope 3
+    100072: Corner_slope 4
+    100074: Corner_slope 5
+    100076: Corner_slope 6
+    100078: Corner_slope 7
+    100080: Glass_Balcony_N
+    100082: Glass_Balcony_N 1
+    100084: Glass_Balcony_N 2
+    100086: Glass_Balcony_N 3
+    100088: Glass_Windows_N
+    100090: Glass_Windows_N 1
+    100092: Glass_Windows_N 2
+    100094: Glass_Windows_N 3
+    100096: Half_D
+    100098: Half_D 1
+    100100: Half_D 2
+    100102: Half_D 3
+    100104: Half_G
+    100106: Half_G 1
+    100108: Half_G 2
+    100110: Half_G 3
+    100112: //RootNode
+    100114: Outside_wall
+    100116: Outside_wall 1
+    100118: Outside_wall 2
+    100120: Outside_wall 3
+    100122: Outside_wall 4
+    100124: Outside_wall 5
+    100126: Outside_wall 6
+    100128: Outside_wall 7
+    100130: Outside_wall_exterior
+    100132: Outside_wall_exterior 1
+    100134: Outside_wall_exterior 2
+    100136: Outside_wall_exterior 3
+    100138: Outside_wall_exterior 4
+    100140: Outside_wall_exterior 5
+    100142: Outside_wall_exterior 6
+    100144: Outside_wall_exterior 7
+    100146: Outside_wall_interior
+    100148: Outside_wall_interior 1
+    100150: Outside_wall_interior 2
+    100152: Outside_wall_interior 3
+    100154: Outside_wall_interior 4
+    100156: Outside_wall_interior 5
+    100158: Outside_wall_interior 6
+    100160: Outside_wall_interior 7
+    100162: Rembarde_Big
+    100164: Rembarde_Big 1
+    100166: Rembarde_Big 10
+    100168: Rembarde_Big 11
+    100170: Rembarde_Big 2
+    100172: Rembarde_Big 3
+    100174: Rembarde_Big 4
+    100176: Rembarde_Big 5
+    100178: Rembarde_Big 6
+    100180: Rembarde_Big 7
+    100182: Rembarde_Big 8
+    100184: Rembarde_Big 9
+    100186: Rembarde_N
+    100188: Rembarde_N 1
+    100190: Rembarde_N 2
+    100192: Rembarde_N 3
+    100194: Rembarde_N1
+    100196: Rembarde_N1 1
+    100198: Rembarde_N1 2
+    100200: Rembarde_N1 3
+    100202: Rembarde_N2
+    100204: Rembarde_N2 1
+    100206: Rembarde_N2 2
+    100208: Rembarde_N2 3
+    100210: Rembarde_Short
+    100212: Rembarde_Short 1
+    100214: Rembarde_Short 10
+    100216: Rembarde_Short 11
+    100218: Rembarde_Short 2
+    100220: Rembarde_Short 3
+    100222: Rembarde_Short 4
+    100224: Rembarde_Short 5
+    100226: Rembarde_Short 6
+    100228: Rembarde_Short 7
+    100230: Rembarde_Short 8
+    100232: Rembarde_Short 9
+    100234: Rembarde_Short_2
+    100236: Rembarde_Short_2 1
+    100238: Rembarde_Short_2 10
+    100240: Rembarde_Short_2 11
+    100242: Rembarde_Short_2 2
+    100244: Rembarde_Short_2 3
+    100246: Rembarde_Short_2 4
+    100248: Rembarde_Short_2 5
+    100250: Rembarde_Short_2 6
+    100252: Rembarde_Short_2 7
+    100254: Rembarde_Short_2 8
+    100256: Rembarde_Short_2 9
+    100258: Rembardes_North
+    100260: Rembardes_North 1
+    100262: Rembardes_North 2
+    100264: Rembardes_North 3
+    100266: Slope
+    100268: Slope 1
+    100270: Slope 2
+    100272: Slope 3
+    100274: Slope 4
+    100276: Slope 5
+    100278: Slope 6
+    100280: Slope 7
+    100282: Slope_int
+    100284: Slope_int 1
+    100286: Slope_int 2
+    100288: Slope_int 3
+    100290: Slope_int 4
+    100292: Slope_int 5
+    100294: Slope_int 6
+    100296: Slope_int 7
+    100298: Top_Black
+    100300: Top_Black 1
+    100302: Top_Black 2
+    100304: Top_Black 3
+    100306: Wall_alone
+    100308: Wall_alone 1
+    100310: Wall_alone 2
+    100312: Wall_alone 3
+    100314: Wall_alone_ext
+    100316: Wall_alone_ext 1
+    100318: Wall_alone_ext 2
+    100320: Wall_alone_ext 3
+    100322: Wall_alone_int
+    100324: Wall_alone_int 1
+    100326: Wall_alone_int 2
+    100328: Wall_alone_int 3
+    100330: Wall_East
+    100332: Wall_North
+    100334: Wall_South
+    100336: Wall_West
+    400000: Corner_ext_1
+    400002: Corner_ext_1 1
+    400004: Corner_ext_1 2
+    400006: Corner_ext_1 3
+    400008: Corner_ext_1 4
+    400010: Corner_ext_1 5
+    400012: Corner_ext_1 6
+    400014: Corner_ext_1 7
+    400016: Corner_ext_2
+    400018: Corner_ext_2 1
+    400020: Corner_ext_2 2
+    400022: Corner_ext_2 3
+    400024: Corner_ext_2 4
+    400026: Corner_ext_2 5
+    400028: Corner_ext_2 6
+    400030: Corner_ext_2 7
+    400032: Corner_int_1
+    400034: Corner_int_1 1
+    400036: Corner_int_1 2
+    400038: Corner_int_1 3
+    400040: Corner_int_1 4
+    400042: Corner_int_1 5
+    400044: Corner_int_1 6
+    400046: Corner_int_1 7
+    400048: Corner_int_2
+    400050: Corner_int_2 1
+    400052: Corner_int_2 2
+    400054: Corner_int_2 3
+    400056: Corner_int_2 4
+    400058: Corner_int_2 5
+    400060: Corner_int_2 6
+    400062: Corner_int_2 7
+    400064: Corner_slope
+    400066: Corner_slope 1
+    400068: Corner_slope 2
+    400070: Corner_slope 3
+    400072: Corner_slope 4
+    400074: Corner_slope 5
+    400076: Corner_slope 6
+    400078: Corner_slope 7
+    400080: Glass_Balcony_N
+    400082: Glass_Balcony_N 1
+    400084: Glass_Balcony_N 2
+    400086: Glass_Balcony_N 3
+    400088: Glass_Windows_N
+    400090: Glass_Windows_N 1
+    400092: Glass_Windows_N 2
+    400094: Glass_Windows_N 3
+    400096: Half_D
+    400098: Half_D 1
+    400100: Half_D 2
+    400102: Half_D 3
+    400104: Half_G
+    400106: Half_G 1
+    400108: Half_G 2
+    400110: Half_G 3
+    400112: //RootNode
+    400114: Outside_wall
+    400116: Outside_wall 1
+    400118: Outside_wall 2
+    400120: Outside_wall 3
+    400122: Outside_wall 4
+    400124: Outside_wall 5
+    400126: Outside_wall 6
+    400128: Outside_wall 7
+    400130: Outside_wall_exterior
+    400132: Outside_wall_exterior 1
+    400134: Outside_wall_exterior 2
+    400136: Outside_wall_exterior 3
+    400138: Outside_wall_exterior 4
+    400140: Outside_wall_exterior 5
+    400142: Outside_wall_exterior 6
+    400144: Outside_wall_exterior 7
+    400146: Outside_wall_interior
+    400148: Outside_wall_interior 1
+    400150: Outside_wall_interior 2
+    400152: Outside_wall_interior 3
+    400154: Outside_wall_interior 4
+    400156: Outside_wall_interior 5
+    400158: Outside_wall_interior 6
+    400160: Outside_wall_interior 7
+    400162: Rembarde_Big
+    400164: Rembarde_Big 1
+    400166: Rembarde_Big 10
+    400168: Rembarde_Big 11
+    400170: Rembarde_Big 2
+    400172: Rembarde_Big 3
+    400174: Rembarde_Big 4
+    400176: Rembarde_Big 5
+    400178: Rembarde_Big 6
+    400180: Rembarde_Big 7
+    400182: Rembarde_Big 8
+    400184: Rembarde_Big 9
+    400186: Rembarde_N
+    400188: Rembarde_N 1
+    400190: Rembarde_N 2
+    400192: Rembarde_N 3
+    400194: Rembarde_N1
+    400196: Rembarde_N1 1
+    400198: Rembarde_N1 2
+    400200: Rembarde_N1 3
+    400202: Rembarde_N2
+    400204: Rembarde_N2 1
+    400206: Rembarde_N2 2
+    400208: Rembarde_N2 3
+    400210: Rembarde_Short
+    400212: Rembarde_Short 1
+    400214: Rembarde_Short 10
+    400216: Rembarde_Short 11
+    400218: Rembarde_Short 2
+    400220: Rembarde_Short 3
+    400222: Rembarde_Short 4
+    400224: Rembarde_Short 5
+    400226: Rembarde_Short 6
+    400228: Rembarde_Short 7
+    400230: Rembarde_Short 8
+    400232: Rembarde_Short 9
+    400234: Rembarde_Short_2
+    400236: Rembarde_Short_2 1
+    400238: Rembarde_Short_2 10
+    400240: Rembarde_Short_2 11
+    400242: Rembarde_Short_2 2
+    400244: Rembarde_Short_2 3
+    400246: Rembarde_Short_2 4
+    400248: Rembarde_Short_2 5
+    400250: Rembarde_Short_2 6
+    400252: Rembarde_Short_2 7
+    400254: Rembarde_Short_2 8
+    400256: Rembarde_Short_2 9
+    400258: Rembardes_North
+    400260: Rembardes_North 1
+    400262: Rembardes_North 2
+    400264: Rembardes_North 3
+    400266: Slope
+    400268: Slope 1
+    400270: Slope 2
+    400272: Slope 3
+    400274: Slope 4
+    400276: Slope 5
+    400278: Slope 6
+    400280: Slope 7
+    400282: Slope_int
+    400284: Slope_int 1
+    400286: Slope_int 2
+    400288: Slope_int 3
+    400290: Slope_int 4
+    400292: Slope_int 5
+    400294: Slope_int 6
+    400296: Slope_int 7
+    400298: Top_Black
+    400300: Top_Black 1
+    400302: Top_Black 2
+    400304: Top_Black 3
+    400306: Wall_alone
+    400308: Wall_alone 1
+    400310: Wall_alone 2
+    400312: Wall_alone 3
+    400314: Wall_alone_ext
+    400316: Wall_alone_ext 1
+    400318: Wall_alone_ext 2
+    400320: Wall_alone_ext 3
+    400322: Wall_alone_int
+    400324: Wall_alone_int 1
+    400326: Wall_alone_int 2
+    400328: Wall_alone_int 3
+    400330: Wall_East
+    400332: Wall_North
+    400334: Wall_South
+    400336: Wall_West
+    2100000: interior
+    2100002: outside
+    2100004: glass
+    2100006: rembarde
+    2100008: top_black
+    2300000: Corner_ext_1
+    2300002: Corner_ext_1 1
+    2300004: Corner_ext_1 2
+    2300006: Corner_ext_1 3
+    2300008: Corner_ext_1 4
+    2300010: Corner_ext_1 5
+    2300012: Corner_ext_1 6
+    2300014: Corner_ext_1 7
+    2300016: Corner_ext_2
+    2300018: Corner_ext_2 1
+    2300020: Corner_ext_2 2
+    2300022: Corner_ext_2 3
+    2300024: Corner_ext_2 4
+    2300026: Corner_ext_2 5
+    2300028: Corner_ext_2 6
+    2300030: Corner_ext_2 7
+    2300032: Corner_int_1
+    2300034: Corner_int_1 1
+    2300036: Corner_int_1 2
+    2300038: Corner_int_1 3
+    2300040: Corner_int_1 4
+    2300042: Corner_int_1 5
+    2300044: Corner_int_1 6
+    2300046: Corner_int_1 7
+    2300048: Corner_int_2
+    2300050: Corner_int_2 1
+    2300052: Corner_int_2 2
+    2300054: Corner_int_2 3
+    2300056: Corner_int_2 4
+    2300058: Corner_int_2 5
+    2300060: Corner_int_2 6
+    2300062: Corner_int_2 7
+    2300064: Glass_Balcony_N
+    2300066: Glass_Balcony_N 1
+    2300068: Glass_Balcony_N 2
+    2300070: Glass_Balcony_N 3
+    2300072: Glass_Windows_N
+    2300074: Glass_Windows_N 1
+    2300076: Glass_Windows_N 2
+    2300078: Glass_Windows_N 3
+    2300080: Outside_wall_exterior
+    2300082: Outside_wall_exterior 1
+    2300084: Outside_wall_exterior 2
+    2300086: Outside_wall_exterior 3
+    2300088: Outside_wall_exterior 4
+    2300090: Outside_wall_exterior 5
+    2300092: Outside_wall_exterior 6
+    2300094: Outside_wall_exterior 7
+    2300096: Outside_wall_interior
+    2300098: Outside_wall_interior 1
+    2300100: Outside_wall_interior 2
+    2300102: Outside_wall_interior 3
+    2300104: Outside_wall_interior 4
+    2300106: Outside_wall_interior 5
+    2300108: Outside_wall_interior 6
+    2300110: Outside_wall_interior 7
+    2300112: Rembarde_Big
+    2300114: Rembarde_Big 1
+    2300116: Rembarde_Big 10
+    2300118: Rembarde_Big 11
+    2300120: Rembarde_Big 2
+    2300122: Rembarde_Big 3
+    2300124: Rembarde_Big 4
+    2300126: Rembarde_Big 5
+    2300128: Rembarde_Big 6
+    2300130: Rembarde_Big 7
+    2300132: Rembarde_Big 8
+    2300134: Rembarde_Big 9
+    2300136: Rembarde_Short
+    2300138: Rembarde_Short 1
+    2300140: Rembarde_Short 10
+    2300142: Rembarde_Short 11
+    2300144: Rembarde_Short 2
+    2300146: Rembarde_Short 3
+    2300148: Rembarde_Short 4
+    2300150: Rembarde_Short 5
+    2300152: Rembarde_Short 6
+    2300154: Rembarde_Short 7
+    2300156: Rembarde_Short 8
+    2300158: Rembarde_Short 9
+    2300160: Rembarde_Short_2
+    2300162: Rembarde_Short_2 1
+    2300164: Rembarde_Short_2 10
+    2300166: Rembarde_Short_2 11
+    2300168: Rembarde_Short_2 2
+    2300170: Rembarde_Short_2 3
+    2300172: Rembarde_Short_2 4
+    2300174: Rembarde_Short_2 5
+    2300176: Rembarde_Short_2 6
+    2300178: Rembarde_Short_2 7
+    2300180: Rembarde_Short_2 8
+    2300182: Rembarde_Short_2 9
+    2300184: Slope
+    2300186: Slope 1
+    2300188: Slope 2
+    2300190: Slope 3
+    2300192: Slope 4
+    2300194: Slope 5
+    2300196: Slope 6
+    2300198: Slope 7
+    2300200: Slope_int
+    2300202: Slope_int 1
+    2300204: Slope_int 2
+    2300206: Slope_int 3
+    2300208: Slope_int 4
+    2300210: Slope_int 5
+    2300212: Slope_int 6
+    2300214: Slope_int 7
+    2300216: Top_Black
+    2300218: Top_Black 1
+    2300220: Top_Black 2
+    2300222: Top_Black 3
+    2300224: Wall_alone_ext
+    2300226: Wall_alone_ext 1
+    2300228: Wall_alone_ext 2
+    2300230: Wall_alone_ext 3
+    2300232: Wall_alone_int
+    2300234: Wall_alone_int 1
+    2300236: Wall_alone_int 2
+    2300238: Wall_alone_int 3
+    3300000: Corner_ext_1
+    3300002: Corner_ext_1 1
+    3300004: Corner_ext_1 2
+    3300006: Corner_ext_1 3
+    3300008: Corner_ext_1 4
+    3300010: Corner_ext_1 5
+    3300012: Corner_ext_1 6
+    3300014: Corner_ext_1 7
+    3300016: Corner_ext_2
+    3300018: Corner_ext_2 1
+    3300020: Corner_ext_2 2
+    3300022: Corner_ext_2 3
+    3300024: Corner_ext_2 4
+    3300026: Corner_ext_2 5
+    3300028: Corner_ext_2 6
+    3300030: Corner_ext_2 7
+    3300032: Corner_int_1
+    3300034: Corner_int_1 1
+    3300036: Corner_int_1 2
+    3300038: Corner_int_1 3
+    3300040: Corner_int_1 4
+    3300042: Corner_int_1 5
+    3300044: Corner_int_1 6
+    3300046: Corner_int_1 7
+    3300048: Corner_int_2
+    3300050: Corner_int_2 1
+    3300052: Corner_int_2 2
+    3300054: Corner_int_2 3
+    3300056: Corner_int_2 4
+    3300058: Corner_int_2 5
+    3300060: Corner_int_2 6
+    3300062: Corner_int_2 7
+    3300064: Glass_Balcony_N
+    3300066: Glass_Balcony_N 1
+    3300068: Glass_Balcony_N 2
+    3300070: Glass_Balcony_N 3
+    3300072: Glass_Windows_N
+    3300074: Glass_Windows_N 1
+    3300076: Glass_Windows_N 2
+    3300078: Glass_Windows_N 3
+    3300080: Outside_wall_exterior
+    3300082: Outside_wall_exterior 1
+    3300084: Outside_wall_exterior 2
+    3300086: Outside_wall_exterior 3
+    3300088: Outside_wall_exterior 4
+    3300090: Outside_wall_exterior 5
+    3300092: Outside_wall_exterior 6
+    3300094: Outside_wall_exterior 7
+    3300096: Outside_wall_interior
+    3300098: Outside_wall_interior 1
+    3300100: Outside_wall_interior 2
+    3300102: Outside_wall_interior 3
+    3300104: Outside_wall_interior 4
+    3300106: Outside_wall_interior 5
+    3300108: Outside_wall_interior 6
+    3300110: Outside_wall_interior 7
+    3300112: Rembarde_Big
+    3300114: Rembarde_Big 1
+    3300116: Rembarde_Big 10
+    3300118: Rembarde_Big 11
+    3300120: Rembarde_Big 2
+    3300122: Rembarde_Big 3
+    3300124: Rembarde_Big 4
+    3300126: Rembarde_Big 5
+    3300128: Rembarde_Big 6
+    3300130: Rembarde_Big 7
+    3300132: Rembarde_Big 8
+    3300134: Rembarde_Big 9
+    3300136: Rembarde_Short
+    3300138: Rembarde_Short 1
+    3300140: Rembarde_Short 10
+    3300142: Rembarde_Short 11
+    3300144: Rembarde_Short 2
+    3300146: Rembarde_Short 3
+    3300148: Rembarde_Short 4
+    3300150: Rembarde_Short 5
+    3300152: Rembarde_Short 6
+    3300154: Rembarde_Short 7
+    3300156: Rembarde_Short 8
+    3300158: Rembarde_Short 9
+    3300160: Rembarde_Short_2
+    3300162: Rembarde_Short_2 1
+    3300164: Rembarde_Short_2 10
+    3300166: Rembarde_Short_2 11
+    3300168: Rembarde_Short_2 2
+    3300170: Rembarde_Short_2 3
+    3300172: Rembarde_Short_2 4
+    3300174: Rembarde_Short_2 5
+    3300176: Rembarde_Short_2 6
+    3300178: Rembarde_Short_2 7
+    3300180: Rembarde_Short_2 8
+    3300182: Rembarde_Short_2 9
+    3300184: Slope
+    3300186: Slope 1
+    3300188: Slope 2
+    3300190: Slope 3
+    3300192: Slope 4
+    3300194: Slope 5
+    3300196: Slope 6
+    3300198: Slope 7
+    3300200: Slope_int
+    3300202: Slope_int 1
+    3300204: Slope_int 2
+    3300206: Slope_int 3
+    3300208: Slope_int 4
+    3300210: Slope_int 5
+    3300212: Slope_int 6
+    3300214: Slope_int 7
+    3300216: Top_Black
+    3300218: Top_Black 1
+    3300220: Top_Black 2
+    3300222: Top_Black 3
+    3300224: Wall_alone_ext
+    3300226: Wall_alone_ext 1
+    3300228: Wall_alone_ext 2
+    3300230: Wall_alone_ext 3
+    3300232: Wall_alone_int
+    3300234: Wall_alone_int 1
+    3300236: Wall_alone_int 2
+    3300238: Wall_alone_int 3
+    4300000: Slope_int
+    4300002: Outside_wall_exterior
+    4300004: Outside_wall_interior
+    4300006: Slope
+    4300008: Corner_int_1
+    4300010: Corner_int_2
+    4300012: Corner_ext_2
+    4300014: Corner_ext_1
+    4300016: Slope_int
+    4300018: Outside_wall_exterior
+    4300020: Outside_wall_interior
+    4300022: Slope
+    4300024: Corner_int_1
+    4300026: Corner_int_2
+    4300028: Corner_ext_2
+    4300030: Corner_ext_1
+    4300032: Glass_Windows_N
+    4300034: Glass_Balcony_N
+    4300036: Wall_alone_ext
+    4300038: Wall_alone_int
+    4300040: Rembarde_Short_2
+    4300042: Rembarde_Short
+    4300044: Rembarde_Big
+    4300046: Rembarde_Short_2
+    4300048: Rembarde_Short
+    4300050: Rembarde_Big
+    4300052: Rembarde_Short_2
+    4300054: Rembarde_Short
+    4300056: Rembarde_Big
+    4300058: Top_Black
+    4300060: Slope_int
+    4300062: Outside_wall_exterior
+    4300064: Outside_wall_interior
+    4300066: Slope
+    4300068: Corner_int_1
+    4300070: Corner_int_2
+    4300072: Corner_ext_2
+    4300074: Corner_ext_1
+    4300076: Slope_int
+    4300078: Outside_wall_exterior
+    4300080: Outside_wall_interior
+    4300082: Slope
+    4300084: Corner_int_1
+    4300086: Corner_int_2
+    4300088: Corner_ext_2
+    4300090: Corner_ext_1
+    4300092: Glass_Windows_N
+    4300094: Glass_Balcony_N
+    4300096: Wall_alone_ext
+    4300098: Wall_alone_int
+    4300100: Rembarde_Short_2
+    4300102: Rembarde_Short
+    4300104: Rembarde_Big
+    4300106: Rembarde_Short_2
+    4300108: Rembarde_Short
+    4300110: Rembarde_Big
+    4300112: Rembarde_Short_2
+    4300114: Rembarde_Short
+    4300116: Rembarde_Big
+    4300118: Top_Black
+    4300120: Slope_int
+    4300122: Outside_wall_exterior
+    4300124: Outside_wall_interior
+    4300126: Slope
+    4300128: Corner_int_1
+    4300130: Corner_int_2
+    4300132: Corner_ext_2
+    4300134: Corner_ext_1
+    4300136: Slope_int
+    4300138: Outside_wall_exterior
+    4300140: Outside_wall_interior
+    4300142: Slope
+    4300144: Corner_int_1
+    4300146: Corner_int_2
+    4300148: Corner_ext_2
+    4300150: Corner_ext_1
+    4300152: Glass_Windows_N
+    4300154: Glass_Balcony_N
+    4300156: Wall_alone_ext
+    4300158: Wall_alone_int
+    4300160: Rembarde_Short_2
+    4300162: Rembarde_Short
+    4300164: Rembarde_Big
+    4300166: Rembarde_Short_2
+    4300168: Rembarde_Short
+    4300170: Rembarde_Big
+    4300172: Rembarde_Short_2
+    4300174: Rembarde_Short
+    4300176: Rembarde_Big
+    4300178: Top_Black
+    4300180: Slope_int
+    4300182: Outside_wall_exterior
+    4300184: Outside_wall_interior
+    4300186: Slope
+    4300188: Corner_int_1
+    4300190: Corner_int_2
+    4300192: Corner_ext_2
+    4300194: Corner_ext_1
+    4300196: Slope_int
+    4300198: Outside_wall_exterior
+    4300200: Outside_wall_interior
+    4300202: Slope
+    4300204: Corner_int_1
+    4300206: Corner_int_2
+    4300208: Corner_ext_2
+    4300210: Corner_ext_1
+    4300212: Glass_Windows_N
+    4300214: Glass_Balcony_N
+    4300216: Wall_alone_ext
+    4300218: Wall_alone_int
+    4300220: Rembarde_Short_2
+    4300222: Rembarde_Short
+    4300224: Rembarde_Big
+    4300226: Rembarde_Short_2
+    4300228: Rembarde_Short
+    4300230: Rembarde_Big
+    4300232: Rembarde_Short_2
+    4300234: Rembarde_Short
+    4300236: Rembarde_Big
+    4300238: Top_Black
+    6400000: Corner_ext_1
+    6400002: Corner_ext_1 1
+    6400004: Corner_ext_1 2
+    6400006: Corner_ext_1 3
+    6400008: Corner_ext_1 4
+    6400010: Corner_ext_1 5
+    6400012: Corner_ext_1 6
+    6400014: Corner_ext_1 7
+    6400016: Corner_ext_2
+    6400018: Corner_ext_2 1
+    6400020: Corner_ext_2 2
+    6400022: Corner_ext_2 3
+    6400024: Corner_ext_2 4
+    6400026: Corner_ext_2 5
+    6400028: Corner_ext_2 6
+    6400030: Corner_ext_2 7
+    6400032: Corner_int_1
+    6400034: Corner_int_1 1
+    6400036: Corner_int_1 2
+    6400038: Corner_int_1 3
+    6400040: Corner_int_1 4
+    6400042: Corner_int_1 5
+    6400044: Corner_int_1 6
+    6400046: Corner_int_1 7
+    6400048: Corner_int_2
+    6400050: Corner_int_2 1
+    6400052: Corner_int_2 2
+    6400054: Corner_int_2 3
+    6400056: Corner_int_2 4
+    6400058: Corner_int_2 5
+    6400060: Corner_int_2 6
+    6400062: Corner_int_2 7
+    6400064: Glass_Balcony_N
+    6400066: Glass_Balcony_N 1
+    6400068: Glass_Balcony_N 2
+    6400070: Glass_Balcony_N 3
+    6400072: Glass_Windows_N
+    6400074: Glass_Windows_N 1
+    6400076: Glass_Windows_N 2
+    6400078: Glass_Windows_N 3
+    6400080: Outside_wall_exterior
+    6400082: Outside_wall_exterior 1
+    6400084: Outside_wall_exterior 2
+    6400086: Outside_wall_exterior 3
+    6400088: Outside_wall_exterior 4
+    6400090: Outside_wall_exterior 5
+    6400092: Outside_wall_exterior 6
+    6400094: Outside_wall_exterior 7
+    6400096: Outside_wall_interior
+    6400098: Outside_wall_interior 1
+    6400100: Outside_wall_interior 2
+    6400102: Outside_wall_interior 3
+    6400104: Outside_wall_interior 4
+    6400106: Outside_wall_interior 5
+    6400108: Outside_wall_interior 6
+    6400110: Outside_wall_interior 7
+    6400112: Rembarde_Big
+    6400114: Rembarde_Big 1
+    6400116: Rembarde_Big 10
+    6400118: Rembarde_Big 11
+    6400120: Rembarde_Big 2
+    6400122: Rembarde_Big 3
+    6400124: Rembarde_Big 4
+    6400126: Rembarde_Big 5
+    6400128: Rembarde_Big 6
+    6400130: Rembarde_Big 7
+    6400132: Rembarde_Big 8
+    6400134: Rembarde_Big 9
+    6400136: Rembarde_Short
+    6400138: Rembarde_Short 1
+    6400140: Rembarde_Short 10
+    6400142: Rembarde_Short 11
+    6400144: Rembarde_Short 2
+    6400146: Rembarde_Short 3
+    6400148: Rembarde_Short 4
+    6400150: Rembarde_Short 5
+    6400152: Rembarde_Short 6
+    6400154: Rembarde_Short 7
+    6400156: Rembarde_Short 8
+    6400158: Rembarde_Short 9
+    6400160: Rembarde_Short_2
+    6400162: Rembarde_Short_2 1
+    6400164: Rembarde_Short_2 10
+    6400166: Rembarde_Short_2 11
+    6400168: Rembarde_Short_2 2
+    6400170: Rembarde_Short_2 3
+    6400172: Rembarde_Short_2 4
+    6400174: Rembarde_Short_2 5
+    6400176: Rembarde_Short_2 6
+    6400178: Rembarde_Short_2 7
+    6400180: Rembarde_Short_2 8
+    6400182: Rembarde_Short_2 9
+    6400184: Slope
+    6400186: Slope 1
+    6400188: Slope 2
+    6400190: Slope 3
+    6400192: Slope 4
+    6400194: Slope 5
+    6400196: Slope 6
+    6400198: Slope 7
+    6400200: Slope_int
+    6400202: Slope_int 1
+    6400204: Slope_int 2
+    6400206: Slope_int 3
+    6400208: Slope_int 4
+    6400210: Slope_int 5
+    6400212: Slope_int 6
+    6400214: Slope_int 7
+    6400216: Top_Black
+    6400218: Top_Black 1
+    6400220: Top_Black 2
+    6400222: Top_Black 3
+    6400224: Wall_alone_ext
+    6400226: Wall_alone_ext 1
+    6400228: Wall_alone_ext 2
+    6400230: Wall_alone_ext 3
+    6400232: Wall_alone_int
+    6400234: Wall_alone_int 1
+    6400236: Wall_alone_int 2
+    6400238: Wall_alone_int 3
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glass
+    second: {fileID: 2100000, guid: 3c6b1523a5c1fd04a8ff8447561ee73a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: interior
+    second: {fileID: 2100000, guid: 5a6411e6eaf3fa34e93f1b6fea93569a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: outside
+    second: {fileID: 2100000, guid: 5f8a2217179e50c49ac90d5475d465bc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rembarde
+    second: {fileID: 2100000, guid: a4fa473a2054f5043ad230ec78ba9881, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: top_black
+    second: {fileID: 2100000, guid: 85a5047a684704f4b958968e7fe6898a, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 10
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
