@@ -643,6 +643,8 @@ public class Client : MonoBehaviour
             {
                 int input = (int)stream.ReadUInt(ref readerCtx);
                 int output = (int)stream.ReadUInt(ref readerCtx);
+                // The following lines are commented because it caused problems with infinite loops and is not used anymore
+                /*
                 float transmitTime = stream.ReadFloat(ref readerCtx);
 
                 List<float> timeBeforeTransmit = new List<float>();
@@ -651,9 +653,9 @@ public class Client : MonoBehaviour
                 {
                     float timeBeforeTransmitElement = stream.ReadFloat(ref readerCtx);
                     timeBeforeTransmit.Add(timeBeforeTransmitElement);
-                }
+                }*/
 
-                Arrow arrow = new Arrow(input, output, transmitTime, timeBeforeTransmit);
+                Arrow arrow = new Arrow(input, output);
                 graph.Add(arrow);
             }
 
@@ -730,13 +732,14 @@ public class Client : MonoBehaviour
             {
                 writer.Write(arrow.input);
                 writer.Write(arrow.output);
-                writer.Write(arrow.transmitTime);
+                // The following lines are commented because it caused problems with infinite loops and is not used anymore
+                /*writer.Write(arrow.transmitTime);
 
                 writer.Write(arrow.timeBeforeTransmit.Count);
                 foreach (float time in arrow.timeBeforeTransmit)
                 {
                     writer.Write(time);
-                }
+                }*/
             }
 
             writer.Write(RelayHasMoved);

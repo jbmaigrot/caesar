@@ -374,6 +374,25 @@ public class ProgrammableObjectsData : MonoBehaviour
             isAttract = false;
         }
     }
+
+    // This function add only new arrows to the arrow graph, to prevent suppressing previous information about transmit time
+    public void UpdateArrowGraph(List<Arrow> newGraph)
+    {
+        for (int i = 0; i < newGraph.Count; i++)
+        {
+            bool isNew = true;
+            for (int j = 0; j < graph.Count; j++)
+            {
+                if (newGraph[i].input == graph[j].input && newGraph[i].output == graph[j].output)
+                {
+                    //isNew = false;
+                    newGraph[i] = graph[j];
+                    break;
+                }
+            }
+        }
+        graph = newGraph;
+    }
 #endif
 
 #if CLIENT
