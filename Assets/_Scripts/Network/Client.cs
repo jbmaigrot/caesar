@@ -39,7 +39,7 @@ public class Client : MonoBehaviour
     public ClientLobby clientLobby;
     public int connectionId;
     private bool initialHandshakeDone;
-    public int team;// 0 or 1 ; -1 in case we didn't use the lobby -> automatically assigned based on connectionID
+    public int team = -1;// 0 or 1 ; -1 in case we didn't use the lobby -> automatically assigned based on connectionID
 
     public int playerIndex;
     public int[] inventory = new int[3];
@@ -240,6 +240,12 @@ public class Client : MonoBehaviour
                                             characters[j].GetComponentInChildren<Canvas>().enabled = true;
                                             characters[j].GetComponentInChildren<AllyNameDisplay>().enabled = true;
                                             characters[j].GetComponentInChildren<AllyNameDisplay>().allyNameText.text = new string(playerNameBuffer);
+
+                                            Color allyColor = new Color(1,1,1);
+                                            if (team == 0) allyColor = new Color(0.961f, 0.51f, 0.365f, 1f);
+                                            else if (team == 1) allyColor = new Color(0.361f, 0.784f, 0.949f, 1f);
+
+                                            minimap.AddAlly(characters[j].transform, allyColor);
 
                                             allyCharacter.isKnownAsAlly = true;
                                         }

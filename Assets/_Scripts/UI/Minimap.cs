@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Minimap : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class Minimap : MonoBehaviour
     public RectTransform mapBlueRelay;
     public RectTransform mapMessage;
     public GameObject mapPingPrefab;
+    public GameObject mapAllyPrefab;
 
     public Transform player;
     public List<Transform> allies = new List<Transform>();
@@ -38,6 +40,12 @@ public class Minimap : MonoBehaviour
         if (player != null)
             mapPlayer.localPosition = worldToMap(player.position);
 
+        for (int i = 0; i < allies.Count; i++)
+        {
+            if (allies[i] != null && mapAllies[i] != null)
+                mapAllies[i].localPosition = worldToMap(allies[i].position);
+        }
+
         //inputs: move or ping
         if (isPointerOver)
         {
@@ -57,6 +65,16 @@ public class Minimap : MonoBehaviour
     {
         GameObject newPing = Instantiate(mapPingPrefab, transform);
         newPing.GetComponent<RectTransform>().localPosition = mapPos;
+    }
+
+    // Bind new ally object
+    public void AddAlly(Transform newAlly, Color color)
+    {
+        allies.Add(newAlly);
+
+        GameObject newMapAlly = Instantiate(mapAllyPrefab, transform);
+        newMapAlly.GetComponent<Image>().color = color;
+        mapAllies.Add(newMapAlly.GetComponent<RectTransform>());
     }
 
     // Set isPointerOver
