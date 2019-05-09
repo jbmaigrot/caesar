@@ -609,13 +609,15 @@ public class Server : MonoBehaviour
                 {
                     writer.Write(arrow.input);
                     writer.Write(arrow.output);
+                    // The following lines are commented because it caused problems with infinite loops and is not used anymore
+                    /*
                     writer.Write(arrow.transmitTime);
 
                     writer.Write(arrow.timeBeforeTransmit.Count);
                     foreach (float time in arrow.timeBeforeTransmit)
                     {
                         writer.Write(time);
-                    }
+                    }*/
                 }
                 m_Driver.Send(m_Connections[connectionId], writer);
 
@@ -630,12 +632,8 @@ public class Server : MonoBehaviour
                     writer2.Write(Constants.Server_WarnInterfaceHacking);
                     m_Driver.Send(m_Connections[programmableObject.isBeingHackedServer], writer2);
                 }
-
             }
-            
-            
         }
-
     }
 
     public void SetHackStatus(int objectId, DataStreamReader stream, ref DataStreamReader.Context readerCtx, int indexPlayer)
@@ -648,6 +646,7 @@ public class Server : MonoBehaviour
         bool sendingToRed = false;
 
         char[] buffer;
+
         int inputCodesCount = (int)stream.ReadUInt(ref readerCtx);
         for (int i = 0; i < inputCodesCount; i++)
         {
@@ -673,8 +672,6 @@ public class Server : MonoBehaviour
 
             InOutVignette vignette = new InOutVignette(code, parameter_int, parameter_string, is_fixed);
             inputCodes.Add(vignette);
-
-
         }
 
         int outputCodesCount = (int)stream.ReadUInt(ref readerCtx);
@@ -718,7 +715,6 @@ public class Server : MonoBehaviour
 
             InOutVignette vignette = new InOutVignette(code, parameter_int, parameter_string, is_fixed);
             outputCodes.Add(vignette);
-
         }
 
         int arrowCount = (int)stream.ReadUInt(ref readerCtx);
@@ -726,7 +722,8 @@ public class Server : MonoBehaviour
         {
             int input = (int)stream.ReadUInt(ref readerCtx);
             int output = (int)stream.ReadUInt(ref readerCtx);
-            float transmitTime = stream.ReadFloat(ref readerCtx);
+            // The following lines are commented because it caused problems with infinite loops and is not used anymore
+            /*float transmitTime = stream.ReadFloat(ref readerCtx);
 
             List<float> timeBeforeTransmit = new List<float>();
             int timeBeforeTransmitCount = (int)stream.ReadUInt(ref readerCtx);
@@ -734,9 +731,9 @@ public class Server : MonoBehaviour
             {
                 float timeBeforeTransmitElement = stream.ReadFloat(ref readerCtx);
                 timeBeforeTransmit.Add(timeBeforeTransmitElement);
-            }
+            }*/
 
-            Arrow arrow = new Arrow(input, output, transmitTime, timeBeforeTransmit);
+            Arrow arrow = new Arrow(input, output);
             graph.Add(arrow);
         }
 
@@ -766,7 +763,8 @@ public class Server : MonoBehaviour
 
         objectData.inputCodes = inputCodes;
         objectData.outputCodes = outputCodes;
-        objectData.graph = graph;
+        objectData.UpdateArrowGraph(graph);
+
         if (!isAttract)
         {
             objectData.isAttract = false;

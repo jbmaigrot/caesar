@@ -16,6 +16,12 @@ public class Arrow
     {
 
     }
+
+    public Arrow(int _input, int _output)
+    {
+        input = _input;
+        output = _output;
+    }
     public Arrow(int _input, int _output, float _transmitTime, List<float> _timeBeforeTransmit)
     {
         input = _input;
