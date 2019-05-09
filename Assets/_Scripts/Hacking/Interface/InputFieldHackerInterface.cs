@@ -153,14 +153,14 @@ public class InputFieldHackerInterface : MonoBehaviour, IPointerDownHandler
         else if (isOnInt)
         {
             this.GetComponent<InputField>().enabled = false;
-            if (isInput)
-            {
-                numeroGadget = HackInterface.inputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_int;
-            }
-            else
-            {
+            //if (isInput)
+            //{
+             //   numeroGadget = HackInterface.inputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_int;
+            //}
+            //else
+            //{
                 numeroGadget = HackInterface.outputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_int;
-            }
+            //}
             switch (numeroGadget)
             {
                 case InventoryConstants.Attract:
@@ -263,23 +263,26 @@ public class InputFieldHackerInterface : MonoBehaviour, IPointerDownHandler
             if (hackinterface.inventory[0] == InventoryConstants.Empty)
             {
                 hackinterface.inventory[0] = HackInterface.outputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_int;
+                hackinterface.RemoveVignette(false, this.GetComponentInParent<TextButtonHackInterface>().numero - 1);
                 HackInterface.outputCodes.RemoveAt(this.GetComponentInParent<TextButtonHackInterface>().numero - 1);
                 hackinterface.reloadInterface();
-                hackinterface.RemoveVignette(false, this.GetComponentInParent<TextButtonHackInterface>().numero - 1);
+                
             }
             else if (hackinterface.inventory[1] == InventoryConstants.Empty)
             {
                 hackinterface.inventory[1] = HackInterface.outputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_int;
+                hackinterface.RemoveVignette(false, this.GetComponentInParent<TextButtonHackInterface>().numero - 1);
                 HackInterface.outputCodes.RemoveAt(this.GetComponentInParent<TextButtonHackInterface>().numero - 1);
                 hackinterface.reloadInterface();
-                hackinterface.RemoveVignette(false, this.GetComponentInParent<TextButtonHackInterface>().numero - 1);
+                
             }
             else if (hackinterface.inventory[2] == InventoryConstants.Empty)
             {
                 hackinterface.inventory[2] = HackInterface.outputCodes[this.GetComponentInParent<TextButtonHackInterface>().numero - 1].parameter_int;
+                hackinterface.RemoveVignette(false, this.GetComponentInParent<TextButtonHackInterface>().numero - 1);
                 HackInterface.outputCodes.RemoveAt(this.GetComponentInParent<TextButtonHackInterface>().numero - 1);
                 hackinterface.reloadInterface();
-                hackinterface.RemoveVignette(false, this.GetComponentInParent<TextButtonHackInterface>().numero - 1);
+                
             }
         }
 #endif
