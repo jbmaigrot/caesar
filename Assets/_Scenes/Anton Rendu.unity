@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.3
   m_CustomReflection: {fileID: 8900000, guid: ac9b6e61f82da684c91243249b308b9e, type: 3}
   m_Sun: {fileID: 2848324325647468519}
-  m_IndirectSpecularColor: {r: 0.47647262, g: 0.41809684, b: 0.37237796, a: 0.3}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 0.3}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -16423,14 +16423,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 401838, guid: eb042a5ceb459b54186e1a20c7253ab7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.0099919
-      objectReference: {fileID: 0}
-    - target: {fileID: 401838, guid: eb042a5ceb459b54186e1a20c7253ab7, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 61.547283
-      objectReference: {fileID: 0}
     - target: {fileID: 2300014, guid: eb042a5ceb459b54186e1a20c7253ab7, type: 3}
       propertyPath: m_StitchLightmapSeams
       value: 1
@@ -20399,6 +20391,14 @@ PrefabInstance:
       propertyPath: m_StitchLightmapSeams
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 401838, guid: eb042a5ceb459b54186e1a20c7253ab7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0099919
+      objectReference: {fileID: 0}
+    - target: {fileID: 401838, guid: eb042a5ceb459b54186e1a20c7253ab7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 61.547283
+      objectReference: {fileID: 0}
     - target: {fileID: 2302022, guid: eb042a5ceb459b54186e1a20c7253ab7, type: 3}
       propertyPath: m_StitchLightmapSeams
       value: 1
@@ -20865,7 +20865,7 @@ PrefabInstance:
     - target: {fileID: 2479661404548162337, guid: 233fb78dce743c14d8872255b2a9546c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5176096330924644937, guid: 233fb78dce743c14d8872255b2a9546c,
         type: 3}
@@ -20935,12 +20935,12 @@ PrefabInstance:
     - target: {fileID: 3325867247601594084, guid: 233fb78dce743c14d8872255b2a9546c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6414242054399947602, guid: 233fb78dce743c14d8872255b2a9546c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3325867247601300164, guid: 233fb78dce743c14d8872255b2a9546c,
         type: 3}
