@@ -55,7 +55,7 @@ public class Minimap : MonoBehaviour
     // Ping
     public void Ping(Vector2 mapPos)
     {
-        GameObject newPing = Instantiate(mapPingPrefab);
+        GameObject newPing = Instantiate(mapPingPrefab, transform);
         newPing.GetComponent<RectTransform>().localPosition = mapPos;
     }
 
