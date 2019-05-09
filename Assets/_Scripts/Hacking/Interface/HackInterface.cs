@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
-#if CLIENT
+
 public class HackInterface : MonoBehaviour/*, ISelectObject*/
 {
+
+    public GameObject ErrorTextZone;
+#if CLIENT
     /*Variable qui contient la vignette d'input selectionné comme début de flèche. Est modifié par le script TextButtonHackInterface.*/
     static public int SelectedInputButton=-1;
     
@@ -121,8 +124,11 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     public void OnClose()
     {
         int RelayHasMoved = 0;
+        ErrorTextZone.GetComponent<Animator>().SetTrigger("Interface_Close");
         if (!isClosing)
         {
+
+            
             /*Initiation du délais de fermeture*/
             timeBeforeClosing = TIMEFORCLOSING;
             isClosing = true;
@@ -165,6 +171,7 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
 
     public void CloseByStun()
     {
+        ErrorTextZone.GetComponent<Animator>().SetTrigger("Interface_Close");
         if (!isClosing)
         {
             if(SelectedGameObject != null)
@@ -243,11 +250,12 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
         timeReadyToOpen = TIMEREADYTOOPEN;
     }
 
-    public void DoNotOpenActually()
+    public void DoNotOpenActually(int objectIndex)
     {
         if (isReadyToOpen)
         {
             isReadyToOpen = false;
+            client.GiveBackHackToken(objectIndex);
             SelectedGameObject = null;
         }        
     }
@@ -323,6 +331,10 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
         reloadArrow();
     }
 
+    public void SomeoneHackedTheSameObject()
+    {
+        ErrorTextZone.GetComponent<Animator>().SetTrigger("Fade_Text");
+    }
     /*
     //Draw arrows
     public Material lineMat = new Material("Shader \"Lines/Colored Blended\" {" + "SubShader { Pass { " + "    Blend SrcAlpha OneMinusSrcAlpha " + "    ZWrite Off Cull Off Fog { Mode Off } " + "    BindChannels {" + "      Bind \"vertex\", vertex Bind \"color\", color }" + "} } }");
@@ -336,6 +348,6 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
         GL.Vertex3(1f, 1f, 1f);
         GL.End();
     }*/
-}
-    
 #endif
+}
+

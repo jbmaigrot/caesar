@@ -5129,6 +5129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b697b1ada095f174696739aa71778c69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ErrorTextZone: {fileID: 1716172388477630504}
   HackingAsset: {fileID: 11400000, guid: 25dcad809380a804d87b5df4af8940bd, type: 2}
   inventory: 000000000000000000000000
   inputButtons:
@@ -5799,8 +5800,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7545512636680359227}
   - component: {fileID: 8813004211014264955}
-  - component: {fileID: 2972109239034636690}
   - component: {fileID: 2932127576455049763}
+  - component: {fileID: 3313905500744039839}
+  - component: {fileID: 8228213599578270358}
   m_Layer: 5
   m_Name: Empty
   m_TagString: Untagged
@@ -5835,27 +5837,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1716172388477630504}
   m_CullTransparentMesh: 0
---- !u!114 &2972109239034636690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1716172388477630504}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef8b96895a0ec4ba685178a052544251, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 5c55d14ff5f2de64988d19f94d755473, type: 3}
 --- !u!114 &2932127576455049763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5879,6 +5860,61 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
+--- !u!114 &3313905500744039839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716172388477630504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "/!\\ /!\\ /!\\   SOMEONE TRIED TO CONNECT TO THIS DEVICE.   /!\\ /!\\ /!\\
+    \t\t\t\t\t\t\t/!\\ /!\\ /!\\   THE CONNECTION WAS BLOCKED AUTOMATICALY.   /!\\
+    /!\\ /!\\"
+--- !u!95 &8228213599578270358
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716172388477630504}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d2a3c078d6551b841ad3056c0004f8c8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1777395942235290876
 GameObject:
   m_ObjectHideFlags: 0

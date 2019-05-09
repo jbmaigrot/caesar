@@ -137,10 +137,13 @@ public class ProgrammableObjectsData : MonoBehaviour
 
     private void OnMouseUp()
     {
-        hackInterface.DoNotOpenActually();
-        client.GiveBackHackToken(objectIndexClient);
-        isWaitingHack = false;
-        rosaceForHacking.GetComponent<Animator>().SetTrigger("Deactivate");
+        if (!hackInterface.GetComponent<CanvasGroup>().blocksRaycasts)
+        {
+            hackInterface.DoNotOpenActually(objectIndexClient);
+            isWaitingHack = false;
+            rosaceForHacking.GetComponent<Animator>().SetTrigger("Deactivate");
+        }
+        
     }
 #endif
 

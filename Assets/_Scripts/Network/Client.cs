@@ -443,6 +443,11 @@ public class Client : MonoBehaviour
                             DrawPath(pathAs3dPositions);
                             break;
 
+                        case Constants.Server_WarnInterfaceHacking:
+                            hackInterface.SomeoneHackedTheSameObject();
+                            //Someone is trying to hack the same object than you.
+                            break;
+
                         default:
                             break;
                     }

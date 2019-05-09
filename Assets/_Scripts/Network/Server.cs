@@ -554,6 +554,7 @@ public class Server : MonoBehaviour
             if(programmableObject.isBeingHackedServer == -1)
             {
                 programmableObject.isBeingHackedServer = connectionId;
+                Debug.Log(programmableObject.isBeingHackedServer);
                 writer.Write(1);
                 writer.Write(programmableObject.inputCodes.Count);
                 foreach (InOutVignette vignette in programmableObject.inputCodes)
@@ -624,7 +625,12 @@ public class Server : MonoBehaviour
             {
                 writer.Write(0);
                 m_Driver.Send(m_Connections[connectionId], writer);
-                //TODO Warn the player inside the interface.
+                using (var writer2 = new DataStreamWriter(4096, Allocator.Temp))
+                {
+                    writer2.Write(Constants.Server_WarnInterfaceHacking);
+                    m_Driver.Send(m_Connections[programmableObject.isBeingHackedServer], writer2);
+                }
+
             }
             
             
