@@ -403,11 +403,11 @@ public class ProgrammableObjectsData : MonoBehaviour
             if (OnNotOff && !sendingToRedClient)
             {
                 sendingToRedClient = true;
-                foreach (MeshRenderer ryan in this.GetComponentsInChildren<MeshRenderer>())
-                {
-                    ryan.material.color = new Color(ryan.material.color.r*1.5625f, ryan.material.color.g*0.8f, ryan.material.color.b * 0.8f);
+                //foreach (MeshRenderer ryan in this.GetComponentsInChildren<MeshRenderer>())
+                //{
+                //    ryan.material.color = new Color(ryan.material.color.r*1.5625f, ryan.material.color.g*0.8f, ryan.material.color.b * 0.8f);
                                      
-                }
+                //}
             }
             
             if(!OnNotOff && sendingToRedClient)
@@ -415,11 +415,11 @@ public class ProgrammableObjectsData : MonoBehaviour
                 sendingToRedClient = false;
 
                 
-                foreach (MeshRenderer ryan in this.GetComponentsInChildren<MeshRenderer>())
-                {
+                //foreach (MeshRenderer ryan in this.GetComponentsInChildren<MeshRenderer>())
+                //{
                     
-                    ryan.material.color = new Color(ryan.material.color.r * 0.64f, ryan.material.color.g * 1.25f, ryan.material.color.b * 1.25f);
-                }
+                //    ryan.material.color = new Color(ryan.material.color.r * 0.64f, ryan.material.color.g * 1.25f, ryan.material.color.b * 1.25f);
+                //}
             }
         }
         else
@@ -427,19 +427,19 @@ public class ProgrammableObjectsData : MonoBehaviour
             if (OnNotOff && !sendingToBlueClient)
             {
                 sendingToBlueClient = true;
-                foreach (MeshRenderer ryan in this.GetComponentsInChildren<MeshRenderer>())
-                {
-                    ryan.material.color = new Color(ryan.material.color.r * 0.8f, ryan.material.color.g * 0.8f, ryan.material.color.b * 1.5625f);
-                }
+                //foreach (MeshRenderer ryan in this.GetComponentsInChildren<MeshRenderer>())
+                //{
+                //    ryan.material.color = new Color(ryan.material.color.r * 0.8f, ryan.material.color.g * 0.8f, ryan.material.color.b * 1.5625f);
+                //}
             }
 
             if (!OnNotOff && sendingToBlueClient)
             {
                 sendingToBlueClient = false;
-                foreach (MeshRenderer ryan in this.GetComponentsInChildren<MeshRenderer>())
-                {
-                    ryan.material.color = new Color(ryan.material.color.r * 1.25f, ryan.material.color.g * 1.25f, ryan.material.color.b * 0.64f);
-                }
+                //foreach (MeshRenderer ryan in this.GetComponentsInChildren<MeshRenderer>())
+                //{
+                //    ryan.material.color = new Color(ryan.material.color.r * 1.25f, ryan.material.color.g * 1.25f, ryan.material.color.b * 0.64f);
+                //}
             }
         }
     }

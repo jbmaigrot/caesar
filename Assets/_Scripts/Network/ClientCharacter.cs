@@ -26,11 +26,7 @@ public class ClientCharacter : MonoBehaviour
     public string playerName;
 
     private Animator stunAnimator;
-
-    private MaterialPropertyBlock block_default;
-    private MaterialPropertyBlock block_nonempty_nonstun;
-    private MaterialPropertyBlock block_stun;
-
+    
     private bool isDataEmpty;
 
     //Start
@@ -45,20 +41,7 @@ public class ClientCharacter : MonoBehaviour
 
         stunAnimator = this.transform.Find("StunLightning").GetComponent<Animator>();
 
-        block_default = new MaterialPropertyBlock();
-        block_default.SetFloat("_IsShining", 0f);
-        block_default.SetColor("_EmissiveColor", new Color(0, 0, 0));
-        block_default.SetFloat("_WaveSpeed", 0.0f);
-
-        block_nonempty_nonstun = new MaterialPropertyBlock();
-        block_nonempty_nonstun.SetFloat("_IsShining", 1f);
-        block_nonempty_nonstun.SetColor("_EmissiveColor", new Color(255, 236, 0));
-        block_nonempty_nonstun.SetFloat("_WaveSpeed", 3.0f);
-
-        block_stun = new MaterialPropertyBlock();
-        block_stun.SetFloat("_IsShining", 1f);
-        block_stun.SetColor("_EmissiveColor", new Color(255, 0, 9));
-        block_stun.SetFloat("_WaveSpeed", 8.0f);
+        
 
         isDataEmpty = true;
     }
@@ -80,9 +63,9 @@ public class ClientCharacter : MonoBehaviour
                 {
                     
                     Body.material.SetFloat("_IsShining", 1f);
-                    Body.material.SetColor("_EmissiveColor", new Color(255, 236, 0));
+                    Body.material.SetColor("_EmissiveColor", new Color(1f, 236f/255f, 0f,1f));
                     Body.material.SetFloat("_WaveSpeed", 3.0f);
-                    Lens.material.SetColor("_EmissionColor", new Color(255,236,0));
+                    Lens.material.SetColor("_EmissionColor", new Color(1f, 236f / 255f, 0f, 1f));
                 }
             }
         }
@@ -93,11 +76,10 @@ public class ClientCharacter : MonoBehaviour
                 isDataEmpty = true;
                 if (!isTacle)
                 {
-                    MeshRenderer ryan = this.gameObject.GetComponentInChildren<MeshRenderer>();
                     Body.material.SetFloat("_IsShining", 0f);
-                    Body.material.SetColor("_EmissiveColor", new Color(0, 0, 0));
+                    Body.material.SetColor("_EmissiveColor", new Color(0f, 0f, 0f,1f));
                     Body.material.SetFloat("_WaveSpeed", 0.0f);
-                    Lens.material.SetColor("_EmissionColor", new Color(146, 214, 255));
+                    Lens.material.SetColor("_EmissionColor", new Color(146f/255f, 214f/255f, 1f,1f));
                     
                 }
             }
@@ -124,9 +106,9 @@ public class ClientCharacter : MonoBehaviour
                 lightning.enabled = true;
                 stunAnimator.Play(0);
                 Body.material.SetFloat("_IsShining", 1f);
-                Body.material.SetColor("_EmissiveColor", new Color(255, 0, 9));
+                Body.material.SetColor("_EmissiveColor", new Color(1f, 0f, 9f/255f,1f));
                 Body.material.SetFloat("_WaveSpeed", 8.0f);
-                Lens.material.SetColor("_EmissionColor", new Color(255,0,9));
+                Lens.material.SetColor("_EmissionColor", new Color(1f,0f,9f/255f,1f));
             }
 
         }
@@ -140,16 +122,16 @@ public class ClientCharacter : MonoBehaviour
                 if (isDataEmpty)
                 {
                     Body.material.SetFloat("_IsShining", 0f);
-                    Body.material.SetColor("_EmissiveColor", new Color(0, 0, 0));
+                    Body.material.SetColor("_EmissiveColor", new Color(0f, 0f, 0f, 1f));
                     Body.material.SetFloat("_WaveSpeed", 0.0f);
-                    Lens.material.SetColor("_EmissionColor", new Color(146, 214, 255));
+                    Lens.material.SetColor("_EmissionColor", new Color(146f/255f, 214/255f, 1f, 1f));
                 }
                 else
                 {
                     Body.material.SetFloat("_IsShining", 1f);
-                    Body.material.SetColor("_EmissiveColor", new Color(255, 236, 0));
+                    Body.material.SetColor("_EmissiveColor", new Color(1f, 236f/255f, 0f,1f));
                     Body.material.SetFloat("_WaveSpeed", 3.0f);
-                    Lens.material.SetColor("_EmissionColor", new Color(255, 236,0));
+                    Lens.material.SetColor("_EmissionColor", new Color(1f, 236f/255f,0f,1f));
                 }
                 
             }
