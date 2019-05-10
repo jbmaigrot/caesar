@@ -24,6 +24,8 @@ public class Server : MonoBehaviour
     public Transform PositionRedRelay;
     private bool OrangeIsBack;
     private bool BlueIsBack;
+    private bool redIsVisible = false;
+    private bool blueIsVisible = false;
 
     private NativeList<NetworkConnection> m_Connections;
     private NativeList<NetworkConnection> tmp_Connections;
@@ -43,7 +45,6 @@ public class Server : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         //Application.targetFrameRate = 58;
         
         tmp_Connections = new NativeList<NetworkConnection>(16, Allocator.Persistent);
@@ -469,19 +470,19 @@ public class Server : MonoBehaviour
 
                     //writer.Write(characters.IndexOf(players[i]));
                     writer.Write(players[i].GetComponent<ProgrammableObjectsData>().charactersIndex); //index of the player in the character list
+
                     if (OrangeIsBack)
                     {
                         writer.Write(1);
-                        
                     }
                     else
                     {
                         writer.Write(0);
                     }
+
                     if (BlueIsBack)
                     {
                         writer.Write(1);
-                        
                     }
                     else
                     {
@@ -491,6 +492,9 @@ public class Server : MonoBehaviour
                 }
             }
         }
+
+        UpdateRelays();
+
         OrangeIsBack = false;
         BlueIsBack = false;
         snapshotCount++;
@@ -536,6 +540,30 @@ public class Server : MonoBehaviour
             writer.Write(Constants.Server_Ping);
             writer.Write(mapPos.x);
             writer.Write(mapPos.y);
+            for (int k = 0; k < m_Connections.Length; k++)
+            {
+                m_Driver.Send(m_Connections[k], writer);
+            }
+        }
+    }
+
+    public void UpdateRelays()
+    {
+        using (var writer = new DataStreamWriter(256, Allocator.Temp))
+        {
+            writer.Write(Constants.Server_UpdateRelays);
+
+            writer.Write(PositionRedRelay.position.x);
+            writer.Write(PositionRedRelay.position.y);
+            writer.Write(PositionRedRelay.position.z);
+            writer.Write(redIsVisible ? 1 : 0);
+
+            writer.Write(PositionBlueRelay.position.x);
+            writer.Write(PositionBlueRelay.position.y);
+            writer.Write(PositionBlueRelay.position.z);
+            writer.Write(blueIsVisible ? 1 : 0);
+
+            //send update to all clients
             for (int k = 0; k < m_Connections.Length; k++)
             {
                 m_Driver.Send(m_Connections[k], writer);
@@ -744,19 +772,23 @@ public class Server : MonoBehaviour
         if(RelayHasMoved%3 == 1)
         {
             PositionRedRelay = players[indexPlayer].transform;
+            redIsVisible = false;
         }
         else if (RelayHasMoved % 3 == 2)
         {
             PositionRedRelay = objectData.transform;
+            redIsVisible = true;
         }
 
         if (RelayHasMoved / 3 == 1)
         {
             PositionBlueRelay = players[indexPlayer].transform;
+            blueIsVisible = false;
         }
         else if (RelayHasMoved / 3 == 2)
         {
             PositionBlueRelay = objectData.transform;
+            blueIsVisible = true;
         }
 
         

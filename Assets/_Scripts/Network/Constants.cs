@@ -28,6 +28,7 @@
     public const int Server_TeammateInfo = 61;
     public const int Server_Ping = 62;
     public const int Server_WarnInterfaceHacking = 63;
+    public const int Server_UpdateRelays = 64;
 
     public const int Client_Lobby_ConnectionId = 101;
     public const int Client_Lobby_SetTeam = 102;

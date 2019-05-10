@@ -50,7 +50,6 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     private Sprite[] SpriteList;
     public Sprite[] ArrowSpriteTable;
 
-
     // Start is called before the first frame update
     void Start()
     {

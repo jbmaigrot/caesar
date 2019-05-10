@@ -10,7 +10,7 @@ public class Minimap : MonoBehaviour
 
     public RectTransform mapPlayer;
     public List<RectTransform> mapAllies = new List<RectTransform>();
-    public RectTransform mapOrangeRelay;
+    public RectTransform mapRedRelay;
     public RectTransform mapBlueRelay;
     public RectTransform mapMessage;
     public GameObject mapPingPrefab;
@@ -20,10 +20,14 @@ public class Minimap : MonoBehaviour
     public List<Transform> allies = new List<Transform>();
     public Transform orangeRelay;
     public Transform blueRelay;
+
 #if CLIENT
     private bool isPointerOver = false;
     private Client client;
     private HackInterface hackInterface;
+
+    private float messageStartingTime;
+    private float messageFadeTime = 2f;
 
     // Start
     private void Start()
@@ -46,6 +50,12 @@ public class Minimap : MonoBehaviour
                 mapAllies[i].localPosition = worldToMap(allies[i].position);
         }
 
+        //update message display
+        if (Time.time - messageStartingTime > messageFadeTime)
+        {
+            mapMessage.gameObject.SetActive(false);
+        }
+
         //inputs: move or ping
         if (isPointerOver)
         {
@@ -65,6 +75,38 @@ public class Minimap : MonoBehaviour
     {
         GameObject newPing = Instantiate(mapPingPrefab, transform);
         newPing.GetComponent<RectTransform>().localPosition = mapPos;
+    }
+
+    // Show message source
+    public void ShowMessage(Vector3 sourcePosition)
+    {
+        mapMessage.gameObject.SetActive(true);
+        mapMessage.localPosition = worldToMap(sourcePosition);
+        messageStartingTime = Time.time;
+    }
+
+    // Update relays
+    public void UpdateRelays(bool redIsVisible, bool blueIsVisible, Vector3 redPos, Vector3 bluePos, int team)
+    {
+        if (redIsVisible || team == 0)
+        {
+            mapRedRelay.gameObject.SetActive(true);
+            mapRedRelay.localPosition = worldToMap(redPos);
+        }
+        else
+        {
+            mapRedRelay.gameObject.SetActive(false);
+        }
+
+        if (blueIsVisible || team == 1)
+        {
+            mapBlueRelay.gameObject.SetActive(true);
+            mapBlueRelay.localPosition = worldToMap(bluePos);
+        }
+        else
+        {
+            mapBlueRelay.gameObject.SetActive(false);
+        }
     }
 
     // Bind new ally object

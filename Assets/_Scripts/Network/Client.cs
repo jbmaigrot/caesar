@@ -419,6 +419,14 @@ public class Client : MonoBehaviour
                             minimap.Ping(mapPos);
                             break;
 
+                        case Constants.Server_UpdateRelays:
+                            Vector3 redPos = new Vector3(stream.ReadFloat(ref readerCtx), stream.ReadFloat(ref readerCtx), stream.ReadFloat(ref readerCtx));
+                            bool redIsVisible = (stream.ReadUInt(ref readerCtx) == 1);
+                            Vector3 bluePos = new Vector3(stream.ReadFloat(ref readerCtx), stream.ReadFloat(ref readerCtx), stream.ReadFloat(ref readerCtx));
+                            bool blueIsVisible = (stream.ReadUInt(ref readerCtx) == 1);
+                            minimap.UpdateRelays(redIsVisible, blueIsVisible, redPos, bluePos, team);
+                            break;
+
                         case Constants.Server_GetHack:
                             GetHackState(stream, ref readerCtx);
                             break;

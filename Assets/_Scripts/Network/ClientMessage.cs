@@ -19,8 +19,7 @@ public class ClientMessage : MonoBehaviour
     //Click
     public void ShowMessageOnMap()
     {
-        minimap.mapMessage.gameObject.SetActive(true);
-        minimap.mapMessage.localPosition = minimap.worldToMap(sourcePosition);
+        minimap.ShowMessage(sourcePosition);
     }
 
     /*
