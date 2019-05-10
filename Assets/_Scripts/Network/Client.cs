@@ -50,6 +50,8 @@ public class Client : MonoBehaviour
 
     public LineRenderer lineRenderer;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +63,8 @@ public class Client : MonoBehaviour
         inventory[1] = InventoryConstants.Stunbox;
         inventory[2] = InventoryConstants.Powerpump;
         minimap = FindObjectOfType<Minimap>();
+
+       
     }
 
     void Awake() { 

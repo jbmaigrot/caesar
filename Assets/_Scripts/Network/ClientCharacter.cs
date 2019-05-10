@@ -23,6 +23,12 @@ public class ClientCharacter : MonoBehaviour
 
     private Animator stunAnimator;
 
+    private MaterialPropertyBlock block_default;
+    private MaterialPropertyBlock block_nonempty_nonstun;
+    private MaterialPropertyBlock block_stun;
+
+    private bool isDataEmpty;
+
     //Start
     private void Start()
     {
@@ -34,6 +40,23 @@ public class ClientCharacter : MonoBehaviour
         startingY = transform.localPosition.y;
 
         stunAnimator = this.transform.Find("StunLightning").GetComponent<Animator>();
+
+        block_default = new MaterialPropertyBlock();
+        block_default.SetFloat("_IsShining", 0f);
+        block_default.SetColor("_EmissiveColor", new Color(0, 0, 0));
+        block_default.SetFloat("_WaveSpeed", 0.0f);
+
+        block_nonempty_nonstun = new MaterialPropertyBlock();
+        block_nonempty_nonstun.SetFloat("_IsShining", 1f);
+        block_nonempty_nonstun.SetColor("_EmissiveColor", new Color(255, 236, 0));
+        block_nonempty_nonstun.SetFloat("_WaveSpeed", 3.0f);
+
+        block_stun = new MaterialPropertyBlock();
+        block_stun.SetFloat("_IsShining", 1f);
+        block_stun.SetColor("_EmissiveColor", new Color(255, 0, 9));
+        block_stun.SetFloat("_WaveSpeed", 8.0f);
+
+        isDataEmpty = true;
     }
 
     // Update is called once per frame
@@ -43,12 +66,42 @@ public class ClientCharacter : MonoBehaviour
 
         // Floating animation
         mesh.localPosition = new Vector3(0, startingY - floatingRange / 2 + floatingRange * (Mathf.Sin(Time.time * 2 * Mathf.PI * floatingFreq)), 0);
+
+        if(this.GetComponent<ServerCarrier>().clientCharge > 0.05)
+        {
+            if (isDataEmpty)
+            {
+                isDataEmpty = false;
+                if (!isTacle)
+                {
+                    MeshRenderer ryan = this.gameObject.GetComponentInChildren<MeshRenderer>();
+                    ryan.material.SetFloat("_IsShining", 1f);
+                    ryan.material.SetColor("_EmissiveColor", new Color(255, 236, 0));
+                    ryan.material.SetFloat("_WaveSpeed", 3.0f);
+                }
+            }
+        }
+        else
+        {
+            if (!isDataEmpty)
+            {
+                isDataEmpty = true;
+                if (!isTacle)
+                {
+                    MeshRenderer ryan = this.gameObject.GetComponentInChildren<MeshRenderer>();
+                    ryan.material.SetFloat("_IsShining", 1f);
+                    ryan.material.SetFloat("_IsShining", 0f);
+                    ryan.material.SetColor("_EmissiveColor", new Color(0, 0, 0));
+                    ryan.material.SetFloat("_WaveSpeed", 0.0f);
+                }
+            }
+        }
     }
 
     // Tacle
     public void OnMouseOver()
     {
-        if (!Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(1) && number != client.playerIndex&&!hackinterface.GetComponent<CanvasGroup>().blocksRaycasts) //Control+click is for energy-related actions
+        if (!Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(1) && number != client.playerIndex && !hackinterface.GetComponent<CanvasGroup>().blocksRaycasts) //Control+click is for energy-related actions
         {
             client.Tacle(number);
         }
@@ -64,12 +117,12 @@ public class ClientCharacter : MonoBehaviour
                 SpriteRenderer lightning = this.transform.Find("StunLightning").GetComponent<SpriteRenderer>();
                 lightning.enabled = true;
                 stunAnimator.Play(0);
-                foreach (MeshRenderer ryan in this.gameObject.GetComponentsInChildren<MeshRenderer>())
-                {
-                    ryan.material.color = new Color(ryan.material.color.r * 0.8f, ryan.material.color.g * 1.5625f, ryan.material.color.b * 0.8f);
-                }
+                MeshRenderer ryan = this.gameObject.GetComponentInChildren<MeshRenderer>();
+                ryan.material.SetFloat("_IsShining", 1f);
+                ryan.material.SetColor("_EmissiveColor", new Color(255, 0, 9));
+                ryan.material.SetFloat("_WaveSpeed", 8.0f);
             }
-            
+
         }
         else
         {
@@ -78,12 +131,22 @@ public class ClientCharacter : MonoBehaviour
                 isTacle = false;
                 SpriteRenderer lightning = this.transform.Find("StunLightning").GetComponent<SpriteRenderer>();
                 lightning.enabled = false;
-                foreach (MeshRenderer ryan in this.gameObject.GetComponentsInChildren<MeshRenderer>())
+                MeshRenderer ryan = this.gameObject.GetComponentInChildren<MeshRenderer>();
+                if (isDataEmpty)
                 {
-                    ryan.material.color = new Color(ryan.material.color.r * 1.25f, ryan.material.color.g * 0.64f, ryan.material.color.b * 1.25f);
+                    ryan.material.SetFloat("_IsShining", 0f);
+                    ryan.material.SetColor("_EmissiveColor", new Color(0, 0, 0));
+                    ryan.material.SetFloat("_WaveSpeed", 0.0f);
                 }
+                else
+                {
+                    ryan.material.SetFloat("_IsShining", 1f);
+                    ryan.material.SetColor("_EmissiveColor", new Color(255, 236, 0));
+                    ryan.material.SetFloat("_WaveSpeed", 3.0f);
+                }
+                
             }
-            
+
         }
     }
 #endif
