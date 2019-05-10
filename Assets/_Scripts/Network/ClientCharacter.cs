@@ -82,6 +82,7 @@ public class ClientCharacter : MonoBehaviour
                     Body.material.SetFloat("_IsShining", 1f);
                     Body.material.SetColor("_EmissiveColor", new Color(255, 236, 0));
                     Body.material.SetFloat("_WaveSpeed", 3.0f);
+                    Lens.material.SetColor("_EmissionColor", new Color(255,236,0));
                 }
             }
         }
@@ -93,10 +94,11 @@ public class ClientCharacter : MonoBehaviour
                 if (!isTacle)
                 {
                     MeshRenderer ryan = this.gameObject.GetComponentInChildren<MeshRenderer>();
-                    Body.material.SetFloat("_IsShining", 1f);
                     Body.material.SetFloat("_IsShining", 0f);
                     Body.material.SetColor("_EmissiveColor", new Color(0, 0, 0));
                     Body.material.SetFloat("_WaveSpeed", 0.0f);
+                    Lens.material.SetColor("_EmissionColor", new Color(146, 214, 255));
+                    
                 }
             }
         }
@@ -124,6 +126,7 @@ public class ClientCharacter : MonoBehaviour
                 Body.material.SetFloat("_IsShining", 1f);
                 Body.material.SetColor("_EmissiveColor", new Color(255, 0, 9));
                 Body.material.SetFloat("_WaveSpeed", 8.0f);
+                Lens.material.SetColor("_EmissionColor", new Color(255,0,9));
             }
 
         }
@@ -139,12 +142,14 @@ public class ClientCharacter : MonoBehaviour
                     Body.material.SetFloat("_IsShining", 0f);
                     Body.material.SetColor("_EmissiveColor", new Color(0, 0, 0));
                     Body.material.SetFloat("_WaveSpeed", 0.0f);
+                    Lens.material.SetColor("_EmissionColor", new Color(146, 214, 255));
                 }
                 else
                 {
                     Body.material.SetFloat("_IsShining", 1f);
                     Body.material.SetColor("_EmissiveColor", new Color(255, 236, 0));
                     Body.material.SetFloat("_WaveSpeed", 3.0f);
+                    Lens.material.SetColor("_EmissionColor", new Color(255, 236,0));
                 }
                 
             }
