@@ -88,7 +88,7 @@ public class Minimap : MonoBehaviour
     // Update relays
     public void UpdateRelays(bool redIsVisible, bool blueIsVisible, Vector3 redPos, Vector3 bluePos, int team)
     {
-        if (redIsVisible || team == 0)
+        if (/*redIsVisible ||*/ team == 0)
         {
             mapRedRelay.gameObject.SetActive(true);
             mapRedRelay.localPosition = worldToMap(redPos);
@@ -98,7 +98,7 @@ public class Minimap : MonoBehaviour
             mapRedRelay.gameObject.SetActive(false);
         }
 
-        if (blueIsVisible || team == 1)
+        if (/*blueIsVisible ||*/ team == 1)
         {
             mapBlueRelay.gameObject.SetActive(true);
             mapBlueRelay.localPosition = worldToMap(bluePos);
