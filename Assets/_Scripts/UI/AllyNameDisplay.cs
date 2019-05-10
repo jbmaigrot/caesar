@@ -19,6 +19,9 @@ public class AllyNameDisplay : MonoBehaviour
         if (canvas != null)
         {
             GetComponent<RectTransform>().rotation = Quaternion.Euler(50.0f, -45.0f, 0.0f);
+
+            if (FindObjectOfType<Client>().team == 1 )
+                GetComponent<RectTransform>().rotation = Quaternion.Euler(50.0f, 135.0f, 0.0f);
         }
     }
 
