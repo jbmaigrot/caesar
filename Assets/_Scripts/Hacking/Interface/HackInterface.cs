@@ -301,7 +301,7 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     {
         if (isInput)
         {
-            foreach (Arrow ryan in graph.ToArray())
+            foreach (Arrow ryan in graph.ToArray()) // tricks using ToArray() from stackoverflow.com/questions/3545731 to prevent index exception when removing elements from the list in the loop
             {
                 if (ryan.input == num)
                 {
