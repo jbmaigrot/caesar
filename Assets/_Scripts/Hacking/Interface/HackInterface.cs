@@ -301,11 +301,10 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     {
         if (isInput)
         {
-            
-            foreach (Arrow ryan in graph)
+            foreach (Arrow ryan in graph.ToArray())
             {
                 if (ryan.input == num)
-                {//PROBLEM ici on enlève une arrow alors qu'on parcours graph, ça cause des problèmes parce qu'il perd son indice ou un truc du genre
+                {
                     graph.Remove(ryan);
                 }
                 else if (ryan.input > num)
@@ -316,7 +315,7 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
         }
         else
         {
-            foreach (Arrow ryan in graph)
+            foreach (Arrow ryan in graph.ToArray())
             {
                 if (ryan.output == num)
                 {
