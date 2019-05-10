@@ -8,7 +8,7 @@ public class ClientMessage : MonoBehaviour
     public Vector3 sourcePosition = new Vector3(0,0,0);
     private CameraController cam;
     private Minimap minimap;
-
+#if CLIENT
     //Start
     void Start()
     {
@@ -29,4 +29,5 @@ public class ClientMessage : MonoBehaviour
         cam.cameraMode = 1;
         cam.transform.parent.position = sourcePosition;
     }*/
+#endif
 }
