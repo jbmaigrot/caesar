@@ -7,8 +7,7 @@ public class ClientCharacter : MonoBehaviour
 
     public MeshRenderer Body;
     public MeshRenderer Lens;
-    public GameObject RedTrail;
-    public GameObject BlueTrail;
+    
 
 #if CLIENT
     public Vector3 speed = new Vector3(0, 0, 0);

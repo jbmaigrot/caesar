@@ -35,6 +35,9 @@ public class ProgrammableObjectsData : MonoBehaviour
     public bool sendingToBlueClient;
     public bool sendingToRedClient;
     public int objectIndexClient;
+
+    public GameObject RedTrail;
+    public GameObject BlueTrail;
 #endif
 
 #if SERVER
@@ -403,37 +406,18 @@ public class ProgrammableObjectsData : MonoBehaviour
             if (OnNotOff && !sendingToRedClient)
             {
                 sendingToRedClient = true;
-                if (this.GetComponent<ClientCharacter>())
-                {
-                    this.GetComponent<ClientCharacter>().RedTrail.SetActive(true);
-                }
-                else
-                {
-                    foreach (MeshRenderer ryan in this.GetComponentsInChildren<MeshRenderer>())
-                    {
-                        ryan.material.color = new Color(ryan.material.color.r * 1.5625f, ryan.material.color.g * 0.8f, ryan.material.color.b * 0.8f);
-
-                    }
-                }
+                
+                    RedTrail.SetActive(true);
+                
 
             }
 
             if (!OnNotOff && sendingToRedClient)
             {
                 sendingToRedClient = false;
-                if (this.GetComponent<ClientCharacter>())
-                {
-                    this.GetComponent<ClientCharacter>().RedTrail.SetActive(false);
-                }
-                else
-                {
-                    foreach (MeshRenderer ryan in this.GetComponentsInChildren<MeshRenderer>())
-                    {
-                        ryan.material.color = new Color(ryan.material.color.r * 0.64f, ryan.material.color.g * 1.25f, ryan.material.color.b * 1.25f);
-                        
-
-                    }
-                }
+                
+                    RedTrail.SetActive(false);
+               
             }
         }
         else
@@ -441,33 +425,17 @@ public class ProgrammableObjectsData : MonoBehaviour
             if (OnNotOff && !sendingToBlueClient)
             {
                 sendingToBlueClient = true;
-                if (this.GetComponent<ClientCharacter>())
-                {
-                    this.GetComponent<ClientCharacter>().BlueTrail.SetActive(true);
-                }
-                else
-                {
-                    foreach (MeshRenderer ryan in this.GetComponentsInChildren<MeshRenderer>())
-                    {
-                        ryan.material.color = new Color(ryan.material.color.r * 0.8f, ryan.material.color.g * 1f, ryan.material.color.b * 1.5625f);
-                    }
-                }
+                
+                    BlueTrail.SetActive(true);
+                
             }
 
             if (!OnNotOff && sendingToBlueClient)
             {
                 sendingToBlueClient = false;
-                if (this.GetComponent<ClientCharacter>())
-                {
-                    this.GetComponent<ClientCharacter>().BlueTrail.SetActive(true);
-                }
-                else
-                {
-                    foreach (MeshRenderer ryan in this.GetComponentsInChildren<MeshRenderer>())
-                    {
-                        ryan.material.color = new Color(ryan.material.color.r * 1.25f, ryan.material.color.g * 1f, ryan.material.color.b * 0.64f);
-                    }
-                }
+                
+                    BlueTrail.SetActive(false);
+                
             }
         }
     }
