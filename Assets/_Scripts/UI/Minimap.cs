@@ -55,6 +55,11 @@ public class Minimap : MonoBehaviour
         {
             mapMessage.gameObject.SetActive(false);
         }
+        else
+        {
+            Image mapImg = mapMessage.GetComponent<Image>();
+            mapImg.color = new Color(mapImg.color.r, mapImg.color.g, mapImg.color.b, 1 - (Time.time - messageStartingTime)/messageFadeTime);
+        }
 
         //inputs: move or ping
         if (isPointerOver)

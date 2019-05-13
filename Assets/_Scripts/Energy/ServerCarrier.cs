@@ -163,7 +163,7 @@ public class ServerCarrier : MonoBehaviour
     // Take and Give
     public void OnMouseOver()
     {
-        if (!hackInterface.GetComponent<CanvasGroup>().blocksRaycasts)
+        if (!hackInterface.GetComponent<CanvasGroup>().blocksRaycasts && !client.characters[client.playerIndex].isTacle)
             if (Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(0))
             {
                 if (GetComponent<ProgrammableObjectsData>() != null)
@@ -186,7 +186,7 @@ public class ServerCarrier : MonoBehaviour
     //functions
     public void StartTaking(ServerCarrier other)
     {
-        if (other != this && Vector3.Distance(transform.position, other.transform.position) < 15) //max distance
+        if (other != this && Vector3.Distance(transform.position, other.transform.position) < 15 && !client.characters[client.playerIndex].isTacle)
         {
             takingFrom = other;
             //charging = true;
@@ -202,7 +202,7 @@ public class ServerCarrier : MonoBehaviour
 
     public void StartGiving(ServerCarrier other)
     {
-        if (other != this && Vector3.Distance(transform.position, other.transform.position) < 15) //max distance
+        if (other != this && Vector3.Distance(transform.position, other.transform.position) < 15 && !client.characters[client.playerIndex].isTacle)
         {
             givingTo = other;
             StopTaking();

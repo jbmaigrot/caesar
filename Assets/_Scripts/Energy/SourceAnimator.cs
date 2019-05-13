@@ -29,7 +29,6 @@ public class SourceAnimator : MonoBehaviour
         cube = transform.Find("Cube");
         emissive = cube.Find("Source 1").GetComponent<Renderer>();
         pointLight = cube.Find("Point Light").GetComponent<Light>();
-        Debug.Log(cube.localPosition.y + " " + cube.position.y);
         startingY = cube.localPosition.y;
         pointLight.intensity = 0;
     }
@@ -54,12 +53,19 @@ public class SourceAnimator : MonoBehaviour
 
             case 1:
                 currentSpeed = Mathf.Lerp(currentSpeed, lowSpeed, lerpT);
+                emission = Mathf.Lerp(emission, 0, lerpT);
+                pointLight.intensity = Mathf.Lerp(pointLight.intensity, 0, lerpT);
+                floatingT += Time.deltaTime * Mathf.Min(lerpT, 1);
+                break;
+
+            case 2:
+                currentSpeed = Mathf.Lerp(currentSpeed, lowSpeed, lerpT);
                 emission = Mathf.Lerp(emission, 0.5f, lerpT);
                 pointLight.intensity = Mathf.Lerp(pointLight.intensity, 1000, lerpT);
                 floatingT += Time.deltaTime * Mathf.Min(lerpT, 1);
                 break;
 
-            case 2:
+            case 3:
                 currentSpeed = Mathf.Lerp(currentSpeed, highSpeed, lerpT);
                 emission = Mathf.Lerp(emission, 0.5f, lerpT);
                 pointLight.intensity = Mathf.Lerp(pointLight.intensity, 1000, lerpT);

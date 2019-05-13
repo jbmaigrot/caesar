@@ -214,7 +214,7 @@ public class ProgrammableObjectsData : MonoBehaviour
 
         if (codeoutput == "SendMessage")
         {
-            server.AddMessage(parameter_string, new Vector3(0, 0, 0)); //TO UPDATE: temporary position
+            server.AddMessage(parameter_string, transform.position);
         }
 
         if (codeoutput == "TestInt")
