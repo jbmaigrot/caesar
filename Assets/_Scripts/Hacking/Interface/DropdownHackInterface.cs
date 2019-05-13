@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 #if CLIENT
-public class DropdownHackInterface : MonoBehaviour
+public class DropdownHackInterface : MonoBehaviour, IPointerClickHandler
 {
 
     private int previousValue;
@@ -13,9 +13,20 @@ public class DropdownHackInterface : MonoBehaviour
 
     private List<string> accessibleCode;
 
+    private HackInterface hackInterface;
+
     void Start()
     {
         accessibleCode = new List<string>();
+        hackInterface = FindObjectOfType<HackInterface>();
+      
+    }
+
+    
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        hackInterface.ClicNeu();
     }
 
     /*Fonction pour modifier le code d'une vignette en fonction du dropdown*/
@@ -81,7 +92,14 @@ public class DropdownHackInterface : MonoBehaviour
         if (this.GetComponent<Dropdown>().value != previousValue)
         {
             UpdateHackingGraph();
-
+            if(this.GetComponent<Dropdown>().value != 0)
+            {
+                hackInterface.ClicPos();
+            }
+            else
+            {
+                hackInterface.ClicNeg();
+            }
         }
     }
 

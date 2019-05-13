@@ -9,6 +9,7 @@ public class PlayerInput : MonoBehaviour
 {
     private Client client;
     private HackInterface hackinterface;
+    public bool isMouseOverAnOutputTextButtonhackInterface;
 
     //Start
     private void Start()
@@ -40,6 +41,27 @@ public class PlayerInput : MonoBehaviour
                     StartCoroutine(ClickMaintenu()); //No need to check if button is still pressed as we are stopping coroutine once it's released
                 }
             }
+        }
+
+        if (Input.GetMouseButtonDown(0) && hackinterface.GetComponent<CanvasGroup>().blocksRaycasts && HackInterface.SelectedInputButton != -1)
+        {
+            if (!EventSystem.current.IsPointerOverGameObject())
+            {
+                hackinterface.ClicCancel();
+                HackInterface.SelectedInputButton = -1;
+            }
+            else
+            {
+
+                if (!isMouseOverAnOutputTextButtonhackInterface)
+                {
+                    hackinterface.ClicCancel();
+                    HackInterface.SelectedInputButton = -1;
+                }
+                
+
+            }
+
         }
 
         if (Input.GetMouseButtonUp(0))

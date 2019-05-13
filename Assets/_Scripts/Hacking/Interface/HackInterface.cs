@@ -141,7 +141,7 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
             /*Initiation du délais de fermeture*/
             timeBeforeClosing = TIMEFORCLOSING;
             isClosing = true;
-
+            ClicNeu();
             SelectedInputButton = -1;
             for(int i = 0; i < inventory.Length; i++)
             {
@@ -362,6 +362,26 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
         GL.Vertex3(1f, 1f, 1f);
         GL.End();
     }*/
+
+    public void ClicCancel()
+    {
+        GetComponent<AudioSource>().PlayOneShot(Clic_Cancel);
+    }
+
+    public void ClicPos()
+    {
+        GetComponent<AudioSource>().PlayOneShot(Clic_Positif);
+    }
+
+    public void ClicNeu()
+    {
+        GetComponent<AudioSource>().PlayOneShot(Clic_Neutre);
+    }
+
+    public void ClicNeg()
+    {
+        GetComponent<AudioSource>().PlayOneShot(Clic_Negatif);
+    }
 #endif
 }
 

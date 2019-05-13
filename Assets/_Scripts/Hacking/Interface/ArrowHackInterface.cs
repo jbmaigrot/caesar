@@ -8,12 +8,18 @@ public class ArrowHackInterface : MonoBehaviour, IPointerDownHandler
 {
     /*Variables pour savoir de quel arrow on parle. C'est rentré à la main dans l'éditeur, ce qui est améliorable.*/
     public int numero;
+    private HackInterface hackinterface;
 
 
+    void Start()
+    {
+        hackinterface = FindObjectOfType<HackInterface>();
+    }
     /*Si on clic sur une arrow, elle est supprimé dans le graphe*/
     public void OnPointerDown(PointerEventData pointerEvent)
     {
         HackInterface.graph.RemoveAt(numero);
+        hackinterface.ClicNeg();
         /*On réecrit toutes les flèches. C'est nécessaire car il peut y avoir un décalage des flèches d'après.*/
         this.GetComponentInParent<HackInterface>().reloadArrow();
     }

@@ -103,6 +103,7 @@ public class InventoryHackInterface : MonoBehaviour, IPointerDownHandler
 #if CLIENT
         if(hackinterface.inventory[numero] != InventoryConstants.Empty && HackInterface.outputCodes.Count < 5)
         {
+            hackinterface.ClicNeu();
             InOutVignette NewOutputHack = new InOutVignette();
             NewOutputHack.code = "UseGadget";
             NewOutputHack.parameter_int = hackinterface.inventory[numero];
