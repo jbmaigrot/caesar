@@ -2750,7 +2750,6 @@ GameObject:
   - component: {fileID: 90768346}
   - component: {fileID: 90768345}
   - component: {fileID: 90768344}
-  - component: {fileID: 90768343}
   m_Layer: 5
   m_Name: Slot3
   m_TagString: Untagged
@@ -2777,54 +2776,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 41, y: 41}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &90768343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 90768341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 90768344}
-          m_MethodName: ShowRange
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 90768344}
-          m_MethodName: HideRange
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
 --- !u!114 &90768344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3127,9 +3078,9 @@ RectTransform:
   m_Father: {fileID: 486232258}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 80, y: -15}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &106363426
@@ -5509,9 +5460,9 @@ RectTransform:
   m_Father: {fileID: 486232258}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 80, y: -81.666664}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &217743801
@@ -11887,7 +11838,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &486232258
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12508,6 +12459,22 @@ PrefabInstance:
       propertyPath: gadgetRange
       value: 
       objectReference: {fileID: 1524554834}
+    - target: {fileID: 1472723321, guid: b69f16c46726df942812763a464a8da8, type: 3}
+      propertyPath: Slot1
+      value: 
+      objectReference: {fileID: 560689236}
+    - target: {fileID: 1472723321, guid: b69f16c46726df942812763a464a8da8, type: 3}
+      propertyPath: Slot2
+      value: 
+      objectReference: {fileID: 1408965817}
+    - target: {fileID: 1472723321, guid: b69f16c46726df942812763a464a8da8, type: 3}
+      propertyPath: Slot3
+      value: 
+      objectReference: {fileID: 90768341}
+    - target: {fileID: 1472723321, guid: b69f16c46726df942812763a464a8da8, type: 3}
+      propertyPath: Slot
+      value: 
+      objectReference: {fileID: 560689236}
     - target: {fileID: 1316486814342420443, guid: b69f16c46726df942812763a464a8da8,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -12532,6 +12499,10 @@ PrefabInstance:
       propertyPath: gadgetRange
       value: 
       objectReference: {fileID: 1524554834}
+    - target: {fileID: 247790961, guid: b69f16c46726df942812763a464a8da8, type: 3}
+      propertyPath: Slot
+      value: 
+      objectReference: {fileID: 1408965817}
     - target: {fileID: 4113996701930303649, guid: b69f16c46726df942812763a464a8da8,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -12556,6 +12527,10 @@ PrefabInstance:
       propertyPath: gadgetRange
       value: 
       objectReference: {fileID: 1524554834}
+    - target: {fileID: 693305952, guid: b69f16c46726df942812763a464a8da8, type: 3}
+      propertyPath: Slot
+      value: 
+      objectReference: {fileID: 90768341}
     - target: {fileID: 1876750393, guid: b69f16c46726df942812763a464a8da8, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
@@ -12886,6 +12861,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7182164314948239090, guid: b69f16c46726df942812763a464a8da8,
+        type: 3}
+      propertyPath: InventoryUI
+      value: 
+      objectReference: {fileID: 1227643143}
     - target: {fileID: 3116696236089273829, guid: b69f16c46726df942812763a464a8da8,
         type: 3}
       propertyPath: m_Sprite
@@ -13096,6 +13076,51 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 837074368, guid: b69f16c46726df942812763a464a8da8, type: 3}
+      propertyPath: gadgetRange
+      value: 
+      objectReference: {fileID: 1524554834}
+    - target: {fileID: 997612888, guid: b69f16c46726df942812763a464a8da8, type: 3}
+      propertyPath: gadgetRange
+      value: 
+      objectReference: {fileID: 1524554834}
+    - target: {fileID: 1441997993, guid: b69f16c46726df942812763a464a8da8, type: 3}
+      propertyPath: gadgetRange
+      value: 
+      objectReference: {fileID: 1524554834}
+    - target: {fileID: 1574911478, guid: b69f16c46726df942812763a464a8da8, type: 3}
+      propertyPath: gadgetRange
+      value: 
+      objectReference: {fileID: 1524554834}
+    - target: {fileID: 2124062248, guid: b69f16c46726df942812763a464a8da8, type: 3}
+      propertyPath: gadgetRange
+      value: 
+      objectReference: {fileID: 1524554834}
+    - target: {fileID: 5924341513193115525, guid: b69f16c46726df942812763a464a8da8,
+        type: 3}
+      propertyPath: gadgetRange
+      value: 
+      objectReference: {fileID: 1524554834}
+    - target: {fileID: 4341520599425208575, guid: b69f16c46726df942812763a464a8da8,
+        type: 3}
+      propertyPath: gadgetRange
+      value: 
+      objectReference: {fileID: 1524554834}
+    - target: {fileID: 8268981737242410082, guid: b69f16c46726df942812763a464a8da8,
+        type: 3}
+      propertyPath: gadgetRange
+      value: 
+      objectReference: {fileID: 1524554834}
+    - target: {fileID: 3353021422648418068, guid: b69f16c46726df942812763a464a8da8,
+        type: 3}
+      propertyPath: gadgetRange
+      value: 
+      objectReference: {fileID: 1524554834}
+    - target: {fileID: 3739985764363458396, guid: b69f16c46726df942812763a464a8da8,
+        type: 3}
+      propertyPath: gadgetRange
+      value: 
+      objectReference: {fileID: 1524554834}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b69f16c46726df942812763a464a8da8, type: 3}
 --- !u!1 &495260146
@@ -14896,45 +14921,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 560689236}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: ec8a288071a970944bbffbc028e0a08b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 560689239}
-          m_MethodName: ShowRange
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 560689239}
-          m_MethodName: HideRange
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
+  Normal: {fileID: 0}
+  Attract: {fileID: 0}
+  Stun: {fileID: 0}
+  PowerPump: {fileID: 0}
+  RedRelay: {fileID: 0}
+  BlueRelay: {fileID: 0}
 --- !u!114 &560689239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30794,9 +30789,10 @@ GameObject:
   - component: {fileID: 1227643144}
   - component: {fileID: 1227643147}
   - component: {fileID: 1227643146}
+  - component: {fileID: 1227643148}
   - component: {fileID: 1227643145}
   m_Layer: 5
-  m_Name: ZoneGadget (2)
+  m_Name: Inventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30876,6 +30872,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1227643143}
   m_CullTransparentMesh: 0
+--- !u!114 &1227643148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227643143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1db238960920d504eabbbd7e9ee6239b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory:
+  - {fileID: 560689236}
+  - {fileID: 1408965817}
+  - {fileID: 90768341}
 --- !u!1 &1227874005
 GameObject:
   m_ObjectHideFlags: 0
@@ -36775,7 +36787,6 @@ GameObject:
   - component: {fileID: 1408965822}
   - component: {fileID: 1408965821}
   - component: {fileID: 1408965820}
-  - component: {fileID: 1408965819}
   m_Layer: 5
   m_Name: Slot2
   m_TagString: Untagged
@@ -36802,54 +36813,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 41, y: 41}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1408965819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1408965817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1408965820}
-          m_MethodName: ShowRange
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1408965820}
-          m_MethodName: HideRange
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
 --- !u!114 &1408965820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50750,7 +50713,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1672044607}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999999
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -56907,9 +56870,9 @@ RectTransform:
   m_Father: {fileID: 486232258}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 80, y: -48.333332}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1936262779
@@ -57159,7 +57122,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.000030232422}
+  m_AnchoredPosition: {x: 0, y: 0.000030517578}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1959515637
