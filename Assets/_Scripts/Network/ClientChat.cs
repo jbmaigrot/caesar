@@ -32,12 +32,21 @@ public class ClientChat : MonoBehaviour
     //
     public void AddMessage(string message, Vector3 pos) 
     {
-        chatBox.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, chatBox.rect.height + 50);
         GameObject newMessage = Instantiate(messagePrefab);
+        Text newTextBox = newMessage.GetComponentInChildren<Text>();
+
+        // From https://answers.unity.com/questions/921726/how-to-get-the-size-of-a-unityengineuitext-for-whi.html,
+        // used to calculate the height of the message once integrated in the chat to avoid having to rely on VerticalLayoutGroup and running into performance issue.
+        TextGenerator textGen = new TextGenerator();
+        TextGenerationSettings generationSettings = newTextBox.GetGenerationSettings(newTextBox.rectTransform.rect.size);
+        float height = textGen.GetPreferredHeight(message, generationSettings);
+
+        chatBox.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, chatBox.rect.height + height);
+
         newMessage.transform.SetParent(chatBox);
         newMessage.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
         newMessage.GetComponent<RectTransform>().localPosition = new Vector3(10, 50, 0);
-        newMessage.GetComponentInChildren<Text>().text = message;
+        newTextBox.text = message;
         newMessage.GetComponent<ClientMessage>().sourcePosition = pos;
     }
 #endif
