@@ -298,12 +298,18 @@ public class Client : MonoBehaviour
                                     }
 #endif
                                 }
-                                    // Charge
-                                    float chargeRatio = stream.ReadFloat(ref readerCtx);
+
+                                // Charge
+                                float chargeRatio = stream.ReadFloat(ref readerCtx);
                                 if (progObject.GetComponent<ServerCarrier>())
                                 {
                                     var carrier = progObject.GetComponent<ServerCarrier>();
                                     carrier.clientCharge =  chargeRatio;
+
+                                    if(progObject.GetComponent<SourceAnimator>())
+                                    {
+
+                                    }
                                 }
 
                                 //presence of Relay

@@ -62,7 +62,6 @@ public class ClientCharacter : MonoBehaviour
                 isDataEmpty = false;
                 if (!isTacle)
                 {
-                    
                     Body.material.SetFloat("_IsShining", 1f);
                     Body.material.SetColor("_EmissiveColor", new Color(1f, 236f/255f, 0f,1f));
                     Body.material.SetFloat("_WaveSpeed", 3.0f);
@@ -103,6 +102,8 @@ public class ClientCharacter : MonoBehaviour
             if (!isTacle)
             {
                 isTacle = true;
+                GetComponent<ServerCarrier>().StopGiving();
+                GetComponent<ServerCarrier>().StopTaking();
                 SpriteRenderer lightning = this.transform.Find("StunLightning").GetComponent<SpriteRenderer>();
                 lightning.enabled = true;
                 stunAnimator.Play(0);

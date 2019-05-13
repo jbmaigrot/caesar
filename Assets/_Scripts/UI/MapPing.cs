@@ -23,7 +23,8 @@ public class MapPing : MonoBehaviour
         }
         else
         {
-            
+            Image pingImg = GetComponent<Image>();
+            pingImg.color = new Color(pingImg.color.r, pingImg.color.g, pingImg.color.b, 1 - (Time.time - startingTime) / fadeTime);
         }
     }
 }
