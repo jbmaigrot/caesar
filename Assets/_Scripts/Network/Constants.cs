@@ -43,5 +43,7 @@
 
 
     public static readonly string[] LobbyNames = new string[] {"Le Redoutable", "Le Triomphant", "Le Téméraire", "Le Vigilant", "Le Terrible",
-        "Le Conquérant", "Le Héros", "Le Glorieux", "Le Tonnant", "Le Foudroyant", "L'Indomptable", "L'Inflexible"};
+        "Le Conquérant", "Le Héros", "Le Glorieux", "Le Tonnant", "Le Foudroyant", "L'Indomptable", "L'Inflexible", "Le Turbulent", "Le Victorieux",
+        "L'Infatigable", "La Sultane", "La Favorite", "L'Andromède", "L'Artémis", "L'Aurore", "L'Espoir", "Le Vengeur", "L'Espadon", "La Sybille",
+        "L'Amazone", "La Loutre", "La Sirène"};
 }
