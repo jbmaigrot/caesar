@@ -52,13 +52,13 @@ public class PlayerInput : MonoBehaviour
             }
             else
             {
-
+                /*
                 if (!isMouseOverAnOutputTextButtonhackInterface)
                 {
                     hackinterface.ClicCancel();
                     HackInterface.SelectedInputButton = -1;
                 }
-                
+                */
 
             }
 
