@@ -50,6 +50,8 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     private Sprite[] SpriteList;
     public Sprite[] ArrowSpriteTable;
 
+    public GameObject InventoryUI;
+
     // Start is called before the first frame update
     void Start()
     {
