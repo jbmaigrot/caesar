@@ -9,6 +9,7 @@ public class PlayerLobbyCardManager : MonoBehaviour
     public Text connected;
     public Text notConnected;
     public InputField playerName;
+    public Button randomize;
     public Dropdown playerTeam;
     public Button ready;
     public Button cancel;
@@ -26,16 +27,19 @@ public class PlayerLobbyCardManager : MonoBehaviour
         public PlayerLobbyCard(string _playerName = "", int _playerNumber = -1, bool _connected = false, int _team = 0, bool _isReady = false)
         {
             playerNumber = _playerNumber;
-            connected = _connected;
+            connected = _connected;/*
             if (_playerName == "")
             {
                 playerName = Constants.LobbyNames[Random.Range(0, Constants.LobbyNames.Length)];
-            } else
-            {
+            } else*/
                 playerName = _playerName;
-            }
             team = _team;
             isReady = _isReady;
+        }
+
+        public void RandomizeName()
+        {
+            playerName = Constants.LobbyNames[Random.Range(0, Constants.LobbyNames.Length)];
         }
     };
 #if CLIENT
@@ -87,6 +91,7 @@ public class PlayerLobbyCardManager : MonoBehaviour
     public void nonInteractable()
     {
         playerName.interactable = false;
+        randomize.interactable = false;
         playerTeam.interactable = false;
         ready.interactable = false;
         cancel.interactable = false;
@@ -111,6 +116,7 @@ public class PlayerLobbyCardManager : MonoBehaviour
         cancel.interactable = true;
 
         playerName.interactable = false;
+        randomize.interactable = false;
         playerTeam.interactable = false;
     }
 
@@ -121,7 +127,13 @@ public class PlayerLobbyCardManager : MonoBehaviour
         cancel.interactable = false;
 
         playerName.interactable = true;
+        randomize.interactable = true;
         playerTeam.interactable = true;
+    }
+
+    public void OnClickRandomize()
+    {
+        playerName.text = Constants.LobbyNames[Random.Range(0, Constants.LobbyNames.Length)];
     }
 
 #endif

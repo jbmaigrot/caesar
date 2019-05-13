@@ -52,6 +52,7 @@ public class ServerLobby : MonoBehaviour
         for (int i = 0; i < numberOfPlayerSlots; i++)
         {
             var lobbyCard = new PlayerLobbyCardManager.PlayerLobbyCard("", i + 1);
+            lobbyCard.RandomizeName();
             lobbyInterfaceState.playerLobbyCards.Add(lobbyCard);
         }
     }
@@ -263,6 +264,7 @@ public class ServerLobby : MonoBehaviour
                             for (int j = lobbyInterfaceState.numberOfPlayerSlots; j < playerNumber; j++)
                             {
                                 var lobbyCard = new PlayerLobbyCardManager.PlayerLobbyCard("", j + 1);
+                                lobbyCard.RandomizeName();
                                 lobbyInterfaceState.playerLobbyCards.Add(lobbyCard);
                             }
                             lobbyInterfaceState.numberOfPlayerSlots = playerNumber;
