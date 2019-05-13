@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class InventoryUISlot : MonoBehaviour
 {
-    public Sprite Normal;
+    public int numero;
+    public Sprite Empty;
     public Sprite Attract;
     public Sprite Stun;
     public Sprite PowerPump;
     public Sprite RedRelay;
     public Sprite BlueRelay;
-    
+
+    //private Client client;
+
     void Start()
     {
-        
+        //client = FindObjectOfType<Client>();
     }
 
     
@@ -22,8 +25,42 @@ public class InventoryUISlot : MonoBehaviour
         
     }
 
-    public void reloadSlot()
+    public void reloadSlot(Client client)
     {
+        //if (client.inventory == null)
+        //{
+        //    client = FindObjectOfType<Client>();
+        //}
+        switch (client.inventory[numero])
+            {
+                case InventoryConstants.Empty:
+                    this.GetComponent<SVGImage>().sprite = Empty;
+                    break;
+
+                case InventoryConstants.Attract:
+                    this.GetComponent<SVGImage>().sprite = Attract;
+                    break;
+
+                case InventoryConstants.Stunbox:
+                    this.GetComponent<SVGImage>().sprite = Stun;
+                    break;
+
+                case InventoryConstants.Powerpump:
+                    this.GetComponent<SVGImage>().sprite = PowerPump;
+                    break;
+
+                case InventoryConstants.BlueRelay:
+                    this.GetComponent<SVGImage>().sprite = BlueRelay;
+                    break;
+
+                case InventoryConstants.OrangeRelay:
+                    this.GetComponent<SVGImage>().sprite = RedRelay;
+                    break;
+
+                default:
+                    break;
+            }
         
+       
     }
 }

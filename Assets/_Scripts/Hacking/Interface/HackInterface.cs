@@ -50,7 +50,7 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     private Sprite[] SpriteList;
     public Sprite[] ArrowSpriteTable;
 
-    public GameObject InventoryUI;
+    public InventoryUI inventoryUI;
 
     // Start is called before the first frame update
     void Start()
@@ -81,6 +81,9 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
             }
         }
         reloadArrow();
+
+        //var colorInventory = inventoryUI.GetComponent<SVGImage>().color;
+        //inventoryUI.GetComponent<SVGImage>().color = new Color(colorInventory.r, colorInventory.g, colorInventory.b, 0f);
         
     }
 
@@ -97,6 +100,7 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
                 SelectedGameObject = null;
                 this.gameObject.GetComponent<CanvasGroup>().alpha = 0f;
                 this.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+                inventoryUI.interfaceInventory.SetActive(true);
             }
         }
         if (isReadyToOpen)
@@ -115,6 +119,7 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
             {
                 isOpening = false;
                 ReallyOpenInterface();
+                inventoryUI.interfaceInventory.SetActive(false);
             }
         }
         //click outside
@@ -165,6 +170,11 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
             client.inventory[0] = inventory[0];
             client.inventory[1] = inventory[1];
             client.inventory[2] = inventory[2];
+
+            inventoryUI.ReloadInventory();
+            //var colorInventory = inventoryUI.GetComponent<SVGImage>().color;
+            //inventoryUI.GetComponent<SVGImage>().color = new Color(colorInventory.r, colorInventory.g, colorInventory.b, 1f);
+            //inventoryUI.GetComponent<GameObject>().SetActive(true);
 
             Camera.main.GetComponent<CameraController>().UnlockCamera();
         }        

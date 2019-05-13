@@ -2749,7 +2749,7 @@ GameObject:
   - component: {fileID: 90768342}
   - component: {fileID: 90768346}
   - component: {fileID: 90768345}
-  - component: {fileID: 90768344}
+  - component: {fileID: 90768343}
   m_Layer: 5
   m_Name: Slot3
   m_TagString: Untagged
@@ -2776,7 +2776,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 41, y: 41}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &90768344
+--- !u!114 &90768343
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2785,7 +2785,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 90768341}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c89bf19f85cfe4f4aa607c4512313d42, type: 3}
+  m_Script: {fileID: 11500000, guid: ec8a288071a970944bbffbc028e0a08b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   numero: 2
@@ -2793,9 +2793,8 @@ MonoBehaviour:
   Attract: {fileID: 21300000, guid: 5514175e2bbbf6541b5f5fb895239190, type: 3}
   Stun: {fileID: 21300000, guid: 4ea0d3423f62a9a49910cf9e44555e3c, type: 3}
   PowerPump: {fileID: 21300000, guid: 947e5b7ab00982d44b24a73a82f6b7da, type: 3}
-  BlueRelay: {fileID: 0}
   RedRelay: {fileID: 0}
-  gadgetRange: {fileID: 423380157}
+  BlueRelay: {fileID: 0}
 --- !u!114 &90768345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5011,8 +5010,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2100442943}
   m_HandleRect: {fileID: 2100442942}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 0.9999998
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -12866,6 +12865,11 @@ PrefabInstance:
       propertyPath: InventoryUI
       value: 
       objectReference: {fileID: 1227643143}
+    - target: {fileID: 7182164314948239090, guid: b69f16c46726df942812763a464a8da8,
+        type: 3}
+      propertyPath: inventoryUI
+      value: 
+      objectReference: {fileID: 1227643148}
     - target: {fileID: 3116696236089273829, guid: b69f16c46726df942812763a464a8da8,
         type: 3}
       propertyPath: m_Sprite
@@ -14884,7 +14888,6 @@ GameObject:
   - component: {fileID: 560689237}
   - component: {fileID: 560689241}
   - component: {fileID: 560689240}
-  - component: {fileID: 560689239}
   - component: {fileID: 560689238}
   m_Layer: 5
   m_Name: Slot1
@@ -14924,32 +14927,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec8a288071a970944bbffbc028e0a08b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Normal: {fileID: 0}
-  Attract: {fileID: 0}
-  Stun: {fileID: 0}
-  PowerPump: {fileID: 0}
-  RedRelay: {fileID: 0}
-  BlueRelay: {fileID: 0}
---- !u!114 &560689239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 560689236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c89bf19f85cfe4f4aa607c4512313d42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   numero: 0
   Empty: {fileID: 21300000, guid: 81f607dd2a5417f4fbe47edc314e474c, type: 3}
   Attract: {fileID: 21300000, guid: 5514175e2bbbf6541b5f5fb895239190, type: 3}
   Stun: {fileID: 21300000, guid: 4ea0d3423f62a9a49910cf9e44555e3c, type: 3}
   PowerPump: {fileID: 21300000, guid: 947e5b7ab00982d44b24a73a82f6b7da, type: 3}
-  BlueRelay: {fileID: 0}
   RedRelay: {fileID: 0}
-  gadgetRange: {fileID: 423380157}
+  BlueRelay: {fileID: 0}
 --- !u!114 &560689240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30890,9 +30874,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory:
-  - {fileID: 560689236}
-  - {fileID: 1408965817}
-  - {fileID: 90768341}
+  - {fileID: 560689238}
+  - {fileID: 1408965819}
+  - {fileID: 90768343}
+  client: {fileID: 244240628}
+  interfaceInventory: {fileID: 1227643143}
 --- !u!1 &1227874005
 GameObject:
   m_ObjectHideFlags: 0
@@ -36791,7 +36777,7 @@ GameObject:
   - component: {fileID: 1408965818}
   - component: {fileID: 1408965822}
   - component: {fileID: 1408965821}
-  - component: {fileID: 1408965820}
+  - component: {fileID: 1408965819}
   m_Layer: 5
   m_Name: Slot2
   m_TagString: Untagged
@@ -36818,7 +36804,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 41, y: 41}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1408965820
+--- !u!114 &1408965819
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -36827,7 +36813,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1408965817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c89bf19f85cfe4f4aa607c4512313d42, type: 3}
+  m_Script: {fileID: 11500000, guid: ec8a288071a970944bbffbc028e0a08b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   numero: 1
@@ -36835,9 +36821,8 @@ MonoBehaviour:
   Attract: {fileID: 21300000, guid: 5514175e2bbbf6541b5f5fb895239190, type: 3}
   Stun: {fileID: 21300000, guid: 4ea0d3423f62a9a49910cf9e44555e3c, type: 3}
   PowerPump: {fileID: 21300000, guid: 947e5b7ab00982d44b24a73a82f6b7da, type: 3}
-  BlueRelay: {fileID: 0}
   RedRelay: {fileID: 0}
-  gadgetRange: {fileID: 423380157}
+  BlueRelay: {fileID: 0}
 --- !u!114 &1408965821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50978,7 +50963,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1672044607}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999998
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -57387,7 +57372,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.000059684335}
+  m_AnchoredPosition: {x: 0, y: 0.000030517578}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1959515637
