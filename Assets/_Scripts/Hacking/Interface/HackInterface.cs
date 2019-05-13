@@ -6,7 +6,10 @@ using UnityEngine.Events;
 
 public class HackInterface : MonoBehaviour/*, ISelectObject*/
 {
-
+    public AudioClip Clic_Cancel;
+    public AudioClip Clic_Negatif;
+    public AudioClip Clic_Neutre;
+    public AudioClip Clic_Positif;
     public GameObject ErrorTextZone;
 #if CLIENT
     /*Variable qui contient la vignette d'input selectionné comme début de flèche. Est modifié par le script TextButtonHackInterface.*/
