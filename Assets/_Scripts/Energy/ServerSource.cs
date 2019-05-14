@@ -32,6 +32,14 @@ public class ServerSource : MonoBehaviour
             if (Time.time - startingTime > 240)
             {
                 isActivated = false;
+                
+                foreach (Transform ryan in server.characters)
+                {
+                    if (Vector3.Distance(ryan.position, this.transform.position) < 35)
+                    {
+                        ryan.GetComponent<ServerCharacter>().isAttractedByData = 0;
+                    }
+                }
                 enabled = false;
             }
         }
