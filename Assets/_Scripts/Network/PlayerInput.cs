@@ -4,9 +4,14 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-#if CLIENT
+
+
 public class PlayerInput : MonoBehaviour
 {
+    public Texture2D stdCursor;
+    public Texture2D ctrlCursor;
+    public Texture2D hackCursor;
+#if CLIENT
     private Client client;
     private HackInterface hackinterface;
     public bool isMouseOverAnOutputTextButtonhackInterface;
@@ -24,18 +29,28 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
             Application.Quit();
 
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            Cursor.SetCursor(ctrlCursor, Vector2.zero, CursorMode.Auto);
+        }
+        else
+        {
+            Cursor.SetCursor(stdCursor, Vector2.zero, CursorMode.Auto);
+        }
+
         if (! EventSystem.current.IsPointerOverGameObject()) //Checks if the mouse is not over any UI
         {
-            if (!Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(0)&&!hackinterface.GetComponent<CanvasGroup>().blocksRaycasts)
+            if (!Input.GetKey(KeyCode.LeftControl) && !hackinterface.GetComponent<CanvasGroup>().blocksRaycasts)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
 
-                if (Physics.Raycast(ray, out hit, 100f, 49184)) // Layer 5 14 et 15 (objects)
+                if (Physics.Raycast(ray, out hit, 100f, 2>>14)) // Layer 14 (hackable)
                 {
-                    //Debug.Log(42);
+                    Debug.Log(hit.transform.name);
+                    Cursor.SetCursor(hackCursor, Vector2.zero, CursorMode.Auto);
                 }
-                else if (Physics.Raycast(ray, out hit, 100f, 1)) // Layer 0 (ground)
+                else if (Input.GetMouseButtonDown(0) && Physics.Raycast(ray, out hit, 100f, 1)) // Layer 0 (ground)
                 {
                     client.SetDestination(hit.point);
                     StartCoroutine(ClickMaintenu()); //No need to check if button is still pressed as we are stopping coroutine once it's released
@@ -88,5 +103,5 @@ public class PlayerInput : MonoBehaviour
             yield return null;//new WaitForSeconds(.2f);
         }
     }
-}
 #endif
+}

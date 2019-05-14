@@ -331,6 +331,8 @@ public class Client : MonoBehaviour
                                         lineRenderer = characters[playerIndex].transform.Find("lineRenderer").GetComponent<LineRenderer>();
                                         lineRenderer.enabled = true;
 
+                                        characters[playerIndex].GetComponent<ServerCarrier>().draw = true; //data bar
+
                                         if (team == 0)
                                         {
                                             napperon.enabled = true;
