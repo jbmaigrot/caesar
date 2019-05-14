@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UI.Extensions;
 
 public class Minimap : MonoBehaviour
 {
@@ -29,12 +30,15 @@ public class Minimap : MonoBehaviour
     private float messageStartingTime;
     private float messageFadeTime = 2f;
 
+    private UILineRenderer lineRenderer;
+
     // Start
     private void Start()
     {
         client = FindObjectOfType<Client>();
         hackInterface = FindObjectOfType<HackInterface>();
         mapMessage.gameObject.SetActive(false);
+        lineRenderer = GetComponentInChildren<UILineRenderer>();
     }
 
     // Update is called once per frame
@@ -129,11 +133,31 @@ public class Minimap : MonoBehaviour
     {
         isPointerOver = b;
     }
+
+    public void DrawPath(Vector3[] worldPath)
+    {
+        if (lineRenderer != null)
+        {
+            lineRenderer.Points = worldToMap(worldPath);
+            lineRenderer.SetVerticesDirty();
+        }
+    }
+
 #endif
     // Convert coordinates
     public Vector2 worldToMap (Vector3 worldPosition)
     {
         return new Vector2(worldPosition.x / worldSize * mapSize, worldPosition.z / worldSize * mapSize);
+    }
+
+    public Vector2[] worldToMap (Vector3[] worldPositions)
+    {
+        Vector2[] mapPositions = new Vector2[worldPositions.Length];
+        for (int i = 0; i < worldPositions.Length; i++)
+        {
+            mapPositions[i] = worldToMap(worldPositions[i]);
+        }
+        return mapPositions;
     }
 
     public Vector3 mapToWorld (Vector2 mapPosition)

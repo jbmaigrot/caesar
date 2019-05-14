@@ -790,6 +790,9 @@ public class Client : MonoBehaviour
             lineRenderer.positionCount = pathAs3dPositions.Length;
             lineRenderer.SetPositions(pathAs3dPositions);
         }
+
+        if (minimap != null)
+            minimap.DrawPath(pathAs3dPositions);
     }
 
     private void UpdateDrawPath()
