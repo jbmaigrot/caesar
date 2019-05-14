@@ -38,16 +38,15 @@ public class PlayerInput : MonoBehaviour
             Cursor.SetCursor(stdCursor, Vector2.zero, CursorMode.Auto);
         }
 
-        if (! EventSystem.current.IsPointerOverGameObject()) //Checks if the mouse is not over any UI
+        if (true)//! EventSystem.current.IsPointerOverGameObject()) //Checks if the mouse is not over any UI
         {
             if (!Input.GetKey(KeyCode.LeftControl) && !hackinterface.GetComponent<CanvasGroup>().blocksRaycasts)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
 
-                if (Physics.Raycast(ray, out hit, 100f, 2>>14)) // Layer 14 (hackable)
+                if (Physics.Raycast(ray, out hit, 100f, 49184)) // Layers 5, 14 (hackable), 15
                 {
-                    Debug.Log(hit.transform.name);
                     Cursor.SetCursor(hackCursor, Vector2.zero, CursorMode.Auto);
                 }
                 else if (Input.GetMouseButtonDown(0) && Physics.Raycast(ray, out hit, 100f, 1)) // Layer 0 (ground)
