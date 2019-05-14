@@ -39,7 +39,7 @@ public class ServerGameCreator : MonoBehaviour
             _listZone.Add(zc);
         }
         PNJSpawn = new List<Transform>();
-        foreach (Transform ryan in PnjSpawnContainer.GetComponentsInChildren<Transform>()) PNJSpawn.Add(ryan);
+        foreach (Transform ryan in PnjSpawnContainer.GetComponentsInChildren<Transform>()) if(ryan != PnjSpawnContainer.transform) PNJSpawn.Add(ryan);
         
         _containerNPC = FindObjectOfType<ProgrammableObjectsContainer>();
         FillCrowd();
