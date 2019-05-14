@@ -89,17 +89,23 @@ public class DropdownHackInterface : MonoBehaviour, IPointerClickHandler
     void Update()
     {
         /*Si la valeur du dropdown a été changé par le joueur, on modifie le graphe en conséquence*/
+       
+    }
+
+    public void ChangeValue()
+    {
+        if (this.GetComponent<Dropdown>().value != 0)
+        {
+            hackInterface.ClicPos();
+        }
+        else
+        {
+            hackInterface.ClicNeg();
+        }
         if (this.GetComponent<Dropdown>().value != previousValue)
         {
             UpdateHackingGraph();
-            if(this.GetComponent<Dropdown>().value != 0)
-            {
-                hackInterface.ClicPos();
-            }
-            else
-            {
-                hackInterface.ClicNeg();
-            }
+
         }
     }
 
