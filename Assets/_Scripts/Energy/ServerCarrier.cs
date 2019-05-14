@@ -186,7 +186,7 @@ public class ServerCarrier : MonoBehaviour
     //functions
     public void StartTaking(ServerCarrier other)
     {
-        if (other != this && Vector3.Distance(transform.position, other.transform.position) < 15 && !client.characters[client.playerIndex].isTacle)
+        if (other != this && Vector3.Distance(transform.position, other.transform.position) < 15)
         {
             takingFrom = other;
             //charging = true;
@@ -202,7 +202,7 @@ public class ServerCarrier : MonoBehaviour
 
     public void StartGiving(ServerCarrier other)
     {
-        if (other != this && Vector3.Distance(transform.position, other.transform.position) < 15 && !client.characters[client.playerIndex].isTacle)
+        if (other != this && Vector3.Distance(transform.position, other.transform.position) < 15 )
         {
             givingTo = other;
             StopTaking();
