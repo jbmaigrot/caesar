@@ -14,6 +14,8 @@ public class IPConnectionInterfaceManager : MonoBehaviour
     private PopupMessageManager popupMessageManager;
     public GameObject interfacePanel;
 
+    bool allowEnter;
+
 #if CLIENT
     // Start is called before the first frame update
     void Start()
@@ -25,7 +27,13 @@ public class IPConnectionInterfaceManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (allowEnter && (ipInputField.text.Length > 0) && (Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.KeypadEnter)))
+        {
+            ConnectButton();
+            allowEnter = false;
+        }
+        else
+            allowEnter = ipInputField.isFocused;
     }
 
     public void ConnectButton()

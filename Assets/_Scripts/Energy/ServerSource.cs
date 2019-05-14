@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class ServerSource : MonoBehaviour
 {
-#if SERVER
+
     public AnimationCurve curve = new AnimationCurve();
+#if SERVER
     public float startingTime = 0;
     public bool isActivated;
     public bool takenFrom = false;
