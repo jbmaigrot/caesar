@@ -5010,8 +5010,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2100442943}
   m_HandleRect: {fileID: 2100442942}
   m_Direction: 0
-  m_Value: 1
-  m_Size: 1
+  m_Value: 0
+  m_Size: 0.9999997
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6010,6 +6010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34159e3e7a7be3e42a52278e4b7fabde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMouseOverAnOutputTextButtonhackInterface: 0
 --- !u!1 &247790959 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 799586028177256161, guid: 9c9990fde319f484b91c5a117aac8332,
@@ -10359,6 +10360,72 @@ Transform:
   m_Father: {fileID: 1911460465}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &426714415 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3116346023239284098, guid: b69f16c46726df942812763a464a8da8,
+    type: 3}
+  m_PrefabInstance: {fileID: 491670118}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &426714417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426714415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 426714420}
+          m_MethodName: SetIsMouseOver
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 426714420}
+          m_MethodName: SetIsMouseOver
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
+--- !u!114 &426714420 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3147003499869015771, guid: b69f16c46726df942812763a464a8da8,
+    type: 3}
+  m_PrefabInstance: {fileID: 491670118}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426714415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f690c300085474a46a8c4dfbede12355, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &428754165
 GameObject:
   m_ObjectHideFlags: 0
@@ -10450,6 +10517,72 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 428754165}
   m_Mesh: {fileID: 4300072, guid: 7081fcf2443c17443a6bd20b49652a33, type: 3}
+--- !u!1 &429049751 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1087749990557603787, guid: b69f16c46726df942812763a464a8da8,
+    type: 3}
+  m_PrefabInstance: {fileID: 491670118}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &429049753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429049751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 429049756}
+          m_MethodName: SetIsMouseOver
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 429049756}
+          m_MethodName: SetIsMouseOver
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
+--- !u!114 &429049756 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2470870327973695005, guid: b69f16c46726df942812763a464a8da8,
+    type: 3}
+  m_PrefabInstance: {fileID: 491670118}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429049751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f690c300085474a46a8c4dfbede12355, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &433159844
 GameObject:
   m_ObjectHideFlags: 0
@@ -27399,6 +27532,72 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1018694197}
   m_Mesh: {fileID: 4300312, guid: 7081fcf2443c17443a6bd20b49652a33, type: 3}
+--- !u!1 &1021756272 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 698699415334980815, guid: b69f16c46726df942812763a464a8da8,
+    type: 3}
+  m_PrefabInstance: {fileID: 491670118}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1021756274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021756272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1021756277}
+          m_MethodName: SetIsMouseOver
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1021756277}
+          m_MethodName: SetIsMouseOver
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
+--- !u!114 &1021756277 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6358027685177922649, guid: b69f16c46726df942812763a464a8da8,
+    type: 3}
+  m_PrefabInstance: {fileID: 491670118}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021756272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f690c300085474a46a8c4dfbede12355, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1028872839
 GameObject:
   m_ObjectHideFlags: 0
@@ -31843,6 +32042,72 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1242622147}
   m_Mesh: {fileID: 4303102, guid: eb042a5ceb459b54186e1a20c7253ab7, type: 3}
+--- !u!1 &1244066154 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5946551540327621164, guid: b69f16c46726df942812763a464a8da8,
+    type: 3}
+  m_PrefabInstance: {fileID: 491670118}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1244066156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244066154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1244066159}
+          m_MethodName: SetIsMouseOver
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1244066159}
+          m_MethodName: SetIsMouseOver
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
+--- !u!114 &1244066159 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5895078028749287540, guid: b69f16c46726df942812763a464a8da8,
+    type: 3}
+  m_PrefabInstance: {fileID: 491670118}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244066154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f690c300085474a46a8c4dfbede12355, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1244935919
 GameObject:
   m_ObjectHideFlags: 0
@@ -57426,7 +57691,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: -0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1959515637
@@ -61789,6 +62054,72 @@ MonoBehaviour:
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
+--- !u!1 &2124198172 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2050259513538712116, guid: b69f16c46726df942812763a464a8da8,
+    type: 3}
+  m_PrefabInstance: {fileID: 491670118}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2124198174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124198172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2124198177}
+          m_MethodName: SetIsMouseOver
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2124198177}
+          m_MethodName: SetIsMouseOver
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
+--- !u!114 &2124198177 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7366398618897719680, guid: b69f16c46726df942812763a464a8da8,
+    type: 3}
+  m_PrefabInstance: {fileID: 491670118}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124198172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f690c300085474a46a8c4dfbede12355, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2136758386 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7033496567734974646, guid: 426649c0c40ed934eac19b907ca5a9b7,
