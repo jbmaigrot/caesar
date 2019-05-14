@@ -191,11 +191,21 @@ public class ServerCarrier : MonoBehaviour
             takingFrom = other;
             //charging = true;
             StopGiving();
+
+            if (takingFrom.GetComponent<ServerSource>())
+            {
+                takingFrom.GetComponent<ServerSource>().takenFrom = true;
+            }
         }
     }
 
     public void StopTaking()
     {
+        if (takingFrom && takingFrom.GetComponent<ServerSource>())
+        {
+            takingFrom.GetComponent<ServerSource>().takenFrom = false;
+        }
+
         takingFrom = null;
         //charging = false;
     }

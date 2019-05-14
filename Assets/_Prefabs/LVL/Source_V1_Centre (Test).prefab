@@ -164,6 +164,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2001921356}
   - component: {fileID: 550610077}
+  - component: {fileID: 8095622490604339509}
+  - component: {fileID: 1512385270955420236}
+  - component: {fileID: 3303647751944007047}
+  - component: {fileID: 86059209736905413}
   m_Layer: 0
   m_Name: Source_V1_Centre (Test)
   m_TagString: Untagged
@@ -202,6 +206,128 @@ MonoBehaviour:
   state: 0
   lowSpeed: 2
   highSpeed: 5
+--- !u!65 &8095622490604339509
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001921355}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 250, y: 250, z: 250}
+  m_Center: {x: 0, y: 384, z: 0}
+--- !u!114 &1512385270955420236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001921355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3da1a5e7c10123a4aa7be591f2341be0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 30
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 120
+      value: 7
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 180
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  startingTime: 0
+  isActivated: 0
+  takenFrom: 0
+  carrier: {fileID: 0}
+--- !u!114 &3303647751944007047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001921355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15a66bf76cc67b949aaa75c4bfb2f7ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NavMeshSurface: {fileID: 0}
+  isAttract: 0
+  charactersIndex: -1
+  client: {fileID: 0}
+  hackInterface: {fileID: 0}
+  isWaitingHack: 0
+  sendingToBlueClient: 0
+  sendingToRedClient: 0
+  objectIndexClient: 0
+  RedTrail: {fileID: 0}
+  BlueTrail: {fileID: 0}
+  inputCodes: []
+  outputCodes: []
+  graph: []
+  isLightOn: 0
+  isDoorOpen: 0
+  BlueBatterie: {fileID: 0}
+  RedBatterie: {fileID: 0}
+  isBeingHackedServer: 0
+  sendingToBlueServer: 0
+  sendingToRedServer: 0
+  Initiator: {fileID: 11400000, guid: 842e3ff43ee2224498d97fe59d74c454, type: 2}
+  objectsContainer: {fileID: 0}
+--- !u!114 &86059209736905413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001921355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d79003555484e4e8fe70097d49cf59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clientCharge: 0
+  client: {fileID: 0}
+  programmableObjectsContainer: {fileID: 0}
+  pos: {x: 0, y: 0}
+  size: {x: 0, y: 0}
+  emptyTex: {fileID: 2800000, guid: a089e39cb36331940a4f602bb6a0d064, type: 3}
+  fullTex: {fileID: 2800000, guid: 80861de6aa80f234ea54ed391d0638f3, type: 3}
+  draw: 1
+  charge: 0
+  maxCharge: 50
+  chargeSpeed: 1
+  givingTo: {fileID: 0}
+  takingFrom: {fileID: 0}
 --- !u!1 &2129870281
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,8 +449,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 0.9259259, b: 0, a: 1}
-  m_Intensity: 1000
-  m_Range: 30
+  m_Intensity: 200
+  m_Range: 40
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:

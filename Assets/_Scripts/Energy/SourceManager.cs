@@ -23,7 +23,7 @@ public class SourceManager : MonoBehaviour
         server = FindObjectOfType<Server>();
         foreach(ServerSource ryan in sources)
         {
-            ryan.gameObject.SetActive(false);
+            ryan.enabled = false;
         }
 #endif
     }
@@ -40,8 +40,8 @@ public class SourceManager : MonoBehaviour
             do
             {
                 i = Random.Range(0, 3);
-            } while (sources[i].gameObject.activeSelf);
-            sources[i].gameObject.SetActive(true);
+            } while (sources[i].enabled);
+            sources[i].enabled = true;
             sources[i].startingTime = Time.time;
 
             Debug.Log(i);

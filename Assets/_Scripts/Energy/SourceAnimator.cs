@@ -5,7 +5,7 @@ using UnityEngine;
 public class SourceAnimator : MonoBehaviour
 {
 #if CLIENT
-    public int state = 0; // 0: off, 1: active, 2: giving
+    public int state = 0; // 0: off, 1: empty, 2: not empty, 3: giving
     public float lowSpeed = 2;
     public float highSpeed = 5;
 
@@ -17,6 +17,7 @@ public class SourceAnimator : MonoBehaviour
     private Color emissiveColor = new Color(191,191,0);
     private float emission = 0;
     private Light pointLight;
+    private float maxIntensity;
     private float startingY;
     private float floatingRange = 20;
     private float floatingFreq = 0.3f;
@@ -29,6 +30,7 @@ public class SourceAnimator : MonoBehaviour
         cube = transform.Find("Cube");
         emissive = cube.Find("Source 1").GetComponent<Renderer>();
         pointLight = cube.Find("Point Light").GetComponent<Light>();
+        maxIntensity = pointLight.intensity;
         startingY = cube.localPosition.y;
         pointLight.intensity = 0;
     }

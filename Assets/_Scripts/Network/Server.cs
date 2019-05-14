@@ -424,9 +424,26 @@ public class Server : MonoBehaviour
 
                     if (programmableObjectsContainer.objectListServer[j].GetComponent<ServerCarrier>())
                     {
-                        if (programmableObjectsContainer.objectListServer[j].GetComponent<ServerSource>()&& programmableObjectsContainer.objectListServer[j].gameObject.activeSelf)
+                        // source state
+                        ServerSource source = programmableObjectsContainer.objectListServer[j].GetComponent<ServerSource>();
+                        if (source)
                         {
-                            writer.Write(1);
+                            if (!source.isActiveAndEnabled)
+                            {
+                                writer.Write(0);
+                            }
+                            else if (source.takenFrom)
+                            {
+                                writer.Write(3);
+                            }
+                            else if (source.carrier.charge > 0)
+                            {
+                                writer.Write(2);
+                            }
+                            else
+                            {
+                                writer.Write(1);
+                            }
                         }
                         else
                         {

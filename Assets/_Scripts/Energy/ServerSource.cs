@@ -8,8 +8,9 @@ public class ServerSource : MonoBehaviour
 #if SERVER
     public AnimationCurve curve = new AnimationCurve();
     public float startingTime = 0;
-    private bool isActivated;
-    private ServerCarrier carrier;
+    public bool isActivated;
+    public bool takenFrom = false;
+    public ServerCarrier carrier;
     private Server server;
     /*private List<ServerCarrier> carriers = new List<ServerCarrier>();
     private float totalChargeSpeed = 0; //sum of all requested charge */
@@ -31,7 +32,7 @@ public class ServerSource : MonoBehaviour
             if (Time.time - startingTime > 240)
             {
                 isActivated = false;
-                gameObject.SetActive(false);
+                enabled = false;
             }
         }
         else
@@ -41,7 +42,7 @@ public class ServerSource : MonoBehaviour
                 isActivated = true;
                 server.AddMessage("THE NEW DATA POOL HAS BEGUN TO FILL.", Vector3.zero);
             }
-
+            takenFrom = false;
         }
         
 

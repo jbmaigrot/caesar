@@ -263,8 +263,8 @@ public class Client : MonoBehaviour
                                 //Light
                                 if ((int)stream.ReadUInt(ref readerCtx) == 0)
                                 {
-                                    if (progObject.GetComponentInChildren<Light>() != null)
-                                        progObject.GetComponentInChildren<Light>().enabled = false;
+                                    /*if (progObject.GetComponentInChildren<Light>() != null)
+                                        progObject.GetComponentInChildren<Light>().enabled = false;*/
                                 }
                                 else
                                 {
@@ -282,34 +282,18 @@ public class Client : MonoBehaviour
                                     if (progObject.GetComponentInChildren<DoorScript>() != null)
                                         progObject.GetComponentInChildren<DoorScript>().OnOpen();
                                 }
-                                int sourceIsActive = (int)stream.ReadUInt(ref readerCtx);
-                                if (progObject.GetComponent<ServerSource>())
+                                //Source state (animation)
+                                int sourceState = (int)stream.ReadUInt(ref readerCtx);
+                                if (progObject.GetComponent<SourceAnimator>())
                                 {
-#if !SERVER
-                                    if (sourceIsActive==1)
-                                    {
-                                        progObject.gameObject.SetActive(true);
-                                        Debug.Log("Active");
-                                    }
-                                    else
-                                    {
-                                        progObject.gameObject.SetActive(false);
-                                        Debug.Log("NotActive");
-                                    }
-#endif
+                                    progObject.GetComponent<SourceAnimator>().state = sourceState;
                                 }
-
                                 // Charge
                                 float chargeRatio = stream.ReadFloat(ref readerCtx);
                                 if (progObject.GetComponent<ServerCarrier>())
                                 {
                                     var carrier = progObject.GetComponent<ServerCarrier>();
                                     carrier.clientCharge =  chargeRatio;
-
-                                    if(progObject.GetComponent<SourceAnimator>())
-                                    {
-
-                                    }
                                 }
 
                                 //presence of Relay

@@ -55,6 +55,8 @@ public class ServerCharacter : MonoBehaviour
         isStunned = true;
         navMeshAgent.speed = 0;
         GetComponent<ProgrammableObjectsData>().OnInput("OnStun");
+        GetComponent<ServerCarrier>().StopTaking();
+        GetComponent<ServerCarrier>().StopGiving();
     }
 
     public void doStun()
