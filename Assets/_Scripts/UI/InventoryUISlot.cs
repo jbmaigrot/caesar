@@ -11,7 +11,7 @@ public class InventoryUISlot : MonoBehaviour
     public Sprite PowerPump;
     public Sprite RedRelay;
     public Sprite BlueRelay;
-
+#if CLIENT
     //private Client client;
 
     void Start()
@@ -63,4 +63,5 @@ public class InventoryUISlot : MonoBehaviour
         
        
     }
+#endif
 }

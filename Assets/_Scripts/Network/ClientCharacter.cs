@@ -102,8 +102,6 @@ public class ClientCharacter : MonoBehaviour
             if (!isTacle)
             {
                 isTacle = true;
-                GetComponent<ServerCarrier>().StopGiving();
-                GetComponent<ServerCarrier>().StopTaking();
                 SpriteRenderer lightning = this.transform.Find("StunLightning").GetComponent<SpriteRenderer>();
                 lightning.enabled = true;
                 stunAnimator.Play(0);

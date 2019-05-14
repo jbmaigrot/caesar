@@ -266,6 +266,7 @@ public class InputFieldHackerInterface : MonoBehaviour, IPointerDownHandler
                 hackinterface.RemoveVignette(false, this.GetComponentInParent<TextButtonHackInterface>().numero - 1);
                 HackInterface.outputCodes.RemoveAt(this.GetComponentInParent<TextButtonHackInterface>().numero - 1);
                 hackinterface.reloadInterface();
+                hackinterface.ClicNeg();
                 
             }
             else if (hackinterface.inventory[1] == InventoryConstants.Empty)
@@ -274,7 +275,8 @@ public class InputFieldHackerInterface : MonoBehaviour, IPointerDownHandler
                 hackinterface.RemoveVignette(false, this.GetComponentInParent<TextButtonHackInterface>().numero - 1);
                 HackInterface.outputCodes.RemoveAt(this.GetComponentInParent<TextButtonHackInterface>().numero - 1);
                 hackinterface.reloadInterface();
-                
+                hackinterface.ClicNeg();
+
             }
             else if (hackinterface.inventory[2] == InventoryConstants.Empty)
             {
@@ -282,7 +284,7 @@ public class InputFieldHackerInterface : MonoBehaviour, IPointerDownHandler
                 hackinterface.RemoveVignette(false, this.GetComponentInParent<TextButtonHackInterface>().numero - 1);
                 HackInterface.outputCodes.RemoveAt(this.GetComponentInParent<TextButtonHackInterface>().numero - 1);
                 hackinterface.reloadInterface();
-                
+                hackinterface.ClicNeg();
             }
         }
 #endif

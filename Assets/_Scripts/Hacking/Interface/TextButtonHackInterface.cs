@@ -6,6 +6,9 @@ using UnityEngine.EventSystems;
 #if CLIENT
 public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPointerUpHandler*/
 {
+    public bool isMouseOver = false;
+    private PlayerInput playerinput;
+
     /*Variables pour savoir de quel bouton on parle. Exemple c'est la 3ième vignette d'input. C'est rentré à la main dans l'éditeur, ce qui est améliorable.*/
     public bool isInput;
     public int numero;
@@ -25,6 +28,7 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
     private void Start()
     {
         hackInterface = FindObjectOfType<HackInterface>();
+        playerinput = FindObjectOfType<PlayerInput>();
     }
 
     /*Récupère HackingAsset du parent, et le transmet aux enfants.*/
@@ -35,6 +39,13 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
         GetComponentInChildren<InputFieldHackerInterface>().GetHackingAsset(HackAss);
     }
 
+    //Setter isMouseOver
+    public void SetIsMouseOver(bool b)
+    {
+        playerinput.isMouseOverAnOutputTextButtonhackInterface = b;
+        Debug.Log("il se passe quelque chose");
+    }
+
     /*Fonction appelé lorque le joueur clique sur la vignette. Utilisé pour créer de nouvelles connections dans le graphe.*/
     public void OnClick()
     {
@@ -42,6 +53,7 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
         if (isInput)
         {
             HackInterface.SelectedInputButton = numero-1;
+            hackInterface.ClicNeu();
           }
         /*Si une vignette d'entrée valide est séléctionnée et la vignette de sortie cliqué est valide aussi, on essaie de créer une connection.*/
         else if (HackInterface.SelectedInputButton > -1 && HackInterface.SelectedInputButton < HackInterface.inputCodes.Count && numero - 1 < HackInterface.outputCodes.Count)
@@ -68,6 +80,7 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
             if (isItReallyNew)
             {
                 HackInterface.graph.Add(NewArrow);
+                hackInterface.ClicPos();
                 this.GetComponentInParent<HackInterface>().reloadArrow();
             }
         }
