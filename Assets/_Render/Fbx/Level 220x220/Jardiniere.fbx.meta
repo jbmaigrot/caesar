@@ -73,6 +73,9 @@ ModelImporter:
     100134: Tronc_low 1
     100136: pCube1
     100138: pCylinder1
+    100140: Arbre
+    100142: Generateur
+    100144: Socle
     400000: Arbre_1
     400002: Arbre_2
     400004: Jardiniere
@@ -143,9 +146,14 @@ ModelImporter:
     400134: Tronc_low 1
     400136: pCube1
     400138: pCylinder1
+    400140: Arbre
+    400142: Generateur
+    400144: Socle
     2100000: lambert2
     2100002: bench
     2100004: lambert1
+    2100006: jardiniere_socle
+    2100008: jardiniere_generateur
     2300000: Jardiniere
     2300002: Leaf
     2300004: Leaf 1
@@ -211,6 +219,8 @@ ModelImporter:
     2300124: Tronc_low 1
     2300126: pCube1
     2300128: pCylinder1
+    2300130: Generateur
+    2300132: Socle
     3300000: Jardiniere
     3300002: Leaf
     3300004: Leaf 1
@@ -276,6 +286,8 @@ ModelImporter:
     3300124: Tronc_low 1
     3300126: pCube1
     3300128: pCylinder1
+    3300130: Generateur
+    3300132: Socle
     4300000: Leaf
     4300002: Leaf1
     4300004: Leaf2
@@ -341,7 +353,19 @@ ModelImporter:
     4300124: Jardiniere
     4300126: pCube1
     4300128: pCylinder1
-  externalObjects: {}
+    4300130: Socle
+    4300132: Generateur
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: jardiniere_generateur
+    second: {fileID: 2100000, guid: 5420b94d18d11f5428a005bc34843c74, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: jardiniere_socle
+    second: {fileID: 2100000, guid: 1c1ddf75c99f457449432be4993d91d2, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
