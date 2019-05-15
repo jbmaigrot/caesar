@@ -259,7 +259,7 @@ public class Client : MonoBehaviour
                                             Color allyColor = new Color(1,1,1);
                                             if (team == 0) allyColor = new Color(0.961f, 0.51f, 0.365f, 1f);
                                             else if (team == 1) allyColor = new Color(0.361f, 0.784f, 0.949f, 1f);
-
+                                            
                                             minimap.AddAlly(characters[j].transform, allyColor);
 
                                             allyCharacter.isKnownAsAlly = true;
@@ -338,36 +338,39 @@ public class Client : MonoBehaviour
                                     {
                                         SpriteRenderer napperon = characters[playerIndex].transform.Find("napperon").GetComponent<SpriteRenderer>();
                                         Renderer range = characters[playerIndex].transform.Find("range").GetComponent<Renderer>();
-                                        characters[playerIndex].GetComponent<AudioListener>().enabled = true;
 
                                         lineRenderer = characters[playerIndex].transform.Find("lineRenderer").GetComponent<LineRenderer>();
                                         lineRenderer.enabled = true;
 
                                         characters[playerIndex].GetComponent<ServerCarrier>().draw = true; //data bar
 
-                                        if (team == 0)
+                                        if (team == 0 || team == 1)
                                         {
+                                            Color color = new Color(1, 1, 1, 1);
+
+                                            if (team == 0)
+                                            {
+                                                color = new Color(0.961f, 0.51f, 0.365f, 1f);
+                                                minimap.GetComponent<RectTransform>().localEulerAngles = new Vector3(0, 0, -45);
+                                            }
+                                            else if (team == 1)
+                                            {
+                                                color = new Color(0.361f, 0.784f, 0.949f, 1f);
+                                                minimap.GetComponent<RectTransform>().localEulerAngles = new Vector3(0, 0, 135);
+                                            }
+
                                             napperon.enabled = true;
-                                            napperon.color = new Color(0.961f, 0.51f, 0.365f, 1f);
-
+                                            napperon.color = color;
                                             range.enabled = true;
-
-                                            minimap.GetComponent<RectTransform>().localEulerAngles = new Vector3(0, 0, -45);
                                             minimap.player = characters[playerIndex].transform;
-                                            minimap.transform.Find("Map player").GetComponent<Image>().color = new Color(0.961f, 0.51f, 0.365f, 1f);
+                                            minimap.transform.Find("Map player").GetComponent<Image>().color = color;
+                                            // Remove the ally dot on player position
+                                            int index = minimap.allies.IndexOf(characters[playerIndex].transform);
+                                            GameObject mapAllyToDestroy = minimap.mapAllies[index].gameObject;
+                                            minimap.mapAllies.RemoveAt(index);
+                                            Destroy(mapAllyToDestroy);
+                                            minimap.allies.RemoveAt(index);
                                         }
-                                        else if (team == 1)
-                                        {
-                                            napperon.enabled = true;
-                                            napperon.color = new Color(0.361f, 0.784f, 0.949f, 1f);
-
-                                            range.enabled = true;
-
-                                            minimap.GetComponent<RectTransform>().localEulerAngles = new Vector3(0, 0, 135);
-                                            minimap.player = characters[playerIndex].transform;
-                                            minimap.transform.Find("Map player").GetComponent<Image>().color = new Color(0.361f, 0.784f, 0.949f, 1f);
-                                        }
-                                                
                                         isNapperoned = true;
                                     }
                                     
