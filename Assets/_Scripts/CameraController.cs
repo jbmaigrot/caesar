@@ -142,7 +142,7 @@ public class CameraController : MonoBehaviour
         cameraParent.transform.position = Vector3.SmoothDamp(cameraParent.transform.position, parentTargetPosition, ref velocity, smoothTime);
 
         targetZoomFactor -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
-        targetZoomFactor = Mathf.Clamp(targetZoomFactor, 0.05f, 1.0f);
+        targetZoomFactor = Mathf.Clamp(targetZoomFactor, 0.15f, 1.0f);
 
         zoomFactor = Mathf.SmoothDamp(zoomFactor, targetZoomFactor, ref zoomVelocity, zoomSmoothTime);
         transform.localPosition = zoomMaxPosition * zoomFactor;
