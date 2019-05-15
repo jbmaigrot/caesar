@@ -242,6 +242,12 @@ public class Server : MonoBehaviour
                             {
                                 characters[number].GetComponent<ServerCharacter>().getStun();
                                 players[i].GetComponent<ServerCharacter>().doStun();
+
+                                using (var writer = new DataStreamWriter(16384, Allocator.Temp))
+                                {
+                                    writer.Write(Constants.Server_ConfirmStun);
+                                    m_Driver.Send(m_Connections[i], writer);
+                                }
                             }
                             break;
 

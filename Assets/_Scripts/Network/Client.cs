@@ -47,6 +47,7 @@ public class Client : MonoBehaviour
     private bool isNapperoned = false;
 
     private Minimap minimap;
+    private StunCooldown stunCooldown;
 
     public LineRenderer lineRenderer;
 
@@ -63,8 +64,7 @@ public class Client : MonoBehaviour
         inventory[1] = InventoryConstants.Stunbox;
         inventory[2] = InventoryConstants.Powerpump;
         minimap = FindObjectOfType<Minimap>();
-
-       
+        stunCooldown = FindObjectOfType<StunCooldown>();
     }
 
     void Awake() { 
@@ -395,7 +395,10 @@ public class Client : MonoBehaviour
                             }
                             break;
 
-                        
+                        case Constants.Server_ConfirmStun:
+                            stunCooldown.StartCooldown();
+                            break;
+
                         case Constants.Server_Message:
                             int length = (int)stream.ReadUInt(ref readerCtx);
                             byte[] buffer = stream.ReadBytesAsArray(ref readerCtx, length);
