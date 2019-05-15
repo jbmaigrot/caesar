@@ -377,6 +377,7 @@ public class Client : MonoBehaviour
                                         if (!knowOrientationOfCam && (playerIndex - FindObjectOfType<ServerGameCreator>().NbPnj) % 2 == 0)//Une manière dirty dirty de récupérer l'équipe dans laquelle on se trouve. A changer
                                         {
                                             cameraController.RotateCamera180();
+                                            cameraController.cameraParent.transform.position = characters[playerIndex].transform.position;
                                             knowOrientationOfCam = true;
                                         }
                                     }
@@ -385,6 +386,7 @@ public class Client : MonoBehaviour
                                         if (!knowOrientationOfCam && team == 0)
                                         {
                                             cameraController.RotateCamera180();
+                                            cameraController.cameraParent.transform.position = characters[playerIndex].transform.position;
                                             knowOrientationOfCam = true;
                                         }
                                     }
