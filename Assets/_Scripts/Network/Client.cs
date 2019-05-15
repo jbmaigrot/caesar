@@ -16,7 +16,7 @@ using UdpCNetworkDriver = Unity.Networking.Transport.BasicNetworkDriver<Unity.Ne
 public class Client : MonoBehaviour
 {
     public GameObject characterPrefab;
-
+    public int team = -1;// 0 or 1 ; -1 in case we didn't use the lobby -> automatically assigned based on connectionID
 #if CLIENT
     public string ServerIP = "127.0.0.1"; //localhost by default
     public IPAddress iPAddress;
@@ -39,7 +39,7 @@ public class Client : MonoBehaviour
     public ClientLobby clientLobby;
     public int connectionId;
     private bool initialHandshakeDone;
-    public int team = -1;// 0 or 1 ; -1 in case we didn't use the lobby -> automatically assigned based on connectionID
+    
 
     public int playerIndex;
     public int[] inventory = new int[3];
