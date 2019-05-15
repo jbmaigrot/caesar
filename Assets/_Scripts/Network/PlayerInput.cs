@@ -38,7 +38,7 @@ public class PlayerInput : MonoBehaviour
             Cursor.SetCursor(stdCursor, Vector2.zero, CursorMode.Auto);
         }
 
-        if (true)//! EventSystem.current.IsPointerOverGameObject()) //Checks if the mouse is not over any UI
+        if (!EventSystem.current.IsPointerOverGameObject()) //Checks if the mouse is not over any UI
         {
             if (!Input.GetKey(KeyCode.LeftControl) && !hackinterface.GetComponent<CanvasGroup>().blocksRaycasts)
             {
