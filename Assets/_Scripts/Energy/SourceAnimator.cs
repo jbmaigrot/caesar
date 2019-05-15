@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class SourceAnimator : MonoBehaviour
 {
+    public AudioSource Nappe;
+    public AudioSource Beep;
+    public AudioSource Boop;
+    public float timeBeepBoopMin = 0.05f;
+    public float timeBeepBoopMax = 0.5f;
 #if CLIENT
     public int state = 0; // 0: off, 1: empty, 2: not empty, 3: giving
     public float lowSpeed = 2;
@@ -22,7 +27,9 @@ public class SourceAnimator : MonoBehaviour
     private float floatingRange = 0.2f;
     private float floatingFreq = 0.3f;
     private float floatingT = 0;
-
+    private AudioClip[] BeepBoop;
+    private float timeBeep;
+    private float timeBoop;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +40,8 @@ public class SourceAnimator : MonoBehaviour
         maxIntensity = pointLight.intensity;
         startingY = cube.localPosition.y;
         pointLight.intensity = 0;
+
+        BeepBoop = Resources.LoadAll<AudioClip>("Beep");
     }
 
     // Update is called once per frame
@@ -46,32 +55,116 @@ public class SourceAnimator : MonoBehaviour
 
         switch (state)
         {
-            case 0:
+            case 0: /*Eteint don't rotate*/
                 currentSpeed = Mathf.Lerp(currentSpeed, 0, lerpT);
                 emission = Mathf.Lerp(emission, 0, lerpT);
                 pointLight.intensity = Mathf.Lerp(pointLight.intensity, 0, lerpT);
                 floatingT += Time.deltaTime * (1 - Mathf.Min(lerpT, 1));
+                if (Nappe.isPlaying)
+                {
+                    Nappe.Stop();
+                }
+                timeBeep = Random.Range(timeBeepBoopMin, timeBeepBoopMax);
+                timeBoop = Random.Range(timeBeepBoopMin, timeBeepBoopMax);
                 break;
 
-            case 1:
+            case 1: /*Eteint rotate*/
                 currentSpeed = Mathf.Lerp(currentSpeed, lowSpeed, lerpT);
                 emission = Mathf.Lerp(emission, 0, lerpT);
                 pointLight.intensity = Mathf.Lerp(pointLight.intensity, 0, lerpT);
                 floatingT += Time.deltaTime * Mathf.Min(lerpT, 1);
+                if (!Nappe.isPlaying)
+                {
+                    Nappe.Play();
+                }
+                if (!Beep.isPlaying)
+                {
+                    timeBeep -= Time.deltaTime;
+                    if (timeBeep < 0)
+                    {
+                        Beep.clip = BeepBoop[Random.Range(0, BeepBoop.Length)];
+                        Beep.Play();
+                        timeBeep = Random.Range(timeBeepBoopMin, timeBeepBoopMax);
+                    }
+                    
+                }
+                if (!Boop.isPlaying)
+                {
+                    timeBoop -= Time.deltaTime;
+                    if (timeBeep < 0)
+                    {
+                        Boop.clip = BeepBoop[Random.Range(0, BeepBoop.Length)];
+                        Boop.Play();
+                        timeBoop = Random.Range(timeBeepBoopMin, timeBeepBoopMax);
+                    }
+
+                }
                 break;
 
-            case 2:
+            case 2: /*Allumé rotate*/
                 currentSpeed = Mathf.Lerp(currentSpeed, lowSpeed, lerpT);
                 emission = Mathf.Lerp(emission, 0.5f, lerpT);
                 pointLight.intensity = Mathf.Lerp(pointLight.intensity, 1000, lerpT);
                 floatingT += Time.deltaTime * Mathf.Min(lerpT, 1);
+                if (!Nappe.isPlaying)
+                {
+                     Nappe.Play();
+                }
+                if (!Beep.isPlaying)
+                {
+                    timeBeep -= Time.deltaTime;
+                    if (timeBeep < 0)
+                    {
+                        Beep.clip = BeepBoop[Random.Range(0, BeepBoop.Length)];
+                        Beep.Play();
+                        timeBeep = Random.Range(timeBeepBoopMin, timeBeepBoopMax);
+                    }
+
+                }
+                if (!Boop.isPlaying)
+                {
+                    timeBoop -= Time.deltaTime;
+                    if (timeBeep < 0)
+                    {
+                        Boop.clip = BeepBoop[Random.Range(0, BeepBoop.Length)];
+                        Boop.Play();
+                        timeBoop = Random.Range(timeBeepBoopMin, timeBeepBoopMax);
+                    }
+
+                }
                 break;
 
-            case 3:
+            case 3: /*Allumé rotate rotate*/
                 currentSpeed = Mathf.Lerp(currentSpeed, highSpeed, lerpT);
                 emission = Mathf.Lerp(emission, 0.5f, lerpT);
                 pointLight.intensity = Mathf.Lerp(pointLight.intensity, 1000, lerpT);
                 floatingT += Time.deltaTime * Mathf.Min(lerpT, 1);
+                if (!Nappe.isPlaying)
+                {
+                    Nappe.Play();
+                }
+                if (!Beep.isPlaying)
+                {
+                    timeBeep -= Time.deltaTime;
+                    if (timeBeep < 0)
+                    {
+                        Beep.clip = BeepBoop[Random.Range(0, BeepBoop.Length)];
+                        Beep.Play();
+                        timeBeep = Random.Range(timeBeepBoopMin, timeBeepBoopMax);
+                    }
+
+                }
+                if (!Boop.isPlaying)
+                {
+                    timeBoop -= Time.deltaTime;
+                    if (timeBeep < 0)
+                    {
+                        Boop.clip = BeepBoop[Random.Range(0, BeepBoop.Length)];
+                        Boop.Play();
+                        timeBoop = Random.Range(timeBeepBoopMin, timeBeepBoopMax);
+                    }
+
+                }
                 break;
 
             default:

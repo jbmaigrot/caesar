@@ -43,7 +43,6 @@ public class SourceManager : MonoBehaviour
             } while (sources[i].enabled);
             sources[i].enabled = true;
             sources[i].startingTime = Time.time;
-            sources[i].GetComponent<AudioSource>().Play();
 
             Debug.Log(i);
             timeBeforeSource = timeBeforeNewSource;
