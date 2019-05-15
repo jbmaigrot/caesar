@@ -17,6 +17,8 @@ public class Client : MonoBehaviour
 {
     public GameObject characterPrefab;
     public int team = -1;// 0 or 1 ; -1 in case we didn't use the lobby -> automatically assigned based on connectionID
+    public AnimationCurve curveForTheHackingSound = new AnimationCurve();
+    public AudioSource audioSourceForTheHackingSound;
 #if CLIENT
     public string ServerIP = "127.0.0.1"; //localhost by default
     public IPAddress iPAddress;
@@ -50,6 +52,7 @@ public class Client : MonoBehaviour
 
     public LineRenderer lineRenderer;
 
+    private float StartingTimeForTheHackingSound;
     
 
     // Start is called before the first frame update
@@ -104,6 +107,14 @@ public class Client : MonoBehaviour
         catch (InvalidOperationException e)
         {
             Debug.Log(e.Message);
+        }
+    }
+
+     void Update()
+    {
+        if (audioSourceForTheHackingSound.isPlaying)
+        {
+            audioSourceForTheHackingSound.volume = curveForTheHackingSound.Evaluate(audioSourceForTheHackingSound.time - StartingTimeForTheHackingSound);
         }
     }
 
@@ -572,6 +583,14 @@ public class Client : MonoBehaviour
             Debug.Log("Client is asking for object with ID " + objectId);
             m_Connection.Send(m_Driver, writer);
         }
+        StartingTimeForTheHackingSound = UnityEngine.Random.Range(0f, audioSourceForTheHackingSound.clip.length - 0.75f);
+        audioSourceForTheHackingSound.time = StartingTimeForTheHackingSound;
+        audioSourceForTheHackingSound.Play();
+    }
+
+    public void CutSoundOfHackPlease()
+    {
+        audioSourceForTheHackingSound.Stop();
     }
 
     public void GetHackState(DataStreamReader stream, ref DataStreamReader.Context readerCtx)
@@ -829,5 +848,7 @@ public class Client : MonoBehaviour
             m_Connection.Send(m_Driver, writer);
         }
     }
+
+    
 #endif
                                 }
