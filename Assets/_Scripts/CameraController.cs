@@ -114,7 +114,7 @@ public class CameraController : MonoBehaviour
                 if (characterToFollow != null)
                 {
                     cameraMode = MODE_CHARA;
-                    cameraParent.transform.position = characterToFollow.transform.position;
+                    //cameraParent.transform.position = characterToFollow.transform.position;
                     parentTargetPosition = characterToFollow.transform.position;
                 }
                 
@@ -132,7 +132,7 @@ public class CameraController : MonoBehaviour
                 break;
             case MODE_FOLLOW:
                 parentTargetPosition = objectToFollow.transform.position;
-                parentTargetPosition += cameraParent.transform.forward * (-8);
+                //parentTargetPosition += cameraParent.transform.forward * (-8);
                 break;
             default:
                 //
