@@ -19,7 +19,7 @@ public class SourceAnimator : MonoBehaviour
     private Light pointLight;
     private float maxIntensity;
     private float startingY;
-    private float floatingRange = 20;
+    private float floatingRange = 0.2f;
     private float floatingFreq = 0.3f;
     private float floatingT = 0;
 

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3225280714289506666}
   - component: {fileID: 3225280714289506663}
-  - component: {fileID: 3225280714289506664}
   - component: {fileID: 3225280714289506665}
   - component: {fileID: 5865518291222128958}
   m_Layer: 0
@@ -76,14 +75,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &3225280714289506664
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3225280714289506667}
-  m_Enabled: 1
 --- !u!114 &3225280714289506665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,6 +89,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraModeButton: {fileID: 0}
   characterToFollow: {fileID: 0}
+  objectToFollow: {fileID: 0}
   cameraParent: {fileID: 3225280714292665715}
   cameraMode: 0
   defaultCameraYRotation: 225

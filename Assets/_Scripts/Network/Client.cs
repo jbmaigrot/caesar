@@ -338,6 +338,7 @@ public class Client : MonoBehaviour
                                     {
                                         SpriteRenderer napperon = characters[playerIndex].transform.Find("napperon").GetComponent<SpriteRenderer>();
                                         Renderer range = characters[playerIndex].transform.Find("range").GetComponent<Renderer>();
+                                        characters[playerIndex].GetComponent<AudioListener>().enabled = true;
 
                                         lineRenderer = characters[playerIndex].transform.Find("lineRenderer").GetComponent<LineRenderer>();
                                         lineRenderer.enabled = true;

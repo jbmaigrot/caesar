@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: -1
+  playerName: 
   isStunned: 0
   canStun: 0
   carrier: {fileID: 0}
@@ -165,6 +166,9 @@ MonoBehaviour:
   isWaitingHack: 0
   sendingToBlueClient: 0
   sendingToRedClient: 0
+  objectIndexClient: 0
+  RedTrail: {fileID: 0}
+  BlueTrail: {fileID: 0}
   inputCodes: []
   outputCodes: []
   graph: []
@@ -172,6 +176,7 @@ MonoBehaviour:
   isDoorOpen: 0
   BlueBatterie: {fileID: 0}
   RedBatterie: {fileID: 0}
+  isBeingHackedServer: 0
   sendingToBlueServer: 0
   sendingToRedServer: 0
   Initiator: {fileID: 11400000, guid: f4db053c0b442c94c981f82269c05718, type: 2}
