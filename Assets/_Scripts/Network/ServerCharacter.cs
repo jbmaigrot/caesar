@@ -38,6 +38,9 @@ public class ServerCharacter : MonoBehaviour
 
     public Server server;
 
+    public bool coroutineStarted = false;
+    public bool setDestinationSuccess = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -97,8 +100,7 @@ public class ServerCharacter : MonoBehaviour
                     if (Vector3.Distance(attractDestination, actualDestination) > 0.2)
                     {
                         actualDestination = attractDestination;
-                        navMeshAgent.destination = actualDestination;
-                        SendPathChange();
+                        setDestinationSuccess = navMeshAgent.SetDestination(actualDestination);
                     }
                 }
                 else
@@ -117,8 +119,7 @@ public class ServerCharacter : MonoBehaviour
                         {
                             actualDestination = attractByDataDestination;
                             //navMeshAgent.ResetPath();
-                            navMeshAgent.destination = actualDestination;
-                            SendPathChange();
+                            setDestinationSuccess = navMeshAgent.SetDestination(actualDestination);
                         }
                     }
                     else
@@ -142,8 +143,7 @@ public class ServerCharacter : MonoBehaviour
                                 actualDestination = priorityDestination;
                                 normalDestination = actualDestination;
                                 //navMeshAgent.ResetPath();
-                                navMeshAgent.destination = actualDestination;
-                                SendPathChange();
+                                setDestinationSuccess = navMeshAgent.SetDestination(actualDestination);
                             }
                         }
                     }
@@ -153,29 +153,56 @@ public class ServerCharacter : MonoBehaviour
                         {
                             actualDestination = normalDestination;
                             //navMeshAgent.ResetPath();
-                            navMeshAgent.destination = actualDestination;
-                            SendPathChange();
+                            setDestinationSuccess = navMeshAgent.SetDestination(actualDestination);
                         }
                     }                    
                 }
             }
         }
-    }
 
-    public void SendPathChange()
-    {
+        // if this character has a team, it's a player : display its path on screen
         if (team != -1)
         {
-            NavMeshPath path = new NavMeshPath();
-            if (NavMesh.CalculatePath(transform.position, navMeshAgent.destination, NavMesh.AllAreas, path))
+            //if (((navMeshAgent.pathPending == false) && (wasPending == true || setDestinationSuccess == true)) || navMeshAgent.isPathStale == true)// && navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete)
+            if (setDestinationSuccess == true && navMeshAgent.pathPending == false)
             {
+                NavMeshPath path = navMeshAgent.path;
                 Vector3[] pathAs3dPositions = new Vector3[path.corners.Length];
                 for (int i = 0; i < path.corners.Length - 1; i++)
                     pathAs3dPositions[i] = new Vector3(path.corners[i].x, path.corners[i].y, path.corners[i].z);
 
                 pathAs3dPositions[path.corners.Length - 1] = navMeshAgent.destination;
                 server.SendPath(pathAs3dPositions, server.GetNetworkConnectionFromPlayerTransform(transform));
+
+                if (coroutineStarted == false)
+                    StartCoroutine(SendPathChange());
+
+                setDestinationSuccess = false;
             }
+
+            if (navMeshAgent.hasPath == false)
+            {
+                StopAllCoroutines();
+                coroutineStarted = false;
+            }
+        }
+        
+    }
+
+    public IEnumerator SendPathChange()
+    {
+        while(true)
+        {
+            coroutineStarted = true;
+            NavMeshPath path = navMeshAgent.path;
+            Vector3[] pathAs3dPositions = new Vector3[path.corners.Length];
+            for (int i = 0; i < path.corners.Length - 1; i++)
+                pathAs3dPositions[i] = new Vector3(path.corners[i].x, path.corners[i].y, path.corners[i].z);
+
+            pathAs3dPositions[path.corners.Length - 1] = navMeshAgent.destination;
+            server.SendPath(pathAs3dPositions, server.GetNetworkConnectionFromPlayerTransform(transform));
+
+            yield return new WaitForSeconds(.5f);
         }
     }
 #endif
