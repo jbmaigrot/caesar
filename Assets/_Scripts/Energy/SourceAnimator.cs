@@ -66,6 +66,8 @@ public class SourceAnimator : MonoBehaviour
                 }
                 timeBeep = Random.Range(timeBeepBoopMin, timeBeepBoopMax);
                 timeBoop = Random.Range(timeBeepBoopMin, timeBeepBoopMax);
+                Beep.Stop();
+                Boop.Stop();
                 break;
 
             case 1: /*Eteint rotate*/
