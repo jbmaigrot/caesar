@@ -189,6 +189,7 @@ public class ProgrammableObjectsData : MonoBehaviour
         if (codeoutput == "TurnOnLight")
         {
             GetComponentInChildren<Light>().enabled = true;
+            
             isLightOn = true;
         }
 
@@ -197,7 +198,25 @@ public class ProgrammableObjectsData : MonoBehaviour
             GetComponentInChildren<Light>().enabled = false;
             isLightOn = false;
         }
+        if (codeoutput == "TurnOnHolo")
+        {
+            GetComponentInChildren<Light>().enabled = true;
+            foreach(MeshRenderer ryan in GetComponentInChildren<ThisIsATree>().GetComponentsInChildren<MeshRenderer>())
+            {
+                ryan.enabled = true;
+            }
+            isLightOn = true;
+        }
 
+        if (codeoutput == "TurnOffHolo")
+        {
+            GetComponentInChildren<Light>().enabled = false;
+            foreach (MeshRenderer ryan in GetComponentInChildren<ThisIsATree>().GetComponentsInChildren<MeshRenderer>())
+            {
+                ryan.enabled = false;
+            }
+            isLightOn = false;
+        }
         if (codeoutput == "OpenDoor")
         {
             this.GetComponentInChildren<DoorScript>().OnOpen();

@@ -1012,7 +1012,8 @@ GameObject:
   - component: {fileID: 343727836}
   - component: {fileID: 343727838}
   - component: {fileID: 343727837}
-  m_Layer: 0
+  - component: {fileID: 9062215502929926151}
+  m_Layer: 11
   m_Name: Generateur
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1078,6 +1079,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &9062215502929926151
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343727835}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.32149, y: 3.3849933, z: 2.3994398}
+  m_Center: {x: -0.0037473044, y: 0.9084689, z: 0.0030824344}
 --- !u!1 &352866095
 GameObject:
   m_ObjectHideFlags: 0
@@ -3351,6 +3365,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1466264326}
+  - component: {fileID: 7678037027005596019}
   m_Layer: 0
   m_Name: Arbre
   m_TagString: Untagged
@@ -3374,6 +3389,18 @@ Transform:
   m_Father: {fileID: 1911777458}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7678037027005596019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466264325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb463cc6cf1045448a36528af027fcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1469600784
 GameObject:
   m_ObjectHideFlags: 0
@@ -4300,7 +4327,7 @@ MonoBehaviour:
   isBeingHackedServer: 0
   sendingToBlueServer: 0
   sendingToRedServer: 0
-  Initiator: {fileID: 0}
+  Initiator: {fileID: 11400000, guid: 3b74dcead21d2374ba90d199bc2fef60, type: 2}
   objectsContainer: {fileID: 0}
 --- !u!1 &1943672555
 GameObject:
@@ -5331,6 +5358,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue marker
       objectReference: {fileID: 0}
+    - target: {fileID: 4500087429524261250, guid: 69614799a84ef2b4aaee43790ed6e055,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4619640931388069243, guid: 69614799a84ef2b4aaee43790ed6e055,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5456,6 +5488,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Orange marker
+      objectReference: {fileID: 0}
+    - target: {fileID: 4500087429524261250, guid: 69614799a84ef2b4aaee43790ed6e055,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4619640931388069243, guid: 69614799a84ef2b4aaee43790ed6e055,
         type: 3}
