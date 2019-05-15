@@ -41,7 +41,6 @@ public class ServerSource : MonoBehaviour
                 }
 
                 isActivated = false;
-                this.GetComponent<AudioSource>().Stop();
                 carrier.charge = 0;
                 enabled = false;
             }
