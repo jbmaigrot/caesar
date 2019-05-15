@@ -276,6 +276,7 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
 
     public void OpenInterface()
     {
+        client.CutSoundOfHackPlease();
         client.OpenedHackInterface(SelectedGameObject.GetComponent<ProgrammableObjectsData>().objectIndexClient);
         SelectedGameObject.GetComponent<ProgrammableObjectsData>().isWaitingHack = false;
         isOpening = true;

@@ -142,6 +142,7 @@ public class ProgrammableObjectsData : MonoBehaviour
     {
         if (!hackInterface.GetComponent<CanvasGroup>().blocksRaycasts)
         {
+            client.CutSoundOfHackPlease();
             hackInterface.DoNotOpenActually(objectIndexClient);
             isWaitingHack = false;
             rosaceForHacking.GetComponent<Animator>().SetTrigger("Deactivate");
