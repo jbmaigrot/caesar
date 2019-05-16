@@ -45,10 +45,12 @@ public class PlayerInput : MonoBehaviour
 
         if (!EventSystem.current.IsPointerOverGameObject()) //Checks if the mouse is not over any UI
         {
-            if (!Input.GetKey(KeyCode.LeftControl) && !hackinterface.GetComponent<CanvasGroup>().blocksRaycasts)
+            if (!Input.GetKey(KeyCode.LeftControl))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
+
+                
 
                 if (Physics.Raycast(ray, out hit, 100f, 49184)) // Layers 5, 14 (hackable), 15
                 {
@@ -56,6 +58,10 @@ public class PlayerInput : MonoBehaviour
                 }
                 else if (Input.GetMouseButtonDown(0) && Physics.Raycast(ray, out hit, 100f, 1)) // Layer 0 (ground)
                 {
+                    if (hackinterface.GetComponent<CanvasGroup>().blocksRaycasts)
+                    {
+                        hackinterface.OnClose();
+                    }
                     client.SetDestination(hit.point);
                     StartCoroutine(ClickMaintenu()); //No need to check if button is still pressed as we are stopping coroutine once it's released
                 }
