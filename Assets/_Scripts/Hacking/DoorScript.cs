@@ -42,10 +42,18 @@ public class DoorScript : MonoBehaviour
 #if CLIENT
     void OnMouseDown()
     {
-        if ((this.GetComponentInParent<Collider>().ClosestPoint(GetComponentInParent<ProgrammableObjectsData>().client.characters[GetComponentInParent<ProgrammableObjectsData>().client.playerIndex].transform.position) - GetComponentInParent<ProgrammableObjectsData>().client.characters[GetComponentInParent<ProgrammableObjectsData>().client.playerIndex].transform.position).magnitude < 15 && !Input.GetKey(KeyCode.LeftControl))
+        if (GetComponentInParent<ProgrammableObjectsData>().client.hackInterface.GetComponent<CanvasGroup>().blocksRaycasts)
         {
-            GetComponentInParent<ProgrammableObjectsData>().client.DoorInteract(GetComponentInParent<ProgrammableObjectsData>().objectsContainer.GetObjectIndexClient(GetComponentInParent<ProgrammableObjectsData>()));
+            GetComponentInParent<ProgrammableObjectsData>().client.hackInterface.OnClose();
         }
+        else
+        {
+            if ((this.GetComponentInParent<Collider>().ClosestPoint(GetComponentInParent<ProgrammableObjectsData>().client.characters[GetComponentInParent<ProgrammableObjectsData>().client.playerIndex].transform.position) - GetComponentInParent<ProgrammableObjectsData>().client.characters[GetComponentInParent<ProgrammableObjectsData>().client.playerIndex].transform.position).magnitude < 15 && !Input.GetKey(KeyCode.LeftControl))
+            {
+                GetComponentInParent<ProgrammableObjectsData>().client.DoorInteract(GetComponentInParent<ProgrammableObjectsData>().objectsContainer.GetObjectIndexClient(GetComponentInParent<ProgrammableObjectsData>()));
+            }
+        }
+       
     }
 #endif
     

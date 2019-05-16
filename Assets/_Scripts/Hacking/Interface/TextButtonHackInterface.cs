@@ -43,7 +43,6 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
     public void SetIsMouseOver(bool b)
     {
         playerinput.isMouseOverAnOutputTextButtonhackInterface = b;
-        Debug.Log("il se passe quelque chose");
     }
 
     /*Fonction appelé lorque le joueur clique sur la vignette. Utilisé pour créer de nouvelles connections dans le graphe.*/
@@ -53,21 +52,26 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
         if (isInput)
         {
             HackInterface.SelectedInputButton = numero-1;
-            hackInterface.ClicNeu();
-          }
-        /*Si une vignette d'entrée valide est séléctionnée et la vignette de sortie cliqué est valide aussi, on essaie de créer une connection.*/
-        else if (HackInterface.SelectedInputButton > -1 && HackInterface.SelectedInputButton < HackInterface.inputCodes.Count && numero - 1 < HackInterface.outputCodes.Count)
+            
+        }
+        else
+        {
+            HackInterface.SelectedOutputButton = numero - 1;
+        }
+
+        if(HackInterface.SelectedInputButton > -1 && HackInterface.SelectedInputButton < HackInterface.inputCodes.Count+1  && HackInterface.SelectedOutputButton>-1 && HackInterface.SelectedOutputButton < HackInterface.outputCodes.Count + 1)
         {
             /*Création de la nouvelle connection*/
             Arrow NewArrow = new Arrow();
             NewArrow.input = HackInterface.SelectedInputButton;
-            NewArrow.output = numero - 1;
+            NewArrow.output = HackInterface.SelectedOutputButton;
 
             //Debug.Log("" + HackInterface.SelectedInputButton + ", " + numero);
             NewArrow.inputPos = hackInterface.inputButtons[HackInterface.SelectedInputButton].position;
-            NewArrow.outputPos = hackInterface.outputButtons[numero-1].position;
+            NewArrow.outputPos = hackInterface.outputButtons[HackInterface.SelectedOutputButton].position;
 
             HackInterface.SelectedInputButton = -1;
+            HackInterface.SelectedOutputButton = -1;
 
             /*Verification que la connection n'existe pas déjà dans le graphe*/
             bool isItReallyNew = true;
@@ -83,7 +87,17 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
                 hackInterface.ClicPos();
                 this.GetComponentInParent<HackInterface>().reloadArrow();
             }
+            else
+            {
+                hackInterface.ClicCancel();
+            }
         }
+        else
+        {
+            hackInterface.ClicNeu();
+        }
+        /*Si une vignette d'entrée valide est séléctionnée et la vignette de sortie cliqué est valide aussi, on essaie de créer une connection.*/
+       
     }
     
     /*Fonction pour écrire le contenu de la vignette*/

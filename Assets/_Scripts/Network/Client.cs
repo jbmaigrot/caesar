@@ -34,7 +34,7 @@ public class Client : MonoBehaviour
     private CameraController cameraController;
     private ClientChat chat;
     public ProgrammableObjectsContainer programmableObjectsContainer;
-    private HackInterface hackInterface;
+    public HackInterface hackInterface;
     private bool knowOrientationOfCam = false;
     
     private int lastSnapshot = 0;

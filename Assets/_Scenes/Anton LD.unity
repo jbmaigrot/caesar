@@ -73,7 +73,7 @@ LightmapSettings:
     m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 1
-    m_BakeBackend: 2
+    m_BakeBackend: 1
     m_PVRSampling: 1
     m_PVRDirectSampleCount: 64
     m_PVRSampleCount: 1000
@@ -2229,16 +2229,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1204548349}
     m_Modifications:
-    - target: {fileID: 8331737798863557949, guid: cb70cb529e864e54f930d0369c9bbd4f,
-        type: 3}
-      propertyPath: m_Name
-      value: Door_Slope
-      objectReference: {fileID: 0}
-    - target: {fileID: 8331737798863557949, guid: cb70cb529e864e54f930d0369c9bbd4f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8993681674289884980, guid: cb70cb529e864e54f930d0369c9bbd4f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2292,6 +2282,16 @@ PrefabInstance:
     - target: {fileID: 8993681674289884980, guid: cb70cb529e864e54f930d0369c9bbd4f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331737798863557949, guid: cb70cb529e864e54f930d0369c9bbd4f,
+        type: 3}
+      propertyPath: m_Name
+      value: Door_Slope
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331737798863557949, guid: cb70cb529e864e54f930d0369c9bbd4f,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8869806887262309628, guid: cb70cb529e864e54f930d0369c9bbd4f,
@@ -5606,16 +5606,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1204548349}
     m_Modifications:
-    - target: {fileID: 665924656940904806, guid: e55ffb18c8f7dd841a54a6414bdc33be,
-        type: 3}
-      propertyPath: m_Name
-      value: Door_Double
-      objectReference: {fileID: 0}
-    - target: {fileID: 665924656940904806, guid: e55ffb18c8f7dd841a54a6414bdc33be,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4676031773912252251, guid: e55ffb18c8f7dd841a54a6414bdc33be,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5669,6 +5659,16 @@ PrefabInstance:
     - target: {fileID: 4676031773912252251, guid: e55ffb18c8f7dd841a54a6414bdc33be,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 665924656940904806, guid: e55ffb18c8f7dd841a54a6414bdc33be,
+        type: 3}
+      propertyPath: m_Name
+      value: Door_Double
+      objectReference: {fileID: 0}
+    - target: {fileID: 665924656940904806, guid: e55ffb18c8f7dd841a54a6414bdc33be,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -7062,8 +7062,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2100442943}
   m_HandleRect: {fileID: 2100442942}
   m_Direction: 0
-  m_Value: 1
-  m_Size: 1
+  m_Value: 0
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8181,6 +8181,7 @@ MonoBehaviour:
   characters: []
   allyCharacters: []
   programmableObjectsContainer: {fileID: 0}
+  hackInterface: {fileID: 0}
   clientLobby: {fileID: 0}
   connectionId: 0
   playerIndex: 0
@@ -12144,6 +12145,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1689590250}
     m_Modifications:
+    - target: {fileID: 8993681674289884980, guid: cb70cb529e864e54f930d0369c9bbd4f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4284710729615775847, guid: 2eb37019bedf04e4da03c14045794e29,
         type: 3}
       propertyPath: m_Name
@@ -12203,11 +12209,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8993681674289884980, guid: cb70cb529e864e54f930d0369c9bbd4f,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8869806887262309628, guid: cb70cb529e864e54f930d0369c9bbd4f,
         type: 3}
@@ -13354,11 +13355,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1534226824}
     m_Modifications:
-    - target: {fileID: 8331737798863557949, guid: cb70cb529e864e54f930d0369c9bbd4f,
-        type: 3}
-      propertyPath: m_Name
-      value: Door_Slope (4)
-      objectReference: {fileID: 0}
     - target: {fileID: 8993681674289884980, guid: cb70cb529e864e54f930d0369c9bbd4f,
         type: 3}
       propertyPath: m_RootOrder
@@ -13403,6 +13399,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331737798863557949, guid: cb70cb529e864e54f930d0369c9bbd4f,
+        type: 3}
+      propertyPath: m_Name
+      value: Door_Slope (4)
       objectReference: {fileID: 0}
     - target: {fileID: 8869806887262309628, guid: cb70cb529e864e54f930d0369c9bbd4f,
         type: 3}
@@ -23008,11 +23009,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1534226824}
     m_Modifications:
-    - target: {fileID: 5633456765678272302, guid: 2a7585026cb347b498466a4f1533a627,
-        type: 3}
-      propertyPath: m_Name
-      value: Door_Simple (12)
-      objectReference: {fileID: 0}
     - target: {fileID: 5633456765677970190, guid: 2a7585026cb347b498466a4f1533a627,
         type: 3}
       propertyPath: m_RootOrder
@@ -23032,6 +23028,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.009997
+      objectReference: {fileID: 0}
+    - target: {fileID: 5633456765678272302, guid: 2a7585026cb347b498466a4f1533a627,
+        type: 3}
+      propertyPath: m_Name
+      value: Door_Simple (12)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a7585026cb347b498466a4f1533a627, type: 3}
@@ -24461,11 +24462,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1534226824}
     m_Modifications:
-    - target: {fileID: 5633456765678272302, guid: 2a7585026cb347b498466a4f1533a627,
-        type: 3}
-      propertyPath: m_Name
-      value: Door_Simple (14)
-      objectReference: {fileID: 0}
     - target: {fileID: 5633456765677970190, guid: 2a7585026cb347b498466a4f1533a627,
         type: 3}
       propertyPath: m_RootOrder
@@ -24500,6 +24496,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.0099967
+      objectReference: {fileID: 0}
+    - target: {fileID: 5633456765678272302, guid: 2a7585026cb347b498466a4f1533a627,
+        type: 3}
+      propertyPath: m_Name
+      value: Door_Simple (14)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a7585026cb347b498466a4f1533a627, type: 3}
@@ -31596,11 +31597,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1534226824}
     m_Modifications:
-    - target: {fileID: 5633456765678272302, guid: 2a7585026cb347b498466a4f1533a627,
-        type: 3}
-      propertyPath: m_Name
-      value: Door_Simple (13)
-      objectReference: {fileID: 0}
     - target: {fileID: 5633456765677970190, guid: 2a7585026cb347b498466a4f1533a627,
         type: 3}
       propertyPath: m_RootOrder
@@ -31635,6 +31631,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.0099967
+      objectReference: {fileID: 0}
+    - target: {fileID: 5633456765678272302, guid: 2a7585026cb347b498466a4f1533a627,
+        type: 3}
+      propertyPath: m_Name
+      value: Door_Simple (13)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a7585026cb347b498466a4f1533a627, type: 3}
@@ -33330,11 +33331,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1534226824}
     m_Modifications:
-    - target: {fileID: 8331737798863557949, guid: cb70cb529e864e54f930d0369c9bbd4f,
-        type: 3}
-      propertyPath: m_Name
-      value: Door_Slope (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 8993681674289884980, guid: cb70cb529e864e54f930d0369c9bbd4f,
         type: 3}
       propertyPath: m_RootOrder
@@ -33379,6 +33375,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331737798863557949, guid: cb70cb529e864e54f930d0369c9bbd4f,
+        type: 3}
+      propertyPath: m_Name
+      value: Door_Slope (3)
       objectReference: {fileID: 0}
     - target: {fileID: 8869806887262309628, guid: cb70cb529e864e54f930d0369c9bbd4f,
         type: 3}
@@ -40152,16 +40153,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1204548349}
     m_Modifications:
-    - target: {fileID: 5633456765678272302, guid: 2a7585026cb347b498466a4f1533a627,
-        type: 3}
-      propertyPath: m_Name
-      value: Door_Simple
-      objectReference: {fileID: 0}
-    - target: {fileID: 5633456765678272302, guid: 2a7585026cb347b498466a4f1533a627,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5633456765677970190, guid: 2a7585026cb347b498466a4f1533a627,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -40215,6 +40206,16 @@ PrefabInstance:
     - target: {fileID: 5633456765677970190, guid: 2a7585026cb347b498466a4f1533a627,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5633456765678272302, guid: 2a7585026cb347b498466a4f1533a627,
+        type: 3}
+      propertyPath: m_Name
+      value: Door_Simple
+      objectReference: {fileID: 0}
+    - target: {fileID: 5633456765678272302, guid: 2a7585026cb347b498466a4f1533a627,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5633456765678272300, guid: 2a7585026cb347b498466a4f1533a627,
@@ -53985,11 +53986,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1534226824}
     m_Modifications:
-    - target: {fileID: 5633456765678272302, guid: 2a7585026cb347b498466a4f1533a627,
-        type: 3}
-      propertyPath: m_Name
-      value: Door_Simple (15)
-      objectReference: {fileID: 0}
     - target: {fileID: 5633456765677970190, guid: 2a7585026cb347b498466a4f1533a627,
         type: 3}
       propertyPath: m_RootOrder
@@ -54009,6 +54005,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.0099978
+      objectReference: {fileID: 0}
+    - target: {fileID: 5633456765678272302, guid: 2a7585026cb347b498466a4f1533a627,
+        type: 3}
+      propertyPath: m_Name
+      value: Door_Simple (15)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a7585026cb347b498466a4f1533a627, type: 3}
@@ -60187,7 +60188,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: -0.000030517578}
+  m_AnchoredPosition: {x: 0, y: -0.0000009381439}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1959515637

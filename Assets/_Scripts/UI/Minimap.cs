@@ -68,9 +68,13 @@ public class Minimap : MonoBehaviour
         //inputs: move or ping
         if (isPointerOver)
         {
-            if (!Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(0) && !hackInterface.GetComponent<CanvasGroup>().blocksRaycasts)
+            if (!Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(0))
             {
                 client.SetDestination(mapToWorld(screenToMap(Input.mousePosition)));
+                if (hackInterface.GetComponent<CanvasGroup>().blocksRaycasts)
+                {
+                    hackInterface.OnClose();
+                }
             }
             else if (!Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(1))
             {
