@@ -330,6 +330,14 @@ public class ProgrammableObjectsData : MonoBehaviour
                 this.GetComponent<ServerCharacter>().priorityDestination = BlueBatterie.position;
             }                
         }
+
+        if(codeoutput == "IfSourceActiveWrite")
+        {
+            if(this.GetComponent<ServerSource>() && this.GetComponent<ServerSource>().enabled)
+            {
+                server.AddMessage(parameter_string, transform.position);
+            }
+        }
     }
 
 #endif
