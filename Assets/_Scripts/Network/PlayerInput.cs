@@ -68,12 +68,13 @@ public class PlayerInput : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0) && hackinterface.GetComponent<CanvasGroup>().blocksRaycasts && HackInterface.SelectedInputButton != -1)
+        if (Input.GetMouseButtonDown(0) && hackinterface.GetComponent<CanvasGroup>().blocksRaycasts && (HackInterface.SelectedInputButton != -1|| HackInterface.SelectedOutputButton != -1))
         {
             if (!EventSystem.current.IsPointerOverGameObject())
             {
                 hackinterface.ClicCancel();
                 HackInterface.SelectedInputButton = -1;
+                HackInterface.SelectedOutputButton = -1;
             }
             else
             {
@@ -82,6 +83,7 @@ public class PlayerInput : MonoBehaviour
                 {
                     hackinterface.ClicCancel();
                     HackInterface.SelectedInputButton = -1;
+                    HackInterface.SelectedOutputButton = -1;
                 }
                 
 

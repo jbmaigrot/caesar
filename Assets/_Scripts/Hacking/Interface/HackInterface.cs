@@ -14,6 +14,7 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
 #if CLIENT
     /*Variable qui contient la vignette d'input selectionné comme début de flèche. Est modifié par le script TextButtonHackInterface.*/
     static public int SelectedInputButton=-1;
+    static public int SelectedOutputButton = -1;
     
     /*Variable qui contient l'objet connecté en cours de hacking. Est modifié par le script ProgrammableObjectsData lorsque un objet est hacké.*/
     static public GameObject SelectedGameObject;
