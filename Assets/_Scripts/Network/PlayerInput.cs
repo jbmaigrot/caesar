@@ -21,6 +21,11 @@ public class PlayerInput : MonoBehaviour
     {
         client = FindObjectOfType<Client>();
         hackinterface = FindObjectOfType<HackInterface>();
+#if NO_CUSTOM_MOUSE
+        stdCursor = null;
+        ctrlCursor = null;
+        hackCursor = null;
+#endif
     }
 
     //Update
@@ -103,4 +108,4 @@ public class PlayerInput : MonoBehaviour
         }
     }
 #endif
-}
+    }

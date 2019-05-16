@@ -553,7 +553,25 @@ public class Server : MonoBehaviour
         Message(message, pos);
         messages.Add(message);
         messagesPos.Add(pos);
-        programmableObjectsContainer.ChatInstruction(message);
+
+        if (message != "")
+        {
+            string justOneWord = "";
+            foreach (char c in message)
+            {
+                if ((c == '\n') || (c == '\r') || (c == ' '))
+                {
+                    programmableObjectsContainer.ChatInstruction(justOneWord);
+
+                    justOneWord = "";
+                }
+                else
+                {
+                    justOneWord += c;
+                }
+            }
+        }
+       
     }
 
     public void Ping(Vector2 mapPos)
