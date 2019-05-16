@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class InventoryHackInterface : MonoBehaviour, IPointerDownHandler
+public class InventoryHackInterface : MonoBehaviour
 {
     public int numero;
     public Sprite Empty;
@@ -28,6 +28,20 @@ public class InventoryHackInterface : MonoBehaviour, IPointerDownHandler
         if (isPointerOver)
         {
             gadgetRange.transform.position = hackinterface.GetSelectedProgrammableObject().transform.position;
+            
+            if (Input.GetMouseButtonDown(0) && hackinterface.inventory[numero] != InventoryConstants.Empty && HackInterface.outputCodes.Count < 5)
+            {
+                hackinterface.ClicNeu();
+                InOutVignette NewOutputHack = new InOutVignette();
+                NewOutputHack.code = "UseGadget";
+                NewOutputHack.parameter_int = hackinterface.inventory[numero];
+                NewOutputHack.is_fixed = true;
+                hackinterface.inventory[numero] = InventoryConstants.Empty;
+                HackInterface.outputCodes.Add(NewOutputHack);
+                hackinterface.reloadInterface();
+
+                HideRange();
+            }
         }
     }
 
@@ -98,20 +112,4 @@ public class InventoryHackInterface : MonoBehaviour, IPointerDownHandler
     }
 
 #endif
-    public void OnPointerDown(PointerEventData eventData)
-    {
-#if CLIENT
-        if(hackinterface.inventory[numero] != InventoryConstants.Empty && HackInterface.outputCodes.Count < 5)
-        {
-            hackinterface.ClicNeu();
-            InOutVignette NewOutputHack = new InOutVignette();
-            NewOutputHack.code = "UseGadget";
-            NewOutputHack.parameter_int = hackinterface.inventory[numero];
-            NewOutputHack.is_fixed = true;
-            hackinterface.inventory[numero] = InventoryConstants.Empty;
-            HackInterface.outputCodes.Add(NewOutputHack);
-            hackinterface.reloadInterface();
-        }
-#endif
-    }
 }
