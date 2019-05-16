@@ -377,12 +377,12 @@ GameObject:
   - component: {fileID: 1703912278086927189}
   - component: {fileID: 5441170902732703249}
   m_Layer: 2
-  m_Name: EmptyCharge - not in use
+  m_Name: DataBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7919914744160139840
 RectTransform:
   m_ObjectHideFlags: 0
@@ -486,7 +486,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2519219936933305050}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}
@@ -893,8 +893,8 @@ MonoBehaviour:
   programmableObjectsContainer: {fileID: 0}
   pos: {x: 0, y: 0}
   size: {x: 0, y: 0}
-  emptyTex: {fileID: 2800000, guid: a089e39cb36331940a4f602bb6a0d064, type: 3}
-  fullTex: {fileID: 2800000, guid: 80861de6aa80f234ea54ed391d0638f3, type: 3}
+  dataBar: {fileID: 1311272424164021202}
+  filled: {fileID: 5944246638192453291}
   draw: 0
   charge: 0
   maxCharge: 10
@@ -1284,7 +1284,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.47, y: 1}
+  m_AnchorMax: {x: 0.7, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

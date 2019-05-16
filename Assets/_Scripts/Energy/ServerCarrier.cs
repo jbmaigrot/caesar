@@ -18,8 +18,8 @@ public class ServerCarrier : MonoBehaviour
     private GUIStyle style = new GUIStyle();
     private Camera cam;
 #endif
-    public Texture2D emptyTex;
-    public Texture2D fullTex;
+    public GameObject dataBar;
+    public RectTransform filled;
     public bool draw = false;
 
 #if SERVER
@@ -37,55 +37,27 @@ public class ServerCarrier : MonoBehaviour
 
     private void Start()
     {
-#if SERVER
-        objectData = this.gameObject.GetComponent<ProgrammableObjectsData>();
-#endif
 #if CLIENT
         client = FindObjectOfType<Client>();
         programmableObjectsContainer = FindObjectOfType<ProgrammableObjectsContainer>();
         hackInterface = FindObjectOfType<HackInterface>();
         cam = Camera.main;
 #endif
-    }
-
-#if CLIENT
-    // Display charge
-    void OnGUI()
-    {
-        if (draw)
-        {
-            zoom = Mathf.Sqrt(cam.GetComponent<CameraController>().zoomFactor);
-            size = new Vector2(0.05f * Screen.width / zoom, 0.01f * Screen.height / zoom);
-            pos = new Vector2(cam.WorldToScreenPoint(transform.position).x - size.x / 2, Screen.height - cam.WorldToScreenPoint(transform.position).y);
-            //draw the background:
-            GUI.BeginGroup(new Rect(pos.x, pos.y, size.x, size.y));
-            GUI.Box(new Rect(0, 0, size.x, size.y), emptyTex, style);
-
-            //draw the filled-in part:
-            GUI.BeginGroup(new Rect(0, 0, size.x * clientCharge, size.y));
-            GUI.Box(new Rect(0, 0, size.x, size.y), fullTex, style);
-
-            GUI.EndGroup();
-            GUI.EndGroup();
-        }
-    }
-    /*
-        //Display charge
-        //todo changer le test degueu de la batterie + charger batterie par étape
-        if (scoreDisplay != null)
-        {
-            scoreDisplay.GetComponentInChildren<Text>().text = clientCharge.ToString() + " %";
-            if(clientCharge > 0.2f && clientCharge <= 0.4f)
-            {
-                //scoreDisplay
-                
-            }
-        }*/
+#if SERVER
+        objectData = this.gameObject.GetComponent<ProgrammableObjectsData>();
 #endif
+    }
 
     // Update is called once per frame
     void Update()
     {
+#if CLIENT
+        if (draw)
+        {
+            dataBar.SetActive(true);
+            filled.anchorMax = new Vector2(clientCharge, 1);
+        }
+#endif
 #if SERVER
         if (charge >= maxCharge)
         {

@@ -343,13 +343,11 @@ public class Client : MonoBehaviour
                                 {
                                     if (!isNapperoned)
                                     {
-                                        SpriteRenderer napperon = characters[playerIndex].transform.Find("napperon").GetComponent<SpriteRenderer>();
+                                        //SpriteRenderer napperon = characters[playerIndex].transform.Find("napperon").GetComponent<SpriteRenderer>();
                                         Renderer range = characters[playerIndex].transform.Find("range").GetComponent<Renderer>();
 
                                         lineRenderer = characters[playerIndex].transform.Find("lineRenderer").GetComponent<LineRenderer>();
                                         lineRenderer.enabled = true;
-
-                                        characters[playerIndex].GetComponent<ServerCarrier>().draw = true; //data bar
 
                                         if (team == 0 || team == 1)
                                         {
@@ -366,8 +364,10 @@ public class Client : MonoBehaviour
                                                 minimap.GetComponent<RectTransform>().localEulerAngles = new Vector3(0, 0, 135);
                                             }
 
-                                            napperon.enabled = true;
-                                            napperon.color = color;
+                                            characters[playerIndex].GetComponent<ServerCarrier>().draw = true; //data bar
+                                            characters[playerIndex].GetComponent<ServerCarrier>().filled.GetComponent<RawImage>().color = color;
+                                            //napperon.enabled = true;
+                                            //napperon.color = color;
                                             range.enabled = true;
                                             minimap.player = characters[playerIndex].transform;
                                             minimap.transform.Find("Map player").GetComponent<Image>().color = color;
@@ -878,4 +878,4 @@ public class Client : MonoBehaviour
 
     
 #endif
-                                }
+}
