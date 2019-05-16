@@ -486,7 +486,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2519219936933305050}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}
@@ -1439,6 +1439,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 605660811916249656}
     m_Modifications:
+    - target: {fileID: 4500087429524261250, guid: ce299d289acfbb640ac5376ba45fc615,
+        type: 3}
+      propertyPath: m_Name
+      value: Orange Trail
+      objectReference: {fileID: 0}
+    - target: {fileID: 4500087429524261250, guid: ce299d289acfbb640ac5376ba45fc615,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4619640931388069243, guid: ce299d289acfbb640ac5376ba45fc615,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1508,16 +1518,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4500087429524261250, guid: ce299d289acfbb640ac5376ba45fc615,
-        type: 3}
-      propertyPath: m_Name
-      value: Orange Trail
-      objectReference: {fileID: 0}
-    - target: {fileID: 4500087429524261250, guid: ce299d289acfbb640ac5376ba45fc615,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2576408723378475382, guid: ce299d289acfbb640ac5376ba45fc615,
         type: 3}
@@ -1702,15 +1702,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9503a338e10344499bfd848b2d6d14b, type: 3}
---- !u!4 &8000026655279803487 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3838040977131190033, guid: d9503a338e10344499bfd848b2d6d14b,
-    type: 3}
-  m_PrefabInstance: {fileID: 6505089247254928206}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2024150692310769425 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5066974408856077407, guid: d9503a338e10344499bfd848b2d6d14b,
+    type: 3}
+  m_PrefabInstance: {fileID: 6505089247254928206}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8000026655279803487 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3838040977131190033, guid: d9503a338e10344499bfd848b2d6d14b,
     type: 3}
   m_PrefabInstance: {fileID: 6505089247254928206}
   m_PrefabAsset: {fileID: 0}
