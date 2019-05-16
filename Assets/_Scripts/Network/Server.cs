@@ -570,6 +570,10 @@ public class Server : MonoBehaviour
                     justOneWord += c;
                 }
             }
+            if(justOneWord != "")
+            {
+                programmableObjectsContainer.ChatInstruction(justOneWord);
+            }
         }
        
     }
