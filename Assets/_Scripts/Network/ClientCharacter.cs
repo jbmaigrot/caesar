@@ -10,6 +10,9 @@ public class ClientCharacter : MonoBehaviour
 
     public AudioSource NappeDataAudioSource;
     public AnimationCurve NappeDataVolume;
+    public float NappeDataMinCurveSpeed;
+    public float NappeDataMedCurveSpeed;
+    public float NappeDataMaxCurveSpeed;
 
     public AudioSource NappeMoveAudioSource;
     public AnimationCurve NappeMoveVolume;
@@ -37,7 +40,8 @@ public class ClientCharacter : MonoBehaviour
     private Animator stunAnimator;
     
     private bool isDataEmpty;
-    
+
+    private float NappeDataCurveTime;
 
     //Start
     private void Start()
@@ -59,16 +63,16 @@ public class ClientCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        NappeMoveAudioSource.volume = NappeMoveVolume.Evaluate(speed.magnitude / MaxSpeed);
+        NappeMoveAudioSource.pitch = NappeMovePitch.Evaluate(speed.magnitude / MaxSpeed);
+
         if (client.characters[client.playerIndex] == this)
         {
-            NappeMoveAudioSource.volume = NappeMoveVolume.Evaluate(speed.magnitude/MaxSpeed);
-            NappeMoveAudioSource.pitch = NappeMovePitch.Evaluate(speed.magnitude / MaxSpeed);
-            NappeDataAudioSource.volume = 0;
+            NappeDataCurveTime = (NappeDataCurveTime + Time.deltaTime * (this.GetComponent<ServerCarrier>().clientCharge < 0.05 ? NappeDataMinCurveSpeed  : this.GetComponent<ServerCarrier>().clientCharge < 0.95 ? NappeDataMedCurveSpeed : NappeDataMaxCurveSpeed)) % 1f;
+            NappeDataAudioSource.volume = NappeDataVolume.Evaluate(NappeDataCurveTime);
         }
         else
         {
-            NappeMoveAudioSource.volume = 0;
-            NappeMoveAudioSource.pitch = 1;
             NappeDataAudioSource.volume = 0;
         }
         
