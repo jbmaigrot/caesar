@@ -8,7 +8,7 @@
     public const int OrangeRelay = 6;
 
 
-    public const float AttractRange = 20.0f;
+    public const float AttractRange = 16.0f;
     public const float StunboxRange = 10.0f;
-    public const float PowerpumpRange = 25.0f;
+    public const float PowerpumpRange = 12.0f;
 }

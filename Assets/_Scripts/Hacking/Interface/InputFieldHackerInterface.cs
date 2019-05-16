@@ -30,6 +30,8 @@ public class InputFieldHackerInterface : MonoBehaviour
     private GameObject placeholderToHide;
     private GameObject textToHide;
 
+    private Renderer playerRange = null;
+
     void Start()
     {
         hackinterface = FindObjectOfType<HackInterface>();
@@ -39,6 +41,7 @@ public class InputFieldHackerInterface : MonoBehaviour
         }
         placeholderToHide = transform.Find("Placeholder").gameObject;
         textToHide = transform.Find("Text").gameObject;
+        
     }
 
     /*Fonction pour modifier le parametre d'une vignette en fonction de l'input field*/
@@ -283,22 +286,28 @@ public class InputFieldHackerInterface : MonoBehaviour
         gadgetRange.SetActive(true);
         isPointerOver = true;
 
+        if (playerRange == null)
+            playerRange = hackinterface.client.characters[hackinterface.client.playerIndex].transform.Find("range").GetComponent<Renderer>();
+
+        playerRange.enabled = false;
+
         switch (numeroGadget)
         {
             case InventoryConstants.Attract:
-                gadgetRange.transform.localScale = InventoryConstants.AttractRange * Vector3.one;
+                gadgetRange.transform.localScale = InventoryConstants.AttractRange * Vector3.one * 2;
                 break;
 
             case InventoryConstants.Stunbox:
-                gadgetRange.transform.localScale = InventoryConstants.StunboxRange * Vector3.one;
+                gadgetRange.transform.localScale = InventoryConstants.StunboxRange * Vector3.one * 2;
                 break;
 
             case InventoryConstants.Powerpump:
-                gadgetRange.transform.localScale = InventoryConstants.PowerpumpRange * Vector3.one;
+                gadgetRange.transform.localScale = InventoryConstants.PowerpumpRange * Vector3.one * 2;
                 break;
 
             default:
                 gadgetRange.SetActive(false);
+                playerRange.enabled = true;
                 break;
         }
     }
@@ -307,6 +316,8 @@ public class InputFieldHackerInterface : MonoBehaviour
     {
         gadgetRange.SetActive(false);
         isPointerOver = false;
+
+        playerRange.enabled = true;
     }
 #endif
 

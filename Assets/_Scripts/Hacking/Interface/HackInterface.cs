@@ -43,7 +43,7 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     private bool isOpening;
     const float TIMETOOPEN = 0.2f;
 
-    private Client client;
+    public Client client;
     private ProgrammableObjectsContainer objectsContainer;
 
     public int[] inventory = new int[3];
