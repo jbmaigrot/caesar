@@ -57,6 +57,7 @@ public class Client : MonoBehaviour
     private AudioSource audioSourceForTheHackingSound;
     private float StartingTimeForTheHackingSound;
     private RosaceForHacking rosaceForHacking;
+    private RedRosace redRosace;
 
 
     // Start is called before the first frame update
@@ -72,7 +73,8 @@ public class Client : MonoBehaviour
         minimap = FindObjectOfType<Minimap>();
         stunCooldown = FindObjectOfType<StunCooldown>();
         audioSourceForTheHackingSound = GetComponent<AudioSource>();
-        rosaceForHacking = GetComponent<RosaceForHacking>();
+        rosaceForHacking = FindObjectOfType<RosaceForHacking>();
+        redRosace = FindObjectOfType<RedRosace>();
     }
 
     void Awake() { 
@@ -705,14 +707,15 @@ public class Client : MonoBehaviour
         else
         {
             // Hack Request Denied
-            /*if (!hackInterface.GetComponent<CanvasGroup>().blocksRaycasts)
+            if (!hackInterface.GetComponent<CanvasGroup>().blocksRaycasts)
             {
                 CutSoundOfHackPlease();
                 //hackInterface.DoNotOpenActually(objectIndexClient);
                 //isWaitingHack = false;
                 rosaceForHacking.GetComponent<Animator>().SetTrigger("Deactivate");
+                redRosace.DisplayRedRosace();
             }
-            audioSourceForTheHackingSound.PlayOneShot(hackingDeniedSound);*/
+            audioSourceForTheHackingSound.PlayOneShot(hackingDeniedSound);
         }
         
 
