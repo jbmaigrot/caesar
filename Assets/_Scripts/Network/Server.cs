@@ -678,7 +678,7 @@ public class Server : MonoBehaviour
             {
                 writer.Write(0);
                 m_Driver.Send(m_Connections[connectionId], writer);
-                using (var writer2 = new DataStreamWriter(4096, Allocator.Temp))
+                using (var writer2 = new DataStreamWriter(32, Allocator.Temp))
                 {
                     writer2.Write(Constants.Server_WarnInterfaceHacking);
                     m_Driver.Send(m_Connections[programmableObject.isBeingHackedServer], writer2);
