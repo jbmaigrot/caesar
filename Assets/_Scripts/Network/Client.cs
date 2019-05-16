@@ -18,7 +18,8 @@ public class Client : MonoBehaviour
     public GameObject characterPrefab;
     public int team = -1;// 0 or 1 ; -1 in case we didn't use the lobby -> automatically assigned based on connectionID
     public AnimationCurve curveForTheHackingSound = new AnimationCurve();
-    public AudioSource audioSourceForTheHackingSound;
+    public AudioClip hackingLoadingSound;
+    public AudioClip hackingDeniedSound;
 #if CLIENT
     public string ServerIP = "127.0.0.1"; //localhost by default
     public IPAddress iPAddress;
@@ -53,8 +54,10 @@ public class Client : MonoBehaviour
 
     public LineRenderer lineRenderer;
 
+    private AudioSource audioSourceForTheHackingSound;
     private float StartingTimeForTheHackingSound;
-    
+    private RosaceForHacking rosaceForHacking;
+
 
     // Start is called before the first frame update
     void Start()
@@ -68,6 +71,8 @@ public class Client : MonoBehaviour
         inventory[2] = InventoryConstants.Powerpump;
         minimap = FindObjectOfType<Minimap>();
         stunCooldown = FindObjectOfType<StunCooldown>();
+        audioSourceForTheHackingSound = GetComponent<AudioSource>();
+        rosaceForHacking = GetComponent<RosaceForHacking>();
     }
 
     void Awake() { 
@@ -699,7 +704,15 @@ public class Client : MonoBehaviour
         }
         else
         {
-            //TODO HackRequestDenied
+            // Hack Request Denied
+            /*if (!hackInterface.GetComponent<CanvasGroup>().blocksRaycasts)
+            {
+                CutSoundOfHackPlease();
+                //hackInterface.DoNotOpenActually(objectIndexClient);
+                //isWaitingHack = false;
+                rosaceForHacking.GetComponent<Animator>().SetTrigger("Deactivate");
+            }
+            audioSourceForTheHackingSound.PlayOneShot(hackingDeniedSound);*/
         }
         
 
