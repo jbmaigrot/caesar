@@ -18,10 +18,17 @@ public class ArrowHackInterface : MonoBehaviour, IPointerDownHandler
     /*Si on clic sur une arrow, elle est supprimé dans le graphe*/
     public void OnPointerDown(PointerEventData pointerEvent)
     {
-        HackInterface.graph.RemoveAt(numero);
-        hackinterface.ClicNeg();
-        /*On réecrit toutes les flèches. C'est nécessaire car il peut y avoir un décalage des flèches d'après.*/
-        this.GetComponentInParent<HackInterface>().reloadArrow();
+        if(!HackInterface.inputCodes[HackInterface.graph[numero].input].is_fixed|| !HackInterface.outputCodes[HackInterface.graph[numero].output].is_fixed)
+        {
+            HackInterface.graph.RemoveAt(numero);
+            hackinterface.ClicNeg();
+            /*On réecrit toutes les flèches. C'est nécessaire car il peut y avoir un décalage des flèches d'après.*/
+            this.GetComponentInParent<HackInterface>().reloadArrow();
+        }
+        else
+        {
+            hackinterface.ClicCancel();
+        }
     }
     //public void OnClick()
     //{
