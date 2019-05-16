@@ -7,7 +7,18 @@ public class ClientCharacter : MonoBehaviour
 
     public MeshRenderer Body;
     public MeshRenderer Lens;
-    
+
+    public AudioSource NappeDataAudioSource;
+    public AnimationCurve NappeDataVolume;
+    public float NappeDataMinCurveSpeed;
+    public float NappeDataMedCurveSpeed;
+    public float NappeDataMaxCurveSpeed;
+
+    public AudioSource NappeMoveAudioSource;
+    public AnimationCurve NappeMoveVolume;
+    public AnimationCurve NappeMovePitch;
+
+    private const float MaxSpeed = 5f;
 
 #if CLIENT
     public Vector3 speed = new Vector3(0, 0, 0);
@@ -30,6 +41,8 @@ public class ClientCharacter : MonoBehaviour
     
     private bool isDataEmpty;
 
+    private float NappeDataCurveTime;
+
     //Start
     private void Start()
     {
@@ -50,6 +63,20 @@ public class ClientCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        NappeMoveAudioSource.volume = NappeMoveVolume.Evaluate(speed.magnitude / MaxSpeed);
+        NappeMoveAudioSource.pitch = NappeMovePitch.Evaluate(speed.magnitude / MaxSpeed);
+
+        if (client.characters[client.playerIndex] == this)
+        {
+            NappeDataCurveTime = (NappeDataCurveTime + Time.deltaTime * (this.GetComponent<ServerCarrier>().clientCharge < 0.05 ? NappeDataMinCurveSpeed  : this.GetComponent<ServerCarrier>().clientCharge < 0.95 ? NappeDataMedCurveSpeed : NappeDataMaxCurveSpeed)) % 1f;
+            NappeDataAudioSource.volume = NappeDataVolume.Evaluate(NappeDataCurveTime);
+        }
+        else
+        {
+            NappeDataAudioSource.volume = 0;
+        }
+        
+
         transform.position = transform.position + speed * Time.deltaTime;
 
         // Floating animation
