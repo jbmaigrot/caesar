@@ -17,6 +17,9 @@ public class InventoryHackInterface : MonoBehaviour
 #if CLIENT
     private HackInterface hackinterface;
     private bool isPointerOver = false;
+
+    private Renderer playerRange = null;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -84,23 +87,29 @@ public class InventoryHackInterface : MonoBehaviour
     {
         gadgetRange.SetActive(true);
         isPointerOver = true;
+        
+        if (playerRange == null)
+            playerRange = hackinterface.client.characters[hackinterface.client.playerIndex].transform.Find("range").GetComponent<Renderer>();
+
+        playerRange.enabled = false;
 
         switch (hackinterface.inventory[numero])
         {
             case InventoryConstants.Attract:
-                gadgetRange.transform.localScale = InventoryConstants.AttractRange * Vector3.one;
+                gadgetRange.transform.localScale = InventoryConstants.AttractRange * Vector3.one * 2;
                 break;
 
             case InventoryConstants.Stunbox:
-                gadgetRange.transform.localScale = InventoryConstants.StunboxRange * Vector3.one;
+                gadgetRange.transform.localScale = InventoryConstants.StunboxRange * Vector3.one * 2;
                 break;
 
             case InventoryConstants.Powerpump:
-                gadgetRange.transform.localScale = InventoryConstants.PowerpumpRange * Vector3.one;
+                gadgetRange.transform.localScale = InventoryConstants.PowerpumpRange * Vector3.one * 2;
                 break;
 
             default:
                 gadgetRange.SetActive(false);
+                playerRange.enabled = true;
                 break;
         }
     }
@@ -109,6 +118,8 @@ public class InventoryHackInterface : MonoBehaviour
     {
         gadgetRange.SetActive(false);
         isPointerOver = false;
+
+        playerRange.enabled = true;
     }
 
 #endif
