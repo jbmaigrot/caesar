@@ -9,18 +9,21 @@ public class SourceAnimator : MonoBehaviour
     public AudioSource Boop;
     public float timeBeepBoopMin = 0.05f;
     public float timeBeepBoopMax = 0.5f;
-#if CLIENT
+
     public int state = 0; // 0: off, 1: empty, 2: not empty, 3: giving
     public float lowSpeed = 2;
     public float highSpeed = 5;
+    public float lerpLength = 5;
 
+#if CLIENT
     private int prevState = 0;
     private float currentSpeed = 0;
     private float lerpT = 0;
     private Transform cube;
     private Renderer emissive;
-    private Color emissiveColor = new Color(191,191,0);
+    private Color emissiveColor = new Color(191/255f,191/255f,0f);
     private float emission = 0;
+    private float maxEmission = 3;
     private Light pointLight;
     private float maxIntensity;
     private float startingY;
@@ -51,7 +54,7 @@ public class SourceAnimator : MonoBehaviour
         {
             lerpT = 0f;
         }
-        lerpT += Time.deltaTime;
+        lerpT += Time.deltaTime / lerpLength;
 
         switch (state)
         {
@@ -72,7 +75,7 @@ public class SourceAnimator : MonoBehaviour
 
             case 1: /*Eteint rotate*/
                 currentSpeed = Mathf.Lerp(currentSpeed, lowSpeed, lerpT);
-                emission = Mathf.Lerp(emission, 0, lerpT);
+                emission = Mathf.Lerp(emission, 1, lerpT);
                 pointLight.intensity = Mathf.Lerp(pointLight.intensity, 0, lerpT);
                 floatingT += Time.deltaTime * Mathf.Min(lerpT, 1);
                 if (!Nappe.isPlaying)
@@ -105,8 +108,8 @@ public class SourceAnimator : MonoBehaviour
 
             case 2: /*Allumé rotate*/
                 currentSpeed = Mathf.Lerp(currentSpeed, lowSpeed, lerpT);
-                emission = Mathf.Lerp(emission, 0.5f, lerpT);
-                pointLight.intensity = Mathf.Lerp(pointLight.intensity, 1000, lerpT);
+                emission = Mathf.Lerp(emission, maxEmission, lerpT);
+                pointLight.intensity = Mathf.Lerp(pointLight.intensity, maxIntensity, lerpT);
                 floatingT += Time.deltaTime * Mathf.Min(lerpT, 1);
                 if (!Nappe.isPlaying)
                 {
@@ -138,8 +141,8 @@ public class SourceAnimator : MonoBehaviour
 
             case 3: /*Allumé rotate rotate*/
                 currentSpeed = Mathf.Lerp(currentSpeed, highSpeed, lerpT);
-                emission = Mathf.Lerp(emission, 0.5f, lerpT);
-                pointLight.intensity = Mathf.Lerp(pointLight.intensity, 1000, lerpT);
+                emission = Mathf.Lerp(emission, maxEmission, lerpT);
+                pointLight.intensity = Mathf.Lerp(pointLight.intensity, maxIntensity, lerpT);
                 floatingT += Time.deltaTime * Mathf.Min(lerpT, 1);
                 if (!Nappe.isPlaying)
                 {
@@ -181,7 +184,7 @@ public class SourceAnimator : MonoBehaviour
         prevState = state;
 
         // Emission
-        emissive.material.SetColor("_EmissionColor", emissiveColor * emission);
+        emissive.material.SetColor("_EmissionColor", emissiveColor * Mathf.GammaToLinearSpace(emission));
     }
 #endif
 }
