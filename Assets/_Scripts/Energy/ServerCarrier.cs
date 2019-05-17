@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ServerCarrier : MonoBehaviour
 {
@@ -19,8 +20,11 @@ public class ServerCarrier : MonoBehaviour
     private Camera cam;
 #endif
     public GameObject dataBar;
-    public RectTransform filled;
+    public Image filled;
     public bool draw = false;
+    public Image pastille;
+    public Material pastilleMaterialBleu;
+    public Material pastilleMaterialOrange;
 
 #if SERVER
     private const float RELAYTRANSFERRATE = 2.0f;
@@ -54,8 +58,7 @@ public class ServerCarrier : MonoBehaviour
 #if CLIENT
         if (draw)
         {
-            dataBar.SetActive(true);
-            filled.anchorMax = new Vector2(clientCharge, 1);
+            filled.fillAmount = clientCharge;
         }
 #endif
 #if SERVER
