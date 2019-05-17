@@ -8,20 +8,25 @@ public class AllyNameDisplay : MonoBehaviour
 #if CLIENT
     public CameraController cameraController;
     public Text allyNameText;
-    float baseTextScale;
+    //float baseTextScale;
+    public RectTransform canvasRT;
+    float baseCanvasScale;
     // Start is called before the first frame update
     void Start()
     {
         cameraController = FindObjectOfType<CameraController>();
 
-        baseTextScale = allyNameText.rectTransform.localScale.x;
-        Canvas canvas = this.GetComponent<Canvas>();
-        if (canvas != null)
+        //baseTextScale = allyNameText.rectTransform.localScale.x;
+        
+        canvasRT = this.GetComponent<RectTransform>();
+        if (canvasRT != null)
         {
-            GetComponent<RectTransform>().rotation = Quaternion.Euler(50.0f, -45.0f, 0.0f);
+            canvasRT.rotation = Quaternion.Euler(50.0f, -45.0f, 0.0f);
 
             if (FindObjectOfType<Client>().team == 1 )
-                GetComponent<RectTransform>().rotation = Quaternion.Euler(50.0f, 135.0f, 0.0f);
+                canvasRT.rotation = Quaternion.Euler(50.0f, 135.0f, 0.0f);
+
+            baseCanvasScale = canvasRT.localScale.x;
         }
     }
 
@@ -30,7 +35,9 @@ public class AllyNameDisplay : MonoBehaviour
     {
         //transform.LookAt(transform.position + cameraController.transform.rotation * Vector3.forward, cameraController.transform.rotation * Vector3.up);
 
-        allyNameText.GetComponent<RectTransform>().localScale = new Vector3(baseTextScale * cameraController.zoomFactor, baseTextScale * cameraController.zoomFactor, 1.0f);
+        //allyNameText.GetComponent<RectTransform>().localScale = new Vector3(baseTextScale * cameraController.zoomFactor, baseTextScale * cameraController.zoomFactor, 1.0f);
+
+        canvasRT.localScale = new Vector3(baseCanvasScale * cameraController.zoomFactor, baseCanvasScale * cameraController.zoomFactor, 1.0f);
     }
 #endif
 }

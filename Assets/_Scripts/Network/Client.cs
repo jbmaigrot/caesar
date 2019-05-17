@@ -349,6 +349,8 @@ public class Client : MonoBehaviour
                                         lineRenderer = characters[playerIndex].transform.Find("lineRenderer").GetComponent<LineRenderer>();
                                         lineRenderer.enabled = true;
 
+                                        var carrier = characters[playerIndex].GetComponent<ServerCarrier>();
+
                                         if (team == 0 || team == 1)
                                         {
                                             Color color = new Color(1, 1, 1, 1);
@@ -357,15 +359,20 @@ public class Client : MonoBehaviour
                                             {
                                                 color = new Color(0.961f, 0.51f, 0.365f, 1f);
                                                 minimap.GetComponent<RectTransform>().localEulerAngles = new Vector3(0, 0, -45);
+
+                                                carrier.pastille.material = carrier.pastilleMaterialOrange;
                                             }
                                             else if (team == 1)
                                             {
                                                 color = new Color(0.361f, 0.784f, 0.949f, 1f);
                                                 minimap.GetComponent<RectTransform>().localEulerAngles = new Vector3(0, 0, 135);
-                                            }
 
-                                            characters[playerIndex].GetComponent<ServerCarrier>().draw = true; //data bar
-                                            characters[playerIndex].GetComponent<ServerCarrier>().filled.GetComponent<RawImage>().color = color;
+                                                carrier.pastille.material = carrier.pastilleMaterialBleu;
+                                            }
+                                            
+                                            carrier.dataBar.SetActive(true); //data bar
+                                            carrier.draw = true;
+
                                             //napperon.enabled = true;
                                             //napperon.color = color;
                                             range.enabled = true;
