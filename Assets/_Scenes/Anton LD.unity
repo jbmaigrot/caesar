@@ -6684,7 +6684,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2100442942}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.9999998
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7532,6 +7532,7 @@ GameObject:
   - component: {fileID: 244240630}
   - component: {fileID: 244240628}
   - component: {fileID: 244240631}
+  - component: {fileID: 244240632}
   m_Layer: 0
   m_Name: Client
   m_TagString: Untagged
@@ -7589,6 +7590,20 @@ MonoBehaviour:
     m_RotationOrder: 4
   hackingLoadingSound: {fileID: 8300000, guid: 93654d6f7737c9341b3ee7b1814fb66a, type: 3}
   hackingDeniedSound: {fileID: 8300000, guid: e4ec334d289b94a42976d30c3eb4d898, type: 3}
+  audioSourceForTheHackingSound: {fileID: 244240631}
+  AnnoncementSound:
+  - {fileID: 8300000, guid: 39016be26556d58489b9d1f29186eaca, type: 3}
+  - {fileID: 8300000, guid: 1c77d54a5e50bdd40bf0564b0f32e897, type: 3}
+  - {fileID: 8300000, guid: ee17d2e9ec1f5b8468f8315957a4618d, type: 3}
+  - {fileID: 8300000, guid: 4d5fd43e5202cd245b19c0c49decf859, type: 3}
+  - {fileID: 8300000, guid: 3a99d3dd3cfebdc419a5d625df43c231, type: 3}
+  - {fileID: 8300000, guid: a051222f84528ee498ee7556ea905640, type: 3}
+  - {fileID: 8300000, guid: 74d4832e5bef2b14c9ea6de8c75d3a87, type: 3}
+  - {fileID: 8300000, guid: 99ff5e7cdddabd448b126c502441b556, type: 3}
+  - {fileID: 8300000, guid: 07b7a0692f0bdf840a14fcac6e9266d6, type: 3}
+  - {fileID: 8300000, guid: 7c96b8875424b9144ac03e1eca72da36, type: 3}
+  - {fileID: 8300000, guid: d6c681d4a55a4f748bca1a9acc1d7b31, type: 3}
+  audioSourceForTheAnnoncement: {fileID: 244240632}
   ServerIP: 127.0.0.1
   characters: []
   allyCharacters: []
@@ -7641,6 +7656,102 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 243826930678196324, guid: 265490821becd254989fd0c11698b7d1,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 93654d6f7737c9341b3ee7b1814fb66a, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &244240632
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244240627}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -41291,7 +41402,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1672044607}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99999994
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -46411,6 +46522,7 @@ MonoBehaviour:
   PositionBlueRelay: {fileID: 0}
   RedBatterie: {fileID: 0}
   PositionRedRelay: {fileID: 0}
+  hasSomeoneWin: 0
 --- !u!4 &1915296897
 Transform:
   m_ObjectHideFlags: 0
@@ -46915,7 +47027,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: -0.000030372952}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1959515637

@@ -51,6 +51,7 @@ public class ServerSource : MonoBehaviour
             {
                 isActivated = true;
                 server.AddMessage("THE NEW DATA POOL HAS BEGUN TO FILL.", Vector3.zero);
+                server.NewAnnoncement(2);
             }
             takenFrom = false;
         }
