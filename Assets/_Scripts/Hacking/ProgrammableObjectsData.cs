@@ -391,10 +391,10 @@ public class ProgrammableObjectsData : MonoBehaviour
         {
             for (int i = 0; i < server.characters.Count; i++)
             {
-                if (((int)Vector3.Distance(server.characters[i].position, this.transform.position)) < InventoryConstants.AttractRange && i != charactersIndex)
+                if (((int)Vector3.Distance(server.characters[i].position, this.transform.position)) < InventoryConstants.AttractRange && i != charactersIndex && !this.GetComponent<ServerCharacter>().isStunned)
                 {
                     server.characters[i].GetComponent<ServerCharacter>().isAttracted = true;
-                    server.characters[i].GetComponent<ServerCharacter>().attractDestination = this.transform.position;
+                    server.characters[i].GetComponent<ServerCharacter>().attractDestination = this.transform;
                     server.characters[i].GetComponent<ServerCharacter>().attracttimebeforeend = attracttimebeforeend;
                 }
             }

@@ -24,7 +24,7 @@ public class ServerCharacter : MonoBehaviour
 
     public bool isAttracted = false;
     public float attracttimebeforeend;
-    public Vector3 attractDestination;
+    public Transform attractDestination;
 
     public int isAttractedByData = 0;
     public Vector3 attractByDataDestination;
@@ -95,11 +95,11 @@ public class ServerCharacter : MonoBehaviour
             if (isAttracted)
             {
                 attracttimebeforeend -= Time.deltaTime;
-                if (attracttimebeforeend > 0)
+                if (attracttimebeforeend > 0 && !attractDestination.GetComponent<ServerCharacter>().isStunned)
                 {
-                    if (Vector3.Distance(attractDestination, actualDestination) > 0.2)
+                    if (Vector3.Distance(attractDestination.position, actualDestination) > 0.2)
                     {
-                        actualDestination = attractDestination;
+                        actualDestination = attractDestination.position;
                         setDestinationSuccess = navMeshAgent.SetDestination(actualDestination);
                     }
                 }
