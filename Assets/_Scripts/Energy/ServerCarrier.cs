@@ -26,11 +26,12 @@ public class ServerCarrier : MonoBehaviour
     public Material pastilleMaterialBleu;
     public Material pastilleMaterialOrange;
 
+    public float maxCharge;
+    public float chargeSpeed;
 #if SERVER
     private const float RELAYTRANSFERRATE = 2.0f;
     public float charge = 0;
-    public float maxCharge = 10;
-    public float chargeSpeed = 1;
+    
     //public bool charging = false;
     public ServerCarrier givingTo = null;
     public ServerCarrier takingFrom = null;
