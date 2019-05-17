@@ -306,12 +306,15 @@ MonoBehaviour:
   programmableObjectsContainer: {fileID: 0}
   pos: {x: 0, y: 0}
   size: {x: 0, y: 0}
-  emptyTex: {fileID: 0}
-  fullTex: {fileID: 0}
+  dataBar: {fileID: 0}
+  filled: {fileID: 0}
   draw: 0
-  charge: 0
+  pastille: {fileID: 0}
+  pastilleMaterialBleu: {fileID: 0}
+  pastilleMaterialOrange: {fileID: 0}
   maxCharge: 500
   chargeSpeed: 1
+  charge: 0
   givingTo: {fileID: 0}
   takingFrom: {fileID: 0}
 --- !u!114 &7312932513954447421
@@ -1319,7 +1322,7 @@ PrefabInstance:
     - target: {fileID: 4500087429524261250, guid: 69614799a84ef2b4aaee43790ed6e055,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4619640931388069243, guid: 69614799a84ef2b4aaee43790ed6e055,
         type: 3}
