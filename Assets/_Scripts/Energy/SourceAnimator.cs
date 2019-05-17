@@ -96,7 +96,7 @@ public class SourceAnimator : MonoBehaviour
                 if (!Boop.isPlaying)
                 {
                     timeBoop -= Time.deltaTime;
-                    if (timeBeep < 0)
+                    if (timeBoop < 0)
                     {
                         Boop.clip = BeepBoop[Random.Range(0, BeepBoop.Length)];
                         Boop.Play();
@@ -129,7 +129,7 @@ public class SourceAnimator : MonoBehaviour
                 if (!Boop.isPlaying)
                 {
                     timeBoop -= Time.deltaTime;
-                    if (timeBeep < 0)
+                    if (timeBoop < 0)
                     {
                         Boop.clip = BeepBoop[Random.Range(0, BeepBoop.Length)];
                         Boop.Play();
@@ -162,7 +162,7 @@ public class SourceAnimator : MonoBehaviour
                 if (!Boop.isPlaying)
                 {
                     timeBoop -= Time.deltaTime;
-                    if (timeBeep < 0)
+                    if (timeBoop < 0)
                     {
                         Boop.clip = BeepBoop[Random.Range(0, BeepBoop.Length)];
                         Boop.Play();

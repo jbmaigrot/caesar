@@ -28,15 +28,22 @@ public class ServerBattery : MonoBehaviour
     {
         if (carrier.charge >= carrier.maxCharge)
         {
-            server.Win(team);
-            if(team == 0)
+            if (!server.hasSomeoneWin)
             {
-                server.AddMessage("THE ORANGE TEAM WINS. CONGRATULATION.", Vector3.zero);
+                server.Win(team);
+
+                if (team == 0)
+                {
+                    server.AddMessage("THE ORANGE TEAM WINS. CONGRATULATION.", Vector3.zero);
+                    server.NewAnnoncement(6);
+                }
+                else
+                {
+                    server.AddMessage("THE BLUE TEAM WINS. CONGRATULATION.", Vector3.zero);
+                    server.NewAnnoncement(10);
+                }
             }
-            else
-            {
-                server.AddMessage("THE BLUE TEAM WINS. CONGRATULATION.", Vector3.zero);
-            }
+            
         }
         if(!HasReachFifty && carrier.charge >= carrier.maxCharge / 2.0f)
         {
@@ -44,10 +51,12 @@ public class ServerBattery : MonoBehaviour
             if (team == 0)
             {
                 server.AddMessage("THE ORANGE TEAM'S SERVER IS AT 50%", Vector3.zero);
+                server.NewAnnoncement(4);
             }
             else
             {
                 server.AddMessage("THE BLUE TEAM'S SERVER IS AT 50%", Vector3.zero);
+                server.NewAnnoncement(8);
             }
         }
         if (!HasReachNinety && carrier.charge >= carrier.maxCharge*0.9f)
@@ -56,10 +65,12 @@ public class ServerBattery : MonoBehaviour
             if (team == 0)
             {
                 server.AddMessage("THE ORANGE TEAM'S SERVER IS AT 90%", Vector3.zero);
+                server.NewAnnoncement(5);
             }
             else
             {
                 server.AddMessage("THE BLUE TEAM'S SERVER IS AT 90%", Vector3.zero);
+                server.NewAnnoncement(9);
             }
         }
 

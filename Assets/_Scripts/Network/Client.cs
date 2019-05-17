@@ -20,6 +20,10 @@ public class Client : MonoBehaviour
     public AnimationCurve curveForTheHackingSound = new AnimationCurve();
     public AudioClip hackingLoadingSound;
     public AudioClip hackingDeniedSound;
+    public AudioSource audioSourceForTheHackingSound;
+
+    public AudioClip[] AnnoncementSound;
+    public AudioSource audioSourceForTheAnnoncement;
 #if CLIENT
     public string ServerIP = "127.0.0.1"; //localhost by default
     public IPAddress iPAddress;
@@ -54,7 +58,7 @@ public class Client : MonoBehaviour
 
     public LineRenderer lineRenderer;
 
-    private AudioSource audioSourceForTheHackingSound;
+    
     private float StartingTimeForTheHackingSound;
     private RosaceForHacking rosaceForHacking;
     private RedRosace redRosace;
@@ -72,7 +76,6 @@ public class Client : MonoBehaviour
         inventory[2] = InventoryConstants.Powerpump;
         minimap = FindObjectOfType<Minimap>();
         stunCooldown = FindObjectOfType<StunCooldown>();
-        audioSourceForTheHackingSound = GetComponent<AudioSource>();
         rosaceForHacking = FindObjectOfType<RosaceForHacking>();
         redRosace = FindObjectOfType<RedRosace>();
     }
@@ -263,10 +266,25 @@ public class Client : MonoBehaviour
                                             characters[j].GetComponentInChildren<AllyNameDisplay>().enabled = true;
                                             characters[j].GetComponentInChildren<AllyNameDisplay>().allyNameText.text = new string(playerNameBuffer);
 
+                                            var carrier = characters[j].GetComponent<ServerCarrier>();
+
                                             Color allyColor = new Color(1,1,1);
-                                            if (team == 0) allyColor = new Color(0.961f, 0.51f, 0.365f, 1f);
-                                            else if (team == 1) allyColor = new Color(0.361f, 0.784f, 0.949f, 1f);
+                                            if (team == 0)
+                                            {
+                                                allyColor = new Color(0.961f, 0.51f, 0.365f, 1f);
+
+                                                carrier.pastille.material = carrier.pastilleMaterialOrange;
+                                            }
+                                            else if (team == 1)
+                                            {
+                                                allyColor = new Color(0.361f, 0.784f, 0.949f, 1f);
+
+                                                carrier.pastille.material = carrier.pastilleMaterialBleu;
+                                            }
                                             
+                                            carrier.dataBar.SetActive(true); //data bar
+                                            carrier.draw = true;
+
                                             minimap.AddAlly(characters[j].transform, allyColor);
 
                                             allyCharacter.isKnownAsAlly = true;
@@ -348,8 +366,7 @@ public class Client : MonoBehaviour
 
                                         lineRenderer = characters[playerIndex].transform.Find("lineRenderer").GetComponent<LineRenderer>();
                                         lineRenderer.enabled = true;
-
-                                        var carrier = characters[playerIndex].GetComponent<ServerCarrier>();
+                                        
 
                                         if (team == 0 || team == 1)
                                         {
@@ -359,19 +376,12 @@ public class Client : MonoBehaviour
                                             {
                                                 color = new Color(0.961f, 0.51f, 0.365f, 1f);
                                                 minimap.GetComponent<RectTransform>().localEulerAngles = new Vector3(0, 0, -45);
-
-                                                carrier.pastille.material = carrier.pastilleMaterialOrange;
                                             }
                                             else if (team == 1)
                                             {
                                                 color = new Color(0.361f, 0.784f, 0.949f, 1f);
                                                 minimap.GetComponent<RectTransform>().localEulerAngles = new Vector3(0, 0, 135);
-
-                                                carrier.pastille.material = carrier.pastilleMaterialBleu;
                                             }
-                                            
-                                            carrier.dataBar.SetActive(true); //data bar
-                                            carrier.draw = true;
 
                                             //napperon.enabled = true;
                                             //napperon.color = color;
@@ -492,6 +502,11 @@ public class Client : MonoBehaviour
                         case Constants.Server_WarnInterfaceHacking:
                             hackInterface.SomeoneHackedTheSameObject();
                             //Someone is trying to hack the same object than you.
+                            break;
+
+                        case Constants.Server_SendAnnoncement:
+                            audioSourceForTheAnnoncement.clip = AnnoncementSound[(int)stream.ReadUInt(ref readerCtx)];
+                            audioSourceForTheAnnoncement.Play();
                             break;
 
                         default:

@@ -42,6 +42,7 @@ public class Server : MonoBehaviour
 
     private bool hasSendItsRegard;
 
+    public bool hasSomeoneWin = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -119,6 +120,7 @@ public class Server : MonoBehaviour
         {
             AddMessage("WELCOME TO TONIGHT CEREMONY. GOOD LUCK TO BOTH TEAM AND REMEMBER TO HAVE FUN.", Vector3.zero);
             hasSendItsRegard = true;
+            NewAnnoncement(0);
         }
         //Debug.Log(Mathf.Round(1f / Time.deltaTime)); //Framerate
 
@@ -324,6 +326,7 @@ public class Server : MonoBehaviour
                                 if (!alreadyMoved)
                                 {
                                     AddMessage("THE ORANGE RELAY IS BACK IN ITS SERVER.", Vector3.zero);
+                                    NewAnnoncement(3);
                                     InOutVignette reynolds = new InOutVignette();
                                     reynolds.code = "UseGadget";
                                     reynolds.is_fixed = true;
@@ -345,6 +348,7 @@ public class Server : MonoBehaviour
                                 if (!alreadyMoved)
                                 {
                                     AddMessage("THE BLUE RELAY IS BACK IN ITS SERVER.", Vector3.zero);
+                                    NewAnnoncement(7);
                                     InOutVignette reynolds = new InOutVignette();
                                     reynolds.code = "UseGadget";
                                     reynolds.is_fixed = true;
@@ -924,7 +928,7 @@ public class Server : MonoBehaviour
 
     public void Win(int team)
     {
-
+        hasSomeoneWin = true;
         if (winner == -1)
         {
             winner = team;
@@ -968,6 +972,19 @@ public class Server : MonoBehaviour
         {
             Debug.Log("Could not find requested player transform in the players list. Returning default connection.");
             return default(NetworkConnection);
+        }
+    }
+
+    public void NewAnnoncement (int number)
+    {
+        using (var writer = new DataStreamWriter(1024, Allocator.Temp))
+        {
+            writer.Write(Constants.Server_SendAnnoncement);
+            writer.Write(number);
+            for(int k = 0; k < m_Connections.Length; k++)
+            {
+                m_Driver.Send(m_Connections[k], writer);
+            }
         }
     }
 #endif
