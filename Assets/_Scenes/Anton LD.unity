@@ -6733,8 +6733,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2100442943}
   m_HandleRect: {fileID: 2100442942}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 0.9999999
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8227,7 +8227,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -234.70001}
-  m_SizeDelta: {x: 320, y: 33.8}
+  m_SizeDelta: {x: 320, y: 38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &266541098
 MonoBehaviour:
@@ -27016,8 +27016,6 @@ MonoBehaviour:
   PhilosopherChair: {fileID: 11400000, guid: b56511ddfab31674b9d12b9bca959372, type: 2}
   client: {fileID: 0}
   objectListClient: []
-  objectListServer: []
-  chairListServer: []
 --- !u!4 &1204548349
 Transform:
   m_ObjectHideFlags: 0
@@ -41551,8 +41549,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1672044608}
   m_HandleRect: {fileID: 1672044607}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -46650,9 +46648,6 @@ MonoBehaviour:
     type: 3}
   ListZone: []
   PnjSpawnContainer: {fileID: 1173212602}
-  ChanceToGoToObject: 60
-  MinTimeMoving: 4
-  MaxTimeMoving: 16
 --- !u!114 &1915296896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46666,13 +46661,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabPJ: {fileID: 743243704701644350, guid: c21f5fcd570637847b108d8f0afd414c, type: 3}
-  players: []
-  characters: []
-  BlueBatterie: {fileID: 0}
-  PositionBlueRelay: {fileID: 0}
-  RedBatterie: {fileID: 0}
-  PositionRedRelay: {fileID: 0}
-  hasSomeoneWin: 0
 --- !u!4 &1915296897
 Transform:
   m_ObjectHideFlags: 0
@@ -47177,7 +47165,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.00002174192}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1959515637
@@ -51204,9 +51192,6 @@ MonoBehaviour:
   - {fileID: 1108599582}
   - {fileID: 1339228143}
   - {fileID: 93714592}
-  timeBeforeNewSource: 180
-  startingTime: 0
-  timeBeforeSource: 0
 --- !u!1 &2146770916 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2616238617517912649, guid: d8c37b90643279e42920063f16e4423f,
