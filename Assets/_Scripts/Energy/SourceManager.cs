@@ -36,6 +36,7 @@ public class SourceManager : MonoBehaviour
         if (timeBeforeSource <= 0)
         {
             server.AddMessage("A NEW DATA POOL HAS APPEARED.", Vector3.zero);
+            server.NewAnnoncement(1);
             int i;
             do
             {

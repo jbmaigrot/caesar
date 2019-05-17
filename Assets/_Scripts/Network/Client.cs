@@ -20,6 +20,10 @@ public class Client : MonoBehaviour
     public AnimationCurve curveForTheHackingSound = new AnimationCurve();
     public AudioClip hackingLoadingSound;
     public AudioClip hackingDeniedSound;
+    public AudioSource audioSourceForTheHackingSound;
+
+    public AudioClip[] AnnoncementSound;
+    public AudioSource audioSourceForTheAnnoncement;
 #if CLIENT
     public string ServerIP = "127.0.0.1"; //localhost by default
     public IPAddress iPAddress;
@@ -54,7 +58,7 @@ public class Client : MonoBehaviour
 
     public LineRenderer lineRenderer;
 
-    private AudioSource audioSourceForTheHackingSound;
+    
     private float StartingTimeForTheHackingSound;
     private RosaceForHacking rosaceForHacking;
     private RedRosace redRosace;
@@ -72,7 +76,6 @@ public class Client : MonoBehaviour
         inventory[2] = InventoryConstants.Powerpump;
         minimap = FindObjectOfType<Minimap>();
         stunCooldown = FindObjectOfType<StunCooldown>();
-        audioSourceForTheHackingSound = GetComponent<AudioSource>();
         rosaceForHacking = FindObjectOfType<RosaceForHacking>();
         redRosace = FindObjectOfType<RedRosace>();
     }
@@ -492,6 +495,11 @@ public class Client : MonoBehaviour
                         case Constants.Server_WarnInterfaceHacking:
                             hackInterface.SomeoneHackedTheSameObject();
                             //Someone is trying to hack the same object than you.
+                            break;
+
+                        case Constants.Server_SendAnnoncement:
+                            audioSourceForTheAnnoncement.clip = AnnoncementSound[(int)stream.ReadUInt(ref readerCtx)];
+                            audioSourceForTheAnnoncement.Play();
                             break;
 
                         default:
