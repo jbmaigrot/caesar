@@ -60,6 +60,7 @@ MonoBehaviour:
   state: 0
   lowSpeed: 2
   highSpeed: 5
+  lerpLength: 1
 --- !u!65 &8095622490604339509
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -185,7 +186,10 @@ MonoBehaviour:
   size: {x: 0, y: 0}
   dataBar: {fileID: 0}
   filled: {fileID: 0}
-  draw: 1
+  draw: 0
+  pastille: {fileID: 0}
+  pastilleMaterialBleu: {fileID: 0}
+  pastilleMaterialOrange: {fileID: 0}
   charge: 0
   maxCharge: 10
   chargeSpeed: 1
