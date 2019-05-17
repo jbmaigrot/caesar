@@ -385,30 +385,30 @@ public class Client : MonoBehaviour
                                             Destroy(mapAllyToDestroy);
                                             minimap.allies.RemoveAt(index);
                                         }
+
+                                        cameraController.characterToFollow = characters[playerIndex].gameObject;
+
+                                        if (team == -1)
+                                        {
+                                            if (!knowOrientationOfCam && (playerIndex - FindObjectOfType<ServerGameCreator>().NbPnj) % 2 == 0)//Une manière dirty dirty de récupérer l'équipe dans laquelle on se trouve. A changer
+                                            {
+                                                cameraController.RotateCamera180();
+                                                knowOrientationOfCam = true;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (!knowOrientationOfCam && team == 0)
+                                            {
+                                                cameraController.RotateCamera180();
+                                                knowOrientationOfCam = true;
+                                            }
+                                        }
+
+                                        cameraController.cameraParent.transform.position = characters[playerIndex].transform.position;
                                         isNapperoned = true;
                                     }
                                     
-                                    
-                                    cameraController.characterToFollow = characters[playerIndex].gameObject;
-                                    
-                                    if (team == -1)
-                                    {
-                                        if (!knowOrientationOfCam && (playerIndex - FindObjectOfType<ServerGameCreator>().NbPnj) % 2 == 0)//Une manière dirty dirty de récupérer l'équipe dans laquelle on se trouve. A changer
-                                        {
-                                            cameraController.RotateCamera180();
-                                            knowOrientationOfCam = true;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (!knowOrientationOfCam && team == 0)
-                                        {
-                                            cameraController.RotateCamera180();
-                                            knowOrientationOfCam = true;
-                                        }
-                                    }
-
-                                    cameraController.cameraParent.transform.position = characters[playerIndex].transform.position;
                                 }
 
                                 if((int)stream.ReadUInt(ref readerCtx)==1)//OrangeIsBack so we should delete the orange Relay from the inventory.
