@@ -13,7 +13,7 @@ public class SourceAnimator : MonoBehaviour
     public int state = 0; // 0: off, 1: empty, 2: not empty, 3: giving
     public float lowSpeed = 2;
     public float highSpeed = 5;
-    public float lerpLength = 5;
+    public float lerpLength = 1;
 
 #if CLIENT
     private int prevState = 0;
