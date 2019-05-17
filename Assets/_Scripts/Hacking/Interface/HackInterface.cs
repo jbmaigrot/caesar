@@ -15,7 +15,9 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     /*Variable qui contient la vignette d'input selectionné comme début de flèche. Est modifié par le script TextButtonHackInterface.*/
     static public int SelectedInputButton=-1;
     static public int SelectedOutputButton = -1;
-    
+    static public int SelectedInputDragAndDrop = -1;
+    static public int SelectedOutputDragAndDrop = -1;
+
     /*Variable qui contient l'objet connecté en cours de hacking. Est modifié par le script ProgrammableObjectsData lorsque un objet est hacké.*/
     static public GameObject SelectedGameObject;
 
@@ -55,6 +57,8 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     public Sprite[] ArrowSpriteTable;
 
     public InventoryUI inventoryUI;
+
+    public bool dragAndDropPending;
 
     // Start is called before the first frame update
     void Start()
@@ -105,6 +109,7 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
                 this.gameObject.GetComponent<CanvasGroup>().alpha = 0f;
                 this.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
                 inventoryUI.interfaceInventory.SetActive(true);
+                dragAndDropPending = false;
             }
         }
         if (isReadyToOpen)

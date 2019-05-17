@@ -69,7 +69,9 @@ public class ServerBattery : MonoBehaviour
             {
                 ryan.GetComponent<ServerCharacter>().isAttractedByData = -1;
                 ryan.GetComponent<ServerCharacter>().attractByDataDestination = this.transform.position;
-                ryan.GetComponent<ServerCarrier>().StartGiving(this.GetComponent<ServerCarrier>());
+
+                if (!ryan.GetComponent<ServerCharacter>().isStunned)
+                    ryan.GetComponent<ServerCarrier>().StartGiving(this.GetComponent<ServerCarrier>());
             }
         }
     }

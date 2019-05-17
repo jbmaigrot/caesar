@@ -42,6 +42,7 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
     //Setter isMouseOver
     public void SetIsMouseOver(bool b)
     {
+        isMouseOver = b;
         playerinput.isMouseOverAnOutputTextButtonhackInterface = b;
     }
 
@@ -51,14 +52,63 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
         /*Si la vignette est une vignette d'interface, elle est séléctionné comme point de départ potentiel de la nouvelle connection*/
         if (isInput)
         {
-            HackInterface.SelectedInputButton = numero-1;
-            
+            HackInterface.SelectedInputButton = numero - 1;
         }
         else
         {
             HackInterface.SelectedOutputButton = numero - 1;
         }
+        ComputeSelectedButtons();
+        hackInterface.dragAndDropPending = false;
+    }
 
+    private void Update()
+    {
+        // Début de drag and drop
+        if (Input.GetMouseButtonDown(0) && isMouseOver)
+        {
+            if (isInput)
+            {
+                HackInterface.SelectedInputDragAndDrop = numero - 1;
+            }
+            else
+            {
+                HackInterface.SelectedOutputDragAndDrop = numero - 1;
+            }
+            hackInterface.dragAndDropPending = true;
+        }
+
+        // Fin de drag and drop
+        if (Input.GetMouseButtonUp(0) && isMouseOver && hackInterface.dragAndDropPending)
+        {
+            if (isInput)
+            {
+                HackInterface.SelectedInputButton = numero - 1;
+                HackInterface.SelectedOutputButton = HackInterface.SelectedOutputDragAndDrop;
+            }
+            else
+            {
+                HackInterface.SelectedOutputButton = numero - 1;
+                HackInterface.SelectedInputButton = HackInterface.SelectedInputDragAndDrop;
+            }
+            Debug.Log(HackInterface.SelectedInputButton + "  " + HackInterface.SelectedOutputButton);
+            ComputeSelectedButtons();
+        }
+    }
+
+    private void LateUpdate()
+    {
+        if (Input.GetMouseButtonUp(0))
+        {
+            hackInterface.dragAndDropPending = false;
+            HackInterface.SelectedInputDragAndDrop = - 1;
+            HackInterface.SelectedOutputDragAndDrop = - 1;
+        }
+    }
+
+    //Appelé quand on clique (ou quand on relâche le clic sur un output), après l'update des numéros sélectionnés
+    private void ComputeSelectedButtons()
+    { 
         if(HackInterface.SelectedInputButton > -1 && HackInterface.SelectedInputButton < HackInterface.inputCodes.Count+1  && HackInterface.SelectedOutputButton>-1 && HackInterface.SelectedOutputButton < HackInterface.outputCodes.Count + 1)
         {
             /*Création de la nouvelle connection*/

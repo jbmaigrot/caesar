@@ -64,7 +64,9 @@ public class ServerSource : MonoBehaviour
             {
                 ryan.GetComponent<ServerCharacter>().isAttractedByData = 1;
                 ryan.GetComponent<ServerCharacter>().attractByDataDestination = this.transform.position;
-                ryan.GetComponent<ServerCarrier>().StartTaking(this.GetComponent<ServerCarrier>());
+
+                if (!ryan.GetComponent<ServerCharacter>().isStunned)
+                    ryan.GetComponent<ServerCarrier>().StartTaking(this.GetComponent<ServerCarrier>());
             }
         }
 
