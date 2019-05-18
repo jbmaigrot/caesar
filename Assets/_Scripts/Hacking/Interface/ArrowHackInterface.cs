@@ -18,7 +18,7 @@ public class ArrowHackInterface : MonoBehaviour, IPointerDownHandler
     /*Si on clic sur une arrow, elle est supprimé dans le graphe*/
     public void OnPointerDown(PointerEventData pointerEvent)
     {
-        if(!HackInterface.inputCodes[HackInterface.graph[numero].input].is_fixed|| !HackInterface.outputCodes[HackInterface.graph[numero].output].is_fixed)
+        if(HackInterface.inputCodes.Count<= HackInterface.graph[numero].input || HackInterface.outputCodes.Count <= HackInterface.graph[numero].output || !HackInterface.inputCodes[HackInterface.graph[numero].input].is_fixed|| !HackInterface.outputCodes[HackInterface.graph[numero].output].is_fixed)
         {
             HackInterface.graph.RemoveAt(numero);
             hackinterface.ClicNeg();
