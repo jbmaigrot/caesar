@@ -83,16 +83,25 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
         {
             if (isInput)
             {
-                HackInterface.SelectedInputButton = numero - 1;
-                HackInterface.SelectedOutputButton = HackInterface.SelectedOutputDragAndDrop;
+                if(HackInterface.SelectedInputDragAndDrop != numero - 1)
+                {
+                    HackInterface.SelectedInputButton = numero - 1;
+                    HackInterface.SelectedOutputButton = HackInterface.SelectedOutputDragAndDrop;
+                    ComputeSelectedButtons();
+                }
+                
             }
             else
             {
-                HackInterface.SelectedOutputButton = numero - 1;
-                HackInterface.SelectedInputButton = HackInterface.SelectedInputDragAndDrop;
+                if (HackInterface.SelectedOutputDragAndDrop != numero - 1)
+                {
+                    HackInterface.SelectedOutputButton = numero - 1;
+                    HackInterface.SelectedInputButton = HackInterface.SelectedInputDragAndDrop;
+                    ComputeSelectedButtons();
+                }
             }
             Debug.Log(HackInterface.SelectedInputButton + "  " + HackInterface.SelectedOutputButton);
-            ComputeSelectedButtons();
+            
         }
     }
 
