@@ -9,6 +9,7 @@ public class SourceAnimator : MonoBehaviour
     public AudioSource Boop;
     public float timeBeepBoopMin = 0.05f;
     public float timeBeepBoopMax = 0.5f;
+    public AnimationCurve FadeOutCurve;
 
     public int state = 0; // 0: off, 1: empty, 2: not empty, 3: giving
     public float lowSpeed = 2;
@@ -33,6 +34,7 @@ public class SourceAnimator : MonoBehaviour
     private AudioClip[] BeepBoop;
     private float timeBeep;
     private float timeBoop;
+    private float timeFadeOut;
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +47,7 @@ public class SourceAnimator : MonoBehaviour
         pointLight.intensity = 0;
 
         BeepBoop = Resources.LoadAll<AudioClip>("Beep");
+        timeFadeOut = 0.5f;
     }
 
     // Update is called once per frame
@@ -63,14 +66,26 @@ public class SourceAnimator : MonoBehaviour
                 emission = Mathf.Lerp(emission, 0, lerpT);
                 pointLight.intensity = Mathf.Lerp(pointLight.intensity, 0, lerpT);
                 floatingT += Time.deltaTime * (1 - Mathf.Min(lerpT, 1));
-                if (Nappe.isPlaying)
+                
+                if (timeFadeOut >= FadeOutCurve.keys[FadeOutCurve.length-1].time)
                 {
-                    Nappe.Stop();
+                    timeBeep = Random.Range(timeBeepBoopMin, timeBeepBoopMax);
+                    timeBoop = Random.Range(timeBeepBoopMin, timeBeepBoopMax);
+                    Beep.volume = 0;
+                    Boop.volume = 0;
+                    if (Nappe.isPlaying)
+                    {
+                        Nappe.Stop();
+                    }
                 }
-                timeBeep = Random.Range(timeBeepBoopMin, timeBeepBoopMax);
-                timeBoop = Random.Range(timeBeepBoopMin, timeBeepBoopMax);
-                Beep.Stop();
-                Boop.Stop();
+                else
+                {
+                    timeFadeOut += Time.deltaTime;
+                    Beep.volume = FadeOutCurve.Evaluate(timeFadeOut);
+                    Boop.volume = FadeOutCurve.Evaluate(timeFadeOut);
+                    Nappe.volume = FadeOutCurve.Evaluate(timeFadeOut);
+                }
+                
                 break;
 
             case 1: /*Eteint rotate*/
@@ -78,15 +93,18 @@ public class SourceAnimator : MonoBehaviour
                 emission = Mathf.Lerp(emission, 1, lerpT);
                 pointLight.intensity = Mathf.Lerp(pointLight.intensity, 0, lerpT);
                 floatingT += Time.deltaTime * Mathf.Min(lerpT, 1);
+                timeFadeOut = 0f;
                 if (!Nappe.isPlaying)
                 {
                     Nappe.Play();
+                    Nappe.volume = 1;
                 }
                 if (!Beep.isPlaying)
                 {
                     timeBeep -= Time.deltaTime;
                     if (timeBeep < 0)
                     {
+                        Beep.volume = 1;
                         Beep.clip = BeepBoop[Random.Range(0, BeepBoop.Length)];
                         Beep.Play();
                         timeBeep = Random.Range(timeBeepBoopMin, timeBeepBoopMax);
@@ -98,6 +116,7 @@ public class SourceAnimator : MonoBehaviour
                     timeBoop -= Time.deltaTime;
                     if (timeBoop < 0)
                     {
+                        Boop.volume = 1;
                         Boop.clip = BeepBoop[Random.Range(0, BeepBoop.Length)];
                         Boop.Play();
                         timeBoop = Random.Range(timeBeepBoopMin, timeBeepBoopMax);
@@ -111,15 +130,18 @@ public class SourceAnimator : MonoBehaviour
                 emission = Mathf.Lerp(emission, maxEmission, lerpT);
                 pointLight.intensity = Mathf.Lerp(pointLight.intensity, maxIntensity, lerpT);
                 floatingT += Time.deltaTime * Mathf.Min(lerpT, 1);
+                timeFadeOut = 0f;
                 if (!Nappe.isPlaying)
                 {
                      Nappe.Play();
+                    Nappe.volume = 1;
                 }
                 if (!Beep.isPlaying)
                 {
                     timeBeep -= Time.deltaTime;
                     if (timeBeep < 0)
                     {
+                        Beep.volume = 1;
                         Beep.clip = BeepBoop[Random.Range(0, BeepBoop.Length)];
                         Beep.Play();
                         timeBeep = Random.Range(timeBeepBoopMin, timeBeepBoopMax);
@@ -131,6 +153,7 @@ public class SourceAnimator : MonoBehaviour
                     timeBoop -= Time.deltaTime;
                     if (timeBoop < 0)
                     {
+                        Boop.volume = 1;
                         Boop.clip = BeepBoop[Random.Range(0, BeepBoop.Length)];
                         Boop.Play();
                         timeBoop = Random.Range(timeBeepBoopMin, timeBeepBoopMax);
@@ -144,15 +167,18 @@ public class SourceAnimator : MonoBehaviour
                 emission = Mathf.Lerp(emission, maxEmission, lerpT);
                 pointLight.intensity = Mathf.Lerp(pointLight.intensity, maxIntensity, lerpT);
                 floatingT += Time.deltaTime * Mathf.Min(lerpT, 1);
+                timeFadeOut = 0f;
                 if (!Nappe.isPlaying)
                 {
                     Nappe.Play();
+                    Nappe.volume = 1;
                 }
                 if (!Beep.isPlaying)
                 {
                     timeBeep -= Time.deltaTime;
                     if (timeBeep < 0)
                     {
+                        Beep.volume = 1;
                         Beep.clip = BeepBoop[Random.Range(0, BeepBoop.Length)];
                         Beep.Play();
                         timeBeep = Random.Range(timeBeepBoopMin, timeBeepBoopMax);
@@ -164,6 +190,7 @@ public class SourceAnimator : MonoBehaviour
                     timeBoop -= Time.deltaTime;
                     if (timeBoop < 0)
                     {
+                        Boop.volume = 1;
                         Boop.clip = BeepBoop[Random.Range(0, BeepBoop.Length)];
                         Boop.Play();
                         timeBoop = Random.Range(timeBeepBoopMin, timeBeepBoopMax);

@@ -4366,7 +4366,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2100442943}
   m_HandleRect: {fileID: 2100442942}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -20504,30 +20504,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2001921356, guid: 7de46f8845ed73743b922c3e6f80f812, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 550610077, guid: 7de46f8845ed73743b922c3e6f80f812, type: 3}
-      propertyPath: lerpLength
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7029545666529826866, guid: 7de46f8845ed73743b922c3e6f80f812,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: ef91f94ba49964044b99a3c9a8af99a0, type: 3}
-    - target: {fileID: 7029545666529826866, guid: 7de46f8845ed73743b922c3e6f80f812,
-        type: 3}
-      propertyPath: rolloffMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7029545666529826866, guid: 7de46f8845ed73743b922c3e6f80f812,
-        type: 3}
-      propertyPath: MaxDistance
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 7029545666529826866, guid: 7de46f8845ed73743b922c3e6f80f812,
-        type: 3}
-      propertyPath: MinDistance
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9081130800026024208, guid: 7de46f8845ed73743b922c3e6f80f812,
@@ -39197,7 +39173,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: -0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 0.000030517578}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1959515637

@@ -57,6 +57,30 @@ MonoBehaviour:
   Boop: {fileID: 1209031457246282083}
   timeBeepBoopMin: 0.05
   timeBeepBoopMax: 0.5
+  FadeOutCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -2
+      outSlope: -2
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 0
+      inSlope: -2
+      outSlope: -2
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   state: 0
   lowSpeed: 2
   highSpeed: 5
@@ -190,9 +214,9 @@ MonoBehaviour:
   pastille: {fileID: 0}
   pastilleMaterialBleu: {fileID: 0}
   pastilleMaterialOrange: {fileID: 0}
-  charge: 0
   maxCharge: 10
   chargeSpeed: 1
+  charge: 0
   givingTo: {fileID: 0}
   takingFrom: {fileID: 0}
 --- !u!82 &7029545666529826866
@@ -206,7 +230,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 243526314747401376, guid: 265490821becd254989fd0c11698b7d1,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 2c9e9aefa00fe0f4dbf426a07b34c5c3, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ef91f94ba49964044b99a3c9a8af99a0, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -216,10 +240,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 0
+  MaxDistance: 60
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
