@@ -7,11 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Plant_Holo
+  m_Name: Fall_holo_L
   m_Shader: {fileID: 4800000, guid: b865fb1cd49d4e54684920250d8c6287, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -20,15 +20,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_7BD024E:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: aa75f905f73e3ac4cafab43a0da80a7a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_FA2CDC16:
-        m_Texture: {fileID: 2800000, guid: f6703bd3b90ce2c4ea19fffba67ace59, type: 3}
+        m_Texture: {fileID: 2800000, guid: aa75f905f73e3ac4cafab43a0da80a7a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_FF13A3F1:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 6b4d9b1d6e0ecf9438d3b45d4941eb1e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -86,9 +86,9 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_20DE502E: {r: 0.049276464, g: 0.049276464, b: 0.049276464, a: 0}
-    - Color_3B23A518: {r: 0, g: 1.6235294, b: 2, a: 1}
-    - Color_650E5762: {r: 0.45490193, g: 0.8426905, b: 1.16, a: 0}
+    - Color_20DE502E: {r: 0.02745098, g: 0.02745098, b: 0.02745098, a: 0}
+    - Color_3B23A518: {r: 0.19607843, g: 2, b: 1.5921569, a: 0}
+    - Color_650E5762: {r: 0.43137255, g: 0.99607843, b: 1.372549, a: 0}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
