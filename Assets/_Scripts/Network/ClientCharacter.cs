@@ -18,6 +18,11 @@ public class ClientCharacter : MonoBehaviour
     public AnimationCurve NappeMoveVolume;
     public AnimationCurve NappeMovePitch;
 
+
+    public AudioSource StunAudioSource;
+
+    public AudioSource StunQAudioSource;
+
     private const float MaxSpeed = 5f;
 
 #if CLIENT
@@ -42,6 +47,9 @@ public class ClientCharacter : MonoBehaviour
     private bool isDataEmpty;
 
     private float NappeDataCurveTime;
+    private AudioClip[] StunClip;
+    private AudioClip[] StunQClip;
+    private float DelayBetweenStartOfNextClipAndEndOfPresentOne;
 
     //Start
     private void Start()
@@ -55,9 +63,11 @@ public class ClientCharacter : MonoBehaviour
 
         stunAnimator = this.transform.Find("StunLightning").GetComponent<Animator>();
 
-        
+        StunClip= Resources.LoadAll<AudioClip>("Stun");
+        StunQClip = Resources.LoadAll<AudioClip>("StunQ");
 
         isDataEmpty = true;
+        DelayBetweenStartOfNextClipAndEndOfPresentOne = Random.Range(0.15f,0.25f);
     }
 
     // Update is called once per frame
@@ -109,6 +119,30 @@ public class ClientCharacter : MonoBehaviour
                     Lens.material.SetColor("_EmissionColor", new Color(146f/255f, 214f/255f, 1f,1f));
                     
                 }
+            }
+        }
+
+        if (isTacle)
+        {
+            if (StunAudioSource.isPlaying)
+            {
+                if(!StunQAudioSource.isPlaying && StunAudioSource.clip.length - StunAudioSource.time < DelayBetweenStartOfNextClipAndEndOfPresentOne)
+                {
+                    StunQAudioSource.clip = StunQClip[Random.Range(0,StunQClip.Length)];
+                    StunQAudioSource.Play();
+                    DelayBetweenStartOfNextClipAndEndOfPresentOne = Random.Range(0f, 0.25f);
+                }
+            }
+            else
+            {
+                if (!StunQAudioSource.isPlaying || StunQAudioSource.clip.length - StunQAudioSource.time < DelayBetweenStartOfNextClipAndEndOfPresentOne)
+                {
+                    StunAudioSource.clip = StunClip[Random.Range(0, StunClip.Length)];
+                    StunAudioSource.Play();
+                    DelayBetweenStartOfNextClipAndEndOfPresentOne = Random.Range(0.15f, 0.25f);
+
+                }
+                
             }
         }
     }
