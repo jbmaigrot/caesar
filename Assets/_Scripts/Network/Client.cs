@@ -16,7 +16,9 @@ using UdpCNetworkDriver = Unity.Networking.Transport.BasicNetworkDriver<Unity.Ne
 public class Client : MonoBehaviour
 {
     public GameObject characterPrefab;
-    public int team = -1;// 0 or 1 ; -1 in case we didn't use the lobby -> automatically assigned based on connectionID
+    public GameObject NavMeshModifierRedBase;
+    public GameObject NavMeshModifierBlueBase;
+    public int team = 0;// 0 or 1 ; -1 in case we didn't use the lobby -> automatically assigned based on connectionID
     public AnimationCurve curveForTheHackingSound = new AnimationCurve();
     public AudioClip hackingLoadingSound;
     public AudioClip hackingDeniedSound;
@@ -103,6 +105,14 @@ public class Client : MonoBehaviour
             initialHandshakeDone = true;
             team = clientLobby.team;
             clientLobby.stopUpdate = true;
+        }
+        if(team == 0)
+        {
+            NavMeshModifierBlueBase.layer = 0;
+        }
+        else
+        {
+            NavMeshModifierRedBase.layer = 0;
         }
     }
 
