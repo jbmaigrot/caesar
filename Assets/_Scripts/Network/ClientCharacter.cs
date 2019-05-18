@@ -53,7 +53,8 @@ public class ClientCharacter : MonoBehaviour
     private AudioClip[] StunClip;
     private AudioClip[] StunQClip;
     private float DelayBetweenStartOfNextClipAndEndOfPresentOne;
-    
+    SpriteRenderer lightning;
+
 
     //Start
     private void Start()
@@ -72,6 +73,7 @@ public class ClientCharacter : MonoBehaviour
 
         isDataEmpty = true;
         DelayBetweenStartOfNextClipAndEndOfPresentOne = Random.Range(0.15f,0.25f);
+        lightning = this.transform.Find("StunLightning").GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -126,7 +128,7 @@ public class ClientCharacter : MonoBehaviour
             }
         }
 
-        if (isTacle)
+        if (isTacle&&stunAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime<1)
         {
             if (StunAudioSource.isPlaying)
             {
@@ -148,7 +150,7 @@ public class ClientCharacter : MonoBehaviour
                 }
                 
             }
-            if(TimeBeforeEndOfTacle <= 0.5f)
+            if(stunAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime> 1- (0.5f/ stunAnimator.GetCurrentAnimatorStateInfo(0).length))
             {
                 StunAudioSource.volume = FadeOutCurve.Evaluate(0.5f - TimeBeforeEndOfTacle);
                 StunQAudioSource.volume = FadeOutCurve.Evaluate(0.5f - TimeBeforeEndOfTacle);
@@ -182,7 +184,7 @@ public class ClientCharacter : MonoBehaviour
             if (!isTacle)
             {
                 isTacle = true;
-                SpriteRenderer lightning = this.transform.Find("StunLightning").GetComponent<SpriteRenderer>();
+                
                 lightning.enabled = true;
                 stunAnimator.Play(0);
                 Body.material.SetFloat("_IsShining", 1f);
@@ -197,7 +199,6 @@ public class ClientCharacter : MonoBehaviour
             if (isTacle)
             {
                 isTacle = false;
-                SpriteRenderer lightning = this.transform.Find("StunLightning").GetComponent<SpriteRenderer>();
                 lightning.enabled = false;
                 if (isDataEmpty)
                 {
