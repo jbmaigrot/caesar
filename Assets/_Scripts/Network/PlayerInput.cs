@@ -72,7 +72,6 @@ public class PlayerInput : MonoBehaviour
         {
             if (!EventSystem.current.IsPointerOverGameObject())
             {
-                hackinterface.ClicCancel();
                 HackInterface.SelectedInputButton = -1;
                 HackInterface.SelectedOutputButton = -1;
             }
