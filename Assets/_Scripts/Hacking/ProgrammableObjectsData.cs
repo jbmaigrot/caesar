@@ -209,6 +209,7 @@ public class ProgrammableObjectsData : MonoBehaviour
                 ryan.enabled = true;
             }
             isLightOn = true;
+            GetComponentInChildren<ThisIsATree>().isSoundOn = true;
         }
 
         if (codeoutput == "TurnOffHolo")
@@ -222,6 +223,7 @@ public class ProgrammableObjectsData : MonoBehaviour
                 ryan.enabled = false;
             }
             isLightOn = false;
+            GetComponentInChildren<ThisIsATree>().isSoundOn = false;
         }
         if (codeoutput == "OpenDoor")
         {
