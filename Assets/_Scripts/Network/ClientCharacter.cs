@@ -23,12 +23,15 @@ public class ClientCharacter : MonoBehaviour
 
     public AudioSource StunQAudioSource;
 
+    public AnimationCurve FadeOutCurve;
+
     private const float MaxSpeed = 5f;
 
 #if CLIENT
     public Vector3 speed = new Vector3(0, 0, 0);
     public int number;
     public bool isTacle;
+    public float TimeBeforeEndOfTacle;
 
     private Client client;
     private HackInterface hackinterface;
@@ -50,6 +53,7 @@ public class ClientCharacter : MonoBehaviour
     private AudioClip[] StunClip;
     private AudioClip[] StunQClip;
     private float DelayBetweenStartOfNextClipAndEndOfPresentOne;
+    
 
     //Start
     private void Start()
@@ -144,6 +148,21 @@ public class ClientCharacter : MonoBehaviour
                 }
                 
             }
+            if(TimeBeforeEndOfTacle <= 0.5f)
+            {
+                StunAudioSource.volume = FadeOutCurve.Evaluate(0.5f - TimeBeforeEndOfTacle);
+                StunQAudioSource.volume = FadeOutCurve.Evaluate(0.5f - TimeBeforeEndOfTacle);
+            }
+            else
+            {
+                StunAudioSource.volume = 1;
+                StunQAudioSource.volume = 1;
+            }
+        }
+        else
+        {
+            StunAudioSource.volume = 0;
+            StunQAudioSource.volume = 0;
         }
     }
 

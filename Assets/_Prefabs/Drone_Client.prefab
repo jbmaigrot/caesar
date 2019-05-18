@@ -894,9 +894,34 @@ MonoBehaviour:
     m_RotationOrder: 4
   StunAudioSource: {fileID: 7622836458589305618}
   StunQAudioSource: {fileID: 225742819150474675}
+  FadeOutCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -2
+      outSlope: -2
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 0
+      inSlope: -2
+      outSlope: -2
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   speed: {x: 0, y: 0, z: 0}
   number: 0
   isTacle: 0
+  TimeBeforeEndOfTacle: 0
   mesh: {fileID: 605660811916249656}
   isAlly: 0
   isKnownAsAlly: 0

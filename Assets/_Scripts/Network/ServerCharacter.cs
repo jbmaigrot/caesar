@@ -10,7 +10,7 @@ public class ServerCharacter : MonoBehaviour
     public string playerName;
 
     public bool isStunned;
-    private float timeBeforeEndOfStun;
+    public float timeBeforeEndOfStun;
     private const float TIMEOFSTUN = 15.0f;
 
     public bool canStun;

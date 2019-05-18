@@ -394,7 +394,7 @@ public class Server : MonoBehaviour
                         writer.Write(characters[charactersIndex].rotation.eulerAngles.y);
                         writer.Write(characters[charactersIndex].GetComponent<NavMeshAgent>().velocity.x);
                         writer.Write(characters[charactersIndex].GetComponent<NavMeshAgent>().velocity.z);
-                        writer.Write(characters[charactersIndex].gameObject.GetComponent<ServerCharacter>().isStunned ? 1 : 0);
+                        writer.Write(characters[charactersIndex].gameObject.GetComponent<ServerCharacter>().isStunned ? characters[charactersIndex].gameObject.GetComponent<ServerCharacter>().timeBeforeEndOfStun : 0f);
 
                         if (characters[charactersIndex].GetComponent<ServerCarrier>())
                         {

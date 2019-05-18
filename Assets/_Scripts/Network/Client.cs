@@ -188,7 +188,7 @@ public class Client : MonoBehaviour
                                     float angle = stream.ReadFloat(ref readerCtx);
                                     float xSpeed = stream.ReadFloat(ref readerCtx);
                                     float zSpeed = stream.ReadFloat(ref readerCtx);
-                                    int isStunned = (int)stream.ReadUInt(ref readerCtx);
+                                    float isStunned = stream.ReadFloat(ref readerCtx);
 
                                     if (j >= characters.Count)
                                     {
@@ -203,9 +203,10 @@ public class Client : MonoBehaviour
                                     }
                                     if (characters[j] != null)
                                     {
-                                        if (isStunned == 1)
+                                        if (isStunned > 0)
                                         {
                                             characters[j].GetTacled(true);
+                                            characters[j].TimeBeforeEndOfTacle = isStunned;
                                             if (j == playerIndex)
                                             {
                                                 hackInterface.CloseByStun();
