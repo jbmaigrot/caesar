@@ -16,6 +16,9 @@ public class ServerBattery : MonoBehaviour
     private bool HasReachFifty;
     private bool HasReachNinety;
 #endif
+#if CLIENT
+    private Client client;
+#endif
 
     // Start
     private void Start()
@@ -26,6 +29,9 @@ public class ServerBattery : MonoBehaviour
         objectData = GetComponent<ProgrammableObjectsData>();
         HasReachFifty = false;
         HasReachNinety = false;
+#endif
+#if CLIENT
+        client = FindObjectOfType<Client>();
 #endif
     }
 
@@ -49,6 +55,14 @@ public class ServerBattery : MonoBehaviour
     {
 #if CLIENT
         chargeText.text = Mathf.FloorToInt(carrier.clientCharge * 100) + "%";
+        if (team == 0)
+        {
+            client.scoreOrange = carrier.clientCharge;
+        }
+        else
+        {
+            client.scoreBlue = carrier.clientCharge;
+        }
 #endif
 #if SERVER
         if (carrier.charge >= carrier.maxCharge)
