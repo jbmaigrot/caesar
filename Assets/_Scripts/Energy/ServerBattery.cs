@@ -9,11 +9,14 @@ public class ServerBattery : MonoBehaviour
     public Text chargeText;
     private ServerCarrier carrier;
 #if SERVER
+    public bool receiving = false;
+    public bool doNotResetReceiving = false;
     private Server server;
     private ProgrammableObjectsData objectData;
     private bool HasReachFifty;
     private bool HasReachNinety;
 #endif
+
     // Start
     private void Start()
     {
@@ -25,6 +28,21 @@ public class ServerBattery : MonoBehaviour
         HasReachNinety = false;
 #endif
     }
+
+#if SERVER
+    // Reset receiving (used for animation)
+    private void LateUpdate()
+    {
+        if (doNotResetReceiving)
+        {
+            doNotResetReceiving = false;
+        }
+        else
+        {
+            receiving = false;
+        }
+    }
+#endif
 
     // Update is called once per frame
     void Update()
@@ -41,12 +59,12 @@ public class ServerBattery : MonoBehaviour
 
                 if (team == 0)
                 {
-                    server.AddMessage("THE ORANGE TEAM WINS. CONGRATULATION.", Vector3.zero);
+                    server.AddMessage("THE ORANGE TEAM WINS. CONGRATULATIONS.", Vector3.zero);
                     server.NewAnnoncement(6);
                 }
                 else
                 {
-                    server.AddMessage("THE BLUE TEAM WINS. CONGRATULATION.", Vector3.zero);
+                    server.AddMessage("THE BLUE TEAM WINS. CONGRATULATIONS.", Vector3.zero);
                     server.NewAnnoncement(10);
                 }
             }

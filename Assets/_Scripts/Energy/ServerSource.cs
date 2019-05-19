@@ -11,6 +11,7 @@ public class ServerSource : MonoBehaviour
     public float startingTime = 0;
     public bool isActivated;
     public bool takenFrom = false;
+    public bool doNotResetTakenFrom = false;
     public ServerCarrier carrier;
     private Server server;
     /*private List<ServerCarrier> carriers = new List<ServerCarrier>();
@@ -23,6 +24,19 @@ public class ServerSource : MonoBehaviour
         carrier = GetComponent<ServerCarrier>();
         server = FindObjectOfType<Server>();
         isActivated = false;
+    }
+
+    // reset takenFrom (used for animation)
+    private void LateUpdate()
+    {
+        if (doNotResetTakenFrom)
+        {
+            doNotResetTakenFrom = false;
+        }
+        else
+        {
+            takenFrom = false;
+        }
     }
 
     // Update is called once per frame

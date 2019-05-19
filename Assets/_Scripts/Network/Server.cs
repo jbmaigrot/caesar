@@ -436,6 +436,7 @@ public class Server : MonoBehaviour
                     {
                         // source state
                         ServerSource source = programmableObjectsContainer.objectListServer[j].GetComponent<ServerSource>();
+                        ServerBattery battery = programmableObjectsContainer.objectListServer[j].GetComponent<ServerBattery>();
                         if (source)
                         {
                             if (!source.isActiveAndEnabled)
@@ -453,6 +454,17 @@ public class Server : MonoBehaviour
                             else
                             {
                                 writer.Write(1);
+                            }
+                        }
+                        else if(battery)
+                        {
+                            if (battery.receiving)
+                            {
+                                writer.Write(1);
+                            }
+                            else
+                            {
+                                writer.Write(0);
                             }
                         }
                         else

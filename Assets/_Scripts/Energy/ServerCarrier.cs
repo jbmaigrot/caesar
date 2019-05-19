@@ -103,6 +103,12 @@ public class ServerCarrier : MonoBehaviour
                 float energyToTransfer = Mathf.Min(charge, chargeSpeed * Time.deltaTime);
                 givingTo.charge += energyToTransfer;
                 charge -= energyToTransfer;
+
+                if (givingTo.GetComponent<ServerBattery>())
+                {
+                    givingTo.GetComponent<ServerBattery>().receiving = true;
+                    givingTo.GetComponent<ServerBattery>().doNotResetReceiving = true;
+                }
             }
         }
 
@@ -117,6 +123,12 @@ public class ServerCarrier : MonoBehaviour
                 float energyToTransfer = Mathf.Min(takingFrom.charge, chargeSpeed * Time.deltaTime);
                 takingFrom.charge -= energyToTransfer;
                 charge += energyToTransfer;
+
+                if (takingFrom.GetComponent<ServerSource>())
+                {
+                    takingFrom.GetComponent<ServerSource>().takenFrom = true;
+                    takingFrom.GetComponent<ServerSource>().doNotResetTakenFrom = true;
+                }
             }
         }
 
@@ -167,21 +179,11 @@ public class ServerCarrier : MonoBehaviour
             takingFrom = other;
             //charging = true;
             StopGiving();
-
-            if (takingFrom.GetComponent<ServerSource>())
-            {
-                takingFrom.GetComponent<ServerSource>().takenFrom = true;
-            }
         }
     }
 
     public void StopTaking()
     {
-        if (takingFrom && takingFrom.GetComponent<ServerSource>())
-        {
-            takingFrom.GetComponent<ServerSource>().takenFrom = false;
-        }
-
         takingFrom = null;
         //charging = false;
     }

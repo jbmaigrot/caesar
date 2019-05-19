@@ -343,11 +343,15 @@ public class Client : MonoBehaviour
                                     if (progObject.GetComponentInChildren<DoorScript>() != null)
                                         progObject.GetComponentInChildren<DoorScript>().OnOpen();
                                 }
-                                //Source state (animation)
+                                //Source/Battery state (animation)
                                 int sourceState = (int)stream.ReadUInt(ref readerCtx);
                                 if (progObject.GetComponent<SourceAnimator>())
                                 {
                                     progObject.GetComponent<SourceAnimator>().state = sourceState;
+                                }
+                                else if (progObject.GetComponent<BatteryAnimator>())
+                                {
+                                    progObject.GetComponent<BatteryAnimator>().state = sourceState;
                                 }
                                 // Charge
                                 float chargeRatio = stream.ReadFloat(ref readerCtx);
