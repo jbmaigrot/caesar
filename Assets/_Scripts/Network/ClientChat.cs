@@ -48,6 +48,10 @@ public class ClientChat : MonoBehaviour
         newMessage.GetComponent<RectTransform>().localPosition = new Vector3(10, 50, 0);
         newTextBox.text = message;
         newMessage.GetComponent<ClientMessage>().sourcePosition = pos;
+        if (!this.GetComponent<AudioSource>().isPlaying)
+        {
+            this.GetComponent<AudioSource>().Play();
+        }
     }
 #endif
 }
