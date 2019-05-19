@@ -925,7 +925,7 @@ public class Client : MonoBehaviour
 
     public void LoopMusicNappeA()
     {
-        audioSourceForMusic.PlayOneShot(ClipMusicNappeA[UnityEngine.Random.Range(0, ClipMusicNappeA.Length)]);
+        audioSourceForMusic.PlayOneShot(ClipMusicNappeA[0/*UnityEngine.Random.Range(0, ClipMusicNappeA.Length)*/]);
         timeBeforeNextNappeAPlay += timeForTheMusicLoop;
     }
     
