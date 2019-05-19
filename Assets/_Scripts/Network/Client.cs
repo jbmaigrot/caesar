@@ -27,7 +27,8 @@ public class Client : MonoBehaviour
     public AudioClip[] AnnoncementSound;
     public AudioSource audioSourceForTheAnnoncement;
 
-    public AudioSource audioSourceForMusic;
+    public AudioSource audioSourceForMusicNappeA;
+    public AudioSource audioSourceForMusicNappeB;
     public float timeForTheMusicLoop = 29.333f;
 #if CLIENT
     public string ServerIP = "127.0.0.1"; //localhost by default
@@ -70,6 +71,7 @@ public class Client : MonoBehaviour
 
     private float timeBeforeNextNappeAPlay;
     private AudioClip[] ClipMusicNappeA;
+    private AudioClip[] ClipMusicNappeB;
 
     // Start is called before the first frame update
     void Start()
@@ -121,8 +123,9 @@ public class Client : MonoBehaviour
             NavMeshModifierRedBase.layer = 0;
         }
         ClipMusicNappeA = Resources.LoadAll<AudioClip>("MusicNappeA");
+        ClipMusicNappeB = Resources.LoadAll<AudioClip>("MusicNappeB");
         timeBeforeNextNappeAPlay = 0;
-        LoopMusicNappeA();
+        LoopMusic();
     }
 
     public void OnApplicationQuit()
@@ -148,7 +151,7 @@ public class Client : MonoBehaviour
         timeBeforeNextNappeAPlay -= Time.deltaTime;
         if (timeBeforeNextNappeAPlay <= 0)
         {
-            LoopMusicNappeA();
+            LoopMusic();
         }
     }
 
@@ -927,9 +930,11 @@ public class Client : MonoBehaviour
         }
     }
 
-    public void LoopMusicNappeA()
+    public void LoopMusic()
     {
-        audioSourceForMusic.PlayOneShot(ClipMusicNappeA[0/*UnityEngine.Random.Range(0, ClipMusicNappeA.Length)*/]);
+        int randomClip = UnityEngine.Random.Range(0, ClipMusicNappeA.Length);
+        audioSourceForMusicNappeA.PlayOneShot(ClipMusicNappeA[randomClip]);
+        audioSourceForMusicNappeB.PlayOneShot(ClipMusicNappeB[randomClip]);
         timeBeforeNextNappeAPlay += timeForTheMusicLoop;
     }
     
