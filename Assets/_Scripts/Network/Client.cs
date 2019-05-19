@@ -29,11 +29,15 @@ public class Client : MonoBehaviour
     public AudioSource audioSourceForTheAnnoncement;
 
     public AudioSource audioSourceForMusicNappeA;
+    public AnimationCurve CurveForVolumeOfNappeA;
     public AudioSource audioSourceForMusicNappeB;
+    public AnimationCurve CurveForVolumeOfNappeB;
     public AudioSource audioSourceForMusicNappeC;
+    public AnimationCurve CurveForVolumeOfNappeC;
     public AudioSource audioSourceForMusicNappeD;
+    public AnimationCurve CurveForVolumeOfNappeD;
     public float timeForTheMusicLoop = 29.333f;
-    public AnimationCurve MusicVolumeAgainstSuccessRate;
+    
 #if CLIENT
     public string ServerIP = "127.0.0.1"; //localhost by default
     public IPAddress iPAddress;
@@ -166,18 +170,18 @@ public class Client : MonoBehaviour
 
         if (team == 0)
         {
-            audioSourceForMusicNappeA.volume = MusicVolumeAgainstSuccessRate.Evaluate(scoreOrange);
-            audioSourceForMusicNappeB.volume = MusicVolumeAgainstSuccessRate.Evaluate(scoreOrange);
-            audioSourceForMusicNappeC.volume = MusicVolumeAgainstSuccessRate.Evaluate(scoreOrange);
-            audioSourceForMusicNappeD.volume = MusicVolumeAgainstSuccessRate.Evaluate(scoreOrange);
+            audioSourceForMusicNappeA.volume =  CurveForVolumeOfNappeA.Evaluate(scoreOrange);
+            audioSourceForMusicNappeB.volume = CurveForVolumeOfNappeB.Evaluate(scoreOrange);
+            audioSourceForMusicNappeC.volume = CurveForVolumeOfNappeC.Evaluate(scoreOrange);
+            audioSourceForMusicNappeD.volume = CurveForVolumeOfNappeD.Evaluate(scoreOrange);
         }
         else
         {
 
-            audioSourceForMusicNappeA.volume = MusicVolumeAgainstSuccessRate.Evaluate(scoreBlue);
-            audioSourceForMusicNappeB.volume = MusicVolumeAgainstSuccessRate.Evaluate(scoreBlue);
-            audioSourceForMusicNappeC.volume = MusicVolumeAgainstSuccessRate.Evaluate(scoreBlue);
-            audioSourceForMusicNappeD.volume = MusicVolumeAgainstSuccessRate.Evaluate(scoreBlue);
+            audioSourceForMusicNappeA.volume = CurveForVolumeOfNappeA.Evaluate(scoreBlue);
+            audioSourceForMusicNappeB.volume = CurveForVolumeOfNappeB.Evaluate(scoreBlue);
+            audioSourceForMusicNappeC.volume = CurveForVolumeOfNappeC.Evaluate(scoreBlue);
+            audioSourceForMusicNappeD.volume = CurveForVolumeOfNappeD.Evaluate(scoreBlue);
         }
     }
 
