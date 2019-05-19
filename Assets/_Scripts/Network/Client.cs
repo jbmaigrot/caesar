@@ -147,8 +147,8 @@ public class Client : MonoBehaviour
         baseVolumeNappeB = audioSourceForMusicNappeB.volume;
         baseVolumeNappeC = audioSourceForMusicNappeC.volume;
         baseVolumeNappeD = audioSourceForMusicNappeD.volume;
-        timeBeforeNextNappeAPlay = 0;
-        LoopMusic();
+        timeBeforeNextNappeAPlay = 0.1f;
+        //LoopMusic();
     }
 
     public void OnApplicationQuit()
