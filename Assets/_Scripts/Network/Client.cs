@@ -26,6 +26,9 @@ public class Client : MonoBehaviour
 
     public AudioClip[] AnnoncementSound;
     public AudioSource audioSourceForTheAnnoncement;
+
+    public AudioSource audioSourceForMusic;
+    public float timeForTheMusicLoop = 29.333f;
 #if CLIENT
     public string ServerIP = "127.0.0.1"; //localhost by default
     public IPAddress iPAddress;
@@ -65,6 +68,8 @@ public class Client : MonoBehaviour
     private RosaceForHacking rosaceForHacking;
     private RedRosace redRosace;
 
+    private float timeBeforeNextNappeAPlay;
+    private AudioClip[] ClipMusicNappeA;
 
     // Start is called before the first frame update
     void Start()
@@ -80,6 +85,7 @@ public class Client : MonoBehaviour
         stunCooldown = FindObjectOfType<StunCooldown>();
         rosaceForHacking = FindObjectOfType<RosaceForHacking>();
         redRosace = FindObjectOfType<RedRosace>();
+        
     }
 
     void Awake() { 
@@ -114,6 +120,9 @@ public class Client : MonoBehaviour
         {
             NavMeshModifierRedBase.layer = 0;
         }
+        ClipMusicNappeA = Resources.LoadAll<AudioClip>("MusicNappeA");
+        timeBeforeNextNappeAPlay = 0;
+        LoopMusicNappeA();
     }
 
     public void OnApplicationQuit()
@@ -135,6 +144,11 @@ public class Client : MonoBehaviour
         if (audioSourceForTheHackingSound.isPlaying)
         {
             audioSourceForTheHackingSound.volume = curveForTheHackingSound.Evaluate(audioSourceForTheHackingSound.time - StartingTimeForTheHackingSound);
+        }
+        timeBeforeNextNappeAPlay -= Time.deltaTime;
+        if (timeBeforeNextNappeAPlay <= 0)
+        {
+            LoopMusicNappeA();
         }
     }
 
@@ -909,6 +923,11 @@ public class Client : MonoBehaviour
         }
     }
 
+    public void LoopMusicNappeA()
+    {
+        audioSourceForMusic.PlayOneShot(ClipMusicNappeA[UnityEngine.Random.Range(0, ClipMusicNappeA.Length)]);
+        timeBeforeNextNappeAPlay += timeForTheMusicLoop;
+    }
     
 #endif
 }
