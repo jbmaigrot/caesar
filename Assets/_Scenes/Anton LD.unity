@@ -2521,7 +2521,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: ef91f94ba49964044b99a3c9a8af99a0, type: 3}
+      objectReference: {fileID: 8300000, guid: 79cfa052516864501a69f5681158a3ce, type: 3}
     - target: {fileID: 9081130800026024208, guid: 7de46f8845ed73743b922c3e6f80f812,
         type: 3}
       propertyPath: rolloffMode
@@ -6390,7 +6390,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2100442942}
   m_Direction: 0
   m_Value: 1
-  m_Size: 0.9999999
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7581,27 +7581,54 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.5
-      inSlope: -0.6
-      outSlope: -0.6
+      value: 1
+      inSlope: -1.2111044
+      outSlope: -1.2111044
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.5
-      value: 0.2
-      inSlope: 0.49999994
-      outSlope: 0.49999994
+      time: 0.2
+      value: 0.7577791
+      inSlope: -2.2494838
+      outSlope: -2.2494838
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
+      time: 0.42602077
+      value: 0.4443698
+      inSlope: -5.6963873
+      outSlope: -5.6963873
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.14806135
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5516758
+      value: 0.07801002
+      inSlope: -0.0020872676
+      outSlope: -0.0020872676
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.8
+      value: 0.5035063
+      inSlope: -0.01832367
+      outSlope: -0.01832367
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.52768177
+    - serializedVersion: 3
       time: 1
-      value: 1
-      inSlope: 1.6
-      outSlope: 1.6
+      value: 0
+      inSlope: -2.5175316
+      outSlope: -2.5175316
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -7616,17 +7643,53 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 3.7888956
+      outSlope: 3.7888956
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
+      time: 0.2
+      value: 0.7577791
+      inSlope: -2.2494838
+      outSlope: -2.2494838
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.42602077
+      value: 0.4443698
+      inSlope: -5.6963873
+      outSlope: -5.6963873
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.14806135
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5516758
+      value: 0.07801002
+      inSlope: -0.0020872676
+      outSlope: -0.0020872676
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.8
+      value: 0.5035063
+      inSlope: -0.01832367
+      outSlope: -0.01832367
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.52768177
+    - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -2.5175316
+      outSlope: -2.5175316
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -7648,13 +7711,58 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
+      time: 0.2
       value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
+      inSlope: -0.023828791
+      outSlope: -0.023828791
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.6226415
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.24537176
+      value: 0.31409195
+      inSlope: 2.5899215
+      outSlope: 2.5899215
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
+      outWeight: 0.28875706
+    - serializedVersion: 3
+      time: 0.42602077
+      value: 0.46810865
+      inSlope: 0.023892269
+      outSlope: 0.023892269
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.41356206
+      outWeight: 0.3822834
+    - serializedVersion: 3
+      time: 0.5469456
+      value: 0.57059425
+      inSlope: -0.0020872676
+      outSlope: -0.0020872676
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.80234987
+      value: 0.57175887
+      inSlope: -0.01832367
+      outSlope: -0.01832367
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.52768177
+    - serializedVersion: 3
+      time: 0.9976542
+      value: 0.40653417
+      inSlope: 0.05857082
+      outSlope: 0.05857082
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.5456908
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -7673,13 +7781,58 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
+      time: 0.19764252
       value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
+      inSlope: 0.0073319324
+      outSlope: 0.0073319324
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.43073773
+      value: 0.19856508
+      inSlope: -0.38901722
+      outSlope: -0.38901722
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.27959257
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.6
+      value: 0.26741362
+      inSlope: -0.01648221
+      outSlope: -0.01648221
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0.20979749
+    - serializedVersion: 3
+      time: 0.7952698
+      value: 0.22322693
+      inSlope: -0.01832367
+      outSlope: -0.01832367
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
+      outWeight: 0.52768177
+    - serializedVersion: 3
+      time: 0.88962364
+      value: 0.299016
+      inSlope: 0.00828414
+      outSlope: 0.00828414
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9952698
+      value: 0.222229
+      inSlope: 0.016549977
+      outSlope: 0.016549977
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.95982563
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -7736,7 +7889,7 @@ AudioSource:
   m_GameObject: {fileID: 244240627}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 243826930678196324, guid: 265490821becd254989fd0c11698b7d1,
+  OutputAudioMixerGroup: {fileID: 243526314747401376, guid: 265490821becd254989fd0c11698b7d1,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 93654d6f7737c9341b3ee7b1814fb66a, type: 3}
   m_PlayOnAwake: 0
@@ -7837,7 +7990,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 1c77d54a5e50bdd40bf0564b0f32e897, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -7934,7 +8087,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 114ee6c3f6bc93649a807662b15347cc, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -33815,6 +33968,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7029545666529826866, guid: 7de46f8845ed73743b922c3e6f80f812,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 79cfa052516864501a69f5681158a3ce, type: 3}
     - target: {fileID: 9081130800026024208, guid: 7de46f8845ed73743b922c3e6f80f812,
         type: 3}
       propertyPath: rolloffMode
@@ -38679,7 +38837,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: ef91f94ba49964044b99a3c9a8af99a0, type: 3}
+      objectReference: {fileID: 8300000, guid: 79cfa052516864501a69f5681158a3ce, type: 3}
     - target: {fileID: 9081130800026024208, guid: 7de46f8845ed73743b922c3e6f80f812,
         type: 3}
       propertyPath: rolloffMode
