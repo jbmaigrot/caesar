@@ -7576,6 +7576,39 @@ MonoBehaviour:
   audioSourceForMusicNappeA: {fileID: 244240633}
   audioSourceForMusicNappeB: {fileID: 244240634}
   timeForTheMusicLoop: 29.333
+  MusicVolumeAgainstSuccessRate:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -2
+      outSlope: -2
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   ServerIP: 127.0.0.1
   characters: []
   allyCharacters: []
@@ -7586,6 +7619,8 @@ MonoBehaviour:
   playerIndex: 0
   inventory: 000000000000000000000000
   lineRenderer: {fileID: 0}
+  scoreOrange: 0
+  scoreBlue: 0
 --- !u!4 &244240629
 Transform:
   m_ObjectHideFlags: 0
@@ -53494,6 +53529,11 @@ PrefabInstance:
       propertyPath: chargeText
       value: 
       objectReference: {fileID: 817687682}
+    - target: {fileID: 7592230024749520129, guid: 69300b9b65a17564a9378bc77c6cb177,
+        type: 3}
+      propertyPath: team
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4217746898381845741, guid: 69300b9b65a17564a9378bc77c6cb177,
         type: 3}
       propertyPath: filled
@@ -53638,7 +53678,25 @@ MonoBehaviour:
   timeBeepBoopMax: 0.5
   FadeOutCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -1
+      outSlope: -1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1
+      outSlope: -1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4

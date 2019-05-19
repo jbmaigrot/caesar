@@ -19,6 +19,7 @@ public class Client : MonoBehaviour
     public GameObject NavMeshModifierRedBase;
     public GameObject NavMeshModifierBlueBase;
     public int team = 0;// 0 or 1 ; -1 in case we didn't use the lobby -> automatically assigned based on connectionID
+
     public AnimationCurve curveForTheHackingSound = new AnimationCurve();
     public AudioClip hackingLoadingSound;
     public AudioClip hackingDeniedSound;
@@ -30,6 +31,7 @@ public class Client : MonoBehaviour
     public AudioSource audioSourceForMusicNappeA;
     public AudioSource audioSourceForMusicNappeB;
     public float timeForTheMusicLoop = 29.333f;
+    public AnimationCurve MusicVolumeAgainstSuccessRate;
 #if CLIENT
     public string ServerIP = "127.0.0.1"; //localhost by default
     public IPAddress iPAddress;
@@ -64,6 +66,8 @@ public class Client : MonoBehaviour
 
     public LineRenderer lineRenderer;
 
+    public float scoreOrange;
+    public float scoreBlue;
     
     private float StartingTimeForTheHackingSound;
     private RosaceForHacking rosaceForHacking;
@@ -152,6 +156,18 @@ public class Client : MonoBehaviour
         if (timeBeforeNextNappeAPlay <= 0)
         {
             LoopMusic();
+        }
+
+        if (team == 0)
+        {
+            audioSourceForMusicNappeA.volume = MusicVolumeAgainstSuccessRate.Evaluate(scoreOrange);
+            audioSourceForMusicNappeB.volume = MusicVolumeAgainstSuccessRate.Evaluate(scoreOrange);
+        }
+        else
+        {
+
+            audioSourceForMusicNappeA.volume = MusicVolumeAgainstSuccessRate.Evaluate(scoreBlue);
+            audioSourceForMusicNappeB.volume = MusicVolumeAgainstSuccessRate.Evaluate(scoreBlue);
         }
     }
 
