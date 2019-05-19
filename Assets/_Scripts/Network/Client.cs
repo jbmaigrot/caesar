@@ -85,6 +85,8 @@ public class Client : MonoBehaviour
     private AudioClip[] ClipMusicNappeC;
     private AudioClip[] ClipMusicNappeD;
 
+    private float timeValueDebugMusic;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -962,7 +964,8 @@ public class Client : MonoBehaviour
 
     public void LoopMusic()
     {
-        Debug.Log("This is the time of a new music clip");
+        Debug.Log("This is the time of a new music clip" + (Time.time-timeValueDebugMusic));
+        timeValueDebugMusic = Time.time;
         int randomClip = UnityEngine.Random.Range(0, ClipMusicNappeA.Length);
         audioSourceForMusicNappeA.PlayOneShot(ClipMusicNappeA[randomClip]);
         audioSourceForMusicNappeB.PlayOneShot(ClipMusicNappeB[randomClip]);
