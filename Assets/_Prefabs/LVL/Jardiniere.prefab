@@ -3403,8 +3403,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Beep: {fileID: 7498944733323439967}
-  timeBeepBoopMin: 0.05
-  timeBeepBoopMax: 0.5
+  timeBeepBoopMin: 2
+  timeBeepBoopMax: 3
   FadeOutCurve:
     serializedVersion: 2
     m_Curve:
@@ -3454,7 +3454,7 @@ AudioSource:
   MinDistance: 0
   MaxDistance: 10
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -3468,17 +3468,35 @@ AudioSource:
       outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      time: 0.16974035
+      value: 0.9967029
+      inSlope: -0.1127928
+      outSlope: -0.520842
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.543747
+      outWeight: 1
+    - serializedVersion: 3
+      time: 0.39478695
+      value: 0.67062366
+      inSlope: -2.7321475
+      outSlope: -2.7321475
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.33333334
+      outWeight: 0.15385704
+    - serializedVersion: 3
+      time: 1
+      value: 0.0059509277
+      inSlope: -1.7933928
+      outSlope: -0.15360361
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.24651407
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -5482,16 +5500,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1911777458}
     m_Modifications:
-    - target: {fileID: 4500087429524261250, guid: 69614799a84ef2b4aaee43790ed6e055,
-        type: 3}
-      propertyPath: m_Name
-      value: Blue marker
-      objectReference: {fileID: 0}
-    - target: {fileID: 4500087429524261250, guid: 69614799a84ef2b4aaee43790ed6e055,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4619640931388069243, guid: 69614799a84ef2b4aaee43790ed6e055,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5545,6 +5553,16 @@ PrefabInstance:
     - target: {fileID: 4619640931388069243, guid: 69614799a84ef2b4aaee43790ed6e055,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4500087429524261250, guid: 69614799a84ef2b4aaee43790ed6e055,
+        type: 3}
+      propertyPath: m_Name
+      value: Blue marker
+      objectReference: {fileID: 0}
+    - target: {fileID: 4500087429524261250, guid: 69614799a84ef2b4aaee43790ed6e055,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2576408723378475382, guid: 69614799a84ef2b4aaee43790ed6e055,
@@ -5613,16 +5631,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1911777458}
     m_Modifications:
-    - target: {fileID: 4500087429524261250, guid: 69614799a84ef2b4aaee43790ed6e055,
-        type: 3}
-      propertyPath: m_Name
-      value: Orange marker
-      objectReference: {fileID: 0}
-    - target: {fileID: 4500087429524261250, guid: 69614799a84ef2b4aaee43790ed6e055,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4619640931388069243, guid: 69614799a84ef2b4aaee43790ed6e055,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5676,6 +5684,16 @@ PrefabInstance:
     - target: {fileID: 4619640931388069243, guid: 69614799a84ef2b4aaee43790ed6e055,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4500087429524261250, guid: 69614799a84ef2b4aaee43790ed6e055,
+        type: 3}
+      propertyPath: m_Name
+      value: Orange marker
+      objectReference: {fileID: 0}
+    - target: {fileID: 4500087429524261250, guid: 69614799a84ef2b4aaee43790ed6e055,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
