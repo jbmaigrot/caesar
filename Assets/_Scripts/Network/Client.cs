@@ -30,6 +30,8 @@ public class Client : MonoBehaviour
 
     public AudioSource audioSourceForMusicNappeA;
     public AudioSource audioSourceForMusicNappeB;
+    public AudioSource audioSourceForMusicNappeC;
+    public AudioSource audioSourceForMusicNappeD;
     public float timeForTheMusicLoop = 29.333f;
     public AnimationCurve MusicVolumeAgainstSuccessRate;
 #if CLIENT
@@ -76,6 +78,8 @@ public class Client : MonoBehaviour
     private float timeBeforeNextNappeAPlay;
     private AudioClip[] ClipMusicNappeA;
     private AudioClip[] ClipMusicNappeB;
+    private AudioClip[] ClipMusicNappeC;
+    private AudioClip[] ClipMusicNappeD;
 
     // Start is called before the first frame update
     void Start()
@@ -128,6 +132,8 @@ public class Client : MonoBehaviour
         }
         ClipMusicNappeA = Resources.LoadAll<AudioClip>("MusicNappeA");
         ClipMusicNappeB = Resources.LoadAll<AudioClip>("MusicNappeB");
+        ClipMusicNappeC = Resources.LoadAll<AudioClip>("MusicNappeC");
+        ClipMusicNappeD = Resources.LoadAll<AudioClip>("MusicNappeD");
         timeBeforeNextNappeAPlay = 0;
         LoopMusic();
     }
@@ -162,12 +168,16 @@ public class Client : MonoBehaviour
         {
             audioSourceForMusicNappeA.volume = MusicVolumeAgainstSuccessRate.Evaluate(scoreOrange);
             audioSourceForMusicNappeB.volume = MusicVolumeAgainstSuccessRate.Evaluate(scoreOrange);
+            audioSourceForMusicNappeC.volume = MusicVolumeAgainstSuccessRate.Evaluate(scoreOrange);
+            audioSourceForMusicNappeD.volume = MusicVolumeAgainstSuccessRate.Evaluate(scoreOrange);
         }
         else
         {
 
             audioSourceForMusicNappeA.volume = MusicVolumeAgainstSuccessRate.Evaluate(scoreBlue);
             audioSourceForMusicNappeB.volume = MusicVolumeAgainstSuccessRate.Evaluate(scoreBlue);
+            audioSourceForMusicNappeC.volume = MusicVolumeAgainstSuccessRate.Evaluate(scoreBlue);
+            audioSourceForMusicNappeD.volume = MusicVolumeAgainstSuccessRate.Evaluate(scoreBlue);
         }
     }
 
@@ -951,6 +961,8 @@ public class Client : MonoBehaviour
         int randomClip = UnityEngine.Random.Range(0, ClipMusicNappeA.Length);
         audioSourceForMusicNappeA.PlayOneShot(ClipMusicNappeA[randomClip]);
         audioSourceForMusicNappeB.PlayOneShot(ClipMusicNappeB[randomClip]);
+        audioSourceForMusicNappeC.PlayOneShot(ClipMusicNappeC[randomClip]);
+        audioSourceForMusicNappeD.PlayOneShot(ClipMusicNappeD[randomClip]);
         timeBeforeNextNappeAPlay += timeForTheMusicLoop;
     }
     
