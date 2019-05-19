@@ -204,12 +204,12 @@ public class ProgrammableObjectsData : MonoBehaviour
             {
                 GetComponentInChildren<Light>().enabled = true;
             }            
-            foreach(MeshRenderer ryan in GetComponentInChildren<ThisIsATree>().GetComponentsInChildren<MeshRenderer>())
+            foreach(MeshRenderer ryan in GetComponentInChildren<ThisIsATree>(false).GetComponentsInChildren<MeshRenderer>())
             {
                 ryan.enabled = true;
             }
             isLightOn = true;
-            GetComponentInChildren<ThisIsATree>().isSoundOn = true;
+            GetComponentInChildren<ThisIsATree>(false).isSoundOn = true;
         }
 
         if (codeoutput == "TurnOffHolo")
@@ -218,12 +218,12 @@ public class ProgrammableObjectsData : MonoBehaviour
             {
                 GetComponentInChildren<Light>().enabled = false;
             }
-            foreach (MeshRenderer ryan in GetComponentInChildren<ThisIsATree>().GetComponentsInChildren<MeshRenderer>())
+            foreach (MeshRenderer ryan in GetComponentInChildren<ThisIsATree>(false).GetComponentsInChildren<MeshRenderer>())
             {
                 ryan.enabled = false;
             }
             isLightOn = false;
-            GetComponentInChildren<ThisIsATree>().isSoundOn = false;
+            GetComponentInChildren<ThisIsATree>(false).isSoundOn = false;
         }
         if (codeoutput == "OpenDoor")
         {
