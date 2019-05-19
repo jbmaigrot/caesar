@@ -1614,8 +1614,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Beep: {fileID: 1622767683294422840}
-  timeBeepBoopMin: 0.05
-  timeBeepBoopMax: 0.5
+  timeBeepBoopMin: 1
+  timeBeepBoopMax: 2
   FadeOutCurve:
     serializedVersion: 2
     m_Curve:
@@ -1663,9 +1663,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0
-  MaxDistance: 10
+  MaxDistance: 6
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1679,17 +1679,35 @@ AudioSource:
       outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      time: 0.16974035
+      value: 0.9967029
+      inSlope: -0.1127928
+      outSlope: -0.520842
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.543747
+      outWeight: 1
+    - serializedVersion: 3
+      time: 0.39478695
+      value: 0.67062366
+      inSlope: -2.7321475
+      outSlope: -2.7321475
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.33333334
+      outWeight: 0.15385704
+    - serializedVersion: 3
+      time: 1
+      value: 0.0059509277
+      inSlope: -1.7933928
+      outSlope: -0.15360361
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.24651407
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
