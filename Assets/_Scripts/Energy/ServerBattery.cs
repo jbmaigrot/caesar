@@ -1,31 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class ServerBattery : MonoBehaviour
 {
-#if SERVER
     public int team = 0;
+    public Text chargeText;
     private ServerCarrier carrier;
+#if SERVER
     private Server server;
     private ProgrammableObjectsData objectData;
     private bool HasReachFifty;
     private bool HasReachNinety;
-
+#endif
     // Start
     private void Start()
     {
         carrier = GetComponent<ServerCarrier>();
+#if SERVER
         server = FindObjectOfType<Server>();
         objectData = GetComponent<ProgrammableObjectsData>();
         HasReachFifty = false;
         HasReachNinety = false;
+#endif
     }
 
     // Update is called once per frame
     void Update()
     {
+#if CLIENT
+        chargeText.text = Mathf.FloorToInt(carrier.clientCharge * 100) + "%";
+#endif
+#if SERVER
         if (carrier.charge >= carrier.maxCharge)
         {
             if (!server.hasSomeoneWin)
@@ -130,6 +137,6 @@ public class ServerBattery : MonoBehaviour
             objectData.RedBatterie.GetComponent<ProgrammableObjectsData>().outputCodes.Add(gosling);
             carrier.charge += toTransfer;
         }
-    }
 #endif
+    }
 }
