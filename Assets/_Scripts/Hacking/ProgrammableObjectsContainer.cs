@@ -33,7 +33,6 @@ public class ProgrammableObjectsContainer : MonoBehaviour
             objectListServer.Add(ryan);
             if (ryan.gameObject.name.Contains("Armchair"))
             {
-                Debug.Log("its a chair");
                 chairListServer.Add(ryan);
             }
 #endif
@@ -44,7 +43,6 @@ public class ProgrammableObjectsContainer : MonoBehaviour
         float randScore;
         foreach (ProgrammableObjectsData ryan in chairListServer)
         {
-            Debug.Log("a true chair");
             randScore = Random.Range(0f, 1f);
             if (randScore > bestScore)
             {
