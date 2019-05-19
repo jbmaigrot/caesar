@@ -962,6 +962,7 @@ public class Client : MonoBehaviour
 
     public void LoopMusic()
     {
+        Debug.Log("This is the time of a new music clip");
         int randomClip = UnityEngine.Random.Range(0, ClipMusicNappeA.Length);
         audioSourceForMusicNappeA.PlayOneShot(ClipMusicNappeA[randomClip]);
         audioSourceForMusicNappeB.PlayOneShot(ClipMusicNappeB[randomClip]);
