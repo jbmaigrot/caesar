@@ -81,16 +81,16 @@ public class ClientCharacter : MonoBehaviour
     {
         NappeMoveAudioSource.volume = NappeMoveVolume.Evaluate(speed.magnitude / MaxSpeed);
         NappeMoveAudioSource.pitch = NappeMovePitch.Evaluate(speed.magnitude / MaxSpeed);
-
+        /*
         if (client.characters[client.playerIndex] == this)
         {
             NappeDataCurveTime = (NappeDataCurveTime + Time.deltaTime * (this.GetComponent<ServerCarrier>().clientCharge < 0.05 ? NappeDataMinCurveSpeed  : this.GetComponent<ServerCarrier>().clientCharge < 0.95 ? NappeDataMedCurveSpeed : NappeDataMaxCurveSpeed)) % 1f;
             NappeDataAudioSource.volume = NappeDataVolume.Evaluate(NappeDataCurveTime);
         }
         else
-        {
+        {*/
             NappeDataAudioSource.volume = 0;
-        }
+        /*}*/
         
 
         transform.position = transform.position + speed * Time.deltaTime;
