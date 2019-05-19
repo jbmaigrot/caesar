@@ -84,7 +84,10 @@ public class Client : MonoBehaviour
     private AudioClip[] ClipMusicNappeB;
     private AudioClip[] ClipMusicNappeC;
     private AudioClip[] ClipMusicNappeD;
-
+    private float baseVolumeNappeA;
+    private float baseVolumeNappeB;
+    private float baseVolumeNappeC;
+    private float baseVolumeNappeD;
     private float timeValueDebugMusic;
 
     // Start is called before the first frame update
@@ -140,6 +143,10 @@ public class Client : MonoBehaviour
         ClipMusicNappeB = Resources.LoadAll<AudioClip>("MusicNappeB");
         ClipMusicNappeC = Resources.LoadAll<AudioClip>("MusicNappeC");
         ClipMusicNappeD = Resources.LoadAll<AudioClip>("MusicNappeD");
+        baseVolumeNappeA = audioSourceForMusicNappeA.volume;
+        baseVolumeNappeB = audioSourceForMusicNappeB.volume;
+        baseVolumeNappeC = audioSourceForMusicNappeC.volume;
+        baseVolumeNappeD = audioSourceForMusicNappeD.volume;
         timeBeforeNextNappeAPlay = 0;
         LoopMusic();
     }
@@ -172,18 +179,18 @@ public class Client : MonoBehaviour
 
         if (team == 0)
         {
-            audioSourceForMusicNappeA.volume =  CurveForVolumeOfNappeA.Evaluate(scoreOrange);
-            audioSourceForMusicNappeB.volume = CurveForVolumeOfNappeB.Evaluate(scoreOrange);
-            audioSourceForMusicNappeC.volume = CurveForVolumeOfNappeC.Evaluate(scoreOrange);
-            audioSourceForMusicNappeD.volume = CurveForVolumeOfNappeD.Evaluate(scoreOrange);
+            audioSourceForMusicNappeA.volume =  CurveForVolumeOfNappeA.Evaluate(scoreOrange)*baseVolumeNappeA;
+            audioSourceForMusicNappeB.volume = CurveForVolumeOfNappeB.Evaluate(scoreOrange) * baseVolumeNappeB;
+            audioSourceForMusicNappeC.volume = CurveForVolumeOfNappeC.Evaluate(scoreOrange) * baseVolumeNappeC;
+            audioSourceForMusicNappeD.volume = CurveForVolumeOfNappeD.Evaluate(scoreOrange) * baseVolumeNappeD;
         }
         else
         {
 
-            audioSourceForMusicNappeA.volume = CurveForVolumeOfNappeA.Evaluate(scoreBlue);
-            audioSourceForMusicNappeB.volume = CurveForVolumeOfNappeB.Evaluate(scoreBlue);
-            audioSourceForMusicNappeC.volume = CurveForVolumeOfNappeC.Evaluate(scoreBlue);
-            audioSourceForMusicNappeD.volume = CurveForVolumeOfNappeD.Evaluate(scoreBlue);
+            audioSourceForMusicNappeA.volume = CurveForVolumeOfNappeA.Evaluate(scoreBlue) * baseVolumeNappeA;
+            audioSourceForMusicNappeB.volume = CurveForVolumeOfNappeB.Evaluate(scoreBlue) * baseVolumeNappeB;
+            audioSourceForMusicNappeC.volume = CurveForVolumeOfNappeC.Evaluate(scoreBlue) * baseVolumeNappeC;
+            audioSourceForMusicNappeD.volume = CurveForVolumeOfNappeD.Evaluate(scoreBlue) * baseVolumeNappeD;
         }
     }
 
