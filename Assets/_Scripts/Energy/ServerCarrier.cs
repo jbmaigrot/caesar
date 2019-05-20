@@ -86,6 +86,7 @@ public class ServerCarrier : MonoBehaviour
                 objectData.OnInput("OnEmpty");
                 isEmpty = true;
             }
+            StopGiving();
         }
         else
         {

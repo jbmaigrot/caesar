@@ -5,6 +5,12 @@ using UnityEngine;
 public class ProgrammableObjectsContainer : MonoBehaviour
 {
     public ProgrammableObjectsScriptable PhilosopherChair;
+    public AnimationCurve GivingDataVolumeWindowCurve;
+    public AnimationCurve GivingDataPitchWindowCurve;
+    public AnimationCurve GivingDataSpeedCurve;
+    public AnimationCurve TakingDataVolumeWindowCurve;
+    public AnimationCurve TakingDataPitchWindowCurve;
+    public AnimationCurve TakingDataSpeedCurve;
 #if CLIENT
     public Client client;
     public List<ProgrammableObjectsData> objectListClient;

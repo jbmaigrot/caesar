@@ -428,8 +428,12 @@ public class Client : MonoBehaviour
                                 type = stream.ReadUInt(ref readerCtx); //Should be Constants.Server_SnapshotEnd (need to be removed from the stream)
 
                                 playerIndex = (int)stream.ReadUInt(ref readerCtx);
+                                int isThePlayerGiving = (int)stream.ReadUInt(ref readerCtx);
+                                int isThePlayerTaking = (int)stream.ReadUInt(ref readerCtx);
                                 if (playerIndex < characters.Count)
                                 {
+                                    characters[playerIndex].GetComponent<ProgrammableObjectsData>().isGivingManually = isThePlayerGiving == 1 ? true : false;
+                                    characters[playerIndex].GetComponent<ProgrammableObjectsData>().isTakingManually = isThePlayerTaking == 1 ? true : false;
                                     if (!isNapperoned)
                                     {
                                         //SpriteRenderer napperon = characters[playerIndex].transform.Find("napperon").GetComponent<SpriteRenderer>();

@@ -509,7 +509,8 @@ public class Server : MonoBehaviour
 
                     //writer.Write(characters.IndexOf(players[i]));
                     writer.Write(players[i].GetComponent<ProgrammableObjectsData>().charactersIndex); //index of the player in the character list
-
+                    writer.Write(players[i].GetComponent<ServerCarrier>().givingTo == null ? 0 : 1);
+                    writer.Write(players[i].GetComponent<ServerCarrier>().takingFrom == null ? 0 : 1);
                     if (OrangeIsBack)
                     {
                         writer.Write(1);

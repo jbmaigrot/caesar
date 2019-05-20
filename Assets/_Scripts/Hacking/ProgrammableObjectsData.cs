@@ -38,6 +38,15 @@ public class ProgrammableObjectsData : MonoBehaviour
 
     public GameObject RedTrail;
     public GameObject BlueTrail;
+    public bool isGivingManually = false;
+    public bool isTakingManually = false;
+
+    private bool isGiving;
+    private float timeIsGiving;
+    private bool isTaking;
+    private float timeIsTaking;
+
+    private float timeInSoundCurve;
 #endif
 
 #if SERVER
@@ -117,6 +126,25 @@ public class ProgrammableObjectsData : MonoBehaviour
         hackInterface = FindObjectOfType<HackInterface>();
         isWaitingHack = false;
         rosaceForHacking = FindObjectOfType<RosaceForHacking>();
+        RedTrail.SetActive(true);
+        if(RedBatterie == this.transform)
+        {
+            RedTrail.GetComponent<ParticleSystem>().Play();
+        }
+        else
+        {
+            RedTrail.GetComponent<ParticleSystem>().Stop();
+        }
+        BlueTrail.SetActive(true);
+        if (BlueBatterie == this.transform)
+        {
+            BlueTrail.GetComponent<ParticleSystem>().Play();
+        }
+        else
+        {
+            BlueTrail.GetComponent<ParticleSystem>().Stop();
+        }
+
 #endif
         startIsOver = true;
     }
@@ -380,14 +408,74 @@ public class ProgrammableObjectsData : MonoBehaviour
         }
 #endif
 #if CLIENT
-        if (isWaitingHack)
+        
+        
+
+        if (isGiving)
         {
-            /*this.GetComponentInChildren<MeshRenderer>().material.color = Color.green;*/
+            if (isTaking)
+            {
+                if (!isTakingManually)
+                {
+                    StopTakingSound();
+                }
+                else
+                {
+                    timeIsTaking += Time.deltaTime;
+                }
+            }
+            else
+            {
+                if (isTakingManually)
+                {
+                    StartTakingSound(!client.characters[client.playerIndex] == this.GetComponent<ClientCharacter>());
+                }
+            }
+
+            if (!isGivingManually && !sendingToBlueClient && !sendingToRedClient)
+            {
+                StopGivingSound();
+            }
+            else
+            {
+                timeIsGiving += Time.deltaTime;
+                timeInSoundCurve = (timeInSoundCurve + Time.deltaTime * objectsContainer.GivingDataSpeedCurve.Evaluate(timeIsGiving)) % 1f;
+                RedTrail.GetComponent<AudioSource>().volume=objectsContainer.GivingDataVolumeWindowCurve.Evaluate(timeInSoundCurve);
+                RedTrail.GetComponent<AudioSource>().pitch = objectsContainer.GivingDataPitchWindowCurve.Evaluate(timeInSoundCurve);
+            }
+
+            
         }
         else
         {
-            /*this.GetComponentInChildren<MeshRenderer>().material.color = Color.white;*/
+            if (isGivingManually || sendingToBlueClient || sendingToRedClient)
+            {
+                StartGivingSound(!client.characters[client.playerIndex] == this.GetComponent<ClientCharacter>());
+            }
+
+            if (isTaking)
+            {
+                if (!isTakingManually)
+                {
+                    StopTakingSound();
+                }
+                else
+                {
+                    timeIsTaking += Time.deltaTime;
+                    timeInSoundCurve = (timeInSoundCurve + Time.deltaTime * objectsContainer.TakingDataSpeedCurve.Evaluate(timeIsTaking)) % 1f;
+                    RedTrail.GetComponent<AudioSource>().volume = objectsContainer.TakingDataVolumeWindowCurve.Evaluate(timeInSoundCurve);
+                    RedTrail.GetComponent<AudioSource>().pitch = objectsContainer.TakingDataPitchWindowCurve.Evaluate(timeInSoundCurve);
+                }
+            }
+            else
+            {
+                if (isTakingManually)
+                {
+                    StartTakingSound(!client.characters[client.playerIndex] == this.GetComponent<ClientCharacter>());
+                }
+            }
         }
+
 #endif
     }
 #if SERVER
@@ -435,6 +523,68 @@ public class ProgrammableObjectsData : MonoBehaviour
 #endif
 
 #if CLIENT
+    public void StopGivingSound()
+    {
+        isGiving = false;
+        timeInSoundCurve = 0;
+        if (!isTaking)
+        {
+            RedTrail.GetComponent<AudioSource>().Stop();
+        }
+    }
+
+    public void StartGivingSound(bool Spatialized)
+    {
+        Debug.Log("HeyHeyLeSonDuGiving");
+        isGiving = true;
+        if (!RedTrail.GetComponent<AudioSource>().isPlaying)
+        {
+            RedTrail.GetComponent<AudioSource>().time = UnityEngine.Random.Range(0f, RedTrail.GetComponent<AudioSource>().clip.length);
+            RedTrail.GetComponent<AudioSource>().Play();
+            timeInSoundCurve = 0;
+        }
+        if (Spatialized)
+        {
+            RedTrail.GetComponent<AudioSource>().spatialBlend = 1.0f;
+        }
+        else
+        {
+            RedTrail.GetComponent<AudioSource>().spatialBlend = 0.0f;
+        }
+        timeIsGiving = 0f;
+    }
+
+    public void StopTakingSound()
+    {
+        isTaking = false;
+        timeInSoundCurve = 0;
+        if (!isGiving)
+        {
+            RedTrail.GetComponent<AudioSource>().Stop();
+        }
+    }
+
+    public void StartTakingSound(bool Spatialized)
+    {
+        isTaking = true;
+        if (!RedTrail.GetComponent<AudioSource>().isPlaying)
+        {
+            RedTrail.GetComponent<AudioSource>().time = UnityEngine.Random.Range(0f, RedTrail.GetComponent<AudioSource>().clip.length);
+            RedTrail.GetComponent<AudioSource>().Play();
+            timeInSoundCurve = 0;
+        }
+
+        if (Spatialized)
+        {
+            RedTrail.GetComponent<AudioSource>().spatialBlend = 1.0f;
+        }
+        else
+        {
+            RedTrail.GetComponent<AudioSource>().spatialBlend = 0.0f;
+        }
+        timeIsTaking = 0f;
+    }
+
     public void SetSendingToBatterie(bool RedNotBlue, bool OnNotOff)
     {
         if (RedNotBlue)
@@ -442,8 +592,9 @@ public class ProgrammableObjectsData : MonoBehaviour
             if (OnNotOff && !sendingToRedClient)
             {
                 sendingToRedClient = true;
-                
-                    RedTrail.SetActive(true);
+
+                RedTrail.GetComponent<ParticleSystem>().Play();
+                    
                 
 
             }
@@ -451,8 +602,7 @@ public class ProgrammableObjectsData : MonoBehaviour
             if (!OnNotOff && sendingToRedClient)
             {
                 sendingToRedClient = false;
-                
-                    RedTrail.SetActive(false);
+                RedTrail.GetComponent<ParticleSystem>().Stop();
                
             }
         }
@@ -461,16 +611,15 @@ public class ProgrammableObjectsData : MonoBehaviour
             if (OnNotOff && !sendingToBlueClient)
             {
                 sendingToBlueClient = true;
-                
-                    BlueTrail.SetActive(true);
+                BlueTrail.GetComponent<ParticleSystem>().Play();
                 
             }
 
             if (!OnNotOff && sendingToBlueClient)
             {
                 sendingToBlueClient = false;
-                
-                    BlueTrail.SetActive(false);
+
+                BlueTrail.GetComponent<ParticleSystem>().Stop();
                 
             }
         }
