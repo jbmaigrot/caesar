@@ -9,7 +9,7 @@ public class ClientChat : MonoBehaviour
     public RectTransform chatBox;
     public GameObject messagePrefab;
 #if CLIENT
-    private InputField inputField;
+    public InputField inputField;
     private Client client;
 
     // Start is called before the first frame update
