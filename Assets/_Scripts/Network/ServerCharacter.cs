@@ -184,6 +184,7 @@ public class ServerCharacter : MonoBehaviour
             {
                 StopAllCoroutines();
                 coroutineStarted = false;
+                server.SendPath(new Vector3[] { }, server.GetNetworkConnectionFromPlayerTransform(transform));
             }
         }
         
@@ -202,7 +203,7 @@ public class ServerCharacter : MonoBehaviour
             pathAs3dPositions[path.corners.Length - 1] = navMeshAgent.destination;
             server.SendPath(pathAs3dPositions, server.GetNetworkConnectionFromPlayerTransform(transform));
 
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(.1f);
         }
     }
 #endif
