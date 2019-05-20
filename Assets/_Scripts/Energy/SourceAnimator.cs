@@ -5,10 +5,15 @@ using UnityEngine;
 public class SourceAnimator : MonoBehaviour
 {
     public AudioSource Nappe;
-    public AnimationCurve FadeOutCurve;
+    public AnimationCurve NappeWindowSpeedCurve;
+    public AnimationCurve NappeLowpassFrequencyCurve;
+    public AnimationCurve NappePitchCurve;
+    public AnimationCurve NappeVolumeCurve;
     public AudioSource Beep;
     public AnimationCurve timeBeepCurve;
+    public AnimationCurve BeeplowpassFrequencyCurve;
 
+    public AnimationCurve FadeOutCurve;
 
     public int state = 0; // 0: off, 1: empty, 2: not empty, 3: giving
     public float lowSpeed = 2;
@@ -32,7 +37,9 @@ public class SourceAnimator : MonoBehaviour
     private float floatingT = 0;
     private AudioClip[] BeepBoop;
     private float timeBeep;
+    private float timeLivingAsADataPool;
     private float timeFadeOut;
+    private float timeNappeWindows;
 
 
     private float[] timeBeforeEndOfBeeps = new float[3] { 0,0,0};
@@ -70,7 +77,7 @@ public class SourceAnimator : MonoBehaviour
             lerpT = 0f;
         }
         lerpT += Time.deltaTime / lerpLength;
-       
+        timeNappeWindows = (timeNappeWindows+NappeWindowSpeedCurve.Evaluate(timeLivingAsADataPool)*Time.deltaTime)% 1f;
         switch (state)
         {
             case 0: /*Eteint don't rotate*/
@@ -78,7 +85,7 @@ public class SourceAnimator : MonoBehaviour
                 emission = Mathf.Lerp(emission, 0, lerpT);
                 pointLight.intensity = Mathf.Lerp(pointLight.intensity, 0, lerpT);
                 floatingT += Time.deltaTime * (1 - Mathf.Min(lerpT, 1));
-                
+                timeLivingAsADataPool = 0;
                 if (timeFadeOut >= FadeOutCurve.keys[FadeOutCurve.length-1].time)
                 {
                     timeBeep = 0;
@@ -92,7 +99,9 @@ public class SourceAnimator : MonoBehaviour
                 {
                     timeFadeOut += Time.deltaTime;
                     Beep.volume = FadeOutCurve.Evaluate(timeFadeOut);
-                    Nappe.volume = FadeOutCurve.Evaluate(timeFadeOut);
+                    Nappe.volume = FadeOutCurve.Evaluate(timeFadeOut)*NappeVolumeCurve.Evaluate(timeNappeWindows);
+                    Nappe.pitch = NappePitchCurve.Evaluate(timeNappeWindows);
+                    Nappe.GetComponent<AudioLowPassFilter>().cutoffFrequency = NappeLowpassFrequencyCurve.Evaluate(timeNappeWindows);
                 }
                 
                 break;
@@ -103,11 +112,15 @@ public class SourceAnimator : MonoBehaviour
                 pointLight.intensity = Mathf.Lerp(pointLight.intensity, 0, lerpT);
                 floatingT += Time.deltaTime * Mathf.Min(lerpT, 1);
                 timeFadeOut = 0f;
+                timeLivingAsADataPool += Time.deltaTime;
                 if (!Nappe.isPlaying)
                 {
                     Nappe.Play();
                     Nappe.volume = 1;
                 }
+                Nappe.volume = FadeOutCurve.Evaluate(timeFadeOut) * NappeVolumeCurve.Evaluate(timeNappeWindows);
+                Nappe.pitch = NappePitchCurve.Evaluate(timeNappeWindows);
+                Nappe.GetComponent<AudioLowPassFilter>().cutoffFrequency = NappeLowpassFrequencyCurve.Evaluate(timeNappeWindows);
                 timeBeep += Time.deltaTime;
                 Beep.volume = 1;
                 if (timeBeep > timeBeepCurve.Evaluate(GetComponent<ServerCarrier>().clientCharge))
@@ -138,11 +151,15 @@ public class SourceAnimator : MonoBehaviour
                 pointLight.intensity = Mathf.Lerp(pointLight.intensity, maxIntensity, lerpT);
                 floatingT += Time.deltaTime * Mathf.Min(lerpT, 1);
                 timeFadeOut = 0f;
+                timeLivingAsADataPool += Time.deltaTime;
                 if (!Nappe.isPlaying)
                 {
                      Nappe.Play();
                     Nappe.volume = 1;
                 }
+                Nappe.volume = FadeOutCurve.Evaluate(timeFadeOut) * NappeVolumeCurve.Evaluate(timeNappeWindows);
+                Nappe.pitch = NappePitchCurve.Evaluate(timeNappeWindows);
+                Nappe.GetComponent<AudioLowPassFilter>().cutoffFrequency = NappeLowpassFrequencyCurve.Evaluate(timeNappeWindows);
                 timeBeep += Time.deltaTime;
                 Beep.volume = 1;
                 if (timeBeep > timeBeepCurve.Evaluate(GetComponent<ServerCarrier>().clientCharge))
@@ -172,11 +189,15 @@ public class SourceAnimator : MonoBehaviour
                 pointLight.intensity = Mathf.Lerp(pointLight.intensity, maxIntensity, lerpT);
                 floatingT += Time.deltaTime * Mathf.Min(lerpT, 1);
                 timeFadeOut = 0f;
+                timeLivingAsADataPool += Time.deltaTime;
                 if (!Nappe.isPlaying)
                 {
                     Nappe.Play();
                     Nappe.volume = 1;
                 }
+                Nappe.volume = FadeOutCurve.Evaluate(timeFadeOut) * NappeVolumeCurve.Evaluate(timeNappeWindows);
+                Nappe.pitch = NappePitchCurve.Evaluate(timeNappeWindows);
+                Nappe.GetComponent<AudioLowPassFilter>().cutoffFrequency = NappeLowpassFrequencyCurve.Evaluate(timeNappeWindows);
                 timeBeep += Time.deltaTime;
                 Beep.volume = 1;
                 if (timeBeep > timeBeepCurve.Evaluate(GetComponent<ServerCarrier>().clientCharge))
@@ -203,6 +224,7 @@ public class SourceAnimator : MonoBehaviour
             default:
                 break;
         }
+        Beep.GetComponent<AudioLowPassFilter>().cutoffFrequency = BeeplowpassFrequencyCurve.Evaluate(timeLivingAsADataPool);
         
         // Floating animation
         cube.localPosition = new Vector3(0, startingY + floatingRange * (Mathf.Sin(floatingT * 2 * Mathf.PI * floatingFreq)), 0);
