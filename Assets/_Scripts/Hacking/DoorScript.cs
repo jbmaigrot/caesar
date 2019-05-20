@@ -5,20 +5,48 @@ using UnityEngine.EventSystems;
 
 public class DoorScript : MonoBehaviour
 {
+    private const float timeForDisappearing = 0.15f;
+    private const float timeForAppearing = 0.15f;
     bool isOpen = false;
     public bool isClosing=false;
     public bool isOccupied=false;
     public AudioClip holoOn;
     public AudioClip holoOff;
-    
+
+    private float timeBeforeDisappearing;
+    private float timeBeforeAppearing;
+
+    public void Update()
+    {
+        if (isOpen&& GetComponent<MeshRenderer>().enabled)
+        {
+            timeBeforeDisappearing -= Time.deltaTime;
+            if (timeBeforeDisappearing <= 0)
+            {
+                this.GetComponent<MeshRenderer>().enabled = false;
+                this.GetComponent<Collider>().enabled = false;
+            }
+        }
+
+        if (!isOpen && !GetComponent<MeshRenderer>().enabled)
+        {
+            timeBeforeAppearing -= Time.deltaTime;
+            if (timeBeforeAppearing <= 0)
+            {
+                this.GetComponent<MeshRenderer>().enabled = true;
+                this.GetComponent<Collider>().enabled = true;
+            }
+        }
+
+
+    }
 
     public void OnOpen()
     {
         if (!isOpen)
         {
             isOpen = true;
-            this.GetComponent<MeshRenderer>().enabled = false;
-            this.GetComponent<Collider>().enabled = false;
+            timeBeforeDisappearing = timeForDisappearing;
             this.GetComponent<AudioSource>().PlayOneShot(holoOff);
         }
     }
@@ -34,8 +62,7 @@ public class DoorScript : MonoBehaviour
             else
             {
                 isOpen = false;
-                this.GetComponent<MeshRenderer>().enabled = true;
-                this.GetComponent<Collider>().enabled = true;
+                timeBeforeAppearing = timeForAppearing;
                 this.GetComponent<AudioSource>().PlayOneShot(holoOn);
 
             }
