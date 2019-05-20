@@ -6389,8 +6389,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2100442943}
   m_HandleRect: {fileID: 2100442942}
   m_Direction: 0
-  m_Value: 1
-  m_Size: 1
+  m_Value: 0
+  m_Size: 0.9999997
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -54549,6 +54549,12 @@ PrefabInstance:
       propertyPath: draw
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6595026950082803786, guid: 69300b9b65a17564a9378bc77c6cb177,
+        type: 3}
+      propertyPath: Initiator
+      value: 
+      objectReference: {fileID: 11400000, guid: eb5a96cfcf946ba4da2b8f58ade3766b,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69300b9b65a17564a9378bc77c6cb177, type: 3}
 --- !u!4 &1714886182 stripped
