@@ -13,8 +13,11 @@ public class ThisIsATree : MonoBehaviour
     public AudioSource HoloSound;
     public AudioClip HoloOn;
     public AudioClip HoloOff;
-    
 
+    private const float timeForDisappearing = 0.15f;
+    private const float timeForAppearing = 0.15f;
+    private float timeBeforeDisappearing;
+    private float timeBeforeAppearing;
 #if CLIENT
     private AudioClip[] BeepBoop;
     private float timeBeep;
@@ -31,14 +34,7 @@ public class ThisIsATree : MonoBehaviour
     {
         if (!isSoundOn)
         {
-            if (GetComponentInChildren<Light>())
-            {
-                GetComponentInChildren<Light>().enabled = true;
-            }
-            foreach (MeshRenderer ryan in GetComponentsInChildren<MeshRenderer>())
-            {
-                ryan.enabled = true;
-            }
+            timeBeforeAppearing = timeForAppearing;
             isSoundOn = true;
             HoloSound.PlayOneShot(HoloOn);
         }
@@ -48,15 +44,8 @@ public class ThisIsATree : MonoBehaviour
     {
         if (isSoundOn)
         {
-            if (GetComponentInChildren<Light>())
-            {
-                GetComponentInChildren<Light>().enabled = false;
-            }
-            foreach (MeshRenderer ryan in GetComponentsInChildren<MeshRenderer>())
-            {
-                ryan.enabled = false;
-            }
 
+            timeBeforeDisappearing = timeForDisappearing;
             isSoundOn = false;
 
             HoloSound.PlayOneShot(HoloOff);
@@ -93,6 +82,38 @@ public class ThisIsATree : MonoBehaviour
             {
                 timeFadeOut += Time.deltaTime;
                 Beep.volume = FadeOutCurve.Evaluate(timeFadeOut);
+            }
+        }
+
+        if (!isSoundOn && timeBeforeDisappearing>0)
+        {
+            timeBeforeDisappearing -= Time.deltaTime;
+            if (timeBeforeDisappearing <= 0)
+            {
+                if (GetComponentInChildren<Light>())
+                {
+                    GetComponentInChildren<Light>().enabled = false;
+                }
+                foreach (MeshRenderer ryan in GetComponentsInChildren<MeshRenderer>())
+                {
+                    ryan.enabled = false;
+                }
+            }
+        }
+
+        if (isSoundOn && timeBeforeAppearing>0)
+        {
+            timeBeforeAppearing -= Time.deltaTime;
+            if (timeBeforeAppearing <= 0)
+            {
+                if (GetComponentInChildren<Light>())
+                {
+                    GetComponentInChildren<Light>().enabled = true;
+                }
+                foreach (MeshRenderer ryan in GetComponentsInChildren<MeshRenderer>())
+                {
+                    ryan.enabled = true;
+                }
             }
         }
     }
