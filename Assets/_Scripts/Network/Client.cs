@@ -944,6 +944,7 @@ public class Client : MonoBehaviour
             Vector3 startLine = new Vector3(playerPos.x, playerPos.y + 0.25f, playerPos.z);
             lineRenderer.SetPosition(0, startLine);
 
+            /*
             if (lineRenderer.positionCount > 2)
             {
                 if (Vector3.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(1)) < 2.5f)
@@ -954,7 +955,7 @@ public class Client : MonoBehaviour
                     }
                     lineRenderer.positionCount -= 1;
                 }
-            }
+            }*/
         }
     }
 
