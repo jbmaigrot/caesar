@@ -304,6 +304,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isClosing: 0
   isOccupied: 0
+  holoOn: {fileID: 8300000, guid: 81cbd3e470fc846cc8cc83f3f9f8014e, type: 3}
+  holoOff: {fileID: 8300000, guid: f1b883047051946d4981c5e278d6a1ff, type: 3}
 --- !u!65 &4595617720259406191
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1060,16 +1062,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5633456765677970188}
     m_Modifications:
-    - target: {fileID: 8950029484846813617, guid: 1aca01bd8e190a2418e4f5019bf0d83a,
-        type: 3}
-      propertyPath: m_Name
-      value: Frame_holo
-      objectReference: {fileID: 0}
-    - target: {fileID: 8950029484846813617, guid: 1aca01bd8e190a2418e4f5019bf0d83a,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 8950029484847173009, guid: 1aca01bd8e190a2418e4f5019bf0d83a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1124,6 +1116,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8950029484846813617, guid: 1aca01bd8e190a2418e4f5019bf0d83a,
+        type: 3}
+      propertyPath: m_Name
+      value: Frame_holo
+      objectReference: {fileID: 0}
+    - target: {fileID: 8950029484846813617, guid: 1aca01bd8e190a2418e4f5019bf0d83a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8950029484849074043, guid: 1aca01bd8e190a2418e4f5019bf0d83a,
         type: 3}

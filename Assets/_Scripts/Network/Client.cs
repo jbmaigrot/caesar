@@ -366,13 +366,13 @@ public class Client : MonoBehaviour
                                 //Light
                                 if ((int)stream.ReadUInt(ref readerCtx) == 0)
                                 {
-                                    /*if (progObject.GetComponentInChildren<Light>() != null)
-                                        progObject.GetComponentInChildren<Light>().enabled = false;*/
+                                    if (progObject.GetComponentInChildren<ThisIsATree>(false) != null)
+                                        progObject.GetComponentInChildren<ThisIsATree>(false).TurnOff();
                                 }
                                 else
                                 {
-                                    if (progObject.GetComponentInChildren<Light>() != null)
-                                        progObject.GetComponentInChildren<Light>().enabled = true;
+                                    if (progObject.GetComponentInChildren<ThisIsATree>(false) != null)
+                                        progObject.GetComponentInChildren<ThisIsATree>(false).TurnOn();
                                 }
                                 //Door
                                 if ((int)stream.ReadUInt(ref readerCtx) == 0)

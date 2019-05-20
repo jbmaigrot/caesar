@@ -8,6 +8,8 @@ public class DoorScript : MonoBehaviour
     bool isOpen = false;
     public bool isClosing=false;
     public bool isOccupied=false;
+    public AudioClip holoOn;
+    public AudioClip holoOff;
     
 
     public void OnOpen()
@@ -17,6 +19,7 @@ public class DoorScript : MonoBehaviour
             isOpen = true;
             this.GetComponent<MeshRenderer>().enabled = false;
             this.GetComponent<Collider>().enabled = false;
+            this.GetComponent<AudioSource>().PlayOneShot(holoOff);
         }
     }
 
@@ -33,7 +36,8 @@ public class DoorScript : MonoBehaviour
                 isOpen = false;
                 this.GetComponent<MeshRenderer>().enabled = true;
                 this.GetComponent<Collider>().enabled = true;
-                
+                this.GetComponent<AudioSource>().PlayOneShot(holoOn);
+
             }
         }
     }

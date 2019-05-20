@@ -10,6 +10,9 @@ public class ThisIsATree : MonoBehaviour
     public AnimationCurve FadeOutCurve;
     public bool isSoundOn;
 
+    public AudioSource HoloSound;
+    public AudioClip HoloOn;
+    public AudioClip HoloOff;
     
 
 #if CLIENT
@@ -24,6 +27,42 @@ public class ThisIsATree : MonoBehaviour
         timeFadeOut = 0.5f;
     }
 
+    public void TurnOn()
+    {
+        if (!isSoundOn)
+        {
+            if (GetComponentInChildren<Light>())
+            {
+                GetComponentInChildren<Light>().enabled = true;
+            }
+            foreach (MeshRenderer ryan in GetComponentsInChildren<MeshRenderer>())
+            {
+                ryan.enabled = true;
+            }
+            isSoundOn = true;
+            HoloSound.PlayOneShot(HoloOn);
+        }
+    }
+
+    public void TurnOff()
+    {
+        if (isSoundOn)
+        {
+            if (GetComponentInChildren<Light>())
+            {
+                GetComponentInChildren<Light>().enabled = false;
+            }
+            foreach (MeshRenderer ryan in GetComponentsInChildren<MeshRenderer>())
+            {
+                ryan.enabled = false;
+            }
+
+            isSoundOn = false;
+
+            HoloSound.PlayOneShot(HoloOff);
+        }
+        
+    }
     // Update is called once per frame
     void Update()
     {
