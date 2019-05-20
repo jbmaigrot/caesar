@@ -64,7 +64,7 @@ public class ClientCharacter : MonoBehaviour
 
         floatingFreq = Random.Range(0.3f, 0.4f);
         mesh = transform.Find("Mesh").transform;
-        startingY = transform.localPosition.y;
+        startingY = mesh.transform.localPosition.y;
 
         stunAnimator = this.transform.Find("StunLightning").GetComponent<Animator>();
 
