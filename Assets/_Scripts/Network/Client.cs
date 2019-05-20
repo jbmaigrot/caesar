@@ -581,7 +581,7 @@ public class Client : MonoBehaviour
 
                         case Constants.Server_SendAnnoncement:
                             audioSourceForTheAnnoncement.clip = AnnoncementSound[(int)stream.ReadUInt(ref readerCtx)];
-                            audioSourceForTheAnnoncement.Play();
+                            audioSourceForTheAnnoncement.PlayDelayed(0.3f);
                             break;
 
                         default:
