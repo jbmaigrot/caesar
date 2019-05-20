@@ -184,7 +184,7 @@ public class ServerCharacter : MonoBehaviour
             {
                 StopAllCoroutines();
                 coroutineStarted = false;
-                server.SendPath(new Vector3[] { }, server.GetNetworkConnectionFromPlayerTransform(transform));
+                server.SendPath(new Vector3[] { Vector3.zero}, server.GetNetworkConnectionFromPlayerTransform(transform));
             }
         }
         
