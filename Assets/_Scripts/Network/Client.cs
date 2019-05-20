@@ -179,7 +179,7 @@ public class Client : MonoBehaviour
 
         if (team == 0)
         {
-            audioSourceForMusicNappeA.volume =  CurveForVolumeOfNappeA.Evaluate(scoreOrange)*baseVolumeNappeA;
+            audioSourceForMusicNappeA.volume =  CurveForVolumeOfNappeA.Evaluate(scoreOrange) * baseVolumeNappeA;
             audioSourceForMusicNappeB.volume = CurveForVolumeOfNappeB.Evaluate(scoreOrange) * baseVolumeNappeB;
             audioSourceForMusicNappeC.volume = CurveForVolumeOfNappeC.Evaluate(scoreOrange) * baseVolumeNappeC;
             audioSourceForMusicNappeD.volume = CurveForVolumeOfNappeD.Evaluate(scoreOrange) * baseVolumeNappeD;
