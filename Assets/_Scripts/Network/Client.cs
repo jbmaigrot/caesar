@@ -50,7 +50,7 @@ public class Client : MonoBehaviour
     
 
     private CameraController cameraController;
-    private ClientChat chat;
+    public ClientChat chat;
     public ProgrammableObjectsContainer programmableObjectsContainer;
     public HackInterface hackInterface;
     private bool knowOrientationOfCam = false;

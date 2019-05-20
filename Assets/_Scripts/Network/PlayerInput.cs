@@ -34,6 +34,9 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
             Application.Quit();
 
+        if (Input.GetKeyDown(KeyCode.Return))
+            EventSystem.current.SetSelectedGameObject(client.chat.inputField.gameObject);
+
         if (Input.GetKey(KeyCode.LeftControl))
         {
             Cursor.SetCursor(ctrlCursor, Vector2.zero, CursorMode.Auto);
