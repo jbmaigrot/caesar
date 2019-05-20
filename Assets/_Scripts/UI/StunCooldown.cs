@@ -9,6 +9,7 @@ public class StunCooldown : MonoBehaviour
     private GameObject mask;
     private Text text;
     private float cooldown = 0;
+    private bool hastoplayasound = false;
 
     // Start
     private void Start()
@@ -23,11 +24,19 @@ public class StunCooldown : MonoBehaviour
     {
         if (cooldown > 0)
         {
+
+            hastoplayasound = true;
             text.text = "" + Mathf.FloorToInt(cooldown);
             cooldown -= Time.deltaTime;
         }
         else
         {
+            if (hastoplayasound)
+            {
+                hastoplayasound = false;
+                GetComponent<AudioSource>().Play();
+            }
+            
             text.text = "";
             mask.SetActive(false);
         }
