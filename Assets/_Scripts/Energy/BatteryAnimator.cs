@@ -116,7 +116,7 @@ public class BatteryAnimator : MonoBehaviour
 
         // Rotation
         smallRing.Rotate(currentSmallRingSpeed * Vector3.right, Space.World);
-        mediumRing.Rotate(currentMediumRingSpeed * (Vector3.right + Vector3.forward), Space.World);
+        mediumRing.Rotate(currentMediumRingSpeed * Vector3.Normalize(Vector3.right + Vector3.forward), Space.World);
         largeRing.Rotate(currentLargeRingSpeed * Vector3.forward, Space.World);
 
         prevState = state;
