@@ -5,11 +5,10 @@ using UnityEngine;
 public class SourceAnimator : MonoBehaviour
 {
     public AudioSource Nappe;
-    public AudioSource Beep;
-    public AudioSource Boop;
-    public float timeBeepBoopMin = 0.05f;
-    public float timeBeepBoopMax = 0.5f;
     public AnimationCurve FadeOutCurve;
+    public AudioSource Beep;
+    public AnimationCurve timeBeepCurve;
+
 
     public int state = 0; // 0: off, 1: empty, 2: not empty, 3: giving
     public float lowSpeed = 2;
@@ -22,7 +21,7 @@ public class SourceAnimator : MonoBehaviour
     private float lerpT = 0;
     private Transform cube;
     private Renderer emissive;
-    private Color emissiveColor = new Color(191/255f,191/255f,0f);
+    private Color emissiveColor = new Color(191 / 255f, 191 / 255f, 0f);
     private float emission = 0;
     private float maxEmission = 3;
     private Light pointLight;
@@ -33,8 +32,11 @@ public class SourceAnimator : MonoBehaviour
     private float floatingT = 0;
     private AudioClip[] BeepBoop;
     private float timeBeep;
-    private float timeBoop;
     private float timeFadeOut;
+
+
+    private float[] timeBeforeEndOfBeeps = new float[3] { 0,0,0};
+    private bool canBeepPlay;
 
     // Start is called before the first frame update
     void Start()
@@ -53,12 +55,22 @@ public class SourceAnimator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        canBeepPlay = false;
+        for(int i =0; i < 3; i++)
+        {
+            timeBeforeEndOfBeeps[i] -= Time.deltaTime;
+            if (timeBeforeEndOfBeeps[i] <= 0)
+            {
+                timeBeforeEndOfBeeps[i] = 0;
+                canBeepPlay = true;
+            }
+        }
         if (prevState != state)
         {
             lerpT = 0f;
         }
         lerpT += Time.deltaTime / lerpLength;
-
+       
         switch (state)
         {
             case 0: /*Eteint don't rotate*/
@@ -69,10 +81,8 @@ public class SourceAnimator : MonoBehaviour
                 
                 if (timeFadeOut >= FadeOutCurve.keys[FadeOutCurve.length-1].time)
                 {
-                    timeBeep = Random.Range(timeBeepBoopMin, timeBeepBoopMax);
-                    timeBoop = Random.Range(timeBeepBoopMin, timeBeepBoopMax);
+                    timeBeep = 0;
                     Beep.volume = 0;
-                    Boop.volume = 0;
                     if (Nappe.isPlaying)
                     {
                         Nappe.Stop();
@@ -82,7 +92,6 @@ public class SourceAnimator : MonoBehaviour
                 {
                     timeFadeOut += Time.deltaTime;
                     Beep.volume = FadeOutCurve.Evaluate(timeFadeOut);
-                    Boop.volume = FadeOutCurve.Evaluate(timeFadeOut);
                     Nappe.volume = FadeOutCurve.Evaluate(timeFadeOut);
                 }
                 
@@ -99,30 +108,28 @@ public class SourceAnimator : MonoBehaviour
                     Nappe.Play();
                     Nappe.volume = 1;
                 }
-                if (!Beep.isPlaying)
+                timeBeep += Time.deltaTime;
+                Beep.volume = 1;
+                if (timeBeep > timeBeepCurve.Evaluate(GetComponent<ServerCarrier>().clientCharge))
                 {
-                    timeBeep -= Time.deltaTime;
-                    if (timeBeep < 0)
+                    timeBeep -= timeBeepCurve.Evaluate(GetComponent<ServerCarrier>().clientCharge);
+                    if (canBeepPlay)
                     {
-                        Beep.volume = 1;
-                        Beep.clip = BeepBoop[Random.Range(0, BeepBoop.Length)];
-                        Beep.Play();
-                        timeBeep = Random.Range(timeBeepBoopMin, timeBeepBoopMax);
+                        AudioClip RandomBeep = BeepBoop[Random.Range(0, BeepBoop.Length)];
+                        Beep.PlayOneShot(RandomBeep);
+                        bool isTheTimeInTheArray = false;
+                        for (int i = 0; i < 3; i++)
+                        {
+                            if(timeBeforeEndOfBeeps[i] <= 0 && !isTheTimeInTheArray)
+                            {
+                                isTheTimeInTheArray = true;
+                                timeBeforeEndOfBeeps[i] = RandomBeep.length;
+                            }
+                        }
                     }
-                    
                 }
-                if (!Boop.isPlaying)
-                {
-                    timeBoop -= Time.deltaTime;
-                    if (timeBoop < 0)
-                    {
-                        Boop.volume = 1;
-                        Boop.clip = BeepBoop[Random.Range(0, BeepBoop.Length)];
-                        Boop.Play();
-                        timeBoop = Random.Range(timeBeepBoopMin, timeBeepBoopMax);
-                    }
-
-                }
+                
+                
                 break;
 
             case 2: /*Allumé rotate*/
@@ -136,30 +143,27 @@ public class SourceAnimator : MonoBehaviour
                      Nappe.Play();
                     Nappe.volume = 1;
                 }
-                if (!Beep.isPlaying)
+                timeBeep += Time.deltaTime;
+                Beep.volume = 1;
+                if (timeBeep > timeBeepCurve.Evaluate(GetComponent<ServerCarrier>().clientCharge))
                 {
-                    timeBeep -= Time.deltaTime;
-                    if (timeBeep < 0)
+                    timeBeep -= timeBeepCurve.Evaluate(GetComponent<ServerCarrier>().clientCharge);
+                    if (canBeepPlay)
                     {
-                        Beep.volume = 1;
-                        Beep.clip = BeepBoop[Random.Range(0, BeepBoop.Length)];
-                        Beep.Play();
-                        timeBeep = Random.Range(timeBeepBoopMin, timeBeepBoopMax);
+                        AudioClip RandomBeep = BeepBoop[Random.Range(0, BeepBoop.Length)];
+                        Beep.PlayOneShot(RandomBeep);
+                        bool isTheTimeInTheArray = false;
+                        for (int i = 0; i < 3; i++)
+                        {
+                            if (timeBeforeEndOfBeeps[i] <= 0 && !isTheTimeInTheArray)
+                            {
+                                isTheTimeInTheArray = true;
+                                timeBeforeEndOfBeeps[i] = RandomBeep.length;
+                            }
+                        }
                     }
-
                 }
-                if (!Boop.isPlaying)
-                {
-                    timeBoop -= Time.deltaTime;
-                    if (timeBoop < 0)
-                    {
-                        Boop.volume = 1;
-                        Boop.clip = BeepBoop[Random.Range(0, BeepBoop.Length)];
-                        Boop.Play();
-                        timeBoop = Random.Range(timeBeepBoopMin, timeBeepBoopMax);
-                    }
 
-                }
                 break;
 
             case 3: /*Allumé rotate rotate*/
@@ -173,30 +177,27 @@ public class SourceAnimator : MonoBehaviour
                     Nappe.Play();
                     Nappe.volume = 1;
                 }
-                if (!Beep.isPlaying)
+                timeBeep += Time.deltaTime;
+                Beep.volume = 1;
+                if (timeBeep > timeBeepCurve.Evaluate(GetComponent<ServerCarrier>().clientCharge))
                 {
-                    timeBeep -= Time.deltaTime;
-                    if (timeBeep < 0)
+                    timeBeep -= timeBeepCurve.Evaluate(GetComponent<ServerCarrier>().clientCharge);
+                    if (canBeepPlay)
                     {
-                        Beep.volume = 1;
-                        Beep.clip = BeepBoop[Random.Range(0, BeepBoop.Length)];
-                        Beep.Play();
-                        timeBeep = Random.Range(timeBeepBoopMin, timeBeepBoopMax);
+                        AudioClip RandomBeep = BeepBoop[Random.Range(0, BeepBoop.Length)];
+                        Beep.PlayOneShot(RandomBeep);
+                        bool isTheTimeInTheArray = false;
+                        for (int i = 0; i < 3; i++)
+                        {
+                            if (timeBeforeEndOfBeeps[i] <= 0 && !isTheTimeInTheArray)
+                            {
+                                isTheTimeInTheArray = true;
+                                timeBeforeEndOfBeeps[i] = RandomBeep.length;
+                            }
+                        }
                     }
-
                 }
-                if (!Boop.isPlaying)
-                {
-                    timeBoop -= Time.deltaTime;
-                    if (timeBoop < 0)
-                    {
-                        Boop.volume = 1;
-                        Boop.clip = BeepBoop[Random.Range(0, BeepBoop.Length)];
-                        Boop.Play();
-                        timeBoop = Random.Range(timeBeepBoopMin, timeBeepBoopMax);
-                    }
 
-                }
                 break;
 
             default:
