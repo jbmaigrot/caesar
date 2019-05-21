@@ -47506,9 +47506,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a66bf76cc67b949aaa75c4bfb2f7ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NavMeshSurface: {fileID: 0}
-  isAttract: 0
-  charactersIndex: -1
   client: {fileID: 0}
   hackInterface: {fileID: 0}
   isWaitingHack: 0
@@ -47521,15 +47518,6 @@ MonoBehaviour:
   isTakingManually: 0
   BlueBatterie: {fileID: 0}
   RedBatterie: {fileID: 0}
-  inputCodes: []
-  outputCodes: []
-  graph: []
-  isLightOn: 0
-  isDoorOpen: 0
-  isBeingHackedServer: 0
-  sendingToBlueServer: 0
-  sendingToRedServer: 0
-  shouldBeSendToClientEveryFrame: 0
   Initiator: {fileID: 11400000, guid: 29107e01ee02fc944bf52ba9898912c0, type: 2}
   objectsContainer: {fileID: 0}
 --- !u!114 &1150320255
@@ -47557,9 +47545,6 @@ MonoBehaviour:
   pastilleMaterialOrange: {fileID: 0}
   maxCharge: 100
   chargeSpeed: 1
-  charge: 0
-  givingTo: {fileID: 0}
-  takingFrom: {fileID: 0}
 --- !u!65 &1150320256
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -50036,8 +50021,6 @@ MonoBehaviour:
     m_RotationOrder: 4
   client: {fileID: 0}
   objectListClient: []
-  objectListServer: []
-  chairListServer: []
 --- !u!4 &1204548349
 Transform:
   m_ObjectHideFlags: 0
@@ -73782,9 +73765,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a66bf76cc67b949aaa75c4bfb2f7ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NavMeshSurface: {fileID: 0}
-  isAttract: 0
-  charactersIndex: -1
   client: {fileID: 0}
   hackInterface: {fileID: 0}
   isWaitingHack: 0
@@ -73797,15 +73777,6 @@ MonoBehaviour:
   isTakingManually: 0
   BlueBatterie: {fileID: 0}
   RedBatterie: {fileID: 0}
-  inputCodes: []
-  outputCodes: []
-  graph: []
-  isLightOn: 0
-  isDoorOpen: 0
-  isBeingHackedServer: 0
-  sendingToBlueServer: 0
-  sendingToRedServer: 0
-  shouldBeSendToClientEveryFrame: 0
   Initiator: {fileID: 11400000, guid: 29107e01ee02fc944bf52ba9898912c0, type: 2}
   objectsContainer: {fileID: 0}
 --- !u!114 &1700345369
@@ -73833,9 +73804,6 @@ MonoBehaviour:
   pastilleMaterialOrange: {fileID: 0}
   maxCharge: 100
   chargeSpeed: 1
-  charge: 0
-  givingTo: {fileID: 0}
-  takingFrom: {fileID: 0}
 --- !u!65 &1700345370
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -74953,6 +74921,12 @@ PrefabInstance:
       propertyPath: filled
       value: 
       objectReference: {fileID: 423303110}
+    - target: {fileID: 6595026950082803786, guid: 69300b9b65a17564a9378bc77c6cb177,
+        type: 3}
+      propertyPath: Initiator
+      value: 
+      objectReference: {fileID: 11400000, guid: eb5a96cfcf946ba4da2b8f58ade3766b,
+        type: 2}
     - target: {fileID: 5986806225771507728, guid: 69300b9b65a17564a9378bc77c6cb177,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -80825,9 +80799,6 @@ MonoBehaviour:
     type: 3}
   ListZone: []
   PnjSpawnContainer: {fileID: 1173212602}
-  ChanceToGoToObject: 60
-  MinTimeMoving: 4
-  MaxTimeMoving: 16
 --- !u!114 &1915296896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80841,13 +80812,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabPJ: {fileID: 743243704701644350, guid: c21f5fcd570637847b108d8f0afd414c, type: 3}
-  players: []
-  characters: []
-  BlueBatterie: {fileID: 0}
-  PositionBlueRelay: {fileID: 0}
-  RedBatterie: {fileID: 0}
-  PositionRedRelay: {fileID: 0}
-  hasSomeoneWin: 0
 --- !u!4 &1915296897
 Transform:
   m_ObjectHideFlags: 0
@@ -88444,9 +88408,6 @@ MonoBehaviour:
   - {fileID: 1108599582}
   - {fileID: 1339228143}
   - {fileID: 93714592}
-  timeBeforeNewSource: 180
-  startingTime: 0
-  timeBeforeSource: 0
 --- !u!114 &89332298404619799
 MonoBehaviour:
   m_ObjectHideFlags: 0
