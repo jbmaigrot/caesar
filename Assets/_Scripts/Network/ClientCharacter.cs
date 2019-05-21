@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class ClientCharacter : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class ClientCharacter : MonoBehaviour
 
     public AnimationCurve FadeOutCurve;
 
+    public AudioMixer audioMixer;
+
     private const float MaxSpeed = 5f;
 
 #if CLIENT
@@ -48,14 +51,14 @@ public class ClientCharacter : MonoBehaviour
     private Animator stunAnimator;
     
     private bool isDataEmpty;
-
+    private bool isDistorsionOn = false;
     //private float NappeDataCurveTime;
     private AudioClip[] StunClip;
     private AudioClip[] StunQClip;
     private float DelayBetweenStartOfNextClipAndEndOfPresentOne;
     SpriteRenderer lightning;
 
-
+    public bool isPlayer;
     //Start
     private void Start()
     {
@@ -74,6 +77,7 @@ public class ClientCharacter : MonoBehaviour
         isDataEmpty = true;
         DelayBetweenStartOfNextClipAndEndOfPresentOne = Random.Range(0.15f,0.25f);
         lightning = this.transform.Find("StunLightning").GetComponent<SpriteRenderer>();
+        isDistorsionOn = false;
     }
 
     // Update is called once per frame
@@ -166,6 +170,22 @@ public class ClientCharacter : MonoBehaviour
             StunAudioSource.volume = 0;
             StunQAudioSource.volume = 0;
         }
+
+        if (isPlayer)
+        {
+            if (isTacle && !isDistorsionOn)
+            {
+                audioMixer.SetFloat("DistorsionLevelInRelationToStun", 0.7f);
+                isDistorsionOn = true;
+            }
+
+            if (!isTacle && isDistorsionOn)
+            {
+                audioMixer.SetFloat("DistorsionLevelInRelationToStun", 0.0f);
+                isDistorsionOn = false;
+            }
+        }
+       
     }
 
     // Tacle

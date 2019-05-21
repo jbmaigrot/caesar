@@ -455,7 +455,7 @@ public class Client : MonoBehaviour
                                         characters[playerIndex].StunQAudioSource.spatialBlend = 0.0f;
                                         characters[playerIndex].StunQAudioSource.bypassReverbZones = true;
                                         characters[playerIndex].StunQAudioSource.outputAudioMixerGroup = AvatarInter;
-
+                                        characters[playerIndex].isPlayer = true;
                                     }
                                     
                                     //characters[playerIndex].NappeDataAudioSource.spatialBlend = 0.0f;
