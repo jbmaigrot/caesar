@@ -22,12 +22,14 @@ public class ThisIsATree : MonoBehaviour
     private AudioClip[] BeepBoop;
     private float timeBeep;
     private float timeFadeOut;
+    private MeshRenderer[] meshRenderers;
     // Start is called before the first frame update
     void Start()
     {
         BeepBoop = Resources.LoadAll<AudioClip>("Beep");
         isSoundOn = true;
         timeFadeOut = 0.5f;
+        meshRenderers = GetComponentsInChildren<MeshRenderer>();
     }
 
     public void TurnOn()
@@ -102,7 +104,7 @@ public class ThisIsATree : MonoBehaviour
                 {
                     GetComponentInChildren<Light>().enabled = false;
                 }
-                foreach (MeshRenderer ryan in GetComponentsInChildren<MeshRenderer>())
+                foreach (MeshRenderer ryan in meshRenderers)
                 {
                     ryan.enabled = false;
                 }
@@ -118,7 +120,7 @@ public class ThisIsATree : MonoBehaviour
                 {
                     GetComponentInChildren<Light>().enabled = true;
                 }
-                foreach (MeshRenderer ryan in GetComponentsInChildren<MeshRenderer>())
+                foreach (MeshRenderer ryan in meshRenderers)
                 {
                     ryan.enabled = true;
                 }
