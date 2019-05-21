@@ -983,6 +983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a66bf76cc67b949aaa75c4bfb2f7ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  server: {fileID: 0}
   NavMeshSurface: {fileID: 0}
   isAttract: 0
   charactersIndex: -1
@@ -1009,6 +1010,7 @@ MonoBehaviour:
   shouldBeSendToClientEveryFrame: 0
   Initiator: {fileID: 11400000, guid: ecb70c1bccf97ce499384bd5aeb6a010, type: 2}
   objectsContainer: {fileID: 0}
+  startIsOver: 0
 --- !u!114 &2465187952446484485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1175,7 +1177,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 243526314747401376, guid: 265490821becd254989fd0c11698b7d1,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: b220ec02fa9d84b659e73441060a1af0, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
