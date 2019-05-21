@@ -435,7 +435,7 @@ public class Client : MonoBehaviour
                                     characters[playerIndex].GetComponent<ProgrammableObjectsData>().isGivingManually = isThePlayerGiving == 1 ? true : false;
                                     characters[playerIndex].GetComponent<ProgrammableObjectsData>().isTakingManually = isThePlayerTaking == 1 ? true : false;
                                     characters[playerIndex].NappeMoveAudioSource.spatialBlend = 0.0f;
-                                    characters[playerIndex].NappeDataAudioSource.spatialBlend = 0.0f;
+                                    //characters[playerIndex].NappeDataAudioSource.spatialBlend = 0.0f;
                                     if (!isNapperoned)
                                     {
                                         //SpriteRenderer napperon = characters[playerIndex].transform.Find("napperon").GetComponent<SpriteRenderer>();
