@@ -314,7 +314,7 @@ public class Client : MonoBehaviour
                                     //Identify character as teammate
                                     if (type == Constants.Server_TeammateInfo)
                                     {
-                                        ClientCharacter allyCharacter = characters[j].GetComponent<ClientCharacter>();
+                                        ClientCharacter allyCharacter = characters[j];
                                         int playerNameLength = (int)stream.ReadUInt(ref readerCtx);
                                         char[] playerNameBuffer = new char[playerNameLength];
                                         for (int k = 0; k < playerNameLength; k++)
@@ -327,7 +327,7 @@ public class Client : MonoBehaviour
 
                                         if (allyCharacter.isKnownAsAlly != true)
                                         {
-                                            allyCharacters.Add(characters[j].GetComponent<ClientCharacter>());
+                                            allyCharacters.Add(characters[j]);
 
                                             characters[j].GetComponentInChildren<Canvas>().enabled = true;
                                             characters[j].GetComponentInChildren<AllyNameDisplay>().enabled = true;
