@@ -66,6 +66,7 @@ public class ProgrammableObjectsData : MonoBehaviour
     public bool sendingToRedServer;
 
     public bool shouldBeSendToClientEveryFrame;
+    public bool shouldBeSendToClientJustOnceMore;
 #endif
 
 

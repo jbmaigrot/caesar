@@ -381,8 +381,9 @@ public class Server : MonoBehaviour
             // Snapshot (world state)
             for (int j = 0; j < programmableObjectsContainer.objectListServer.Count; j++)
             {
-                if (programmableObjectsContainer.objectListServer[j].shouldBeSendToClientEveryFrame)
+                if (programmableObjectsContainer.objectListServer[j].shouldBeSendToClientEveryFrame|| programmableObjectsContainer.objectListServer[j].shouldBeSendToClientJustOnceMore/*|| programmableObjectsContainer.objectListServer[j].transform==PositionBlueRelay || programmableObjectsContainer.objectListServer[j].transform == PositionRedRelay*/)
                 {
+                    programmableObjectsContainer.objectListServer[j].shouldBeSendToClientJustOnceMore = false;
                     int charactersIndex = programmableObjectsContainer.objectListServer[j].charactersIndex;
                     using (var writer = new DataStreamWriter(16384, Allocator.Temp))
                     {
@@ -845,22 +846,26 @@ public class Server : MonoBehaviour
         {
             PositionRedRelay = players[indexPlayer].transform;
             redIsVisible = false;
+            objectData.shouldBeSendToClientJustOnceMore=true;
         }
         else if (RelayHasMoved % 3 == 2)
         {
             PositionRedRelay = objectData.transform;
             redIsVisible = true;
+            objectData.shouldBeSendToClientJustOnceMore = true;
         }
 
         if (RelayHasMoved / 3 == 1)
         {
             PositionBlueRelay = players[indexPlayer].transform;
             blueIsVisible = false;
+            objectData.shouldBeSendToClientJustOnceMore = true;
         }
         else if (RelayHasMoved / 3 == 2)
         {
             PositionBlueRelay = objectData.transform;
             blueIsVisible = true;
+            objectData.shouldBeSendToClientJustOnceMore = true;
         }
 
         
