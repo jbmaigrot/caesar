@@ -40,14 +40,14 @@ public class DoorScript : MonoBehaviour
             {
                 meshRenderer.enabled = false;
                 collider.enabled = false;
-                navMeshObstacle.carving = false;
+                navMeshObstacle.enabled = false;
             }
         }
 
         if (!isOpen && !GetComponent<MeshRenderer>().enabled)
         {
             timeBeforeAppearing -= Time.deltaTime;
-            navMeshObstacle.carving = true;
+            navMeshObstacle.enabled = true;
             if (timeBeforeAppearing <= 0)
             {
                 meshRenderer.enabled = true;
