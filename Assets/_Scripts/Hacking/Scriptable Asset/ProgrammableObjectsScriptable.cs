@@ -15,4 +15,5 @@ public class ProgrammableObjectsScriptable : ScriptableObject
 
     public List<InOutVignette> initialOutputActions = new List<InOutVignette>();
     public bool isHackable;
+    public bool shouldBeSendToClientEveryFrame;
 }

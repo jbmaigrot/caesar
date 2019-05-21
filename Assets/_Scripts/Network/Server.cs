@@ -43,6 +43,8 @@ public class Server : MonoBehaviour
     private bool hasSendItsRegard;
 
     public bool hasSomeoneWin = false;
+
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -377,124 +379,143 @@ public class Server : MonoBehaviour
             // Snapshot (world state)
             for (int j = 0; j < programmableObjectsContainer.objectListServer.Count; j++)
             {
-                int charactersIndex = programmableObjectsContainer.objectListServer[j].charactersIndex;
-                using (var writer = new DataStreamWriter(16384, Allocator.Temp))
+                if (programmableObjectsContainer.objectListServer[j].shouldBeSendToClientEveryFrame)
                 {
-                    //snapshot start
-                    writer.Write(Constants.Server_Snapshot);
-                    writer.Write(snapshotCount);
-
-                    if (charactersIndex != -1) //we have a character, update on its states and positions
+                    int charactersIndex = programmableObjectsContainer.objectListServer[j].charactersIndex;
+                    using (var writer = new DataStreamWriter(16384, Allocator.Temp))
                     {
-                        writer.Write(Constants.Server_MoveCharacter);
-                        writer.Write(charactersIndex);
-                        writer.Write(characters[charactersIndex].position.x);
-                        writer.Write(characters[charactersIndex].position.y);
-                        writer.Write(characters[charactersIndex].position.z);
-                        writer.Write(characters[charactersIndex].rotation.eulerAngles.y);
-                        writer.Write(characters[charactersIndex].GetComponent<NavMeshAgent>().velocity.x);
-                        writer.Write(characters[charactersIndex].GetComponent<NavMeshAgent>().velocity.z);
-                        writer.Write(characters[charactersIndex].gameObject.GetComponent<ServerCharacter>().isStunned ? characters[charactersIndex].gameObject.GetComponent<ServerCharacter>().timeBeforeEndOfStun : 0f);
+                        //snapshot start
+                        writer.Write(Constants.Server_Snapshot);
+                        writer.Write(snapshotCount);
 
-                        if (characters[charactersIndex].GetComponent<ServerCarrier>())
+                        if (charactersIndex != -1) //we have a character, update on its states and positions
                         {
-                            var carrier = characters[charactersIndex].GetComponent<ServerCarrier>();
-                            writer.Write(carrier.charge / carrier.maxCharge); //send charge ratio, rather than raw value (as clients do not know all max charges)
-                        }
-                        else
-                        {
-                            writer.Write(0f);
-                        }
+                            writer.Write(Constants.Server_MoveCharacter);
+                            writer.Write(charactersIndex);
+                            writer.Write(characters[charactersIndex].position.x);
+                            writer.Write(characters[charactersIndex].position.y);
+                            writer.Write(characters[charactersIndex].position.z);
+                            writer.Write(characters[charactersIndex].rotation.eulerAngles.y);
+                            writer.Write(characters[charactersIndex].GetComponent<NavMeshAgent>().velocity.x);
+                            writer.Write(characters[charactersIndex].GetComponent<NavMeshAgent>().velocity.z);
+                            writer.Write(characters[charactersIndex].gameObject.GetComponent<ServerCharacter>().isStunned ? characters[charactersIndex].gameObject.GetComponent<ServerCharacter>().timeBeforeEndOfStun : 0f);
 
-                        //Send information about teammates
-                        int curTeam = players[i].GetComponent<ServerCharacter>().team;
+                            if (characters[charactersIndex].GetComponent<ServerCarrier>())
+                            {
+                                var carrier = characters[charactersIndex].GetComponent<ServerCarrier>();
+                                writer.Write(carrier.charge / carrier.maxCharge); //send charge ratio, rather than raw value (as clients do not know all max charges)
+                            }
+                            else
+                            {
+                                writer.Write(0f);
+                            }
 
-                        if (characters[charactersIndex].gameObject.GetComponent<ServerCharacter>().team == curTeam) 
+                            //Send information about teammates
+                            int curTeam = players[i].GetComponent<ServerCharacter>().team;
+
+                            if (characters[charactersIndex].gameObject.GetComponent<ServerCharacter>().team == curTeam)
                             //means this is an ally of the player associated with the current connection
-                        {
-                            writer.Write(Constants.Server_TeammateInfo);
-
-                            char[] playerNameAsChars = characters[charactersIndex].gameObject.GetComponent<ServerCharacter>().playerName.ToCharArray();
-                            byte[] buffer = new byte[playerNameAsChars.Length];
-                            
-                            for (int k = 0; k < playerNameAsChars.Length; k++)
                             {
-                                buffer[k] = (byte)playerNameAsChars[k];
+                                writer.Write(Constants.Server_TeammateInfo);
+
+                                char[] playerNameAsChars = characters[charactersIndex].gameObject.GetComponent<ServerCharacter>().playerName.ToCharArray();
+                                byte[] buffer = new byte[playerNameAsChars.Length];
+
+                                for (int k = 0; k < playerNameAsChars.Length; k++)
+                                {
+                                    buffer[k] = (byte)playerNameAsChars[k];
+                                }
+                                writer.Write(playerNameAsChars.Length);
+                                writer.Write(buffer);
                             }
-                            writer.Write(playerNameAsChars.Length);
-                            writer.Write(buffer);
                         }
-                    }
 
-                    //update objects states
-                    writer.Write(Constants.Server_UpdateObject);
-                    writer.Write(j);
-                    writer.Write(programmableObjectsContainer.objectListServer[j].isLightOn ? 1 : 0);
-                    writer.Write(programmableObjectsContainer.objectListServer[j].isDoorOpen ? 1 : 0);
+                        //update objects states
+                        writer.Write(Constants.Server_UpdateObject);
+                        writer.Write(j);
+                        writer.Write(programmableObjectsContainer.objectListServer[j].isLightOn ? 1 : 0);
+                        writer.Write(programmableObjectsContainer.objectListServer[j].isDoorOpen ? 1 : 0);
 
-                    if (programmableObjectsContainer.objectListServer[j].GetComponent<ServerCarrier>())
-                    {
-                        // source state
-                        ServerSource source = programmableObjectsContainer.objectListServer[j].GetComponent<ServerSource>();
-                        ServerBattery battery = programmableObjectsContainer.objectListServer[j].GetComponent<ServerBattery>();
-                        if (source)
+                        if (programmableObjectsContainer.objectListServer[j].GetComponent<ServerCarrier>())
                         {
-                            if (!source.isActiveAndEnabled)
+                            // source state
+                            ServerSource source = programmableObjectsContainer.objectListServer[j].GetComponent<ServerSource>();
+                            ServerBattery battery = programmableObjectsContainer.objectListServer[j].GetComponent<ServerBattery>();
+                            if (source)
                             {
-                                writer.Write(0);
+                                if (!source.isActiveAndEnabled)
+                                {
+                                    writer.Write(0);
+                                }
+                                else if (source.takenFrom)
+                                {
+                                    writer.Write(3);
+                                }
+                                else if (source.carrier.charge > 0)
+                                {
+                                    writer.Write(2);
+                                }
+                                else
+                                {
+                                    writer.Write(1);
+                                }
                             }
-                            else if (source.takenFrom)
+                            else if (battery)
                             {
-                                writer.Write(3);
-                            }
-                            else if (source.carrier.charge > 0)
-                            {
-                                writer.Write(2);
+                                if (battery.receiving)
+                                {
+                                    writer.Write(1);
+                                }
+                                else
+                                {
+                                    writer.Write(0);
+                                }
                             }
                             else
                             {
-                                writer.Write(1);
-                            }
-                        }
-                        else if(battery)
-                        {
-                            if (battery.receiving)
-                            {
-                                writer.Write(1);
-                            }
-                            else
-                            {
                                 writer.Write(0);
                             }
+                            var carrier = programmableObjectsContainer.objectListServer[j].GetComponent<ServerCarrier>();
+                            writer.Write(carrier.charge / carrier.maxCharge); //send charge ratio, rather than raw value (as clients do not know all max charges)
+
                         }
                         else
                         {
                             writer.Write(0);
+                            writer.Write(0f);
+
                         }
-                        var carrier = programmableObjectsContainer.objectListServer[j].GetComponent<ServerCarrier>();
-                        writer.Write(carrier.charge / carrier.maxCharge); //send charge ratio, rather than raw value (as clients do not know all max charges)
-                        
-                    }
-                    else
-                    {
-                        writer.Write(0);
-                        writer.Write(0f);
-                        
-                    }
-                    if (programmableObjectsContainer.objectListServer[j].sendingToRedServer)
-                    {
-                        if (programmableObjectsContainer.objectListServer[j].sendingToBlueServer)
+                        if (programmableObjectsContainer.objectListServer[j].sendingToRedServer)
                         {
-                            writer.Write(3);
+                            if (programmableObjectsContainer.objectListServer[j].sendingToBlueServer)
+                            {
+                                writer.Write(3);
+                            }
+                            else
+                            {
+                                writer.Write(2);
+                            }
                         }
                         else
                         {
-                            writer.Write(2);
+                            if (programmableObjectsContainer.objectListServer[j].sendingToBlueServer)
+                            {
+                                writer.Write(1);
+                            }
+                            else
+                            {
+                                writer.Write(0);
+                            }
                         }
-                    }
-                    else
-                    {
-                        if (programmableObjectsContainer.objectListServer[j].sendingToBlueServer)
+
+                        //close snapshot
+                        writer.Write(Constants.Server_SnapshotEnd);
+
+                        //writer.Write(characters.IndexOf(players[i]));
+                        writer.Write(players[i].GetComponent<ProgrammableObjectsData>().charactersIndex); //index of the player in the character list
+                        writer.Write(players[i].GetComponent<ServerCarrier>().givingTo == null ? 0 : 1);
+                        writer.Write(players[i].GetComponent<ServerCarrier>().takingFrom == null ? 0 : 1);
+                        if (OrangeIsBack)
                         {
                             writer.Write(1);
                         }
@@ -502,34 +523,19 @@ public class Server : MonoBehaviour
                         {
                             writer.Write(0);
                         }
-                    }
 
-                    //close snapshot
-                    writer.Write(Constants.Server_SnapshotEnd);
-
-                    //writer.Write(characters.IndexOf(players[i]));
-                    writer.Write(players[i].GetComponent<ProgrammableObjectsData>().charactersIndex); //index of the player in the character list
-                    writer.Write(players[i].GetComponent<ServerCarrier>().givingTo == null ? 0 : 1);
-                    writer.Write(players[i].GetComponent<ServerCarrier>().takingFrom == null ? 0 : 1);
-                    if (OrangeIsBack)
-                    {
-                        writer.Write(1);
+                        if (BlueIsBack)
+                        {
+                            writer.Write(1);
+                        }
+                        else
+                        {
+                            writer.Write(0);
+                        }
+                        m_Driver.Send(m_Connections[i], writer);
                     }
-                    else
-                    {
-                        writer.Write(0);
-                    }
-
-                    if (BlueIsBack)
-                    {
-                        writer.Write(1);
-                    }
-                    else
-                    {
-                        writer.Write(0);
-                    }
-                    m_Driver.Send(m_Connections[i], writer);
                 }
+                
             }
         }
 

@@ -64,6 +64,8 @@ public class ProgrammableObjectsData : MonoBehaviour
     public int isBeingHackedServer;
     public bool sendingToBlueServer;
     public bool sendingToRedServer;
+
+    public bool shouldBeSendToClientEveryFrame;
 #endif
 
 
@@ -89,6 +91,7 @@ public class ProgrammableObjectsData : MonoBehaviour
         inputCodes = new List<InOutVignette>(InitiatorClone.inputCodes);
         outputCodes = new List<InOutVignette>(InitiatorClone.outputCodes);
         graph = new List<Arrow>(InitiatorClone.graph);
+        shouldBeSendToClientEveryFrame = Initiator.shouldBeSendToClientEveryFrame;
 
         foreach (Arrow a in graph)
         {
