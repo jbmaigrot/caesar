@@ -415,7 +415,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 37ee008d13241448e82666e44bf7bf1e, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.71518075
+  m_Volume: 0.66160274
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -532,7 +532,7 @@ AudioLowPassFilter:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.9064708
+      value: 0.70630926
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1020,11 +1020,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4113789284217470875}
     m_Modifications:
-    - target: {fileID: 4500087429524261250, guid: 69614799a84ef2b4aaee43790ed6e055,
-        type: 3}
-      propertyPath: m_Name
-      value: Orange marker
-      objectReference: {fileID: 0}
     - target: {fileID: 4619640931388069243, guid: 69614799a84ef2b4aaee43790ed6e055,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1079,6 +1074,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4500087429524261250, guid: 69614799a84ef2b4aaee43790ed6e055,
+        type: 3}
+      propertyPath: m_Name
+      value: Orange marker
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69614799a84ef2b4aaee43790ed6e055, type: 3}
