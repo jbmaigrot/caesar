@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class ClientCharacter : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class ClientCharacter : MonoBehaviour
 
     public AnimationCurve FadeOutCurve;
 
+    public AudioMixer audioMixer;
+
     private const float MaxSpeed = 5f;
 
 #if CLIENT
@@ -48,14 +51,15 @@ public class ClientCharacter : MonoBehaviour
     private Animator stunAnimator;
     
     private bool isDataEmpty;
-
+    private bool isDistorsionOn = false;
     //private float NappeDataCurveTime;
     private AudioClip[] StunClip;
     private AudioClip[] StunQClip;
     private float DelayBetweenStartOfNextClipAndEndOfPresentOne;
     SpriteRenderer lightning;
 
-
+    public bool isPlayer;
+    private float distorsionValue;
     //Start
     private void Start()
     {
@@ -74,6 +78,9 @@ public class ClientCharacter : MonoBehaviour
         isDataEmpty = true;
         DelayBetweenStartOfNextClipAndEndOfPresentOne = Random.Range(0.15f,0.25f);
         lightning = this.transform.Find("StunLightning").GetComponent<SpriteRenderer>();
+        isDistorsionOn = false;
+        distorsionValue = 0;
+        
     }
 
     // Update is called once per frame
@@ -166,6 +173,32 @@ public class ClientCharacter : MonoBehaviour
             StunAudioSource.volume = 0;
             StunQAudioSource.volume = 0;
         }
+
+        if (isPlayer)
+        {
+            if (isTacle && !isDistorsionOn)
+            {
+                distorsionValue += Time.deltaTime * 0.7f;
+                if(distorsionValue > 0.7f)
+                {
+                    distorsionValue = 0.7f;
+                    isDistorsionOn = true;
+                }
+                audioMixer.SetFloat("DistorsionLevelInRelationToStun", distorsionValue);                
+            }
+
+            if (!isTacle && isDistorsionOn)
+            {
+                distorsionValue -= Time.deltaTime * 0.7f;
+                if (distorsionValue < 0.0f)
+                {
+                    distorsionValue = 0.0f;
+                    isDistorsionOn = false;
+                }
+                audioMixer.SetFloat("DistorsionLevelInRelationToStun", distorsionValue);
+            }
+        }
+       
     }
 
     // Tacle
