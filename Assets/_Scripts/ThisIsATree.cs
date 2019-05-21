@@ -18,7 +18,7 @@ public class ThisIsATree : MonoBehaviour
     private const float timeForAppearing = 0.1f;
     private float timeBeforeDisappearing;
     private float timeBeforeAppearing;
-#if CLIENT
+
     private AudioClip[] BeepBoop;
     private float timeBeep;
     private float timeFadeOut;
@@ -105,7 +105,9 @@ public class ThisIsATree : MonoBehaviour
             timeBeforeDisappearing -= Time.deltaTime;
             if (timeBeforeDisappearing <= 0)
             {
+#if SERVER
                 GetComponentInParent<ProgrammableObjectsData>().OnInput("OnTurnOff");
+#endif
                 if (GetComponentInChildren<Light>())
                 {
                     GetComponentInChildren<Light>().enabled = false;
@@ -122,7 +124,9 @@ public class ThisIsATree : MonoBehaviour
             timeBeforeAppearing -= Time.deltaTime;
             if (timeBeforeAppearing <= 0)
             {
+#if SERVER
                 GetComponentInParent<ProgrammableObjectsData>().OnInput("OnTurnOn");
+#endif
                 if (GetComponentInChildren<Light>())
                 {
                     GetComponentInChildren<Light>().enabled = true;
@@ -134,5 +138,5 @@ public class ThisIsATree : MonoBehaviour
             }
         }
     }
-#endif
-}
+
+            }
