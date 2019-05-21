@@ -14,20 +14,22 @@ public class ThisIsATree : MonoBehaviour
     public AudioClip HoloOn;
     public AudioClip HoloOff;
 
-    private const float timeForDisappearing = 0.15f;
-    private const float timeForAppearing = 0.15f;
+    private const float timeForDisappearing = 0.1f;
+    private const float timeForAppearing = 0.1f;
     private float timeBeforeDisappearing;
     private float timeBeforeAppearing;
 #if CLIENT
     private AudioClip[] BeepBoop;
     private float timeBeep;
     private float timeFadeOut;
+    private MeshRenderer[] meshRenderers;
     // Start is called before the first frame update
     void Start()
     {
         BeepBoop = Resources.LoadAll<AudioClip>("Beep");
         isSoundOn = true;
         timeFadeOut = 0.5f;
+        meshRenderers = GetComponentsInChildren<MeshRenderer>();
     }
 
     public void TurnOn()
@@ -36,7 +38,11 @@ public class ThisIsATree : MonoBehaviour
         {
             timeBeforeAppearing = timeForAppearing;
             isSoundOn = true;
-            HoloSound.PlayOneShot(HoloOn);
+            if (!HoloSound.isPlaying)
+            {
+                HoloSound.PlayOneShot(HoloOn);
+            }
+            
         }
     }
 
@@ -48,7 +54,11 @@ public class ThisIsATree : MonoBehaviour
             timeBeforeDisappearing = timeForDisappearing;
             isSoundOn = false;
 
-            HoloSound.PlayOneShot(HoloOff);
+            if (!HoloSound.isPlaying)
+            {
+                HoloSound.PlayOneShot(HoloOff);
+            }
+            
         }
         
     }
@@ -94,7 +104,7 @@ public class ThisIsATree : MonoBehaviour
                 {
                     GetComponentInChildren<Light>().enabled = false;
                 }
-                foreach (MeshRenderer ryan in GetComponentsInChildren<MeshRenderer>())
+                foreach (MeshRenderer ryan in meshRenderers)
                 {
                     ryan.enabled = false;
                 }
@@ -110,7 +120,7 @@ public class ThisIsATree : MonoBehaviour
                 {
                     GetComponentInChildren<Light>().enabled = true;
                 }
-                foreach (MeshRenderer ryan in GetComponentsInChildren<MeshRenderer>())
+                foreach (MeshRenderer ryan in meshRenderers)
                 {
                     ryan.enabled = true;
                 }
