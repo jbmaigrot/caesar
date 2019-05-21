@@ -28,6 +28,7 @@ public class ClientLobby : MonoBehaviour
     private ConnectingMessageManager connectingMessageManager;
     private PopupMessageManager popupMessageManager;
     private IPConnectionInterfaceManager iPConnectionInterfaceManager;
+    private GameObject creditButton;
 
     public bool stopUpdate = false;
     
@@ -42,6 +43,7 @@ public class ClientLobby : MonoBehaviour
         connectingMessageManager = FindObjectOfType<ConnectingMessageManager>();
         popupMessageManager = FindObjectOfType<PopupMessageManager>();
         iPConnectionInterfaceManager = FindObjectOfType<IPConnectionInterfaceManager>();
+        creditButton = GameObject.Find("CreditButton");
 
         establishingConnection = false;
     }
@@ -127,6 +129,7 @@ public class ClientLobby : MonoBehaviour
                                 initialHandshakeDone = true;
                                 connectingMessageManager.Hide();
                                 iPConnectionInterfaceManager.Hide();
+                                creditButton.SetActive(false);
 
                                 lobbyInterfaceManager.Show();
                                 break;
