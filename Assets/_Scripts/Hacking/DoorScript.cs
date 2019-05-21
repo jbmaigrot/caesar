@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.AI;
 
 public class DoorScript : MonoBehaviour
 {
-    private const float timeForDisappearing = 0.15f;
-    private const float timeForAppearing = 0.15f;
+    private const float timeForDisappearing = 0.1f;
+    private const float timeForAppearing = 0.1f;
     bool isOpen = false;
     public bool isClosing=false;
     public bool isOccupied=false;
@@ -15,6 +16,20 @@ public class DoorScript : MonoBehaviour
 
     private float timeBeforeDisappearing;
     private float timeBeforeAppearing;
+    private NavMeshObstacle navMeshObstacle;
+    private MeshRenderer meshRenderer;
+    private Collider collider;
+    private ProgrammableObjectsData parent;
+    private AudioSource audioSource;
+
+    public void Start()
+    {
+        parent = GetComponentInParent<ProgrammableObjectsData>();
+        navMeshObstacle = parent.GetComponentInChildren<NavMeshObstacle>();
+        meshRenderer = this.GetComponent<MeshRenderer>();
+        collider = this.GetComponent<Collider>();
+        audioSource = this.GetComponent<AudioSource>();
+    }
 
     public void Update()
     {
@@ -23,18 +38,21 @@ public class DoorScript : MonoBehaviour
             timeBeforeDisappearing -= Time.deltaTime;
             if (timeBeforeDisappearing <= 0)
             {
-                this.GetComponent<MeshRenderer>().enabled = false;
-                this.GetComponent<Collider>().enabled = false;
+                meshRenderer.enabled = false;
+                collider.enabled = false;
+                navMeshObstacle.carving = false;
             }
         }
 
         if (!isOpen && !GetComponent<MeshRenderer>().enabled)
         {
             timeBeforeAppearing -= Time.deltaTime;
+            navMeshObstacle.carving = true;
             if (timeBeforeAppearing <= 0)
             {
-                this.GetComponent<MeshRenderer>().enabled = true;
-                this.GetComponent<Collider>().enabled = true;
+                meshRenderer.enabled = true;
+                collider.enabled = true;
+                
             }
         }
 
@@ -47,7 +65,7 @@ public class DoorScript : MonoBehaviour
         {
             isOpen = true;
             timeBeforeDisappearing = timeForDisappearing;
-            this.GetComponent<AudioSource>().PlayOneShot(holoOff);
+            audioSource.PlayOneShot(holoOff);
         }
     }
 
@@ -63,7 +81,7 @@ public class DoorScript : MonoBehaviour
             {
                 isOpen = false;
                 timeBeforeAppearing = timeForAppearing;
-                this.GetComponent<AudioSource>().PlayOneShot(holoOn);
+                audioSource.PlayOneShot(holoOn);
 
             }
         }
@@ -73,15 +91,15 @@ public class DoorScript : MonoBehaviour
 #if CLIENT
     void OnMouseDown()
     {
-        if (GetComponentInParent<ProgrammableObjectsData>().client.hackInterface.GetComponent<CanvasGroup>().blocksRaycasts)
+        if (parent.client.hackInterface.GetComponent<CanvasGroup>().blocksRaycasts)
         {
-            GetComponentInParent<ProgrammableObjectsData>().client.hackInterface.OnClose();
+            parent.client.hackInterface.OnClose();
         }
         else
         {
-            if ((this.GetComponentInParent<Collider>().ClosestPoint(GetComponentInParent<ProgrammableObjectsData>().client.characters[GetComponentInParent<ProgrammableObjectsData>().client.playerIndex].transform.position) - GetComponentInParent<ProgrammableObjectsData>().client.characters[GetComponentInParent<ProgrammableObjectsData>().client.playerIndex].transform.position).magnitude < 15 && !Input.GetKey(KeyCode.LeftControl))
+            if ((this.GetComponentInParent<Collider>().ClosestPoint(parent.client.characters[parent.client.playerIndex].transform.position) - parent.client.characters[parent.client.playerIndex].transform.position).magnitude < 15 && !Input.GetKey(KeyCode.LeftControl))
             {
-                GetComponentInParent<ProgrammableObjectsData>().client.DoorInteract(GetComponentInParent<ProgrammableObjectsData>().objectsContainer.GetObjectIndexClient(GetComponentInParent<ProgrammableObjectsData>()));
+                parent.client.DoorInteract(parent.objectsContainer.GetObjectIndexClient(parent));
             }
         }
        

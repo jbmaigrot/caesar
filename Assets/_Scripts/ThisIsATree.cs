@@ -14,8 +14,8 @@ public class ThisIsATree : MonoBehaviour
     public AudioClip HoloOn;
     public AudioClip HoloOff;
 
-    private const float timeForDisappearing = 0.15f;
-    private const float timeForAppearing = 0.15f;
+    private const float timeForDisappearing = 0.1f;
+    private const float timeForAppearing = 0.1f;
     private float timeBeforeDisappearing;
     private float timeBeforeAppearing;
 #if CLIENT
@@ -36,7 +36,11 @@ public class ThisIsATree : MonoBehaviour
         {
             timeBeforeAppearing = timeForAppearing;
             isSoundOn = true;
-            HoloSound.PlayOneShot(HoloOn);
+            if (!HoloSound.isPlaying)
+            {
+                HoloSound.PlayOneShot(HoloOn);
+            }
+            
         }
     }
 
@@ -48,7 +52,11 @@ public class ThisIsATree : MonoBehaviour
             timeBeforeDisappearing = timeForDisappearing;
             isSoundOn = false;
 
-            HoloSound.PlayOneShot(HoloOff);
+            if (!HoloSound.isPlaying)
+            {
+                HoloSound.PlayOneShot(HoloOff);
+            }
+            
         }
         
     }
