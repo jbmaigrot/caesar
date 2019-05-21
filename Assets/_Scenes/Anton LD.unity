@@ -2695,6 +2695,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 243719704597106284, guid: 265490821becd254989fd0c11698b7d1,
         type: 2}
+    - target: {fileID: 3545192750655190033, guid: 7de46f8845ed73743b922c3e6f80f812,
+        type: 3}
+      propertyPath: Priority
+      value: 255
+      objectReference: {fileID: 0}
     - target: {fileID: 2001921356, guid: 7de46f8845ed73743b922c3e6f80f812, type: 3}
       propertyPath: m_LocalPosition.x
       value: -86.86
@@ -30284,6 +30289,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 243719704597106284, guid: 265490821becd254989fd0c11698b7d1,
         type: 2}
+    - target: {fileID: 3545192750655190033, guid: 7de46f8845ed73743b922c3e6f80f812,
+        type: 3}
+      propertyPath: Priority
+      value: 255
+      objectReference: {fileID: 0}
     - target: {fileID: 2001921356, guid: 7de46f8845ed73743b922c3e6f80f812, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -36644,6 +36654,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 243719704597106284, guid: 265490821becd254989fd0c11698b7d1,
         type: 2}
+    - target: {fileID: 3545192750655190033, guid: 7de46f8845ed73743b922c3e6f80f812,
+        type: 3}
+      propertyPath: Priority
+      value: 255
+      objectReference: {fileID: 0}
     - target: {fileID: 2001921356, guid: 7de46f8845ed73743b922c3e6f80f812, type: 3}
       propertyPath: m_LocalPosition.x
       value: 86.89
@@ -44292,8 +44307,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1672044608}
   m_HandleRect: {fileID: 1672044607}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.99999994
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -50673,7 +50688,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.000014862748}
+  m_AnchoredPosition: {x: 0, y: -0.000030517578}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1959515637
