@@ -446,6 +446,16 @@ public class Client : MonoBehaviour
                                         hasTheAudioSourceOfThePlayerBeenInitialized = true;
                                         characters[playerIndex].NappeMoveAudioSource.spatialBlend = 0.0f;
                                         characters[playerIndex].NappeMoveAudioSource.outputAudioMixerGroup = AvatarAmb;
+                                        characters[playerIndex].GetComponent<ProgrammableObjectsData>().RedTrail.GetComponent<AudioSource>().spatialBlend = 0.0f;
+                                        characters[playerIndex].GetComponent<ProgrammableObjectsData>().RedTrail.GetComponent<AudioSource>().bypassReverbZones= true;
+                                        characters[playerIndex].GetComponent<ProgrammableObjectsData>().RedTrail.GetComponent<AudioSource>().outputAudioMixerGroup = AvatarInter;
+                                        characters[playerIndex].StunAudioSource.spatialBlend = 0.0f;
+                                        characters[playerIndex].StunAudioSource.bypassReverbZones = true;
+                                        characters[playerIndex].StunAudioSource.outputAudioMixerGroup = AvatarInter;
+                                        characters[playerIndex].StunQAudioSource.spatialBlend = 0.0f;
+                                        characters[playerIndex].StunQAudioSource.bypassReverbZones = true;
+                                        characters[playerIndex].StunQAudioSource.outputAudioMixerGroup = AvatarInter;
+
                                     }
                                     
                                     //characters[playerIndex].NappeDataAudioSource.spatialBlend = 0.0f;
