@@ -115,6 +115,7 @@ MonoBehaviour:
   isStunned: 0
   timeBeforeEndOfStun: 0
   canStun: 0
+  navMeshAgent: {fileID: 0}
   carrier: {fileID: 0}
   isAttracted: 0
   attracttimebeforeend: 0
@@ -127,7 +128,7 @@ MonoBehaviour:
   actualDestination: {x: 0, y: 0, z: 0}
   server: {fileID: 0}
   coroutineStarted: 0
-  setDestinationSuccess: 0
+  destinationWasSet: 0
 --- !u!195 &743243704701644321
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -139,7 +140,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 5
-  m_Acceleration: 4
+  m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -162,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a66bf76cc67b949aaa75c4bfb2f7ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  server: {fileID: 0}
   NavMeshSurface: {fileID: 0}
   isAttract: 0
   charactersIndex: -1
@@ -188,6 +190,7 @@ MonoBehaviour:
   shouldBeSendToClientEveryFrame: 0
   Initiator: {fileID: 11400000, guid: f4db053c0b442c94c981f82269c05718, type: 2}
   objectsContainer: {fileID: 0}
+  startIsOver: 0
 --- !u!54 &743243704701644327
 Rigidbody:
   m_ObjectHideFlags: 0
