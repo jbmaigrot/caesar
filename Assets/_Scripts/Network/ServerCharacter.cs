@@ -17,7 +17,7 @@ public class ServerCharacter : MonoBehaviour
     private float timeBeforeStunReload;
     private const float TIMEOFSTUNRELOAD = 20.0f;
 
-    private NavMeshAgent navMeshAgent;
+    public NavMeshAgent navMeshAgent;
     private float baseSpeed;
 
     public ServerCarrier carrier;
