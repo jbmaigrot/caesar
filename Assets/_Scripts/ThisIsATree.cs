@@ -23,6 +23,7 @@ public class ThisIsATree : MonoBehaviour
     private float timeBeep;
     private float timeFadeOut;
     private MeshRenderer[] meshRenderers;
+    private float baseVolume;
     // Start is called before the first frame update
     void Start()
     {
@@ -73,7 +74,7 @@ public class ThisIsATree : MonoBehaviour
                 timeBeep -= Time.deltaTime;
                 if (timeBeep < 0)
                 {
-                    Beep.volume = 1;
+                    Beep.volume = baseVolume;
                     Beep.clip = BeepBoop[Random.Range(0, BeepBoop.Length)];
                     Beep.Play();
                     timeBeep = Random.Range(timeBeepBoopMin, timeBeepBoopMax);
