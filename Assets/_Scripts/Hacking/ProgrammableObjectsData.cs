@@ -49,6 +49,8 @@ public class ProgrammableObjectsData : MonoBehaviour
     private float timeInSoundCurve;
 #endif
 
+    public Transform BlueBatterie;
+    public Transform RedBatterie;
 #if SERVER
     /*Variables contenant le graphe de comportement de l'objet*/
     public List<InOutVignette> inputCodes = new List<InOutVignette>();
@@ -58,8 +60,6 @@ public class ProgrammableObjectsData : MonoBehaviour
     public bool isLightOn = false;
     public bool isDoorOpen = false;
 
-    public Transform BlueBatterie;
-    public Transform RedBatterie;
 
     public int isBeingHackedServer;
     public bool sendingToBlueServer;
@@ -108,9 +108,14 @@ public class ProgrammableObjectsData : MonoBehaviour
 
         serverCarrier = this.GetComponent<ServerCarrier>();
 
+        
+        
+
+       
+        isBeingHackedServer = -1;
+#endif
         ServerBattery[] Batteries;
         Batteries = FindObjectsOfType<ServerBattery>();
-
         if (Batteries[0].team == 0)
         {
             RedBatterie = Batteries[0].transform;
@@ -121,8 +126,6 @@ public class ProgrammableObjectsData : MonoBehaviour
             RedBatterie = Batteries[1].transform;
             BlueBatterie = Batteries[0].transform;
         }
-        isBeingHackedServer = -1;
-#endif
         isHackable = Initiator.isHackable;
 #if CLIENT
         client = FindObjectOfType<Client>();
