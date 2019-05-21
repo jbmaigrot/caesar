@@ -25,7 +25,7 @@ public class ThisIsATree : MonoBehaviour
     private MeshRenderer[] meshRenderers;
     private float baseVolume;
     private AudioListener listener;
-    private const float distanceAudioBeep=10f;
+    private const float distanceAudioBeep = 10f;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,7 +47,7 @@ public class ThisIsATree : MonoBehaviour
             {
                 HoloSound.PlayOneShot(HoloOn);
             }
-            
+
         }
     }
 
@@ -63,9 +63,9 @@ public class ThisIsATree : MonoBehaviour
             {
                 HoloSound.PlayOneShot(HoloOff);
             }
-            
+
         }
-        
+
     }
     // Update is called once per frame
     void Update()
@@ -76,7 +76,7 @@ public class ThisIsATree : MonoBehaviour
             if (!Beep.isPlaying)
             {
                 timeBeep -= Time.deltaTime;
-                if (timeBeep < 0 && Vector3.Distance(listener.transform.position, this.transform.position)<distanceAudioBeep)
+                if (timeBeep < 0 && Vector3.Distance(listener.transform.position, this.transform.position) < distanceAudioBeep)
                 {
                     Beep.volume = baseVolume;
                     Beep.clip = BeepBoop[Random.Range(0, BeepBoop.Length)];
@@ -100,14 +100,11 @@ public class ThisIsATree : MonoBehaviour
             }
         }
 
-        if (!isSoundOn && timeBeforeDisappearing>0)
+        if (!isSoundOn && timeBeforeDisappearing > 0)
         {
             timeBeforeDisappearing -= Time.deltaTime;
             if (timeBeforeDisappearing <= 0)
             {
-#if SERVER
-                GetComponentInParent<ProgrammableObjectsData>().OnInput("OnTurnOff");
-#endif
                 if (GetComponentInChildren<Light>())
                 {
                     GetComponentInChildren<Light>().enabled = false;
@@ -119,14 +116,11 @@ public class ThisIsATree : MonoBehaviour
             }
         }
 
-        if (isSoundOn && timeBeforeAppearing>0)
+        if (isSoundOn && timeBeforeAppearing > 0)
         {
             timeBeforeAppearing -= Time.deltaTime;
             if (timeBeforeAppearing <= 0)
             {
-#if SERVER
-                GetComponentInParent<ProgrammableObjectsData>().OnInput("OnTurnOn");
-#endif
                 if (GetComponentInChildren<Light>())
                 {
                     GetComponentInChildren<Light>().enabled = true;
@@ -139,4 +133,4 @@ public class ThisIsATree : MonoBehaviour
         }
     }
 
-            }
+}

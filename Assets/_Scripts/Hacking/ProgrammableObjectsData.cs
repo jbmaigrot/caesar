@@ -223,13 +223,13 @@ public class ProgrammableObjectsData : MonoBehaviour
         }
         if (codeoutput == "TurnOnHolo")
         {
-            
+            GetComponentInParent<ProgrammableObjectsData>().OnInput("OnTurnOn");
             isLightOn = true;
         }
 
         if (codeoutput == "TurnOffHolo")
         {
-            
+            GetComponentInParent<ProgrammableObjectsData>().OnInput("OnTurnOff");
             isLightOn = false;
         }
         if (codeoutput == "OpenDoor")
