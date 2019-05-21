@@ -100,6 +100,7 @@ public class ThisIsATree : MonoBehaviour
             timeBeforeDisappearing -= Time.deltaTime;
             if (timeBeforeDisappearing <= 0)
             {
+                GetComponentInParent<ProgrammableObjectsData>().OnInput("OnTurnOff");
                 if (GetComponentInChildren<Light>())
                 {
                     GetComponentInChildren<Light>().enabled = false;
@@ -116,6 +117,7 @@ public class ThisIsATree : MonoBehaviour
             timeBeforeAppearing -= Time.deltaTime;
             if (timeBeforeAppearing <= 0)
             {
+                GetComponentInParent<ProgrammableObjectsData>().OnInput("OnTurnOn");
                 if (GetComponentInChildren<Light>())
                 {
                     GetComponentInChildren<Light>().enabled = true;

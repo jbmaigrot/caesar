@@ -41,6 +41,7 @@ public class DoorScript : MonoBehaviour
                 meshRenderer.enabled = false;
                 collider.enabled = false;
                 navMeshObstacle.enabled = false;
+                parent.OnInput("OnOpen");
             }
         }
 
@@ -52,7 +53,8 @@ public class DoorScript : MonoBehaviour
             {
                 meshRenderer.enabled = true;
                 collider.enabled = true;
-                
+                parent.OnInput("OnClose");
+
             }
         }
 
