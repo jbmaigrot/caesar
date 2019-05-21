@@ -1367,6 +1367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a66bf76cc67b949aaa75c4bfb2f7ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  server: {fileID: 0}
   NavMeshSurface: {fileID: 0}
   isAttract: 0
   charactersIndex: -1
@@ -1393,6 +1394,7 @@ MonoBehaviour:
   shouldBeSendToClientEveryFrame: 0
   Initiator: {fileID: 11400000, guid: 3b74dcead21d2374ba90d199bc2fef60, type: 2}
   objectsContainer: {fileID: 0}
+  startIsOver: 0
 --- !u!1 &5980992635052813072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1617,7 +1619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb463cc6cf1045448a36528af027fcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Beep: {fileID: 1622767683294422840}
+  Beep: {fileID: 4061171357100957826}
   timeBeepBoopMin: 2.5
   timeBeepBoopMax: 3
   FadeOutCurve:
@@ -1645,7 +1647,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   isSoundOn: 1
-  HoloSound: {fileID: 4061171357100957826}
+  HoloSound: {fileID: 1622767683294422840}
   HoloOn: {fileID: 8300000, guid: 81cbd3e470fc846cc8cc83f3f9f8014e, type: 3}
   HoloOff: {fileID: 8300000, guid: f1b883047051946d4981c5e278d6a1ff, type: 3}
 --- !u!82 &1622767683294422840
@@ -1708,7 +1710,7 @@ AudioSource:
       outWeight: 0.1135658
     - serializedVersion: 3
       time: 1
-      value: 0.0059509277
+      value: 0
       inSlope: 0.019039653
       outSlope: -0.15360361
       tangentMode: 1
@@ -1772,10 +1774,11 @@ AudioSource:
   m_GameObject: {fileID: 7331195193792074168}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243719704597106284, guid: 265490821becd254989fd0c11698b7d1,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.67
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1784,9 +1787,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 10
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1794,23 +1797,23 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.1
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -2.395037
+      outSlope: -2.395037
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0.044406977
     - serializedVersion: 3
-      time: 1
+      time: 0.998291
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -0.10003988
+      outSlope: -0.10003988
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
