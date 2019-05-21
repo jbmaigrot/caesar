@@ -305,8 +305,8 @@ public class Client : MonoBehaviour
                                     float charge = stream.ReadFloat(ref readerCtx);
                                     if (characters[j].GetComponent<ServerCarrier>())
                                     {
-                                        var carrier = characters[j].GetComponent<ServerCarrier>();
-                                        carrier.clientCharge = charge;
+                                        var car = characters[j].GetComponent<ServerCarrier>();
+                                        car.clientCharge = charge;
                                     }
 
                                     type = stream.ReadUInt(ref readerCtx);
@@ -325,7 +325,7 @@ public class Client : MonoBehaviour
                                         allyCharacter.isAlly = true;
                                         allyCharacter.playerName = new string(playerNameBuffer);
 
-                                        if (allyCharacter.isKnownAsAlly != true)
+                                        if (! allyCharacter.isKnownAsAlly)
                                         {
                                             allyCharacters.Add(characters[j]);
 
@@ -363,27 +363,31 @@ public class Client : MonoBehaviour
 
                                 int l = (int)stream.ReadUInt(ref readerCtx);
                                 ProgrammableObjectsData progObject = programmableObjectsContainer.objectListClient[l];
+
+                                ThisIsATree thisIsATree = progObject.GetComponentInChildren<ThisIsATree>(false);
+                                DoorScript doorScript = progObject.GetComponentInChildren<DoorScript>();
+
                                 //Light
                                 if ((int)stream.ReadUInt(ref readerCtx) == 0)
                                 {
-                                    if (progObject.GetComponentInChildren<ThisIsATree>(false) != null)
-                                        progObject.GetComponentInChildren<ThisIsATree>(false).TurnOff();
+                                    if (thisIsATree != null)
+                                        thisIsATree.TurnOff();
                                 }
                                 else
                                 {
-                                    if (progObject.GetComponentInChildren<ThisIsATree>(false) != null)
-                                        progObject.GetComponentInChildren<ThisIsATree>(false).TurnOn();
+                                    if (thisIsATree != null)
+                                        thisIsATree.TurnOn();
                                 }
                                 //Door
                                 if ((int)stream.ReadUInt(ref readerCtx) == 0)
                                 {
-                                    if (progObject.GetComponentInChildren<DoorScript>() != null)
-                                        progObject.GetComponentInChildren<DoorScript>().OnClose();
+                                    if (doorScript != null)
+                                        doorScript.OnClose();
                                 }
                                 else
                                 {
-                                    if (progObject.GetComponentInChildren<DoorScript>() != null)
-                                        progObject.GetComponentInChildren<DoorScript>().OnOpen();
+                                    if (doorScript != null)
+                                        doorScript.OnOpen();
                                 }
                                 //Source/Battery state (animation)
                                 int sourceState = (int)stream.ReadUInt(ref readerCtx);
@@ -397,9 +401,9 @@ public class Client : MonoBehaviour
                                 }
                                 // Charge
                                 float chargeRatio = stream.ReadFloat(ref readerCtx);
-                                if (progObject.GetComponent<ServerCarrier>())
+                                var carrier = progObject.GetComponent<ServerCarrier>();
+                                if (carrier)
                                 {
-                                    var carrier = progObject.GetComponent<ServerCarrier>();
                                     carrier.clientCharge =  chargeRatio;
                                 }
 
