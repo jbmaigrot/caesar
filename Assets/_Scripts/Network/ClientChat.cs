@@ -11,12 +11,16 @@ public class ClientChat : MonoBehaviour
 #if CLIENT
     public InputField inputField;
     private Client client;
+    private AudioSource audioSource;
+    private float saturation;
 
     // Start is called before the first frame update
     void Start()
     {
         inputField = GetComponentInChildren<InputField>();
         client = FindObjectOfType<Client>();
+        audioSource = GetComponent<AudioSource>();
+        saturation = 0;
     }
 
     // Update is called once per frame
@@ -27,6 +31,8 @@ public class ClientChat : MonoBehaviour
             client.Message(inputField.text);
             inputField.text = "";
         }
+        saturation -= Time.deltaTime;
+        if (saturation < 0) saturation = 0;
     }
 
     //
@@ -48,10 +54,19 @@ public class ClientChat : MonoBehaviour
         newMessage.GetComponent<RectTransform>().localPosition = new Vector3(10, 50, 0);
         newTextBox.text = message;
         newMessage.GetComponent<ClientMessage>().sourcePosition = pos;
-        if (!this.GetComponent<AudioSource>().isPlaying)
+        if(saturation < 3f)
         {
-            this.GetComponent<AudioSource>().Play();
+            saturation += 0.5f;
+            if(saturation > 3f)
+            {
+                saturation = 5f;
+            }
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
         }
+        
     }
 #endif
 }
