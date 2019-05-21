@@ -60,6 +60,9 @@ public class ClientCharacter : MonoBehaviour
 
     public bool isPlayer;
     private float distorsionValue;
+
+    private AudioListener listener;
+    private const float maxDistanceHearingDrone = 20f;
     //Start
     private void Start()
     {
@@ -80,6 +83,8 @@ public class ClientCharacter : MonoBehaviour
         lightning = this.transform.Find("StunLightning").GetComponent<SpriteRenderer>();
         isDistorsionOn = false;
         distorsionValue = 0;
+
+        listener = FindObjectOfType<AudioListener>();
         
     }
 
@@ -88,6 +93,18 @@ public class ClientCharacter : MonoBehaviour
     {
         NappeMoveAudioSource.volume = NappeMoveVolume.Evaluate(speed.magnitude / MaxSpeed);
         NappeMoveAudioSource.pitch = NappeMovePitch.Evaluate(speed.magnitude / MaxSpeed);
+
+        if (Vector3.Distance(transform.position, listener.transform.position) > 20)
+        {
+            NappeMoveAudioSource.Stop();
+        }
+        else
+        {
+            if (!NappeMoveAudioSource.isPlaying)
+            {
+                NappeMoveAudioSource.Play();
+            }
+        }
         /*
         if (client.characters[client.playerIndex] == this)
         {

@@ -24,6 +24,8 @@ public class ThisIsATree : MonoBehaviour
     private float timeFadeOut;
     private MeshRenderer[] meshRenderers;
     private float baseVolume;
+    private AudioListener listener;
+    private const float distanceAudioBeep=10f;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +33,8 @@ public class ThisIsATree : MonoBehaviour
         isSoundOn = true;
         timeFadeOut = 0.5f;
         meshRenderers = GetComponentsInChildren<MeshRenderer>();
+        listener = FindObjectOfType<AudioListener>();
+        baseVolume = Beep.volume;
     }
 
     public void TurnOn()
@@ -72,7 +76,7 @@ public class ThisIsATree : MonoBehaviour
             if (!Beep.isPlaying)
             {
                 timeBeep -= Time.deltaTime;
-                if (timeBeep < 0)
+                if (timeBeep < 0 && Vector3.Distance(listener.transform.position, this.transform.position)<distanceAudioBeep)
                 {
                     Beep.volume = baseVolume;
                     Beep.clip = BeepBoop[Random.Range(0, BeepBoop.Length)];
