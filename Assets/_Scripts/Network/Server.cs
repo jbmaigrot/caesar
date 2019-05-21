@@ -223,6 +223,8 @@ public class Server : MonoBehaviour
         {
             if (!m_Connections[i].IsCreated) continue;
 
+            ServerCharacter selectedPlayer = players[i].gameObject.GetComponent<ServerCharacter>();
+
             NetworkEvent.Type cmd;
             while ((cmd = m_Driver.PopEventForConnection(m_Connections[i], out stream)) != NetworkEvent.Type.Empty)
             {
@@ -237,15 +239,15 @@ public class Server : MonoBehaviour
                             float dest_x = stream.ReadFloat(ref readerCtx);
                             float dest_y = stream.ReadFloat(ref readerCtx);
                             float dest_z = stream.ReadFloat(ref readerCtx);
-                            players[i].gameObject.GetComponent<ServerCharacter>().normalDestination = new Vector3(dest_x, dest_y, dest_z);
+                            selectedPlayer.normalDestination = new Vector3(dest_x, dest_y, dest_z);
                             break;
 
                         case Constants.Client_Tacle:
                             int number = (int)stream.ReadUInt(ref readerCtx);
-                            if (players[i].GetComponent<ServerCharacter>().canStun && !players[i].GetComponent<ServerCharacter>().isStunned && /*number != i &&*/ Vector3.Distance(players[i].transform.position, characters[number].transform.position) < MANUALSTUNRADIUS)
+                            if (selectedPlayer.canStun && !selectedPlayer.isStunned && /*number != i &&*/ Vector3.Distance(selectedPlayer.transform.position, characters[number].transform.position) < MANUALSTUNRADIUS)
                             {
                                 characters[number].GetComponent<ServerCharacter>().getStun();
-                                players[i].GetComponent<ServerCharacter>().doStun();
+                                selectedPlayer.doStun();
 
                                 using (var writer = new DataStreamWriter(16384, Allocator.Temp))
                                 {
@@ -257,17 +259,17 @@ public class Server : MonoBehaviour
 
                         case Constants.Client_StartTaking:
                             int objectId = (int)stream.ReadUInt(ref readerCtx);
-                            players[i].GetComponent<ServerCarrier>().StartTaking(programmableObjectsContainer.objectListServer[objectId].GetComponent<ServerCarrier>());
+                            selectedPlayer.carrier.StartTaking(programmableObjectsContainer.objectListServer[objectId].GetComponent<ServerCarrier>());
                             break;
 
                         case Constants.Client_StartGiving:
                             int objectid = (int)stream.ReadUInt(ref readerCtx);
-                            players[i].GetComponent<ServerCarrier>().StartGiving(programmableObjectsContainer.objectListServer[objectid].GetComponent<ServerCarrier>());
+                            selectedPlayer.carrier.StartGiving(programmableObjectsContainer.objectListServer[objectid].GetComponent<ServerCarrier>());
                             break;
 
                         case Constants.Client_Open_Door:
                             int numb = (int)stream.ReadUInt(ref readerCtx);
-                            if (!players[i].GetComponent<ServerCharacter>().isStunned)
+                            if (!selectedPlayer.isStunned)
                             {
                                 programmableObjectsContainer.objectListServer[numb].OnInput("OnInteract");
                             }
@@ -390,20 +392,22 @@ public class Server : MonoBehaviour
 
                         if (charactersIndex != -1) //we have a character, update on its states and positions
                         {
+                            ServerCharacter selectedCharacter = characters[charactersIndex].gameObject.GetComponent<ServerCharacter>();
+
                             writer.Write(Constants.Server_MoveCharacter);
                             writer.Write(charactersIndex);
                             writer.Write(characters[charactersIndex].position.x);
                             writer.Write(characters[charactersIndex].position.y);
                             writer.Write(characters[charactersIndex].position.z);
                             writer.Write(characters[charactersIndex].rotation.eulerAngles.y);
-                            writer.Write(characters[charactersIndex].GetComponent<NavMeshAgent>().velocity.x);
-                            writer.Write(characters[charactersIndex].GetComponent<NavMeshAgent>().velocity.z);
-                            writer.Write(characters[charactersIndex].gameObject.GetComponent<ServerCharacter>().isStunned ? characters[charactersIndex].gameObject.GetComponent<ServerCharacter>().timeBeforeEndOfStun : 0f);
 
-                            if (characters[charactersIndex].GetComponent<ServerCarrier>())
+                            writer.Write(selectedCharacter.navMeshAgent.velocity.x);
+                            writer.Write(selectedCharacter.navMeshAgent.velocity.z);
+                            writer.Write(selectedCharacter.isStunned ? selectedCharacter.timeBeforeEndOfStun : 0f);
+
+                            if (selectedCharacter.carrier)
                             {
-                                var carrier = characters[charactersIndex].GetComponent<ServerCarrier>();
-                                writer.Write(carrier.charge / carrier.maxCharge); //send charge ratio, rather than raw value (as clients do not know all max charges)
+                                writer.Write(selectedCharacter.carrier.charge / selectedCharacter.carrier.maxCharge); //send charge ratio, rather than raw value (as clients do not know all max charges)
                             }
                             else
                             {
@@ -413,12 +417,12 @@ public class Server : MonoBehaviour
                             //Send information about teammates
                             int curTeam = players[i].GetComponent<ServerCharacter>().team;
 
-                            if (characters[charactersIndex].gameObject.GetComponent<ServerCharacter>().team == curTeam)
+                            if (selectedCharacter.team == curTeam)
                             //means this is an ally of the player associated with the current connection
                             {
                                 writer.Write(Constants.Server_TeammateInfo);
 
-                                char[] playerNameAsChars = characters[charactersIndex].gameObject.GetComponent<ServerCharacter>().playerName.ToCharArray();
+                                char[] playerNameAsChars = selectedCharacter.playerName.ToCharArray();
                                 byte[] buffer = new byte[playerNameAsChars.Length];
 
                                 for (int k = 0; k < playerNameAsChars.Length; k++)
