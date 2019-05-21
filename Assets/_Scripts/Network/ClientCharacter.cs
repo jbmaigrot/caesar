@@ -59,6 +59,7 @@ public class ClientCharacter : MonoBehaviour
     SpriteRenderer lightning;
 
     public bool isPlayer;
+    private float distorsionValue;
     //Start
     private void Start()
     {
@@ -78,6 +79,8 @@ public class ClientCharacter : MonoBehaviour
         DelayBetweenStartOfNextClipAndEndOfPresentOne = Random.Range(0.15f,0.25f);
         lightning = this.transform.Find("StunLightning").GetComponent<SpriteRenderer>();
         isDistorsionOn = false;
+        distorsionValue = 0;
+        
     }
 
     // Update is called once per frame
@@ -175,14 +178,24 @@ public class ClientCharacter : MonoBehaviour
         {
             if (isTacle && !isDistorsionOn)
             {
-                audioMixer.SetFloat("DistorsionLevelInRelationToStun", 0.7f);
-                isDistorsionOn = true;
+                distorsionValue += Time.deltaTime * 0.7f;
+                if(distorsionValue > 0.7f)
+                {
+                    distorsionValue = 0.7f;
+                    isDistorsionOn = true;
+                }
+                audioMixer.SetFloat("DistorsionLevelInRelationToStun", distorsionValue);                
             }
 
             if (!isTacle && isDistorsionOn)
             {
-                audioMixer.SetFloat("DistorsionLevelInRelationToStun", 0.0f);
-                isDistorsionOn = false;
+                distorsionValue -= Time.deltaTime * 0.7f;
+                if (distorsionValue < 0.0f)
+                {
+                    distorsionValue = 0.0f;
+                    isDistorsionOn = false;
+                }
+                audioMixer.SetFloat("DistorsionLevelInRelationToStun", distorsionValue);
             }
         }
        

@@ -50,8 +50,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fabd2474048241440b6c9a94de7e85da, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   Nappe: {fileID: 7029545666529826866}
   NappeWindowSpeedCurve:
     serializedVersion: 2
@@ -285,8 +285,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3da1a5e7c10123a4aa7be591f2341be0, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   curve:
     serializedVersion: 2
     m_Curve:
@@ -344,8 +344,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15a66bf76cc67b949aaa75c4bfb2f7ab, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   server: {fileID: 0}
   NavMeshSurface: {fileID: 0}
   isAttract: 0
@@ -384,8 +384,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02d79003555484e4e8fe70097d49cf59, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   clientCharge: 0
   client: {fileID: 0}
   programmableObjectsContainer: {fileID: 0}
@@ -415,7 +415,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 37ee008d13241448e82666e44bf7bf1e, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5058978
+  m_Volume: 0.66160274
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -532,7 +532,7 @@ AudioLowPassFilter:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.48209226
+      value: 0.70630926
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1020,11 +1020,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4113789284217470875}
     m_Modifications:
-    - target: {fileID: 4500087429524261250, guid: 69614799a84ef2b4aaee43790ed6e055,
-        type: 3}
-      propertyPath: m_Name
-      value: Orange marker
-      objectReference: {fileID: 0}
     - target: {fileID: 4619640931388069243, guid: 69614799a84ef2b4aaee43790ed6e055,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1079,6 +1074,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4500087429524261250, guid: 69614799a84ef2b4aaee43790ed6e055,
+        type: 3}
+      propertyPath: m_Name
+      value: Orange marker
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69614799a84ef2b4aaee43790ed6e055, type: 3}

@@ -3404,7 +3404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb463cc6cf1045448a36528af027fcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Beep: {fileID: 7498944733323439967}
+  Beep: {fileID: 8226536154336766834}
   timeBeepBoopMin: 2
   timeBeepBoopMax: 3
   FadeOutCurve:
@@ -3432,7 +3432,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   isSoundOn: 1
-  HoloSound: {fileID: 8226536154336766834}
+  HoloSound: {fileID: 7498944733323439967}
   HoloOn: {fileID: 8300000, guid: 81cbd3e470fc846cc8cc83f3f9f8014e, type: 3}
   HoloOff: {fileID: 8300000, guid: f1b883047051946d4981c5e278d6a1ff, type: 3}
 --- !u!82 &7498944733323439967
@@ -3462,7 +3462,7 @@ AudioSource:
   rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
-  BypassReverbZones: 0
+  BypassReverbZones: 1
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -3495,7 +3495,7 @@ AudioSource:
       outWeight: 0.15385704
     - serializedVersion: 3
       time: 1
-      value: 0.0059509277
+      value: 0
       inSlope: -1.7933928
       outSlope: -0.15360361
       tangentMode: 1
@@ -3563,18 +3563,18 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.67
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 255
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 10
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -3582,23 +3582,23 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.1
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -2.395037
+      outSlope: -2.395037
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0.044406977
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -0.10003988
+      outSlope: -0.10003988
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4

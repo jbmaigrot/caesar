@@ -23,6 +23,7 @@ public class ThisIsATree : MonoBehaviour
     private float timeBeep;
     private float timeFadeOut;
     private MeshRenderer[] meshRenderers;
+    private float baseVolume;
     // Start is called before the first frame update
     void Start()
     {
@@ -73,7 +74,7 @@ public class ThisIsATree : MonoBehaviour
                 timeBeep -= Time.deltaTime;
                 if (timeBeep < 0)
                 {
-                    Beep.volume = 1;
+                    Beep.volume = baseVolume;
                     Beep.clip = BeepBoop[Random.Range(0, BeepBoop.Length)];
                     Beep.Play();
                     timeBeep = Random.Range(timeBeepBoopMin, timeBeepBoopMax);
@@ -100,6 +101,7 @@ public class ThisIsATree : MonoBehaviour
             timeBeforeDisappearing -= Time.deltaTime;
             if (timeBeforeDisappearing <= 0)
             {
+                GetComponentInParent<ProgrammableObjectsData>().OnInput("OnTurnOff");
                 if (GetComponentInChildren<Light>())
                 {
                     GetComponentInChildren<Light>().enabled = false;
@@ -116,6 +118,7 @@ public class ThisIsATree : MonoBehaviour
             timeBeforeAppearing -= Time.deltaTime;
             if (timeBeforeAppearing <= 0)
             {
+                GetComponentInParent<ProgrammableObjectsData>().OnInput("OnTurnOn");
                 if (GetComponentInChildren<Light>())
                 {
                     GetComponentInChildren<Light>().enabled = true;
