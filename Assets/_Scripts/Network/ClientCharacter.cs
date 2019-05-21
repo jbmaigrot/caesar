@@ -30,6 +30,7 @@ public class ClientCharacter : MonoBehaviour
 
     private const float MaxSpeed = 5f;
 
+    public Transform mesh;
 #if CLIENT
     public Vector3 speed = new Vector3(0, 0, 0);
     public int number;
@@ -41,7 +42,7 @@ public class ClientCharacter : MonoBehaviour
 
     private float floatingRange = 0.1f;
     private float floatingFreq = 0;
-    public Transform mesh;
+    
     private float startingY;
 
     public bool isAlly = false;
@@ -70,7 +71,7 @@ public class ClientCharacter : MonoBehaviour
         hackinterface = FindObjectOfType<HackInterface>();
 
         floatingFreq = Random.Range(0.3f, 0.4f);
-        mesh = transform.Find("Mesh").transform;
+        //mesh = transform.Find("Mesh").transform;
         startingY = mesh.transform.localPosition.y;
 
         stunAnimator = this.transform.Find("StunLightning").GetComponent<Animator>();

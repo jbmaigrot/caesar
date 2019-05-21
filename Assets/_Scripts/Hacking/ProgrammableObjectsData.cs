@@ -236,14 +236,18 @@ public class ProgrammableObjectsData : MonoBehaviour
         {
             //this.GetComponentInChildren<DoorScript>().OnOpen();
             //this.GetComponentInChildren<NavMeshObstacle>().carving = false;
-            
+            this.GetComponentInChildren<DoorScript>().GetComponent<Collider>().enabled = false;
+            this.GetComponentInChildren<NavMeshObstacle>().enabled = false;
+            OnInput("OnOpen");
             isDoorOpen = true;
         }
 
         if (codeoutput == "CloseDoor")
         {
             //this.GetComponentInChildren<DoorScript>().OnClose();
-            
+            this.GetComponentInChildren<NavMeshObstacle>().enabled = true;
+            this.GetComponentInChildren<DoorScript>().GetComponent<Collider>().enabled = true;
+            OnInput("OnClose");
             isDoorOpen = false;
         }
 
