@@ -8,7 +8,7 @@ public class ProgrammableObjectsData : MonoBehaviour
 {
 #if SERVER
     /*Server. Seulement coté serveur*/
-    private Server server;
+    public Server server;
     public NavMeshSurface NavMeshSurface;
     
     
@@ -76,7 +76,7 @@ public class ProgrammableObjectsData : MonoBehaviour
 
     private bool isHackable = true;
 
-    private bool startIsOver = false;
+    public bool startIsOver = false;
     // Start
     void Start()
     {
@@ -186,18 +186,7 @@ public class ProgrammableObjectsData : MonoBehaviour
 #endif
 
 #if SERVER
-    public void OnTriggerEnter(Collider other)
-    {
-        if (startIsOver)
-        {
-            OnInput("OnPress");
-            if (other.transform == server.PositionBlueRelay || other.transform == server.PositionRedRelay)
-            {
-                OnInput("OnRelayMet");
-            }
-        }
-        
-    }
+    
 
     /*Quand le mot en parametre apparait dans le chat, active la vignette OnWord correspondant. Potentielement à adapter un petit peu pour le chat.*/
     public void ChatInstruction(string instruction)
