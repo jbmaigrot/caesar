@@ -23,9 +23,11 @@ public class ProgrammableObjectsData : MonoBehaviour
 
     private float timeBeforeStunReload;
     private const float TIMEOFSTUNRELOAD = 20.0f;
-    
+
 #endif
 
+    public GameObject RedTrail;
+    public GameObject BlueTrail;
 #if CLIENT
     /*Client. Seulement coté client*/
     public Client client;
@@ -36,8 +38,6 @@ public class ProgrammableObjectsData : MonoBehaviour
     public bool sendingToRedClient;
     public int objectIndexClient;
 
-    public GameObject RedTrail;
-    public GameObject BlueTrail;
     public bool isGivingManually = false;
     public bool isTakingManually = false;
 

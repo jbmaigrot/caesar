@@ -165,26 +165,27 @@ MonoBehaviour:
   NavMeshSurface: {fileID: 0}
   isAttract: 0
   charactersIndex: -1
+  RedTrail: {fileID: 6477841102016034296}
+  BlueTrail: {fileID: 6477841102016034296}
   client: {fileID: 0}
   hackInterface: {fileID: 0}
   isWaitingHack: 0
   sendingToBlueClient: 0
   sendingToRedClient: 0
   objectIndexClient: 0
-  RedTrail: {fileID: 6477841102016034296}
-  BlueTrail: {fileID: 6477841102016034296}
   isGivingManually: 0
   isTakingManually: 0
+  BlueBatterie: {fileID: 0}
+  RedBatterie: {fileID: 0}
   inputCodes: []
   outputCodes: []
   graph: []
   isLightOn: 0
   isDoorOpen: 0
-  BlueBatterie: {fileID: 0}
-  RedBatterie: {fileID: 0}
   isBeingHackedServer: 0
   sendingToBlueServer: 0
   sendingToRedServer: 0
+  shouldBeSendToClientEveryFrame: 0
   Initiator: {fileID: 11400000, guid: f4db053c0b442c94c981f82269c05718, type: 2}
   objectsContainer: {fileID: 0}
 --- !u!54 &743243704701644327
