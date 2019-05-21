@@ -3405,8 +3405,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Beep: {fileID: 8226536154336766834}
-  timeBeepBoopMin: 2
-  timeBeepBoopMax: 3
+  timeBeepBoopMin: 0.9
+  timeBeepBoopMax: 2
   FadeOutCurve:
     serializedVersion: 2
     m_Curve:
@@ -3462,7 +3462,7 @@ AudioSource:
   rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
-  BypassReverbZones: 1
+  BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -5823,6 +5823,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1466264326}
     m_Modifications:
+    - target: {fileID: 7041609181862371152, guid: e8ea967bb4a0a4d47848b9bd896cb6f0,
+        type: 3}
+      propertyPath: m_Name
+      value: PL_Holo
+      objectReference: {fileID: 0}
     - target: {fileID: 781893574439450342, guid: e8ea967bb4a0a4d47848b9bd896cb6f0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5892,11 +5897,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.66666675
-      objectReference: {fileID: 0}
-    - target: {fileID: 7041609181862371152, guid: e8ea967bb4a0a4d47848b9bd896cb6f0,
-        type: 3}
-      propertyPath: m_Name
-      value: PL_Holo
       objectReference: {fileID: 0}
     - target: {fileID: 1374085425123476932, guid: e8ea967bb4a0a4d47848b9bd896cb6f0,
         type: 3}
