@@ -336,24 +336,24 @@ public class Client : MonoBehaviour
                                             characters[j].GetComponentInChildren<AllyNameDisplay>().enabled = true;
                                             characters[j].GetComponentInChildren<AllyNameDisplay>().allyNameText.text = new string(playerNameBuffer);
 
-                                            var carrier = characters[j].GetComponent<ServerCarrier>();
+                                            var carrier2 = characters[j].GetComponent<ServerCarrier>();
 
                                             Color allyColor = new Color(1,1,1);
                                             if (team == 0)
                                             {
                                                 allyColor = new Color(0.961f, 0.51f, 0.365f, 1f);
 
-                                                carrier.pastille.material = carrier.pastilleMaterialOrange;
+                                                carrier2.pastille.material = carrier2.pastilleMaterialOrange;
                                             }
                                             else if (team == 1)
                                             {
                                                 allyColor = new Color(0.361f, 0.784f, 0.949f, 1f);
 
-                                                carrier.pastille.material = carrier.pastilleMaterialBleu;
+                                                carrier2.pastille.material = carrier2.pastilleMaterialBleu;
                                             }
                                             
-                                            carrier.dataBar.SetActive(true); //data bar
-                                            carrier.draw = true;
+                                            carrier2.dataBar.SetActive(true); //data bar
+                                            carrier2.draw = true;
 
                                             minimap.AddAlly(characters[j].transform, allyColor);
 
