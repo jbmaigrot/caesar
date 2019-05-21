@@ -6,6 +6,9 @@ using UnityEngine.Events;
 
 public class HackInterface : MonoBehaviour/*, ISelectObject*/
 {
+    /*Variable qui contient le dictionnaire de mot-clefs, lié à leur description dans l'interface et à si la vignette a besoin de parametre. Sous forme de List.*/
+    public HackingAssetScriptable HackingAsset;
+
     public AudioClip Clic_Cancel;
     public AudioClip Clic_Negatif;
     public AudioClip Clic_Neutre;
@@ -21,8 +24,7 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     /*Variable qui contient l'objet connecté en cours de hacking. Est modifié par le script ProgrammableObjectsData lorsque un objet est hacké.*/
     static public GameObject SelectedGameObject;
 
-    /*Variable qui contient le dictionnaire de mot-clefs, lié à leur description dans l'interface et à si la vignette a besoin de parametre. Sous forme de List.*/
-    public HackingAssetScriptable HackingAsset;
+    
 
     /*Variables qui contient la copie du graphe de comportement de l'objet connecté en cours de hacking. Tous les éléments de l'interface ont besoin d'avoir accès à ces variables (en read only pour les deux premières).*/
     static public List<string> accessibleInputCode;
