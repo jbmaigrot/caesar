@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Collections;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 //using Unity.Collections.LowLevel.Unsafe;
 
 using System.Net;
@@ -37,7 +38,9 @@ public class Client : MonoBehaviour
     public AudioSource audioSourceForMusicNappeD;
     public AnimationCurve CurveForVolumeOfNappeD;
     public float timeForTheMusicLoop = 29.333f;
-    
+    public AudioMixerGroup AvatarInter;
+    public AudioMixerGroup AvatarAmb;
+
 #if CLIENT
     public string ServerIP = "127.0.0.1"; //localhost by default
     public IPAddress iPAddress;
@@ -89,7 +92,7 @@ public class Client : MonoBehaviour
     private float baseVolumeNappeC;
     private float baseVolumeNappeD;
     private float timeValueDebugMusic;
-
+    private bool hasTheAudioSourceOfThePlayerBeenInitialized = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -438,8 +441,18 @@ public class Client : MonoBehaviour
                                 {
                                     characters[playerIndex].GetComponent<ProgrammableObjectsData>().isGivingManually = isThePlayerGiving == 1 ? true : false;
                                     characters[playerIndex].GetComponent<ProgrammableObjectsData>().isTakingManually = isThePlayerTaking == 1 ? true : false;
-                                    characters[playerIndex].NappeMoveAudioSource.spatialBlend = 0.0f;
-                                    characters[playerIndex].NappeDataAudioSource.spatialBlend = 0.0f;
+                                    if (!hasTheAudioSourceOfThePlayerBeenInitialized)
+                                    {
+                                        hasTheAudioSourceOfThePlayerBeenInitialized = true;
+                                        characters[playerIndex].NappeMoveAudioSource.spatialBlend = 0.0f;
+                                        characters[playerIndex].NappeMoveAudioSource.outputAudioMixerGroup = AvatarAmb;
+                                    }
+                                    
+                                    //characters[playerIndex].NappeDataAudioSource.spatialBlend = 0.0f;
+
+
+
+
                                     if (!isNapperoned)
                                     {
                                         //SpriteRenderer napperon = characters[playerIndex].transform.Find("napperon").GetComponent<SpriteRenderer>();

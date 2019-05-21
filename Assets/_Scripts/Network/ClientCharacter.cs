@@ -8,11 +8,11 @@ public class ClientCharacter : MonoBehaviour
     public MeshRenderer Body;
     public MeshRenderer Lens;
 
-    public AudioSource NappeDataAudioSource;
-    public AnimationCurve NappeDataVolume;
-    public float NappeDataMinCurveSpeed;
-    public float NappeDataMedCurveSpeed;
-    public float NappeDataMaxCurveSpeed;
+    //public AudioSource NappeDataAudioSource;
+    //public AnimationCurve NappeDataVolume;
+    //public float NappeDataMinCurveSpeed;
+    //public float NappeDataMedCurveSpeed;
+    //public float NappeDataMaxCurveSpeed;
 
     public AudioSource NappeMoveAudioSource;
     public AnimationCurve NappeMoveVolume;
@@ -49,7 +49,7 @@ public class ClientCharacter : MonoBehaviour
     
     private bool isDataEmpty;
 
-    private float NappeDataCurveTime;
+    //private float NappeDataCurveTime;
     private AudioClip[] StunClip;
     private AudioClip[] StunQClip;
     private float DelayBetweenStartOfNextClipAndEndOfPresentOne;
@@ -89,7 +89,7 @@ public class ClientCharacter : MonoBehaviour
         }
         else
         {*/
-            NappeDataAudioSource.volume = 0;
+            //NappeDataAudioSource.volume = 0;
         /*}*/
         
 
