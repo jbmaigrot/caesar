@@ -39,8 +39,9 @@ public class ServerCharacter : MonoBehaviour
     public Server server;
 
     public bool coroutineStarted = false;
-    public bool setDestinationSuccess = false;
+    public bool destinationWasSet = false;
 
+    public Coroutine pathCalculationCoroutine;
 
     // Start is called before the first frame update
     void Start()
@@ -100,7 +101,7 @@ public class ServerCharacter : MonoBehaviour
                     if (Vector3.Distance(attractDestination.position, actualDestination) > 0.2)
                     {
                         actualDestination = attractDestination.position;
-                        setDestinationSuccess = navMeshAgent.SetDestination(actualDestination);
+                        destinationWasSet = true; ;
                     }
                 }
                 else
@@ -119,7 +120,7 @@ public class ServerCharacter : MonoBehaviour
                         {
                             actualDestination = attractByDataDestination;
                             //navMeshAgent.ResetPath();
-                            setDestinationSuccess = navMeshAgent.SetDestination(actualDestination);
+                            destinationWasSet = true;
                         }
                     }
                     else
@@ -143,7 +144,7 @@ public class ServerCharacter : MonoBehaviour
                                 actualDestination = priorityDestination;
                                 normalDestination = actualDestination;
                                 //navMeshAgent.ResetPath();
-                                setDestinationSuccess = navMeshAgent.SetDestination(actualDestination);
+                                destinationWasSet = true;
                             }
                         }
                     }
@@ -153,40 +154,57 @@ public class ServerCharacter : MonoBehaviour
                         {
                             actualDestination = normalDestination;
                             //navMeshAgent.ResetPath();
-                            setDestinationSuccess = navMeshAgent.SetDestination(actualDestination);
+                            destinationWasSet = true;
                         }
                     }                    
                 }
             }
         }
 
-        // if this character has a team, it's a player : display its path on screen
-        if (team != -1)
+        if (destinationWasSet == true)
         {
-            //if (((navMeshAgent.pathPending == false) && (wasPending == true || setDestinationSuccess == true)) || navMeshAgent.isPathStale == true)// && navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete)
-            if (setDestinationSuccess == true && navMeshAgent.pathPending == false)
+            // if this character has a team, it's a player : display its path on screen
+            if (team != -1)
             {
-                NavMeshPath path = navMeshAgent.path;
-                Vector3[] pathAs3dPositions = new Vector3[path.corners.Length];
-                for (int i = 0; i < path.corners.Length - 1; i++)
-                    pathAs3dPositions[i] = new Vector3(path.corners[i].x, path.corners[i].y, path.corners[i].z);
+                NavMeshPath tmpPath = new NavMeshPath();
 
-                pathAs3dPositions[path.corners.Length - 1] = navMeshAgent.destination;
-                server.SendPath(pathAs3dPositions, server.GetNetworkConnectionFromPlayerTransform(transform));
+                if (pathCalculationCoroutine != null)
+                    StopCoroutine(pathCalculationCoroutine);
+                pathCalculationCoroutine = StartCoroutine(CalculatePath(tmpPath));
 
-                if (coroutineStarted == false)
-                    StartCoroutine(SendPathChange());
+                //if (((navMeshAgent.pathPending == false) && (wasPending == true || setDestinationSuccess == true)) || navMeshAgent.isPathStale == true)// && navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete)
+                if (navMeshAgent.pathPending == false && tmpPath.status != NavMeshPathStatus.PathInvalid)
+                {
+                    StopCoroutine(pathCalculationCoroutine);
+                    NavMeshPath path = tmpPath;
+                    navMeshAgent.SetPath(path);
 
-                setDestinationSuccess = false;
+                    Vector3[] pathAs3dPositions = new Vector3[path.corners.Length];
+                    for (int i = 0; i < path.corners.Length - 1; i++)
+                        pathAs3dPositions[i] = new Vector3(path.corners[i].x, path.corners[i].y, path.corners[i].z);
+
+                    pathAs3dPositions[path.corners.Length - 1] = navMeshAgent.destination;
+                    server.SendPath(pathAs3dPositions, server.GetNetworkConnectionFromPlayerTransform(transform));
+
+                    if (coroutineStarted == false)
+                        StartCoroutine(SendPathChange());
+                }
+
+                if (navMeshAgent.hasPath == false)
+                {
+                    StopAllCoroutines();
+                    coroutineStarted = false;
+                    server.SendPath(new Vector3[] { Vector3.zero }, server.GetNetworkConnectionFromPlayerTransform(transform));
+                }
+            }
+            else
+            {
+                navMeshAgent.SetDestination(actualDestination);
             }
 
-            if (navMeshAgent.hasPath == false)
-            {
-                StopAllCoroutines();
-                coroutineStarted = false;
-                server.SendPath(new Vector3[] { Vector3.zero}, server.GetNetworkConnectionFromPlayerTransform(transform));
-            }
+            destinationWasSet = false;
         }
+
         
     }
 
@@ -204,6 +222,15 @@ public class ServerCharacter : MonoBehaviour
             server.SendPath(pathAs3dPositions, server.GetNetworkConnectionFromPlayerTransform(transform));
 
             yield return new WaitForSeconds(.1f);
+        }
+    }
+
+    public IEnumerator CalculatePath(NavMeshPath path)
+    {
+        while (true)
+        {
+            navMeshAgent.CalculatePath(actualDestination, path);
+            yield return null;
         }
     }
 #endif
