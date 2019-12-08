@@ -18,8 +18,10 @@ public class PlayerInput : MonoBehaviour
 
     //Start
     private void Start()
-    {
-        client = FindObjectOfType<Client>();
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		client = FindObjectOfType<Client>();
         hackinterface = FindObjectOfType<HackInterface>();
 #if NO_CUSTOM_MOUSE
         stdCursor = null;
@@ -30,9 +32,11 @@ public class PlayerInput : MonoBehaviour
 
     //Update
     void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-            Application.Quit();
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		/*if (Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();*/
 
         if (Input.GetKeyDown(KeyCode.Return))
             EventSystem.current.SetSelectedGameObject(client.chat.inputField.gameObject);

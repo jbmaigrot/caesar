@@ -84,36 +84,39 @@ public class ProgrammableObjectsData : MonoBehaviour
         objectsContainer = FindObjectOfType<ProgrammableObjectsContainer>();
 
 #if SERVER
-        NavMeshSurface = FindObjectOfType<NavMeshSurface>();
-        server = FindObjectOfType<Server>();
+		if (GameState.SERVER) // replacement for preprocessor
+		{
+			NavMeshSurface = FindObjectOfType<NavMeshSurface>();
+			server = FindObjectOfType<Server>();
 
-        /*Initie le graphe de comportement*/
-        ProgrammableObjectsScriptable InitiatorClone = Instantiate(Initiator);
-        inputCodes = new List<InOutVignette>(InitiatorClone.inputCodes);
-        outputCodes = new List<InOutVignette>(InitiatorClone.outputCodes);
-        graph = new List<Arrow>(InitiatorClone.graph);
-        shouldBeSendToClientEveryFrame = Initiator.shouldBeSendToClientEveryFrame;
+			/*Initie le graphe de comportement*/
+			ProgrammableObjectsScriptable InitiatorClone = Instantiate(Initiator);
+			inputCodes = new List<InOutVignette>(InitiatorClone.inputCodes);
+			outputCodes = new List<InOutVignette>(InitiatorClone.outputCodes);
+			graph = new List<Arrow>(InitiatorClone.graph);
+			shouldBeSendToClientEveryFrame = Initiator.shouldBeSendToClientEveryFrame;
 
-        foreach (Arrow a in graph)
-        {
-            a.timeBeforeTransmit.Clear();
-        }
+			foreach (Arrow a in graph)
+			{
+				a.timeBeforeTransmit.Clear();
+			}
 
-        foreach (InOutVignette ryan in Initiator.initialOutputActions)
-        {
-            OnOutput(ryan.code, ryan.parameter_string, ryan.parameter_int);
-        }
+			foreach (InOutVignette ryan in Initiator.initialOutputActions)
+			{
+				OnOutput(ryan.code, ryan.parameter_string, ryan.parameter_int);
+			}
 
-        isAttract = false;
-        timeBeforeStunReload = 0;
+			isAttract = false;
+			timeBeforeStunReload = 0;
 
-        serverCarrier = this.GetComponent<ServerCarrier>();
+			serverCarrier = this.GetComponent<ServerCarrier>();
 
-        
-        
 
-       
-        isBeingHackedServer = -1;
+
+
+
+			isBeingHackedServer = -1;
+		}
 #endif
         ServerBattery[] Batteries;
         Batteries = FindObjectsOfType<ServerBattery>();
@@ -129,29 +132,31 @@ public class ProgrammableObjectsData : MonoBehaviour
         }
         isHackable = Initiator.isHackable;
 #if CLIENT
-        client = FindObjectOfType<Client>();
-        hackInterface = FindObjectOfType<HackInterface>();
-        isWaitingHack = false;
-        rosaceForHacking = FindObjectOfType<RosaceForHacking>();
-        RedTrail.SetActive(true);
-        if(RedBatterie == this.transform)
-        {
-            RedTrail.GetComponent<ParticleSystem>().Play();
-        }
-        else
-        {
-            RedTrail.GetComponent<ParticleSystem>().Stop();
-        }
-        BlueTrail.SetActive(true);
-        if (BlueBatterie == this.transform)
-        {
-            BlueTrail.GetComponent<ParticleSystem>().Play();
-        }
-        else
-        {
-            BlueTrail.GetComponent<ParticleSystem>().Stop();
-        }
-
+		if (GameState.CLIENT) // replacement for preprocessor
+		{
+			client = FindObjectOfType<Client>();
+			hackInterface = FindObjectOfType<HackInterface>();
+			isWaitingHack = false;
+			rosaceForHacking = FindObjectOfType<RosaceForHacking>();
+			RedTrail.SetActive(true);
+			if (RedBatterie == this.transform)
+			{
+				RedTrail.GetComponent<ParticleSystem>().Play();
+			}
+			else
+			{
+				RedTrail.GetComponent<ParticleSystem>().Stop();
+			}
+			BlueTrail.SetActive(true);
+			if (BlueBatterie == this.transform)
+			{
+				BlueTrail.GetComponent<ParticleSystem>().Play();
+			}
+			else
+			{
+				BlueTrail.GetComponent<ParticleSystem>().Stop();
+			}
+		}
 #endif
         startIsOver = true;
     }
@@ -159,8 +164,10 @@ public class ProgrammableObjectsData : MonoBehaviour
     /*Si l'objet est cliqué à distance suffisament courte, ouvre l'interface de hack. Cette fonction doit être adapté pour le réseau.*/
 #if CLIENT
     void OnMouseDown()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         
         if (Physics.Raycast(ray, out hit, 100f, 16384)&& isHackable && (hit.collider.ClosestPoint(client.characters[client.playerIndex].transform.position) - client.characters[client.playerIndex].transform.position).magnitude < 15 &&!hackInterface.GetComponent<CanvasGroup>().blocksRaycasts&& !Input.GetKey(KeyCode.LeftControl))
@@ -174,8 +181,10 @@ public class ProgrammableObjectsData : MonoBehaviour
     }
 
     private void OnMouseUp()
-    {
-        if (!hackInterface.GetComponent<CanvasGroup>().blocksRaycasts)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		if (!hackInterface.GetComponent<CanvasGroup>().blocksRaycasts)
         {
             client.CutSoundOfHackPlease();
             hackInterface.DoNotOpenActually(objectIndexClient);
@@ -191,14 +200,18 @@ public class ProgrammableObjectsData : MonoBehaviour
 
     /*Quand le mot en parametre apparait dans le chat, active la vignette OnWord correspondant. Potentielement à adapter un petit peu pour le chat.*/
     public void ChatInstruction(string instruction)
-    {
-        OnInput("OnWord", instruction);
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		OnInput("OnWord", instruction);
     }
 
     /*Quand la vignette input désignée en paramêtre est activé, active toute les fléches qui y sont relié*/
     public void OnInput(string codeinput, string parameter_string = "", int parameter_int = 0)
-    {
-        foreach (Arrow ryan in graph)
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		foreach (Arrow ryan in graph)
         {
             if (inputCodes.Count > ryan.input && inputCodes[ryan.input].code == codeinput && inputCodes[ryan.input].parameter_string == parameter_string && inputCodes[ryan.input].parameter_int == parameter_int)
             {
@@ -209,8 +222,10 @@ public class ProgrammableObjectsData : MonoBehaviour
 
     /*Quand la vignette output désigné est activé, fait l'effet correspondant*/
     public void OnOutput(string codeoutput, string parameter_string = "", int parameter_int = 0)
-    {
-        if (codeoutput == "TurnOnLight")
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		if (codeoutput == "TurnOnLight")
         {
             GetComponentInChildren<Light>().enabled = true;
             
@@ -365,107 +380,114 @@ public class ProgrammableObjectsData : MonoBehaviour
     void Update()
     {
 #if SERVER
-        for (int i = 0; i < graph.Count; i++)
-        {
-            for (int j = 0; j < graph[i].timeBeforeTransmit.Count; j++)
-            {
-                graph[i].timeBeforeTransmit[j] -= Time.deltaTime;
-                if (graph[i].timeBeforeTransmit[j] <= 0)
-                {
-                    if (outputCodes.Count > graph[i].output)
-                    {
-                        OnOutput(outputCodes[graph[i].output].code, outputCodes[graph[i].output].parameter_string, outputCodes[graph[i].output].parameter_int);
-                    }
-                    graph[i].timeBeforeTransmit[j] = 5000;//.RemoveAt(j);
-                }
-            }
-        }
+		if (GameState.SERVER) // replacement for preprocessor
+		{
+			for (int i = 0; i < graph.Count; i++)
+			{
+				for (int j = 0; j < graph[i].timeBeforeTransmit.Count; j++)
+				{
+					graph[i].timeBeforeTransmit[j] -= Time.deltaTime;
+					if (graph[i].timeBeforeTransmit[j] <= 0)
+					{
+						if (outputCodes.Count > graph[i].output)
+						{
+							OnOutput(outputCodes[graph[i].output].code, outputCodes[graph[i].output].parameter_string, outputCodes[graph[i].output].parameter_int);
+						}
+						graph[i].timeBeforeTransmit[j] = 5000;//.RemoveAt(j);
+					}
+				}
+			}
 
-        if (isAttract)
-        {
-            TheAttractFunction();
-        }
+			if (isAttract)
+			{
+				TheAttractFunction();
+			}
 
-        if (timeBeforeStunReload > 0)
-        {
-            timeBeforeStunReload -= Time.deltaTime;
-        }
+			if (timeBeforeStunReload > 0)
+			{
+				timeBeforeStunReload -= Time.deltaTime;
+			}
+		}
 #endif
 #if CLIENT
-        
-        
 
-        if (isGiving)
-        {
-            if (isTaking)
-            {
-                if (!isTakingManually)
-                {
-                    StopTakingSound();
-                }
-                else
-                {
-                    timeIsTaking += Time.deltaTime;
-                }
-            }
-            else
-            {
-                if (isTakingManually)
-                {
-                    StartTakingSound(!client.characters[client.playerIndex] == this.GetComponent<ClientCharacter>());
-                }
-            }
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+		{
 
-            if (!isGivingManually && !sendingToBlueClient && !sendingToRedClient)
-            {
-                StopGivingSound();
-            }
-            else
-            {
-                timeIsGiving += Time.deltaTime;
-                timeInSoundCurve = (timeInSoundCurve + Time.deltaTime * objectsContainer.GivingDataSpeedCurve.Evaluate(timeIsGiving)) % 1f;
-                RedTrail.GetComponent<AudioSource>().volume=objectsContainer.GivingDataVolumeWindowCurve.Evaluate(timeInSoundCurve);
-                RedTrail.GetComponent<AudioSource>().pitch = objectsContainer.GivingDataPitchWindowCurve.Evaluate(timeInSoundCurve);
-            }
 
-            
-        }
-        else
-        {
-            if (isGivingManually || sendingToBlueClient || sendingToRedClient)
-            {
-                StartGivingSound(!client.characters[client.playerIndex] == this.GetComponent<ClientCharacter>());
-            }
+			if (isGiving)
+			{
+				if (isTaking)
+				{
+					if (!isTakingManually)
+					{
+						StopTakingSound();
+					}
+					else
+					{
+						timeIsTaking += Time.deltaTime;
+					}
+				}
+				else
+				{
+					if (isTakingManually)
+					{
+						StartTakingSound(!client.characters[client.playerIndex] == this.GetComponent<ClientCharacter>());
+					}
+				}
 
-            if (isTaking)
-            {
-                if (!isTakingManually)
-                {
-                    StopTakingSound();
-                }
-                else
-                {
-                    timeIsTaking += Time.deltaTime;
-                    timeInSoundCurve = (timeInSoundCurve + Time.deltaTime * objectsContainer.TakingDataSpeedCurve.Evaluate(timeIsTaking)) % 1f;
-                    RedTrail.GetComponent<AudioSource>().volume = objectsContainer.TakingDataVolumeWindowCurve.Evaluate(timeInSoundCurve);
-                    RedTrail.GetComponent<AudioSource>().pitch = objectsContainer.TakingDataPitchWindowCurve.Evaluate(timeInSoundCurve);
-                }
-            }
-            else
-            {
-                if (isTakingManually)
-                {
-                    StartTakingSound(!client.characters[client.playerIndex] == this.GetComponent<ClientCharacter>());
-                }
-            }
-        }
+				if (!isGivingManually && !sendingToBlueClient && !sendingToRedClient)
+				{
+					StopGivingSound();
+				}
+				else
+				{
+					timeIsGiving += Time.deltaTime;
+					timeInSoundCurve = (timeInSoundCurve + Time.deltaTime * objectsContainer.GivingDataSpeedCurve.Evaluate(timeIsGiving)) % 1f;
+					RedTrail.GetComponent<AudioSource>().volume = objectsContainer.GivingDataVolumeWindowCurve.Evaluate(timeInSoundCurve);
+					RedTrail.GetComponent<AudioSource>().pitch = objectsContainer.GivingDataPitchWindowCurve.Evaluate(timeInSoundCurve);
+				}
 
+
+			}
+			else
+			{
+				if (isGivingManually || sendingToBlueClient || sendingToRedClient)
+				{
+					StartGivingSound(!client.characters[client.playerIndex] == this.GetComponent<ClientCharacter>());
+				}
+
+				if (isTaking)
+				{
+					if (!isTakingManually)
+					{
+						StopTakingSound();
+					}
+					else
+					{
+						timeIsTaking += Time.deltaTime;
+						timeInSoundCurve = (timeInSoundCurve + Time.deltaTime * objectsContainer.TakingDataSpeedCurve.Evaluate(timeIsTaking)) % 1f;
+						RedTrail.GetComponent<AudioSource>().volume = objectsContainer.TakingDataVolumeWindowCurve.Evaluate(timeInSoundCurve);
+						RedTrail.GetComponent<AudioSource>().pitch = objectsContainer.TakingDataPitchWindowCurve.Evaluate(timeInSoundCurve);
+					}
+				}
+				else
+				{
+					if (isTakingManually)
+					{
+						StartTakingSound(!client.characters[client.playerIndex] == this.GetComponent<ClientCharacter>());
+					}
+				}
+			}
+		}
 #endif
     }
 #if SERVER
     void TheAttractFunction()
-    {
-        attracttimebeforeend -= Time.deltaTime;
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		attracttimebeforeend -= Time.deltaTime;
         attracttimebeforeeffect -= Time.deltaTime;
         if (attracttimebeforeeffect <= 0.0f)
         {
@@ -488,8 +510,10 @@ public class ProgrammableObjectsData : MonoBehaviour
 
     // This function add only new arrows to the arrow graph, to prevent suppressing previous information about transmit time
     public void UpdateArrowGraph(List<Arrow> newGraph)
-    {
-        for (int i = 0; i < newGraph.Count; i++)
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		for (int i = 0; i < newGraph.Count; i++)
         {
             bool isNew = true;
             for (int j = 0; j < graph.Count; j++)
@@ -508,8 +532,10 @@ public class ProgrammableObjectsData : MonoBehaviour
 
 #if CLIENT
     public void StopGivingSound()
-    {
-        isGiving = false;
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		isGiving = false;
         timeInSoundCurve = 0;
         if (!isTaking)
         {
@@ -518,8 +544,10 @@ public class ProgrammableObjectsData : MonoBehaviour
     }
 
     public void StartGivingSound(bool Spatialized)
-    {
-        Debug.Log("HeyHeyLeSonDuGiving");
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		Debug.Log("HeyHeyLeSonDuGiving");
         isGiving = true;
         if (!RedTrail.GetComponent<AudioSource>().isPlaying)
         {
@@ -539,8 +567,10 @@ public class ProgrammableObjectsData : MonoBehaviour
     }
 
     public void StopTakingSound()
-    {
-        isTaking = false;
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		isTaking = false;
         timeInSoundCurve = 0;
         if (!isGiving)
         {
@@ -549,8 +579,10 @@ public class ProgrammableObjectsData : MonoBehaviour
     }
 
     public void StartTakingSound(bool Spatialized)
-    {
-        isTaking = true;
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		isTaking = true;
         if (!RedTrail.GetComponent<AudioSource>().isPlaying)
         {
             RedTrail.GetComponent<AudioSource>().time = UnityEngine.Random.Range(0f, RedTrail.GetComponent<AudioSource>().clip.length);
@@ -570,8 +602,10 @@ public class ProgrammableObjectsData : MonoBehaviour
     }
 
     public void SetSendingToBatterie(bool RedNotBlue, bool OnNotOff)
-    {
-        if (RedNotBlue)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		if (RedNotBlue)
         {
             if (OnNotOff && !sendingToRedClient)
             {

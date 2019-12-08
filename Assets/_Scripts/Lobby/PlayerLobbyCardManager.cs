@@ -45,14 +45,18 @@ public class PlayerLobbyCardManager : MonoBehaviour
 #if CLIENT
 
     public void Start()
-    {
-        clientLobby = FindObjectOfType<ClientLobby>();
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		clientLobby = FindObjectOfType<ClientLobby>();
         
     }
 
     public void UpdateCard(PlayerLobbyCard playerLobbyCard)
-    {
-        playerNumber.text = "Player " + playerLobbyCard.playerNumber;
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		playerNumber.text = "Player " + playerLobbyCard.playerNumber;
 
         if (playerLobbyCard.connected == true)
         {
@@ -89,8 +93,10 @@ public class PlayerLobbyCardManager : MonoBehaviour
     }
 
     public void nonInteractable()
-    {
-        playerName.interactable = false;
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		playerName.interactable = false;
         randomize.interactable = false;
         playerTeam.interactable = false;
         ready.interactable = false;
@@ -100,18 +106,24 @@ public class PlayerLobbyCardManager : MonoBehaviour
     }
     
     public void OnEditPlayerName()
-    {
-        clientLobby.WritePlayerName(playerName.text);
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		clientLobby.WritePlayerName(playerName.text);
     }
 
     public void OnEditTeam()
-    {
-        clientLobby.WriteTeam(playerTeam.value);
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		clientLobby.WriteTeam(playerTeam.value);
     }
 
     public void OnClickReady()
-    {
-        clientLobby.WriteReady();
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		clientLobby.WriteReady();
         ready.interactable = false;
         cancel.interactable = true;
 
@@ -121,8 +133,10 @@ public class PlayerLobbyCardManager : MonoBehaviour
     }
 
     public void OnClickCancel()
-    {
-        clientLobby.WriteCancel();
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		clientLobby.WriteCancel();
         ready.interactable = true;
         cancel.interactable = false;
 
@@ -132,8 +146,10 @@ public class PlayerLobbyCardManager : MonoBehaviour
     }
 
     public void OnClickRandomize()
-    {
-        playerName.text = Constants.LobbyNames[Random.Range(0, Constants.LobbyNames.Length)];
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		playerName.text = Constants.LobbyNames[Random.Range(0, Constants.LobbyNames.Length)];
     }
 
 #endif

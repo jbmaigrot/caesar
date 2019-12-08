@@ -22,13 +22,17 @@ public class InventoryHackInterface : MonoBehaviour
 
     // Start is called before the first frame update
     private void Start()
-    {
-        hackinterface = FindObjectOfType<HackInterface>();
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		hackinterface = FindObjectOfType<HackInterface>();
     }
 
     private void Update()
-    {
-        if (isPointerOver)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		if (isPointerOver)
         {
             gadgetRange.transform.position = hackinterface.GetSelectedProgrammableObject().transform.position;
             
@@ -49,9 +53,11 @@ public class InventoryHackInterface : MonoBehaviour
     }
 
     public void reloadInventory()
-    {
-        
-        switch (hackinterface.inventory[numero])
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+
+		switch (hackinterface.inventory[numero])
         {
             case InventoryConstants.Empty:
                 this.GetComponent<SVGImage>().sprite = Empty;
@@ -84,8 +90,10 @@ public class InventoryHackInterface : MonoBehaviour
     }
 
     public void ShowRange()
-    {
-        gadgetRange.SetActive(true);
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		gadgetRange.SetActive(true);
         isPointerOver = true;
         
         if (playerRange == null)
@@ -115,8 +123,10 @@ public class InventoryHackInterface : MonoBehaviour
     }
 
     public void HideRange()
-    {
-        gadgetRange.SetActive(false);
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		gadgetRange.SetActive(false);
         isPointerOver = false;
 
         playerRange.enabled = true;

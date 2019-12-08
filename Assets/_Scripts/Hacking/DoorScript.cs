@@ -88,8 +88,10 @@ public class DoorScript : MonoBehaviour
 
 #if CLIENT
     void OnMouseDown()
-    {
-        if (parent.client.hackInterface.GetComponent<CanvasGroup>().blocksRaycasts)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		if (parent.client.hackInterface.GetComponent<CanvasGroup>().blocksRaycasts)
         {
             parent.client.hackInterface.OnClose();
         }

@@ -16,8 +16,10 @@ public class DropdownHackInterface : MonoBehaviour, IPointerClickHandler
     private HackInterface hackInterface;
 
     void Start()
-    {
-        accessibleCode = new List<string>();
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		accessibleCode = new List<string>();
         hackInterface = FindObjectOfType<HackInterface>();
       
     }
@@ -25,15 +27,19 @@ public class DropdownHackInterface : MonoBehaviour, IPointerClickHandler
     
 
     public void OnPointerClick(PointerEventData eventData)
-    {
-        hackInterface.ClicNeu();
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		hackInterface.ClicNeu();
     }
 
     /*Fonction pour modifier le code d'une vignette en fonction du dropdown*/
     void UpdateHackingGraph()
-    {
-        /*Si le Dropdown est placé sur blank, on supprime la vignette*/
-        if (this.GetComponent<Dropdown>().value == 0)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		/*Si le Dropdown est placé sur blank, on supprime la vignette*/
+		if (this.GetComponent<Dropdown>().value == 0)
         {
             this.GetComponentInParent<HackInterface>().RemoveVignette(this.GetComponentInParent<TextButtonHackInterface>().isInput, this.GetComponentInParent<TextButtonHackInterface>().numero-1);
             if (this.GetComponentInParent<TextButtonHackInterface>().isInput)
@@ -87,14 +93,18 @@ public class DropdownHackInterface : MonoBehaviour, IPointerClickHandler
 
     // Update is called once per frame
     void Update()
-    {
-        /*Si la valeur du dropdown a été changé par le joueur, on modifie le graphe en conséquence*/
-       
-    }
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
 
-    public void ChangeValue()
-    {
-        if (this.GetComponent<Dropdown>().value != 0)
+		/*Si la valeur du dropdown a été changé par le joueur, on modifie le graphe en conséquence*/
+
+	}
+
+	public void ChangeValue()
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		if (this.GetComponent<Dropdown>().value != 0)
         {
             hackInterface.ClicPos();
         }
@@ -111,24 +121,30 @@ public class DropdownHackInterface : MonoBehaviour, IPointerClickHandler
 
     /*Eteint le bouton*/
     public void UpdateOff()
-    {
-        this.GetComponent<Dropdown>().value = 0;
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		this.GetComponent<Dropdown>().value = 0;
         previousValue = 0;
     }
 
     /*Ecris le bouton en blank. Ne sera utilisé que sur le dernier bouton actif*/
     public void UpdateBlank(bool isInput)
-    {
-        UpdateOptions(isInput);
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		UpdateOptions(isInput);
         this.GetComponent<Dropdown>().value = 0;
         previousValue = 0;
     }
 
     /*Ecris le bouton avec le contenu de la vignette correspondante, en connaissant le code actif et si c'est un élément fixe du graphe.*/
     public void UpdateOn(bool isInput, bool isFixed, string code)
-    {
-        /*Si la vignette est un élement fixe du graphe, le dropdown contient seulement le code actif*/
-        if (isFixed)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		/*Si la vignette est un élement fixe du graphe, le dropdown contient seulement le code actif*/
+		if (isFixed)
         {
             this.GetComponent<Dropdown>().ClearOptions();
             Dropdown.OptionData NewData; NewData = new Dropdown.OptionData();
@@ -158,8 +174,10 @@ public class DropdownHackInterface : MonoBehaviour, IPointerClickHandler
 
     /*Ecrit les differentes options du dropdown et renvoie le numéro correspondant au code envoyer en parametre*/
     private int UpdateOptions(bool isInput, string code = "")
-    {
-        this.GetComponent<Dropdown>().ClearOptions();
+	{
+		if (!GameState.CLIENT) return -1; // replacement for preprocessor
+
+		this.GetComponent<Dropdown>().ClearOptions();
 
         Dropdown.OptionData NewData;
         NewData = new Dropdown.OptionData();
@@ -263,8 +281,10 @@ public class DropdownHackInterface : MonoBehaviour, IPointerClickHandler
 
     /*Récupère HackingAsset du parent.*/
     public void GetHackingAsset(HackingAssetScriptable HackAss)
-    {
-        HackingAsset = HackAss;
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		HackingAsset = HackAss;
     }
 }
 #endif

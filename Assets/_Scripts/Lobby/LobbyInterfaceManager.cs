@@ -24,29 +24,39 @@ public class LobbyInterfaceManager : MonoBehaviour
 #if CLIENT
     // Start is called before the first frame update
     void Start()
-    {
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
 
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	}
 
-    public int GetNumberOfPlayerSlots()
-    {
-        return int.Parse(numberOfPlayerSlots.text);
+	// Update is called once per frame
+	void Update()
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+
+	}
+
+	public int GetNumberOfPlayerSlots()
+	{
+		if (!GameState.CLIENT) return -1; // replacement for preprocessor
+
+		return int.Parse(numberOfPlayerSlots.text);
     }
 
     public void Hide()
-    {
-        interfacePanel.SetActive(false);
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		interfacePanel.SetActive(false);
     }
 
     public void Show()
-    {
-        interfacePanel.SetActive(true);
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		interfacePanel.SetActive(true);
 
         /*
         LobbyInterface lobbyInterfaceState = new LobbyInterfaceManager.LobbyInterface();
@@ -61,8 +71,10 @@ public class LobbyInterfaceManager : MonoBehaviour
     }
 
     public void UpdateInterface(LobbyInterface state, int connectionId)
-    {
-        numberOfPlayerSlots.text = state.numberOfPlayerSlots.ToString();
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		numberOfPlayerSlots.text = state.numberOfPlayerSlots.ToString();
 
         int cardCount = playerLobbyCardManagers.Count;
         for (int i = cardCount; i > state.numberOfPlayerSlots; i--)
@@ -91,15 +103,19 @@ public class LobbyInterfaceManager : MonoBehaviour
     }
 
     public PlayerLobbyCardManager AddPlayerCard(PlayerLobbyCardManager.PlayerLobbyCard playerCard)
-    {
-        PlayerLobbyCardManager playerCardManager = Instantiate(playerLobbyCardPrefab, playerLobbyCardContainer.transform).GetComponent<PlayerLobbyCardManager>();
+	{
+		if (!GameState.CLIENT) return null; // replacement for preprocessor
+
+		PlayerLobbyCardManager playerCardManager = Instantiate(playerLobbyCardPrefab, playerLobbyCardContainer.transform).GetComponent<PlayerLobbyCardManager>();
         playerCardManager.UpdateCard(playerCard);
         return playerCardManager;
     }
 
     public void RemovePlayerCard(PlayerLobbyCardManager playerLobbyCardManager)
-    {
-        playerLobbyCardManagers.Remove(playerLobbyCardManager);
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		playerLobbyCardManagers.Remove(playerLobbyCardManager);
         Destroy(playerLobbyCardManager.gameObject);        
     }
 #endif

@@ -20,14 +20,28 @@ public class IPConnectionInterfaceManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		if(!GameState.CLIENT) return; // replacement for preprocessor
+
         clientLobby = FindObjectOfType<ClientLobby>();
         popupMessageManager = FindObjectOfType<PopupMessageManager>();
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if (allowEnter && (ipInputField.text.Length > 0) && (Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.KeypadEnter)))
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+		
+		// Check objects -----------------------------
+		if (!clientLobby)
+			clientLobby = FindObjectOfType<ClientLobby>();
+
+		if (!popupMessageManager)
+			popupMessageManager = FindObjectOfType<PopupMessageManager>();
+
+		if (!clientLobby || !popupMessageManager) return;
+		// -------------------------------------------
+
+		if (allowEnter && (ipInputField.text.Length > 0) && (Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.KeypadEnter)))
         {
             ConnectButton();
             allowEnter = false;
@@ -37,8 +51,12 @@ public class IPConnectionInterfaceManager : MonoBehaviour
     }
 
     public void ConnectButton()
-    {
-        IPAddress ip = default(IPAddress);
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		if (!clientLobby || !popupMessageManager) return;
+
+		IPAddress ip = default(IPAddress);
         try
         {
             ip = IPAddress.Parse(ipInputField.text);
@@ -66,13 +84,17 @@ public class IPConnectionInterfaceManager : MonoBehaviour
     }
 
     public void Hide()
-    {
-        interfacePanel.SetActive(false);
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		interfacePanel.SetActive(false);
     }
 
     public void Show()
-    {
-        interfacePanel.SetActive(true);
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		interfacePanel.SetActive(true);
     }
 #endif
 }

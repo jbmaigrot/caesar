@@ -36,8 +36,8 @@ public class ClientLobby : MonoBehaviour
 #if CLIENT
     // Start is called before the first frame update
     void Start()
-    {
-        m_Driver = new UdpCNetworkDriver(new INetworkParameter[0]);
+	{
+		m_Driver = new UdpCNetworkDriver(new INetworkParameter[0]);
 
         lobbyInterfaceManager = FindObjectOfType<LobbyInterfaceManager>();
         connectingMessageManager = FindObjectOfType<ConnectingMessageManager>();
@@ -49,13 +49,13 @@ public class ClientLobby : MonoBehaviour
     }
 
     public void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
+	{
+		DontDestroyOnLoad(gameObject);
     }
 
     public void OnApplicationQuit()
-    {
-        Debug.Log("Call to OnApplicationQuit() in clientLobby");
+	{
+		Debug.Log("Call to OnApplicationQuit() in clientLobby");
 
         if (stopUpdate == false) //Means we changed scene, and the main client code is handling these objects
         {
@@ -72,8 +72,8 @@ public class ClientLobby : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if (stopUpdate == true)
+	{
+		if (stopUpdate == true)
         {
             return;
         }
@@ -167,8 +167,8 @@ public class ClientLobby : MonoBehaviour
     }
 
     private void InitialHandshake()
-    {
-        using (var writer = new DataStreamWriter(64, Allocator.Temp))
+	{
+		using (var writer = new DataStreamWriter(64, Allocator.Temp))
         {
             writer.Write(Constants.Client_Lobby_ConnectionId);
             writer.Write(connectionId);
@@ -177,8 +177,8 @@ public class ClientLobby : MonoBehaviour
     }
 
     public void EstablishConnection(IPAddress ip)
-    {
-        connectionId = -1;
+	{
+		connectionId = -1;
         m_Connection = default(NetworkConnection);
 
         var endpoint = new IPEndPoint(ip, 9000);
@@ -202,8 +202,8 @@ public class ClientLobby : MonoBehaviour
     }
 
     public void CancelConnection()
-    {
-        m_Driver.Dispose();
+	{
+		m_Driver.Dispose();
         m_Driver = new UdpCNetworkDriver(new INetworkParameter[0]);
         //m_Driver.Disconnect(m_Connection);
         m_Connection = default(NetworkConnection);
@@ -212,8 +212,8 @@ public class ClientLobby : MonoBehaviour
     }
 
     public LobbyInterfaceManager.LobbyInterface ReadLobbyState(DataStreamReader stream, ref DataStreamReader.Context readerCtx)
-    {
-        LobbyInterfaceManager.LobbyInterface tmpState = new LobbyInterfaceManager.LobbyInterface();
+	{
+		LobbyInterfaceManager.LobbyInterface tmpState = new LobbyInterfaceManager.LobbyInterface();
         tmpState.playerLobbyCards = new List<PlayerLobbyCardManager.PlayerLobbyCard>();
 
         int numberOfPlayerSlots = (int)stream.ReadUInt(ref readerCtx);
@@ -245,8 +245,8 @@ public class ClientLobby : MonoBehaviour
 
 
     public void WritePlayerName(string playerName)
-    {
-        using (var writer = new DataStreamWriter(64, Allocator.Temp))
+	{
+		using (var writer = new DataStreamWriter(64, Allocator.Temp))
         {
             writer.Write(Constants.Client_Lobby_PlayerName);
 
@@ -263,8 +263,8 @@ public class ClientLobby : MonoBehaviour
     }
 
     public void WriteTeam(int team)
-    {
-        using (var writer = new DataStreamWriter(64, Allocator.Temp))
+	{
+		using (var writer = new DataStreamWriter(64, Allocator.Temp))
         {
             writer.Write(Constants.Client_Lobby_SetTeam);
             writer.Write(team);
@@ -273,8 +273,8 @@ public class ClientLobby : MonoBehaviour
     }
 
     public void WriteReady()
-    {
-        using (var writer = new DataStreamWriter(64, Allocator.Temp))
+	{
+		using (var writer = new DataStreamWriter(64, Allocator.Temp))
         {
             writer.Write(Constants.Client_Lobby_Ready);
             m_Connection.Send(m_Driver, writer);
@@ -282,8 +282,8 @@ public class ClientLobby : MonoBehaviour
     }
 
     public void WriteCancel()
-    {
-        using (var writer = new DataStreamWriter(64, Allocator.Temp))
+	{
+		using (var writer = new DataStreamWriter(64, Allocator.Temp))
         {
             writer.Write(Constants.Client_Lobby_Cancel);
             m_Connection.Send(m_Driver, writer);
@@ -291,8 +291,8 @@ public class ClientLobby : MonoBehaviour
     }
 
     public void SetPlayerNumber()
-    {
-        int playerNumber = lobbyInterfaceManager.GetNumberOfPlayerSlots();
+	{
+		int playerNumber = lobbyInterfaceManager.GetNumberOfPlayerSlots();
         if (playerNumber > 10 || playerNumber < 1)
         {
             popupMessageManager.Show("Number of player not set properly. Should be between 1 and 10.");
@@ -304,8 +304,8 @@ public class ClientLobby : MonoBehaviour
     }
 
     public void AddOnePlayerNumber()
-    {
-        int playerNumber = lobbyInterfaceManager.GetNumberOfPlayerSlots() + 1;
+	{
+		int playerNumber = lobbyInterfaceManager.GetNumberOfPlayerSlots() + 1;
         if (playerNumber > 10 || playerNumber < 1)
         {
             popupMessageManager.Show("Number of player not set properly. Should be between 1 and 10.");
@@ -317,8 +317,8 @@ public class ClientLobby : MonoBehaviour
     }
 
     public void WritePlayerNumber(int playerNumber)
-    {
-        using (var writer = new DataStreamWriter(64, Allocator.Temp))
+	{
+		using (var writer = new DataStreamWriter(64, Allocator.Temp))
         {
             writer.Write(Constants.Client_Lobby_SetPlayerNumber);
             writer.Write(playerNumber);

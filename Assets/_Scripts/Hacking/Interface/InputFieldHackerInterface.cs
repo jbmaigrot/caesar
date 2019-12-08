@@ -33,8 +33,10 @@ public class InputFieldHackerInterface : MonoBehaviour
     private Renderer playerRange = null;
 
     void Start()
-    {
-        hackinterface = FindObjectOfType<HackInterface>();
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		hackinterface = FindObjectOfType<HackInterface>();
         if(transform.Find("Gadget SVGImage"))
         {
             gadgetImage = transform.Find("Gadget SVGImage").GetComponent<SVGImage>();
@@ -46,8 +48,10 @@ public class InputFieldHackerInterface : MonoBehaviour
 
     /*Fonction pour modifier le parametre d'une vignette en fonction de l'input field*/
     void UpdateHackingGraph()
-    {
-        if (HackInterface.SelectedGameObject != null)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		if (HackInterface.SelectedGameObject != null)
         {
             if (isOnString)
             {
@@ -84,9 +88,11 @@ public class InputFieldHackerInterface : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        /*Si le contenu de l'input field change, on modifie le graphe*/
-        if (this.GetComponent<InputField>().text != previousValue)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		/*Si le contenu de l'input field change, on modifie le graphe*/
+		if (this.GetComponent<InputField>().text != previousValue)
         {
             UpdateHackingGraph();
         }
@@ -134,8 +140,10 @@ public class InputFieldHackerInterface : MonoBehaviour
 
     /*Eteint l'inputfield car le bouton n'est pas une vignette.*/
     public void UpdateOff()
-    {
-        this.GetComponent<CanvasGroup>().alpha = 0f;
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		this.GetComponent<CanvasGroup>().alpha = 0f;
         this.GetComponent<CanvasGroup>().interactable = false;
         this.GetComponent<CanvasGroup>().blocksRaycasts = false;
         isOnString = false;
@@ -146,9 +154,11 @@ public class InputFieldHackerInterface : MonoBehaviour
 
     /*Ecris l'input field quand le bouton est une vignette.*/
     public void UpdateOn(bool isInput, bool isFixed, string code)
-    {
-        /*Regarde avec le code de la vignette si le code requiert un input field*/
-        isOnString = false;
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		/*Regarde avec le code de la vignette si le code requiert un input field*/
+		isOnString = false;
         isOnInt = false;
         if (isInput)
         {
@@ -276,14 +286,18 @@ public class InputFieldHackerInterface : MonoBehaviour
 
     /*Récupère HackingAsset du parent.*/
     public void GetHackingAsset(HackingAssetScriptable HackAss)
-    {
-        HackingAsset = HackAss;
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		HackingAsset = HackAss;
     }
 
 
     public void ShowRange()
-    {
-        gadgetRange.SetActive(true);
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		gadgetRange.SetActive(true);
         isPointerOver = true;
 
         if (playerRange == null)
@@ -313,8 +327,10 @@ public class InputFieldHackerInterface : MonoBehaviour
     }
 
     public void HideRange()
-    {
-        gadgetRange.SetActive(false);
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		gadgetRange.SetActive(false);
         isPointerOver = false;
 
         playerRange.enabled = true;

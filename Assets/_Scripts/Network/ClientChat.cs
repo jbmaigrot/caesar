@@ -16,8 +16,10 @@ public class ClientChat : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        inputField = GetComponentInChildren<InputField>();
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		inputField = GetComponentInChildren<InputField>();
         client = FindObjectOfType<Client>();
         audioSource = GetComponent<AudioSource>();
         saturation = 0;
@@ -25,8 +27,10 @@ public class ClientChat : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Return) && inputField.text != "")
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		if (Input.GetKeyDown(KeyCode.Return) && inputField.text != "")
         {
             client.Message(inputField.text);
             inputField.text = "";
@@ -36,9 +40,11 @@ public class ClientChat : MonoBehaviour
     }
 
     //
-    public void AddMessage(string message, Vector3 pos) 
-    {
-        GameObject newMessage = Instantiate(messagePrefab);
+    public void AddMessage(string message, Vector3 pos)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		GameObject newMessage = Instantiate(messagePrefab);
         Text newTextBox = newMessage.GetComponentInChildren<Text>();
 
         // From https://answers.unity.com/questions/921726/how-to-get-the-size-of-a-unityengineuitext-for-whi.html,

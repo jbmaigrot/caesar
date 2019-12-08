@@ -13,14 +13,18 @@ public class ScoreDisplay : MonoBehaviour
 #if CLIENT
     // Start is called before the first frame update
     void Start()
-    {
-        text = GetComponentInChildren<Text>();
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		text = GetComponentInChildren<Text>();
     }
 
     // Update is called once per frame
     void Update()
-    {
-        text.text = Mathf.Floor(battery.clientCharge * 100) + "%";
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		text.text = Mathf.Floor(battery.clientCharge * 100) + "%";
 
         for (int i = 0; i < lines.Length; i++)
         {
@@ -32,8 +36,10 @@ public class ScoreDisplay : MonoBehaviour
         }
     }
 
-    /*public void fillLine(int num)
+	/*public void fillLine(int num)
     {
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
         lines[num].GetComponent<SVGImage>().color = col;
     }*/
 #endif

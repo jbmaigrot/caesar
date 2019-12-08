@@ -15,23 +15,29 @@ public class InventoryUISlot : MonoBehaviour
     //private Client client;
 
     void Start()
-    {
-        //client = FindObjectOfType<Client>();
-    }
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
 
-    
-    void Update()
-    {
-        
-    }
+		//client = FindObjectOfType<Client>();
+	}
 
-    public void reloadSlot(Client client)
-    {
-        //if (client.inventory == null)
-        //{
-        //    client = FindObjectOfType<Client>();
-        //}
-        switch (client.inventory[numero])
+
+	void Update()
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+
+	}
+
+	public void reloadSlot(Client client)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		//if (client.inventory == null)
+		//{
+		//    client = FindObjectOfType<Client>();
+		//}
+		switch (client.inventory[numero])
             {
                 case InventoryConstants.Empty:
                     this.GetComponent<SVGImage>().sprite = Empty;

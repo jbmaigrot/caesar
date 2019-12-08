@@ -8,8 +8,10 @@ public class DoorTriggerScript : MonoBehaviour
 #if SERVER
     private int nbrObstacle = -2;
     private void OnTriggerEnter(Collider other)
-    {
-        nbrObstacle += 1;
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		nbrObstacle += 1;
         if (nbrObstacle > 0)
         {
             DoorScript.GetComponent<DoorScript>().isOccupied = true;
@@ -17,8 +19,10 @@ public class DoorTriggerScript : MonoBehaviour
     }
 
     private void OnTriggerExit(Collider other)
-    {
-        nbrObstacle -= 1;
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		nbrObstacle -= 1;
         if(nbrObstacle <= 0)
         {
             DoorScript.GetComponent<DoorScript>().isOccupied = false;

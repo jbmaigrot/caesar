@@ -95,8 +95,10 @@ public class Client : MonoBehaviour
     private bool hasTheAudioSourceOfThePlayerBeenInitialized = false;
     // Start is called before the first frame update
     void Start()
-    {
-        cameraController = FindObjectOfType<CameraController>();
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		cameraController = FindObjectOfType<CameraController>();
         chat = FindObjectOfType<ClientChat>();
         programmableObjectsContainer = FindObjectOfType<ProgrammableObjectsContainer>();
         hackInterface = FindObjectOfType<HackInterface>();
@@ -110,10 +112,13 @@ public class Client : MonoBehaviour
         
     }
 
-    void Awake() { 
-        //TODO error : A Native Collection has not been disposed, resulting in a memory leak
+    void Awake()
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
 
-        clientLobby = FindObjectOfType<ClientLobby>();
+		//TODO error : A Native Collection has not been disposed, resulting in a memory leak
+
+		clientLobby = FindObjectOfType<ClientLobby>();
         if (clientLobby == null)
         {
             iPAddress = IPAddress.Parse(ServerIP);
@@ -155,8 +160,10 @@ public class Client : MonoBehaviour
     }
 
     public void OnApplicationQuit()
-    {
-        Debug.Log("Call to OnApplicationQuit() in client");
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		Debug.Log("Call to OnApplicationQuit() in client");
         
         try
         {
@@ -169,8 +176,10 @@ public class Client : MonoBehaviour
     }
 
      void Update()
-    {
-        if (audioSourceForTheHackingSound.isPlaying)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		if (audioSourceForTheHackingSound.isPlaying)
         {
             audioSourceForTheHackingSound.volume = curveForTheHackingSound.Evaluate(audioSourceForTheHackingSound.time - StartingTimeForTheHackingSound);
         }
@@ -199,8 +208,10 @@ public class Client : MonoBehaviour
 
     // Update is called once per frame
     void LateUpdate()
-    {
-        m_Driver.ScheduleUpdate().Complete();
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		m_Driver.ScheduleUpdate().Complete();
 
         if (!m_Connection.IsCreated)
         {
@@ -632,8 +643,10 @@ public class Client : MonoBehaviour
 
     
     public void SetDestination(Vector3 destination)
-    {
-        using (var writer = new DataStreamWriter(32, Allocator.Temp))
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		using (var writer = new DataStreamWriter(32, Allocator.Temp))
         {
             writer.Write(Constants.Client_SetDestination);
             writer.Write(destination.x);
@@ -645,8 +658,10 @@ public class Client : MonoBehaviour
     }
 
     public void Tacle(int number)
-    {
-        using (var writer = new DataStreamWriter(32, Allocator.Temp))
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		using (var writer = new DataStreamWriter(32, Allocator.Temp))
         {
             writer.Write(Constants.Client_Tacle);
             writer.Write(number);
@@ -656,8 +671,10 @@ public class Client : MonoBehaviour
     }
 
     public void StartTaking(int objectId)
-    {
-        using (var writer = new DataStreamWriter(32, Allocator.Temp))
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		using (var writer = new DataStreamWriter(32, Allocator.Temp))
         {
             writer.Write(Constants.Client_StartTaking);
             writer.Write(objectId);
@@ -667,8 +684,10 @@ public class Client : MonoBehaviour
     }
 
     public void StartGiving(int objectId)
-    {
-        using (var writer = new DataStreamWriter(32, Allocator.Temp))
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		using (var writer = new DataStreamWriter(32, Allocator.Temp))
         {
             writer.Write(Constants.Client_StartGiving);
             writer.Write(objectId);
@@ -678,8 +697,10 @@ public class Client : MonoBehaviour
     }
 
     public void DoorInteract(int number)
-    {
-        using (var writer = new DataStreamWriter(32, Allocator.Temp))
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		using (var writer = new DataStreamWriter(32, Allocator.Temp))
         {
             writer.Write(Constants.Client_Open_Door);
             writer.Write(number);
@@ -689,8 +710,10 @@ public class Client : MonoBehaviour
     }
 
     public void Message(string message)
-    {
-        using (var writer = new DataStreamWriter(256, Allocator.Temp))
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		using (var writer = new DataStreamWriter(256, Allocator.Temp))
         {
             writer.Write(Constants.Client_Message);
             writer.Write(message.Length);
@@ -707,8 +730,10 @@ public class Client : MonoBehaviour
     }
 
     public void Ping(Vector2 mapPos)
-    {
-        using (var writer = new DataStreamWriter(32, Allocator.Temp))
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		using (var writer = new DataStreamWriter(32, Allocator.Temp))
         {
             writer.Write(Constants.Client_Ping);
             writer.Write(mapPos.x);
@@ -718,8 +743,10 @@ public class Client : MonoBehaviour
     }
 
     public void RequestHackState(int objectId)
-    {
-        if(!characters[playerIndex].isTacle)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		if (!characters[playerIndex].isTacle)
         using (var writer = new DataStreamWriter(32, Allocator.Temp))
         {
             writer.Write(Constants.Client_RequestHack);
@@ -733,13 +760,17 @@ public class Client : MonoBehaviour
     }
 
     public void CutSoundOfHackPlease()
-    {
-        audioSourceForTheHackingSound.Stop();
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		audioSourceForTheHackingSound.Stop();
     }
 
     public void GetHackState(DataStreamReader stream, ref DataStreamReader.Context readerCtx)
-    {
-        int objectId = (int)stream.ReadUInt(ref readerCtx);
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		int objectId = (int)stream.ReadUInt(ref readerCtx);
 
         if(stream.ReadUInt(ref readerCtx) == 1)
         {
@@ -848,8 +879,10 @@ public class Client : MonoBehaviour
     }
 
     public void SetHackState(int objectId, List<InOutVignette> inputCodes, List<InOutVignette> outputCodes, List<Arrow> graph, int RelayHasMoved)
-    {
-        using (var writer = new DataStreamWriter(4096, Allocator.Temp))
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		using (var writer = new DataStreamWriter(4096, Allocator.Temp))
         {
             writer.Write(Constants.Client_SetHack);
 
@@ -926,8 +959,10 @@ public class Client : MonoBehaviour
     }
 
     public void GiveBackHackToken(int objectId)
-    {
-        using (var writer = new DataStreamWriter(4096, Allocator.Temp))
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		using (var writer = new DataStreamWriter(4096, Allocator.Temp))
         {
             writer.Write(Constants.Client_GiveBackHackToken);
 
@@ -937,8 +972,10 @@ public class Client : MonoBehaviour
     }
 
     private void InitialHandshake()
-    {
-        using (var writer = new DataStreamWriter(64, Allocator.Temp))
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		using (var writer = new DataStreamWriter(64, Allocator.Temp))
         {
             writer.Write(Constants.Client_ConnectionId);
             writer.Write(connectionId);
@@ -947,8 +984,10 @@ public class Client : MonoBehaviour
     }
 
     private void ThiefHasBeenIntercepted()
-    {
-        using (var writer = new DataStreamWriter(64, Allocator.Temp))
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		using (var writer = new DataStreamWriter(64, Allocator.Temp))
         {
             writer.Write(Constants.Client_ThiefHasBeenStunned);
             if (team == 1) writer.Write(0);
@@ -958,8 +997,10 @@ public class Client : MonoBehaviour
     }
 
     private void DrawPath(Vector3[] pathAs3dPositions)
-    {
-        if (lineRenderer != null)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		if (lineRenderer != null)
         {
             lineRenderer.positionCount = pathAs3dPositions.Length;
             lineRenderer.SetPositions(pathAs3dPositions);
@@ -970,8 +1011,10 @@ public class Client : MonoBehaviour
     }
 
     private void UpdateDrawPath()
-    {
-        if (lineRenderer != null)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		if (lineRenderer != null)
         {
             Vector3 playerPos = lineRenderer.transform.parent.position;
             Vector3 startLine = new Vector3(playerPos.x, playerPos.y + 0.25f, playerPos.z);
@@ -993,8 +1036,10 @@ public class Client : MonoBehaviour
     }
 
     public void OpenedHackInterface(int objectId)
-    {
-        using (var writer = new DataStreamWriter(4096, Allocator.Temp))
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		using (var writer = new DataStreamWriter(4096, Allocator.Temp))
         {
             writer.Write(Constants.Client_HackInterfaceIsOpen);
 
@@ -1004,9 +1049,11 @@ public class Client : MonoBehaviour
     }
 
     public void LoopMusic()
-    {
-        
-        int randomClip = UnityEngine.Random.Range(0, ClipMusicNappeA.Length);
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+
+		int randomClip = UnityEngine.Random.Range(0, ClipMusicNappeA.Length);
         Debug.Log("This is the time of a new music clip " + (Time.time - timeValueDebugMusic) +" " + ClipMusicNappeA[randomClip].name);
         timeValueDebugMusic = Time.time;
         audioSourceForMusicNappeA.PlayOneShot(ClipMusicNappeA[randomClip]);

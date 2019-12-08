@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class ClientStuff : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-#if !CLIENT
-        gameObject.SetActive(false);
-#endif
-    }
+	// Start is called before the first frame update
+	void Start()
+	{
+		// if launching directly the main scene in editor
+		if (!GameState.CLIENT && !GameState.SERVER)
+		{
+			Debug.Log("To play in editor, set CLIENT and SERVER to true in GameState.cs");
+		}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+		if (!GameState.CLIENT) // replacement for preprocessor
+			gameObject.SetActive(false);
+	}
 }

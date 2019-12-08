@@ -64,8 +64,10 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
 
     // Start is called before the first frame update
     void Start()
-    {
-        client = FindObjectOfType<Client>();
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		client = FindObjectOfType<Client>();
         objectsContainer = FindObjectOfType<ProgrammableObjectsContainer>();
         this.gameObject.GetComponent<CanvasGroup>().alpha=0f;
         this.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
@@ -99,9 +101,11 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
 
     // Update is called once per frame
     void Update()
-    {
-        /*Gestion du délais de fermeture d'interface*/
-        if (isClosing)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		/*Gestion du délais de fermeture d'interface*/
+		if (isClosing)
         {
             timeBeforeClosing -= Time.deltaTime;
             if (timeBeforeClosing <= 0.0f)
@@ -139,8 +143,10 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
 
      /*Fonction appelé lorsque le joueur ferme l'interface. A adapter pour le réseau.*/
     public void OnClose()
-    {
-        int RelayHasMoved = 0;
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		int RelayHasMoved = 0;
         ErrorTextZone.GetComponent<Animator>().SetTrigger("Interface_Close");
         if (!isClosing)
         {
@@ -192,8 +198,10 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     }
 
     public void CloseByStun()
-    {
-        ErrorTextZone.GetComponent<Animator>().SetTrigger("Interface_Close");
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		ErrorTextZone.GetComponent<Animator>().SetTrigger("Interface_Close");
         if (!isClosing)
         {
             if(SelectedGameObject != null)
@@ -236,8 +244,10 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
 
     //Network compatible version of the function
     public void SelectedProgrammableObject(GameObject SelectedObject, List<InOutVignette> _inputCodes, List<InOutVignette> _outputCodes, List<Arrow> _graph)
-    {
-        if (isReadyToOpen)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		if (isReadyToOpen)
         {
             /*Copie du graphe de comportement de l'objet*/
             SelectedGameObject = SelectedObject;
@@ -261,20 +271,26 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     }
 
     public GameObject GetSelectedProgrammableObject()
-    {
-        return SelectedGameObject;
+	{
+		if (!GameState.CLIENT) return null; // replacement for preprocessor
+
+		return SelectedGameObject;
     }
 
 
     public void ReadyToOpen()
-    {
-        isReadyToOpen = true;
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		isReadyToOpen = true;
         timeReadyToOpen = TIMEREADYTOOPEN;
     }
 
     public void DoNotOpenActually(int objectIndex)
-    {
-        if (isReadyToOpen)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		if (isReadyToOpen)
         {
             isReadyToOpen = false;
             client.GiveBackHackToken(objectIndex);
@@ -283,8 +299,10 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     }
 
     public void OpenInterface()
-    {
-        client.CutSoundOfHackPlease();
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		client.CutSoundOfHackPlease();
         client.OpenedHackInterface(SelectedGameObject.GetComponent<ProgrammableObjectsData>().objectIndexClient);
         SelectedGameObject.GetComponent<ProgrammableObjectsData>().isWaitingHack = false;
         isOpening = true;
@@ -292,17 +310,21 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     }
 
     public void ReallyOpenInterface()
-    {
-        /*Ouverture de l'interface*/
-        this.gameObject.GetComponent<CanvasGroup>().alpha = 1f;
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		/*Ouverture de l'interface*/
+		this.gameObject.GetComponent<CanvasGroup>().alpha = 1f;
         this.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
         Camera.main.GetComponent<CameraController>().CameraModeFollow(SelectedGameObject);
     }
 
     /*Ecriture des vignettes de l'interface*/
     public void reloadInterface()
-    {
-        foreach (TextButtonHackInterface ryan in this.GetComponentsInChildren<TextButtonHackInterface>(false))
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		foreach (TextButtonHackInterface ryan in this.GetComponentsInChildren<TextButtonHackInterface>(false))
         {
             ryan.UpdateOptions(inputCodes.Count,outputCodes.Count);
         }
@@ -314,16 +336,20 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
 
     /*Ecriture des fleches de l'interface*/
     public void reloadArrow()
-    {
-        foreach (ArrowHackInterface ryan in this.GetComponentsInChildren<ArrowHackInterface>(false))
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		foreach (ArrowHackInterface ryan in this.GetComponentsInChildren<ArrowHackInterface>(false))
         {
             ryan.UpdateArrow();
         }
     }
 
     public void RemoveVignette(bool isInput, int num)
-    {
-        if (isInput)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		if (isInput)
         {
             foreach (Arrow ryan in graph.ToArray()) // tricks using ToArray() from stackoverflow.com/questions/3545731 to prevent index exception when removing elements from the list in the loop
             {
@@ -355,8 +381,10 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     }
 
     public void SomeoneHackedTheSameObject()
-    {
-        ErrorTextZone.GetComponent<Animator>().SetTrigger("Fade_Text");
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		ErrorTextZone.GetComponent<Animator>().SetTrigger("Fade_Text");
     }
     /*
     //Draw arrows
@@ -373,23 +401,31 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     }*/
 
     public void ClicCancel()
-    {
-        GetComponent<AudioSource>().PlayOneShot(Clic_Cancel);
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		GetComponent<AudioSource>().PlayOneShot(Clic_Cancel);
     }
 
     public void ClicPos()
-    {
-        GetComponent<AudioSource>().PlayOneShot(Clic_Positif);
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		GetComponent<AudioSource>().PlayOneShot(Clic_Positif);
     }
 
     public void ClicNeu()
-    {
-        GetComponent<AudioSource>().PlayOneShot(Clic_Neutre);
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		GetComponent<AudioSource>().PlayOneShot(Clic_Neutre);
     }
 
     public void ClicNeg()
-    {
-        GetComponent<AudioSource>().PlayOneShot(Clic_Negatif);
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		GetComponent<AudioSource>().PlayOneShot(Clic_Negatif);
     }
 #endif
 }

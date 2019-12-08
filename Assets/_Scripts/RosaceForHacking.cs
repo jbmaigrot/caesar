@@ -13,8 +13,9 @@ public class RosaceForHacking : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        this.transform.position = Input.mousePosition;
+		if (!GameState.CLIENT) return; // replacement for preprocessor
 
+		this.transform.position = Input.mousePosition;
     }
 }
 #endif

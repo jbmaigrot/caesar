@@ -8,13 +8,17 @@ public class ConnectingMessageManager : MonoBehaviour
     public GameObject connectingPanel;
 #if CLIENT
     public void Show()
-    {
-        connectingPanel.SetActive(true);
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		connectingPanel.SetActive(true);
     }
 
     public void Hide()
-    {
-        connectingPanel.SetActive(false);
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		connectingPanel.SetActive(false);
     }
 #endif
 }

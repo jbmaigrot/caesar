@@ -24,59 +24,73 @@ public class ProgrammableObjectsContainer : MonoBehaviour
     public void Start()
     {
 #if CLIENT
-        client = FindObjectOfType<Client>();
+		if (GameState.CLIENT) // replacement for preprocessor
+		{
+			client = FindObjectOfType<Client>();
+		}
 #endif
 
         foreach(ProgrammableObjectsData ryan in this.GetComponentsInChildren<ProgrammableObjectsData>(true))
         {
 #if CLIENT
-            ryan.client = client;
-            objectListClient.Add(ryan);
-            ryan.objectIndexClient = objectListClient.Count - 1;
+			if (GameState.CLIENT) // replacement for preprocessor
+			{
+				ryan.client = client;
+				objectListClient.Add(ryan);
+				ryan.objectIndexClient = objectListClient.Count - 1;
+			}
 #endif
 
 #if SERVER
-            objectListServer.Add(ryan);
-            if (ryan.gameObject.name.Contains("Armchair"))
-            {
-                chairListServer.Add(ryan);
-            }
+			if (GameState.SERVER) // replacement for preprocessor
+			{
+				objectListServer.Add(ryan);
+				if (ryan.gameObject.name.Contains("Armchair"))
+				{
+					chairListServer.Add(ryan);
+				}
+			}
 #endif
         }
 #if SERVER
-        float bestScore=0f;
-        ProgrammableObjectsData bestchair = new ProgrammableObjectsData();
-        float randScore;
-        foreach (ProgrammableObjectsData ryan in chairListServer)
-        {
-            randScore = Random.Range(0f, 1f);
-            if (randScore > bestScore)
-            {
-                
-                bestchair = ryan;
-                bestScore = randScore;
-            }
-        }
-        bestchair.Initiator = Instantiate(PhilosopherChair);
-        bestchair.inputCodes = new List<InOutVignette>(bestchair.Initiator.inputCodes);
-        bestchair.outputCodes = new List<InOutVignette>(bestchair.Initiator.outputCodes);
-        bestchair.graph = new List<Arrow>(bestchair.Initiator.graph);
-        foreach (Arrow a in bestchair.graph)
-        {
-            a.timeBeforeTransmit.Clear();
-        }
+		if (GameState.SERVER) // replacement for preprocessor
+		{
+			float bestScore = 0f;
+			ProgrammableObjectsData bestchair = new ProgrammableObjectsData();
+			float randScore;
+			foreach (ProgrammableObjectsData ryan in chairListServer)
+			{
+				randScore = Random.Range(0f, 1f);
+				if (randScore > bestScore)
+				{
 
-        foreach (InOutVignette ryan in bestchair.Initiator.initialOutputActions)
-        {
-            bestchair.OnOutput(ryan.code, ryan.parameter_string, ryan.parameter_int);
-        }
+					bestchair = ryan;
+					bestScore = randScore;
+				}
+			}
+			bestchair.Initiator = Instantiate(PhilosopherChair);
+			bestchair.inputCodes = new List<InOutVignette>(bestchair.Initiator.inputCodes);
+			bestchair.outputCodes = new List<InOutVignette>(bestchair.Initiator.outputCodes);
+			bestchair.graph = new List<Arrow>(bestchair.Initiator.graph);
+			foreach (Arrow a in bestchair.graph)
+			{
+				a.timeBeforeTransmit.Clear();
+			}
+
+			foreach (InOutVignette ryan in bestchair.Initiator.initialOutputActions)
+			{
+				bestchair.OnOutput(ryan.code, ryan.parameter_string, ryan.parameter_int);
+			}
+		}
 #endif
     }
 
 #if SERVER
     public void ChatInstruction(string instruction)
-    {
-        for(int i = 0; i < objectListServer.Count; i++)
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+		
+		for (int i = 0; i < objectListServer.Count; i++)
         {
             objectListServer[i].ChatInstruction(instruction);
         }
@@ -84,16 +98,20 @@ public class ProgrammableObjectsContainer : MonoBehaviour
 #endif
 #if CLIENT
     public int GetObjectIndexClient(ProgrammableObjectsData objectData)
-    {
-        Debug.Log(objectData);
+	{
+		if (!GameState.CLIENT) return -1; // replacement for preprocessor
+
+		Debug.Log(objectData);
         return objectListClient.IndexOf(objectData);
 
     }
 #endif
 #if SERVER
     public int GetObjectIndexServer(ProgrammableObjectsData objectData)
-    {
-        return objectListServer.IndexOf(objectData);
+	{
+		if (!GameState.SERVER) return -1; // replacement for preprocessor
+
+		return objectListServer.IndexOf(objectData);
     }        
 #endif
 }

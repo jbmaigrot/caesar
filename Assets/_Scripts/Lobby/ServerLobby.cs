@@ -28,12 +28,12 @@ public class ServerLobby : MonoBehaviour
 #if SERVER
     // Start is called before the first frame update
     void Start()
-    {
-        //lobbyInterfaceManager = FindObjectOfType<LobbyInterfaceManager>();
-        //numberOfPlayerSlots = lobbyInterfaceManager.GetNumberOfPlayerSlots();
-        //No real need for the interface on server side, and number of player slots should be modified by clients
+	{
+		//lobbyInterfaceManager = FindObjectOfType<LobbyInterfaceManager>();
+		//numberOfPlayerSlots = lobbyInterfaceManager.GetNumberOfPlayerSlots();
+		//No real need for the interface on server side, and number of player slots should be modified by clients
 
-        Application.targetFrameRate = 58;
+		Application.targetFrameRate = 58;
 
         m_Driver = new UdpCNetworkDriver(new INetworkParameter[0]);
 
@@ -58,13 +58,13 @@ public class ServerLobby : MonoBehaviour
     }
 
     public void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
+	{
+		DontDestroyOnLoad(gameObject);
     }
 
     public void OnApplicationQuit()
-    {
-        Debug.Log("Call to OnApplicationQuit() in serverLobby");
+	{
+		Debug.Log("Call to OnApplicationQuit() in serverLobby");
 
         if (stopUpdate == false) //Means we changed scene, and the main server code is handling these objects
         {
@@ -83,8 +83,8 @@ public class ServerLobby : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if (stopUpdate == true)
+	{
+		if (stopUpdate == true)
         {
             return;
         }

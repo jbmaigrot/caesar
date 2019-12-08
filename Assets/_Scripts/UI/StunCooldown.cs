@@ -13,16 +13,20 @@ public class StunCooldown : MonoBehaviour
 
     // Start
     private void Start()
-    {
-        client = FindObjectOfType<Client>();
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		client = FindObjectOfType<Client>();
         mask = transform.Find("Mask").gameObject;
         text = transform.Find("Text").GetComponent<Text>();
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if (cooldown > 0)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		if (cooldown > 0)
         {
 
             hastoplayasound = true;
@@ -43,8 +47,10 @@ public class StunCooldown : MonoBehaviour
     }
 
     public void StartCooldown()
-    {
-        cooldown = 20;
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		cooldown = 20;
         mask.SetActive(true);
     }
 }

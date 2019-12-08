@@ -19,8 +19,10 @@ public class ServerSource : MonoBehaviour
 
     //Start
     private void Start()
-    {
-        startingTime = Time.time;
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		startingTime = Time.time;
         carrier = GetComponent<ServerCarrier>();
         server = FindObjectOfType<Server>();
         isActivated = false;
@@ -28,8 +30,10 @@ public class ServerSource : MonoBehaviour
 
     // reset takenFrom (used for animation)
     private void LateUpdate()
-    {
-        if (doNotResetTakenFrom)
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		if (doNotResetTakenFrom)
         {
             doNotResetTakenFrom = false;
         }
@@ -41,8 +45,10 @@ public class ServerSource : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if (isActivated)
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		if (isActivated)
         {
             if (Time.time - startingTime > 240)
             {

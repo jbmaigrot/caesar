@@ -47,8 +47,10 @@ public class SourceAnimator : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        cube = transform.Find("Cube");
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		cube = transform.Find("Cube");
         emissive = cube.Find("Source 1").GetComponent<Renderer>();
         pointLight = cube.Find("Point Light").GetComponent<Light>();
         maxIntensity = pointLight.intensity;
@@ -61,8 +63,10 @@ public class SourceAnimator : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        canBeepPlay = false;
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		canBeepPlay = false;
         for(int i =0; i < 3; i++)
         {
             timeBeforeEndOfBeeps[i] -= Time.deltaTime;

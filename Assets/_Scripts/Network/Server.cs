@@ -47,10 +47,15 @@ public class Server : MonoBehaviour
    
     // Start is called before the first frame update
     void Start()
-    {
-        //Application.targetFrameRate = 58;
-        
-        tmp_Connections = new NativeList<NetworkConnection>(16, Allocator.Persistent);
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		/*if (!GameState.CLIENT)
+			Camera.main.transform.parent.gameObject.SetActive(false);*/
+
+		//Application.targetFrameRate = 58;
+
+		tmp_Connections = new NativeList<NetworkConnection>(16, Allocator.Persistent);
 
         programmableObjectsContainer = FindObjectOfType<ProgrammableObjectsContainer>();
 
@@ -100,8 +105,10 @@ public class Server : MonoBehaviour
     }
 
     public void OnApplicationQuit()
-    {
-        Debug.Log("Call to OnApplicationQuit() in server");
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		Debug.Log("Call to OnApplicationQuit() in server");
 
         try
         {
@@ -117,8 +124,10 @@ public class Server : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if (!hasSendItsRegard)
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		if (!hasSendItsRegard)
         {
             AddMessage("WELCOME TO TONIGHT CEREMONY. GOOD LUCK TO BOTH TEAM AND REMEMBER TO HAVE FUN.", Vector3.zero);
             hasSendItsRegard = true;
@@ -277,7 +286,7 @@ public class Server : MonoBehaviour
 
                         case Constants.Client_Message:
                             int length = (int)stream.ReadUInt(ref readerCtx);
-                            Debug.Log(length);
+                            //Debug.Log(length);
                             byte[] buffer = stream.ReadBytesAsArray(ref readerCtx, length);
                             char[] chars = new char[length];
                             for (int n = 0; n < length; n++)
@@ -553,8 +562,10 @@ public class Server : MonoBehaviour
 
     
     public void Message(string message, Vector3 pos)
-    {
-        using (var writer = new DataStreamWriter(256, Allocator.Temp))
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		using (var writer = new DataStreamWriter(256, Allocator.Temp))
         {
             writer.Write(Constants.Server_Message);
             writer.Write(message.Length);
@@ -577,8 +588,10 @@ public class Server : MonoBehaviour
     }
 
     public void AddMessage(string message, Vector3 pos)
-    {
-        Message(message, pos);
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		Message(message, pos);
         messages.Add(message);
         messagesPos.Add(pos);
 
@@ -607,8 +620,10 @@ public class Server : MonoBehaviour
     }
 
     public void Ping(Vector2 mapPos)
-    {
-        using (var writer = new DataStreamWriter(32, Allocator.Temp))
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		using (var writer = new DataStreamWriter(32, Allocator.Temp))
         {
             writer.Write(Constants.Server_Ping);
             writer.Write(mapPos.x);
@@ -621,8 +636,10 @@ public class Server : MonoBehaviour
     }
 
     public void UpdateRelays()
-    {
-        using (var writer = new DataStreamWriter(256, Allocator.Temp))
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		using (var writer = new DataStreamWriter(256, Allocator.Temp))
         {
             writer.Write(Constants.Server_UpdateRelays);
 
@@ -645,8 +662,10 @@ public class Server : MonoBehaviour
     }
 
     public void SendHackStatus(int objectId, int connectionId)
-    {
-        ProgrammableObjectsData programmableObject = programmableObjectsContainer.objectListServer[objectId];
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		ProgrammableObjectsData programmableObject = programmableObjectsContainer.objectListServer[objectId];
         using (var writer = new DataStreamWriter(4096, Allocator.Temp))
         {
             writer.Write(Constants.Server_GetHack);
@@ -655,7 +674,7 @@ public class Server : MonoBehaviour
             if(programmableObject.isBeingHackedServer == -1)
             {
                 programmableObject.isBeingHackedServer = connectionId;
-                Debug.Log(programmableObject.isBeingHackedServer);
+                //Debug.Log(programmableObject.isBeingHackedServer);
                 writer.Write(1);
                 writer.Write(programmableObject.inputCodes.Count);
                 foreach (InOutVignette vignette in programmableObject.inputCodes)
@@ -738,8 +757,10 @@ public class Server : MonoBehaviour
     }
 
     public void SetHackStatus(int objectId, DataStreamReader stream, ref DataStreamReader.Context readerCtx, int indexPlayer)
-    {
-        List<InOutVignette> inputCodes = new List<InOutVignette>();
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		List<InOutVignette> inputCodes = new List<InOutVignette>();
         List<InOutVignette> outputCodes = new List<InOutVignette>();
         List<Arrow> graph = new List<Arrow>();
         bool isAttract = false;
@@ -894,14 +915,18 @@ public class Server : MonoBehaviour
     }
 
     public int AddNewPlayer(int team)
-    {
-        return AddNewPlayer(team, "defaultName");
+	{
+		if (!GameState.SERVER) return -1; // replacement for preprocessor
+
+		return AddNewPlayer(team, "defaultName");
     }
 
     public int AddNewPlayer(int team, string playerName)
-    {
-        //On ajoute un nouveau personnage joueur.
-        GameObject pj = Instantiate(prefabPJ, programmableObjectsContainer.transform);
+	{
+		if (!GameState.SERVER) return -1; // replacement for preprocessor
+
+		//On ajoute un nouveau personnage joueur.
+		GameObject pj = Instantiate(prefabPJ, programmableObjectsContainer.transform);
         pj.GetComponent<NavMeshAgent>().enabled = false;
         if (team == -1)
         {
@@ -945,8 +970,10 @@ public class Server : MonoBehaviour
     }
 
     public void SetConnectionId(int connectionId, NetworkConnection nc)
-    {
-        using (var writer = new DataStreamWriter(64, Allocator.Temp))
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		using (var writer = new DataStreamWriter(64, Allocator.Temp))
         {
             writer.Write(Constants.Server_SetConnectionId);
             writer.Write(connectionId);
@@ -955,8 +982,10 @@ public class Server : MonoBehaviour
     }
 
     public void Win(int team)
-    {
-        hasSomeoneWin = true;
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		hasSomeoneWin = true;
         if (winner == -1)
         {
             winner = team;
@@ -974,8 +1003,10 @@ public class Server : MonoBehaviour
     }
 
     public void SendPath(Vector3[] pathAs3dPositions, NetworkConnection nc)
-    {
-        using (var writer = new DataStreamWriter(1024, Allocator.Temp))
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		using (var writer = new DataStreamWriter(1024, Allocator.Temp))
         {
             writer.Write(Constants.Server_SendPath);
             writer.Write(pathAs3dPositions.Length);
@@ -990,8 +1021,8 @@ public class Server : MonoBehaviour
     }
 
     public NetworkConnection GetNetworkConnectionFromPlayerTransform(Transform tf)
-    {
-        int index = players.IndexOf(tf);
+	{
+		int index = players.IndexOf(tf);
         if (index != -1)
         {
             return m_Connections[index];
@@ -1004,8 +1035,10 @@ public class Server : MonoBehaviour
     }
 
     public void NewAnnoncement (int number)
-    {
-        using (var writer = new DataStreamWriter(1024, Allocator.Temp))
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		using (var writer = new DataStreamWriter(1024, Allocator.Temp))
         {
             writer.Write(Constants.Server_SendAnnoncement);
             writer.Write(number);

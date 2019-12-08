@@ -12,14 +12,18 @@ public class InventoryUI : MonoBehaviour
 #if CLIENT
     // Start is called before the first frame update
     void Start()
-    {
-        //client = FindObjectOfType<Client>();
-    }
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (!inventoryLoaded && client.inventory!= null)
+		//client = FindObjectOfType<Client>();
+	}
+
+	// Update is called once per frame
+	void Update()
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		if (!inventoryLoaded && client.inventory!= null)
         {
             ReloadInventory();
             inventoryLoaded = true;
@@ -27,8 +31,10 @@ public class InventoryUI : MonoBehaviour
     }
 
     public void ReloadInventory()
-    {
-        foreach (InventoryUISlot slot in inventory)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		foreach (InventoryUISlot slot in inventory)
         {
             slot.reloadSlot(client);
         }

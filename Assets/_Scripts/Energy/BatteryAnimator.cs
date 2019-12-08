@@ -32,15 +32,19 @@ public class BatteryAnimator : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        BeepBoop = Resources.LoadAll<AudioClip>("Beep");
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		BeepBoop = Resources.LoadAll<AudioClip>("Beep");
         timeFadeOut = 0.5f;
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if (prevState != state)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		if (prevState != state)
         {
             lerpT = 0f;
         }

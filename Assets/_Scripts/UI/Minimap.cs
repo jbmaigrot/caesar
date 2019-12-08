@@ -34,8 +34,10 @@ public class Minimap : MonoBehaviour
 
     // Start
     private void Start()
-    {
-        client = FindObjectOfType<Client>();
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		client = FindObjectOfType<Client>();
         hackInterface = FindObjectOfType<HackInterface>();
         mapMessage.gameObject.SetActive(false);
         lineRenderer = GetComponentInChildren<UILineRenderer>();
@@ -43,9 +45,11 @@ public class Minimap : MonoBehaviour
 
     // Update is called once per frame
     private void Update()
-    {
-        //move player icon
-        if (player != null)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		//move player icon
+		if (player != null)
             mapPlayer.localPosition = worldToMap(player.position);
 
         for (int i = 0; i < allies.Count; i++)
@@ -85,23 +89,29 @@ public class Minimap : MonoBehaviour
 
     // Ping
     public void Ping(Vector2 mapPos)
-    {
-        GameObject newPing = Instantiate(mapPingPrefab, transform);
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		GameObject newPing = Instantiate(mapPingPrefab, transform);
         newPing.GetComponent<RectTransform>().localPosition = mapPos;
     }
 
     // Show message source
     public void ShowMessage(Vector3 sourcePosition)
-    {
-        mapMessage.gameObject.SetActive(true);
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		mapMessage.gameObject.SetActive(true);
         mapMessage.localPosition = worldToMap(sourcePosition);
         messageStartingTime = Time.time;
     }
 
     // Update relays
     public void UpdateRelays(bool redIsVisible, bool blueIsVisible, Vector3 redPos, Vector3 bluePos, int team)
-    {
-        if (/*redIsVisible ||*/ team == 0)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		if (/*redIsVisible ||*/ team == 0)
         {
             mapRedRelay.gameObject.SetActive(true);
             mapRedRelay.localPosition = worldToMap(redPos);
@@ -124,8 +134,10 @@ public class Minimap : MonoBehaviour
 
     // Bind new ally object
     public void AddAlly(Transform newAlly, Color color)
-    {
-        allies.Add(newAlly);
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		allies.Add(newAlly);
 
         GameObject newMapAlly = Instantiate(mapAllyPrefab, transform);
         newMapAlly.GetComponent<Image>().color = color;
@@ -134,13 +146,17 @@ public class Minimap : MonoBehaviour
 
     // Set isPointerOver
     public void SetIsPointerOver(bool b)
-    {
-        isPointerOver = b;
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		isPointerOver = b;
     }
 
     public void DrawPath(Vector3[] worldPath)
-    {
-        if (lineRenderer != null)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		if (lineRenderer != null)
         {
             lineRenderer.Points = worldToMap(worldPath);
             lineRenderer.SetVerticesDirty();

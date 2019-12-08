@@ -17,7 +17,9 @@ public class SourceManager : MonoBehaviour
     void Start()
     {
 #if SERVER
-        startingTime = Time.time;
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		startingTime = Time.time;
         timeBeforeSource = 15.0f;
         Random.InitState(System.DateTime.Now.Second);
         server = FindObjectOfType<Server>();
@@ -32,7 +34,9 @@ public class SourceManager : MonoBehaviour
     void Update()
     {
 #if SERVER
-        timeBeforeSource -= Time.deltaTime;
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		timeBeforeSource -= Time.deltaTime;
         if (timeBeforeSource <= 0)
         {
             server.AddMessage("A NEW DATA POOL HAS APPEARED.", Vector3.zero);

@@ -45,8 +45,10 @@ public class ServerCharacter : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        isStunned = false;
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		isStunned = false;
         navMeshAgent = GetComponent<NavMeshAgent>();
         baseSpeed = navMeshAgent.speed;
         carrier = GetComponent<ServerCarrier>();
@@ -54,8 +56,10 @@ public class ServerCharacter : MonoBehaviour
     }
 
     public void getStun()
-    {
-        timeBeforeEndOfStun = TIMEOFSTUN;
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		timeBeforeEndOfStun = TIMEOFSTUN;
         isStunned = true;
         navMeshAgent.speed = 0;
         GetComponent<ProgrammableObjectsData>().OnInput("OnStun");
@@ -64,15 +68,19 @@ public class ServerCharacter : MonoBehaviour
     }
 
     public void doStun()
-    {
-        timeBeforeStunReload = TIMEOFSTUNRELOAD;
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		timeBeforeStunReload = TIMEOFSTUNRELOAD;
         canStun = false;
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if (isStunned)
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		if (isStunned)
         {
             timeBeforeEndOfStun -= Time.deltaTime;
             if (timeBeforeEndOfStun <= 0)

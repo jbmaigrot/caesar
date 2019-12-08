@@ -28,7 +28,9 @@ public class ServerGameCreator : MonoBehaviour
 
     void Start()
     {
-        _listFloor = GameObject.FindGameObjectsWithTag("Floor");
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		_listFloor = GameObject.FindGameObjectsWithTag("Floor");
         ListZone = GameObject.FindGameObjectsWithTag("ConnectedObject");
         foreach (GameObject zone in ListZone)
         {
@@ -47,8 +49,10 @@ public class ServerGameCreator : MonoBehaviour
     
 
     void Update()
-    {
-        for (int i = 0; i < NbPnj; i++)
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		for (int i = 0; i < NbPnj; i++)
         {
             _listPnj[i].Time += Time.deltaTime;
 
@@ -141,8 +145,10 @@ public class ServerGameCreator : MonoBehaviour
     }
 
     void FillCrowd()
-    {
-        int maxSize = PNJSpawn.Count;
+	{
+		if (!GameState.SERVER) return; // replacement for preprocessor
+
+		int maxSize = PNJSpawn.Count;
         _listPnj = new PnjClass[NbPnj];
         for (int i = 0; i < NbPnj; i++)
         {

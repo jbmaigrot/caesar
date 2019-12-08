@@ -7,13 +7,17 @@ public class LoadingCircle : MonoBehaviour
 
 #if CLIENT
     private void Start()
-    {
-        rectComponent = GetComponent<RectTransform>();
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		rectComponent = GetComponent<RectTransform>();
     }
 
     private void Update()
-    {
-        rectComponent.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		rectComponent.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
     }
 #endif
 }

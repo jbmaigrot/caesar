@@ -13,8 +13,10 @@ public class AllyNameDisplay : MonoBehaviour
     float baseCanvasScale;
     // Start is called before the first frame update
     void Start()
-    {
-        cameraController = FindObjectOfType<CameraController>();
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		cameraController = FindObjectOfType<CameraController>();
 
         //baseTextScale = allyNameText.rectTransform.localScale.x;
         
@@ -32,12 +34,14 @@ public class AllyNameDisplay : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        //transform.LookAt(transform.position + cameraController.transform.rotation * Vector3.forward, cameraController.transform.rotation * Vector3.up);
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
 
-        //allyNameText.GetComponent<RectTransform>().localScale = new Vector3(baseTextScale * cameraController.zoomFactor, baseTextScale * cameraController.zoomFactor, 1.0f);
+		//transform.LookAt(transform.position + cameraController.transform.rotation * Vector3.forward, cameraController.transform.rotation * Vector3.up);
 
-        canvasRT.localScale = new Vector3(baseCanvasScale * cameraController.zoomFactor, baseCanvasScale * cameraController.zoomFactor, 1.0f);
+		//allyNameText.GetComponent<RectTransform>().localScale = new Vector3(baseTextScale * cameraController.zoomFactor, baseTextScale * cameraController.zoomFactor, 1.0f);
+
+		canvasRT.localScale = new Vector3(baseCanvasScale * cameraController.zoomFactor, baseCanvasScale * cameraController.zoomFactor, 1.0f);
     }
 #endif
 }

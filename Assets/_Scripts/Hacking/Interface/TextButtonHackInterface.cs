@@ -26,31 +26,39 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
     private HackInterface hackInterface;
 
     private void Start()
-    {
-        hackInterface = FindObjectOfType<HackInterface>();
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		hackInterface = FindObjectOfType<HackInterface>();
         playerinput = FindObjectOfType<PlayerInput>();
     }
 
     /*Récupère HackingAsset du parent, et le transmet aux enfants.*/
     public void GetHackingAsset(HackingAssetScriptable HackAss)
-    {
-        HackingAsset = HackAss;
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		HackingAsset = HackAss;
         GetComponentInChildren<DropdownHackInterface>().GetHackingAsset(HackAss);
         GetComponentInChildren<InputFieldHackerInterface>().GetHackingAsset(HackAss);
     }
 
     //Setter isMouseOver
     public void SetIsMouseOver(bool b)
-    {
-        isMouseOver = b;
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		isMouseOver = b;
         playerinput.isMouseOverAnOutputTextButtonhackInterface = b;
     }
 
     /*Fonction appelé lorque le joueur clique sur la vignette. Utilisé pour créer de nouvelles connections dans le graphe.*/
     public void OnClick()
-    {
-        /*Si la vignette est une vignette d'interface, elle est séléctionné comme point de départ potentiel de la nouvelle connection*/
-        if (isInput)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		/*Si la vignette est une vignette d'interface, elle est séléctionné comme point de départ potentiel de la nouvelle connection*/
+		if (isInput)
         {
             HackInterface.SelectedInputButton = numero - 1;
         }
@@ -63,9 +71,11 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
     }
 
     private void Update()
-    {
-        // Début de drag and drop
-        if (Input.GetMouseButtonDown(0) && isMouseOver)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		// Début de drag and drop
+		if (Input.GetMouseButtonDown(0) && isMouseOver)
         {
             if (isInput)
             {
@@ -106,8 +116,10 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
     }
 
     private void LateUpdate()
-    {
-        if (Input.GetMouseButtonUp(0))
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		if (Input.GetMouseButtonUp(0))
         {
             hackInterface.dragAndDropPending = false;
             HackInterface.SelectedInputDragAndDrop = - 1;
@@ -117,8 +129,10 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
 
     //Appelé quand on clique (ou quand on relâche le clic sur un output), après l'update des numéros sélectionnés
     private void ComputeSelectedButtons()
-    { 
-        if(HackInterface.SelectedInputButton > -1 && HackInterface.SelectedInputButton < HackInterface.inputCodes.Count+1  && HackInterface.SelectedOutputButton>-1 && HackInterface.SelectedOutputButton < HackInterface.outputCodes.Count + 1)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		if (HackInterface.SelectedInputButton > -1 && HackInterface.SelectedInputButton < HackInterface.inputCodes.Count+1  && HackInterface.SelectedOutputButton>-1 && HackInterface.SelectedOutputButton < HackInterface.outputCodes.Count + 1)
         {
             /*Création de la nouvelle connection*/
             Arrow NewArrow = new Arrow();
@@ -161,8 +175,10 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
     
     /*Fonction pour écrire le contenu de la vignette*/
     public void UpdateOptions(int inputCount, int outputCount)
-    {
-        int countOfTheTable;
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		int countOfTheTable;
         if (HackInterface.SelectedGameObject != null)
         {
             if (isInput)

@@ -12,13 +12,17 @@ public class ArrowHackInterface : MonoBehaviour, IPointerDownHandler
 
 
     void Start()
-    {
-        hackinterface = FindObjectOfType<HackInterface>();
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		hackinterface = FindObjectOfType<HackInterface>();
     }
     /*Si on clic sur une arrow, elle est supprimé dans le graphe*/
     public void OnPointerDown(PointerEventData pointerEvent)
-    {
-        if(HackInterface.inputCodes.Count<= HackInterface.graph[numero].input || HackInterface.outputCodes.Count <= HackInterface.graph[numero].output || !HackInterface.inputCodes[HackInterface.graph[numero].input].is_fixed|| !HackInterface.outputCodes[HackInterface.graph[numero].output].is_fixed)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		if (HackInterface.inputCodes.Count<= HackInterface.graph[numero].input || HackInterface.outputCodes.Count <= HackInterface.graph[numero].output || !HackInterface.inputCodes[HackInterface.graph[numero].input].is_fixed|| !HackInterface.outputCodes[HackInterface.graph[numero].output].is_fixed)
         {
             HackInterface.graph.RemoveAt(numero);
             hackinterface.ClicNeg();
@@ -36,8 +40,10 @@ public class ArrowHackInterface : MonoBehaviour, IPointerDownHandler
     //}
     /*Fonction pour réecrire la flèche*/
     public void UpdateArrow()
-    {
-        if (HackInterface.graph.Count > numero)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		if (HackInterface.graph.Count > numero)
         {
             GetComponent<CanvasGroup>().alpha = 1f;
             GetComponent<CanvasGroup>().blocksRaycasts = true;

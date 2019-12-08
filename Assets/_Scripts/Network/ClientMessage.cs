@@ -11,21 +11,27 @@ public class ClientMessage : MonoBehaviour
 #if CLIENT
     //Start
     void Start()
-    {
-        cam = Camera.main.GetComponent<CameraController>();
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		cam = Camera.main.GetComponent<CameraController>();
         minimap = FindObjectOfType<Minimap>();
     }
 
     //Click
     public void ShowMessageOnMap()
-    {
-        minimap.ShowMessage(sourcePosition);
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		minimap.ShowMessage(sourcePosition);
     }
 
-    /*
+	/*
     //Click
     public void MoveCamera()
     {
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
         cam.cameraMode = 1;
         cam.transform.parent.position = sourcePosition;
     }*/

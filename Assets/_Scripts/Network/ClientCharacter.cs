@@ -66,8 +66,10 @@ public class ClientCharacter : MonoBehaviour
     private const float maxDistanceHearingDrone = 20f;
     //Start
     private void Start()
-    {
-        client = FindObjectOfType<Client>();
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		client = FindObjectOfType<Client>();
         hackinterface = FindObjectOfType<HackInterface>();
 
         floatingFreq = Random.Range(0.3f, 0.4f);
@@ -91,8 +93,10 @@ public class ClientCharacter : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        NappeMoveAudioSource.volume = NappeMoveVolume.Evaluate(speed.magnitude / MaxSpeed);
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		NappeMoveAudioSource.volume = NappeMoveVolume.Evaluate(speed.magnitude / MaxSpeed);
         NappeMoveAudioSource.pitch = NappeMovePitch.Evaluate(speed.magnitude / MaxSpeed);
 
         if (Vector3.Distance(transform.position, listener.transform.position) > 20)
@@ -221,16 +225,20 @@ public class ClientCharacter : MonoBehaviour
 
     // Tacle
     public void OnMouseOver()
-    {
-        if (!Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(1) && number != client.playerIndex && !hackinterface.GetComponent<CanvasGroup>().blocksRaycasts) //Control+click is for energy-related actions
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		if (!Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(1) && number != client.playerIndex && !hackinterface.GetComponent<CanvasGroup>().blocksRaycasts) //Control+click is for energy-related actions
         {
             client.Tacle(number);
         }
     }
 
     public void GetTacled(bool OnNotOff)
-    {
-        if (OnNotOff)
+	{
+		if (!GameState.CLIENT) return; // replacement for preprocessor
+
+		if (OnNotOff)
         {
             if (!isTacle)
             {
