@@ -110,7 +110,6 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
                     ComputeSelectedButtons();
                 }
             }
-            Debug.Log(HackInterface.SelectedInputButton + "  " + HackInterface.SelectedOutputButton);
             
         }
     }
