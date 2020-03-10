@@ -22,7 +22,7 @@ public class Minimap : MonoBehaviour
     public Transform orangeRelay;
     public Transform blueRelay;
 
-#if CLIENT
+
     private bool isPointerOver = false;
     private Client client;
     private HackInterface hackInterface;
@@ -163,7 +163,6 @@ public class Minimap : MonoBehaviour
         }
     }
 
-#endif
     // Convert coordinates
     public Vector2 worldToMap (Vector3 worldPosition)
     {

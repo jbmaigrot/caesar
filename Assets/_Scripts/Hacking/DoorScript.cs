@@ -85,8 +85,6 @@ public class DoorScript : MonoBehaviour
         }
     }
 
-
-#if CLIENT
     void OnMouseDown()
 	{
 		if (!GameState.CLIENT) return; // replacement for preprocessor
@@ -103,7 +101,5 @@ public class DoorScript : MonoBehaviour
             }
         }
        
-    }
-#endif
-    
+    }    
 }

@@ -19,8 +19,7 @@ public class SourceAnimator : MonoBehaviour
     public float lowSpeed = 2;
     public float highSpeed = 5;
     public float lerpLength = 1;
-
-#if CLIENT
+    
     private int prevState = 0;
     private float currentSpeed = 0;
     private float lerpT = 0;
@@ -240,5 +239,4 @@ public class SourceAnimator : MonoBehaviour
         // Emission
         emissive.material.SetColor("_EmissionColor", emissiveColor * Mathf.GammaToLinearSpace(emission));
     }
-#endif
 }

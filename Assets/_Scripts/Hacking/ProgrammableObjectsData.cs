@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class ProgrammableObjectsData : MonoBehaviour
 {
-#if SERVER
+
     /*Server. Seulement coté serveur*/
     public Server server;
     public NavMeshSurface NavMeshSurface;
@@ -24,11 +24,11 @@ public class ProgrammableObjectsData : MonoBehaviour
     private float timeBeforeStunReload;
     private const float TIMEOFSTUNRELOAD = 20.0f;
 
-#endif
+
 
     public GameObject RedTrail;
     public GameObject BlueTrail;
-#if CLIENT
+
     /*Client. Seulement coté client*/
     public Client client;
     public HackInterface hackInterface;
@@ -47,11 +47,11 @@ public class ProgrammableObjectsData : MonoBehaviour
     private float timeIsTaking;
 
     private float timeInSoundCurve;
-#endif
+
 
     public Transform BlueBatterie;
     public Transform RedBatterie;
-#if SERVER
+
     /*Variables contenant le graphe de comportement de l'objet*/
     public List<InOutVignette> inputCodes = new List<InOutVignette>();
     public List<InOutVignette> outputCodes = new List<InOutVignette>();
@@ -67,7 +67,7 @@ public class ProgrammableObjectsData : MonoBehaviour
 
     public bool shouldBeSendToClientEveryFrame;
     public bool shouldBeSendToClientJustOnceMore;
-#endif
+
 
 
     /*Variable servant à initier le graphe de comportement et à définir les inputs et outputs autorisées*/
@@ -83,7 +83,7 @@ public class ProgrammableObjectsData : MonoBehaviour
     {
         objectsContainer = FindObjectOfType<ProgrammableObjectsContainer>();
 
-#if SERVER
+
 		if (GameState.SERVER) // replacement for preprocessor
 		{
 			NavMeshSurface = FindObjectOfType<NavMeshSurface>();
@@ -117,7 +117,7 @@ public class ProgrammableObjectsData : MonoBehaviour
 
 			isBeingHackedServer = -1;
 		}
-#endif
+
         ServerBattery[] Batteries;
         Batteries = FindObjectsOfType<ServerBattery>();
         if (Batteries[0].team == 0)
@@ -131,7 +131,7 @@ public class ProgrammableObjectsData : MonoBehaviour
             BlueBatterie = Batteries[0].transform;
         }
         isHackable = Initiator.isHackable;
-#if CLIENT
+
 		if (GameState.CLIENT) // replacement for preprocessor
 		{
 			client = FindObjectOfType<Client>();
@@ -157,12 +157,11 @@ public class ProgrammableObjectsData : MonoBehaviour
 				BlueTrail.GetComponent<ParticleSystem>().Stop();
 			}
 		}
-#endif
+
         startIsOver = true;
     }
 
     /*Si l'objet est cliqué à distance suffisament courte, ouvre l'interface de hack. Cette fonction doit être adapté pour le réseau.*/
-#if CLIENT
     void OnMouseDown()
 	{
 		if (!GameState.CLIENT) return; // replacement for preprocessor
@@ -193,9 +192,7 @@ public class ProgrammableObjectsData : MonoBehaviour
         }
         
     }
-#endif
-
-#if SERVER
+    
     
 
     /*Quand le mot en parametre apparait dans le chat, active la vignette OnWord correspondant. Potentielement à adapter un petit peu pour le chat.*/
@@ -375,11 +372,10 @@ public class ProgrammableObjectsData : MonoBehaviour
         }
     }
 
-#endif
     /*A chaque frame, le signal se déplace dans les flèches du graphe*/
     void Update()
     {
-#if SERVER
+
 		if (GameState.SERVER) // replacement for preprocessor
 		{
 			for (int i = 0; i < graph.Count; i++)
@@ -408,9 +404,6 @@ public class ProgrammableObjectsData : MonoBehaviour
 				timeBeforeStunReload -= Time.deltaTime;
 			}
 		}
-#endif
-#if CLIENT
-
 		if (!GameState.CLIENT) return; // replacement for preprocessor
 		{
 
@@ -480,9 +473,8 @@ public class ProgrammableObjectsData : MonoBehaviour
 				}
 			}
 		}
-#endif
     }
-#if SERVER
+
     void TheAttractFunction()
 	{
 		if (!GameState.SERVER) return; // replacement for preprocessor
@@ -528,9 +520,8 @@ public class ProgrammableObjectsData : MonoBehaviour
         }
         graph = newGraph;
     }
-#endif
 
-#if CLIENT
+
     public void StopGivingSound()
 	{
 		if (!GameState.CLIENT) return; // replacement for preprocessor
@@ -642,6 +633,5 @@ public class ProgrammableObjectsData : MonoBehaviour
             }
         }
     }
-#endif
 }
 

@@ -11,7 +11,7 @@ public class PlayerInput : MonoBehaviour
     public Texture2D stdCursor;
     public Texture2D ctrlCursor;
     public Texture2D hackCursor;
-#if CLIENT
+
     private Client client;
     private HackInterface hackinterface;
     public bool isMouseOverAnOutputTextButtonhackInterface;
@@ -121,5 +121,4 @@ public class PlayerInput : MonoBehaviour
             yield return null;//new WaitForSeconds(.2f);
         }
     }
-#endif
-    }
+}

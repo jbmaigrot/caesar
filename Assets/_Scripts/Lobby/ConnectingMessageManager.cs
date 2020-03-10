@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ConnectingMessageManager : MonoBehaviour
 {
     public GameObject connectingPanel;
-#if CLIENT
+
     public void Show()
 	{
 		if (!GameState.CLIENT) return; // replacement for preprocessor
@@ -20,5 +20,4 @@ public class ConnectingMessageManager : MonoBehaviour
 
 		connectingPanel.SetActive(false);
     }
-#endif
 }

@@ -15,8 +15,7 @@ public class InputFieldHackerInterface : MonoBehaviour
     public Sprite BlueRelay;
 
     public GameObject gadgetRange;
-
-#if CLIENT
+    
     private string previousValue;
     private bool isOnString;
     private bool isOnInt;
@@ -335,6 +334,4 @@ public class InputFieldHackerInterface : MonoBehaviour
 
         playerRange.enabled = true;
     }
-#endif
-
 }

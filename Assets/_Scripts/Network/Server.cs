@@ -14,7 +14,7 @@ public class Server : MonoBehaviour
 {
 
     public GameObject prefabPJ;
-#if SERVER
+
     public UdpCNetworkDriver m_Driver;
     public List<Transform> players = new List<Transform>();
     public List<Transform> characters = new List<Transform>(); // Players + NPCs
@@ -1022,15 +1022,23 @@ public class Server : MonoBehaviour
 
     public NetworkConnection GetNetworkConnectionFromPlayerTransform(Transform tf)
 	{
-		int index = players.IndexOf(tf);
-        if (index != -1)
+        if (!GameState.SERVER)
         {
-            return m_Connections[index];
+            Debug.Log("GetNetworkConnectionFromPlayerTransform is called client side. It should be called server side only. Returning default connection value.");
+            return default(NetworkConnection);
         }
         else
         {
-            Debug.Log("Could not find requested player transform in the players list. Returning default connection.");
-            return default(NetworkConnection);
+            int index = players.IndexOf(tf);
+            if (index != -1)
+            {
+                return m_Connections[index];
+            }
+            else
+            {
+                Debug.Log("Could not find requested player transform in the players list. Returning default connection.");
+                return default(NetworkConnection);
+            }
         }
     }
 
@@ -1048,5 +1056,5 @@ public class Server : MonoBehaviour
             }
         }
     }
-#endif
+
 }

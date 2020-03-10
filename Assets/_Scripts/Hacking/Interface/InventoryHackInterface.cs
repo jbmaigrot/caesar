@@ -14,7 +14,7 @@ public class InventoryHackInterface : MonoBehaviour
     public Sprite BlueRelay;
     public Sprite RedRelay;
     public GameObject gadgetRange;
-#if CLIENT
+
     private HackInterface hackinterface;
     private bool isPointerOver = false;
 
@@ -131,6 +131,4 @@ public class InventoryHackInterface : MonoBehaviour
 
         playerRange.enabled = true;
     }
-
-#endif
 }

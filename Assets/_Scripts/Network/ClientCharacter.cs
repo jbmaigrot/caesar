@@ -31,7 +31,7 @@ public class ClientCharacter : MonoBehaviour
     private const float MaxSpeed = 5f;
 
     public Transform mesh;
-#if CLIENT
+
     public Vector3 speed = new Vector3(0, 0, 0);
     public int number;
     public bool isTacle;
@@ -278,6 +278,5 @@ public class ClientCharacter : MonoBehaviour
 
         }
     }
-#endif
 }
 

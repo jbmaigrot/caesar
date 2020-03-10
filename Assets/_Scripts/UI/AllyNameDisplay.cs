@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class AllyNameDisplay : MonoBehaviour
 {
-#if CLIENT
+
     public CameraController cameraController;
     public Text allyNameText;
     //float baseTextScale;
@@ -43,5 +43,4 @@ public class AllyNameDisplay : MonoBehaviour
 
 		canvasRT.localScale = new Vector3(baseCanvasScale * cameraController.zoomFactor, baseCanvasScale * cameraController.zoomFactor, 1.0f);
     }
-#endif
 }

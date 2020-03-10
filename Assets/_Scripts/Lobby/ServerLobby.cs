@@ -25,10 +25,11 @@ public class ServerLobby : MonoBehaviour
 
     public bool stopUpdate = false;
 
-#if SERVER
     // Start is called before the first frame update
     void Start()
 	{
+        if (!GameState.SERVER) return; // replacement for preprocessor
+
 		//lobbyInterfaceManager = FindObjectOfType<LobbyInterfaceManager>();
 		//numberOfPlayerSlots = lobbyInterfaceManager.GetNumberOfPlayerSlots();
 		//No real need for the interface on server side, and number of player slots should be modified by clients
@@ -59,12 +60,16 @@ public class ServerLobby : MonoBehaviour
 
     public void Awake()
 	{
-		DontDestroyOnLoad(gameObject);
+        if (!GameState.SERVER) return; // replacement for preprocessor
+
+        DontDestroyOnLoad(gameObject);
     }
 
     public void OnApplicationQuit()
 	{
-		Debug.Log("Call to OnApplicationQuit() in serverLobby");
+        if (!GameState.SERVER) return; // replacement for preprocessor
+
+        Debug.Log("Call to OnApplicationQuit() in serverLobby");
 
         if (stopUpdate == false) //Means we changed scene, and the main server code is handling these objects
         {
@@ -84,7 +89,9 @@ public class ServerLobby : MonoBehaviour
     // Update is called once per frame
     void Update()
 	{
-		if (stopUpdate == true)
+        if (!GameState.SERVER) return; // replacement for preprocessor
+
+        if (stopUpdate == true)
         {
             return;
         }
@@ -286,11 +293,19 @@ public class ServerLobby : MonoBehaviour
 
     public int GetNumberOfPlayerSlots()
     {
+        if (!GameState.SERVER)
+        {
+            Debug.Log("ServerLobby.GetNumberOfPlayerSlots called client side. It should only be called server side.");
+            return 0;
+        }
+
         return lobbyInterfaceState.numberOfPlayerSlots;
     }
 
     public void SetConnectionId(int connectionId, NetworkConnection nc)
     {
+        if (!GameState.SERVER) return; // replacement for preprocessor
+
         using (var writer = new DataStreamWriter(64, Allocator.Temp))
         {
             writer.Write(Constants.Server_Lobby_SetConnectionId);
@@ -301,6 +316,7 @@ public class ServerLobby : MonoBehaviour
 
     public void SendLobbyInterfaceState()
     {
+        if (!GameState.SERVER) return; // replacement for preprocessor
 
         for (int i = 0; i < m_Connections.Length; i++)
         {
@@ -334,6 +350,8 @@ public class ServerLobby : MonoBehaviour
 
     public void SendStartGame()
     {
+        if (!GameState.SERVER) return; // replacement for preprocessor
+
         for (int i = 0; i < m_Connections.Length; i++)
         {
             if (!m_Connections[i].IsCreated) continue;
@@ -344,5 +362,5 @@ public class ServerLobby : MonoBehaviour
             }
         }
     }
-#endif
+
 }

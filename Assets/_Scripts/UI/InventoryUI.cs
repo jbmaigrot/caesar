@@ -9,7 +9,7 @@ public class InventoryUI : MonoBehaviour
     public GameObject interfaceInventory;
 
     private bool inventoryLoaded = false;
-#if CLIENT
+
     // Start is called before the first frame update
     void Start()
 	{
@@ -39,5 +39,4 @@ public class InventoryUI : MonoBehaviour
             slot.reloadSlot(client);
         }
     }
-#endif
 }

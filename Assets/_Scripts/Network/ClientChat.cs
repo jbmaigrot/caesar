@@ -8,7 +8,7 @@ public class ClientChat : MonoBehaviour
 {
     public RectTransform chatBox;
     public GameObject messagePrefab;
-#if CLIENT
+
     public InputField inputField;
     private Client client;
     private AudioSource audioSource;
@@ -74,7 +74,6 @@ public class ClientChat : MonoBehaviour
         }
         
     }
-#endif
 }
 
 

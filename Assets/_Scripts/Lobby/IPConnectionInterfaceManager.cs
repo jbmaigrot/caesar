@@ -16,7 +16,7 @@ public class IPConnectionInterfaceManager : MonoBehaviour
 
     bool allowEnter;
 
-#if CLIENT
+
     // Start is called before the first frame update
     void Start()
     {
@@ -96,5 +96,4 @@ public class IPConnectionInterfaceManager : MonoBehaviour
 
 		interfacePanel.SetActive(true);
     }
-#endif
 }

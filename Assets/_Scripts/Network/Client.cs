@@ -41,7 +41,7 @@ public class Client : MonoBehaviour
     public AudioMixerGroup AvatarInter;
     public AudioMixerGroup AvatarAmb;
 
-#if CLIENT
+
     public string ServerIP = "127.0.0.1"; //localhost by default
     public IPAddress iPAddress;
     public UdpCNetworkDriver m_Driver;
@@ -1062,6 +1062,4 @@ public class Client : MonoBehaviour
         audioSourceForMusicNappeD.PlayOneShot(ClipMusicNappeD[randomClip]);
         timeBeforeNextNappeAPlay += timeForTheMusicLoop;
     }
-    
-#endif
 }

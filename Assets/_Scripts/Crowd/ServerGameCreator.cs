@@ -11,7 +11,7 @@ public class ServerGameCreator : MonoBehaviour
     public GameObject[] ListZone;
     public Transform PnjSpawnContainer;
     
-#if SERVER
+
     [Range(0, 100)]
     public int ChanceToGoToObject = 60;
     [Range(0, 50)]
@@ -177,5 +177,4 @@ public class ServerGameCreator : MonoBehaviour
             pnj.PrefabPnj.GetComponent<ProgrammableObjectsData>().charactersIndex = GetComponent<Server>().characters.Count - 1;
         }        
     }
-#endif
 }

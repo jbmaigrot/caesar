@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ServerCarrier : MonoBehaviour
 {
-#if CLIENT
+//Client only
     public float clientCharge = 0; //ratio between 0 and 1
     public Client client;
     //public GameObject scoreDisplay;
@@ -18,7 +18,8 @@ public class ServerCarrier : MonoBehaviour
     private float zoom = 1;
     private GUIStyle style = new GUIStyle();
     private Camera cam;
-#endif
+
+//Client and server
     public GameObject dataBar;
     public Image filled;
     public bool draw = false;
@@ -28,7 +29,8 @@ public class ServerCarrier : MonoBehaviour
 
     public float maxCharge;
     public float chargeSpeed;
-#if SERVER
+
+//Server only
     private const float RELAYTRANSFERRATE = 2.0f;
     public float charge = 0;
     
@@ -38,11 +40,10 @@ public class ServerCarrier : MonoBehaviour
     private bool isFull;
     private bool isEmpty;
     private ProgrammableObjectsData objectData;
-#endif
+
 
     private void Start()
     {
-#if CLIENT
 		if (GameState.CLIENT) // replacement for preprocessor
 		{
 			client = FindObjectOfType<Client>();
@@ -50,19 +51,15 @@ public class ServerCarrier : MonoBehaviour
 			hackInterface = FindObjectOfType<HackInterface>();
 			cam = Camera.main;
 		}
-#endif
-#if SERVER
 		if (GameState.SERVER) // replacement for preprocessor
 		{
 			objectData = this.gameObject.GetComponent<ProgrammableObjectsData>();
 		}
-#endif
     }
 
     // Update is called once per frame
     void Update()
     {
-#if CLIENT
 		if (GameState.CLIENT) // replacement for preprocessor
 		{
 			if (draw)
@@ -70,8 +67,6 @@ public class ServerCarrier : MonoBehaviour
 				filled.fillAmount = clientCharge;
 			}
 		}
-#endif
-#if SERVER
 		if (GameState.SERVER) // replacement for preprocessor
 		{
 			if (charge >= maxCharge)
@@ -157,10 +152,9 @@ public class ServerCarrier : MonoBehaviour
 				objectData.RedBatterie.gameObject.GetComponent<ServerCarrier>().charge += energyToTransfer;
 			}
 		}
-#endif
     }
 
-#if CLIENT
+
     // Take and Give
     public void OnMouseOver()
 	{
@@ -186,9 +180,7 @@ public class ServerCarrier : MonoBehaviour
 			}
 		}
     }
-#endif
-
-#if SERVER
+    
     //functions
     public void StartTaking(ServerCarrier other)
 	{
@@ -228,5 +220,4 @@ public class ServerCarrier : MonoBehaviour
 
 		givingTo = null;
     }
-#endif
 }

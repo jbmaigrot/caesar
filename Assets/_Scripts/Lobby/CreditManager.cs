@@ -5,15 +5,17 @@ using UnityEngine;
 public class CreditManager : MonoBehaviour
 {
     public GameObject popupPanel;
-#if CLIENT
+
     public void Show()
     {
+        if (!GameState.CLIENT) return; // replacement for preprocessor
         popupPanel.SetActive(true);
     }
 
     public void Hide()
     {
+        if (!GameState.CLIENT) return; // replacement for preprocessor
         popupPanel.SetActive(false);
     }
-#endif
+
 }

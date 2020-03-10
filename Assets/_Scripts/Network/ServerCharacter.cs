@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class ServerCharacter : MonoBehaviour
 {
-#if SERVER
     public int team = -1;
     public string playerName;
 
@@ -218,7 +217,7 @@ public class ServerCharacter : MonoBehaviour
 
     public IEnumerator SendPathChange()
     {
-        while(true)
+        while(GameState.SERVER)
         {
             coroutineStarted = true;
             NavMeshPath path = navMeshAgent.path;
@@ -235,11 +234,11 @@ public class ServerCharacter : MonoBehaviour
 
     public IEnumerator CalculatePath(NavMeshPath path)
     {
-        while (true)
+        while (GameState.SERVER)
         {
             navMeshAgent.CalculatePath(actualDestination, path);
             yield return null;
         }
     }
-#endif
+
 }

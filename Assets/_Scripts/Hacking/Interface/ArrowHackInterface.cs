@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-#if CLIENT
+
 public class ArrowHackInterface : MonoBehaviour, IPointerDownHandler
 {
     /*Variables pour savoir de quel arrow on parle. C'est rentré à la main dans l'éditeur, ce qui est améliorable.*/
@@ -67,4 +67,3 @@ public class ArrowHackInterface : MonoBehaviour, IPointerDownHandler
         }
     }
 }
-#endif

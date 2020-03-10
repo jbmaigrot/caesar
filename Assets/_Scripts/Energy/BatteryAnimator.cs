@@ -19,7 +19,6 @@ public class BatteryAnimator : MonoBehaviour
     public Transform mediumRing;
     public Transform largeRing;
 
-#if CLIENT
     private int prevState = 0;
     private float currentSmallRingSpeed = 0;
     private float currentMediumRingSpeed = 0;
@@ -125,5 +124,4 @@ public class BatteryAnimator : MonoBehaviour
 
         prevState = state;
     }
-#endif
 }

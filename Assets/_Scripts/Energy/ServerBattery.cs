@@ -8,23 +8,22 @@ public class ServerBattery : MonoBehaviour
     public int team = 0;
     public Text chargeText;
     private ServerCarrier carrier;
-#if SERVER
+//Server
     public bool receiving = false;
     public bool doNotResetReceiving = false;
     private Server server;
     private ProgrammableObjectsData objectData;
     private bool HasReachFifty;
     private bool HasReachNinety;
-#endif
-#if CLIENT
+
+//CLient
     private Client client;
-#endif
+
 
     // Start
     private void Start()
     {
         carrier = GetComponent<ServerCarrier>();
-#if SERVER
 		if (GameState.SERVER) // replacement for preprocessor
 		{
 			server = FindObjectOfType<Server>();
@@ -32,16 +31,12 @@ public class ServerBattery : MonoBehaviour
 			HasReachFifty = false;
 			HasReachNinety = false;
 		}
-#endif
-#if CLIENT
 		if (GameState.CLIENT) // replacement for preprocessor
 		{
 			client = FindObjectOfType<Client>();
 		}
-#endif
     }
-
-#if SERVER
+    
     // Reset receiving (used for animation)
     private void LateUpdate()
 	{
@@ -56,12 +51,10 @@ public class ServerBattery : MonoBehaviour
             receiving = false;
         }
     }
-#endif
 
     // Update is called once per frame
     void Update()
     {
-#if CLIENT
 		if (GameState.CLIENT) // replacement for preprocessor
 		{
 			chargeText.text = Mathf.FloorToInt(carrier.clientCharge * 100) + "%";
@@ -74,8 +67,6 @@ public class ServerBattery : MonoBehaviour
 				client.scoreBlue = carrier.clientCharge;
 			}
 		}
-#endif
-#if SERVER
 		if (GameState.SERVER) // replacement for preprocessor
 		{
 			if (carrier.charge >= carrier.maxCharge)
@@ -138,12 +129,10 @@ public class ServerBattery : MonoBehaviour
 				}
 			}
 		}
-#endif
 	}
 
     public void RelayWin()
     {
-#if SERVER
 		if (GameState.SERVER) // replacement for preprocessor
 		{
 			if (team == 0)
@@ -188,6 +177,5 @@ public class ServerBattery : MonoBehaviour
 				carrier.charge += toTransfer;
 			}
 		}
-#endif
     }
 }

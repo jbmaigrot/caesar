@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-#if CLIENT
+
 public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPointerUpHandler*/
 {
     public bool isMouseOver = false;
@@ -233,4 +233,3 @@ public class TextButtonHackInterface : MonoBehaviour/*, IPointerDownHandler, IPo
         
     }
 }
-#endif

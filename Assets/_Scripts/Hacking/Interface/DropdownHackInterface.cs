@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-#if CLIENT
+
 public class DropdownHackInterface : MonoBehaviour, IPointerClickHandler
 {
 
@@ -287,4 +287,3 @@ public class DropdownHackInterface : MonoBehaviour, IPointerClickHandler
 		HackingAsset = HackAss;
     }
 }
-#endif

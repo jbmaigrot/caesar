@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-#if CLIENT
+
 public class RosaceForHacking : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -18,4 +18,4 @@ public class RosaceForHacking : MonoBehaviour
 		this.transform.position = Input.mousePosition;
     }
 }
-#endif
+

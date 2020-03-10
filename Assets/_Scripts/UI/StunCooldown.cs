@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-#if CLIENT
+
 public class StunCooldown : MonoBehaviour
 {
     private Client client;
@@ -54,4 +54,3 @@ public class StunCooldown : MonoBehaviour
         mask.SetActive(true);
     }
 }
-#endif

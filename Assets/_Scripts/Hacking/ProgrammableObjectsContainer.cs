@@ -11,37 +11,29 @@ public class ProgrammableObjectsContainer : MonoBehaviour
     public AnimationCurve TakingDataVolumeWindowCurve;
     public AnimationCurve TakingDataPitchWindowCurve;
     public AnimationCurve TakingDataSpeedCurve;
-#if CLIENT
+
     public Client client;
     public List<ProgrammableObjectsData> objectListClient;
-#endif
 
-#if SERVER
     public List<ProgrammableObjectsData> objectListServer;
     public List<ProgrammableObjectsData> chairListServer;
-#endif
 
     public void Start()
     {
-#if CLIENT
 		if (GameState.CLIENT) // replacement for preprocessor
 		{
 			client = FindObjectOfType<Client>();
 		}
-#endif
 
         foreach(ProgrammableObjectsData ryan in this.GetComponentsInChildren<ProgrammableObjectsData>(true))
         {
-#if CLIENT
 			if (GameState.CLIENT) // replacement for preprocessor
 			{
 				ryan.client = client;
 				objectListClient.Add(ryan);
 				ryan.objectIndexClient = objectListClient.Count - 1;
 			}
-#endif
 
-#if SERVER
 			if (GameState.SERVER) // replacement for preprocessor
 			{
 				objectListServer.Add(ryan);
@@ -50,9 +42,7 @@ public class ProgrammableObjectsContainer : MonoBehaviour
 					chairListServer.Add(ryan);
 				}
 			}
-#endif
         }
-#if SERVER
 		if (GameState.SERVER) // replacement for preprocessor
 		{
 			float bestScore = 0f;
@@ -82,10 +72,8 @@ public class ProgrammableObjectsContainer : MonoBehaviour
 				bestchair.OnOutput(ryan.code, ryan.parameter_string, ryan.parameter_int);
 			}
 		}
-#endif
     }
-
-#if SERVER
+    
     public void ChatInstruction(string instruction)
 	{
 		if (!GameState.SERVER) return; // replacement for preprocessor
@@ -95,8 +83,7 @@ public class ProgrammableObjectsContainer : MonoBehaviour
             objectListServer[i].ChatInstruction(instruction);
         }
     }
-#endif
-#if CLIENT
+
     public int GetObjectIndexClient(ProgrammableObjectsData objectData)
 	{
 		if (!GameState.CLIENT) return -1; // replacement for preprocessor
@@ -105,13 +92,11 @@ public class ProgrammableObjectsContainer : MonoBehaviour
         return objectListClient.IndexOf(objectData);
 
     }
-#endif
-#if SERVER
+    
     public int GetObjectIndexServer(ProgrammableObjectsData objectData)
 	{
 		if (!GameState.SERVER) return -1; // replacement for preprocessor
 
 		return objectListServer.IndexOf(objectData);
-    }        
-#endif
+    }
 }

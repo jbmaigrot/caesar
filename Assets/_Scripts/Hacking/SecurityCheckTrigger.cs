@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class SecurityCheckTrigger : MonoBehaviour
 {
-#if SERVER
     private int nbrObstacle = -2;
     private ProgrammableObjectsData parent;
 
     private void Start()
     {
+        if (!GameState.SERVER) return; // replacement for preprocessor
+
         parent = this.GetComponentInParent<ProgrammableObjectsData>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!GameState.SERVER) return; // replacement for preprocessor
+
         nbrObstacle += 1;
         
         if (parent.startIsOver)
@@ -29,10 +32,8 @@ public class SecurityCheckTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        nbrObstacle -= 1;
-        
+        if (!GameState.SERVER) return; // replacement for preprocessor
 
-
+        nbrObstacle -= 1;        
     }
-#endif
 }

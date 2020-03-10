@@ -6,17 +6,16 @@ public class SourceManager : MonoBehaviour
 {
     public List<ServerSource> sources;
 
-#if SERVER
+
     public float timeBeforeNewSource = 180;
     public float startingTime = 0;
     public float timeBeforeSource;
     private Server server;
-#endif
+
 
     // Start is called before the first frame update
     void Start()
     {
-#if SERVER
 		if (!GameState.SERVER) return; // replacement for preprocessor
 
 		startingTime = Time.time;
@@ -27,13 +26,11 @@ public class SourceManager : MonoBehaviour
         {
             ryan.enabled = false;
         }
-#endif
     }
 
     // Update is called once per frame
     void Update()
     {
-#if SERVER
 		if (!GameState.SERVER) return; // replacement for preprocessor
 
 		timeBeforeSource -= Time.deltaTime;
@@ -52,6 +49,5 @@ public class SourceManager : MonoBehaviour
             Debug.Log(i);
             timeBeforeSource = timeBeforeNewSource;
         }
-#endif
     }
 }

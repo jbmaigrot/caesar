@@ -42,7 +42,7 @@ public class PlayerLobbyCardManager : MonoBehaviour
             playerName = Constants.LobbyNames[Random.Range(0, Constants.LobbyNames.Length)];
         }
     };
-#if CLIENT
+
 
     public void Start()
 	{
@@ -151,6 +151,5 @@ public class PlayerLobbyCardManager : MonoBehaviour
 
 		playerName.text = Constants.LobbyNames[Random.Range(0, Constants.LobbyNames.Length)];
     }
-
-#endif
+    
 }

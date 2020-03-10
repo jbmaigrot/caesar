@@ -7,7 +7,7 @@ public class ServerSource : MonoBehaviour
 {
 
     public AnimationCurve curve = new AnimationCurve();
-#if SERVER
+
     public float startingTime = 0;
     public bool isActivated;
     public bool takenFrom = false;
@@ -140,5 +140,4 @@ public class ServerSource : MonoBehaviour
             }
         }
     }*/
-#endif
 }

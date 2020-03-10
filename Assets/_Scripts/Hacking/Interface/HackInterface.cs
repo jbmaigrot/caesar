@@ -14,7 +14,7 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     public AudioClip Clic_Neutre;
     public AudioClip Clic_Positif;
     public GameObject ErrorTextZone;
-#if CLIENT
+
     /*Variable qui contient la vignette d'input selectionné comme début de flèche. Est modifié par le script TextButtonHackInterface.*/
     static public int SelectedInputButton=-1;
     static public int SelectedOutputButton = -1;
@@ -145,19 +145,16 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     public void OnClose()
 	{
 		if (!GameState.CLIENT) return; // replacement for preprocessor
-
-		int RelayHasMoved = 0;
+        int RelayHasMoved = 0;
         ErrorTextZone.GetComponent<Animator>().SetTrigger("Interface_Close");
         if (!isClosing)
         {
-
-            
             /*Initiation du délais de fermeture*/
             timeBeforeClosing = TIMEFORCLOSING;
             isClosing = true;
             ClicNeu();
             SelectedInputButton = -1;
-            for(int i = 0; i < inventory.Length; i++)
+            for (int i = 0; i < inventory.Length; i++)
             {
                 if (inventory[i] == InventoryConstants.OrangeRelay)
                 {
@@ -179,15 +176,13 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
                     RelayHasMoved += 6;
                 }
             }
-
-                /*Le graphe de comportement de l'objet hacké est remplacé par les modifications effectués.*/
-                int objectId = objectsContainer.GetObjectIndexClient(SelectedGameObject.GetComponent<ProgrammableObjectsData>());
+            /*Le graphe de comportement de l'objet hacké est remplacé par les modifications effectués.*/
+            int objectId = objectsContainer.GetObjectIndexClient(SelectedGameObject.GetComponent<ProgrammableObjectsData>());
             client.SetHackState(objectId, inputCodes, outputCodes, graph,RelayHasMoved);
             client.GiveBackHackToken(objectId);
             client.inventory[0] = inventory[0];
             client.inventory[1] = inventory[1];
             client.inventory[2] = inventory[2];
-
             inventoryUI.ReloadInventory();
             //var colorInventory = inventoryUI.GetComponent<SVGImage>().color;
             //inventoryUI.GetComponent<SVGImage>().color = new Color(colorInventory.r, colorInventory.g, colorInventory.b, 1f);
@@ -427,6 +422,5 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
 
 		GetComponent<AudioSource>().PlayOneShot(Clic_Negatif);
     }
-#endif
 }
 
