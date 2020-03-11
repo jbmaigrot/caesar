@@ -67,7 +67,7 @@ public class ServerSource : MonoBehaviour
         }
         else
         {
-            if (carrier.charge > 0)
+            if (curve.Evaluate(Time.time - startingTime) > 0)
             {
                 isActivated = true;
                 server.AddMessage("THE NEW DATA POOL HAS BEGUN TO FILL.", Vector3.zero);
@@ -81,7 +81,7 @@ public class ServerSource : MonoBehaviour
         carrier.charge = Mathf.Min(carrier.maxCharge, carrier.charge + curve.Evaluate(Time.time - startingTime) * Time.deltaTime);
         foreach (Transform ryan in server.characters)
         {
-            if (ryan.GetComponent<ServerCarrier>().charge < ryan.GetComponent<ServerCarrier>().maxCharge && Vector3.Distance(ryan.position, this.transform.position) < this.GetComponent<ServerCarrier>().charge * 30 / this.GetComponent<ServerCarrier>().maxCharge && !server.players.Contains(ryan))
+            if (ryan.GetComponent<ServerCarrier>().charge < ryan.GetComponent<ServerCarrier>().maxCharge && Vector3.Distance(ryan.position, this.transform.position) < 15 && this.GetComponent<ServerCarrier>().charge > 0.0f /*&& !server.players.Contains(ryan)*/)
             {
                 ryan.GetComponent<ServerCharacter>().isAttractedByData = 1;
                 ryan.GetComponent<ServerCharacter>().attractByDataDestination = this.transform.position;

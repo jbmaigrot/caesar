@@ -26,6 +26,7 @@ public class ServerCharacter : MonoBehaviour
     public Transform attractDestination;
 
     public int isAttractedByData = 0;
+    public int isAttractedByData_Old = 0;
     public Vector3 attractByDataDestination;
 
     public bool hasAPriorityDestination;
@@ -119,51 +120,66 @@ public class ServerCharacter : MonoBehaviour
             }
             else
             {
-                if (isAttractedByData!=0)
+                //Player can override priority destination and source/base attraction
+                if (normalDestination != actualDestination && team != -1)
                 {
-                    if((isAttractedByData>0 && carrier.charge < carrier.maxCharge) || (isAttractedByData < 0 && carrier.charge > 0.0f) && Vector3.Distance(this.transform.position, attractByDataDestination) < 35)
-                    {
-                        if (actualDestination != attractByDataDestination)
-                        {
-                            actualDestination = attractByDataDestination;
-                            //navMeshAgent.ResetPath();
-                            destinationWasSet = true;
-                        }
-                    }
-                    else
-                    {
-                        isAttractedByData = 0;
-                    }
+                    actualDestination = normalDestination;
+                    destinationWasSet = true;
+                    isAttractedByData_Old = isAttractedByData;
                     hasAPriorityDestination = false;
                 }
                 else
                 {
-                    if (hasAPriorityDestination)
+                    if (isAttractedByData != 0)
                     {
-                        if(Vector3.Distance(this.transform.position, priorityDestination) < 5)
+                        if ((isAttractedByData > 0 && carrier.charge < carrier.maxCharge) || (isAttractedByData < 0 && carrier.charge > 0.0f) && Vector3.Distance(this.transform.position, attractByDataDestination) < 35)
                         {
+                            if (actualDestination != attractByDataDestination && isAttractedByData != isAttractedByData_Old)
+                            {
+                                actualDestination = attractByDataDestination;
+                                normalDestination = actualDestination;
+                                //navMeshAgent.ResetPath();
+                                destinationWasSet = true;
+                                isAttractedByData_Old = isAttractedByData;
+                            }
                             hasAPriorityDestination = false;
+                            
                         }
                         else
                         {
-                            if (actualDestination != priorityDestination)
+                            isAttractedByData = 0;
+                            isAttractedByData_Old = 0;
+                        }
+                    }
+                    else
+                    {
+                        if (hasAPriorityDestination)
+                        {
+                            if (Vector3.Distance(this.transform.position, priorityDestination) < 10)
                             {
-                                actualDestination = priorityDestination;
-                                normalDestination = actualDestination;
+                                hasAPriorityDestination = false;
+                            }
+                            else
+                            {
+                                if (actualDestination != priorityDestination)
+                                {
+                                    actualDestination = priorityDestination;
+                                    normalDestination = actualDestination;
+                                    //navMeshAgent.ResetPath();
+                                    destinationWasSet = true;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (normalDestination != actualDestination)
+                            {
+                                actualDestination = normalDestination;
                                 //navMeshAgent.ResetPath();
                                 destinationWasSet = true;
                             }
                         }
                     }
-                    else
-                    {
-                        if (normalDestination != actualDestination)
-                        {
-                            actualDestination = normalDestination;
-                            //navMeshAgent.ResetPath();
-                            destinationWasSet = true;
-                        }
-                    }                    
                 }
             }
         }

@@ -119,10 +119,10 @@ public class ServerBattery : MonoBehaviour
 
 			foreach (Transform ryan in server.characters)
 			{
-				if (ryan.GetComponent<ServerCarrier>().charge > 0 && Vector3.Distance(ryan.position, this.transform.position) < 35 && !server.players.Contains(ryan))
+				if (ryan.GetComponent<ServerCarrier>().charge > 0.0f && Vector3.Distance(ryan.position, this.transform.position) < 35 /*&& !server.players.Contains(ryan)*/)
 				{
 					ryan.GetComponent<ServerCharacter>().isAttractedByData = -1;
-					ryan.GetComponent<ServerCharacter>().attractByDataDestination = this.transform.position;
+                    ryan.GetComponent<ServerCharacter>().attractByDataDestination = this.transform.position;
 
 					if (!ryan.GetComponent<ServerCharacter>().isStunned)
 						ryan.GetComponent<ServerCarrier>().StartGiving(this.GetComponent<ServerCarrier>());

@@ -50,8 +50,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fabd2474048241440b6c9a94de7e85da, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   Nappe: {fileID: 7029545666529826866}
   NappeWindowSpeedCurve:
     serializedVersion: 2
@@ -285,8 +285,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3da1a5e7c10123a4aa7be591f2341be0, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   curve:
     serializedVersion: 2
     m_Curve:
@@ -309,14 +309,23 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 180
+      time: 61
       value: 5
-      inSlope: 0.00094613153
-      outSlope: -0.0012585229
-      tangentMode: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0.10386734
       outWeight: 0.15617065
+    - serializedVersion: 3
+      time: 120
+      value: 5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 240
       value: 0
@@ -344,8 +353,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15a66bf76cc67b949aaa75c4bfb2f7ab, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   server: {fileID: 0}
   NavMeshSurface: {fileID: 0}
   isAttract: 0
@@ -371,6 +380,7 @@ MonoBehaviour:
   sendingToBlueServer: 0
   sendingToRedServer: 0
   shouldBeSendToClientEveryFrame: 0
+  shouldBeSendToClientJustOnceMore: 0
   Initiator: {fileID: 11400000, guid: 842e3ff43ee2224498d97fe59d74c454, type: 2}
   objectsContainer: {fileID: 0}
   startIsOver: 0
@@ -384,8 +394,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02d79003555484e4e8fe70097d49cf59, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   clientCharge: 0
   client: {fileID: 0}
   programmableObjectsContainer: {fileID: 0}
