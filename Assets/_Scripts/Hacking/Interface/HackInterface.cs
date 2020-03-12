@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class HackInterface : MonoBehaviour/*, ISelectObject*/
 {
@@ -61,6 +62,9 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
     public InventoryUI inventoryUI;
 
     public bool dragAndDropPending;
+
+    /*Variable qui contient l'endroit où le nom du truc hacker apparait*/
+    public GameObject deviceNameField;
 
     // Start is called before the first frame update
     void Start()
@@ -327,6 +331,7 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
         {
             ryan.reloadInventory();
         }
+        deviceNameField.GetComponent<Text>().text = string.Concat("Device name : ", SelectedGameObject.GetComponent<ProgrammableObjectsData>().uniqueName);
     }
 
     /*Ecriture des fleches de l'interface*/
@@ -380,6 +385,7 @@ public class HackInterface : MonoBehaviour/*, ISelectObject*/
 		if (!GameState.CLIENT) return; // replacement for preprocessor
 
 		ErrorTextZone.GetComponent<Animator>().SetTrigger("Fade_Text");
+        ErrorTextZone.GetComponent<Text>().text = "/!\\ /!\\ /!\\   SOMEONE TRIED TO CONNECT TO THIS DEVICE.   /!\\ /!\\ /!\\ 							/!\\ /!\\ /!\\   THE CONNECTION WAS BLOCKED AUTOMATICALY.   /!\\ /!\\ /!\\";
     }
     /*
     //Draw arrows

@@ -136,9 +136,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a66bf76cc67b949aaa75c4bfb2f7ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  server: {fileID: 0}
   NavMeshSurface: {fileID: 0}
   isAttract: 0
   charactersIndex: -1
+  uniqueName: 
+  uniqueNumber: 0
   RedTrail: {fileID: 7138596328514834204}
   BlueTrail: {fileID: 6596419707848998362}
   client: {fileID: 0}
@@ -160,8 +163,10 @@ MonoBehaviour:
   sendingToBlueServer: 0
   sendingToRedServer: 0
   shouldBeSendToClientEveryFrame: 0
-  Initiator: {fileID: 11400000, guid: 29107e01ee02fc944bf52ba9898912c0, type: 2}
+  shouldBeSendToClientJustOnceMore: 0
+  Initiator: {fileID: 11400000, guid: 318545505ac08504db135966efb851b6, type: 2}
   objectsContainer: {fileID: 0}
+  startIsOver: 0
 --- !u!1 &7723863742498490780
 GameObject:
   m_ObjectHideFlags: 0

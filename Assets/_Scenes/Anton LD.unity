@@ -5536,8 +5536,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2100442943}
   m_HandleRect: {fileID: 2100442942}
   m_Direction: 0
-  m_Value: 1
-  m_Size: 1
+  m_Value: 0
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5616,6 +5616,8 @@ MonoBehaviour:
   NavMeshSurface: {fileID: 0}
   isAttract: 0
   charactersIndex: -1
+  uniqueName: 
+  uniqueNumber: 0
   RedTrail: {fileID: 1313968971}
   BlueTrail: {fileID: 608762695}
   client: {fileID: 0}
@@ -5638,7 +5640,7 @@ MonoBehaviour:
   sendingToRedServer: 0
   shouldBeSendToClientEveryFrame: 0
   shouldBeSendToClientJustOnceMore: 0
-  Initiator: {fileID: 11400000, guid: 29107e01ee02fc944bf52ba9898912c0, type: 2}
+  Initiator: {fileID: 11400000, guid: 0eb8bd05240d8674c9753934210efaba, type: 2}
   objectsContainer: {fileID: 0}
   startIsOver: 0
 --- !u!114 &155038435
@@ -7250,6 +7252,8 @@ MonoBehaviour:
   NavMeshSurface: {fileID: 0}
   isAttract: 0
   charactersIndex: -1
+  uniqueName: 
+  uniqueNumber: 0
   RedTrail: {fileID: 655832603}
   BlueTrail: {fileID: 1215189240}
   client: {fileID: 0}
@@ -7272,7 +7276,7 @@ MonoBehaviour:
   sendingToRedServer: 0
   shouldBeSendToClientEveryFrame: 0
   shouldBeSendToClientJustOnceMore: 0
-  Initiator: {fileID: 11400000, guid: 29107e01ee02fc944bf52ba9898912c0, type: 2}
+  Initiator: {fileID: 11400000, guid: 0eb8bd05240d8674c9753934210efaba, type: 2}
   objectsContainer: {fileID: 0}
   startIsOver: 0
 --- !u!114 &190606752
@@ -19493,6 +19497,11 @@ PrefabInstance:
       propertyPath: inventoryUI
       value: 
       objectReference: {fileID: 1227643148}
+    - target: {fileID: 7182164314948239090, guid: b69f16c46726df942812763a464a8da8,
+        type: 3}
+      propertyPath: deviceNameField
+      value: 
+      objectReference: {fileID: 1386233155881097799}
     - target: {fileID: 837074368, guid: b69f16c46726df942812763a464a8da8, type: 3}
       propertyPath: gadgetRange
       value: 
@@ -19653,6 +19662,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FontData.m_FontSize
       value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1458013431050910137, guid: b69f16c46726df942812763a464a8da8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b69f16c46726df942812763a464a8da8, type: 3}
@@ -47624,6 +47638,8 @@ MonoBehaviour:
   NavMeshSurface: {fileID: 0}
   isAttract: 0
   charactersIndex: -1
+  uniqueName: 
+  uniqueNumber: 0
   RedTrail: {fileID: 1116473691}
   BlueTrail: {fileID: 1692179943}
   client: {fileID: 0}
@@ -47646,7 +47662,7 @@ MonoBehaviour:
   sendingToRedServer: 0
   shouldBeSendToClientEveryFrame: 0
   shouldBeSendToClientJustOnceMore: 0
-  Initiator: {fileID: 11400000, guid: 29107e01ee02fc944bf52ba9898912c0, type: 2}
+  Initiator: {fileID: 11400000, guid: 0eb8bd05240d8674c9753934210efaba, type: 2}
   objectsContainer: {fileID: 0}
   startIsOver: 0
 --- !u!114 &1150320255
@@ -62727,6 +62743,8 @@ MonoBehaviour:
   NavMeshSurface: {fileID: 0}
   isAttract: 0
   charactersIndex: -1
+  uniqueName: 
+  uniqueNumber: 0
   RedTrail: {fileID: 76933587}
   BlueTrail: {fileID: 855701310}
   client: {fileID: 0}
@@ -62749,7 +62767,7 @@ MonoBehaviour:
   sendingToRedServer: 0
   shouldBeSendToClientEveryFrame: 0
   shouldBeSendToClientJustOnceMore: 0
-  Initiator: {fileID: 11400000, guid: 29107e01ee02fc944bf52ba9898912c0, type: 2}
+  Initiator: {fileID: 11400000, guid: 0eb8bd05240d8674c9753934210efaba, type: 2}
   objectsContainer: {fileID: 0}
   startIsOver: 0
 --- !u!114 &1556325827
@@ -69017,6 +69035,8 @@ MonoBehaviour:
   NavMeshSurface: {fileID: 0}
   isAttract: 0
   charactersIndex: -1
+  uniqueName: 
+  uniqueNumber: 0
   RedTrail: {fileID: 1461714139}
   BlueTrail: {fileID: 516695958}
   client: {fileID: 0}
@@ -69039,7 +69059,7 @@ MonoBehaviour:
   sendingToRedServer: 0
   shouldBeSendToClientEveryFrame: 0
   shouldBeSendToClientJustOnceMore: 0
-  Initiator: {fileID: 11400000, guid: 29107e01ee02fc944bf52ba9898912c0, type: 2}
+  Initiator: {fileID: 11400000, guid: 0eb8bd05240d8674c9753934210efaba, type: 2}
   objectsContainer: {fileID: 0}
   startIsOver: 0
 --- !u!114 &1700345369
@@ -70187,6 +70207,12 @@ PrefabInstance:
       propertyPath: BlueTrail
       value: 
       objectReference: {fileID: 886730653}
+    - target: {fileID: 8621588913415118718, guid: 69300b9b65a17564a9378bc77c6cb177,
+        type: 3}
+      propertyPath: Initiator
+      value: 
+      objectReference: {fileID: 11400000, guid: 0eb8bd05240d8674c9753934210efaba,
+        type: 2}
     - target: {fileID: 2357751474052199955, guid: 69300b9b65a17564a9378bc77c6cb177,
         type: 3}
       propertyPath: RedTrail
@@ -70197,6 +70223,12 @@ PrefabInstance:
       propertyPath: BlueTrail
       value: 
       objectReference: {fileID: 544196494}
+    - target: {fileID: 2357751474052199955, guid: 69300b9b65a17564a9378bc77c6cb177,
+        type: 3}
+      propertyPath: Initiator
+      value: 
+      objectReference: {fileID: 11400000, guid: 0eb8bd05240d8674c9753934210efaba,
+        type: 2}
     - target: {fileID: 3855462834791321861, guid: 69300b9b65a17564a9378bc77c6cb177,
         type: 3}
       propertyPath: OutputAudioMixerGroup
@@ -76480,7 +76512,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.000061035156}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1959515637
@@ -83745,6 +83777,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5509b9b778c5fee47a98598e70132eb9, type: 3}
+--- !u!1 &1386233155881097799
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3465646621826678829}
+  - component: {fileID: 6329385637566213484}
+  - component: {fileID: 2190414595537802225}
+  m_Layer: 5
+  m_Name: DeviceName
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1001 &1524386169980758583
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -83942,6 +83992,40 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5958744989034916305}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2190414595537802225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386233155881097799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.9535441, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 32
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 45
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: New Text
 --- !u!114 &2554117165812283893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84380,6 +84464,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07cd53ee41b7d9044925f0fad1fa34e4, type: 3}
+--- !u!224 &3465646621826678829
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386233155881097799}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 278528988}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1200, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &3537650689052893180
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -84906,6 +85009,12 @@ PrefabInstance:
       propertyPath: BlueTrail
       value: 
       objectReference: {fileID: 968811352}
+    - target: {fileID: 8621588913415118718, guid: 69300b9b65a17564a9378bc77c6cb177,
+        type: 3}
+      propertyPath: Initiator
+      value: 
+      objectReference: {fileID: 11400000, guid: 0eb8bd05240d8674c9753934210efaba,
+        type: 2}
     - target: {fileID: 2357751474052199955, guid: 69300b9b65a17564a9378bc77c6cb177,
         type: 3}
       propertyPath: RedTrail
@@ -84926,6 +85035,12 @@ PrefabInstance:
       propertyPath: BlueTrail
       value: 
       objectReference: {fileID: 799780940}
+    - target: {fileID: 2357751474052199955, guid: 69300b9b65a17564a9378bc77c6cb177,
+        type: 3}
+      propertyPath: Initiator
+      value: 
+      objectReference: {fileID: 11400000, guid: 0eb8bd05240d8674c9753934210efaba,
+        type: 2}
     - target: {fileID: 3855462834791321861, guid: 69300b9b65a17564a9378bc77c6cb177,
         type: 3}
       propertyPath: OutputAudioMixerGroup
@@ -85416,6 +85531,14 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5986806225355981745}
   m_PrefabAsset: {fileID: 0}
+--- !u!222 &6329385637566213484
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386233155881097799}
+  m_CullTransparentMesh: 0
 --- !u!4 &6809566257747494068 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3937472832649704868, guid: 250df174192fa8441899b16ff628ced9,

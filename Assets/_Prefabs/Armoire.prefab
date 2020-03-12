@@ -136,17 +136,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a66bf76cc67b949aaa75c4bfb2f7ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  server: {fileID: 0}
   NavMeshSurface: {fileID: 0}
   isAttract: 0
   charactersIndex: -1
+  uniqueName: 
+  uniqueNumber: 0
+  RedTrail: {fileID: 2074464453077737242}
+  BlueTrail: {fileID: 3081192398976354670}
   client: {fileID: 0}
   hackInterface: {fileID: 0}
   isWaitingHack: 0
   sendingToBlueClient: 0
   sendingToRedClient: 0
   objectIndexClient: 0
-  RedTrail: {fileID: 2074464453077737242}
-  BlueTrail: {fileID: 3081192398976354670}
   isGivingManually: 0
   isTakingManually: 0
   BlueBatterie: {fileID: 0}
@@ -160,8 +163,10 @@ MonoBehaviour:
   sendingToBlueServer: 0
   sendingToRedServer: 0
   shouldBeSendToClientEveryFrame: 0
-  Initiator: {fileID: 11400000, guid: 29107e01ee02fc944bf52ba9898912c0, type: 2}
+  shouldBeSendToClientJustOnceMore: 0
+  Initiator: {fileID: 11400000, guid: cee3ce0dfe4acd842bfd702df837ea51, type: 2}
   objectsContainer: {fileID: 0}
+  startIsOver: 0
 --- !u!1 &1780920444500572517
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,45 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef64df2bda8287144916e51fd7115ea3, type: 3}
-  m_Name: OpenDoorAsset
+  m_Name: HoloPlantAsset
   m_EditorClassIdentifier: 
   accessibleInputCode:
   - OnWord
-  - OnEmpty
-  - OnFull
   - OnHack
-  - OnInteract
-  - OnPassInside
-  - OnOpen
-  - OnClose
+  - OnTurnOn
+  - OnTurnOff
   accessibleOutputCode:
   - SendMessage
-  - OpenDoor
-  - CloseDoor
-  inputCodes:
-  - code: OnInteract
-    parameter_int: 0
-    parameter_string: 
-    is_fixed: 0
-  - code: OnPassInside
-    parameter_int: 0
-    parameter_string: 
-    is_fixed: 0
-  outputCodes:
-  - code: OpenDoor
-    parameter_int: 0
-    parameter_string: 
-    is_fixed: 0
-  - code: CloseDoor
-    parameter_int: 0
-    parameter_string: 
-    is_fixed: 0
+  - TurnOnHolo
+  - TurnOffHolo
+  inputCodes: []
+  outputCodes: []
   graph: []
   initialOutputActions:
-  - code: OpenDoor
+  - code: TurnOnHolo
     parameter_int: 0
     parameter_string: 
     is_fixed: 0
   isHackable: 1
   shouldBeSendToClientEveryFrame: 1
-  baseName: door
+  baseName: plant

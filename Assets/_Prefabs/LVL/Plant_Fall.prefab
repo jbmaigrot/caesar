@@ -479,6 +479,8 @@ MonoBehaviour:
   NavMeshSurface: {fileID: 0}
   isAttract: 0
   charactersIndex: -1
+  uniqueName: 
+  uniqueNumber: 0
   RedTrail: {fileID: 2952602448892464659}
   BlueTrail: {fileID: 4379538430168378117}
   client: {fileID: 0}
@@ -500,7 +502,8 @@ MonoBehaviour:
   sendingToBlueServer: 0
   sendingToRedServer: 0
   shouldBeSendToClientEveryFrame: 0
-  Initiator: {fileID: 11400000, guid: 3b74dcead21d2374ba90d199bc2fef60, type: 2}
+  shouldBeSendToClientJustOnceMore: 0
+  Initiator: {fileID: 11400000, guid: 47f4511b279bb7d4582edc727d799744, type: 2}
   objectsContainer: {fileID: 0}
   startIsOver: 0
 --- !u!1 &433686497
@@ -1761,6 +1764,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8375705889318548205}
     m_Modifications:
+    - target: {fileID: 7041609181862371152, guid: e8ea967bb4a0a4d47848b9bd896cb6f0,
+        type: 3}
+      propertyPath: m_Name
+      value: PL_Holo (3)
+      objectReference: {fileID: 0}
     - target: {fileID: 781893574439450342, guid: e8ea967bb4a0a4d47848b9bd896cb6f0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1831,11 +1839,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.5000005
       objectReference: {fileID: 0}
-    - target: {fileID: 7041609181862371152, guid: e8ea967bb4a0a4d47848b9bd896cb6f0,
-        type: 3}
-      propertyPath: m_Name
-      value: PL_Holo (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 1374085425123476932, guid: e8ea967bb4a0a4d47848b9bd896cb6f0,
         type: 3}
       propertyPath: m_Type
@@ -1871,6 +1874,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 36603745}
     m_Modifications:
+    - target: {fileID: 7041609181862371152, guid: e8ea967bb4a0a4d47848b9bd896cb6f0,
+        type: 3}
+      propertyPath: m_Name
+      value: PL_Holo (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 781893574439450342, guid: e8ea967bb4a0a4d47848b9bd896cb6f0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1941,11 +1949,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.41666704
       objectReference: {fileID: 0}
-    - target: {fileID: 7041609181862371152, guid: e8ea967bb4a0a4d47848b9bd896cb6f0,
-        type: 3}
-      propertyPath: m_Name
-      value: PL_Holo (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 1374085425123476932, guid: e8ea967bb4a0a4d47848b9bd896cb6f0,
         type: 3}
       propertyPath: m_Type
@@ -1981,6 +1984,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7956019842658758470}
     m_Modifications:
+    - target: {fileID: 7041609181862371152, guid: e8ea967bb4a0a4d47848b9bd896cb6f0,
+        type: 3}
+      propertyPath: m_Name
+      value: PL_Holo (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 781893574439450342, guid: e8ea967bb4a0a4d47848b9bd896cb6f0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2051,11 +2059,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.5000005
       objectReference: {fileID: 0}
-    - target: {fileID: 7041609181862371152, guid: e8ea967bb4a0a4d47848b9bd896cb6f0,
-        type: 3}
-      propertyPath: m_Name
-      value: PL_Holo (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 1374085425123476932, guid: e8ea967bb4a0a4d47848b9bd896cb6f0,
         type: 3}
       propertyPath: m_Type
@@ -2091,6 +2094,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2871492392927289127}
     m_Modifications:
+    - target: {fileID: 7041609181862371152, guid: e8ea967bb4a0a4d47848b9bd896cb6f0,
+        type: 3}
+      propertyPath: m_Name
+      value: PL_Holo
+      objectReference: {fileID: 0}
     - target: {fileID: 781893574439450342, guid: e8ea967bb4a0a4d47848b9bd896cb6f0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2160,11 +2168,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.40879774
-      objectReference: {fileID: 0}
-    - target: {fileID: 7041609181862371152, guid: e8ea967bb4a0a4d47848b9bd896cb6f0,
-        type: 3}
-      propertyPath: m_Name
-      value: PL_Holo
       objectReference: {fileID: 0}
     - target: {fileID: 1374085425123476932, guid: e8ea967bb4a0a4d47848b9bd896cb6f0,
         type: 3}

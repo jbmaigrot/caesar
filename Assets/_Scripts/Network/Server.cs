@@ -447,6 +447,7 @@ public class Server : MonoBehaviour
                         //update objects states
                         writer.Write(Constants.Server_UpdateObject);
                         writer.Write(j);
+                        writer.Write(programmableObjectsContainer.objectListServer[j].uniqueNumber);
                         writer.Write(programmableObjectsContainer.objectListServer[j].isLightOn ? 1 : 0);
                         writer.Write(programmableObjectsContainer.objectListServer[j].isDoorOpen ? 1 : 0);
 

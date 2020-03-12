@@ -381,6 +381,10 @@ public class Client : MonoBehaviour
                                 ThisIsATree thisIsATree = progObject.GetComponentInChildren<ThisIsATree>(false);
                                 DoorScript doorScript = progObject.GetComponentInChildren<DoorScript>();
 
+                                //Unique Name
+                                int uniqueNumber = (int)stream.ReadUInt(ref readerCtx);
+                                progObject.SetUniqueName(uniqueNumber);
+
                                 //Light
                                 if ((int)stream.ReadUInt(ref readerCtx) == 0)
                                 {

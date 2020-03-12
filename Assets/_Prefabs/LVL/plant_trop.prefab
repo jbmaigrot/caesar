@@ -1371,6 +1371,8 @@ MonoBehaviour:
   NavMeshSurface: {fileID: 0}
   isAttract: 0
   charactersIndex: -1
+  uniqueName: 
+  uniqueNumber: 0
   RedTrail: {fileID: 7401622446204070818}
   BlueTrail: {fileID: 6898530641852494484}
   client: {fileID: 0}
@@ -1392,7 +1394,8 @@ MonoBehaviour:
   sendingToBlueServer: 0
   sendingToRedServer: 0
   shouldBeSendToClientEveryFrame: 0
-  Initiator: {fileID: 11400000, guid: 3b74dcead21d2374ba90d199bc2fef60, type: 2}
+  shouldBeSendToClientJustOnceMore: 0
+  Initiator: {fileID: 11400000, guid: 47f4511b279bb7d4582edc727d799744, type: 2}
   objectsContainer: {fileID: 0}
   startIsOver: 0
 --- !u!1 &5980992635052813072

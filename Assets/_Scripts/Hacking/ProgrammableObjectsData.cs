@@ -11,7 +11,6 @@ public class ProgrammableObjectsData : MonoBehaviour
     public Server server;
     public NavMeshSurface NavMeshSurface;
     
-    
     private const float ATTRACTTIME = 10.0f;
     public bool isAttract;
     private float attracttimebeforeend;
@@ -25,6 +24,9 @@ public class ProgrammableObjectsData : MonoBehaviour
     private const float TIMEOFSTUNRELOAD = 20.0f;
 
 
+
+    public string uniqueName;
+    public int uniqueNumber;
 
     public GameObject RedTrail;
     public GameObject BlueTrail;
@@ -111,7 +113,7 @@ public class ProgrammableObjectsData : MonoBehaviour
 
 			serverCarrier = this.GetComponent<ServerCarrier>();
 
-
+            GenerateUniqueName();
 
 
 
@@ -633,5 +635,61 @@ public class ProgrammableObjectsData : MonoBehaviour
             }
         }
     }
-}
 
+    public void GenerateUniqueName()
+    {
+        if (!GameState.SERVER) return;
+
+        bool namedOk = false;
+        int nameNumber;
+        string numberName;
+        string name;
+
+        while (!namedOk)
+        {
+            nameNumber = UnityEngine.Random.Range(0, 1000);
+            if (nameNumber > 99)
+            {
+                numberName = nameNumber.ToString();
+            }
+            else if (nameNumber > 9)
+            {
+                numberName = string.Concat("0", nameNumber.ToString());
+            }
+            else
+            {
+                numberName = string.Concat("00", nameNumber.ToString());
+            }
+            name = string.Concat(Initiator.baseName, numberName);
+            if (objectsContainer.objectNameServer[name] == null)
+            {
+                objectsContainer.objectNameServer[name] = this;
+                namedOk = true;
+                uniqueName = name;
+                uniqueNumber = nameNumber;
+            }
+        }
+    }
+
+    public void SetUniqueName(int uniqueNumber)
+    {
+        if (!GameState.CLIENT) return;
+        
+        string numberName;
+        string name;
+
+        if (uniqueNumber > 99)
+        {
+            numberName = uniqueNumber.ToString();
+        }
+        else if (uniqueNumber > 9)
+        {
+            numberName = string.Concat("0", uniqueNumber.ToString());
+        }
+        else
+        {
+            numberName = string.Concat("00", uniqueNumber.ToString());
+        }
+        uniqueName = string.Concat(Initiator.baseName, numberName);
+    }
+}

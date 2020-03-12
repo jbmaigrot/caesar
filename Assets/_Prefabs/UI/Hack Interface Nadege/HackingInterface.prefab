@@ -5629,12 +5629,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b697b1ada095f174696739aa71778c69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HackingAsset: {fileID: 11400000, guid: 25dcad809380a804d87b5df4af8940bd, type: 2}
   Clic_Cancel: {fileID: 8300000, guid: d7a2d85dbae000240b8d47ed1f71675d, type: 3}
   Clic_Negatif: {fileID: 8300000, guid: e4ec334d289b94a42976d30c3eb4d898, type: 3}
   Clic_Neutre: {fileID: 8300000, guid: f20029777759452458fb2859daba4179, type: 3}
   Clic_Positif: {fileID: 8300000, guid: 97f77a6da71f4b44fa83c186c0887abc, type: 3}
   ErrorTextZone: {fileID: 1716172388477630504}
-  HackingAsset: {fileID: 11400000, guid: 25dcad809380a804d87b5df4af8940bd, type: 2}
   client: {fileID: 0}
   inventory: 000000000000000000000000
   inputButtons:
@@ -5651,6 +5651,7 @@ MonoBehaviour:
   - {fileID: 1570875994}
   ArrowSpriteTable: []
   inventoryUI: {fileID: 0}
+  dragAndDropPending: 0
 --- !u!225 &951096659283074353
 CanvasGroup:
   m_ObjectHideFlags: 0
