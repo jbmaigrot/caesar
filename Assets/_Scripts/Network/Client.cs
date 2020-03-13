@@ -572,7 +572,9 @@ public class Client : MonoBehaviour
                             float xPos = stream.ReadFloat(ref readerCtx);
                             float yPos = stream.ReadFloat(ref readerCtx);
                             float zPos = stream.ReadFloat(ref readerCtx);
-                            chat.AddMessage(new string(chars), new Vector3(xPos, yPos, zPos));
+                            bool isPrivate = (stream.ReadUInt(ref readerCtx) == 1);
+                            bool isPriority = (stream.ReadUInt(ref readerCtx) == 1);
+                            chat.AddMessage(new string(chars), new Vector3(xPos, yPos, zPos), isPrivate, isPriority);
                             break;
 
                         case Constants.Server_Ping:

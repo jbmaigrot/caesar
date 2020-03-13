@@ -17,7 +17,7 @@ public class ProgrammableObjectsContainer : MonoBehaviour
 
     public List<ProgrammableObjectsData> objectListServer;
     public List<ProgrammableObjectsData> chairListServer;
-    public Hashtable objectNameServer = new Hashtable();
+    public Dictionary<string,ProgrammableObjectsData> objectNameServer = new Dictionary<string, ProgrammableObjectsData>();
 
     public void Start()
     {

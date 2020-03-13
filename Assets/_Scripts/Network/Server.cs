@@ -129,7 +129,7 @@ public class Server : MonoBehaviour
 
 		if (!hasSendItsRegard)
         {
-            AddMessage("WELCOME TO TONIGHT CEREMONY. GOOD LUCK TO BOTH TEAM AND REMEMBER TO HAVE FUN.", Vector3.zero);
+            AddMessage("WELCOME TO TONIGHT CEREMONY. GOOD LUCK TO BOTH TEAM AND REMEMBER TO HAVE FUN.", Vector3.zero, null);
             hasSendItsRegard = true;
             NewAnnoncement(0);
         }
@@ -294,7 +294,7 @@ public class Server : MonoBehaviour
                                 chars[n] = (char)buffer[n];
                             }
                             string message = new string(chars);
-                            AddMessage(message, players[i].transform.position);
+                            AddMessage(message, players[i].transform.position,players[i].GetComponent<ProgrammableObjectsData>(),i);
                             break;
 
                         case Constants.Client_Ping:
@@ -338,7 +338,7 @@ public class Server : MonoBehaviour
                                 }
                                 if (!alreadyMoved)
                                 {
-                                    AddMessage("THE ORANGE RELAY IS BACK IN ITS SERVER.", Vector3.zero);
+                                    AddMessage("THE ORANGE RELAY IS BACK IN ITS SERVER.", Vector3.zero,null);
                                     NewAnnoncement(3);
                                     InOutVignette reynolds = new InOutVignette();
                                     reynolds.code = "UseGadget";
@@ -360,7 +360,7 @@ public class Server : MonoBehaviour
                                 }
                                 if (!alreadyMoved)
                                 {
-                                    AddMessage("THE BLUE RELAY IS BACK IN ITS SERVER.", Vector3.zero);
+                                    AddMessage("THE BLUE RELAY IS BACK IN ITS SERVER.", Vector3.zero,null);
                                     NewAnnoncement(7);
                                     InOutVignette reynolds = new InOutVignette();
                                     reynolds.code = "UseGadget";
@@ -562,7 +562,7 @@ public class Server : MonoBehaviour
     }
 
     
-    public void Message(string message, Vector3 pos)
+    public void Message(string message, Vector3 pos, bool isPrivateMessage, List<ProgrammableObjectsData> receivers, int sendByPlayer, bool isPriorityMessage)
 	{
 		if (!GameState.SERVER) return; // replacement for preprocessor
 
@@ -580,19 +580,48 @@ public class Server : MonoBehaviour
             writer.Write(pos.x);
             writer.Write(pos.y);
             writer.Write(pos.z);
+            if (isPrivateMessage)
+            {
+                writer.Write(1);
+            }
+            else
+            {
+                writer.Write(0);
+            }
+            if (isPriorityMessage)
+            {
+                writer.Write(1);
+            }
+            else
+            {
+                writer.Write(0);
+            }
+
             //send snapshot to all clients
             for (int k = 0; k < m_Connections.Length; k++)
             {
-                m_Driver.Send(m_Connections[k], writer);
+                if(!isPrivateMessage || receivers.Contains(players[k].GetComponent<ProgrammableObjectsData>()) || k==sendByPlayer)
+                {
+                    m_Driver.Send(m_Connections[k], writer);
+                }
             }
+
+            
         }
     }
 
-    public void AddMessage(string message, Vector3 pos)
+    public void AddMessage(string message, Vector3 pos, ProgrammableObjectsData sender)
+    {
+        AddMessage(message, pos, sender, -1);
+    }
+
+    public void AddMessage(string message, Vector3 pos, ProgrammableObjectsData sender, int sendByPlayer)
 	{
 		if (!GameState.SERVER) return; // replacement for preprocessor
 
-		Message(message, pos);
+        bool isPrivateMessage = false;
+        List<ProgrammableObjectsData> receivers = new List<ProgrammableObjectsData>();
+        bool isArobaseOn = false;
         messages.Add(message);
         messagesPos.Add(pos);
 
@@ -603,7 +632,64 @@ public class Server : MonoBehaviour
             {
                 if ((c == '\n') || (c == '\r') || (c == ' '))
                 {
-                    programmableObjectsContainer.ChatInstruction(justOneWord);
+                    if (isArobaseOn && justOneWord != "")
+                    {
+                        isPrivateMessage = true;
+                        if (justOneWord == "me")
+                        {
+                            receivers.Add(sender);
+                        }else if(programmableObjectsContainer.objectNameServer.ContainsKey(justOneWord))
+                        {
+                            receivers.Add(programmableObjectsContainer.objectNameServer[justOneWord]);
+                        }
+                          
+                    }
+                    isArobaseOn = false;
+                    justOneWord = "";
+                }
+                else if (c == '@' && justOneWord == "" && !isArobaseOn)
+                {
+                    isArobaseOn = true;
+                }
+                else if(isArobaseOn)
+                {
+                    justOneWord += c;
+                }
+            }
+            if (isArobaseOn && justOneWord != "")
+            {
+                isPrivateMessage = true;
+                if (justOneWord == "me")
+                {
+                    receivers.Add(sender);
+                }
+                else if (programmableObjectsContainer.objectNameServer.ContainsKey(justOneWord))
+                {
+                    receivers.Add(programmableObjectsContainer.objectNameServer[justOneWord]);
+                }
+            }
+            justOneWord = "";
+
+            Message(message, pos, isPrivateMessage, receivers, sendByPlayer, sender==null);
+
+            foreach (char c in message)
+            {
+                if ((c == '\n') || (c == '\r') || (c == ' '))
+                {
+                    if (justOneWord != "")
+                    {
+                        if (isPrivateMessage)
+                        {
+                            foreach(ProgrammableObjectsData r in receivers)
+                            {
+                                r.ChatInstruction(justOneWord);
+                            }
+                        }
+                        else
+                        {
+                            programmableObjectsContainer.ChatInstruction(justOneWord);
+                        }
+                    }
 
                     justOneWord = "";
                 }
@@ -612,9 +698,19 @@ public class Server : MonoBehaviour
                     justOneWord += c;
                 }
             }
-            if(justOneWord != "")
+            if (justOneWord != "")
             {
-                programmableObjectsContainer.ChatInstruction(justOneWord);
+                if (isPrivateMessage)
+                {
+                    foreach (ProgrammableObjectsData r in receivers)
+                    {
+                        r.ChatInstruction(justOneWord);
+                    }
+                }
+                else
+                {
+                    programmableObjectsContainer.ChatInstruction(justOneWord);
+                }
             }
         }
        

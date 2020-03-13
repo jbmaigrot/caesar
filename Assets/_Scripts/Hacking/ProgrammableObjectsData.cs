@@ -268,7 +268,7 @@ public class ProgrammableObjectsData : MonoBehaviour
 
         if (codeoutput == "SendMessage")
         {
-            server.AddMessage(parameter_string, transform.position);
+            server.AddMessage(parameter_string, transform.position, this.GetComponent<ProgrammableObjectsData>());
         }
 
         if (codeoutput == "TestInt")
@@ -369,7 +369,7 @@ public class ProgrammableObjectsData : MonoBehaviour
         {
             if(this.GetComponent<ServerSource>() && this.GetComponent<ServerSource>().enabled)
             {
-                server.AddMessage(parameter_string, transform.position);
+                server.AddMessage(parameter_string, transform.position,this.GetComponent<ProgrammableObjectsData>());
             }
         }
     }
@@ -661,9 +661,9 @@ public class ProgrammableObjectsData : MonoBehaviour
                 numberName = string.Concat("00", nameNumber.ToString());
             }
             name = string.Concat(Initiator.baseName, numberName);
-            if (objectsContainer.objectNameServer[name] == null)
+            if (!objectsContainer.objectNameServer.ContainsKey(name))
             {
-                objectsContainer.objectNameServer[name] = this;
+                objectsContainer.objectNameServer.Add(name,this.GetComponent<ProgrammableObjectsData>());
                 namedOk = true;
                 uniqueName = name;
                 uniqueNumber = nameNumber;
