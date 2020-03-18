@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef64df2bda8287144916e51fd7115ea3, type: 3}
   m_Name: BatterieBlueAsset
   m_EditorClassIdentifier: 
-  accessibleInputCode: []
-  accessibleOutputCode: []
+  accessibleInputCode:
+  - OnWord
+  - OnHack
+  accessibleOutputCode:
+  - SendMessage
+  - RepeatTo
   inputCodes: []
   outputCodes:
   - code: UseGadget

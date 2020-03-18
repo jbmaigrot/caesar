@@ -70,7 +70,7 @@ public class ClientMessage : MonoBehaviour
                     }
                     
                 }
-                if(justOneWord == player.uniqueName)
+                if(justOneWord == player.uniqueName || justOneWord == "everyone")
                 {
                     message = message.Insert(reynolds, "</b>");
                     message = message.Insert(ryan, "<b>");

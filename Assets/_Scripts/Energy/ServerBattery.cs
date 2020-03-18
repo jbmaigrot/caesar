@@ -77,12 +77,12 @@ public class ServerBattery : MonoBehaviour
 
 					if (team == 0)
 					{
-						server.AddMessage("THE ORANGE TEAM WINS. CONGRATULATIONS.", Vector3.zero,null);
+						server.AddMessage("THE ORANGE TEAM WINS. CONGRATULATIONS. @everyone", Vector3.zero,null);
 						server.NewAnnoncement(6);
 					}
 					else
 					{
-						server.AddMessage("THE BLUE TEAM WINS. CONGRATULATIONS.", Vector3.zero,null);
+						server.AddMessage("THE BLUE TEAM WINS. CONGRATULATIONS. @everyone", Vector3.zero,null);
 						server.NewAnnoncement(10);
 					}
 				}
@@ -93,12 +93,12 @@ public class ServerBattery : MonoBehaviour
 				HasReachFifty = true;
 				if (team == 0)
 				{
-					server.AddMessage("THE ORANGE TEAM'S SERVER IS AT 50%", Vector3.zero,null);
+					server.AddMessage("THE ORANGE TEAM'S SERVER IS AT 50%. @everyone", Vector3.zero,null);
 					server.NewAnnoncement(4);
 				}
 				else
 				{
-					server.AddMessage("THE BLUE TEAM'S SERVER IS AT 50%", Vector3.zero,null);
+					server.AddMessage("THE BLUE TEAM'S SERVER IS AT 50%. @everyone", Vector3.zero,null);
 					server.NewAnnoncement(8);
 				}
 			}
@@ -107,12 +107,12 @@ public class ServerBattery : MonoBehaviour
 				HasReachNinety = true;
 				if (team == 0)
 				{
-					server.AddMessage("THE ORANGE TEAM'S SERVER IS AT 90%", Vector3.zero,null);
+					server.AddMessage("THE ORANGE TEAM'S SERVER IS AT 90%. @everyone", Vector3.zero,null);
 					server.NewAnnoncement(5);
 				}
 				else
 				{
-					server.AddMessage("THE BLUE TEAM'S SERVER IS AT 90%", Vector3.zero,null);
+					server.AddMessage("THE BLUE TEAM'S SERVER IS AT 90%. @everyone", Vector3.zero,null);
 					server.NewAnnoncement(9);
 				}
 			}

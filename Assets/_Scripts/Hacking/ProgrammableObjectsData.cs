@@ -198,15 +198,15 @@ public class ProgrammableObjectsData : MonoBehaviour
     
 
     /*Quand le mot en parametre apparait dans le chat, active la vignette OnWord correspondant. Potentielement à adapter un petit peu pour le chat.*/
-    public void ChatInstruction(string instruction)
+    public void ChatInstruction(string instruction, string messageCopy)
 	{
 		if (!GameState.SERVER) return; // replacement for preprocessor
 
-		OnInput("OnWord", instruction);
+		OnInput("OnWord", instruction,0,messageCopy);
     }
 
     /*Quand la vignette input désignée en paramêtre est activé, active toute les fléches qui y sont relié*/
-    public void OnInput(string codeinput, string parameter_string = "", int parameter_int = 0)
+    public void OnInput(string codeinput, string parameter_string = "", int parameter_int = 0, string message = "")
 	{
 		if (!GameState.SERVER) return; // replacement for preprocessor
 
@@ -215,12 +215,13 @@ public class ProgrammableObjectsData : MonoBehaviour
             if (inputCodes.Count > ryan.input && inputCodes[ryan.input].code == codeinput && inputCodes[ryan.input].parameter_string == parameter_string && inputCodes[ryan.input].parameter_int == parameter_int)
             {
                 ryan.timeBeforeTransmit.Add(ryan.transmitTime);
+                ryan.messageToTransmit.Add(message);
             }
         }
     }
 
     /*Quand la vignette output désigné est activé, fait l'effet correspondant*/
-    public void OnOutput(string codeoutput, string parameter_string = "", int parameter_int = 0)
+    public void OnOutput(string codeoutput, string parameter_string = "", int parameter_int = 0, string message ="")
 	{
 		if (!GameState.SERVER) return; // replacement for preprocessor
 
@@ -368,6 +369,26 @@ public class ProgrammableObjectsData : MonoBehaviour
                 server.AddMessage(parameter_string, transform.position,this.GetComponent<ProgrammableObjectsData>());
             }
         }
+
+        if(codeoutput == "RepeatTo")
+        {
+            if (message != "" && parameter_string !="")
+            {
+                bool startOfWord = true;
+                message += ' ';
+                foreach (char c in parameter_string)
+                {
+                    if (startOfWord && (c != '@') && (c != '\n') && (c != '\r') && (c != ' '))
+                    {
+                        message += '@';
+                    }
+                    message += c;
+                    startOfWord = (c == '\n') || (c == '\r') || (c == ' ');
+                }
+
+            }
+            server.AddMessage(message, transform.position, this.GetComponent<ProgrammableObjectsData>());
+        }
     }
 
     /*A chaque frame, le signal se déplace dans les flèches du graphe*/
@@ -385,9 +406,9 @@ public class ProgrammableObjectsData : MonoBehaviour
 					{
 						if (outputCodes.Count > graph[i].output)
 						{
-							OnOutput(outputCodes[graph[i].output].code, outputCodes[graph[i].output].parameter_string, outputCodes[graph[i].output].parameter_int);
+							OnOutput(outputCodes[graph[i].output].code, outputCodes[graph[i].output].parameter_string, outputCodes[graph[i].output].parameter_int, graph[i].messageToTransmit[j]);
 						}
-						graph[i].timeBeforeTransmit[j] = 5000;//.RemoveAt(j);
+						graph[i].timeBeforeTransmit[j] = 50000;//.RemoveAt(j);
 					}
 				}
 			}
@@ -639,7 +660,7 @@ public class ProgrammableObjectsData : MonoBehaviour
         bool namedOk = false;
         int nameNumber;
         string numberName;
-        string name;
+        string name ="";
 
         while (!namedOk)
         {
@@ -680,6 +701,10 @@ public class ProgrammableObjectsData : MonoBehaviour
                 uniqueNumber = nameNumber;
             }
         }
+        if (server.players.Contains(this.GetComponent<Transform>()))
+        {
+            server.SendRegards(name, this.GetComponent<ServerCharacter>().team);
+        }
     }
 
     public void SetUniqueName(int uniqueNumber)
@@ -716,5 +741,38 @@ public class ProgrammableObjectsData : MonoBehaviour
             }
         }   
         uniqueName = string.Concat(Initiator.baseName, numberName);
+    }
+
+    public void BatteryNewPlayerInTeam(string name)
+    {
+        if (!GameState.SERVER) return;
+        int inputVign = -1;
+        string inputParam = string.Concat("@", uniqueName);
+        for (int i =0; i< inputCodes.Count;i++) 
+        {
+            if (inputCodes[i].code == "OnWord" && inputCodes[i].parameter_string == inputParam)
+            {
+                inputVign = i;
+            }
+        }
+        if (inputVign == -1)
+        {
+            InOutVignette reynolds = new InOutVignette();
+            reynolds.code = "OnWord";
+            reynolds.parameter_string = inputParam;
+            inputVign = inputCodes.Count;
+            inputCodes.Add(reynolds);
+        }
+
+        int outputVign = outputCodes.Count;
+        InOutVignette ryan = new InOutVignette();
+        ryan.code = "RepeatTo";
+        ryan.parameter_string = name;
+        outputCodes.Add(ryan);
+
+        Arrow arrow = new Arrow();
+        arrow.input = inputVign;
+        arrow.output = outputVign;
+        graph.Add(arrow);
     }
 }

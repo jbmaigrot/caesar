@@ -129,7 +129,7 @@ public class Server : MonoBehaviour
 
 		if (!hasSendItsRegard)
         {
-            AddMessage("WELCOME TO TONIGHT CEREMONY. GOOD LUCK TO BOTH TEAM AND REMEMBER TO HAVE FUN.", Vector3.zero, null);
+            AddMessage("WELCOME TO TONIGHT CEREMONY. GOOD LUCK TO BOTH TEAM AND REMEMBER TO HAVE FUN. @everyone", Vector3.zero, null);
             hasSendItsRegard = true;
             NewAnnoncement(0);
         }
@@ -338,7 +338,7 @@ public class Server : MonoBehaviour
                                 }
                                 if (!alreadyMoved)
                                 {
-                                    AddMessage("THE ORANGE RELAY IS BACK IN ITS SERVER.", Vector3.zero,null);
+                                    AddMessage("THE ORANGE RELAY IS BACK IN ITS SERVER. @everyone", Vector3.zero,null);
                                     NewAnnoncement(3);
                                     InOutVignette reynolds = new InOutVignette();
                                     reynolds.code = "UseGadget";
@@ -360,7 +360,7 @@ public class Server : MonoBehaviour
                                 }
                                 if (!alreadyMoved)
                                 {
-                                    AddMessage("THE BLUE RELAY IS BACK IN ITS SERVER.", Vector3.zero,null);
+                                    AddMessage("THE BLUE RELAY IS BACK IN ITS SERVER. @everyone", Vector3.zero,null);
                                     NewAnnoncement(7);
                                     InOutVignette reynolds = new InOutVignette();
                                     reynolds.code = "UseGadget";
@@ -600,7 +600,7 @@ public class Server : MonoBehaviour
             //send snapshot to all clients
             for (int k = 0; k < m_Connections.Length; k++)
             {
-                if(!isPrivateMessage || receivers.Contains(players[k].GetComponent<ProgrammableObjectsData>()) || k==sendByPlayer)
+                if(!isPrivateMessage || receivers.Contains(players[k].GetComponent<ProgrammableObjectsData>()) || k==sendByPlayer || isPriorityMessage)
                 {
                     m_Driver.Send(m_Connections[k], writer);
                 }
@@ -620,8 +620,10 @@ public class Server : MonoBehaviour
 		if (!GameState.SERVER) return; // replacement for preprocessor
 
         bool isPrivateMessage = false;
+        bool isEveryoneMessage = false;
         List<ProgrammableObjectsData> receivers = new List<ProgrammableObjectsData>();
         bool isArobaseOn = false;
+        string messageCopy ="\"";
         messages.Add(message);
         messagesPos.Add(pos);
 
@@ -642,7 +644,15 @@ public class Server : MonoBehaviour
                         {
                             receivers.Add(programmableObjectsContainer.objectNameServer[justOneWord]);
                         }
+                        if(justOneWord == "everyone")
+                        {
+                            isEveryoneMessage = true;
+                        }
                           
+                    }
+                    if (!isArobaseOn)
+                    {
+                        messageCopy += c;
                     }
                     isArobaseOn = false;
                     justOneWord = "";
@@ -655,7 +665,12 @@ public class Server : MonoBehaviour
                 {
                     justOneWord += c;
                 }
+                else
+                {
+                    messageCopy += c;
+                }
             }
+            messageCopy += '\"';
             if (isArobaseOn && justOneWord != "")
             {
                 isPrivateMessage = true;
@@ -667,10 +682,14 @@ public class Server : MonoBehaviour
                 {
                     receivers.Add(programmableObjectsContainer.objectNameServer[justOneWord]);
                 }
+                if (justOneWord == "everyone")
+                {
+                    isEveryoneMessage = true;
+                }
             }
             justOneWord = "";
 
-            Message(message, pos, isPrivateMessage, receivers, sendByPlayer, sender==null);
+            Message(message, pos, isPrivateMessage, receivers, sendByPlayer, isEveryoneMessage);
 
             foreach (char c in message)
             {
@@ -682,12 +701,12 @@ public class Server : MonoBehaviour
                         {
                             foreach(ProgrammableObjectsData r in receivers)
                             {
-                                r.ChatInstruction(justOneWord);
+                                r.ChatInstruction(justOneWord,messageCopy);
                             }
                         }
                         else
                         {
-                            programmableObjectsContainer.ChatInstruction(justOneWord);
+                            programmableObjectsContainer.ChatInstruction(justOneWord,messageCopy);
                         }
                     }
 
@@ -704,12 +723,12 @@ public class Server : MonoBehaviour
                 {
                     foreach (ProgrammableObjectsData r in receivers)
                     {
-                        r.ChatInstruction(justOneWord);
+                        r.ChatInstruction(justOneWord,messageCopy);
                     }
                 }
                 else
                 {
-                    programmableObjectsContainer.ChatInstruction(justOneWord);
+                    programmableObjectsContainer.ChatInstruction(justOneWord,messageCopy);
                 }
             }
         }
@@ -1154,4 +1173,20 @@ public class Server : MonoBehaviour
         }
     }
 
+    public void SendRegards(string name, int team)
+    {
+        if (!GameState.SERVER) return;
+        string message = "";
+        message = string.Concat("@", name, " HAS JOIN THE TEAM. ");
+        //AddMessage(message, Vector3.zero, null); This should work, it does not work client side, probably a question of frame delay.
+
+        if(BlueBatterie.GetComponent<ServerBattery>().team == team)
+        {
+            BlueBatterie.GetComponent<ProgrammableObjectsData>().BatteryNewPlayerInTeam(name);
+        }
+        if (RedBatterie.GetComponent<ServerBattery>().team == team)
+        {
+            RedBatterie.GetComponent<ProgrammableObjectsData>().BatteryNewPlayerInTeam(name);
+        }
+    }
 }

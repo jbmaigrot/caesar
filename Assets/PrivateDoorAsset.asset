@@ -25,6 +25,7 @@ MonoBehaviour:
   - SendMessage
   - OpenDoor
   - CloseDoor
+  - RepeatTo
   inputCodes:
   - code: OnInteract
     parameter_int: 0
@@ -48,6 +49,7 @@ MonoBehaviour:
     output: 0
     transmitTime: 0.2
     timeBeforeTransmit: []
+    messageToTransmit: []
     inputPos: {x: 0, y: 0, z: 0}
     outputPos: {x: 0, y: 0, z: 0}
   initialOutputActions:

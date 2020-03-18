@@ -70,7 +70,7 @@ public class ServerSource : MonoBehaviour
             if (curve.Evaluate(Time.time - startingTime) > 0)
             {
                 isActivated = true;
-                server.AddMessage("THE NEW DATA POOL HAS BEGUN TO FILL.", Vector3.zero,null);
+                server.AddMessage("THE NEW DATA POOL HAS BEGUN TO FILL. @everyone", Vector3.zero,null);
                 server.NewAnnoncement(2);
             }
             takenFrom = false;

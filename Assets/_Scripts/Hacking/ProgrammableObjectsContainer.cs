@@ -75,13 +75,13 @@ public class ProgrammableObjectsContainer : MonoBehaviour
 		}
     }
     
-    public void ChatInstruction(string instruction)
+    public void ChatInstruction(string instruction,string messageCopy)
 	{
 		if (!GameState.SERVER) return; // replacement for preprocessor
 		
 		for (int i = 0; i < objectListServer.Count; i++)
         {
-            objectListServer[i].ChatInstruction(instruction);
+            objectListServer[i].ChatInstruction(instruction,messageCopy);
         }
     }
 
