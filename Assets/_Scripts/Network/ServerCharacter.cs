@@ -155,19 +155,16 @@ public class ServerCharacter : MonoBehaviour
                     {
                         if (hasAPriorityDestination)
                         {
+                            if (actualDestination != priorityDestination)
+                            {
+                                actualDestination = priorityDestination;
+                                normalDestination = actualDestination;
+                                //navMeshAgent.ResetPath();
+                                destinationWasSet = true;
+                            }
                             if (Vector3.Distance(this.transform.position, priorityDestination) < 10)
                             {
                                 hasAPriorityDestination = false;
-                            }
-                            else
-                            {
-                                if (actualDestination != priorityDestination)
-                                {
-                                    actualDestination = priorityDestination;
-                                    normalDestination = actualDestination;
-                                    //navMeshAgent.ResetPath();
-                                    destinationWasSet = true;
-                                }
                             }
                         }
                         else

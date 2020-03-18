@@ -347,22 +347,18 @@ public class ProgrammableObjectsData : MonoBehaviour
             }
         }
 
-        if(codeoutput == "GoRed")
+        if(codeoutput == "GoTo")
         {
-            if(this.GetComponent<ServerCharacter>().team != 1)
+            if(objectsContainer.objectNameServer.ContainsKey(parameter_string))
             {
                 this.GetComponent<ServerCharacter>().hasAPriorityDestination = true;
-                this.GetComponent<ServerCharacter>().priorityDestination = RedBatterie.position;
-            }            
-        }
-
-        if(codeoutput == "GoBlue")
-        {
-            if (this.GetComponent<ServerCharacter>().team != 0)
+                this.GetComponent<ServerCharacter>().priorityDestination = objectsContainer.objectNameServer[parameter_string].GetComponent<Transform>().position;
+            }
+            else if(parameter_string == "me")
             {
                 this.GetComponent<ServerCharacter>().hasAPriorityDestination = true;
-                this.GetComponent<ServerCharacter>().priorityDestination = BlueBatterie.position;
-            }                
+                this.GetComponent<ServerCharacter>().priorityDestination = this.GetComponent<Transform>().position;
+            }
         }
 
         if(codeoutput == "IfSourceActiveWrite")
@@ -647,18 +643,33 @@ public class ProgrammableObjectsData : MonoBehaviour
 
         while (!namedOk)
         {
-            nameNumber = UnityEngine.Random.Range(0, 1000);
-            if (nameNumber > 99)
+            if(Initiator.baseName == "drone")
             {
-                numberName = nameNumber.ToString();
-            }
-            else if (nameNumber > 9)
-            {
-                numberName = string.Concat("0", nameNumber.ToString());
+                nameNumber = UnityEngine.Random.Range(0, 1000);
+                if (nameNumber > 99)
+                {
+                    numberName = nameNumber.ToString();
+                }
+                else if (nameNumber > 9)
+                {
+                    numberName = string.Concat("0", nameNumber.ToString());
+                }
+                else
+                {
+                    numberName = string.Concat("00", nameNumber.ToString());
+                }
             }
             else
             {
-                numberName = string.Concat("00", nameNumber.ToString());
+                nameNumber = UnityEngine.Random.Range(0, 100);
+                if (nameNumber > 9)
+                {
+                    numberName = nameNumber.ToString();
+                }
+                else
+                {
+                    numberName = string.Concat("0", nameNumber.ToString());
+                }
             }
             name = string.Concat(Initiator.baseName, numberName);
             if (!objectsContainer.objectNameServer.ContainsKey(name))
@@ -678,18 +689,32 @@ public class ProgrammableObjectsData : MonoBehaviour
         string numberName;
         string name;
 
-        if (uniqueNumber > 99)
+        if (Initiator.baseName == "drone")
         {
-            numberName = uniqueNumber.ToString();
-        }
-        else if (uniqueNumber > 9)
-        {
-            numberName = string.Concat("0", uniqueNumber.ToString());
+            if (uniqueNumber > 99)
+            {
+                numberName = uniqueNumber.ToString();
+            }
+            else if (uniqueNumber > 9)
+            {
+                numberName = string.Concat("0", uniqueNumber.ToString());
+            }
+            else
+            {
+                numberName = string.Concat("00", uniqueNumber.ToString());
+            }
         }
         else
         {
-            numberName = string.Concat("00", uniqueNumber.ToString());
-        }
+            if (uniqueNumber > 9)
+            {
+                numberName = uniqueNumber.ToString();
+            }
+            else
+            {
+                numberName = string.Concat("0", uniqueNumber.ToString());
+            }
+        }   
         uniqueName = string.Concat(Initiator.baseName, numberName);
     }
 }
